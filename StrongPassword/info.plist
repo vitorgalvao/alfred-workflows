@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>action</key>
+	<false/>
+	<key>category</key>
+	<string>SCRIPTS</string>
+	<key>command</key>
+	<string>#!/bin/bash
+
+curl 'https://www.grc.com/passwords.htm' | grep 'ASCII characters:' | perl -MHTML::Entities -ne 's/.*2&gt;|&lt;.*//g; print decode_entities($_)' | tr -d '\n' | pbcopy
+
+echo "Password copied"</string>
+	<key>disabled</key>
+	<false/>
+	<key>escapedollar</key>
+	<false/>
+	<key>escapequery</key>
+	<false/>
+	<key>escapequerybackquotes</key>
+	<false/>
+	<key>escapequerybrackets</key>
+	<false/>
+	<key>escapequeryquotes</key>
+	<false/>
+	<key>escapequerysemicolons</key>
+	<false/>
+	<key>growloutput</key>
+	<true/>
+	<key>growloutputsticky</key>
+	<false/>
+	<key>keyword</key>
+	<string>strongpassword</string>
+	<key>logging</key>
+	<false/>
+	<key>multifileargs</key>
+	<false/>
+	<key>parameter</key>
+	<integer>1</integer>
+	<key>silent</key>
+	<true/>
+	<key>subtitle</key>
+	<string>Get a strong password from https://www.grc.com/passwords.htm directly to the clipboard</string>
+	<key>title</key>
+	<string>StrongPassword</string>
+</dict>
+</plist>

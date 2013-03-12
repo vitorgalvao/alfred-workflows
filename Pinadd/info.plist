@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>action</key>
+	<false/>
+	<key>category</key>
+	<string>SCRIPTS</string>
+	<key>command</key>
+	<string>#!/bin/bash
+
+# Set your API Token here (get it at "https://pinboard.in/settings/password")
+token=""
+
+# Set your prefered browser (comment with a "#" the one you do not want to use)
+browser="Google Chrome"
+#browser="Safari"
+
+# Get browser's frontmost tab's url and title, and set the tags for Pinboard
+# Arguments must be url-encoded (hence the 'perl')
+if [[ ${browser} == "Google Chrome" ]]; then
+	url=$(osascript -e 'tell application "Google Chrome" to return URL of active tab of front window' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
+	title=$(osascript -e 'tell application "Google Chrome" to return title of active tab of front window' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
+elif [[ ${browser} == "Safari" ]]; then
+	url=$(osascript -e 'tell application "Safari" to return URL of front document' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
+	title=$(osascript -e 'tell application "Safari" to return name of front document' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
+fi
+
+tags=$(echo {query} | perl -MURI::Escape -wlne 'print uri_escape ($_)')
+
+# Add the bookmark
+curl --silent "https://api.pinboard.in/v1/posts/add?url=${url}&amp;description=${title}&amp;tags=${tags}&amp;auth_token=${token}"</string>
+	<key>disabled</key>
+	<false/>
+	<key>escapedollar</key>
+	<false/>
+	<key>escapequery</key>
+	<false/>
+	<key>escapequerybackquotes</key>
+	<false/>
+	<key>escapequerybrackets</key>
+	<false/>
+	<key>escapequeryquotes</key>
+	<false/>
+	<key>escapequerysemicolons</key>
+	<false/>
+	<key>growloutput</key>
+	<true/>
+	<key>growloutputsticky</key>
+	<false/>
+	<key>keyword</key>
+	<string>pin</string>
+	<key>logging</key>
+	<false/>
+	<key>multifileargs</key>
+	<false/>
+	<key>parameter</key>
+	<integer>2</integer>
+	<key>silent</key>
+	<true/>
+	<key>subtitle</key>
+	<string>Takes arguments as tags — adds your browser's frontmost tab as a pinboard bookmark</string>
+	<key>title</key>
+	<string>Pinadd</string>
+</dict>
+</plist>
