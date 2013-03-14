@@ -2,14 +2,50 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>action</key>
+	<key>bundleid</key>
+	<string></string>
+	<key>connections</key>
+	<dict>
+		<key>6C8FF314-EEEF-451F-91B8-6CD96557ADB6</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>C0360AFB-6A8A-4A80-8FE4-87340F157AD3</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>C0360AFB-6A8A-4A80-8FE4-87340F157AD3</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>54A98584-AC99-47AF-89FA-ACDA5C1BAF2A</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Vítor Galvão</string>
+	<key>description</key>
+	<string>Takes arguments as tags — adds your browser's frontmost tab as a pinboard bookmark</string>
+	<key>disabled</key>
 	<false/>
-	<key>category</key>
-	<string>SCRIPTS</string>
-	<key>command</key>
-	<string>#!/bin/bash
-
-# Set your API Token here (get it at "https://pinboard.in/settings/password")
+	<key>name</key>
+	<string>PinAdd</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string># Set your API Token here (get it at "https://pinboard.in/settings/password")
 token=""
 
 # Set your prefered browser (comment with a "#" the one you do not want to use)
@@ -29,38 +65,81 @@ fi
 tags=$(echo "{query}" | perl -MURI::Escape -wlne 'print uri_escape ($_)')
 
 # Add the bookmark
-curl --silent "https://api.pinboard.in/v1/posts/add?url=${url}&amp;description=${title}&amp;tags=${tags}&amp;auth_token=${token}"</string>
-	<key>disabled</key>
-	<false/>
-	<key>escapedollar</key>
-	<false/>
-	<key>escapequery</key>
-	<false/>
-	<key>escapequerybackquotes</key>
-	<false/>
-	<key>escapequerybrackets</key>
-	<false/>
-	<key>escapequeryquotes</key>
-	<false/>
-	<key>escapequerysemicolons</key>
-	<false/>
-	<key>growloutput</key>
-	<true/>
-	<key>growloutputsticky</key>
-	<false/>
-	<key>keyword</key>
-	<string>pin</string>
-	<key>logging</key>
-	<false/>
-	<key>multifileargs</key>
-	<false/>
-	<key>parameter</key>
-	<integer>2</integer>
-	<key>silent</key>
-	<true/>
-	<key>subtitle</key>
-	<string>Takes arguments as tags — adds your browser's frontmost tab as a pinboard bookmark</string>
-	<key>title</key>
-	<string>Pinadd</string>
+curl --silent "https://api.pinboard.in/v1/posts/add?url=${url}&amp;amp;description=${title}&amp;amp;tags=${tags}&amp;amp;auth_token=${token}"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>C0360AFB-6A8A-4A80-8FE4-87340F157AD3</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>Bookmark added</string>
+				<key>title</key>
+				<string>PinAdd</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>54A98584-AC99-47AF-89FA-ACDA5C1BAF2A</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>pin</string>
+				<key>subtext</key>
+				<string>Takes arguments as tags — adds your browser's frontmost tab as a pinboard bookmark</string>
+				<key>text</key>
+				<string>PinAdd</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>6C8FF314-EEEF-451F-91B8-6CD96557ADB6</string>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>You need to add your Pinboard's API Token (get it at "https://pinboard.in/settings/password") on the line that says “token=""”
+
+If you use Safari instead of Chrome, you need to change that option in the script by commenting the respective line. More instructions on the extension itself.</string>
+	<key>uidata</key>
+	<dict>
+		<key>54A98584-AC99-47AF-89FA-ACDA5C1BAF2A</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>6C8FF314-EEEF-451F-91B8-6CD96557ADB6</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>C0360AFB-6A8A-4A80-8FE4-87340F157AD3</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://vitorgalvao.com/</string>
 </dict>
 </plist>
