@@ -21,7 +21,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>54A98584-AC99-47AF-89FA-ACDA5C1BAF2A</string>
+				<string>A3481C3B-1483-419B-96C7-CB2CC0A40433</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -39,6 +39,48 @@
 	<string>PinAdd</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>Bookmark added</string>
+				<key>title</key>
+				<string>PinAdd</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>A3481C3B-1483-419B-96C7-CB2CC0A40433</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>pin</string>
+				<key>subtext</key>
+				<string>Takes arguments as tags — adds your browser's frontmost tab as a pinboard bookmark</string>
+				<key>text</key>
+				<string>PinAdd</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>6C8FF314-EEEF-451F-91B8-6CD96557ADB6</string>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -65,7 +107,7 @@ fi
 tags=$(echo "{query}" | perl -MURI::Escape -wlne 'print uri_escape ($_)')
 
 # Add the bookmark
-curl --silent "https://api.pinboard.in/v1/posts/add?url=${url}&amp;amp;description=${title}&amp;amp;tags=${tags}&amp;amp;auth_token=${token}"</string>
+curl --silent "https://api.pinboard.in/v1/posts/add?url=${url}&amp;description=${title}&amp;tags=${tags}&amp;auth_token=${token}"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -74,48 +116,6 @@ curl --silent "https://api.pinboard.in/v1/posts/add?url=${url}&amp;amp;descripti
 			<key>uid</key>
 			<string>C0360AFB-6A8A-4A80-8FE4-87340F157AD3</string>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>output</key>
-				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>Bookmark added</string>
-				<key>title</key>
-				<string>PinAdd</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>54A98584-AC99-47AF-89FA-ACDA5C1BAF2A</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>keyword</key>
-				<string>pin</string>
-				<key>subtext</key>
-				<string>Takes arguments as tags — adds your browser's frontmost tab as a pinboard bookmark</string>
-				<key>text</key>
-				<string>PinAdd</string>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>6C8FF314-EEEF-451F-91B8-6CD96557ADB6</string>
-		</dict>
 	</array>
 	<key>readme</key>
 	<string>You need to add your Pinboard's API Token (get it at "https://pinboard.in/settings/password") on the line that says “token=""”
@@ -123,12 +123,12 @@ curl --silent "https://api.pinboard.in/v1/posts/add?url=${url}&amp;amp;descripti
 If you use Safari instead of Chrome, you need to change that option in the script by commenting the respective line. More instructions on the extension itself.</string>
 	<key>uidata</key>
 	<dict>
-		<key>54A98584-AC99-47AF-89FA-ACDA5C1BAF2A</key>
+		<key>6C8FF314-EEEF-451F-91B8-6CD96557ADB6</key>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
-		<key>6C8FF314-EEEF-451F-91B8-6CD96557ADB6</key>
+		<key>A3481C3B-1483-419B-96C7-CB2CC0A40433</key>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
