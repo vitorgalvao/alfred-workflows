@@ -42,25 +42,17 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>output</key>
+				<key>escaping</key>
 				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>Password was copied to the clipboard</string>
-				<key>title</key>
-				<string>StrongPassword</string>
+				<key>script</key>
+				<string>curl 'https://www.grc.com/passwords.htm' | grep 'ASCII characters:' | perl -MHTML::Entities -ne 's/.*2&gt;|&lt;.*//g; print decode_entities($_)' | tr -d '\n' | pbcopy</string>
+				<key>type</key>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
+			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>A70A4E1E-712E-4575-967A-0AA64960904D</string>
+			<string>FF316160-82F1-4AC1-8D82-72A1F0AC9ED6</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -84,17 +76,25 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>escaping</key>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
 				<integer>0</integer>
-				<key>script</key>
-				<string>curl 'https://www.grc.com/passwords.htm' | grep 'ASCII characters:' | perl -MHTML::Entities -ne 's/.*2&amp;gt;|&amp;lt;.*//g; print decode_entities($_)' | tr -d '\n' | pbcopy</string>
-				<key>type</key>
-				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>Password was copied to the clipboard</string>
+				<key>title</key>
+				<string>StrongPassword</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
-			<string>FF316160-82F1-4AC1-8D82-72A1F0AC9ED6</string>
+			<string>A70A4E1E-712E-4575-967A-0AA64960904D</string>
 		</dict>
 	</array>
 	<key>readme</key>
