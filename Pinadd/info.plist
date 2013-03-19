@@ -118,7 +118,7 @@ browser="$(cat settings | sed -n 2p)"
 # Check if token and browser are set
 # If not, redirect to webpage with instructions
 if [[ ! -s settings ]]; then
-	osascript -e 'open location ""'
+	osascript -e 'open location "http://is.gd/RoBwUR"'
 	exit 1
 fi
 
