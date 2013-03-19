@@ -110,14 +110,14 @@
 				<integer>0</integer>
 				<key>script</key>
 				<string># Set your API Token here (get it at "https://pinboard.in/settings/password")
-token="$(cat details | sed -n 1p)"
+token="$(cat settings | sed -n 1p)"
 
 # Set your prefered browser (comment with a "#" the one you do not want to use)
-browser="$(cat details | sed -n 2p)"
+browser="$(cat settings | sed -n 2p)"
 
 # Check if token and browser are set
 # If not, redirect to webpage with instructions
-if [[ ! -s details ]]; then
+if [[ ! -s settings ]]; then
 	osascript -e 'open location ""'
 	exit 1
 fi
@@ -197,10 +197,10 @@ exit 0</string>
 				<string>token=$(cut -d " " -f1 &lt;(echo "{query}"))
 browser=$(cut -d " " -f2 &lt;(echo "{query}"))
 
-rm details
+rm settings
 
-echo ${token} &gt;&gt; details
-echo ${browser} &gt;&gt; details</string>
+echo ${token} &gt;&gt; settings
+echo ${browser} &gt;&gt; settings</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
