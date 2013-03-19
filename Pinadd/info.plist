@@ -64,46 +64,21 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>escaping</key>
+				<key>argumenttype</key>
 				<integer>0</integer>
-				<key>script</key>
-				<string>token=$(cut -d " " -f1 &lt;(echo "{query}"))
-browser=$(cut -d " " -f2 &lt;(echo "{query}"))
-
-rm details
-
-echo ${token} &gt;&gt; details
-echo ${browser} &gt;&gt; details</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>3DC2C092-281B-435F-ACB6-B7624A4B74B0</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>output</key>
-				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
+				<key>keyword</key>
+				<string>pinset</string>
+				<key>subtext</key>
+				<string>Takes two arguments — your pinboard API token and preferred browser (in that order) separated by a space</string>
 				<key>text</key>
-				<string>Configuration done</string>
-				<key>title</key>
-				<string>PinAdd</string>
+				<string>PinSet</string>
+				<key>withspace</key>
+				<true/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
+			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
-			<string>6E399669-A98B-436E-BF47-3F0AAECBE1C1</string>
+			<string>6A171D73-19F3-45BF-935E-A2523716F6E1</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -149,10 +124,10 @@ fi
 
 # Get browser's frontmost tab's url and title, and set the tags for Pinboard
 # Arguments must be url-encoded (hence the 'perl')
-if [[ ${browser} == "chrome" || ${browser} == "Chrome" ]]; then
+if [[ $(echo ${browser} | tr [:upper:] [:lower:]) == "chrome" ]]; then
 	url=$(osascript -e 'tell application "Google Chrome" to return URL of active tab of front window' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
 	title=$(osascript -e 'tell application "Google Chrome" to return title of active tab of front window' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
-elif [[ ${browser} == "Safari" || ${browser} == "safari" ]]; then
+elif [[ $(echo ${browser} | tr [:upper:] [:lower:]) == "safari" ]]; then
 	url=$(osascript -e 'tell application "Safari" to return URL of front document' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
 	title=$(osascript -e 'tell application "Safari" to return name of front document' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
 fi
@@ -175,25 +150,6 @@ exit 0</string>
 			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>pinset</string>
-				<key>subtext</key>
-				<string>Takes two arguments — your pinboard API token and preferred browser (in that order) separated by a space</string>
-				<key>text</key>
-				<string>PinSet</string>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>6A171D73-19F3-45BF-935E-A2523716F6E1</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>keyword</key>
 				<string>pin</string>
@@ -208,6 +164,50 @@ exit 0</string>
 			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
 			<string>6C8FF314-EEEF-451F-91B8-6CD96557ADB6</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>Configuration done</string>
+				<key>title</key>
+				<string>PinAdd</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>6E399669-A98B-436E-BF47-3F0AAECBE1C1</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>token=$(cut -d " " -f1 &lt;(echo "{query}"))
+browser=$(cut -d " " -f2 &lt;(echo "{query}"))
+
+rm details
+
+echo ${token} &gt;&gt; details
+echo ${browser} &gt;&gt; details</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>3DC2C092-281B-435F-ACB6-B7624A4B74B0</string>
 		</dict>
 	</array>
 	<key>readme</key>
