@@ -6,22 +6,22 @@
 	<string></string>
 	<key>connections</key>
 	<dict>
-		<key>3DC2C092-281B-435F-ACB6-B7624A4B74B0</key>
+		<key>0718E194-44CD-456D-8031-0285E37A54A7</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>6E399669-A98B-436E-BF47-3F0AAECBE1C1</string>
+				<string>A3481C3B-1483-419B-96C7-CB2CC0A40433</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
 			</dict>
 		</array>
-		<key>6A171D73-19F3-45BF-935E-A2523716F6E1</key>
+		<key>3DC2C092-281B-435F-ACB6-B7624A4B74B0</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>3DC2C092-281B-435F-ACB6-B7624A4B74B0</string>
+				<string>6E399669-A98B-436E-BF47-3F0AAECBE1C1</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -37,6 +37,22 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>0718E194-44CD-456D-8031-0285E37A54A7</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Add bookmark as private</string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>3DC2C092-281B-435F-ACB6-B7624A4B74B0</string>
+				<key>modifiers</key>
+				<integer>131072</integer>
+				<key>modifiersubtext</key>
+				<string>Write settings (API token followed by browser)</string>
 			</dict>
 		</array>
 		<key>C0360AFB-6A8A-4A80-8FE4-87340F157AD3</key>
@@ -65,20 +81,63 @@
 			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>keyword</key>
-				<string>pinset</string>
+				<string>pin</string>
 				<key>subtext</key>
-				<string>Takes two arguments — your pinboard API token and preferred browser (in that order) separated by a space</string>
+				<string>Takes arguments as tags — adds your browser's frontmost tab as a pinboard bookmark</string>
 				<key>text</key>
-				<string>PinSet</string>
+				<string>PinAdd</string>
 				<key>withspace</key>
 				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
-			<string>6A171D73-19F3-45BF-935E-A2523716F6E1</string>
+			<string>6C8FF314-EEEF-451F-91B8-6CD96557ADB6</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string># Set your API Token here (get it at "https://pinboard.in/settings/password")
+token="$(cat settings | sed -n 1p)"
+
+# Set your prefered browser (comment with a "#" the one you do not want to use)
+browser="$(cat settings | sed -n 2p)"
+
+# Check if token and browser are set
+# If not, redirect to webpage with instructions
+if [[ ! -s settings ]]; then
+	osascript -e 'open location "http://is.gd/RoBwUR"'
+	exit 1
+fi
+
+# Get browser's frontmost tab's url and title, and set the tags for Pinboard
+# Arguments must be url-encoded (hence the 'perl')
+if [[ $(echo ${browser} | tr [:upper:] [:lower:]) == "chrome" ]]; then
+	url=$(osascript -e 'tell application "Google Chrome" to return URL of active tab of front window' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
+	title=$(osascript -e 'tell application "Google Chrome" to return title of active tab of front window' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
+elif [[ $(echo ${browser} | tr [:upper:] [:lower:]) == "safari" ]]; then
+	url=$(osascript -e 'tell application "Safari" to return URL of front document' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
+	title=$(osascript -e 'tell application "Safari" to return name of front document' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
+fi
+
+tags=$(echo "{query}" | perl -MURI::Escape -wlne 'print uri_escape ($_)')
+
+# Add the bookmark
+curl --silent "https://api.pinboard.in/v1/posts/add?url=${url}&amp;description=${title}&amp;tags=${tags}&amp;shared=no&amp;auth_token=${token}"
+
+exit 0</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>0718E194-44CD-456D-8031-0285E37A54A7</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -149,25 +208,6 @@ exit 0</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>keyword</key>
-				<string>pin</string>
-				<key>subtext</key>
-				<string>Takes arguments as tags — adds your browser's frontmost tab as a pinboard bookmark</string>
-				<key>text</key>
-				<string>PinAdd</string>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>6C8FF314-EEEF-451F-91B8-6CD96557ADB6</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>lastpathcomponent</key>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
@@ -211,20 +251,18 @@ echo ${browser} &gt;&gt; settings</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>You need to add your Pinboard's API Token (get it at "https://pinboard.in/settings/password") on the line that says “token=""”
-
-If you use Safari instead of Chrome, you need to change that option in the script by commenting the respective line. More instructions on the extension itself.</string>
+	<string></string>
 	<key>uidata</key>
 	<dict>
-		<key>3DC2C092-281B-435F-ACB6-B7624A4B74B0</key>
+		<key>0718E194-44CD-456D-8031-0285E37A54A7</key>
 		<dict>
 			<key>ypos</key>
 			<real>130</real>
 		</dict>
-		<key>6A171D73-19F3-45BF-935E-A2523716F6E1</key>
+		<key>3DC2C092-281B-435F-ACB6-B7624A4B74B0</key>
 		<dict>
 			<key>ypos</key>
-			<real>130</real>
+			<real>260</real>
 		</dict>
 		<key>6C8FF314-EEEF-451F-91B8-6CD96557ADB6</key>
 		<dict>
@@ -234,7 +272,7 @@ If you use Safari instead of Chrome, you need to change that option in the scrip
 		<key>6E399669-A98B-436E-BF47-3F0AAECBE1C1</key>
 		<dict>
 			<key>ypos</key>
-			<real>130</real>
+			<real>260</real>
 		</dict>
 		<key>A3481C3B-1483-419B-96C7-CB2CC0A40433</key>
 		<dict>
