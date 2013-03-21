@@ -70,7 +70,7 @@
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
 	<key>description</key>
-	<string>Takes arguments as tags — adds your browser's frontmost tab as a pinboard bookmark</string>
+	<string>Takes arguments as tags — adds your browser&apos;s frontmost tab as a pinboard bookmark</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -85,7 +85,7 @@
 				<key>keyword</key>
 				<string>pin</string>
 				<key>subtext</key>
-				<string>Takes arguments as tags — adds your browser's frontmost tab as a pinboard bookmark</string>
+				<string>Takes arguments as tags — adds your browser&apos;s frontmost tab as a pinboard bookmark</string>
 				<key>text</key>
 				<string>PinAdd</string>
 				<key>withspace</key>
@@ -102,33 +102,39 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string># Set your API Token here (get it at "https://pinboard.in/settings/password")
-token="$(cat settings | sed -n 1p)"
+				<string># Set your API Token here (get it at &quot;https://pinboard.in/settings/password&quot;)
+token=&quot;$(cat settings | sed -n 1p)&quot;
 
-# Set your prefered browser (comment with a "#" the one you do not want to use)
-browser="$(cat settings | sed -n 2p)"
+# Set your prefered browser (comment with a &quot;#&quot; the one you do not want to use)
+browser=&quot;$(cat settings | sed -n 2p)&quot;
 
 # Check if token and browser are set
 # If not, redirect to webpage with instructions
 if [[ ! -s settings ]]; then
-	osascript -e 'open location "http://is.gd/RoBwUR"'
-	exit 1
+  osascript -e &apos;open location &quot;http://is.gd/RoBwUR&quot;&apos;
+  exit 1
 fi
 
-# Get browser's frontmost tab's url and title, and set the tags for Pinboard
-# Arguments must be url-encoded (hence the 'perl')
-if [[ $(echo ${browser} | tr [:upper:] [:lower:]) == "chrome" ]]; then
-	url=$(osascript -e 'tell application "Google Chrome" to return URL of active tab of front window' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
-	title=$(osascript -e 'tell application "Google Chrome" to return title of active tab of front window' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
-elif [[ $(echo ${browser} | tr [:upper:] [:lower:]) == "safari" ]]; then
-	url=$(osascript -e 'tell application "Safari" to return URL of front document' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
-	title=$(osascript -e 'tell application "Safari" to return name of front document' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
+# Get browser&apos;s frontmost tab&apos;s url and title, and set the tags for Pinboard
+# Arguments must be url-encoded (hence the &apos;perl&apos;)
+if [[ $(echo ${browser} | tr [:upper:] [:lower:]) == &quot;chrome&quot; ]]; then
+  url=$(osascript -e &apos;tell application &quot;Google Chrome&quot; to return URL of active tab of front window&apos; | perl -MURI::Escape -wlne &apos;print uri_escape ($_)&apos;)
+  title=$(osascript -e &apos;tell application &quot;Google Chrome&quot; to return title of active tab of front window&apos; | perl -MURI::Escape -wlne &apos;print uri_escape ($_)&apos;)
+elif [[ $(echo ${browser} | tr [:upper:] [:lower:]) == &quot;safari&quot; ]]; then
+  url=$(osascript -e &apos;tell application &quot;Safari&quot; to return URL of front document&apos; | perl -MURI::Escape -wlne &apos;print uri_escape ($_)&apos;)
+  title=$(osascript -e &apos;tell application &quot;Safari&quot; to return name of front document&apos; | perl -MURI::Escape -wlne &apos;print uri_escape ($_)&apos;)
+elif [[ $(echo ${browser} | tr [:upper:] [:lower:]) == &quot;webkit&quot; ]]; then
+  url=$(osascript -e &apos;tell application &quot;Webkit&quot; to return URL of front document&apos; | perl -MURI::Escape -wlne &apos;print uri_escape ($_)&apos;)
+  title=$(osascript -e &apos;tell application &quot;Webkit&quot; to return name of front document&apos; | perl -MURI::Escape -wlne &apos;print uri_escape ($_)&apos;)
+elif [[ $(echo ${browser} | tr [:upper:] [:lower:]) == &quot;chrome_canary&quot; ]]; then
+  url=$(osascript -e &apos;tell application &quot;Google Chrome Canary&quot; to return URL of active tab of front window&apos; | perl -MURI::Escape -wlne &apos;print uri_escape ($_)&apos;)
+  title=$(osascript -e &apos;tell application &quot;Google Chrome Canary&quot; to return title of active tab of front window&apos; | perl -MURI::Escape -wlne &apos;print uri_escape ($_)&apos;)
 fi
 
-tags=$(echo "{query}" | perl -MURI::Escape -wlne 'print uri_escape ($_)')
+tags=$(echo &quot;{query}&quot; | perl -MURI::Escape -wlne &apos;print uri_escape ($_)&apos;)
 
 # Add the bookmark
-curl --silent "https://api.pinboard.in/v1/posts/add?url=${url}&amp;description=${title}&amp;tags=${tags}&amp;shared=no&amp;auth_token=${token}"
+curl --silent &quot;https://api.pinboard.in/v1/posts/add?url=${url}&amp;description=${title}&amp;tags=${tags}&amp;auth_token=${token}&quot;
 
 exit 0</string>
 				<key>type</key>
@@ -168,33 +174,39 @@ exit 0</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string># Set your API Token here (get it at "https://pinboard.in/settings/password")
-token="$(cat settings | sed -n 1p)"
+				<string># Set your API Token here (get it at &quot;https://pinboard.in/settings/password&quot;)
+token=&quot;$(cat settings | sed -n 1p)&quot;
 
-# Set your prefered browser (comment with a "#" the one you do not want to use)
-browser="$(cat settings | sed -n 2p)"
+# Set your prefered browser (comment with a &quot;#&quot; the one you do not want to use)
+browser=&quot;$(cat settings | sed -n 2p)&quot;
 
 # Check if token and browser are set
 # If not, redirect to webpage with instructions
 if [[ ! -s settings ]]; then
-	osascript -e 'open location "http://is.gd/RoBwUR"'
-	exit 1
+  osascript -e &apos;open location &quot;http://is.gd/RoBwUR&quot;&apos;
+  exit 1
 fi
 
-# Get browser's frontmost tab's url and title, and set the tags for Pinboard
-# Arguments must be url-encoded (hence the 'perl')
-if [[ $(echo ${browser} | tr [:upper:] [:lower:]) == "chrome" ]]; then
-	url=$(osascript -e 'tell application "Google Chrome" to return URL of active tab of front window' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
-	title=$(osascript -e 'tell application "Google Chrome" to return title of active tab of front window' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
-elif [[ $(echo ${browser} | tr [:upper:] [:lower:]) == "safari" ]]; then
-	url=$(osascript -e 'tell application "Safari" to return URL of front document' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
-	title=$(osascript -e 'tell application "Safari" to return name of front document' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
+# Get browser&apos;s frontmost tab&apos;s url and title, and set the tags for Pinboard
+# Arguments must be url-encoded (hence the &apos;perl&apos;)
+if [[ $(echo ${browser} | tr [:upper:] [:lower:]) == &quot;chrome&quot; ]]; then
+  url=$(osascript -e &apos;tell application &quot;Google Chrome&quot; to return URL of active tab of front window&apos; | perl -MURI::Escape -wlne &apos;print uri_escape ($_)&apos;)
+  title=$(osascript -e &apos;tell application &quot;Google Chrome&quot; to return title of active tab of front window&apos; | perl -MURI::Escape -wlne &apos;print uri_escape ($_)&apos;)
+elif [[ $(echo ${browser} | tr [:upper:] [:lower:]) == &quot;safari&quot; ]]; then
+  url=$(osascript -e &apos;tell application &quot;Safari&quot; to return URL of front document&apos; | perl -MURI::Escape -wlne &apos;print uri_escape ($_)&apos;)
+  title=$(osascript -e &apos;tell application &quot;Safari&quot; to return name of front document&apos; | perl -MURI::Escape -wlne &apos;print uri_escape ($_)&apos;)
+elif [[ $(echo ${browser} | tr [:upper:] [:lower:]) == &quot;webkit&quot; ]]; then
+  url=$(osascript -e &apos;tell application &quot;Webkit&quot; to return URL of front document&apos; | perl -MURI::Escape -wlne &apos;print uri_escape ($_)&apos;)
+  title=$(osascript -e &apos;tell application &quot;Webkit&quot; to return name of front document&apos; | perl -MURI::Escape -wlne &apos;print uri_escape ($_)&apos;)
+elif [[ $(echo ${browser} | tr [:upper:] [:lower:]) == &quot;chrome_canary&quot; ]]; then
+  url=$(osascript -e &apos;tell application &quot;Google Chrome Canary&quot; to return URL of active tab of front window&apos; | perl -MURI::Escape -wlne &apos;print uri_escape ($_)&apos;)
+  title=$(osascript -e &apos;tell application &quot;Google Chrome Canary&quot; to return title of active tab of front window&apos; | perl -MURI::Escape -wlne &apos;print uri_escape ($_)&apos;)
 fi
 
-tags=$(echo "{query}" | perl -MURI::Escape -wlne 'print uri_escape ($_)')
+tags=$(echo &quot;{query}&quot; | perl -MURI::Escape -wlne &apos;print uri_escape ($_)&apos;)
 
 # Add the bookmark
-curl --silent "https://api.pinboard.in/v1/posts/add?url=${url}&amp;description=${title}&amp;tags=${tags}&amp;auth_token=${token}"
+curl --silent &quot;https://api.pinboard.in/v1/posts/add?url=${url}&amp;description=${title}&amp;tags=${tags}&amp;auth_token=${token}&quot;
 
 exit 0</string>
 				<key>type</key>
@@ -234,8 +246,8 @@ exit 0</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>token=$(cut -d " " -f1 &lt;(echo "{query}"))
-browser=$(cut -d " " -f2 &lt;(echo "{query}"))
+				<string>token=$(cut -d &quot; &quot; -f1 &lt;(echo &quot;{query}&quot;))
+browser=$(cut -d &quot; &quot; -f2 &lt;(echo &quot;{query}&quot;))
 
 rm settings
 
