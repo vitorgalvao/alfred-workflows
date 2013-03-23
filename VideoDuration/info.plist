@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string></string>
+	<key>connections</key>
+	<dict>
+		<key>1B14953E-E57E-44E2-9659-FEEDDFB44CC8</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>28B55659-9FD1-44B6-AA1E-C8BA1149FC87</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>28B55659-9FD1-44B6-AA1E-C8BA1149FC87</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>FBFFF5C9-8C6D-45DE-B6B2-8F0F1F283260</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Vítor Galvão</string>
+	<key>description</key>
+	<string>Copies a given online video site’s url to the clipboard with it’s duration in square brackets</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>VideoDuration</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>url="$(pbpaste)"
+
+duration=$(curl --silent "${url}" | grep '&lt;meta itemprop="duration"' | sed 's/.*PT//;s/"&gt;//;s/H/h/;s/M/m/;s/S/s/;s/^/[/;s/$/]/')
+
+echo "${url} ${duration}" | tr -d '\n' | pbcopy</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>28B55659-9FD1-44B6-AA1E-C8BA1149FC87</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>videoduration</string>
+				<key>subtext</key>
+				<string>Copy a video‐centric’s website (youtube, vimeo) url to the clipboard, and it’ll add the duration in front</string>
+				<key>text</key>
+				<string>VideoDuration</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>1B14953E-E57E-44E2-9659-FEEDDFB44CC8</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>Link and duration copied to clipboard</string>
+				<key>title</key>
+				<string>VideoDuration</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>FBFFF5C9-8C6D-45DE-B6B2-8F0F1F283260</string>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>1B14953E-E57E-44E2-9659-FEEDDFB44CC8</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>28B55659-9FD1-44B6-AA1E-C8BA1149FC87</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>FBFFF5C9-8C6D-45DE-B6B2-8F0F1F283260</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://vitorgalvao.com/</string>
+</dict>
+</plist>
