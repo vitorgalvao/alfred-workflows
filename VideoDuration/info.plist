@@ -47,7 +47,7 @@
 				<key>script</key>
 				<string>url="$(pbpaste)"
 
-duration=$(curl --silent "${url}" | grep '&lt;meta itemprop="duration"' | sed 's/.*PT//;s/"&gt;//;s/H/h/;s/M/m/;s/S/s/;s/^/[/;s/$/]/')
+duration=$(curl --silent --location "${url}" | grep '&lt;meta itemprop="duration"' | sed 's/.*PT//;s/"&gt;//;s/H/h/;s/M/m/;s/S/s/;s/^/[/;s/$/]/')
 
 echo "${url} ${duration}" | tr -d '\n' | pbcopy</string>
 				<key>type</key>
