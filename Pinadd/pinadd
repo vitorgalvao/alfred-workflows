@@ -1,0 +1,38 @@
+# Settings
+token="$(cat settings | sed -n 1p)"
+browser="$(cat settings | sed -n 2p)"
+
+# Check if token and browser are set
+# If not, redirect to webpage with instructions
+if [[ ! -s settings ]]; then
+  osascript -e 'open location "http://is.gd/RoBwUR"'
+  exit 1
+fi
+
+# Get browser's frontmost tab's url and title, and set the tags for Pinboard
+# Arguments must be url-encoded (hence the 'perl')
+if [[ $(echo ${browser} | tr [:upper:] [:lower:]) == "chrome" ]]; then
+  url=$(osascript -e 'tell application "Google Chrome" to return URL of active tab of front window' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
+  title=$(osascript -e 'tell application "Google Chrome" to return title of active tab of front window' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
+elif [[ $(echo ${browser} | tr [:upper:] [:lower:]) == "safari" ]]; then
+  url=$(osascript -e 'tell application "Safari" to return URL of front document' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
+  title=$(osascript -e 'tell application "Safari" to return name of front document' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
+elif [[ $(echo ${browser} | tr [:upper:] [:lower:]) == "webkit" ]]; then
+  url=$(osascript -e 'tell application "Webkit" to return URL of front document' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
+  title=$(osascript -e 'tell application "Webkit" to return name of front document' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
+elif [[ $(echo ${browser} | tr [:upper:] [:lower:]) == "chrome_canary" ]]; then
+  url=$(osascript -e 'tell application "Google Chrome Canary" to return URL of active tab of front window' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
+  title=$(osascript -e 'tell application "Google Chrome Canary" to return title of active tab of front window' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
+fi
+
+if [[ ${1} == "{[setAsPrivate]}" ]]; then
+  private="&shared=no"
+  shift
+fi
+
+tags=$(echo "$@" | perl -MURI::Escape -wlne 'print uri_escape ($_)')
+
+# Add the bookmark
+curl --silent "https://api.pinboard.in/v1/posts/add?url=${url}&description=${title}&tags=${tags}&auth_token=${token}${private}"
+
+exit 0
