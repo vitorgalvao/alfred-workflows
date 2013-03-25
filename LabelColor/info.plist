@@ -53,30 +53,7 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>IFS=$'\n'
-
-color="{query}"
-
-colorArray=('none' 'orange' 'red' 'yellow' 'blue' 'purple' 'green' 'gray')
-
-for (( i = 0; i &lt; ${#colorArray[@]}; i++ )); do
-	if [[ "${colorArray[$i]}" = "${color}" ]]; then
-		color="${i}"
-		isValidColor="True"
-	fi
-done
-
-for i in $(cat file_list); do
-osascript - "${color}" "${i}" &lt;&lt; EOF &amp;&gt;/dev/null
-	on run argv
-		set labelIndex to (item 1 of argv as number)
-		tell application "Finder"
-			set theFile to POSIX file (item 2 of argv) as alias
-			set label index of theFile to labelIndex
-		end tell
-	end run
-EOF
-done
+				<string>./labelcolor {query} $(cat file_list)
 
 rm file_list
 
@@ -88,40 +65,6 @@ exit 0</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>3387B057-FF89-44FF-8D81-1C1CB554C09C</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>labelcolor</string>
-				<key>subtext</key>
-				<string>none (removes label), orange, red, yellow, blue, purple, green, gray</string>
-				<key>text</key>
-				<string>labelcolor</string>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>F0F03219-0C30-4884-A6C9-9465D512B11C</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>acceptsmulti</key>
-				<true/>
-				<key>filetypes</key>
-				<array/>
-				<key>name</key>
-				<string>Label</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.action</string>
-			<key>uid</key>
-			<string>D9413737-68AF-44E7-8F3D-214676DFD4EF</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -153,6 +96,40 @@ end alfred_script</string>
 			<key>uid</key>
 			<string>967B18E7-BA96-4F09-B4E5-A773DE0FD3DC</string>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsmulti</key>
+				<true/>
+				<key>filetypes</key>
+				<array/>
+				<key>name</key>
+				<string>Label</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>D9413737-68AF-44E7-8F3D-214676DFD4EF</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>labelcolor</string>
+				<key>subtext</key>
+				<string>none (removes label), orange, red, yellow, blue, purple, green, gray</string>
+				<key>text</key>
+				<string>labelcolor</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>F0F03219-0C30-4884-A6C9-9465D512B11C</string>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
@@ -161,7 +138,7 @@ end alfred_script</string>
 		<key>3387B057-FF89-44FF-8D81-1C1CB554C09C</key>
 		<dict>
 			<key>ypos</key>
-			<real>260</real>
+			<real>250</real>
 		</dict>
 		<key>77AA5EBA-F831-4E9E-9E7D-FD7665B66FD1</key>
 		<dict>
@@ -181,7 +158,7 @@ end alfred_script</string>
 		<key>F0F03219-0C30-4884-A6C9-9465D512B11C</key>
 		<dict>
 			<key>ypos</key>
-			<real>260</real>
+			<real>250</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
