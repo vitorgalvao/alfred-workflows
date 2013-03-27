@@ -6,7 +6,7 @@ Sets a label color for selected files and directories.
 ### [PinAdd](http://www.alfredforum.com/topic/1230-pinadd-%E2%80%94-takes-arguments-as-tags-and-adds-your-browser%E2%80%99s-safari-webkit-chrome-or-chrome-canary-frontmost-tab-as-a-pinboard-bookmark/)
 Takes arguments as tags, and adds your browser's (Safari, Webkit, Chrome, or Chrome Canary) frontmost tab as a pinboard bookmark.
 
-### [RunCommand]
+### [RunCommand](http://www.alfredforum.com/topic/1550-runcommand-%E2%80%94-runs-terminal-command-on-selected-filesdirectories/)
 Runs terminal command on selected files/directories.
 
 ### [StrongPassword](http://www.alfredforum.com/topic/1233-strongpassword-%E2%80%94-get-a-strong-password-from-httpswwwgrccompasswordshtm-directly-to-the-clipboard/)
