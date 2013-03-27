@@ -66,7 +66,7 @@ echo "${url} ${duration}" | tr -d '\n' | pbcopy</string>
 				<key>keyword</key>
 				<string>videoduration</string>
 				<key>subtext</key>
-				<string>Copy a video‐centric’s website (youtube, vimeo) url to the clipboard, and it’ll add the duration in front</string>
+				<string>Will act on the URL you have on your clipboard</string>
 				<key>text</key>
 				<string>VideoDuration</string>
 				<key>withspace</key>

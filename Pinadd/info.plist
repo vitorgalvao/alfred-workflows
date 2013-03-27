@@ -85,7 +85,7 @@
 				<key>keyword</key>
 				<string>pin</string>
 				<key>subtext</key>
-				<string>Takes arguments as tags — adds your browser's frontmost tab as a pinboard bookmark</string>
+				<string>Takes arguments as tags</string>
 				<key>text</key>
 				<string>PinAdd</string>
 				<key>withspace</key>
