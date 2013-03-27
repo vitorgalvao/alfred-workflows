@@ -68,7 +68,7 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>echo "{query}" | perl -pe 's/\t/\n/g' &gt; file_list</string>
+				<string>echo "{query}" | perl -pe 's/[\t\n]/\0/g' &gt; file_list</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -83,7 +83,7 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>{query} $(cat file_list)
+				<string>cat file_list | xargs -0 {query}
 
 rm file_list</string>
 				<key>type</key>
