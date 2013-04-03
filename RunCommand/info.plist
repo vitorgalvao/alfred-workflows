@@ -25,6 +25,17 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>70D7DD2C-C248-44EB-8F75-538914807A66</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3C3BFA6B-AE9B-47A7-A377-28AD784BA363</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>BC3ADE81-4A31-4D07-A1C8-11BF79A65DE9</key>
 		<array>
 			<dict>
@@ -65,6 +76,25 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>lastpathcomponent</key>
+				<true/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>3C3BFA6B-AE9B-47A7-A377-28AD784BA363</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
@@ -83,7 +113,17 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>cat file_list | xargs -0 {query}
+				<string>if [[ "{query}" == *" {} "* ]]
+then
+	command=$(echo "{query}" | sed 's/ {} /^/')
+
+	first=$(cut -d "^" -f1 &lt;(echo "${command}"))
+	second=$(cut -d "^" -f2 &lt;(echo "${command}"))
+
+	cat file_list | xargs -0 -J {} ${first} {} ${second}
+else
+	cat file_list | xargs -0 {query}
+fi
 
 rm file_list</string>
 				<key>type</key>
@@ -137,6 +177,11 @@ end alfred_script</string>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
+		</dict>
+		<key>3C3BFA6B-AE9B-47A7-A377-28AD784BA363</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
 		</dict>
 		<key>68CC8A56-102C-4023-BE9A-596453FDDB5C</key>
 		<dict>
