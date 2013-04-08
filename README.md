@@ -1,5 +1,8 @@
 # Collection of Alfred Extension scripts
 
+### [CommandRun]()
+Run CLI commands without opening a terminal
+
 ### [LabelColor](http://www.alfredforum.com/topic/1334-labelcolor-%E2%80%94-sets-a-label-color-for-selected-files-and-directories/)
 Sets a label color for selected files and directories.
 
