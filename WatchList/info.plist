@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string></string>
+	<key>connections</key>
+	<dict>
+		<key>9EBB5B54-11A6-468E-8097-BB07F5233E80</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>6DBCE4B1-7875-48EA-88E9-91D87B6B6278</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>AA3CF56F-3E4D-4EB5-8019-B9E517648566</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2C22F42C-C25C-4D4C-AB42-C31CE9234895</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Vítor Galvão</string>
+	<key>description</key>
+	<string>View and manage a sequence of files</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>WatchList</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>wl</string>
+				<key>runningsubtext</key>
+				<string>Getting available options…</string>
+				<key>script</key>
+				<string>cat &lt;&lt; EOF
+
+&lt;?xml version="1.0"?&gt;
+&lt;items&gt;
+	&lt;item uid="play" arg="play" valid="yes" autocomplete="play"&gt;
+		&lt;title&gt;Play&lt;/title&gt;
+		&lt;subtitle&gt;Play the next file in the sequence&lt;/subtitle&gt;
+		&lt;icon&gt;icon.png&lt;/icon&gt;
+	&lt;/item&gt;
+	&lt;item uid="unwatch" arg="unwatch" valid="yes" autocomplete="unwatch"&gt;
+		&lt;title&gt;Unwatch&lt;/title&gt;
+		&lt;subtitle&gt;Mark the last viewed file as unwatched&lt;/subtitle&gt;
+		&lt;icon&gt;icon.png&lt;/icon&gt;
+	&lt;/item&gt;
+	&lt;item uid="show" arg="show" valid="yes" autocomplete="show"&gt;
+		&lt;title&gt;Show&lt;/title&gt;
+		&lt;subtitle&gt;Quicklook at your watchlist&lt;/subtitle&gt;
+		&lt;icon&gt;icon.png&lt;/icon&gt;
+	&lt;/item&gt;
+	&lt;item uid="edit" arg="edit" valid="yes" autocomplete="edit"&gt;
+		&lt;title&gt;Edit&lt;/title&gt;
+		&lt;subtitle&gt;Open the watchlist in your default text editor, for ordering&lt;/subtitle&gt;
+		&lt;icon&gt;icon.png&lt;/icon&gt;
+	&lt;/item&gt;
+	&lt;item uid="blank" arg="blank" valid="yes" autocomplete="blank"&gt;
+		&lt;title&gt;Blank&lt;/title&gt;
+		&lt;subtitle&gt;Erase the watchlist&lt;/subtitle&gt;
+		&lt;icon&gt;icon.png&lt;/icon&gt;
+	&lt;/item&gt;
+	&lt;item uid="trash" arg="trash" valid="yes" autocomplete="trash"&gt;
+		&lt;title&gt;Delete&lt;/title&gt;
+		&lt;subtitle&gt;Move your watched files to the trash&lt;/subtitle&gt;
+		&lt;icon&gt;icon.png&lt;/icon&gt;
+	&lt;/item&gt;
+&lt;/items&gt;
+
+EOF</string>
+				<key>subtext</key>
+				<string>View and manage a sequence of files</string>
+				<key>title</key>
+				<string>WatchList</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>9EBB5B54-11A6-468E-8097-BB07F5233E80</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>echo "{query}" | perl -pe 's/\t/\n/g' &gt;&gt; watchlist.txt</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>2C22F42C-C25C-4D4C-AB42-C31CE9234895</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsmulti</key>
+				<true/>
+				<key>filetypes</key>
+				<array/>
+				<key>name</key>
+				<string>Add to watchlist</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>AA3CF56F-3E4D-4EB5-8019-B9E517648566</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>if [[ "{query}" == "play" ]]; then
+	file_to_read=$(grep --invert-match "{{WATCHED}}" watchlist.txt | head -1)
+	open "${file_to_read}"
+	sed -i '' "s:${file_to_read}:{{WATCHED}} ${file_to_read}:" watchlist.txt
+
+elif [[ "{query}" == "unwatch" ]]; then
+	file_to_read=$(grep "{{WATCHED}}" watchlist.txt | tail -1)
+	unwatched_name=$(echo ${file_to_read} | sed 's:{{WATCHED}} ::')
+	sed -i '' "s:{{WATCHED}} ${unwatched_name}:${unwatched_name}:" watchlist.txt
+
+elif [[ "{query}" == "show" ]]; then
+	qlmanage -p &amp;&gt;/dev/null watchlist.txt
+
+elif [[ "{query}" == "edit" ]]; then
+	touch watchlist.txt
+	open watchlist.txt
+
+elif [[ "{query}" == "blank" ]]; then
+	rm watchlist.txt
+
+elif [[ "{query}" == "trash" ]]; then
+	grep "{{WATCHED}}" watchlist.txt | sed 's/{{WATCHED}} //g' | xargs -I {} mv {} ${HOME}/.Trash/
+	sed -i '' '/{{WATCHED}}/d' watchlist.txt
+
+fi</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>6DBCE4B1-7875-48EA-88E9-91D87B6B6278</string>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>2C22F42C-C25C-4D4C-AB42-C31CE9234895</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>6DBCE4B1-7875-48EA-88E9-91D87B6B6278</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>9EBB5B54-11A6-468E-8097-BB07F5233E80</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>AA3CF56F-3E4D-4EB5-8019-B9E517648566</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://vitorgalvao.com/</string>
+</dict>
+</plist>
