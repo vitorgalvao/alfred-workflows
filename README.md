@@ -1,6 +1,6 @@
 # Collection of Alfred Extension scripts
 
-### [CommandRun]()
+### [CommandRun](http://www.alfredforum.com/topic/1868-commandrun-%E2%80%94-run-cli-commands-without-opening-a-terminal/)
 Run CLI commands without opening a terminal
 
 ### [LabelColor](http://www.alfredforum.com/topic/1334-labelcolor-%E2%80%94-sets-a-label-color-for-selected-files-and-directories/)
