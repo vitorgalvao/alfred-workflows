@@ -1,0 +1,8 @@
+#!/bin/bash
+
+bundleID=$(/usr/libexec/PlistBuddy  -c "Print :bundleid" "info.plist")
+workflowDir="${HOME}/Library/Application Support/Alfred 2/Workflow Data/${bundleID}"
+
+if [[ ! -d "${workflowDir}" ]]; then
+	mkdir "${workflowDir}"
+fi

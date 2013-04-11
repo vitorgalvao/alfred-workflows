@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string></string>
+	<string>com.vitorgalvao.alfred.pinadd</string>
 	<key>connections</key>
 	<dict>
 		<key>0718E194-44CD-456D-8031-0285E37A54A7</key>
@@ -178,13 +178,16 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>rm settings
+				<string>source ./workflowSettings
+settings="${workflowDir}/settings"
+
+rm "${settings}"
 
 token=$(cut -d " " -f1 &lt;(echo "{query}"))
 browser=$(cut -d " " -f2 &lt;(echo "{query}"))
 
-echo ${token} &gt;&gt; settings
-echo ${browser} &gt;&gt; settings</string>
+echo ${token} &gt;&gt; "${settings}"
+echo ${browser} &gt;&gt; "${settings}"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>

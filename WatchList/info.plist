@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string></string>
+	<string>com.vitorgalvao.alfred.watchlist</string>
 	<key>connections</key>
 	<dict>
 		<key>9EBB5B54-11A6-468E-8097-BB07F5233E80</key>
@@ -105,21 +105,6 @@ EOF</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>echo "{query}" | perl -pe 's/\t/\n/g' &gt;&gt; watchlist.txt</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>2C22F42C-C25C-4D4C-AB42-C31CE9234895</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>acceptsmulti</key>
 				<true/>
 				<key>filetypes</key>
@@ -138,29 +123,49 @@ EOF</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>if [[ "{query}" == "play" ]]; then
-	file_to_read=$(grep --invert-match "{{WATCHED}}" watchlist.txt | head -1)
+				<string>source ./workflowSettings
+
+echo "{query}" | perl -pe 's/\t/\n/g' &gt;&gt; "${prefsDir}/watchlist.txt"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>2C22F42C-C25C-4D4C-AB42-C31CE9234895</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>source ./workflowSettings
+watchlist="${workflowDir}/watchlist.txt"
+
+if [[ "{query}" == "play" ]]; then
+	file_to_read=$(grep --invert-match "{{WATCHED}}" "${watchlist}" | head -1)
 	open "${file_to_read}"
-	sed -i '' "s:${file_to_read}:{{WATCHED}} ${file_to_read}:" watchlist.txt
+	sed -i '' "s:${file_to_read}:{{WATCHED}} ${file_to_read}:" "${watchlist}"
 
 elif [[ "{query}" == "unwatch" ]]; then
-	file_to_read=$(grep "{{WATCHED}}" watchlist.txt | tail -1)
+	file_to_read=$(grep "{{WATCHED}}" "${watchlist}" | tail -1)
 	unwatched_name=$(echo ${file_to_read} | sed 's:{{WATCHED}} ::')
-	sed -i '' "s:{{WATCHED}} ${unwatched_name}:${unwatched_name}:" watchlist.txt
+	sed -i '' "s:{{WATCHED}} ${unwatched_name}:${unwatched_name}:" "${watchlist}"
 
 elif [[ "{query}" == "show" ]]; then
-	qlmanage -p &amp;&gt;/dev/null watchlist.txt
+	qlmanage -p &amp;&gt;/dev/null "${watchlist}"
 
 elif [[ "{query}" == "edit" ]]; then
-	touch watchlist.txt
-	open watchlist.txt
+	touch "${watchlist}"
+	open "${watchlist}"
 
 elif [[ "{query}" == "blank" ]]; then
-	rm watchlist.txt
+	rm "${watchlist}"
 
 elif [[ "{query}" == "trash" ]]; then
-	grep "{{WATCHED}}" watchlist.txt | sed 's/{{WATCHED}} //g' | xargs -I {} mv {} ${HOME}/.Trash/
-	sed -i '' '/{{WATCHED}}/d' watchlist.txt
+	grep "{{WATCHED}}" "${watchlist}" | sed 's/{{WATCHED}} //g' | xargs -I {} mv {} ${HOME}/.Trash/
+	sed -i '' '/{{WATCHED}}/d' "${watchlist}"
 
 fi</string>
 				<key>type</key>

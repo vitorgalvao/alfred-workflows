@@ -1,10 +1,14 @@
+# Settings file
+source ./workflowSettings
+settings="${workflowDir}/settings"
+
 # Settings
-token="$(cat settings | sed -n 1p)"
-browser="$(cat settings | sed -n 2p)"
+token="$(cat "${settings}" | sed -n 1p)"
+browser="$(cat "${settings}" | sed -n 2p)"
 
 # Check if the settings file exists
 # If not, redirect to webpage with instructions
-if [[ ! -s settings ]]; then
+if [[ ! -s "${settings}" ]]; then
   osascript -e 'open location "http://is.gd/RoBwUR"'
   exit 1
 fi
