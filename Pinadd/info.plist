@@ -178,10 +178,10 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>token=$(cut -d " " -f1 &lt;(echo "{query}"))
-browser=$(cut -d " " -f2 &lt;(echo "{query}"))
+				<string>rm settings
 
-rm settings
+token=$(cut -d " " -f1 &lt;(echo "{query}"))
+browser=$(cut -d " " -f2 &lt;(echo "{query}"))
 
 echo ${token} &gt;&gt; settings
 echo ${browser} &gt;&gt; settings</string>

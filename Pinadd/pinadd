@@ -2,7 +2,7 @@
 token="$(cat settings | sed -n 1p)"
 browser="$(cat settings | sed -n 2p)"
 
-# Check if token and browser are set
+# Check if the settings file exists
 # If not, redirect to webpage with instructions
 if [[ ! -s settings ]]; then
   osascript -e 'open location "http://is.gd/RoBwUR"'
