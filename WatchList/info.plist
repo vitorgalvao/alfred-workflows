@@ -51,43 +51,19 @@
 				<key>runningsubtext</key>
 				<string>Getting available options…</string>
 				<key>script</key>
-				<string>cat &lt;&lt; EOF
+				<string>source ./workflowHandler.sh
 
-&lt;?xml version="1.0"?&gt;
-&lt;items&gt;
-	&lt;item uid="play" arg="play" valid="yes" autocomplete="play"&gt;
-		&lt;title&gt;Play&lt;/title&gt;
-		&lt;subtitle&gt;Play the next file in the sequence&lt;/subtitle&gt;
-		&lt;icon&gt;icon.png&lt;/icon&gt;
-	&lt;/item&gt;
-	&lt;item uid="unwatch" arg="unwatch" valid="yes" autocomplete="unwatch"&gt;
-		&lt;title&gt;Unwatch&lt;/title&gt;
-		&lt;subtitle&gt;Mark the last viewed file as unwatched&lt;/subtitle&gt;
-		&lt;icon&gt;icon.png&lt;/icon&gt;
-	&lt;/item&gt;
-	&lt;item uid="show" arg="show" valid="yes" autocomplete="show"&gt;
-		&lt;title&gt;Show&lt;/title&gt;
-		&lt;subtitle&gt;Quicklook at your watchlist&lt;/subtitle&gt;
-		&lt;icon&gt;icon.png&lt;/icon&gt;
-	&lt;/item&gt;
-	&lt;item uid="edit" arg="edit" valid="yes" autocomplete="edit"&gt;
-		&lt;title&gt;Edit&lt;/title&gt;
-		&lt;subtitle&gt;Open the watchlist in your default text editor, for ordering&lt;/subtitle&gt;
-		&lt;icon&gt;icon.png&lt;/icon&gt;
-	&lt;/item&gt;
-	&lt;item uid="blank" arg="blank" valid="yes" autocomplete="blank"&gt;
-		&lt;title&gt;Blank&lt;/title&gt;
-		&lt;subtitle&gt;Erase the watchlist&lt;/subtitle&gt;
-		&lt;icon&gt;icon.png&lt;/icon&gt;
-	&lt;/item&gt;
-	&lt;item uid="trash" arg="trash" valid="yes" autocomplete="trash"&gt;
-		&lt;title&gt;Delete&lt;/title&gt;
-		&lt;subtitle&gt;Move your watched files to the trash&lt;/subtitle&gt;
-		&lt;icon&gt;icon.png&lt;/icon&gt;
-	&lt;/item&gt;
-&lt;/items&gt;
+# addResult "uid" "arg" "title" "subtitle" "icon" "valid" "autocomplete"
 
-EOF</string>
+addResult "play" "play" "Play" "Play the next file in the sequence" "icon.png" "yes" "play"
+addResult "unwatch" "unwatch" "Unwatch" "Mark the last viewed file as unwatched" "icon.png" "yes" "unwatch"
+addResult "show" "show" "Show" "Quicklook at your watchlist" "icon.png" "yes" "show"
+addResult "edit" "edit" "Edit" "Open the watchlist in your default text editor, for ordering" "icon.png" "yes" "edit"
+addResult "delete" "delete" "Delete" "Move your watched files to the trash" "icon.png" "yes" "delete"
+addResult "blank" "blank" "Blank" "Erase the watchlist" "icon.png" "yes" "blank"
+
+# get feedback xml
+echo "$(getXMLResults)"</string>
 				<key>subtext</key>
 				<string>View and manage a sequence of files</string>
 				<key>title</key>
@@ -101,21 +77,6 @@ EOF</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>9EBB5B54-11A6-468E-8097-BB07F5233E80</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>acceptsmulti</key>
-				<true/>
-				<key>filetypes</key>
-				<array/>
-				<key>name</key>
-				<string>Add to watchlist</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.action</string>
-			<key>uid</key>
-			<string>AA3CF56F-3E4D-4EB5-8019-B9E517648566</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -137,6 +98,21 @@ echo "{query}" | perl -pe 's/\t/\n/g' &gt;&gt; "$(getDataDir)/watchlist.txt"</st
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>2C22F42C-C25C-4D4C-AB42-C31CE9234895</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsmulti</key>
+				<true/>
+				<key>filetypes</key>
+				<array/>
+				<key>name</key>
+				<string>Add to watchlist</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>AA3CF56F-3E4D-4EB5-8019-B9E517648566</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -164,12 +140,12 @@ elif [[ "{query}" == "edit" ]]; then
 	touch "${watchlist}"
 	open "${watchlist}"
 
-elif [[ "{query}" == "blank" ]]; then
-	rm "${watchlist}"
-
-elif [[ "{query}" == "trash" ]]; then
+elif [[ "{query}" == "delete" ]]; then
 	grep "{{WATCHED}}" "${watchlist}" | sed 's/{{WATCHED}} //g' | xargs -I {} mv {} ${HOME}/.Trash/
 	sed -i '' '/{{WATCHED}}/d' "${watchlist}"
+
+elif [[ "{query}" == "blank" ]]; then
+	rm "${watchlist}"
 
 fi</string>
 				<key>type</key>
