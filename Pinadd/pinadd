@@ -1,17 +1,8 @@
-# Settings file
-source ./workflowSettings
-settings="${workflowDir}/settings"
-
 # Settings
-token="$(cat "${settings}" | sed -n 1p)"
-browser="$(cat "${settings}" | sed -n 2p)"
+source ./workflowHandler.sh
 
-# Check if the settings file exists
-# If not, redirect to webpage with instructions
-if [[ ! -s "${settings}" ]]; then
-  osascript -e 'open location "http://is.gd/RoBwUR"'
-  exit 1
-fi
+token="$(getPref token)"
+browser="$(getPref browser)"
 
 # Get browser's frontmost tab's url and title, and set the tags for Pinboard
 # Arguments must be url-encoded (hence the 'perl')

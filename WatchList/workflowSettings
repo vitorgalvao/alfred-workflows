@@ -1,8 +1,0 @@
-#!/bin/bash
-
-bundleID=$(defaults read "$(pwd)/info" bundleid)
-workflowDir="${HOME}/Library/Application Support/Alfred 2/Workflow Data/${bundleID}"
-
-if [[ ! -d "${workflowDir}" ]]; then
-	mkdir "${workflowDir}"
-fi

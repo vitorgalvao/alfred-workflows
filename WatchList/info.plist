@@ -105,23 +105,6 @@ EOF</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>source ./workflowSettings
-
-echo "{query}" | perl -pe 's/\t/\n/g' &gt;&gt; "${workflowDir}/watchlist.txt"</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>2C22F42C-C25C-4D4C-AB42-C31CE9234895</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>acceptsmulti</key>
 				<true/>
 				<key>filetypes</key>
@@ -140,8 +123,29 @@ echo "{query}" | perl -pe 's/\t/\n/g' &gt;&gt; "${workflowDir}/watchlist.txt"</s
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>source ./workflowSettings
-watchlist="${workflowDir}/watchlist.txt"
+				<string>source ./workflowHandler.sh
+
+if [[ ! -d "$(getDataDir)" ]]; then
+	mkdir "$(getDataDir)"
+fi
+
+echo "{query}" | perl -pe 's/\t/\n/g' &gt;&gt; "$(getDataDir)/watchlist.txt"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>2C22F42C-C25C-4D4C-AB42-C31CE9234895</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>source ./workflowHandler.sh
+watchlist="$(getDataDir)/watchlist.txt"
 
 if [[ "{query}" == "play" ]]; then
 	file_to_read=$(grep --invert-match "{{WATCHED}}" "${watchlist}" | head -1)

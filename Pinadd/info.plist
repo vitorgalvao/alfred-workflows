@@ -178,16 +178,13 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>source ./workflowSettings
-settings="${workflowDir}/settings"
-
-rm "${settings}"
+				<string>source ./workflowHandler.sh
 
 token=$(cut -d " " -f1 &lt;(echo "{query}"))
 browser=$(cut -d " " -f2 &lt;(echo "{query}"))
 
-echo ${token} &gt;&gt; "${settings}"
-echo ${browser} &gt;&gt; "${settings}"</string>
+setPref token ${token} 1
+setPref browser ${browser} 1</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
