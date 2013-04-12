@@ -1,5 +1,5 @@
 {
-	"version": 1.0,
+	"version": 1.1,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/WatchList.alfredworkflow",
-	"description": "Initial version"
+	"description": "Fixed bug with adding to list"
 }

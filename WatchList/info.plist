@@ -105,6 +105,23 @@ EOF</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>source ./workflowSettings
+
+echo "{query}" | perl -pe 's/\t/\n/g' &gt;&gt; "${workflowDir}/watchlist.txt"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>2C22F42C-C25C-4D4C-AB42-C31CE9234895</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>acceptsmulti</key>
 				<true/>
 				<key>filetypes</key>
@@ -116,23 +133,6 @@ EOF</string>
 			<string>alfred.workflow.trigger.action</string>
 			<key>uid</key>
 			<string>AA3CF56F-3E4D-4EB5-8019-B9E517648566</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>source ./workflowSettings
-
-echo "{query}" | perl -pe 's/\t/\n/g' &gt;&gt; "${prefsDir}/watchlist.txt"</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>2C22F42C-C25C-4D4C-AB42-C31CE9234895</string>
 		</dict>
 		<dict>
 			<key>config</key>
