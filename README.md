@@ -6,8 +6,8 @@ Run CLI commands without opening a terminal.
 ### [LabelColor](http://www.alfredforum.com/topic/1334-labelcolor-%E2%80%94-sets-a-label-color-for-selected-files-and-directories/)
 Sets a label color for selected files and directories.
 
-### [PinAdd](http://www.alfredforum.com/topic/1230-pinadd-%E2%80%94-takes-arguments-as-tags-and-adds-your-browser%E2%80%99s-safari-webkit-chrome-or-chrome-canary-frontmost-tab-as-a-pinboard-bookmark/)
-Takes arguments as tags, and adds your browser's (Safari, Webkit, Chrome, or Chrome Canary) frontmost tab as a pinboard bookmark.
+### [PinAdd](http://www.alfredforum.com/topic/1230-pinadd-%E2%80%94-takes-arguments-as-tags-and-adds-your-browser%E2%80%99s-frontmost-tab-as-a-pinboard-bookmark/)
+Takes arguments as tags and adds your browser's frontmost tab as a pinboard bookmark.
 
 ### [RunCommand](http://www.alfredforum.com/topic/1550-runcommand-%E2%80%94-runs-terminal-command-on-selected-filesdirectories/)
 Runs terminal command on selected files/directories.

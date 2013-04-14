@@ -70,7 +70,7 @@
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
 	<key>description</key>
-	<string>Takes arguments as tags — adds your browser's frontmost tab as a pinboard bookmark</string>
+	<string>Takes arguments as tags and adds your browser’s frontmost tab as a pinboard bookmark</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
