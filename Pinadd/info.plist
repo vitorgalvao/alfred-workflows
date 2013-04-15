@@ -6,7 +6,7 @@
 	<string>com.vitorgalvao.alfred.pinadd</string>
 	<key>connections</key>
 	<dict>
-		<key>0718E194-44CD-456D-8031-0285E37A54A7</key>
+		<key>147225F5-C2E2-4FE1-AACF-B43D4F9394C2</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -16,50 +16,9 @@
 				<key>modifiersubtext</key>
 				<string></string>
 			</dict>
-		</array>
-		<key>3DC2C092-281B-435F-ACB6-B7624A4B74B0</key>
-		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>6E399669-A98B-436E-BF47-3F0AAECBE1C1</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
-		<key>6C8FF314-EEEF-451F-91B8-6CD96557ADB6</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>C0360AFB-6A8A-4A80-8FE4-87340F157AD3</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>0718E194-44CD-456D-8031-0285E37A54A7</string>
-				<key>modifiers</key>
-				<integer>524288</integer>
-				<key>modifiersubtext</key>
-				<string>Add bookmark as private</string>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>3DC2C092-281B-435F-ACB6-B7624A4B74B0</string>
-				<key>modifiers</key>
-				<integer>131072</integer>
-				<key>modifiersubtext</key>
-				<string>Write settings — API token followed by browser (can be “safari, “chrome”, “webkit”, or “chrome_canary”)</string>
-			</dict>
-		</array>
-		<key>C0360AFB-6A8A-4A80-8FE4-87340F157AD3</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>A3481C3B-1483-419B-96C7-CB2CC0A40433</string>
+				<string>B3C81DF2-524D-4044-BAC1-6BDA9DA6A6FF</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -80,40 +39,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>keyword</key>
-				<string>pin</string>
-				<key>subtext</key>
-				<string>Takes arguments as tags</string>
-				<key>text</key>
-				<string>PinAdd</string>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>6C8FF314-EEEF-451F-91B8-6CD96557ADB6</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>./pinadd "{[setAsPrivate]}" "{query}"</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>0718E194-44CD-456D-8031-0285E37A54A7</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>lastpathcomponent</key>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
@@ -125,7 +50,7 @@
 				<key>sticky</key>
 				<false/>
 				<key>text</key>
-				<string>Bookmark added</string>
+				<string>Operation done</string>
 				<key>title</key>
 				<string>PinAdd</string>
 			</dict>
@@ -145,88 +70,69 @@
 				<integer>0</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.output.script</string>
 			<key>uid</key>
-			<string>C0360AFB-6A8A-4A80-8FE4-87340F157AD3</string>
+			<string>B3C81DF2-524D-4044-BAC1-6BDA9DA6A6FF</string>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>output</key>
+				<key>argumenttype</key>
 				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>Configuration done</string>
-				<key>title</key>
-				<string>PinAdd</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>6E399669-A98B-436E-BF47-3F0AAECBE1C1</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>escaping</key>
 				<integer>0</integer>
+				<key>keyword</key>
+				<string>pin</string>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
 				<key>script</key>
 				<string>source ./workflowHandler.sh
 
-token=$(cut -d " " -f1 &lt;(echo "{query}"))
-browser=$(cut -d " " -f2 &lt;(echo "{query}"))
+# addResult "uid" "arg" "title" "subtitle" "icon" "valid" "autocomplete"
 
-setPref token ${token} 1
-setPref browser ${browser} 1</string>
+if [[ ! -d "$(getDataDir)" ]]; then
+	addResult "Configure" "{{configureYourAccount}} {query}" "Configure your account" "your-api-token your-preferred-browser" "icon.png" "yes" ""
+else
+	addResult "Add bookmark" "{query}" "Add bookmark" "Adds a bookmark" "icon.png" "yes" ""
+	addResult "Add private bookmark" "{{setAsPrivate}} {query}" "Add a private bookmark" "Adds a bookmark as private" "icon.png" "yes" ""
+source ./setTitleAndURL
+fi
+
+# get feedback xml
+echo "$(getXMLResults)"</string>
+				<key>subtext</key>
+				<string>Takes arguments as tags</string>
+				<key>title</key>
+				<string>PinAdd</string>
 				<key>type</key>
 				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>3DC2C092-281B-435F-ACB6-B7624A4B74B0</string>
+			<string>147225F5-C2E2-4FE1-AACF-B43D4F9394C2</string>
 		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
 	<key>uidata</key>
 	<dict>
-		<key>0718E194-44CD-456D-8031-0285E37A54A7</key>
-		<dict>
-			<key>ypos</key>
-			<real>130</real>
-		</dict>
-		<key>3DC2C092-281B-435F-ACB6-B7624A4B74B0</key>
-		<dict>
-			<key>ypos</key>
-			<real>260</real>
-		</dict>
-		<key>6C8FF314-EEEF-451F-91B8-6CD96557ADB6</key>
+		<key>147225F5-C2E2-4FE1-AACF-B43D4F9394C2</key>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
-		</dict>
-		<key>6E399669-A98B-436E-BF47-3F0AAECBE1C1</key>
-		<dict>
-			<key>ypos</key>
-			<real>260</real>
 		</dict>
 		<key>A3481C3B-1483-419B-96C7-CB2CC0A40433</key>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
-		<key>C0360AFB-6A8A-4A80-8FE4-87340F157AD3</key>
+		<key>B3C81DF2-524D-4044-BAC1-6BDA9DA6A6FF</key>
 		<dict>
 			<key>ypos</key>
-			<real>10</real>
+			<real>130</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
