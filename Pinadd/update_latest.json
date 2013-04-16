@@ -1,5 +1,5 @@
 {
-	"version": 1.3,
+	"version": 1.4,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/PinAdd.alfredworkflow",
-	"description": "So many improvements, it should be a 2.0"
+	"description": "Temporary files are now deleted after each run, not overwritten"
 }

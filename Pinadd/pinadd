@@ -31,4 +31,7 @@ tags=$(echo "${tags}" | perl -MURI::Escape -wlne 'print uri_escape ($_)')
 # Add the bookmark
 curl --silent "https://api.pinboard.in/v1/posts/add?url=${url}&description=${title}&auth_token=${token}&tags=${tags}${private}"
 
+# Delete temporary files
+rm -r "$(getCacheDir)"
+
 exit 0

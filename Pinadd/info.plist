@@ -62,21 +62,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>./pinadd "{query}"</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.script</string>
-			<key>uid</key>
-			<string>B3C81DF2-524D-4044-BAC1-6BDA9DA6A6FF</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>escaping</key>
@@ -95,7 +80,7 @@ if [[ ! -d "$(getDataDir)" ]]; then
 else
 	addResult "Add bookmark" "{query}" "Add bookmark" "Adds a bookmark" "icon.png" "yes" ""
 	addResult "Add private bookmark" "{{setAsPrivate}} {query}" "Add a private bookmark" "Adds a bookmark as private" "icon.png" "yes" ""
-source ./setTitleAndURL
+	source ./setTitleAndURL
 fi
 
 # get feedback xml
@@ -113,6 +98,21 @@ echo "$(getXMLResults)"</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>147225F5-C2E2-4FE1-AACF-B43D4F9394C2</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>./pinadd "{query}"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.script</string>
+			<key>uid</key>
+			<string>B3C81DF2-524D-4044-BAC1-6BDA9DA6A6FF</string>
 		</dict>
 	</array>
 	<key>readme</key>
