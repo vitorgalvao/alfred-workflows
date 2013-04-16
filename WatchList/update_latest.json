@@ -1,5 +1,5 @@
 {
-	"version": 1.3,
+	"version": 1.4,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/WatchList.alfredworkflow",
-	"description": "More cosmetic code changes"
+	"description": "Notifications, and file deletions via applescript"
 }

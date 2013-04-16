@@ -6,6 +6,28 @@
 	<string>com.vitorgalvao.alfred.watchlist</string>
 	<key>connections</key>
 	<dict>
+		<key>2C22F42C-C25C-4D4C-AB42-C31CE9234895</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>0210F7FD-CDF4-4804-B27F-FA5A8428AB65</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>6DBCE4B1-7875-48EA-88E9-91D87B6B6278</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>00F113FE-0294-4DE0-9DAC-AA1F87A1D425</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>9EBB5B54-11A6-468E-8097-BB07F5233E80</key>
 		<array>
 			<dict>
@@ -39,6 +61,29 @@
 	<string>WatchList</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>Added to watchlist</string>
+				<key>title</key>
+				<string>WatchList</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>0210F7FD-CDF4-4804-B27F-FA5A8428AB65</string>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -102,6 +147,29 @@ echo "{query}" | perl -pe 's/\t/\n/g' &gt;&gt; "$(getDataDir)/watchlist.txt"</st
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>WatchList</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>00F113FE-0294-4DE0-9DAC-AA1F87A1D425</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>acceptsmulti</key>
 				<true/>
 				<key>filetypes</key>
@@ -132,6 +200,7 @@ elif [[ "{query}" == "unwatch" ]]; then
 	file_to_read=$(grep "{{WATCHED}}" "${watchlist}" | tail -1)
 	unwatched_name=$(echo ${file_to_read} | sed 's:{{WATCHED}} ::')
 	sed -i '' "s:{{WATCHED}} ${unwatched_name}:${unwatched_name}:" "${watchlist}"
+	echo 'Last file marked as unwatched'
 
 elif [[ "{query}" == "show" ]]; then
 	qlmanage -p &amp;&gt;/dev/null "${watchlist}"
@@ -141,11 +210,13 @@ elif [[ "{query}" == "edit" ]]; then
 	open "${watchlist}"
 
 elif [[ "{query}" == "delete" ]]; then
-	grep "{{WATCHED}}" "${watchlist}" | sed 's/{{WATCHED}} //g' | xargs -I {} mv {} ${HOME}/.Trash/
+	grep "{{WATCHED}}" "${watchlist}" | sed 's/{{WATCHED}} //g' | xargs -I {} osascript -e "tell application \"Finder\" to delete POSIX file \"{}\"" &amp;&gt;/dev/null
 	sed -i '' '/{{WATCHED}}/d' "${watchlist}"
+	echo 'Watched files moved to trash'
 
 elif [[ "{query}" == "blank" ]]; then
 	rm "${watchlist}"
+	echo 'Watchlist removed'
 
 fi</string>
 				<key>type</key>
@@ -161,6 +232,16 @@ fi</string>
 	<string></string>
 	<key>uidata</key>
 	<dict>
+		<key>00F113FE-0294-4DE0-9DAC-AA1F87A1D425</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>0210F7FD-CDF4-4804-B27F-FA5A8428AB65</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
 		<key>2C22F42C-C25C-4D4C-AB42-C31CE9234895</key>
 		<dict>
 			<key>ypos</key>
