@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>com.vitorgalvao.alfred.downvid</string>
+	<string></string>
 	<key>connections</key>
 	<dict>
 		<key>6A286F10-FD49-4463-9540-0EECBE45438D</key>
@@ -17,7 +17,7 @@
 				<string></string>
 			</dict>
 		</array>
-		<key>D4C8340C-B6E4-401F-8C5E-72801F40E753</key>
+		<key>8B372F3F-B5EA-4B67-808C-69C4E0A5D5EB</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -50,45 +50,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>dv</string>
-				<key>runningsubtext</key>
-				<string>Please wait…</string>
-				<key>script</key>
-				<string>source ./workflowHandler.sh
-
-# addResult "uid" "arg" "title" "subtitle" "icon" "valid" "autocomplete"
-
-if [[ ! -d "$(getDataDir)" ]]; then
-	addResult "Configure" "{query}" "Pick your preferred browser" "To reset this later do 'dv new_browser_to_use'" "icon.png" "yes" ""
-else
-	addResult "Download video" "{query}" "Download video" "Supports youtube and a few others" "icon.png" "yes" ""
-	source ./setURL
-fi
-
-# get feedback xml
-echo "$(getXMLResults)"</string>
-				<key>subtext</key>
-				<string>Downloads video from your browser's frontmost tab</string>
-				<key>title</key>
-				<string>DownVid</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>D4C8340C-B6E4-401F-8C5E-72801F40E753</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>lastpathcomponent</key>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
@@ -112,27 +73,29 @@ echo "$(getXMLResults)"</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>dv</string>
+				<key>subtext</key>
+				<string>Download videos from popular sources (uses the URL in your clipboard)</string>
+				<key>text</key>
+				<string>DownVid</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>8B372F3F-B5EA-4B67-808C-69C4E0A5D5EB</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string># Settings
-source ./workflowHandler.sh
-url="$(getPref url 0 videourl)"
-
-# Set the browser, if anything is picked
-if [[ "{query}" ]]; then
-	browser=$(echo "{query}" | sed 's/ //')
-	setPref browser "${browser}" 1
-	echo "Browser set"
-	exit 1
-fi
-
-# Download the video
-python youtube-dl -o "${HOME}/Desktop/%(title)s.%(ext)s" "${url}"
-
-# Deletes temporary files, and outputs message
-rm -r "$(getCacheDir)"
-echo "Download finished"</string>
+				<string>python youtube-dl -o "${HOME}/Desktop/%(title)s.%(ext)s" "$(pbpaste)"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -155,7 +118,7 @@ echo "Download finished"</string>
 				<key>sticky</key>
 				<false/>
 				<key>text</key>
-				<string>{query}</string>
+				<string>Done.</string>
 				<key>title</key>
 				<string>DownVid</string>
 			</dict>
@@ -179,7 +142,7 @@ echo "Download finished"</string>
 			<key>ypos</key>
 			<real>130</real>
 		</dict>
-		<key>D4C8340C-B6E4-401F-8C5E-72801F40E753</key>
+		<key>8B372F3F-B5EA-4B67-808C-69C4E0A5D5EB</key>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
