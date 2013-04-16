@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.vitorgalvao.alfred.downvid</string>
+	<key>connections</key>
+	<dict>
+		<key>6A286F10-FD49-4463-9540-0EECBE45438D</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>06B01CE3-C355-4F35-A73F-CAF68F286C56</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>D4C8340C-B6E4-401F-8C5E-72801F40E753</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>DF7A8FE0-A270-4448-AE99-72AD628967BC</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>6A286F10-FD49-4463-9540-0EECBE45438D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Vítor Galvão</string>
+	<key>description</key>
+	<string>Downloads video from your browser's frontmost tab</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>DownVid</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>dv</string>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>source ./workflowHandler.sh
+
+# addResult "uid" "arg" "title" "subtitle" "icon" "valid" "autocomplete"
+
+if [[ ! -d "$(getDataDir)" ]]; then
+	addResult "Configure" "{query}" "Pick your preferred browser" "To reset this later do 'dv new_browser_to_use'" "icon.png" "yes" ""
+else
+	addResult "Download video" "{query}" "Download video" "Supports youtube and a few others" "icon.png" "yes" ""
+	source ./setURL
+fi
+
+# get feedback xml
+echo "$(getXMLResults)"</string>
+				<key>subtext</key>
+				<string>Downloads video from your browser's frontmost tab</string>
+				<key>title</key>
+				<string>DownVid</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>D4C8340C-B6E4-401F-8C5E-72801F40E753</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>In progress…</string>
+				<key>title</key>
+				<string>DownVid</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>DF7A8FE0-A270-4448-AE99-72AD628967BC</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string># Settings
+source ./workflowHandler.sh
+url="$(getPref url 0 videourl)"
+
+# Set the browser, if anything is picked
+if [[ "{query}" ]]; then
+	browser=$(echo "{query}" | sed 's/ //')
+	setPref browser "${browser}" 1
+	echo "Browser set"
+	exit 1
+fi
+
+# Download the video
+python youtube-dl -o "${HOME}/Desktop/%(title)s.%(ext)s" "${url}"
+
+# Deletes temporary files, and outputs message
+rm -r "$(getCacheDir)"
+echo "Download finished"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>6A286F10-FD49-4463-9540-0EECBE45438D</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>DownVid</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>06B01CE3-C355-4F35-A73F-CAF68F286C56</string>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>06B01CE3-C355-4F35-A73F-CAF68F286C56</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>6A286F10-FD49-4463-9540-0EECBE45438D</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>D4C8340C-B6E4-401F-8C5E-72801F40E753</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>DF7A8FE0-A270-4448-AE99-72AD628967BC</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://vitorgalvao.com/</string>
+</dict>
+</plist>

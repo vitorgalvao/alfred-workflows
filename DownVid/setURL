@@ -1,0 +1,20 @@
+#!/bin/bash
+
+browser="$(getPref browser 1)"
+
+# Get browser's frontmost tab's url
+if [[ $(echo ${browser} | tr [:upper:] [:lower:]) == "chrome" ]]; then
+  url=$(osascript -e 'tell application "Google Chrome" to return URL of active tab of front window')
+elif [[ $(echo ${browser} | tr [:upper:] [:lower:]) == "safari" ]]; then
+  url=$(osascript -e 'tell application "Safari" to return URL of front document')
+elif [[ $(echo ${browser} | tr [:upper:] [:lower:]) == "webkit" ]]; then
+  url=$(osascript -e 'tell application "Webkit" to return URL of front document')
+elif [[ $(echo ${browser} | tr [:upper:] [:lower:]) == "chromecanary" ]]; then
+  url=$(osascript -e 'tell application "Google Chrome Canary" to return URL of active tab of front window')
+elif [[ $(echo ${browser} | tr [:upper:] [:lower:]) == "opera" ]]; then
+  url=$(osascript -e 'tell application "Opera" to return URL of front document')
+elif [[ $(echo ${browser} | tr [:upper:] [:lower:]) == "camino" ]]; then
+  url=$(osascript -e 'tell application "Camino" to return URL of current tab of front browser window')
+fi
+
+setPref url ${url} 0 videourl
