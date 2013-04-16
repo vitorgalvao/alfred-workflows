@@ -76,21 +76,17 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>lastpathcomponent</key>
-				<true/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>output</key>
-				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
+				<key>applescript</key>
+				<string>on alfred_script(q)
+	tell application "Alfred 2" to search "runCommand "
+end alfred_script</string>
+				<key>cachescript</key>
 				<false/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
+			<string>alfred.workflow.action.applescript</string>
 			<key>uid</key>
-			<string>3C3BFA6B-AE9B-47A7-A377-28AD784BA363</string>
+			<string>E5CDADE3-274A-4223-87DF-C65E9B297638</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -115,10 +111,10 @@
 				<key>script</key>
 				<string>if [[ "{query}" == *" {} "* ]]
 then
-	command=$(echo "{query}" | sed 's/ {} /^/')
+	command=$(echo "{query}" | sed 's/ {} /:/')
 
-	first=$(cut -d "^" -f1 &lt;(echo "${command}"))
-	second=$(cut -d "^" -f2 &lt;(echo "${command}"))
+	first=$(cut -d ":" -f1 &lt;(echo "${command}"))
+	second=$(cut -d ":" -f2 &lt;(echo "${command}"))
 
 	cat file_list | xargs -0 -J {} ${first} {} ${second}
 else
@@ -133,6 +129,29 @@ rm file_list</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>70D7DD2C-C248-44EB-8F75-538914807A66</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>RunCommand</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>3C3BFA6B-AE9B-47A7-A377-28AD784BA363</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -152,21 +171,6 @@ rm file_list</string>
 			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
 			<string>BC3ADE81-4A31-4D07-A1C8-11BF79A65DE9</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>applescript</key>
-				<string>on alfred_script(q)
-	tell application "Alfred 2" to search "runCommand "
-end alfred_script</string>
-				<key>cachescript</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.applescript</string>
-			<key>uid</key>
-			<string>E5CDADE3-274A-4223-87DF-C65E9B297638</string>
 		</dict>
 	</array>
 	<key>readme</key>
