@@ -3,7 +3,7 @@
 ### [CommandRun](http://www.alfredforum.com/topic/1868-commandrun-%E2%80%94-run-cli-commands-without-opening-a-terminal/)
 Run CLI commands without opening a terminal.
 
-### [DownVid]()
+### [DownVid](http://www.alfredforum.com/topic/2045-downvid-%E2%80%94-download-videos-from-popular-sources/)
 Downloads video from your browser's frontmost tab.
 
 ### [LabelColor](http://www.alfredforum.com/topic/1334-labelcolor-%E2%80%94-sets-a-label-color-for-selected-files-and-directories/)
