@@ -84,7 +84,7 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>keyword</key>
-				<string>pin</string>
+				<string>pi</string>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
