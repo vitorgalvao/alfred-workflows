@@ -1,5 +1,5 @@
 {
-	"version": 1.5,
+	"version": 1.6,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/PinAdd.alfredworkflow",
-	"description": "Solves the truncated tags problem"
+	"description": "Configuration now has its own option"
 }

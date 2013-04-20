@@ -19,12 +19,6 @@ else
 	tags="$@"
 fi
 
-# If 'resetpinaddsettings' is the only tag, delete settings directory
-if [[ "$(echo ${tags})" == "resetpinaddsettings" ]]; then
-	rm -r "$(getDataDir)"
-	exit 1
-fi
-
 # Tags, url encoded
 tags=$(echo "${tags}" | perl -MURI::Escape -wlne 'print uri_escape ($_)')
 
