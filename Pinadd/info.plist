@@ -25,6 +25,44 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>41A5A177-9A68-4BE7-870A-2F6797AC2464</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>A3481C3B-1483-419B-96C7-CB2CC0A40433</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>6C356EDF-5EEF-408C-8C92-14DC26E5F05C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>EB540A71-1528-4CD8-BF49-FF90C76826DB</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>A3481C3B-1483-419B-96C7-CB2CC0A40433</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>B3C81DF2-524D-4044-BAC1-6BDA9DA6A6FF</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
@@ -78,15 +116,13 @@
 if [[ ! -d "$(getDataDir)" ]]; then
 	addResult "Configure" "{{configureYourAccount}} {query}" "Configure your account" "your-api-token your-preferred-browser" "icon.png" "yes" ""
 else
-	addResult "Add bookmark" "{query}" "Add bookmark" "Adds a bookmark" "icon.png" "yes" ""
-	addResult "Add private bookmark" "{{setAsPrivate}} {query}" "Add a private bookmark" "Adds a bookmark as private" "icon.png" "yes" ""
 	source ./setTitleAndURL
 fi
 
 # get feedback xml
 echo "$(getXMLResults)"</string>
 				<key>subtext</key>
-				<string>Takes arguments as tags</string>
+				<string>Configure your account — your-api-token your-preferred-browser</string>
 				<key>title</key>
 				<string>PinAdd</string>
 				<key>type</key>
@@ -98,6 +134,25 @@ echo "$(getXMLResults)"</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>147225F5-C2E2-4FE1-AACF-B43D4F9394C2</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>pin</string>
+				<key>subtext</key>
+				<string>Adds a bookmark</string>
+				<key>text</key>
+				<string>Add bookmark</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>EB540A71-1528-4CD8-BF49-FF90C76826DB</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -114,6 +169,40 @@ echo "$(getXMLResults)"</string>
 			<key>uid</key>
 			<string>B3C81DF2-524D-4044-BAC1-6BDA9DA6A6FF</string>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>pin</string>
+				<key>subtext</key>
+				<string>Adds a bookmark as private</string>
+				<key>text</key>
+				<string>Add private bookmark</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>41A5A177-9A68-4BE7-870A-2F6797AC2464</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>./pinadd "{{setAsPrivate}} {query}"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.script</string>
+			<key>uid</key>
+			<string>6C356EDF-5EEF-408C-8C92-14DC26E5F05C</string>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
@@ -124,12 +213,27 @@ echo "$(getXMLResults)"</string>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
+		<key>41A5A177-9A68-4BE7-870A-2F6797AC2464</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
+		</dict>
+		<key>6C356EDF-5EEF-408C-8C92-14DC26E5F05C</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
+		</dict>
 		<key>A3481C3B-1483-419B-96C7-CB2CC0A40433</key>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
 		<key>B3C81DF2-524D-4044-BAC1-6BDA9DA6A6FF</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>EB540A71-1528-4CD8-BF49-FF90C76826DB</key>
 		<dict>
 			<key>ypos</key>
 			<real>130</real>

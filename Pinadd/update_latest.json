@@ -1,5 +1,5 @@
 {
-	"version": 1.4,
+	"version": 1.5,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/PinAdd.alfredworkflow",
-	"description": "Temporary files are now deleted after each run, not overwritten"
+	"description": "Solves the truncated tags problem"
 }
