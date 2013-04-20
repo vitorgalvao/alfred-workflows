@@ -86,7 +86,7 @@
 				<key>keyword</key>
 				<string>pi</string>
 				<key>runningsubtext</key>
-				<string>Please wait…</string>
+				<string>Getting url and title of frontmost tab…</string>
 				<key>script</key>
 				<string>source ./workflowHandler.sh
 
@@ -101,7 +101,7 @@ fi
 # get feedback xml
 echo "$(getXMLResults)"</string>
 				<key>subtext</key>
-				<string>Getting url and title of frontmost tab… You may continue typing</string>
+				<string>Please wait…</string>
 				<key>title</key>
 				<string>PinAdd</string>
 				<key>type</key>

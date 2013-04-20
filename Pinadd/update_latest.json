@@ -1,5 +1,5 @@
 {
-	"version": 1.7,
+	"version": 1.8,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/PinAdd.alfredworkflow",
-	"description": "The script filter is now called via 'pi'"
+	"description": "Changed 'pi's messages"
 }
