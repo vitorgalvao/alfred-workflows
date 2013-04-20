@@ -13,17 +13,21 @@ if [[ "$@" == "{{configureYourAccount}}"* ]]; then
 	setPref browser "${browser}" 1
 	exit 0
 elif [[ "$@" == "{{setAsPrivate}}"* ]]; then
-  tags="$(echo $@ | sed 's/{{setAsPrivate}}//')"
-  private="&shared=no"
+	tags="$(echo $@ | sed 's/{{setAsPrivate}}//')"
+	private="&shared=no"
+elif [[ "$@" == *"// "* ]]; then
+	tags=$(awk -F "// " '{print $1}' <(echo "$@"))
+	description=$(awk -F "// " '{print $2}' <(echo "$@"))
 else
 	tags="$@"
 fi
 
-# Tags, url encoded
-tags=$(echo "${tags}" | perl -MURI::Escape -wlne 'print uri_escape ($_)')
+# Tags and description, url encoded
+tags='&tags='$(echo "${tags}" | perl -MURI::Escape -wlne 'print uri_escape ($_)')
+description='&extended='$(echo "${description}" | perl -MURI::Escape -wlne 'print uri_escape ($_)')
 
 # Add the bookmark
-curl --silent "https://api.pinboard.in/v1/posts/add?url=${url}&description=${title}&auth_token=${token}&tags=${tags}${private}"
+curl --silent "https://api.pinboard.in/v1/posts/add?url=${url}&description=${title}&auth_token=${token}${tags}${description}${private}"
 
 # Delete temporary files
 rm -r "$(getCacheDir)"

@@ -1,5 +1,5 @@
 {
-	"version": 1.8,
+	"version": 1.9,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/PinAdd.alfredworkflow",
-	"description": "Changed 'pi's messages"
+	"description": "Tags are now optional, and you can now use descriptions"
 }
