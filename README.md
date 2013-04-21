@@ -21,7 +21,7 @@ Get a strong password from https://www.grc.com/passwords.htm directly to the cli
 ### [VideoDuration](http://www.alfredforum.com/topic/1393-videoduration-%E2%80%94-copies-a-given-online-video-site%E2%80%99s-url-to-the-clipboard-with-it%E2%80%99s-duration-in-square-brackets/)
 Copies a given online video site’s url to the clipboard with it’s duration in square brackets.
 
-### [WatchList](http://www.alfredforum.com/topic/1931-watchlist-%E2%80%94-view-and-manage-a-sequence-of-files/#entry10365)
+### [WatchList](http://www.alfredforum.com/topic/1931-watchlist-%E2%80%94-view-and-manage-a-sequence-of-files/)
 View and manage a sequence of files.
 
 #### License
