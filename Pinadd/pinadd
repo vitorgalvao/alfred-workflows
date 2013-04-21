@@ -5,21 +5,25 @@ token="$(getPref token 1)"
 url="$(getPref url 0 titleandurl)"
 title="$(getPref title 0 titleandurl)"
 
-# Actions for configuring account, setting private bookmark, and picking tags
+# Actions for configuring account, picking tags and description, and setting private bookmark
 if [[ "$@" == "{{configureYourAccount}}"* ]]; then
 	token=$(cut -d " " -f2 <(echo "$@"))
 	browser=$(cut -d " " -f3 <(echo "$@"))
 	setPref token "${token}" 1
 	setPref browser "${browser}" 1
 	exit 0
-elif [[ "$@" == "{{setAsPrivate}}"* ]]; then
-	tags="$(echo $@ | sed 's/{{setAsPrivate}}//')"
-	private="&shared=no"
 elif [[ "$@" == *"// "* ]]; then
 	tags=$(awk -F "// " '{print $1}' <(echo "$@"))
 	description=$(awk -F "// " '{print $2}' <(echo "$@"))
 else
 	tags="$@"
+fi
+
+if [[ "$@" == "{{setAsPrivate}}"* ]]; then
+	tags="$(echo ${tags} | sed 's/{{setAsPrivate}}//')"
+	private='&shared=no'
+else
+	private='&shared=yes'
 fi
 
 # Tags and description, url encoded
@@ -28,8 +32,5 @@ description='&extended='$(echo "${description}" | perl -MURI::Escape -wlne 'prin
 
 # Add the bookmark
 curl --silent "https://api.pinboard.in/v1/posts/add?url=${url}&description=${title}&auth_token=${token}${tags}${description}${private}"
-
-# Delete temporary files
-rm -r "$(getCacheDir)"
 
 exit 0
