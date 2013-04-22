@@ -1,5 +1,5 @@
 {
-	"version": 1.6,
+	"version": 1.7,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/WatchList.alfredworkflow",
-	"description": "It now warns if you try to 'play' and have no unwatched files"
+	"description": "'Blank' now empties the list, instead of deleting it"
 }
