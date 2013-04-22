@@ -17,7 +17,7 @@
 				<string></string>
 			</dict>
 		</array>
-		<key>8B372F3F-B5EA-4B67-808C-69C4E0A5D5EB</key>
+		<key>DC74421D-631A-44B1-AC86-ED7793CADE26</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -75,19 +75,41 @@
 			<dict>
 				<key>argumenttype</key>
 				<integer>2</integer>
+				<key>escaping</key>
+				<integer>0</integer>
 				<key>keyword</key>
 				<string>dv</string>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>source ./workflowHandler.sh
+# addResult "uid" "arg" "title" "subtitle" "icon" "valid" "autocomplete"
+
+# Check if WatchList is being used, and shows options accordingly
+watchlist="${HOME}/Library/Application Support/Alfred 2/Workflow Data/com.vitorgalvao.alfred.watchlist/watchlist.txt"
+
+if [[ -f ${watchlist} ]]; then
+	addResult "Regular Download" "" "DownVid" "Downloads the video to your Desktop" "icon.png" "yes" ""
+	addResult "Download To WatchList" "addToWatchList" "DownVid + WatchList" "Downloads the video to ~/Downloads and adds it to your watchlist" "icon.png" "yes" ""
+else
+	addResult "Regular Download" "" "DownVid" "Downloads the video to your Desktop" "icon.png" "yes" ""
+fi
+
+# get feedback xml
+getXMLResults</string>
 				<key>subtext</key>
 				<string>Download videos from popular sources (uses the URL in your clipboard)</string>
-				<key>text</key>
+				<key>title</key>
 				<string>DownVid</string>
+				<key>type</key>
+				<integer>0</integer>
 				<key>withspace</key>
 				<false/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
+			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>8B372F3F-B5EA-4B67-808C-69C4E0A5D5EB</string>
+			<string>DC74421D-631A-44B1-AC86-ED7793CADE26</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -95,7 +117,18 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>python youtube-dl -o "${HOME}/Desktop/%(title)s.%(ext)s" "$(pbpaste)"</string>
+				<string>if [[ "{query}" == "addToWatchList" ]]; then
+	watchlist="${HOME}/Library/Application Support/Alfred 2/Workflow Data/com.vitorgalvao.alfred.watchlist/watchlist.txt"
+
+	filename=$(python youtube-dl -o "${HOME}/Downloads/%(title)s.%(ext)s" --get-filename "$(pbpaste)")
+	python youtube-dl -o "${HOME}/Downloads/%(title)s.%(ext)s" "$(pbpaste)"
+
+	echo "${filename}" &gt;&gt; "${watchlist}"
+	echo "Done."
+else
+	python youtube-dl -o "${HOME}/Desktop/%(title)s.%(ext)s" "$(pbpaste)"
+	echo "Done."
+fi</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -142,7 +175,7 @@
 			<key>ypos</key>
 			<real>130</real>
 		</dict>
-		<key>8B372F3F-B5EA-4B67-808C-69C4E0A5D5EB</key>
+		<key>DC74421D-631A-44B1-AC86-ED7793CADE26</key>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
