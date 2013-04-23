@@ -87,6 +87,21 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>acceptsmulti</key>
+				<true/>
+				<key>filetypes</key>
+				<array/>
+				<key>name</key>
+				<string>Add to watchlist</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>AA3CF56F-3E4D-4EB5-8019-B9E517648566</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
@@ -104,21 +119,6 @@ echo "{query}" | perl -pe 's/\t/\n/g' &gt;&gt; "$(getDataDir)/watchlist.txt"</st
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>2C22F42C-C25C-4D4C-AB42-C31CE9234895</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>acceptsmulti</key>
-				<true/>
-				<key>filetypes</key>
-				<array/>
-				<key>name</key>
-				<string>Add to watchlist</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.action</string>
-			<key>uid</key>
-			<string>AA3CF56F-3E4D-4EB5-8019-B9E517648566</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -162,6 +162,29 @@ echo "$(getXMLResults)"</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>WatchList</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>00F113FE-0294-4DE0-9DAC-AA1F87A1D425</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
@@ -169,7 +192,7 @@ echo "$(getXMLResults)"</string>
 watchlist="$(getDataDir)/watchlist.txt"
 
 if [[ "{query}" == "play" ]]; then
-	if [[ ! -s $(cat "${watchlist}" | grep -v "{{WATCHED}}") ]]; then
+	if [[ -z $(cat "${watchlist}" | grep --invert-match "{{WATCHED}}") ]]; then
 		echo 'You have no unwatched files'
 		exit 0
 	else
@@ -197,7 +220,8 @@ elif [[ "{query}" == "delete" ]]; then
 	echo 'Watched files moved to trash'
 
 elif [[ "{query}" == "blank" ]]; then
-	echo -n "" &gt; "${watchlist}"
+	rm "${watchlist}"
+	touch "${watchlist}"
 	echo 'Watchlist removed'
 
 fi</string>
@@ -208,29 +232,6 @@ fi</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>6DBCE4B1-7875-48EA-88E9-91D87B6B6278</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<true/>
-				<key>output</key>
-				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>{query}</string>
-				<key>title</key>
-				<string>WatchList</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>00F113FE-0294-4DE0-9DAC-AA1F87A1D425</string>
 		</dict>
 	</array>
 	<key>readme</key>
