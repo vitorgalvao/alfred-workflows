@@ -2,24 +2,42 @@
 
 browser="$(getPref browser 1)"
 
+# Convert browser's name to lowercase
+browser="$(echo ${browser} | tr [:upper:] [:lower:])"
+
+# If browser is 'depends', determine which one (if any) is the frontmost app
+if [[ ${browser} == "depends" ]]; then
+	browser="$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')"
+	# Make some corrections for 'chrome' and 'chromecanary'
+	if [[ ${browser} == "google chrome" ]]; then
+		browser="chrome"
+	elif [[ ${browser} == "google chrome canary" ]]; then
+		browser="chromecanary"
+	fi
+	# If frontmost app is not a supported browser, prevent a url from being added
+	if [[ ${browser} != "chrome" && ${browser} != "safari" && ${browser} != "webkit" && ${browser} != "chromecanary" && ${browser} != "opera" && ${browser} != "camino" ]]; then
+		rm -r "$(getCacheDir)"
+	fi
+fi
+
 # Get browser's frontmost tab's url and title, and set the tags for Pinboard
 # Arguments must be url-encoded (hence the 'perl')
-if [[ $(echo ${browser} | tr [:upper:] [:lower:]) == "chrome" ]]; then
+if [[ ${browser} == "chrome" ]]; then
   url=$(osascript -e 'tell application "Google Chrome" to return URL of active tab of front window' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
   title=$(osascript -e 'tell application "Google Chrome" to return title of active tab of front window' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
-elif [[ $(echo ${browser} | tr [:upper:] [:lower:]) == "safari" ]]; then
+elif [[ ${browser} == "safari" ]]; then
   url=$(osascript -e 'tell application "Safari" to return URL of front document' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
   title=$(osascript -e 'tell application "Safari" to return name of front document' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
-elif [[ $(echo ${browser} | tr [:upper:] [:lower:]) == "webkit" ]]; then
+elif [[ ${browser} == "webkit" ]]; then
   url=$(osascript -e 'tell application "Webkit" to return URL of front document' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
   title=$(osascript -e 'tell application "Webkit" to return name of front document' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
-elif [[ $(echo ${browser} | tr [:upper:] [:lower:]) == "chromecanary" ]]; then
+elif [[ ${browser} == "chromecanary" ]]; then
   url=$(osascript -e 'tell application "Google Chrome Canary" to return URL of active tab of front window' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
   title=$(osascript -e 'tell application "Google Chrome Canary" to return title of active tab of front window' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
-elif [[ $(echo ${browser} | tr [:upper:] [:lower:]) == "opera" ]]; then
+elif [[ ${browser} == "opera" ]]; then
   url=$(osascript -e 'tell application "Opera" to return URL of front document' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
   title=$(osascript -e 'tell application "Opera" to return name of front document' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
-elif [[ $(echo ${browser} | tr [:upper:] [:lower:]) == "camino" ]]; then
+elif [[ ${browser} == "camino" ]]; then
   url=$(osascript -e 'tell application "Camino" to return URL of current tab of front browser window' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
   title=$(osascript -e 'tell application "Camino" to return name of current tab of front browser window' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
 fi

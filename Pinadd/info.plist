@@ -128,7 +128,7 @@ echo "$(getXMLResults)"</string>
 				<key>sticky</key>
 				<false/>
 				<key>text</key>
-				<string>Operation done</string>
+				<string>Operation done.</string>
 				<key>title</key>
 				<string>PinAdd</string>
 			</dict>
