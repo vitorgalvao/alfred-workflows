@@ -7,7 +7,8 @@ browser="$(echo ${browser} | tr [:upper:] [:lower:])"
 
 # If browser is 'depends', determine which one (if any) is the frontmost app
 if [[ ${browser} == "depends" ]]; then
-	browser="$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')"
+	# Get frontmost app, in lowercase
+	browser="$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true' | tr [:upper:] [:lower:])"
 	# Make some corrections for 'chrome' and 'chromecanary'
 	if [[ ${browser} == "google chrome" ]]; then
 		browser="chrome"
@@ -15,8 +16,9 @@ if [[ ${browser} == "depends" ]]; then
 		browser="chromecanary"
 	fi
 	# If frontmost app is not a supported browser, prevent a url from being added
-	if [[ ${browser} != "chrome" && ${browser} != "safari" && ${browser} != "webkit" && ${browser} != "chromecanary" && ${browser} != "opera" && ${browser} != "camino" ]]; then
+	if [[ ! ${browser} =~ ^(chrome|chromecanary|safari|webkit|opera|camino)$ ]]; then
 		rm -r "$(getCacheDir)"
+		exit 1
 	fi
 fi
 
