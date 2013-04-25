@@ -6,24 +6,31 @@ url="$(getPref url 0 titleandurl)"
 title="$(getPref title 0 titleandurl)"
 
 # Actions for configuring account, picking tags and description, and setting private bookmark
-if [[ "$@" == "{{configureYourAccount}}"* ]]; then
-	token=$(cut -d " " -f2 <(echo "$@"))
-	browser=$(cut -d " " -f3 <(echo "$@"))
+tags="$@"
+
+if [[ "${tags}" == *" // "* ]]; then
+	description=$(awk -F ' // ' '{print $2}' <(echo "${tags}"))
+	tags=$(awk -F ' // ' '{print $1}' <(echo "${tags}"))
+fi
+
+if [[ "${tags}" == "{{configureYourAccount}}"* ]]; then
+	token=$(cut -d " " -f2 <(echo "${tags}"))
+	browser=$(cut -d " " -f3 <(echo "${tags}"))
 	setPref token "${token}" 1
 	setPref browser "${browser}" 1
 	exit 0
-elif [[ "$@" == *"// "* ]]; then
-	tags=$(awk -F "// " '{print $1}' <(echo "$@"))
-	description=$(awk -F "// " '{print $2}' <(echo "$@"))
-else
-	tags="$@"
 fi
 
-if [[ "$@" == "{{setAsPrivate}}"* ]]; then
+if [[ "${tags}" == "{{setAsPrivate}}"* ]]; then
 	tags="$(echo ${tags} | sed 's/{{setAsPrivate}}//')"
 	private='&shared=no'
 else
 	private='&shared=yes'
+fi
+
+if [[ "${tags}" == " . "* ]]; then
+	tags="$(echo ${tags} | sed 's/^. //')"
+	toread='&toread=yes'
 fi
 
 # Tags and description, url encoded
@@ -31,6 +38,6 @@ tags='&tags='$(echo "${tags}" | perl -MURI::Escape -wlne 'print uri_escape ($_)'
 description='&extended='$(echo "${description}" | perl -MURI::Escape -wlne 'print uri_escape ($_)')
 
 # Add the bookmark
-curl --silent "https://api.pinboard.in/v1/posts/add?url=${url}&description=${title}&auth_token=${token}${tags}${description}${private}"
+curl --silent "https://api.pinboard.in/v1/posts/add?url=${url}&description=${title}&auth_token=${token}${tags}${description}${private}${toread}"
 
 exit 0

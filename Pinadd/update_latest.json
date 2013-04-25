@@ -1,5 +1,5 @@
 {
-	"version": 2.1,
+	"version": 2.2,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/PinAdd.alfredworkflow",
-	"description": "It now supports frontmost browser, using 'depends'"
+	"description": "If you preced your tags with '.', it will add as 'toread'"
 }
