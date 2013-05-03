@@ -6,6 +6,25 @@
 	<string></string>
 	<key>connections</key>
 	<dict>
+		<key>19CDA0AB-1F06-4A9A-B336-C04305094E51</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E5CDADE3-274A-4223-87DF-C65E9B297638</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>68CC8A56-102C-4023-BE9A-596453FDDB5C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>1C74CAA5-F3DA-4197-81A2-DD5E64E2E04C</key>
 		<array>
 			<dict>
@@ -61,21 +80,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>acceptsmulti</key>
-				<true/>
-				<key>filetypes</key>
-				<array/>
-				<key>name</key>
-				<string>Run Command</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.action</string>
-			<key>uid</key>
-			<string>1C74CAA5-F3DA-4197-81A2-DD5E64E2E04C</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>applescript</key>
 				<string>on alfred_script(q)
 	tell application "Alfred 2" to search "runCommand "
@@ -91,6 +95,21 @@ end alfred_script</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>acceptsmulti</key>
+				<true/>
+				<key>filetypes</key>
+				<array/>
+				<key>name</key>
+				<string>Run Command</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>1C74CAA5-F3DA-4197-81A2-DD5E64E2E04C</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
@@ -102,6 +121,29 @@ end alfred_script</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>68CC8A56-102C-4023-BE9A-596453FDDB5C</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>1</integer>
+				<key>hotkey</key>
+				<integer>15</integer>
+				<key>hotmod</key>
+				<integer>1835008</integer>
+				<key>hotstring</key>
+				<string>R</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>19CDA0AB-1F06-4A9A-B336-C04305094E51</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -177,6 +219,11 @@ rm file_list</string>
 	<string></string>
 	<key>uidata</key>
 	<dict>
+		<key>19CDA0AB-1F06-4A9A-B336-C04305094E51</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
 		<key>1C74CAA5-F3DA-4197-81A2-DD5E64E2E04C</key>
 		<dict>
 			<key>ypos</key>
