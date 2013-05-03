@@ -6,6 +6,25 @@
 	<string></string>
 	<key>connections</key>
 	<dict>
+		<key>7B358A3F-B206-4B26-BF0E-B9643D6808DE</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>967B18E7-BA96-4F09-B4E5-A773DE0FD3DC</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>77AA5EBA-F831-4E9E-9E7D-FD7665B66FD1</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>D9413737-68AF-44E7-8F3D-214676DFD4EF</key>
 		<array>
 			<dict>
@@ -50,6 +69,74 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>acceptsmulti</key>
+				<true/>
+				<key>filetypes</key>
+				<array/>
+				<key>name</key>
+				<string>Label</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>D9413737-68AF-44E7-8F3D-214676DFD4EF</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>applescript</key>
+				<string>on alfred_script(q)
+	tell application "Alfred 2" to search "labelcolor "
+end alfred_script</string>
+				<key>cachescript</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.applescript</string>
+			<key>uid</key>
+			<string>967B18E7-BA96-4F09-B4E5-A773DE0FD3DC</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>echo "{query}" | perl -pe 's/[\t\n]/\0/g' &gt; file_list</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>77AA5EBA-F831-4E9E-9E7D-FD7665B66FD1</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>1</integer>
+				<key>hotkey</key>
+				<integer>37</integer>
+				<key>hotmod</key>
+				<integer>1835008</integer>
+				<key>hotstring</key>
+				<string>L</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>7B358A3F-B206-4B26-BF0E-B9643D6808DE</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
@@ -85,51 +172,6 @@ exit 0</string>
 			<key>uid</key>
 			<string>F0F03219-0C30-4884-A6C9-9465D512B11C</string>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>applescript</key>
-				<string>on alfred_script(q)
-	tell application "Alfred 2" to search "labelcolor "
-end alfred_script</string>
-				<key>cachescript</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.applescript</string>
-			<key>uid</key>
-			<string>967B18E7-BA96-4F09-B4E5-A773DE0FD3DC</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>echo "{query}" | perl -pe 's/[\t\n]/\0/g' &gt; file_list</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>77AA5EBA-F831-4E9E-9E7D-FD7665B66FD1</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>acceptsmulti</key>
-				<true/>
-				<key>filetypes</key>
-				<array/>
-				<key>name</key>
-				<string>Label</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.action</string>
-			<key>uid</key>
-			<string>D9413737-68AF-44E7-8F3D-214676DFD4EF</string>
-		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
@@ -141,6 +183,11 @@ end alfred_script</string>
 			<real>250</real>
 		</dict>
 		<key>77AA5EBA-F831-4E9E-9E7D-FD7665B66FD1</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>7B358A3F-B206-4B26-BF0E-B9643D6808DE</key>
 		<dict>
 			<key>ypos</key>
 			<real>130</real>
