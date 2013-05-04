@@ -68,11 +68,16 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>cd ~/
+				<string>cd "${HOME}"
 
-{query}
-
-exit 0</string>
+if [[ $(basename $SHELL) == 'zsh' ]]; then
+	source ${HOME}/.zshrc
+	/usr/local/bin/zsh -c "{query}"
+else
+	source ${HOME}/.bash_profile
+	source ${HOME}/.bashrc
+	{query}
+fi</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>

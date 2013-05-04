@@ -151,19 +151,14 @@ end alfred_script</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>if [[ "{query}" == *" {} "* ]]
-then
-	command=$(echo "{query}" | sed 's/ {} /:/')
-
-	first=$(cut -d ":" -f1 &lt;(echo "${command}"))
-	second=$(cut -d ":" -f2 &lt;(echo "${command}"))
-
-	cat file_list | xargs -0 -J {} ${first} {} ${second}
+				<string>if [[ $(basename $SHELL) == 'zsh' ]]; then
+	source ${HOME}/.zshrc
+	/usr/local/bin/zsh ./script "{query}"
 else
-	cat file_list | xargs -0 {query}
-fi
-
-rm file_list</string>
+	source ${HOME}/.bash_profile
+	source ${HOME}/.bashrc
+	./script "{query}"
+fi</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
