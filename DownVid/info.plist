@@ -117,17 +117,19 @@ getXMLResults</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>if [[ "{query}" == "addToWatchList" ]]; then
+				<string>echo "$(pbpaste)" &gt;&gt; downloadlist.txt
+
+if [[ "{query}" == "addToWatchList" ]]; then
 	watchlist="${HOME}/Library/Application Support/Alfred 2/Workflow Data/com.vitorgalvao.alfred.watchlist/watchlist.txt"
-
 	echo $(python youtube-dl -o "${HOME}/Downloads/%(title)s.%(ext)s" --get-filename "$(pbpaste)") &gt;&gt; "${watchlist}"
-	python youtube-dl -o "${HOME}/Downloads/%(title)s.%(ext)s" "$(pbpaste)"
+fi
 
-	echo "Done."
-else
-	python youtube-dl -o "${HOME}/Desktop/%(title)s.%(ext)s" "$(pbpaste)"
-	echo "Done."
-fi</string>
+if [[ -z $(ps cax | grep 'youtube-dl') ]]; then
+	python youtube-dl -o "${HOME}/Downloads/%(title)s.%(ext)s" -a downloadlist.txt
+fi
+
+rm downloadlist.txt
+echo "Done."</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
