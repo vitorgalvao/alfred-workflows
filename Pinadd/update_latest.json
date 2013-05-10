@@ -1,5 +1,5 @@
 {
-	"version": 2.2,
+	"version": 2.3,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/PinAdd.alfredworkflow",
-	"description": "If you preced your tags with '.', it will add as 'toread'"
+	"description": "Added support for chromium"
 }
