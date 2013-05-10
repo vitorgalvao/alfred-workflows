@@ -82,21 +82,39 @@
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
-				<string>source ./workflowHandler.sh
-# addResult "uid" "arg" "title" "subtitle" "icon" "valid" "autocomplete"
+				<string># Prepare random file
+randfile="/tmp/downvid$RANDOM.tmp"
+echo -n "$(pbpaste)" &gt;&gt; "${randfile}"
 
-# Check if WatchList is being used, and shows options accordingly
+# Check if WatchList is being used, and show options accordingly
 watchlist="${HOME}/Library/Application Support/Alfred 2/Workflow Data/com.vitorgalvao.alfred.watchlist/watchlist.txt"
 
 if [[ -f ${watchlist} ]]; then
-	addResult "Regular Download" "" "DownVid" "Downloads the video to your Desktop" "icon.png" "yes" ""
-	addResult "Download To WatchList" "addToWatchList" "DownVid + WatchList" "Downloads the video to ~/Downloads and adds it to your watchlist" "icon.png" "yes" ""
+cat &lt;&lt; EOF
+&lt;?xml version='1.0'?&gt;&lt;items&gt;
+	&lt;item uid='Regular Download' arg='${randfile}' valid='yes'&gt;
+		&lt;title&gt;DownVid&lt;/title&gt;
+		&lt;subtitle&gt;Downloads the video to your Desktop&lt;/subtitle&gt;
+		&lt;icon&gt;icon.png&lt;/icon&gt;
+	&lt;/item&gt;
+	&lt;item uid='Download To WatchList' arg='addToWatchList ${randfile}' valid='yes'&gt;
+		&lt;title&gt;DownVid + WatchList&lt;/title&gt;
+		&lt;subtitle&gt;Downloads the video to ~/Downloads and adds it to your watchlist&lt;/subtitle&gt;
+		&lt;icon&gt;icon.png&lt;/icon&gt;
+	&lt;/item&gt;
+&lt;/items&gt;
+EOF
 else
-	addResult "Regular Download" "" "DownVid" "Downloads the video to your Desktop" "icon.png" "yes" ""
-fi
-
-# get feedback xml
-getXMLResults</string>
+cat &lt;&lt; EOF
+&lt;?xml version='1.0'?&gt;&lt;items&gt;
+	&lt;item uid='Regular Download' arg='${randfile}' valid='yes'&gt;
+		&lt;title&gt;DownVid&lt;/title&gt;
+		&lt;subtitle&gt;Downloads the video to your Desktop&lt;/subtitle&gt;
+		&lt;icon&gt;icon.png&lt;/icon&gt;
+	&lt;/item&gt;
+&lt;/items&gt;
+EOF
+fi</string>
 				<key>subtext</key>
 				<string>Download videos from popular sources (uses the URL in your clipboard)</string>
 				<key>title</key>
@@ -117,19 +135,27 @@ getXMLResults</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>echo "$(pbpaste)" &gt;&gt; downloadlist.txt
+				<string>gettitle() {
+	python youtube-dl --output "${HOME}/Downloads/%(title)s.%(ext)s" --get-filename "${link}"
+}
 
-if [[ "{query}" == "addToWatchList" ]]; then
+getfile() {
+	python youtube-dl --quiet --output "${downdir}/%(title)s.%(ext)s" "${link}"
+}
+
+if [[ "{query}" == "addToWatchList"* ]]; then
 	watchlist="${HOME}/Library/Application Support/Alfred 2/Workflow Data/com.vitorgalvao.alfred.watchlist/watchlist.txt"
-	echo $(python youtube-dl -o "${HOME}/Downloads/%(title)s.%(ext)s" --get-filename "$(pbpaste)") &gt;&gt; "${watchlist}"
+	link=$(cat "$(echo {query} | sed 's/addToWatchList //')")
+	downdir="${HOME}/Downloads"
+	$(getfile)
+	echo "$(gettitle)" &gt;&gt; "${watchlist}"
+else
+	link="$(cat "{query}")"
+	downdir="${HOME}/Desktop"
+	$(getfile)
 fi
 
-if [[ -z $(ps cax | grep 'youtube-dl') ]]; then
-	python youtube-dl -o "${HOME}/Downloads/%(title)s.%(ext)s" -a downloadlist.txt
-fi
-
-rm downloadlist.txt
-echo "Done."</string>
+echo "$(gettitle)"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -142,17 +168,17 @@ echo "Done."</string>
 			<key>config</key>
 			<dict>
 				<key>lastpathcomponent</key>
-				<false/>
+				<true/>
 				<key>onlyshowifquerypopulated</key>
-				<false/>
+				<true/>
 				<key>output</key>
 				<integer>0</integer>
 				<key>removeextension</key>
-				<false/>
+				<true/>
 				<key>sticky</key>
 				<false/>
 				<key>text</key>
-				<string>Done.</string>
+				<string>Downloaded {query}</string>
 				<key>title</key>
 				<string>DownVid</string>
 			</dict>

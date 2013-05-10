@@ -1,5 +1,5 @@
 {
-	"version": 1.4,
+	"version": 1.5,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/DownVid.alfredworkflow",
-	"description": "Handles multiple downloads better"
+	"description": "More improvements with handling multiple downloads"
 }
