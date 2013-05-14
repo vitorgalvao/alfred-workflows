@@ -1,5 +1,5 @@
 {
-	"version": 1.5,
+	"version": 1.6,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/DownVid.alfredworkflow",
-	"description": "More improvements with handling multiple downloads"
+	"description": "Small correction to getting the filename when saving to the Desktop"
 }

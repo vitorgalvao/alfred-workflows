@@ -136,7 +136,7 @@ fi</string>
 				<integer>0</integer>
 				<key>script</key>
 				<string>gettitle() {
-	python youtube-dl --output "${HOME}/Downloads/%(title)s.%(ext)s" --get-filename "${link}"
+	python youtube-dl --output "${downdir}/%(title)s.%(ext)s" --get-filename "${link}"
 }
 
 getfile() {
