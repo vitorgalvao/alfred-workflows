@@ -1,5 +1,5 @@
 {
-	"version": 1.7,
+	"version": 1.8,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/WatchList.alfredworkflow",
-	"description": "'Blank' now empties the list, instead of deleting it"
+	"description": "Fixed issue where files with '[]' in the name would not be marked as watched"
 }

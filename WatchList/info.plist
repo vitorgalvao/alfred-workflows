@@ -87,6 +87,21 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>acceptsmulti</key>
+				<true/>
+				<key>filetypes</key>
+				<array/>
+				<key>name</key>
+				<string>Add to watchlist</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>AA3CF56F-3E4D-4EB5-8019-B9E517648566</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
@@ -104,21 +119,6 @@ echo "{query}" | perl -pe 's/\t/\n/g' &gt;&gt; "$(getDataDir)/watchlist.txt"</st
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>2C22F42C-C25C-4D4C-AB42-C31CE9234895</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>acceptsmulti</key>
-				<true/>
-				<key>filetypes</key>
-				<array/>
-				<key>name</key>
-				<string>Add to watchlist</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.action</string>
-			<key>uid</key>
-			<string>AA3CF56F-3E4D-4EB5-8019-B9E517648566</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -162,56 +162,6 @@ echo "$(getXMLResults)"</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>source ./workflowHandler.sh
-watchlist="$(getDataDir)/watchlist.txt"
-
-if [[ "{query}" == "play" ]]; then
-	if [[ -z $(cat "${watchlist}" | grep --invert-match "{{WATCHED}}") ]]; then
-		echo 'You have no unwatched files'
-		exit 0
-	else
-		file_to_read=$(grep --invert-match "{{WATCHED}}" "${watchlist}" | head -1)
-		open "${file_to_read}"
-		sed -i '' "s:${file_to_read}:{{WATCHED}} ${file_to_read}:" "${watchlist}"
-	fi
-
-elif [[ "{query}" == "unwatch" ]]; then
-	file_to_read=$(grep "{{WATCHED}}" "${watchlist}" | tail -1)
-	unwatched_name=$(echo ${file_to_read} | sed 's:{{WATCHED}} ::')
-	sed -i '' "s:{{WATCHED}} ${unwatched_name}:${unwatched_name}:" "${watchlist}"
-	echo 'Last file marked as unwatched'
-
-elif [[ "{query}" == "show" ]]; then
-	qlmanage -p &amp;&gt;/dev/null "${watchlist}"
-
-elif [[ "{query}" == "edit" ]]; then
-	touch "${watchlist}"
-	open "${watchlist}"
-
-elif [[ "{query}" == "delete" ]]; then
-	grep "{{WATCHED}}" "${watchlist}" | sed 's/{{WATCHED}} //g' | perl -pe 's/\n/\0/' | xargs -0 -I {} osascript -e "tell application \"Finder\" to delete POSIX file \"{}\"" &amp;&gt;/dev/null
-	sed -i '' '/{{WATCHED}}/d' "${watchlist}"
-	echo 'Watched files moved to trash'
-
-elif [[ "{query}" == "blank" ]]; then
-	echo -n &gt; "${watchlist}"
-	echo 'Watchlist removed'
-
-fi</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>6DBCE4B1-7875-48EA-88E9-91D87B6B6278</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>lastpathcomponent</key>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
@@ -231,6 +181,56 @@ fi</string>
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>00F113FE-0294-4DE0-9DAC-AA1F87A1D425</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>source ./workflowHandler.sh
+watchlist="$(getDataDir)/watchlist.txt"
+
+if [[ "{query}" == "play" ]]; then
+	if [[ -z $(cat "${watchlist}" | grep --invert-match "{{WATCHED}}") ]]; then
+		echo 'You have no unwatched files'
+		exit 0
+	else
+		file_to_read=$(grep --invert-match "{{WATCHED}}" "${watchlist}" | head -1)
+		open "${file_to_read}"
+		perl -i -pe "s:\Q${file_to_read}:{{WATCHED}} ${file_to_read}:" "${watchlist}"
+	fi
+
+elif [[ "{query}" == "unwatch" ]]; then
+	file_to_read=$(grep "{{WATCHED}}" "${watchlist}" | tail -1)
+	unwatched_name=$(echo "${file_to_read}" | sed 's:{{WATCHED}} ::')
+	perl -i -pe "s:${file_to_read}:${unwatched_name}:" "${watchlist}"
+	echo 'Last file marked as unwatched'
+
+elif [[ "{query}" == "show" ]]; then
+	qlmanage -p &amp;&gt;/dev/null "${watchlist}"
+
+elif [[ "{query}" == "edit" ]]; then
+	touch "${watchlist}"
+	open "${watchlist}"
+
+elif [[ "{query}" == "delete" ]]; then
+	grep "{{WATCHED}}" "${watchlist}" | perl -pe 's:{{WATCHED}} ::g;s:\n:\0:' | xargs -0 -I {} osascript -e "tell application \"Finder\" to delete POSIX file \"{}\"" &amp;&gt;/dev/null
+	sed -i '' '/{{WATCHED}}/d' "${watchlist}"
+	echo 'Watched files moved to trash'
+
+elif [[ "{query}" == "blank" ]]; then
+	echo -n &gt; "${watchlist}"
+	echo 'Watchlist removed'
+
+fi</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>6DBCE4B1-7875-48EA-88E9-91D87B6B6278</string>
 		</dict>
 	</array>
 	<key>readme</key>
