@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string></string>
+	<key>connections</key>
+	<dict>
+		<key>2C36AAF9-7F21-42CA-8646-ECA398B51F39</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D6AD9678-C017-40CD-BD91-5E4102C39AD3</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>4B30C050-DEC1-4375-8B11-20FA04A89596</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>EFAAF772-5EA3-4461-9400-EA21F1D07274</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>2D996A5F-76DB-4596-BAC7-C918B0EFD902</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>D6AD9678-C017-40CD-BD91-5E4102C39AD3</key>
+		<array/>
+	</dict>
+	<key>createdby</key>
+	<string>Vítor Galvão</string>
+	<key>description</key>
+	<string>Renames a directory or file (preserving the extension)</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>RenameAction</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>applescript</key>
+				<string>on alfred_script(q)
+	tell application "Alfred 2" to search "rename to: "
+end alfred_script</string>
+				<key>cachescript</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.applescript</string>
+			<key>uid</key>
+			<string>EFAAF772-5EA3-4461-9400-EA21F1D07274</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsmulti</key>
+				<false/>
+				<key>filetypes</key>
+				<array/>
+				<key>name</key>
+				<string>Rename</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>4B30C050-DEC1-4375-8B11-20FA04A89596</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>echo -n "{query}" &gt; originalFile</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>2D996A5F-76DB-4596-BAC7-C918B0EFD902</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>originalFile="$(cat ./originalFile)"
+
+filePath=$(dirname "${originalFile}")
+fileName=$(basename "${originalFile}")
+
+fileExtension=$(echo "${fileName}" | sed -n 's/\(.*\)\.\(.*\)$/.\2/p')
+fileNoExtension=$(echo "{fileName}" | sed 's/\(.*\)\.\(.*\)$/\1/')
+
+mv "${originalFile}" "${filePath}/{query}${fileExtension}"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>D6AD9678-C017-40CD-BD91-5E4102C39AD3</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>rename to:</string>
+				<key>subtext</key>
+				<string>You don’t need to write the extension — it will be preserved</string>
+				<key>text</key>
+				<string>Rename to</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>2C36AAF9-7F21-42CA-8646-ECA398B51F39</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>2C36AAF9-7F21-42CA-8646-ECA398B51F39</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
+		</dict>
+		<key>2D996A5F-76DB-4596-BAC7-C918B0EFD902</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>4B30C050-DEC1-4375-8B11-20FA04A89596</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>D6AD9678-C017-40CD-BD91-5E4102C39AD3</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
+		</dict>
+		<key>EFAAF772-5EA3-4461-9400-EA21F1D07274</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://vitorgalvao.com/</string>
+</dict>
+</plist>
