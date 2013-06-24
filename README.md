@@ -1,3 +1,5 @@
+[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=vitor&url=https://github.com/vitorgalvao/alfred-workflows&title=alfred-workflows&language=en_GB&tags=github,alfred&category=software)
+
 # Collection of Alfred Extension scripts
 
 ### [CommandRun](http://www.alfredforum.com/topic/1868-commandrun-%E2%80%94-run-cli-commands-without-opening-a-terminal/)
