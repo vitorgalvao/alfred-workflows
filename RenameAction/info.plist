@@ -21,7 +21,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>EFAAF772-5EA3-4461-9400-EA21F1D07274</string>
+				<string>7F3F1A2C-BFA9-4BAA-8DCF-B6F253D7BF79</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -52,17 +52,17 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>applescript</key>
-				<string>on alfred_script(q)
-	tell application "Alfred 2" to search "rename to: "
-end alfred_script</string>
-				<key>cachescript</key>
-				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>tell application "Alfred 2" to search "rename to: "</string>
+				<key>type</key>
+				<integer>6</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.applescript</string>
+			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>EFAAF772-5EA3-4461-9400-EA21F1D07274</string>
+			<string>7F3F1A2C-BFA9-4BAA-8DCF-B6F253D7BF79</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -166,15 +166,15 @@ mv "${originalFile}" "${filePath}/{query}${fileExtension}"</string>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
+		<key>7F3F1A2C-BFA9-4BAA-8DCF-B6F253D7BF79</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
 		<key>D6AD9678-C017-40CD-BD91-5E4102C39AD3</key>
 		<dict>
 			<key>ypos</key>
 			<real>250</real>
-		</dict>
-		<key>EFAAF772-5EA3-4461-9400-EA21F1D07274</key>
-		<dict>
-			<key>ypos</key>
-			<real>10</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>

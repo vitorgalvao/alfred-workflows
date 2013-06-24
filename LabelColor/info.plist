@@ -21,7 +21,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>967B18E7-BA96-4F09-B4E5-A773DE0FD3DC</string>
+				<string>B10C3CEF-BFF1-4B96-9D33-79793DD863B0</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -35,12 +35,20 @@
 				<key>modifiersubtext</key>
 				<string></string>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>1CDD71C9-6FA7-4886-8792-358DC4825B8C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
 		</array>
 		<key>D9413737-68AF-44E7-8F3D-214676DFD4EF</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>967B18E7-BA96-4F09-B4E5-A773DE0FD3DC</string>
+				<string>B10C3CEF-BFF1-4B96-9D33-79793DD863B0</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -69,23 +77,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>applescript</key>
-				<string>on alfred_script(q)
-	tell application "Alfred 2" to search "labelcolor"
-end alfred_script</string>
-				<key>cachescript</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.applescript</string>
-			<key>uid</key>
-			<string>967B18E7-BA96-4F09-B4E5-A773DE0FD3DC</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>acceptsmulti</key>
 				<true/>
 				<key>filetypes</key>
@@ -97,6 +88,23 @@ end alfred_script</string>
 			<string>alfred.workflow.trigger.action</string>
 			<key>uid</key>
 			<string>D9413737-68AF-44E7-8F3D-214676DFD4EF</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>tell application "Alfred 2" to search "labelcolor"</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>B10C3CEF-BFF1-4B96-9D33-79793DD863B0</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -139,6 +147,27 @@ end alfred_script</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>77AA5EBA-F831-4E9E-9E7D-FD7665B66FD1</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>cat file_list | xargs -0 ./labelcolor {query}
+
+rm file_list
+
+exit 0</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>3387B057-FF89-44FF-8D81-1C1CB554C09C</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -214,27 +243,6 @@ EOF</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>cat file_list | xargs -0 ./labelcolor {query}
-
-rm file_list
-
-exit 0</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>3387B057-FF89-44FF-8D81-1C1CB554C09C</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
@@ -260,7 +268,7 @@ exit 0</string>
 			<key>ypos</key>
 			<real>130</real>
 		</dict>
-		<key>967B18E7-BA96-4F09-B4E5-A773DE0FD3DC</key>
+		<key>B10C3CEF-BFF1-4B96-9D33-79793DD863B0</key>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>

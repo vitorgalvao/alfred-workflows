@@ -10,7 +10,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>E5CDADE3-274A-4223-87DF-C65E9B297638</string>
+				<string>F6CEDF27-563A-4BE6-8F1B-CFFAE9BB0208</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -29,7 +29,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>E5CDADE3-274A-4223-87DF-C65E9B297638</string>
+				<string>F6CEDF27-563A-4BE6-8F1B-CFFAE9BB0208</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -80,21 +80,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>applescript</key>
-				<string>on alfred_script(q)
-	tell application "Alfred 2" to search "runCommand "
-end alfred_script</string>
-				<key>cachescript</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.applescript</string>
-			<key>uid</key>
-			<string>E5CDADE3-274A-4223-87DF-C65E9B297638</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>acceptsmulti</key>
 				<true/>
 				<key>filetypes</key>
@@ -106,6 +91,25 @@ end alfred_script</string>
 			<string>alfred.workflow.trigger.action</string>
 			<key>uid</key>
 			<string>1C74CAA5-F3DA-4197-81A2-DD5E64E2E04C</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>tell application "Alfred 2" to search "runCommand "</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>F6CEDF27-563A-4BE6-8F1B-CFFAE9BB0208</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -121,6 +125,8 @@ end alfred_script</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>68CC8A56-102C-4023-BE9A-596453FDDB5C</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -144,6 +150,8 @@ end alfred_script</string>
 			<string>alfred.workflow.trigger.hotkey</string>
 			<key>uid</key>
 			<string>19CDA0AB-1F06-4A9A-B336-C04305094E51</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -166,6 +174,8 @@ fi</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>70D7DD2C-C248-44EB-8F75-538914807A66</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -189,6 +199,8 @@ fi</string>
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>3C3BFA6B-AE9B-47A7-A377-28AD784BA363</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -208,6 +220,8 @@ fi</string>
 			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
 			<string>BC3ADE81-4A31-4D07-A1C8-11BF79A65DE9</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -244,7 +258,7 @@ fi</string>
 			<key>ypos</key>
 			<real>250</real>
 		</dict>
-		<key>E5CDADE3-274A-4223-87DF-C65E9B297638</key>
+		<key>F6CEDF27-563A-4BE6-8F1B-CFFAE9BB0208</key>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
