@@ -1,5 +1,5 @@
 {
-	"version": 1.8,
+	"version": 2.0,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/WatchList.alfredworkflow",
-	"description": "Fixed issue where files with '[]' in the name would not be marked as watched"
+	"description": "Big update — you can now pick what files to act on, instead of having to do it sequentially"
 }
