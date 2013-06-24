@@ -69,6 +69,8 @@
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>DF7A8FE0-A270-4448-AE99-72AD628967BC</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -87,7 +89,7 @@ randfile="/tmp/downvid$RANDOM.tmp"
 echo -n "$(pbpaste)" &gt;&gt; "${randfile}"
 
 # Check if WatchList is being used, and show options accordingly
-watchlist="${HOME}/Library/Application Support/Alfred 2/Workflow Data/com.vitorgalvao.alfred.watchlist/watchlist.txt"
+watchlist="${HOME}/Library/Application Support/Alfred 2/Workflow Data/com.vitorgalvao.alfred.watchlist/towatch.txt"
 
 if [[ -f ${watchlist} ]]; then
 cat &lt;&lt; EOF
@@ -128,6 +130,8 @@ fi</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>DC74421D-631A-44B1-AC86-ED7793CADE26</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -163,6 +167,8 @@ echo "$(gettitle)"</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>6A286F10-FD49-4463-9540-0EECBE45438D</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -186,6 +192,8 @@ echo "$(gettitle)"</string>
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>06B01CE3-C355-4F35-A73F-CAF68F286C56</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 	</array>
 	<key>readme</key>
