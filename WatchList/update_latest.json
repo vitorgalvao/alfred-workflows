@@ -1,5 +1,5 @@
 {
-	"version": 2.0,
+	"version": 2.1,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/WatchList.alfredworkflow",
-	"description": "Big update — you can now pick what files to act on, instead of having to do it sequentially"
+	"description": "Show a notification when a file is marked as unwatched"
 }

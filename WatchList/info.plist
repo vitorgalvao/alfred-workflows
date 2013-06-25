@@ -19,6 +19,17 @@
 		</array>
 		<key>0DDE2F4F-9DE8-4C40-BB85-ED0DF8C613EE</key>
 		<array/>
+		<key>20803797-C5B6-42F9-9F31-1425E194C1C3</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1FCFA5E5-DF54-405A-A748-3A4DD801C72F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>2C22F42C-C25C-4D4C-AB42-C31CE9234895</key>
 		<array>
 			<dict>
@@ -240,13 +251,13 @@ if [[ -z $(cat ${towatch}) ]]; then
 else
 	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
 	for file in $(cat ${towatch}); do
-	filename="$(basename ${file})"
-	echo "&lt;item uuid='${line}' arg='${line}' valid='yes'&gt;"
-	echo "&lt;title&gt;${filename}&lt;/title&gt;"
-	echo "&lt;subtitle&gt;${file}&lt;/subtitle&gt;"
-	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
-	echo "&lt;/item&gt;"
-	((line++))
+		filename="$(basename ${file})"
+		echo "&lt;item uuid='${line}' arg='${line}' valid='yes'&gt;"
+		echo "&lt;title&gt;${filename}&lt;/title&gt;"
+		echo "&lt;subtitle&gt;${file}&lt;/subtitle&gt;"
+		echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
+		echo "&lt;/item&gt;"
+		((line++))
 	done
 	echo "&lt;/items&gt;"
 fi</string>
@@ -293,6 +304,31 @@ mv "$(getDataDir)/tmp.txt" "${towatch}"</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>Marked as unwatched</string>
+				<key>title</key>
+				<string>WatchList</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>1FCFA5E5-DF54-405A-A748-3A4DD801C72F</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>escaping</key>
@@ -319,13 +355,13 @@ if [[ -z $(cat ${watched}) ]]; then
 else
 	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
 	for file in $(cat ${watched}); do
-	filename="$(basename ${file})"
-	echo "&lt;item uuid='${line}' arg='${line}' valid='yes'&gt;"
-	echo "&lt;title&gt;${filename}&lt;/title&gt;"
-	echo "&lt;subtitle&gt;${file}&lt;/subtitle&gt;"
-	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
-	echo "&lt;/item&gt;"
-	((line++))
+		filename="$(basename ${file})"
+		echo "&lt;item uuid='${line}' arg='${line}' valid='yes'&gt;"
+		echo "&lt;title&gt;${filename}&lt;/title&gt;"
+		echo "&lt;subtitle&gt;${file}&lt;/subtitle&gt;"
+		echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
+		echo "&lt;/item&gt;"
+		((line++))
 	done
 	echo "&lt;/items&gt;"
 fi</string>
@@ -553,6 +589,11 @@ cat /dev/null &gt; "${watched}"</string>
 		<dict>
 			<key>ypos</key>
 			<real>610</real>
+		</dict>
+		<key>1FCFA5E5-DF54-405A-A748-3A4DD801C72F</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
 		</dict>
 		<key>20803797-C5B6-42F9-9F31-1425E194C1C3</key>
 		<dict>
