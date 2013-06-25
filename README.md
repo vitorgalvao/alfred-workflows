@@ -17,6 +17,9 @@ Takes arguments as tags and adds your browser's frontmost tab as a pinboard book
 ### [RenameAction](http://www.alfredforum.com/topic/2722-renameaction-%E2%80%94-renames-a-directory-or-file-preserving-the-extension/)
 Renames a directory or file (preserving the extension)
 
+### [RepeatRepeat]()
+Proof of concept to make a script filter update itself without further user input
+
 ### [RunCommand](http://www.alfredforum.com/topic/1550-runcommand-%E2%80%94-runs-terminal-command-on-selected-filesdirectories/)
 Runs terminal command on selected files/directories.
 
