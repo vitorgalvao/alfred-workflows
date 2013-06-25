@@ -148,7 +148,7 @@ getfile() {
 }
 
 if [[ "{query}" == "addToWatchList"* ]]; then
-	watchlist="${HOME}/Library/Application Support/Alfred 2/Workflow Data/com.vitorgalvao.alfred.watchlist/watchlist.txt"
+	watchlist="${HOME}/Library/Application Support/Alfred 2/Workflow Data/com.vitorgalvao.alfred.watchlist/towatch.txt"
 	link=$(cat "$(echo {query} | sed 's/addToWatchList //')")
 	downdir="${HOME}/Downloads"
 	$(getfile)
