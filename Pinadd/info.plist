@@ -90,16 +90,19 @@
 				<key>script</key>
 				<string>source ./workflowHandler.sh
 
-# addResult "uid" "arg" "title" "subtitle" "icon" "valid" "autocomplete"
-
 if [[ ! -d "$(getDataDir)" ]]; then
-	addResult "Configure PinAdd Warning" "" "Your account isn't configured yet" "run configurepinadd to set it" "icon.png" "yes" ""
+cat &lt;&lt; EOF
+	&lt;?xml version='1.0'?&gt;&lt;items&gt;
+	  &lt;item uid='Configure PinAdd Warning' valid='no'&gt;
+	    &lt;title&gt;Your account isn't configured yet&lt;/title&gt;
+	    &lt;subtitle&gt;run configurepinadd to set it&lt;/subtitle&gt;
+	    &lt;icon&gt;icon.png&lt;/icon&gt;
+	  &lt;/item&gt;
+	&lt;/items&gt;
+EOF
 else
 	source ./setTitleAndURL
-fi
-
-# get feedback xml
-echo "$(getXMLResults)"</string>
+fi</string>
 				<key>subtext</key>
 				<string>Please wait…</string>
 				<key>title</key>
@@ -113,6 +116,8 @@ echo "$(getXMLResults)"</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>147225F5-C2E2-4FE1-AACF-B43D4F9394C2</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -136,6 +141,8 @@ echo "$(getXMLResults)"</string>
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>A3481C3B-1483-419B-96C7-CB2CC0A40433</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -155,6 +162,8 @@ echo "$(getXMLResults)"</string>
 			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
 			<string>EB540A71-1528-4CD8-BF49-FF90C76826DB</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -170,6 +179,8 @@ echo "$(getXMLResults)"</string>
 			<string>alfred.workflow.output.script</string>
 			<key>uid</key>
 			<string>B3C81DF2-524D-4044-BAC1-6BDA9DA6A6FF</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -185,6 +196,8 @@ echo "$(getXMLResults)"</string>
 			<string>alfred.workflow.output.script</string>
 			<key>uid</key>
 			<string>6C356EDF-5EEF-408C-8C92-14DC26E5F05C</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -204,6 +217,8 @@ echo "$(getXMLResults)"</string>
 			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
 			<string>41A5A177-9A68-4BE7-870A-2F6797AC2464</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -213,7 +228,7 @@ echo "$(getXMLResults)"</string>
 				<key>keyword</key>
 				<string>configurepinadd</string>
 				<key>subtext</key>
-				<string>your-api-token your-preferred-browser</string>
+				<string>your-api-token your-preferred-browser (see the “Readme” info for more details)</string>
 				<key>text</key>
 				<string>Configure your account</string>
 				<key>withspace</key>
@@ -223,6 +238,8 @@ echo "$(getXMLResults)"</string>
 			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
 			<string>E229E8F1-226C-4996-A83D-C181DAEFB268</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -238,10 +255,22 @@ echo "$(getXMLResults)"</string>
 			<string>alfred.workflow.output.script</string>
 			<key>uid</key>
 			<string>3CBD80B1-2C96-442C-86AB-93BA5F5FC2FD</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string>Before using this workflow to add bookmarks, you need to configure it with your Pinboard account by running “configurepinadd” followed by your api token and your preferred browser.
+
+You can get the API token of you Pinboard account by visiting
+https://pinboard.in/settings/password
+
+Your preferred browser may be one of
+Safari, Webkit, Chrome, ChromeCanary, Chromium, Opera, Camino, or depends
+(“depends” uses the browser you have as the frontmost window, provided it’s one of the mentioned ones).
+
+An example configuration would be
+configurepinadd username:HSJWJK2HHSKI14QPDOIK safari</string>
 	<key>uidata</key>
 	<dict>
 		<key>147225F5-C2E2-4FE1-AACF-B43D4F9394C2</key>

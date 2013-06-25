@@ -1,5 +1,5 @@
 {
-	"version": 2.3,
+	"version": 2.4,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/PinAdd.alfredworkflow",
-	"description": "Added support for chromium"
+	"description": "Added info to the Readme"
 }
