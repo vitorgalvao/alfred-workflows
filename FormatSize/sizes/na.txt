@@ -1,0 +1,6 @@
+Letter,215.9 x 279.4,8.5 x 11
+Government-Letter,203.2 x 226.7,8.0 x 10.5
+Legal,215.9 x 355.6,8.5 x 14
+Junior Legal,203.2 x 127,8.0 x 5.0
+Ledger,432 x 279,17 x 11
+Tabloid,279 x 432,11 x 7

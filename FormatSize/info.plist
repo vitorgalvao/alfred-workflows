@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string></string>
+	<key>connections</key>
+	<dict/>
+	<key>createdby</key>
+	<string>Vítor Galvão</string>
+	<key>description</key>
+	<string>Shows the paper size (mm and in) for different formats</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>FormatSize</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>paperiso</string>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>IFS=$'\n'
+
+file="sizes/iso.txt"
+
+echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
+for paper in $(grep -i "^{query}" "${file}"); do
+	format="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\1/')"
+	mm="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\2/')"
+	in="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\3/')"
+	echo "&lt;item uid='${format}' valid='no' autocomplete='${format}'&gt;"
+	echo "&lt;title&gt;${format}&lt;/title&gt;"
+	echo "&lt;subtitle&gt;${mm} mm  |  ${in} in&lt;/subtitle&gt;"
+	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
+	echo "&lt;/item&gt;"
+done
+echo "&lt;/items&gt;"</string>
+				<key>subtext</key>
+				<string>A, B, and C series</string>
+				<key>title</key>
+				<string>International standard (ISO 216) paper formats</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>785C12C1-537B-4D4D-AA2B-25D2C5D33231</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>paperna</string>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>IFS=$'\n'
+
+file="sizes/na.txt"
+
+echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
+for paper in $(grep -i "^{query}" "${file}"); do
+	format="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\1/')"
+	mm="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\2/')"
+	in="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\3/')"
+	echo "&lt;item uid='${format}' valid='no' autocomplete='${format}'&gt;"
+	echo "&lt;title&gt;${format}&lt;/title&gt;"
+	echo "&lt;subtitle&gt;${mm} mm  |  ${in} in&lt;/subtitle&gt;"
+	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
+	echo "&lt;/item&gt;"
+done
+echo "&lt;/items&gt;"</string>
+				<key>subtext</key>
+				<string>Loose sizes</string>
+				<key>title</key>
+				<string>North American paper formats</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>BD54C221-BA04-4681-BD20-2A8FE610186F</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>paperjis</string>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>IFS=$'\n'
+
+file="sizes/jis.txt"
+
+echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
+for paper in $(grep -i "^{query}" "${file}"); do
+	format="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\1/')"
+	mm="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\2/')"
+	in="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\3/')"
+	echo "&lt;item uid='${format}' valid='no' autocomplete='${format}'&gt;"
+	echo "&lt;title&gt;${format}&lt;/title&gt;"
+	echo "&lt;subtitle&gt;${mm} mm  |  ${in} in&lt;/subtitle&gt;"
+	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
+	echo "&lt;/item&gt;"
+done
+echo "&lt;/items&gt;"</string>
+				<key>subtext</key>
+				<string>B series, Shiroku ban, Kiku</string>
+				<key>title</key>
+				<string>Japanese B-series variant paper formats</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>BD21EA10-41BC-4F6E-9688-FC115DD3E5FA</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>paperansi</string>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>IFS=$'\n'
+
+file="sizes/ansi.txt"
+
+echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
+for paper in $(grep -i "^{query}" "${file}"); do
+	format="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\1/')"
+	mm="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\2/')"
+	in="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\3/')"
+	echo "&lt;item uid='${format}' valid='no' autocomplete='${format}'&gt;"
+	echo "&lt;title&gt;${format}&lt;/title&gt;"
+	echo "&lt;subtitle&gt;${mm} mm  |  ${in} in&lt;/subtitle&gt;"
+	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
+	echo "&lt;/item&gt;"
+done
+echo "&lt;/items&gt;"</string>
+				<key>subtext</key>
+				<string>ANSI series</string>
+				<key>title</key>
+				<string>ANSI paper formats</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>18F65376-7567-4DB6-AE98-CA42FD18DB64</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>paperarch</string>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>IFS=$'\n'
+
+file="sizes/arch.txt"
+
+echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
+for paper in $(grep -i "^{query}" "${file}"); do
+	format="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\1/')"
+	mm="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\2/')"
+	in="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\3/')"
+	echo "&lt;item uid='${format}' valid='no' autocomplete='${format}'&gt;"
+	echo "&lt;title&gt;${format}&lt;/title&gt;"
+	echo "&lt;subtitle&gt;${mm} mm  |  ${in} in&lt;/subtitle&gt;"
+	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
+	echo "&lt;/item&gt;"
+done
+echo "&lt;/items&gt;"</string>
+				<key>subtext</key>
+				<string>Arch series</string>
+				<key>title</key>
+				<string>Architectural paper formats</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>F25005BB-AA14-480E-B744-0131E97DFED3</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>18F65376-7567-4DB6-AE98-CA42FD18DB64</key>
+		<dict>
+			<key>ypos</key>
+			<real>370</real>
+		</dict>
+		<key>785C12C1-537B-4D4D-AA2B-25D2C5D33231</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>BD21EA10-41BC-4F6E-9688-FC115DD3E5FA</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
+		</dict>
+		<key>BD54C221-BA04-4681-BD20-2A8FE610186F</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>F25005BB-AA14-480E-B744-0131E97DFED3</key>
+		<dict>
+			<key>ypos</key>
+			<real>490</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://vitorgalvao.com/</string>
+</dict>
+</plist>
