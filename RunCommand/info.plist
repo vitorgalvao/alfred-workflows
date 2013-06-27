@@ -117,7 +117,7 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>echo "{query}" | perl -pe 's/[\t\n]/\0/g' &gt; file_list</string>
+				<string>echo "{query}" | perl -pe 's/[\t\n]/\0/g' &gt; "/tmp/runcommandfilelist"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -136,9 +136,11 @@
 				<key>argument</key>
 				<integer>1</integer>
 				<key>hotkey</key>
-				<integer>0</integer>
+				<integer>15</integer>
 				<key>hotmod</key>
-				<integer>0</integer>
+				<integer>1835008</integer>
+				<key>hotstring</key>
+				<string>R</string>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -157,13 +159,21 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>if [[ $(basename $SHELL) == 'zsh' ]]; then
-	$(which zsh) ./script "{query}"
+				<string>$SHELL -c '
+if [[ "{query}" == *" {} "* ]]
+then
+	command=$(echo "{query}" | sed "s/ {} /:/")
+
+	first=$(cut -d ":" -f1 &lt;(echo "${command}"))
+	second=$(cut -d ":" -f2 &lt;(echo "${command}"))
+
+	cat "/tmp/runcommandfilelist" | xargs -0 -J {} ${first} {} ${second}
 else
-	source ${HOME}/.bash_profile
-	source ${HOME}/.bashrc
-	./script "{query}"
-fi</string>
+	cat "/tmp/runcommandfilelist" | xargs -0 {query}
+fi
+
+rm "/tmp/runcommandfilelist"
+'</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
