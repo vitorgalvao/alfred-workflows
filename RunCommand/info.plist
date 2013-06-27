@@ -136,11 +136,9 @@
 				<key>argument</key>
 				<integer>1</integer>
 				<key>hotkey</key>
-				<integer>15</integer>
+				<integer>0</integer>
 				<key>hotmod</key>
-				<integer>1835008</integer>
-				<key>hotstring</key>
-				<string>R</string>
+				<integer>0</integer>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -160,18 +158,7 @@
 				<integer>0</integer>
 				<key>script</key>
 				<string>$SHELL -c '
-if [[ "{query}" == *" {} "* ]]
-then
-	command=$(echo "{query}" | sed "s/ {} /:/")
-
-	first=$(cut -d ":" -f1 &lt;(echo "${command}"))
-	second=$(cut -d ":" -f2 &lt;(echo "${command}"))
-
-	cat "/tmp/runcommandfilelist" | xargs -0 -J {} ${first} {} ${second}
-else
-	cat "/tmp/runcommandfilelist" | xargs -0 {query}
-fi
-
+cat "/tmp/runcommandfilelist" | xargs -0 -J {} {query}
 rm "/tmp/runcommandfilelist"
 '</string>
 				<key>type</key>
