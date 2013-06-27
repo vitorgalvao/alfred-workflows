@@ -32,7 +32,7 @@
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
 	<key>description</key>
-	<string>Run CLI commands without opening a terminal</string>
+	<string>Run CLI commands without opening a terminal, on the current Finder window</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -70,15 +70,9 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>cd "${HOME}"
+				<string>dirPath=$(osascript -e 'try	tell application "Finder" to set dirPath to (quoted form of POSIX path of (folder of the front window as alias))on error	set dirPath to (quoted form of POSIX path of (path to home folder))end tryreturn dirPath')
 
-if [[ $(basename $SHELL) == 'zsh' ]]; then
-	$(which zsh) -c "{query}"
-else
-	source ${HOME}/.bash_profile
-	source ${HOME}/.bashrc
-	{query}
-fi</string>
+$SHELL -c "cd ${dirPath} &amp;&amp; {query}"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -97,7 +91,7 @@ fi</string>
 				<key>keyword</key>
 				<string>.</string>
 				<key>subtext</key>
-				<string>Run CLI commands without opening a terminal</string>
+				<string>Run CLI commands without opening a terminal, on the current Finder window</string>
 				<key>text</key>
 				<string>CommandRun</string>
 				<key>withspace</key>
