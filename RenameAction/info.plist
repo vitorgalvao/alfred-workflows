@@ -52,23 +52,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>tell application "Alfred 2" to search "rename to: "</string>
-				<key>type</key>
-				<integer>6</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>7F3F1A2C-BFA9-4BAA-8DCF-B6F253D7BF79</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>acceptsmulti</key>
 				<false/>
 				<key>filetypes</key>
@@ -80,6 +63,23 @@
 			<string>alfred.workflow.trigger.action</string>
 			<key>uid</key>
 			<string>4B30C050-DEC1-4375-8B11-20FA04A89596</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>tell application "Alfred 2" to search "rename to: "</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>7F3F1A2C-BFA9-4BAA-8DCF-B6F253D7BF79</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -114,7 +114,9 @@ fileName=$(basename "${originalFile}")
 fileExtension=$(echo "${fileName}" | sed -n 's/\(.*\)\.\(.*\)$/.\2/p')
 fileNoExtension=$(echo "{fileName}" | sed 's/\(.*\)\.\(.*\)$/\1/')
 
-mv "${originalFile}" "${filePath}/{query}${fileExtension}"</string>
+mv "${originalFile}" "${filePath}/{query}${fileExtension}"
+
+rm "./originalFile"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
