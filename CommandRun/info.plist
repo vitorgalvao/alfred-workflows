@@ -61,6 +61,8 @@
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>3B7175A0-D05A-47A1-AC4E-512C0932DDBC</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -71,8 +73,7 @@
 				<string>cd "${HOME}"
 
 if [[ $(basename $SHELL) == 'zsh' ]]; then
-	source ${HOME}/.zshrc
-	/usr/local/bin/zsh -c "{query}"
+	$(which zsh) -c "{query}"
 else
 	source ${HOME}/.bash_profile
 	source ${HOME}/.bashrc
@@ -85,6 +86,8 @@ fi</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>B150DD10-F66D-484C-8BE3-F0A72796287A</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -104,6 +107,8 @@ fi</string>
 			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
 			<string>C6A6A418-2959-44A8-836B-B5758CFF08C9</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 	</array>
 	<key>readme</key>

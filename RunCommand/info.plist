@@ -136,11 +136,9 @@
 				<key>argument</key>
 				<integer>1</integer>
 				<key>hotkey</key>
-				<integer>15</integer>
+				<integer>0</integer>
 				<key>hotmod</key>
-				<integer>1835008</integer>
-				<key>hotstring</key>
-				<string>R</string>
+				<integer>0</integer>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -160,8 +158,7 @@
 				<integer>0</integer>
 				<key>script</key>
 				<string>if [[ $(basename $SHELL) == 'zsh' ]]; then
-	source ${HOME}/.zshrc
-	/usr/local/bin/zsh ./script "{query}"
+	$(which zsh) ./script "{query}"
 else
 	source ${HOME}/.bash_profile
 	source ${HOME}/.bashrc
