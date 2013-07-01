@@ -32,5 +32,8 @@ Copies a given online video site’s url to the clipboard with it’s duration i
 ### [WatchList](http://www.alfredforum.com/topic/1931-watchlist-%E2%80%94-view-and-manage-a-sequence-of-files/)
 View and manage a sequence of files.
 
+### [WordsWith](http://www.alfredforum.com/topic/2771-wordswith-%E2%80%94-find-words-that-contain-a-particular-pattern/)
+Find words that contain a particular pattern
+
 #### License
 I don’t care, do whatever you want with this. If you make any changes that could benefit any of the scripts, I’d certainly appreciate if you’d share them (perhaps I could incorporate them), but it’s not at all required.
