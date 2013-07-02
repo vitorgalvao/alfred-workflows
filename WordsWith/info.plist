@@ -5,7 +5,41 @@
 	<key>bundleid</key>
 	<string></string>
 	<key>connections</key>
-	<dict/>
+	<dict>
+		<key>1D095271-389F-4505-902D-5AF68688F6E7</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>48E0B375-6946-4835-9199-3F8B6B635C3D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>778E4F38-788D-4E00-9E69-FC152B66D872</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>48E0B375-6946-4835-9199-3F8B6B635C3D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>9F8DFE1B-6223-42BE-B785-885660C4F1E6</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>48E0B375-6946-4835-9199-3F8B6B635C3D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
 	<key>description</key>
@@ -16,6 +50,23 @@
 	<string>WordsWith</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>tell application "Alfred 2" to search "define {query}"</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>48E0B375-6946-4835-9199-3F8B6B635C3D</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -30,7 +81,7 @@
 				<key>script</key>
 				<string>echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
 for word in $(grep "^{query}" ./words.txt); do
-	echo "&lt;item uid='beginning' valid='no'&gt;"
+	echo "&lt;item uid='start' arg=\"${word}\" valid='yes'&gt;"
 	echo "&lt;title&gt;${word}&lt;/title&gt;"
 	echo "&lt;subtitle&gt;&lt;/subtitle&gt;"
 	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
@@ -65,7 +116,7 @@ echo "&lt;/items&gt;"</string>
 				<key>script</key>
 				<string>echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
 for word in $(grep ".*{query}.*" ./words.txt); do
-	echo "&lt;item uid='anywhere' valid='no'&gt;"
+	echo "&lt;item uid='anywhere' arg=\"${word}\" valid='yes'&gt;"
 	echo "&lt;title&gt;${word}&lt;/title&gt;"
 	echo "&lt;subtitle&gt;&lt;/subtitle&gt;"
 	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
@@ -100,7 +151,7 @@ echo "&lt;/items&gt;"</string>
 				<key>script</key>
 				<string>echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
 for word in $(grep "{query}$" ./words.txt); do
-	echo "&lt;item uid='end' valid='no'&gt;"
+	echo "&lt;item uid='end' arg=\"${word}\" valid='yes'&gt;"
 	echo "&lt;title&gt;${word}&lt;/title&gt;"
 	echo "&lt;subtitle&gt;&lt;/subtitle&gt;"
 	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
@@ -130,6 +181,11 @@ echo "&lt;/items&gt;"</string>
 		<dict>
 			<key>ypos</key>
 			<real>130</real>
+		</dict>
+		<key>48E0B375-6946-4835-9199-3F8B6B635C3D</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
 		</dict>
 		<key>778E4F38-788D-4E00-9E69-FC152B66D872</key>
 		<dict>
