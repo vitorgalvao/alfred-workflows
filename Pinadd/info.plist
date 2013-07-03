@@ -156,7 +156,7 @@ fi</string>
 				<key>text</key>
 				<string>Add bookmark</string>
 				<key>withspace</key>
-				<false/>
+				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.keyword</string>
@@ -211,7 +211,7 @@ fi</string>
 				<key>text</key>
 				<string>Add private bookmark</string>
 				<key>withspace</key>
-				<false/>
+				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.keyword</string>

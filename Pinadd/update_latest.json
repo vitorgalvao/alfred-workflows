@@ -1,5 +1,5 @@
 {
-	"version": 2.4,
+	"version": 2.5,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/PinAdd.alfredworkflow",
-	"description": "Added info to the Readme"
+	"description": "New icon, and some changes to the code for unread bookmarks"
 }

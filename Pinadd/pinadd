@@ -8,9 +8,9 @@ title="$(getPref title 0 titleandurl)"
 # Actions for configuring account, picking tags and description, and setting private bookmark
 tags="$@"
 
-if [[ "${tags}" == *" // "* ]]; then
-	description=$(awk -F ' // ' '{print $2}' <(echo "${tags}"))
-	tags=$(awk -F ' // ' '{print $1}' <(echo "${tags}"))
+if [[ "${tags}" == *"// "* ]]; then
+	description=$(awk -F '// ' '{print $2}' <(echo "${tags}"))
+	tags=$(awk -F '// ' '{print $1}' <(echo "${tags}"))
 fi
 
 if [[ "${tags}" == "{{configureYourAccount}}"* ]]; then
@@ -28,8 +28,8 @@ else
 	private='&shared=yes'
 fi
 
-if [[ "${tags}" == " . "* ]]; then
-	tags="$(echo ${tags} | sed 's/^. //')"
+if [[ "${tags}" == "."* ]]; then
+	tags="$(echo ${tags} | sed 's/^\.//')"
 	toread='&toread=yes'
 fi
 
