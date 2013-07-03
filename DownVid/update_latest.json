@@ -1,5 +1,5 @@
 {
-	"version": 1.8,
+	"version": 1.9,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/DownVid.alfredworkflow",
-	"description": "Corrected a forgotten variable, to make it work with the new WatchList"
+	"description": "New icon, and updated youtube-dl"
 }
