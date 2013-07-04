@@ -34,9 +34,16 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>tell application "Alfred 2" to search "repeatrepeat"
+				<string>tell application "Alfred 2" to search "repeatrepeat  "
 
-delay 1tell application "Alfred 2"	tell application "System Events"		keystroke (ASCII character 13)	end tellend tell</string>
+repeat {query} times
+	delay 1	tell application "Alfred 2"		tell application "System Events"			keystroke " "
+			key code 51		end tell	end tell
+end repeat
+
+tell application "System Events"
+	key code 53
+end tell</string>
 				<key>type</key>
 				<integer>6</integer>
 			</dict>
@@ -51,7 +58,7 @@ delay 1tell application "Alfred 2"	tell application "System Events"		keystro
 			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
-				<integer>2</integer>
+				<integer>0</integer>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>keyword</key>
@@ -61,7 +68,7 @@ delay 1tell application "Alfred 2"	tell application "System Events"		keystro
 				<key>script</key>
 				<string>cat &lt;&lt; EOF
 &lt;?xml version='1.0'?&gt;&lt;items&gt;
-  &lt;item uid='repeatrepeat' valid='yes' autocomplete='repeatrepeat'&gt;
+  &lt;item uid='repeatrepeat' arg='{query}' valid='yes' autocomplete='repeatrepeat'&gt;
     &lt;title&gt;$(date "+%H:%M:%S")&lt;/title&gt;
     &lt;subtitle&gt;&lt;/subtitle&gt;
     &lt;icon&gt;icon.png&lt;/icon&gt;
@@ -75,7 +82,7 @@ EOF</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
-				<false/>
+				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
