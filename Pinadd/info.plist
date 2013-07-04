@@ -266,7 +266,7 @@ You can get the API token of you Pinboard account by visiting
 https://pinboard.in/settings/password
 
 Your preferred browser may be one of
-Safari, Webkit, Chrome, ChromeCanary, Chromium, Opera, Camino, or depends
+Safari, Webkit, Chrome, ChromeCanary, Chromium, Opera, or depends
 (“depends” uses the browser you have as the frontmost window, provided it’s one of the mentioned ones).
 
 An example configuration would be

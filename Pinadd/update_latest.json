@@ -1,5 +1,5 @@
 {
-	"version": 2.5,
+	"version": 2.6,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/PinAdd.alfredworkflow",
-	"description": "New icon, and some changes to the code for unread bookmarks"
+	"description": "Removed Camino support"
 }
