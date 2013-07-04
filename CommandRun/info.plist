@@ -66,9 +66,10 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>dirPath=$(osascript -e 'try	tell application "Finder" to set dirPath to (quoted form of POSIX path of (folder of the front window as alias))on error	set dirPath to (quoted form of POSIX path of (path to home folder))end tryreturn dirPath')
+				<string>dirPath=$(osascript -e 'tell application "System Events" to set frontApp to name of first process whose frontmost is trueif (frontApp is "Finder") then		try		tell application "Finder" to set dirPath to (POSIX path of (folder of the front window as alias))	on error		set dirPath to (POSIX path of (path to desktop))	end try	else	set dirPath to (POSIX path of (path to desktop))	end ifreturn dirPath')
 
-$SHELL -c "cd ${dirPath} &amp;&amp; {query}"</string>
+cd "${dirPath}"
+{query}</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -85,7 +86,7 @@ $SHELL -c "cd ${dirPath} &amp;&amp; {query}"</string>
 				<key>lastpathcomponent</key>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
-				<true/>
+				<false/>
 				<key>output</key>
 				<integer>0</integer>
 				<key>removeextension</key>
