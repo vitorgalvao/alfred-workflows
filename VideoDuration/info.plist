@@ -57,6 +57,8 @@ echo "${url} ${duration}" | tr -d '\n' | pbcopy</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>28B55659-9FD1-44B6-AA1E-C8BA1149FC87</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -76,6 +78,8 @@ echo "${url} ${duration}" | tr -d '\n' | pbcopy</string>
 			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
 			<string>1B14953E-E57E-44E2-9659-FEEDDFB44CC8</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -99,6 +103,8 @@ echo "${url} ${duration}" | tr -d '\n' | pbcopy</string>
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>FBFFF5C9-8C6D-45DE-B6B2-8F0F1F283260</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 	</array>
 	<key>readme</key>
