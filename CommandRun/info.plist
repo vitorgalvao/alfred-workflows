@@ -42,25 +42,21 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<true/>
-				<key>output</key>
+				<key>argumenttype</key>
 				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
+				<key>keyword</key>
+				<string>.</string>
+				<key>subtext</key>
+				<string>Run CLI commands without opening a terminal, on the current Finder window</string>
 				<key>text</key>
-				<string>{query}</string>
-				<key>title</key>
 				<string>CommandRun</string>
+				<key>withspace</key>
+				<false/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
+			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
-			<string>3B7175A0-D05A-47A1-AC4E-512C0932DDBC</string>
+			<string>C6A6A418-2959-44A8-836B-B5758CFF08C9</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -86,21 +82,25 @@ $SHELL -c "cd ${dirPath} &amp;&amp; {query}"</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>.</string>
-				<key>subtext</key>
-				<string>Run CLI commands without opening a terminal, on the current Finder window</string>
-				<key>text</key>
-				<string>CommandRun</string>
-				<key>withspace</key>
+				<key>lastpathcomponent</key>
 				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>CommandRun</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
+			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
-			<string>C6A6A418-2959-44A8-836B-B5758CFF08C9</string>
+			<string>3B7175A0-D05A-47A1-AC4E-512C0932DDBC</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
