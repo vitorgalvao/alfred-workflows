@@ -36,4 +36,4 @@ View and manage a sequence of files.
 Find words that contain a particular pattern
 
 #### License
-I don’t care, do whatever you want with this. If you make any changes that could benefit any of the scripts, I’d certainly appreciate if you’d share them (perhaps I could incorporate them), but it’s not at all required.
+The Unlicense (Public Domain, essentially)
