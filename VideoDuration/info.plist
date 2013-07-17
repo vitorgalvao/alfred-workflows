@@ -21,7 +21,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>FBFFF5C9-8C6D-45DE-B6B2-8F0F1F283260</string>
+				<string>83F06055-1527-429B-91A0-E17E57616D3D</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -45,11 +45,72 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>url="$(pbpaste)"
+				<string>#!/bin/bash
 
-duration=$(curl --silent --location "${url}" | grep '&lt;meta itemprop="duration"' | sed 's/.*PT//;s/"&gt;//;s/H/h/;s/M/m/;s/S/s/;s/^/[/;s/$/]/')
+url="$(pbpaste)"
 
-echo "${url} ${duration}" | tr -d '\n' | pbcopy</string>
+# functions
+convertsecs() {
+    ((h=${1}/3600))
+    ((m=(${1}%3600)/60))
+    ((s=${1}%60))
+    printf "%02dh%02dm%02ds" $h $m $s
+}
+
+convertmins() {
+    if [[ ${1} == *'m'* ]] &amp;&amp; [[ $(echo ${1} | sed 's/m.*//') -gt 60 ]]; then
+        mins=$(echo ${1} | sed 's/m.*//')
+        ((h=${mins}/60))
+        ((m=${mins}-${h}*60))
+
+        echo ${1} | sed "s/.*m/${h}h${m}m/"
+    else
+        echo ${1}
+    fi
+}
+
+# domain-specific
+if [[ ${url} == *'youtube.com'* ]] || [[ ${rootdomain} == *'youtu.be'* ]]; then
+    duration=$(curl --silent --location "${url}" | grep '&lt;meta itemprop="duration"' | sed 's/.*PT//;s/"&gt;//' | tr [:upper:] [:lower:])
+    duration=$(convertmins "${duration}")
+fi
+
+if [[ ${url} == *'vimeo.com'* ]]; then
+    duration=$(curl --silent --location "${url}" | grep '&lt;meta itemprop="duration"' | sed 's/.*PT//;s/"&gt;//' | tr [:upper:] [:lower:])
+fi
+
+if [[ ${url} == *'ted.com'* ]]; then
+    duration=$(curl --silent --location "${url}" | grep '&lt;meta property="video:duration' | sed 's/.*content="\(.*\)".*/\1/')
+    duration=$(convertsecs "${duration}")
+fi
+
+# format the time string to remove extra zeros
+if [[ ${duration} == '0'?'h'* ]]; then
+    duration=$(echo ${duration} | sed 's/0//')
+fi
+
+if [[ ${duration} == '0h'* ]]; then
+    duration=$(echo ${duration} | sed 's/0h//')
+fi
+
+if [[ ${duration} == '0'?'m'* ]]; then
+    duration=$(echo ${duration} | sed 's/0//')
+fi
+
+if [[ ${duration} == '0m'* ]]; then
+    duration=$(echo ${duration} | sed 's/0m//')
+fi
+
+if [[ ${duration} == '0'?'s'* ]]; then
+    duration=$(echo ${duration} | sed 's/0//')
+fi
+
+# format duration; if it's empty (probably used on an unsupported website), it'll just show the url
+if [[ ! -z ${duration} ]]; then
+    duration=" [${duration}]"
+fi
+
+echo -n "${url}${duration}"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -84,25 +145,15 @@ echo "${url} ${duration}" | tr -d '\n' | pbcopy</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>output</key>
-				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>Link and duration copied to clipboard</string>
-				<key>title</key>
-				<string>VideoDuration</string>
+				<key>autopaste</key>
+				<true/>
+				<key>clipboardtext</key>
+				<string></string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
+			<string>alfred.workflow.output.clipboard</string>
 			<key>uid</key>
-			<string>FBFFF5C9-8C6D-45DE-B6B2-8F0F1F283260</string>
+			<string>83F06055-1527-429B-91A0-E17E57616D3D</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -121,7 +172,7 @@ echo "${url} ${duration}" | tr -d '\n' | pbcopy</string>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
-		<key>FBFFF5C9-8C6D-45DE-B6B2-8F0F1F283260</key>
+		<key>83F06055-1527-429B-91A0-E17E57616D3D</key>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
