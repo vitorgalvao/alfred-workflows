@@ -151,15 +151,20 @@ if [[ "{query}" == "addToWatchList"* ]]; then
 	watchlist="${HOME}/Library/Application Support/Alfred 2/Workflow Data/com.vitorgalvao.alfred.watchlist/towatch.txt"
 	link=$(cat "$(echo {query} | sed 's/addToWatchList //')")
 	downdir="${HOME}/Downloads"
-	$(getfile)
-	echo "$(gettitle)" &gt;&gt; "${watchlist}"
+	title="$(gettitle)"
+	getfile
+	# prevent blank lines from being added to the watchlist, when the url is an unsupported one
+	if [[ ! -z ${title} ]]; then
+		echo "${title}" &gt;&gt; "${watchlist}"
+	fi
 else
 	link="$(cat "{query}")"
 	downdir="${HOME}/Desktop"
-	$(getfile)
+	title="$(gettitle)"
+	getfile
 fi
 
-echo "$(gettitle)"</string>
+echo "${title}"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -184,7 +189,7 @@ echo "$(gettitle)"</string>
 				<key>sticky</key>
 				<false/>
 				<key>text</key>
-				<string>Downloaded {query}</string>
+				<string>Downloaded “{query}”</string>
 				<key>title</key>
 				<string>DownVid</string>
 			</dict>

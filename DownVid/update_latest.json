@@ -1,5 +1,5 @@
 {
-	"version": 1.9,
+	"version": 2.0,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/DownVid.alfredworkflow",
-	"description": "New icon, and updated youtube-dl"
+	"description": "Fixed issue where adding to the watchlist from an unsupported url would cause it to add a blank line; the name of the video is now between quotes on the output notification; updated youtube-dl"
 }
