@@ -226,7 +226,7 @@ mv "$(getDataDir)/tmp.txt" "${watched}"</string>
 			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
-				<integer>2</integer>
+				<integer>1</integer>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>keyword</key>
@@ -238,7 +238,6 @@ mv "$(getDataDir)/tmp.txt" "${watched}"</string>
 towatch="$(getDataDir)/towatch.txt"
 
 IFS=$'\n'
-line=1
 
 if [[ -z $(cat ${towatch}) ]]; then
 	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
@@ -250,14 +249,14 @@ if [[ -z $(cat ${towatch}) ]]; then
 	echo "&lt;/items&gt;"
 else
 	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-	for file in $(cat ${towatch}); do
+	for file in $(grep -in ".*{query}.*" ${towatch}); do
+		line="$(echo ${file} | sed 's/:.*//')"
 		filename="$(basename ${file})"
 		echo "&lt;item uuid='${line}' arg='${line}' valid='yes'&gt;"
 		echo "&lt;title&gt;${filename}&lt;/title&gt;"
 		echo "&lt;subtitle&gt;${file}&lt;/subtitle&gt;"
 		echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
 		echo "&lt;/item&gt;"
-		((line++))
 	done
 	echo "&lt;/items&gt;"
 fi</string>
@@ -330,7 +329,7 @@ mv "$(getDataDir)/tmp.txt" "${towatch}"</string>
 			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
-				<integer>2</integer>
+				<integer>1</integer>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>keyword</key>
@@ -342,7 +341,6 @@ mv "$(getDataDir)/tmp.txt" "${towatch}"</string>
 watched="$(getDataDir)/watched.txt"
 
 IFS=$'\n'
-line=1
 
 if [[ -z $(cat ${watched}) ]]; then
 	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
@@ -354,14 +352,14 @@ if [[ -z $(cat ${watched}) ]]; then
 	echo "&lt;/items&gt;"
 else
 	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-	for file in $(cat ${watched}); do
+	for file in $(grep -in ".*{query}.*" ${watched}); do
+		line="$(echo ${file} | sed 's/:.*//')"
 		filename="$(basename ${file})"
 		echo "&lt;item uuid='${line}' arg='${line}' valid='yes'&gt;"
 		echo "&lt;title&gt;${filename}&lt;/title&gt;"
 		echo "&lt;subtitle&gt;${file}&lt;/subtitle&gt;"
 		echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
 		echo "&lt;/item&gt;"
-		((line++))
 	done
 	echo "&lt;/items&gt;"
 fi</string>

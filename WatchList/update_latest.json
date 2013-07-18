@@ -1,5 +1,5 @@
 {
-	"version": 2.1,
+	"version": 2.2,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/WatchList.alfredworkflow",
-	"description": "Show a notification when a file is marked as unwatched"
+	"description": "Typing anything after 'wlp' or 'wlu' will let you filter files"
 }
