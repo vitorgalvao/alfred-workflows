@@ -251,6 +251,7 @@ else
 	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
 	for file in $(grep -in ".*{query}.*" ${towatch}); do
 		line="$(echo ${file} | sed 's/:.*//')"
+		file="$(echo ${file} | sed 's/.*://')"
 		filename="$(basename ${file})"
 		echo "&lt;item uuid='${line}' arg='${line}' valid='yes'&gt;"
 		echo "&lt;title&gt;${filename}&lt;/title&gt;"
@@ -354,6 +355,7 @@ else
 	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
 	for file in $(grep -in ".*{query}.*" ${watched}); do
 		line="$(echo ${file} | sed 's/:.*//')"
+		file="$(echo ${file} | sed 's/.*://')"
 		filename="$(basename ${file})"
 		echo "&lt;item uuid='${line}' arg='${line}' valid='yes'&gt;"
 		echo "&lt;title&gt;${filename}&lt;/title&gt;"

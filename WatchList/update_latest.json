@@ -1,5 +1,5 @@
 {
-	"version": 2.2,
+	"version": 2.3,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/WatchList.alfredworkflow",
-	"description": "Typing anything after 'wlp' or 'wlu' will let you filter files"
+	"description": "File order number no longer appears in details"
 }
