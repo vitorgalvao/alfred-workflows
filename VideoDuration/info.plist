@@ -70,7 +70,7 @@ convertmins() {
 }
 
 # domain-specific
-if [[ ${url} == *'youtube.com'* ]] || [[ ${rootdomain} == *'youtu.be'* ]]; then
+if [[ ${url} == *'youtube.com'* ]] || [[ ${url} == *'youtu.be'* ]]; then
     duration=$(curl --silent --location "${url}" | grep '&lt;meta itemprop="duration"' | sed 's/.*PT//;s/"&gt;//' | tr [:upper:] [:lower:])
     duration=$(convertmins "${duration}")
 fi
