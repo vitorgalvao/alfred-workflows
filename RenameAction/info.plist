@@ -21,14 +21,6 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>7F3F1A2C-BFA9-4BAA-8DCF-B6F253D7BF79</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
 				<string>2D996A5F-76DB-4596-BAC7-C918B0EFD902</string>
 				<key>modifiers</key>
 				<integer>0</integer>
@@ -52,6 +44,42 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>originalFile="{query}"
+
+echo -n "${originalFile}" &gt; originalFile
+
+fileName=$(basename "${originalFile}")
+
+fileExtension=$(echo "${fileName}" | sed -n 's/\(.*\)\.\(.*\)$/.\2/p')
+fileNoExtension=$(echo "${fileName}" | sed 's/\(.*\)\.\(.*\)$/\1/')
+
+osascript -e "tell application \"Alfred 2\" to search \"rename to: ${fileNoExtension}\"
+tell application \"System Events\"
+	key code 123 using command down
+	repeat 2 times
+		key code 124 using option down
+	end repeat
+	repeat 2 times
+		key code 124
+	end repeat
+	key code 124 using {command down, shift down}
+end tell"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>2D996A5F-76DB-4596-BAC7-C918B0EFD902</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>acceptsmulti</key>
 				<false/>
 				<key>filetypes</key>
@@ -63,40 +91,6 @@
 			<string>alfred.workflow.trigger.action</string>
 			<key>uid</key>
 			<string>4B30C050-DEC1-4375-8B11-20FA04A89596</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>tell application "Alfred 2" to search "rename to: "</string>
-				<key>type</key>
-				<integer>6</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>7F3F1A2C-BFA9-4BAA-8DCF-B6F253D7BF79</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>echo -n "{query}" &gt; originalFile</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>2D996A5F-76DB-4596-BAC7-C918B0EFD902</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -156,19 +150,14 @@ rm "./originalFile"</string>
 		<key>2C36AAF9-7F21-42CA-8646-ECA398B51F39</key>
 		<dict>
 			<key>ypos</key>
-			<real>250</real>
+			<real>130</real>
 		</dict>
 		<key>2D996A5F-76DB-4596-BAC7-C918B0EFD902</key>
 		<dict>
 			<key>ypos</key>
-			<real>130</real>
-		</dict>
-		<key>4B30C050-DEC1-4375-8B11-20FA04A89596</key>
-		<dict>
-			<key>ypos</key>
 			<real>10</real>
 		</dict>
-		<key>7F3F1A2C-BFA9-4BAA-8DCF-B6F253D7BF79</key>
+		<key>4B30C050-DEC1-4375-8B11-20FA04A89596</key>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
@@ -176,7 +165,7 @@ rm "./originalFile"</string>
 		<key>D6AD9678-C017-40CD-BD91-5E4102C39AD3</key>
 		<dict>
 			<key>ypos</key>
-			<real>250</real>
+			<real>130</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
