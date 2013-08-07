@@ -11,6 +11,9 @@ Downloads video from your browser's frontmost tab.
 ### [LabelColor](http://www.alfredforum.com/topic/1334-labelcolor-%E2%80%94-sets-a-label-color-for-selected-files-and-directories/)
 Sets a label color for selected files and directories.
 
+### [NewFile](http://www.alfredforum.com/topic/2957-newfile-%E2%80%94-creates-a-new-file-in-the-current-finder-directory/)
+Creates a new file in the current Finder directory.
+
 ### [PinAdd](http://www.alfredforum.com/topic/1230-pinadd-%E2%80%94-takes-arguments-as-tags-and-adds-your-browser%E2%80%99s-frontmost-tab-as-a-pinboard-bookmark/)
 Takes arguments as tags and adds your browser's frontmost tab as a pinboard bookmark.
 
