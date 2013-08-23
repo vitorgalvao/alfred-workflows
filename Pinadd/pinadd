@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Settings
 source ./workflowHandler.sh
 
@@ -22,7 +24,7 @@ if [[ "${tags}" == "{{configureYourAccount}}"* ]]; then
 fi
 
 if [[ "${tags}" == "{{setAsPrivate}}"* ]]; then
-	tags="$(echo ${tags} | sed 's/{{setAsPrivate}}//')"
+	tags="$(echo ${tags} | sed 's/{{setAsPrivate}} //')"
 	private='&shared=no'
 else
 	private='&shared=yes'

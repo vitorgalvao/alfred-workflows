@@ -1,5 +1,5 @@
 {
-	"version": 2.6,
+	"version": 2.7,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/PinAdd.alfredworkflow",
-	"description": "Removed Camino support"
+	"description": "Added hotkey to add as unread, and made some small bug fixes"
 }
