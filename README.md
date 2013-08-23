@@ -17,7 +17,7 @@ Creates a new file in the current Finder directory.
 ### [PinAdd](http://www.alfredforum.com/topic/1230-pinadd-%E2%80%94-takes-arguments-as-tags-and-adds-your-browser%E2%80%99s-frontmost-tab-as-a-pinboard-bookmark/)
 Takes arguments as tags and adds your browser's frontmost tab as a pinboard bookmark.
 
-### [PinUnread]()
+### [PinUnread](http://www.alfredforum.com/topic/3037-pinunread-%E2%80%94-open-and-manage-your-pinboard-%E2%80%9Ctoread%E2%80%9D-bookmarks/)
 Open and manage your Pinboard “toread” bookmarks
 
 ### [RenameAction](http://www.alfredforum.com/topic/2722-renameaction-%E2%80%94-renames-a-directory-or-file-preserving-the-extension/)
