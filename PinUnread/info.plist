@@ -90,7 +90,7 @@ else
 	secret="$(getPref secret 1)"
 
 	if [[ -z $(find "${unreaditems}" -mmin -5) ]] || [[ ! -f "${unreaditems}" ]] ; then
-		curl --silent "https://feeds.pinboard.in/json/secret:${secret}/u:${user}/toread/" | python -mjson.tool | perl -pe 's/^\s+|\s+$//' | grep "^\"d\":\|^\"u\":" | perl -pe 's/\n//; print "\n" unless 1 == $. || /^"u":/' | perl -pe 's/^"d": | "u": |"//g' | perl -MHTML::Entities -CS -pe '$_ = encode_entities($_, "&amp;&lt;")' &gt; "${unreaditems}"
+		curl --silent "https://feeds.pinboard.in/rss/secret:${secret}/u:${user}/toread/" | grep '&lt;title&gt;\|&lt;link&gt;' | sed '1d;2d' | perl -pe 's/^\s+|\s+$//;s/^&lt;title&gt;(.*)&lt;\/title&gt;\n/\1,/;s/^&lt;link&gt;(.*)&lt;\/link&gt;/\1/' &gt; "${unreaditems}"
 	fi
 
 	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
