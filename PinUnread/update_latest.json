@@ -1,5 +1,5 @@
 {
-	"version": 1.1,
+	"version": 1.2,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/PinUnread.alfredworkflow",
-	"description": "Fixed the display of some characters in titles, and made some speed improvements"
+	"description": "Solved issue with titles containing colons"
 }

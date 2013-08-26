@@ -96,7 +96,7 @@ else
 	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
 	for item in $(grep -in ".*{query}.*" "${unreaditems}"); do
 		line="$(echo ${item} | sed 's/:.*//')"
-		title="$(echo ${item} | sed 's/.*:\(.*\),.*/\1/')"
+		title="$(echo ${item} | perl -pe 's/(?:.*?):(.*),.*/\1/')"
 		url="$(echo ${item} | sed 's/.*,//')"
 		echo "&lt;item uuid='${line}' arg='${line}' valid='yes'&gt;"
 		echo "&lt;title&gt;${title}&lt;/title&gt;"
