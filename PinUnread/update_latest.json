@@ -1,5 +1,5 @@
 {
-	"version": 1.2,
+	"version": 1.3,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/PinUnread.alfredworkflow",
-	"description": "Solved issue with titles containing colons"
+	"description": "Small tweak to the configure text, so as to not be confused with PinAdd"
 }

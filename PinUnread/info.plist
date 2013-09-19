@@ -189,7 +189,7 @@ fi</string>
 				<key>subtext</key>
 				<string>your-api-token your-preferred-action (see the “Readme” info for more details)</string>
 				<key>text</key>
-				<string>Configure your account</string>
+				<string>Configure your PinUnread account</string>
 				<key>withspace</key>
 				<true/>
 			</dict>
