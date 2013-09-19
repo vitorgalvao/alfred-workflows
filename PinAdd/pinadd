@@ -40,6 +40,23 @@ tags='&tags='$(echo "${tags}" | perl -MURI::Escape -wlne 'print uri_escape ($_)'
 description='&extended='$(echo "${description}" | perl -MURI::Escape -wlne 'print uri_escape ($_)')
 
 # Add the bookmark
-curl --silent "https://api.pinboard.in/v1/posts/add?url=${url}&description=${title}&auth_token=${token}${tags}${description}${private}${toread}"
+result=$(curl --silent "https://api.pinboard.in/v1/posts/add?url=${url}&description=${title}&auth_token=${token}${tags}${description}${private}${toread}")
+
+# Warn if there was an error adding the bookmark
+result=$(echo "${result}" | sed '1d;3d' | sed 's/.*"\(.*\)".*/\1/')
+
+if [[ ${result} != 'done' ]]; then
+	echo 'There was a problem adding the bookmark'
+
+	# Add a file on the desktop, with the command to try again
+	retry="${HOME}/Desktop/PinAddRetry.command"
+
+	if [[ ! -f "${retry}" ]]; then
+		echo '#!/bin/bash' >> "${retry}"
+		echo '# Run this script to try again to add the bookmarks (you will have to manually check if it worked)' >> "${retry}"
+		chmod +x "${retry}"
+	fi
+	echo "curl --silent \"https://api.pinboard.in/v1/posts/add?url=${url}&description=${title}&auth_token=${token}${tags}${description}${private}${toread}\"" >> "${retry}"
+fi
 
 exit 0

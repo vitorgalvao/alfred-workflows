@@ -1,5 +1,5 @@
 {
-	"version": 2.7,
+	"version": 2.8,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/PinAdd.alfredworkflow",
-	"description": "Added hotkey to add as unread, and made some small bug fixes"
+	"description": "Changes to the way bookmarks are added (you will no longer see a message on successes), and how it handles errors"
 }
