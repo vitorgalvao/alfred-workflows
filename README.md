@@ -29,6 +29,9 @@ Renames a directory or file (preserving the extension)
 ### [RepeatRepeat](http://www.alfredforum.com/topic/2740-repeatrepeat-%E2%80%94-proof-of-concept-to-make-a-script-filter-update-itself-without-further-user-input/)
 Proof of concept to make a script filter update itself without further user input
 
+### [RightClick]()
+Do a right-click on Finder files, with the keyboard
+
 ### [RunCommand](http://www.alfredforum.com/topic/1550-runcommand-%E2%80%94-runs-terminal-command-on-selected-filesdirectories/)
 Runs terminal command on selected files/directories.
 
