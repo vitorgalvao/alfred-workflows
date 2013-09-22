@@ -45,14 +45,6 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>A3481C3B-1483-419B-96C7-CB2CC0A40433</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
 				<string>3CBD80B1-2C96-442C-86AB-93BA5F5FC2FD</string>
 				<key>modifiers</key>
 				<integer>0</integer>
@@ -252,7 +244,7 @@ fi</string>
 			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
-				<integer>2</integer>
+				<integer>0</integer>
 				<key>keyword</key>
 				<string>configurepinadd</string>
 				<key>subtext</key>
@@ -260,7 +252,7 @@ fi</string>
 				<key>text</key>
 				<string>Configure your PinAdd account</string>
 				<key>withspace</key>
-				<false/>
+				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.keyword</string>
@@ -293,6 +285,12 @@ fi</string>
 				<integer>0</integer>
 				<key>argument</key>
 				<integer>0</integer>
+				<key>hotkey</key>
+				<integer>32</integer>
+				<key>hotmod</key>
+				<integer>1835008</integer>
+				<key>hotstring</key>
+				<string>U</string>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
