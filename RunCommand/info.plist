@@ -159,12 +159,12 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>$SHELL -c '
-cat "/tmp/runcommandfilelist" | xargs -0 -J {} {query}
-rm "/tmp/runcommandfilelist"
-'</string>
+				<string>echo "cat /tmp/runcommandfilelist | xargs -0 -J {} {query}" &gt;&gt; command.sh
+chmod +x command.sh
+./command.sh
+rm command.sh</string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>5</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
