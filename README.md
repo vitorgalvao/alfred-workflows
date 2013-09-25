@@ -2,8 +2,8 @@
 
 # Collection of Alfred Extension scripts
 
-### [CommandRun](http://www.alfredforum.com/topic/1868-commandrun-%E2%80%94-run-cli-commands-without-opening-a-terminal/)
-Run CLI commands without opening a terminal, on the current Finder window.
+### [CommandRun](http://www.alfredforum.com/topic/1868-commandrun-%E2%80%94-run-terminal-commands-without-opening-one-on-the-current-finder-window/?p=9887)
+Run terminal commands without opening one, on the current Finder window
 
 ### [DownVid](http://www.alfredforum.com/topic/2045-downvid-%E2%80%94-download-videos-from-popular-sources/)
 Downloads video from your browser's frontmost tab.

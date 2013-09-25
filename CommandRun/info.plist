@@ -32,13 +32,38 @@
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
 	<key>description</key>
-	<string>Run CLI commands without opening a terminal, on the current Finder window</string>
+	<string>Run terminal commands without opening one, on the current Finder window</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
 	<string>CommandRun</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>CommandRun</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>3B7175A0-D05A-47A1-AC4E-512C0932DDBC</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -71,7 +96,7 @@ rm command.sh</string>
 				<key>keyword</key>
 				<string>.</string>
 				<key>subtext</key>
-				<string>Run CLI commands without opening a terminal, on the current Finder window</string>
+				<string>Run terminal commands without opening one, on the current Finder window</string>
 				<key>text</key>
 				<string>CommandRun</string>
 				<key>withspace</key>
@@ -81,31 +106,6 @@ rm command.sh</string>
 			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
 			<string>C6A6A418-2959-44A8-836B-B5758CFF08C9</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<true/>
-				<key>output</key>
-				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>{query}</string>
-				<key>title</key>
-				<string>CommandRun</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>3B7175A0-D05A-47A1-AC4E-512C0932DDBC</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
