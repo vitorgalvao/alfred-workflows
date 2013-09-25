@@ -139,7 +139,12 @@ fi</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>gettitle() {
+				<string># update youtube-dl if it's more than 15 days old
+if [[ $(find youtube-dl -mtime +15) ]]; then
+	python youtube-dl --update
+fi
+
+gettitle() {
 	python youtube-dl --output "${downdir}/%(title)s.%(ext)s" --get-filename "${link}"
 }
 
