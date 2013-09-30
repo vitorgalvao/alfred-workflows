@@ -1,6 +1,8 @@
 [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=vitor&url=https://github.com/vitorgalvao/alfred-workflows&title=alfred-workflows&language=en_GB&tags=github,alfred&category=software)
 
 # Collection of Alfred Extension scripts
+### [CoffeeCoffee](http://www.alfredforum.com/topic/3177-coffeecoffee-%E2%80%94-prevent-your-computer-from-going-to-sleep/)
+Prevent your computer from going to sleep.
 
 ### [CommandRun](http://www.alfredforum.com/topic/1868-commandrun-%E2%80%94-run-terminal-commands-without-opening-one-on-the-current-finder-window/?p=9887)
 Run terminal commands without opening one, on the current Finder window.
