@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string></string>
+	<key>connections</key>
+	<dict>
+		<key>0B01601F-72A7-4C92-8B67-197D677D2A12</key>
+		<array/>
+		<key>94757117-A2E1-4FE7-A171-555588BE76FF</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>0B01601F-72A7-4C92-8B67-197D677D2A12</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Vítor Galvão</string>
+	<key>description</key>
+	<string>Prevent your computer from going to sleep</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>CoffeeCoffee</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>coffee</string>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>if [[ $(pgrep caffeinate) ]]; then
+echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;
+  &lt;item uid='CoffeeCoffee' arg='off' valid='yes'&gt;
+    &lt;title&gt;Turn it off&lt;/title&gt;
+    &lt;subtitle&gt;Let your computer go to sleep as usual&lt;/subtitle&gt;
+    &lt;icon&gt;iconAlt.png&lt;/icon&gt;
+  &lt;/item&gt;
+&lt;/items&gt;"
+else
+echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;
+  &lt;item uid='CoffeeCoffee' arg='on{query}' valid='yes'&gt;
+    &lt;title&gt;Turn it on&lt;/title&gt;
+    &lt;subtitle&gt;Prevent your computer from going to sleep&lt;/subtitle&gt;
+    &lt;icon&gt;icon.png&lt;/icon&gt;
+  &lt;/item&gt;
+&lt;/items&gt;"
+fi</string>
+				<key>subtext</key>
+				<string>Prevent your computer from going to sleep</string>
+				<key>title</key>
+				<string>CoffeeCoffee</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>94757117-A2E1-4FE7-A171-555588BE76FF</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>if [[ {query} == 'off' ]]; then
+	killall caffeinate
+elif [[ {query} == 'on' ]]; then
+	caffeinate &gt; /dev/null 2&gt;&amp;1 &amp;
+else
+	time="$(echo {query} | sed 's/on//')"
+	caffeinate -t ${time} &gt; /dev/null 2&gt;&amp;1 &amp;
+fi</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>0B01601F-72A7-4C92-8B67-197D677D2A12</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>0B01601F-72A7-4C92-8B67-197D677D2A12</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>94757117-A2E1-4FE7-A171-555588BE76FF</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://vitorgalvao.com/</string>
+</dict>
+</plist>
