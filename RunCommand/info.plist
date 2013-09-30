@@ -164,7 +164,7 @@ chmod +x command.sh
 ./command.sh
 rm command.sh</string>
 				<key>type</key>
-				<integer>5</integer>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
