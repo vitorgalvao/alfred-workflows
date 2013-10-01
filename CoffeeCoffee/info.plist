@@ -86,7 +86,7 @@ fi</string>
 elif [[ {query} == 'on' ]]; then
 	caffeinate &gt; /dev/null 2&gt;&amp;1 &amp;
 else
-	time="$(echo {query} | sed 's/on//')"
+	time="$(($(echo {query} | sed 's/on//')*60))"
 	caffeinate -t ${time} &gt; /dev/null 2&gt;&amp;1 &amp;
 fi</string>
 				<key>type</key>
