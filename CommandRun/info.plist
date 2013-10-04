@@ -42,6 +42,71 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>.</string>
+				<key>subtext</key>
+				<string>Run terminal commands without opening one, on the current Finder window</string>
+				<key>text</key>
+				<string>CommandRun</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>C6A6A418-2959-44A8-836B-B5758CFF08C9</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>dirPath=$(osascript -e 'tell application "Finder" to return (quoted form of POSIX path of (insertion location as alias))')
+
+echo "cd ${dirPath}
+{query}" &gt; /tmp/commandrun
+
+chmod +x /tmp/commandrun
+
+if [[ $SHELL == *'bash' ]]; then
+	source ${HOME}/.bash_profile
+	source ${HOME}/.profile
+	source ${HOME}/.bashrc
+	$SHELL /tmp/commandrun
+elif [[ $SHELL == *'zsh' ]]; then
+	source /etc/zshenv
+	source ${HOME}/.zshenv
+	source ${HOME}/.zshrc
+	$SHELL /tmp/commandrun
+elif [[ $SHELL == *'csh' ]]; then
+	source /etc/csh.cshrc
+	source ${HOME}/.cshrc
+	$SHELL /tmp/commandrun
+elif [[ $SHELL == *'tcsh' ]]; then
+	source /etc/csh.cshrc
+	source ${HOME}/.tcshrc
+	$SHELL /tmp/commandrun
+fi
+
+rm /tmp/commandrun</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>B150DD10-F66D-484C-8BE3-F0A72796287A</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>lastpathcomponent</key>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
@@ -61,71 +126,6 @@
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>3B7175A0-D05A-47A1-AC4E-512C0932DDBC</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>dirPath=$(osascript -e 'tell application "Finder" to return (quoted form of POSIX path of (insertion location as alias))')
-
-echo "cd ${dirPath}
-{query}" &gt; command
-
-chmod +x command
-
-if [[ $SHELL == *'bash' ]]; then
-	source ${HOME}/.bash_profile
-	source ${HOME}/.profile
-	source ${HOME}/.bashrc
-	$SHELL ./command
-elif [[ $SHELL == *'zsh' ]]; then
-	source /etc/zshenv
-	source ${HOME}/.zshenv
-	source ${HOME}/.zshrc
-	$SHELL ./command
-elif [[ $SHELL == *'csh' ]]; then
-	source /etc/csh.cshrc
-	source ${HOME}/.cshrc
-	$SHELL ./command
-elif [[ $SHELL == *'tcsh' ]]; then
-	source /etc/csh.cshrc
-	source ${HOME}/.tcshrc
-	$SHELL ./command
-fi
-
-rm command</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>B150DD10-F66D-484C-8BE3-F0A72796287A</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>.</string>
-				<key>subtext</key>
-				<string>Run terminal commands without opening one, on the current Finder window</string>
-				<key>text</key>
-				<string>CommandRun</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>C6A6A418-2959-44A8-836B-B5758CFF08C9</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>

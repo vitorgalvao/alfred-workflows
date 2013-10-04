@@ -159,31 +159,31 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>echo "cat /tmp/runcommandfilelist | xargs -0 -J {} {query}" &gt; command
+				<string>echo "cat /tmp/runcommandfilelist | xargs -0 -J {} {query}" &gt; /tmp/runcommand
 
-chmod +x command
+chmod +x /tmp/runcommand
 
 if [[ $SHELL == *'bash' ]]; then
 	source ${HOME}/.bash_profile
 	source ${HOME}/.profile
 	source ${HOME}/.bashrc
-	$SHELL ./command
+	$SHELL /tmp/runcommand
 elif [[ $SHELL == *'zsh' ]]; then
 	source /etc/zshenv
 	source ${HOME}/.zshenv
 	source ${HOME}/.zshrc
-	$SHELL ./command
+	$SHELL /tmp/runcommand
 elif [[ $SHELL == *'csh' ]]; then
 	source /etc/csh.cshrc
 	source ${HOME}/.cshrc
-	$SHELL ./command
+	$SHELL /tmp/runcommand
 elif [[ $SHELL == *'tcsh' ]]; then
 	source /etc/csh.cshrc
 	source ${HOME}/.tcshrc
-	$SHELL ./command
+	$SHELL /tmp/runcommand
 fi
 
-rm command</string>
+rm /tmp/runcommand</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
