@@ -152,7 +152,7 @@
 			<key>config</key>
 			<dict>
 				<key>escaping</key>
-				<integer>110</integer>
+				<integer>102</integer>
 				<key>script</key>
 				<string>source ./workflowHandler.sh
 

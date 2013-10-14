@@ -1,5 +1,5 @@
 {
-	"version": 2.4,
+	"version": 2.5,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/WatchList.alfredworkflow",
-	"description": "Solves issues with filenames that have special characters"
+	"description": "More corrections regarding special characters"
 }
