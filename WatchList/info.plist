@@ -152,7 +152,7 @@
 			<key>config</key>
 			<dict>
 				<key>escaping</key>
-				<integer>0</integer>
+				<integer>110</integer>
 				<key>script</key>
 				<string>source ./workflowHandler.sh
 
@@ -249,7 +249,8 @@ if [[ -z $(cat ${towatch}) ]]; then
 	echo "&lt;/items&gt;"
 else
 	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-	for file in $(grep -in ".*{query}.*" ${towatch}); do
+	towatch=$(cat ${towatch} | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"'\''})')
+	for file in $(echo "${towatch}" | grep -in ".*{query}.*"); do
 		line="$(echo ${file} | sed 's/:.*//')"
 		file="$(echo ${file} | sed 's/.*://')"
 		filename="$(basename ${file})"
@@ -353,7 +354,8 @@ if [[ -z $(cat ${watched}) ]]; then
 	echo "&lt;/items&gt;"
 else
 	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-	for file in $(grep -in ".*{query}.*" ${watched}); do
+	watched=$(cat ${watched} | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"'\''})')
+	for file in $(echo "${watched}" | grep -in ".*{query}.*"); do
 		line="$(echo ${file} | sed 's/:.*//')"
 		file="$(echo ${file} | sed 's/.*://')"
 		filename="$(basename ${file})"
@@ -431,14 +433,16 @@ open "${towatch}" "${watched}"</string>
 				<integer>0</integer>
 				<key>script</key>
 				<string>source ./workflowHandler.sh
-towatch="$(getDataDir)/towatch.txt"
 watched="$(getDataDir)/watched.txt"
 
-IFS=$'\n'
+osascript -e "
+	set watched to paragraphs of (read \"${watched}\")
 
-for file in $(cat ${watched}); do
-	osascript -e "tell application \"Finder\" to delete POSIX file \"${file}\""
-done
+	repeat with linefromfile in watched
+		set filename to POSIX file linefromfile
+		tell application \"Finder\" to delete file filename
+	end repeat
+"
 
 cat /dev/null &gt; "${watched}"</string>
 				<key>type</key>

@@ -1,5 +1,5 @@
 {
-	"version": 2.3,
+	"version": 2.4,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/WatchList.alfredworkflow",
-	"description": "File order number no longer appears in details"
+	"description": "Solves issues with filenames that have special characters"
 }
