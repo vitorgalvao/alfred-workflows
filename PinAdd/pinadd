@@ -23,6 +23,7 @@ if [[ "${tags}" == "{{configureYourAccount}}"* ]]; then
 	browser=$(cut -d " " -f3 <(echo "${tags}"))
 	setPref token "${token}" 1
 	setPref browser "${browser}" 1
+	notificator "Account configured"
 	exit 0
 fi
 

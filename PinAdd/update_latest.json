@@ -1,5 +1,5 @@
 {
-	"version": 3.0,
+	"version": 3.1,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/PinAdd.alfredworkflow",
-	"description": "Notifications are no longer handled by Alfred"
+	"description": "Notification for when account is configured"
 }

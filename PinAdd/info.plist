@@ -36,7 +36,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>3CBD80B1-2C96-442C-86AB-93BA5F5FC2FD</string>
+				<string>AAB65932-12E4-45E8-940A-17B5D7EB07B3</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -220,9 +220,9 @@ fi</string>
 				<integer>0</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.script</string>
+			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>3CBD80B1-2C96-442C-86AB-93BA5F5FC2FD</string>
+			<string>AAB65932-12E4-45E8-940A-17B5D7EB07B3</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -301,11 +301,6 @@ configurepinadd username:HSJWJK2HHSKI14QPDOIK safari</string>
 			<key>ypos</key>
 			<real>490</real>
 		</dict>
-		<key>3CBD80B1-2C96-442C-86AB-93BA5F5FC2FD</key>
-		<dict>
-			<key>ypos</key>
-			<real>370</real>
-		</dict>
 		<key>41A5A177-9A68-4BE7-870A-2F6797AC2464</key>
 		<dict>
 			<key>ypos</key>
@@ -315,6 +310,11 @@ configurepinadd username:HSJWJK2HHSKI14QPDOIK safari</string>
 		<dict>
 			<key>ypos</key>
 			<real>250</real>
+		</dict>
+		<key>AAB65932-12E4-45E8-940A-17B5D7EB07B3</key>
+		<dict>
+			<key>ypos</key>
+			<real>370</real>
 		</dict>
 		<key>E229E8F1-226C-4996-A83D-C181DAEFB268</key>
 		<dict>
