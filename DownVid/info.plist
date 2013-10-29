@@ -7,26 +7,9 @@
 	<key>connections</key>
 	<dict>
 		<key>6A286F10-FD49-4463-9540-0EECBE45438D</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>06B01CE3-C355-4F35-A73F-CAF68F286C56</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
+		<array/>
 		<key>DC74421D-631A-44B1-AC86-ED7793CADE26</key>
 		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>DF7A8FE0-A270-4448-AE99-72AD628967BC</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
 			<dict>
 				<key>destinationuid</key>
 				<string>6A286F10-FD49-4463-9540-0EECBE45438D</string>
@@ -50,25 +33,64 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>output</key>
+				<key>escaping</key>
 				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>In progress…</string>
-				<key>title</key>
-				<string>DownVid</string>
+				<key>script</key>
+				<string>IFS=$'\n'
+
+# set notificator
+notificator() {
+	notificator.app/Contents/Resources/Scripts/notificator -t "DownVid" -m "${1}"
+}
+
+# update youtube-dl if it's more than 15 days old
+if [[ $(find youtube-dl -mtime +15) ]]; then
+	python youtube-dl --update
+fi
+
+gettitle() {
+	#file location
+	title=$(python youtube-dl --output "${downdir}/%(title)s.%(ext)s" --get-filename "${link}")
+
+	# short title
+	shorttitle=$(basename ${title%.*})
+
+	# check if url is valid
+	if [[ -z "${title}" ]]; then
+		notificator "The url is invalid"
+		exit 1
+	else
+		notificator "Downloading “${shorttitle}”"
+	fi
+}
+
+getfile() {
+	python youtube-dl --quiet --output "${downdir}/%(title)s.%(ext)s" "${link}"
+}
+
+# download
+if [[ "{query}" == "addToWatchList"* ]]; then
+	watchlist="${HOME}/Library/Application Support/Alfred 2/Workflow Data/com.vitorgalvao.alfred.watchlist/towatch.txt"
+	link=$(cat "$(echo {query} | sed 's/addToWatchList //')")
+	downdir="${HOME}/Downloads"
+	gettitle
+	echo "${title}" &gt;&gt; "${watchlist}"
+else
+	link="$(cat "{query}")"
+	downdir="${HOME}/Desktop"
+	gettitle
+fi
+
+getfile
+
+notificator "Downloaded “${shorttitle}”"</string>
+				<key>type</key>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
+			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>DF7A8FE0-A270-4448-AE99-72AD628967BC</string>
+			<string>6A286F10-FD49-4463-9540-0EECBE45438D</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -133,99 +155,17 @@ fi</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string># update youtube-dl if it's more than 15 days old
-if [[ $(find youtube-dl -mtime +15) ]]; then
-	python youtube-dl --update
-fi
-
-gettitle() {
-	python youtube-dl --output "${downdir}/%(title)s.%(ext)s" --get-filename "${link}"
-}
-
-getfile() {
-	python youtube-dl --quiet --output "${downdir}/%(title)s.%(ext)s" "${link}"
-}
-
-if [[ "{query}" == "addToWatchList"* ]]; then
-	watchlist="${HOME}/Library/Application Support/Alfred 2/Workflow Data/com.vitorgalvao.alfred.watchlist/towatch.txt"
-	link=$(cat "$(echo {query} | sed 's/addToWatchList //')")
-	downdir="${HOME}/Downloads"
-	title="$(gettitle)"
-	getfile
-	# prevent blank lines from being added to the watchlist, when the url is an unsupported one
-	if [[ ! -z ${title} ]]; then
-		echo "${title}" &gt;&gt; "${watchlist}"
-	fi
-else
-	link="$(cat "{query}")"
-	downdir="${HOME}/Desktop"
-	title="$(gettitle)"
-	getfile
-fi
-
-echo "${title}"</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>6A286F10-FD49-4463-9540-0EECBE45438D</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<true/>
-				<key>onlyshowifquerypopulated</key>
-				<true/>
-				<key>output</key>
-				<integer>0</integer>
-				<key>removeextension</key>
-				<true/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>Downloaded “{query}”</string>
-				<key>title</key>
-				<string>DownVid</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>06B01CE3-C355-4F35-A73F-CAF68F286C56</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
 	<key>uidata</key>
 	<dict>
-		<key>06B01CE3-C355-4F35-A73F-CAF68F286C56</key>
-		<dict>
-			<key>ypos</key>
-			<real>130</real>
-		</dict>
 		<key>6A286F10-FD49-4463-9540-0EECBE45438D</key>
-		<dict>
-			<key>ypos</key>
-			<real>130</real>
-		</dict>
-		<key>DC74421D-631A-44B1-AC86-ED7793CADE26</key>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
-		<key>DF7A8FE0-A270-4448-AE99-72AD628967BC</key>
+		<key>DC74421D-631A-44B1-AC86-ED7793CADE26</key>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>

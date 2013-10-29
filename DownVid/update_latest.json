@@ -1,5 +1,5 @@
 {
-	"version": 2.2,
+	"version": 2.3,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/DownVid.alfredworkflow",
-	"description": "youtube-dl will now auto-update, if it's more than 15 days old"
+	"description": "New way of handling notifications"
 }

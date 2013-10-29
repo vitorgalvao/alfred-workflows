@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# script and app location
+scriptloc="$(dirname $0)"
+app="$(dirname $0 | sed 's/\(\.app\).*/\1/')"
+
+# instructions
+usage() {
+echo "usage: $0 [-h] [-m] [-t] [-s] [-a]
+
+options:
+	-h Show this message
+	-m Message
+	-t Title
+	-s Subtitle
+	-a Sound"
+}
+
+# read options
+while getopts hm:t:s:a: OPTION
+do
+		case "${OPTION}"
+		in
+			h) usage; exit 1;;
+			m) text=${OPTARG};;
+			t) title=${OPTARG};;
+			s) subtitle=${OPTARG};;
+			a) sound=${OPTARG};;
+		esac
+done
+shift $((OPTIND-1))
+
+# stop executing if ${text} is missing
+if [[ -z "${text}" ]]; then usage && exit 1; fi
+
+# set options
+text="\"${text}\""
+if [[ ! -z "${title}" ]]; then title="with title \"${title}\""; fi
+if [[ ! -z "${subtitle}" ]]; then subtitle="subtitle \"${subtitle}\""; fi
+if [[ ! -z "${sound}" ]]; then sound="sound name \"${sound}\""; fi
+
+# set notification output
+osacompile -e "display notification ${text} ${title} ${subtitle} ${sound}" -e "delay 1" -o "${scriptloc}/main.scpt"
+
+# run
+open "${app}"
