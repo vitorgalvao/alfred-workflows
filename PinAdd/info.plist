@@ -31,16 +31,7 @@
 			</dict>
 		</array>
 		<key>81A6DF13-548C-431D-9624-F1B2D7DBCA78</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>A3481C3B-1483-419B-96C7-CB2CC0A40433</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
+		<array/>
 		<key>E229E8F1-226C-4996-A83D-C181DAEFB268</key>
 		<array>
 			<dict>
@@ -64,27 +55,9 @@
 			</dict>
 		</array>
 		<key>EDD912EA-404B-4820-BFCB-02B5A7CAD013</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>A3481C3B-1483-419B-96C7-CB2CC0A40433</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
+		<array/>
 		<key>F4113C0F-FB1F-41A5-BE53-DAB478C918FA</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>A3481C3B-1483-419B-96C7-CB2CC0A40433</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
+		<array/>
 	</dict>
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
@@ -114,7 +87,7 @@ if [[ ! -d "$(getDataDir)" ]]; then
 cat &lt;&lt; EOF
 	&lt;?xml version='1.0'?&gt;&lt;items&gt;
 	  &lt;item uid='Configure PinAdd Warning' valid='no'&gt;
-	    &lt;title&gt;Your account isn't configured yet&lt;/title&gt;
+	    &lt;title&gt;Your account is not yet configured&lt;/title&gt;
 	    &lt;subtitle&gt;run configurepinadd to set it&lt;/subtitle&gt;
 	    &lt;icon&gt;icon.png&lt;/icon&gt;
 	  &lt;/item&gt;
@@ -136,31 +109,6 @@ fi</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>147225F5-C2E2-4FE1-AACF-B43D4F9394C2</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<true/>
-				<key>output</key>
-				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>{query}</string>
-				<key>title</key>
-				<string>PinAdd</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>A3481C3B-1483-419B-96C7-CB2CC0A40433</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -309,11 +257,15 @@ fi</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>source ./workflowHandler.sh
+				<string>notificator() {
+	notificator.app/Contents/Resources/Scripts/notificator -t "PinAdd" -m "${1}"
+}
+source ./workflowHandler.sh
 source ./setTitleAndURL
-./pinadd .
 
-echo "Done."</string>
+notificator "Added as unread bookmark"
+
+./pinadd .</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -363,11 +315,6 @@ configurepinadd username:HSJWJK2HHSKI14QPDOIK safari</string>
 		<dict>
 			<key>ypos</key>
 			<real>250</real>
-		</dict>
-		<key>A3481C3B-1483-419B-96C7-CB2CC0A40433</key>
-		<dict>
-			<key>ypos</key>
-			<real>10</real>
 		</dict>
 		<key>E229E8F1-226C-4996-A83D-C181DAEFB268</key>
 		<dict>

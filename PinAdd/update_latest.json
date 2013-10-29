@@ -1,5 +1,5 @@
 {
-	"version": 2.9,
+	"version": 3.0,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/PinAdd.alfredworkflow",
-	"description": "Fixed 'no argument' in configuration"
+	"description": "Notifications are no longer handled by Alfred"
 }
