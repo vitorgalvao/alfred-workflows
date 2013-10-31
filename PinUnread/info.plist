@@ -37,16 +37,7 @@
 			</dict>
 		</array>
 		<key>5A99239F-CE3C-43BC-B930-B2B2A52F8438</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>94D014F3-F55A-403C-9643-EA109DBE172B</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
+		<array/>
 	</dict>
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
@@ -78,7 +69,7 @@ if [[ ! -d "$(getDataDir)" ]]; then
 cat &lt;&lt; EOF
 	&lt;?xml version='1.0'?&gt;&lt;items&gt;
 	  &lt;item uid='Configure PinAdd Warning' valid='no'&gt;
-	    &lt;title&gt;Your account isn't configured yet&lt;/title&gt;
+	    &lt;title&gt;Your account is not yet configured&lt;/title&gt;
 	    &lt;subtitle&gt;run configurepinunread to set it&lt;/subtitle&gt;
 	    &lt;icon&gt;icon.png&lt;/icon&gt;
 	  &lt;/item&gt;
@@ -153,29 +144,6 @@ fi</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>D7CD0455-C27A-4021-B033-05D88CB54327</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>output</key>
-				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>Account configured.</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>94D014F3-F55A-403C-9643-EA109DBE172B</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -259,11 +227,6 @@ configurepinadd username:HSJWJK2HHSKI14QPDOIK delete</string>
 			<real>10</real>
 		</dict>
 		<key>5A99239F-CE3C-43BC-B930-B2B2A52F8438</key>
-		<dict>
-			<key>ypos</key>
-			<real>250</real>
-		</dict>
-		<key>94D014F3-F55A-403C-9643-EA109DBE172B</key>
 		<dict>
 			<key>ypos</key>
 			<real>250</real>
