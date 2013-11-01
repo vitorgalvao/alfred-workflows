@@ -20,38 +20,11 @@
 		<key>0DDE2F4F-9DE8-4C40-BB85-ED0DF8C613EE</key>
 		<array/>
 		<key>20803797-C5B6-42F9-9F31-1425E194C1C3</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>1FCFA5E5-DF54-405A-A748-3A4DD801C72F</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
+		<array/>
 		<key>2C22F42C-C25C-4D4C-AB42-C31CE9234895</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>0210F7FD-CDF4-4804-B27F-FA5A8428AB65</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
+		<array/>
 		<key>3FB08D9D-FA61-4076-A99A-E8B45A21CC8D</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>111C20BD-E2A5-491E-8518-5EF3C631D389</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
+		<array/>
 		<key>4B343886-E096-4B4A-B04A-AC6574D6FB41</key>
 		<array>
 			<dict>
@@ -97,16 +70,7 @@
 			</dict>
 		</array>
 		<key>B81E79EC-8587-4704-B6ED-6B72BD007014</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>D96DBEEF-44CA-4976-9E62-7BE771B5A449</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
+		<array/>
 		<key>C8A7E5CB-00A9-4A5B-9AD4-2D31987E06CE</key>
 		<array>
 			<dict>
@@ -154,14 +118,19 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>source ./workflowHandler.sh
+				<string>notificator() {
+	notificator.app/Contents/Resources/Scripts/notificator -t "WatchList" -m "${1}"
+}
+source ./workflowHandler.sh
 
 if [[ ! -d "$(getDataDir)" ]]; then
 	mkdir "$(getDataDir)"
 fi
 
 echo "{query}" | perl -pe 's/\t/\n/g' &gt;&gt; "$(getDataDir)/towatch.txt"
-touch "$(getDataDir)/watched.txt"</string>
+touch "$(getDataDir)/watched.txt"
+
+notificator "Added to watchlist"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -169,31 +138,6 @@ touch "$(getDataDir)/watched.txt"</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>2C22F42C-C25C-4D4C-AB42-C31CE9234895</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>output</key>
-				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>Added to watchlist</string>
-				<key>title</key>
-				<string>WatchList</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>0210F7FD-CDF4-4804-B27F-FA5A8428AB65</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -284,14 +228,19 @@ fi</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>source ./workflowHandler.sh
+				<string>notificator() {
+	notificator.app/Contents/Resources/Scripts/notificator -t "WatchList" -m "${1}"
+}
+source ./workflowHandler.sh
 towatch="$(getDataDir)/towatch.txt"
 watched="$(getDataDir)/watched.txt"
 
 filetoread=$(sed -n "{query}p" "${watched}")
 sed -i '' "{query}d" "${watched}"
 echo "${filetoread}" | cat - "${towatch}" &gt; "$(getDataDir)/tmp.txt"
-mv "$(getDataDir)/tmp.txt" "${towatch}"</string>
+mv "$(getDataDir)/tmp.txt" "${towatch}"
+
+notificator "Marked as unwatched"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -299,31 +248,6 @@ mv "$(getDataDir)/tmp.txt" "${towatch}"</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>20803797-C5B6-42F9-9F31-1425E194C1C3</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>output</key>
-				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>Marked as unwatched</string>
-				<key>title</key>
-				<string>WatchList</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>1FCFA5E5-DF54-405A-A748-3A4DD801C72F</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -432,7 +356,10 @@ open "${towatch}" "${watched}"</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>source ./workflowHandler.sh
+				<string>notificator() {
+	notificator.app/Contents/Resources/Scripts/notificator -t "WatchList" -m "${1}"
+}
+source ./workflowHandler.sh
 watched="$(getDataDir)/watched.txt"
 
 osascript -e "
@@ -444,7 +371,9 @@ osascript -e "
 	end repeat
 "
 
-cat /dev/null &gt; "${watched}"</string>
+cat /dev/null &gt; "${watched}"
+
+notificator "Watched files were moved to the trash"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -452,31 +381,6 @@ cat /dev/null &gt; "${watched}"</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>B81E79EC-8587-4704-B6ED-6B72BD007014</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>output</key>
-				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>Watched files were moved to the trash</string>
-				<key>title</key>
-				<string>WatchList</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>D96DBEEF-44CA-4976-9E62-7BE771B5A449</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -525,40 +429,20 @@ cat /dev/null &gt; "${watched}"</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>output</key>
-				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>The lists were blanked</string>
-				<key>title</key>
-				<string>WatchList</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>111C20BD-E2A5-491E-8518-5EF3C631D389</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>source ./workflowHandler.sh
+				<string>notificator() {
+	notificator.app/Contents/Resources/Scripts/notificator -t "WatchList" -m "${1}"
+}
+source ./workflowHandler.sh
 towatch="$(getDataDir)/towatch.txt"
 watched="$(getDataDir)/watched.txt"
 
 cat /dev/null &gt; "${towatch}"
-cat /dev/null &gt; "${watched}"</string>
+cat /dev/null &gt; "${watched}"
+
+notificator "The lists were blanked"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -574,11 +458,6 @@ cat /dev/null &gt; "${watched}"</string>
 	<string></string>
 	<key>uidata</key>
 	<dict>
-		<key>0210F7FD-CDF4-4804-B27F-FA5A8428AB65</key>
-		<dict>
-			<key>ypos</key>
-			<real>10</real>
-		</dict>
 		<key>07B1E7A5-CC4E-453F-A690-ADDD7FE1A8B1</key>
 		<dict>
 			<key>ypos</key>
@@ -588,16 +467,6 @@ cat /dev/null &gt; "${watched}"</string>
 		<dict>
 			<key>ypos</key>
 			<real>370</real>
-		</dict>
-		<key>111C20BD-E2A5-491E-8518-5EF3C631D389</key>
-		<dict>
-			<key>ypos</key>
-			<real>610</real>
-		</dict>
-		<key>1FCFA5E5-DF54-405A-A748-3A4DD801C72F</key>
-		<dict>
-			<key>ypos</key>
-			<real>250</real>
 		</dict>
 		<key>20803797-C5B6-42F9-9F31-1425E194C1C3</key>
 		<dict>
@@ -640,11 +509,6 @@ cat /dev/null &gt; "${watched}"</string>
 			<real>490</real>
 		</dict>
 		<key>C8A7E5CB-00A9-4A5B-9AD4-2D31987E06CE</key>
-		<dict>
-			<key>ypos</key>
-			<real>490</real>
-		</dict>
-		<key>D96DBEEF-44CA-4976-9E62-7BE771B5A449</key>
 		<dict>
 			<key>ypos</key>
 			<real>490</real>
