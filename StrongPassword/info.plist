@@ -18,16 +18,7 @@
 			</dict>
 		</array>
 		<key>FF316160-82F1-4AC1-8D82-72A1F0AC9ED6</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>A70A4E1E-712E-4575-967A-0AA64960904D</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
+		<array/>
 	</dict>
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
@@ -39,23 +30,6 @@
 	<string>StrongPassword</string>
 	<key>objects</key>
 	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>curl 'https://www.grc.com/passwords.htm' | grep 'ASCII characters:' | perl -MHTML::Entities -ne 's/.*2&gt;|&lt;.*//g; print decode_entities($_)' | tr -d '\n' | pbcopy</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>FF316160-82F1-4AC1-8D82-72A1F0AC9ED6</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -80,25 +54,23 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>output</key>
+				<key>escaping</key>
 				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>Password was copied to the clipboard</string>
-				<key>title</key>
-				<string>StrongPassword</string>
+				<key>script</key>
+				<string>notificator() {
+	notificator.app/Contents/Resources/Scripts/notificator -t "StrongPassword" -m "${1}"
+}
+
+curl 'https://www.grc.com/passwords.htm' | grep 'ASCII characters:' | perl -MHTML::Entities -ne 's/.*2&gt;|&lt;.*//g; print decode_entities($_)' | tr -d '\n' | pbcopy
+
+notificator "Password copied to the clipboard"</string>
+				<key>type</key>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
+			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>A70A4E1E-712E-4575-967A-0AA64960904D</string>
+			<string>FF316160-82F1-4AC1-8D82-72A1F0AC9ED6</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -108,11 +80,6 @@
 	<key>uidata</key>
 	<dict>
 		<key>15299C7A-CDEA-4359-8898-446F2892DB7C</key>
-		<dict>
-			<key>ypos</key>
-			<real>10</real>
-		</dict>
-		<key>A70A4E1E-712E-4575-967A-0AA64960904D</key>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
