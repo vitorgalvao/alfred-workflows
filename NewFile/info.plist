@@ -6,6 +6,17 @@
 	<string></string>
 	<key>connections</key>
 	<dict>
+		<key>137E4749-7D83-426A-A8C4-AB736358775E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>274B58B7-3870-479A-BAD9-883DDADC3A90</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>D03807E1-1B7E-4FBD-B4C0-877B87E2AB86</key>
 		<array>
 			<dict>
@@ -33,19 +44,32 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>nf</string>
+				<key>subtext</key>
+				<string>Type a file name (separate multiple files with a /)</string>
+				<key>text</key>
+				<string>NewFile</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>D03807E1-1B7E-4FBD-B4C0-877B87E2AB86</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>dirPath=$(osascript -e 'tell application "System Events" to set frontApp to name of first process whose frontmost is trueif (frontApp is "Finder") then		try		tell application "Finder" to set dirPath to (POSIX path of (folder of the front window as alias))	on error		set dirPath to (POSIX path of (path to desktop))	end try	else	set dirPath to (POSIX path of (path to desktop))	end ifreturn dirPath')
-
-fileExtension=$(echo {query} | sed -n 's/\(.*\)\.\(.*\)$/.\2/p')
-fileNoExtension=$(echo {query} | sed 's/\(.*\)\.\(.*\)$/\1/')
-
-if [[ -z ${fileExtension} ]]; then
-	fileExtension=".txt"
-fi
-
-touch "${dirPath}${fileNoExtension}${fileExtension}"</string>
+				<string>open="no"
+source ./newfile '{query}'</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -59,12 +83,30 @@ touch "${dirPath}${fileNoExtension}${fileExtension}"</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>open="yes"
+source ./newfile '{query}'</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>274B58B7-3870-479A-BAD9-883DDADC3A90</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>keyword</key>
-				<string>nf</string>
+				<string>nfo</string>
 				<key>subtext</key>
-				<string>Type a name (if no extension is given, '.txt' will be used)</string>
+				<string>Type a file name (separate multiple files with a /)</string>
 				<key>text</key>
 				<string>NewFile</string>
 				<key>withspace</key>
@@ -73,7 +115,7 @@ touch "${dirPath}${fileNoExtension}${fileExtension}"</string>
 			<key>type</key>
 			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
-			<string>D03807E1-1B7E-4FBD-B4C0-877B87E2AB86</string>
+			<string>137E4749-7D83-426A-A8C4-AB736358775E</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -82,6 +124,16 @@ touch "${dirPath}${fileNoExtension}${fileExtension}"</string>
 	<string></string>
 	<key>uidata</key>
 	<dict>
+		<key>137E4749-7D83-426A-A8C4-AB736358775E</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>274B58B7-3870-479A-BAD9-883DDADC3A90</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
 		<key>D03807E1-1B7E-4FBD-B4C0-877B87E2AB86</key>
 		<dict>
 			<key>ypos</key>

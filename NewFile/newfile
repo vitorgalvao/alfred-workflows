@@ -1,0 +1,34 @@
+#!/bin/bash
+
+IFS=$'\t\n'
+
+files="$(echo $@ | perl -pe 's/\//\t/g')"
+
+dirPath=$(osascript -e 'tell application "System Events" to set frontApp to name of first process whose frontmost is true
+
+if (frontApp is "Finder") then
+
+	try
+		tell application "Finder" to set dirPath to (POSIX path of (folder of the front window as alias))
+	on error
+		set dirPath to (POSIX path of (path to desktop))
+	end try
+
+else
+	set dirPath to (POSIX path of (path to desktop))
+
+end if
+
+return dirPath')
+
+for file in ${files}; do
+	fileExtension=$(echo ${file} | sed -n 's/\(.*\)\.\(.*\)$/.\2/p')
+	fileNoExtension=$(echo ${file} | sed 's/\(.*\)\.\(.*\)$/\1/')
+
+	if [[ -z ${fileExtension} ]]; then fileExtension=".txt"; fi
+
+	fileLocation="${dirPath}${fileNoExtension}${fileExtension}"
+
+	touch "${fileLocation}"
+	if [[ ${open} == 'yes' ]]; then open "${fileLocation}"; fi
+done
