@@ -49,9 +49,9 @@
 				<key>keyword</key>
 				<string>nf</string>
 				<key>subtext</key>
-				<string>Type a file name (separate multiple files with a /)</string>
+				<string>Separate multiple names with a “/” (if no extension is given, “.txt” will be used)</string>
 				<key>text</key>
-				<string>NewFile</string>
+				<string>Create new file(s)</string>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -106,9 +106,9 @@ source ./newfile '{query}'</string>
 				<key>keyword</key>
 				<string>nfo</string>
 				<key>subtext</key>
-				<string>Type a file name (separate multiple files with a /)</string>
+				<string>Separate multiple names with a “/” (if no extension is given, “.txt” will be used)</string>
 				<key>text</key>
-				<string>NewFile</string>
+				<string>Create and open new file(s)</string>
 				<key>withspace</key>
 				<true/>
 			</dict>
