@@ -16,7 +16,7 @@ if [[ ${browser} == "depends" ]]; then
 		browser="chromecanary"
 	fi
 	# If frontmost app is not a supported browser, prevent a url from being added
-	if [[ ! ${browser} =~ ^(chrome|chromecanary|chromium|safari|webkit|opera)$ ]]; then
+	if [[ ! ${browser} =~ ^(chrome|chromecanary|chromium|safari|webkit)$ ]]; then
 		rm -r "$(getCacheDir)"
 		exit 1
 	fi
@@ -39,9 +39,6 @@ elif [[ ${browser} == "safari" ]]; then
 elif [[ ${browser} == "webkit" ]]; then
   url=$(osascript -e 'tell application "Webkit" to return URL of front document' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
   title=$(osascript -e 'tell application "Webkit" to return name of front document' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
-elif [[ ${browser} == "opera" ]]; then
-  url=$(osascript -e 'tell application "Opera" to return URL of front document' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
-  title=$(osascript -e 'tell application "Opera" to return name of front document' | perl -MURI::Escape -wlne 'print uri_escape ($_)')
 fi
 
 setPref url ${url} 0 titleandurl
