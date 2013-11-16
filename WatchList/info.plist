@@ -363,12 +363,18 @@ source ./workflowHandler.sh
 watched="$(getDataDir)/watched.txt"
 
 osascript -e "
-	set watched to paragraphs of (read \"${watched}\")
+	set watched to paragraphs of (read \"${watched}\" as «class utf8»)
+	set watchedList to {}
 
-	repeat with linefromfile in watched
-		set filename to POSIX file linefromfile
-		tell application \"Finder\" to delete file filename
-	end repeat
+	tell application \"System Events\"
+		repeat with watchedPath in watched
+			try
+				set end of watchedList to (file watchedPath as alias)
+			end try
+		end repeat
+	end tell
+
+	tell application \"Finder\" to delete watchedList
 "
 
 cat /dev/null &gt; "${watched}"
