@@ -43,4 +43,4 @@ if [[ ! -z "${sound}" ]]; then sound="sound name \"${sound}\""; fi
 osacompile -e "display notification ${text} ${title} ${subtitle} ${sound}" -e "delay 1" -o "${scriptloc}/main.scpt"
 
 # run
-open "${app}"
+open -g "${app}"

@@ -1,5 +1,5 @@
 {
-	"version": 2.7,
+	"version": 2.8,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/WatchList.alfredworkflow",
-	"description": "Better handling of file deletions"
+	"description": "The notification will no longer steal focus"
 }
