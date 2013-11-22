@@ -16,6 +16,9 @@ Shows the paper size (mm and in) for different formats.
 ### [LabelColor](http://www.alfredforum.com/topic/1334-labelcolor-%E2%80%94-sets-a-label-color-for-selected-files-and-directories/)
 Sets a label color for selected files and directories.
 
+### [MarkdownBulletin](http://www.alfredforum.com/topic/3517-markdownbulletin-%E2%80%94-convert-markdown-to-bbcode/)
+Convert Markdown to BBCode
+
 ### [NewFile](http://www.alfredforum.com/topic/2957-newfile-%E2%80%94-creates-a-new-file-in-the-current-finder-directory/)
 Creates a new file in the current Finder directory.
 
