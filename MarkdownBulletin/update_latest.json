@@ -1,5 +1,5 @@
 {
-	"version": 1.0,
+	"version": 1.1,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/MarkdownBulletin.alfredworkflow",
-	"description": "With update files"
+	"description": "fix for bold together with italic, lists with bold and italic in them, and lists and code blocks that start at the beginning of the text"
 }

@@ -4,11 +4,14 @@ Encoding::default_external = Encoding::UTF_8 if defined? Encoding
 # read text from shell
 s = $stdin.read
 
+# bold and italic
+s = s.gsub /\*\*\*(\S.*?)\*\*\*/, '[b][i]\1[/i][/b]'
+
 # bold
-s = s.gsub /\*\*(.*?)\*\*/, '[b]\1[/b]'
+s = s.gsub /\*\*(\S.*?)\*\*/, '[b]\1[/b]'
 
 # italic
-s = s.gsub /\*(.*?)\*/, '[i]\1[/i]'
+s = s.gsub /\*(\S.*?)\*/, '[i]\1[/i]'
 
 # horizontal rule
 s = s.gsub /^[- \*]{3,}$/, '[hr]'
@@ -28,6 +31,7 @@ s = s.gsub /```(.*?)```/m, '[code=auto:0]\1[/code]'
 
 ## with spacing or tabs
 s = s.gsub /^\n(^ {4}|\t)/, "\n[code=auto:0]\n\\1" # beginning
+s = s.gsub /\A(^ {4}|\t)/, "[code=auto:0]\n\\1" # if beginning of text
 s = s.gsub /^(( {4}|\t).*)\n\n/, "\\1\n[/code]\n\n" # end
 s = s.gsub /^(( {4}|\t).*)$\z/, "\\1\n[/code]" # if end of text
 s = s.gsub /(^ {4}|\t)/, '' # middle
@@ -37,15 +41,17 @@ s = s.gsub /`(.*?)`/, '[u][b]\1[/b][/u]'
 
 # lists
 ## unordered
-s = s.gsub /^\n^([*+-])/, "\n[list]\n\\1" # beginning
-s = s.gsub /^([*+-].*)\n\n/, "\\1\n[/list]\n\n" # end
-s = s.gsub /^([*+-].*)\z/, "\\1\n[/list]" # if end of text
-s = s.gsub /^[*+-]\s*(.*)/, '[*]\1[/*]' # middle
+s = s.gsub /^\n^([*+-]\s)/, "\n[list]\n\\1" # beginning
+s = s.gsub /\A^([*+-]\s)/, "[list]\n\\1" # if beginning of text
+s = s.gsub /^([*+-]\s.*)\n\n/, "\\1\n[/list]\n\n" # end
+s = s.gsub /^([*+-]\s.*)\z/, "\\1\n[/list]" # if end of text
+s = s.gsub /^[*+-]\s(.*)/, '[*]\1[/*]' # middle
 
 ## ordered
-s = s.gsub /^\n^(\d\.)/, "\n[list=1]\n\\1" # beginning
-s = s.gsub /^(\d\..*)\n\n/, "\\1\n[/list]\n\n" # end
-s = s.gsub /^(\d\..*)\z/, "\\1\n[/list]" # if end of text
-s = s.gsub /^\d\.\s*(.*)/, '[*]\1[/*]' # middle
+s = s.gsub /^\n^(\d\.\s)/, "\n[list=1]\n\\1" # beginning
+s = s.gsub /\A^(\d\.\s)/, "[list=1]\n\\1" # if beginning of text
+s = s.gsub /^(\d\.\s.*)\n\n/, "\\1\n[/list]\n\n" # end
+s = s.gsub /^(\d\.\s.*)\z/, "\\1\n[/list]" # if end of text
+s = s.gsub /^\d\.\s(.*)/, '[*]\1[/*]' # middle
 
 print s
