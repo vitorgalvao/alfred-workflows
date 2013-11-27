@@ -39,6 +39,11 @@ s = s.gsub /(^ {4}|\t)/, '' # middle
 # inline code
 s = s.gsub /`(.*?)`/, '[u][b]\1[/b][/u]'
 
+# headers
+s = s.gsub /^#\s(.*)/, '[size=7]\1[/size]' # big
+s = s.gsub /^##\s(.*)/, '[size=6]\1[/size]' # medium
+s = s.gsub /^###\s(.*)/, '[size=5]\1[/size]' # small
+
 # lists
 ## unordered
 s = s.gsub /^\n^([*+-]\s)/, "\n[list]\n\\1" # beginning
