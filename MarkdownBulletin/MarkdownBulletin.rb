@@ -25,6 +25,9 @@ s = s.gsub /!\[.*\]\((.*?)\)/, '[img=\1]'
 # url
 s = s.gsub /\[(.*?)\]\((.*?)\)/, '[url=\2]\1[/url]'
 
+# quote
+s = s.gsub /^>\s(.*)/, "[quote]\n\\1\n[/quote]"
+
 # code block
 ## with backticks
 s = s.gsub /```(.*?)```/m, '[code=auto:0]\1[/code]'
