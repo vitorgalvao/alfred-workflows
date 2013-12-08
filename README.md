@@ -2,7 +2,7 @@
 
 # Collection of Alfred Extension scripts
 ### [CheckSpelling](http://www.alfredforum.com/topic/3586-checkspelling-%E2%80%94-check-and-correct-spelling-in-multiple-languages/)
-Check and correct spelling in multiple languages.
+Spelling correction in various languages.
 
 ### [CoffeeCoffee](http://www.alfredforum.com/topic/3177-coffeecoffee-%E2%80%94-prevent-your-computer-from-going-to-sleep/)
 Prevent your computer from going to sleep.
