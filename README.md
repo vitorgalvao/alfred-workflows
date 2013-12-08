@@ -1,6 +1,9 @@
 [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=vitor&url=https://github.com/vitorgalvao/alfred-workflows&title=alfred-workflows&language=en_GB&tags=github,alfred&category=software)
 
 # Collection of Alfred Extension scripts
+### [CheckSpelling](http://www.alfredforum.com/topic/3586-checkspelling-%E2%80%94-check-and-correct-spelling-in-multiple-languages/)
+Check and correct spelling in multiple languages.
+
 ### [CoffeeCoffee](http://www.alfredforum.com/topic/3177-coffeecoffee-%E2%80%94-prevent-your-computer-from-going-to-sleep/)
 Prevent your computer from going to sleep.
 
