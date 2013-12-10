@@ -56,4 +56,4 @@ View and manage a sequence of files.
 Find words that contain a particular pattern.
 
 #### License
-The Unlicense (Public Domain, essentially).
+All the code in the workflows' root directory is licensed under [The Unlicense](http://unlicense.org/UNLICENSE) (Public Domain, essentially). Applications and libraries inside a `_licensed` directory (if there is one) are not public domain, and are accompanied by their respective licenses.
