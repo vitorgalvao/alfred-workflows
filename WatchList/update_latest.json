@@ -1,5 +1,5 @@
 {
-	"version": 2.8,
+	"version": 2.9,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/WatchList.alfredworkflow",
-	"description": "The notification will no longer steal focus"
+	"description": "Added wli and external licensed apps"
 }

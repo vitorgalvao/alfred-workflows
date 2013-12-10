@@ -47,6 +47,17 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>62F8232B-5D0E-428E-9009-DEAC5E59AF3F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>DE394F89-C4B4-497C-B6E8-5715050AC3CE</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>7F8D7B1C-9061-4414-98C2-FEEB13C9314B</key>
 		<array>
 			<dict>
@@ -118,8 +129,8 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>notificator() {
-	notificator.app/Contents/Resources/Scripts/notificator -t "WatchList" -m "${1}"
+				<string>notification() {
+	./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "WatchList" -message "${1}"
 }
 source ./workflowHandler.sh
 
@@ -130,7 +141,7 @@ fi
 echo "{query}" | perl -pe 's/\t/\n/g' &gt;&gt; "$(getDataDir)/towatch.txt"
 touch "$(getDataDir)/watched.txt"
 
-notificator "Added to watchlist"</string>
+notification "Added to watchlist"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -193,7 +204,7 @@ if [[ -z $(cat ${towatch}) ]]; then
 	echo "&lt;/items&gt;"
 else
 	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-	towatch=$(cat ${towatch} | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"'\''})')
+	towatch=$(cat ${towatch} | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"})')
 	for file in $(echo "${towatch}" | grep -in ".*{query}.*"); do
 		line="$(echo ${file} | sed 's/:.*//')"
 		file="$(echo ${file} | sed 's/.*://')"
@@ -225,11 +236,68 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>wli</string>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>source ./workflowHandler.sh
+towatch="$(getDataDir)/towatch.txt"
+
+IFS=$'\n'
+
+if [[ -z $(cat ${towatch}) ]]; then
+	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
+	echo "&lt;item uuid='none' arg='none' valid='no'&gt;"
+	echo "&lt;title&gt;Play (wlp)&lt;/title&gt;"
+	echo "&lt;subtitle&gt;You have no unwatched files&lt;/subtitle&gt;"
+	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
+	echo "&lt;/item&gt;"
+	echo "&lt;/items&gt;"
+else
+	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
+	towatch=$(cat ${towatch} | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"})')
+	for file in $(echo "${towatch}" | grep -in ".*{query}.*"); do
+		line="$(echo ${file} | sed 's/:.*//')"
+		file="$(echo ${file} | sed 's/.*://')"
+		duration="$(./_licensed/mediainfo/mediainfo --Output=Video\;%Duration/String2% ${file})"
+		filename="$(basename ${file})"
+		echo "&lt;item uuid='${line}' arg='${line}' valid='yes'&gt;"
+		echo "&lt;title&gt;${filename}&lt;/title&gt;"
+		echo "&lt;subtitle&gt;${duration}&lt;/subtitle&gt;"
+		echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
+		echo "&lt;/item&gt;"
+	done
+	echo "&lt;/items&gt;"
+fi</string>
+				<key>subtext</key>
+				<string>Pick a file to play</string>
+				<key>title</key>
+				<string>Show durations (wli)</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>62F8232B-5D0E-428E-9009-DEAC5E59AF3F</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>notificator() {
-	notificator.app/Contents/Resources/Scripts/notificator -t "WatchList" -m "${1}"
+				<string>notification() {
+	./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "WatchList" -message "${1}"
 }
 source ./workflowHandler.sh
 towatch="$(getDataDir)/towatch.txt"
@@ -240,7 +308,7 @@ sed -i '' "{query}d" "${watched}"
 echo "${filetoread}" | cat - "${towatch}" &gt; "$(getDataDir)/tmp.txt"
 mv "$(getDataDir)/tmp.txt" "${towatch}"
 
-notificator "Marked as unwatched"</string>
+notification "Marked as unwatched"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -278,7 +346,7 @@ if [[ -z $(cat ${watched}) ]]; then
 	echo "&lt;/items&gt;"
 else
 	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-	watched=$(cat ${watched} | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"'\''})')
+	watched=$(cat ${watched} | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"})')
 	for file in $(echo "${watched}" | grep -in ".*{query}.*"); do
 		line="$(echo ${file} | sed 's/:.*//')"
 		file="$(echo ${file} | sed 's/.*://')"
@@ -356,30 +424,16 @@ open "${towatch}" "${watched}"</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>notificator() {
-	notificator.app/Contents/Resources/Scripts/notificator -t "WatchList" -m "${1}"
+				<string>notification() {
+	./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "WatchList" -message "${1}"
 }
 source ./workflowHandler.sh
 watched="$(getDataDir)/watched.txt"
 
-osascript -e "
-	set watched to paragraphs of (read \"${watched}\" as «class utf8»)
-	set watchedList to {}
-
-	tell application \"System Events\"
-		repeat with watchedPath in watched
-			try
-				set end of watchedList to (file watchedPath as alias)
-			end try
-		end repeat
-	end tell
-
-	tell application \"Finder\" to delete watchedList
-"
-
+cat "${watched}" | perl -pe 's/\n/\0/' | xargs -0 ./_licensed/trash/trash
 cat /dev/null &gt; "${watched}"
 
-notificator "Watched files were moved to the trash"</string>
+notification "Watched files were moved to the trash"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -438,8 +492,8 @@ notificator "Watched files were moved to the trash"</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>notificator() {
-	notificator.app/Contents/Resources/Scripts/notificator -t "WatchList" -m "${1}"
+				<string>notification() {
+	./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "WatchList" -message "${1}"
 }
 source ./workflowHandler.sh
 towatch="$(getDataDir)/towatch.txt"
@@ -448,7 +502,7 @@ watched="$(getDataDir)/watched.txt"
 cat /dev/null &gt; "${towatch}"
 cat /dev/null &gt; "${watched}"
 
-notificator "The lists were blanked"</string>
+notification "The lists were blanked"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -467,17 +521,17 @@ notificator "The lists were blanked"</string>
 		<key>07B1E7A5-CC4E-453F-A690-ADDD7FE1A8B1</key>
 		<dict>
 			<key>ypos</key>
-			<real>610</real>
+			<real>730</real>
 		</dict>
 		<key>0DDE2F4F-9DE8-4C40-BB85-ED0DF8C613EE</key>
 		<dict>
 			<key>ypos</key>
-			<real>370</real>
+			<real>490</real>
 		</dict>
 		<key>20803797-C5B6-42F9-9F31-1425E194C1C3</key>
 		<dict>
 			<key>ypos</key>
-			<real>250</real>
+			<real>370</real>
 		</dict>
 		<key>2C22F42C-C25C-4D4C-AB42-C31CE9234895</key>
 		<dict>
@@ -487,14 +541,19 @@ notificator "The lists were blanked"</string>
 		<key>3FB08D9D-FA61-4076-A99A-E8B45A21CC8D</key>
 		<dict>
 			<key>ypos</key>
-			<real>610</real>
+			<real>730</real>
 		</dict>
 		<key>4B343886-E096-4B4A-B04A-AC6574D6FB41</key>
 		<dict>
 			<key>ypos</key>
-			<real>370</real>
+			<real>490</real>
 		</dict>
 		<key>52C95301-2DF9-4A14-86FA-7917CFC49D39</key>
+		<dict>
+			<key>ypos</key>
+			<real>370</real>
+		</dict>
+		<key>62F8232B-5D0E-428E-9009-DEAC5E59AF3F</key>
 		<dict>
 			<key>ypos</key>
 			<real>250</real>
@@ -512,12 +571,12 @@ notificator "The lists were blanked"</string>
 		<key>B81E79EC-8587-4704-B6ED-6B72BD007014</key>
 		<dict>
 			<key>ypos</key>
-			<real>490</real>
+			<real>610</real>
 		</dict>
 		<key>C8A7E5CB-00A9-4A5B-9AD4-2D31987E06CE</key>
 		<dict>
 			<key>ypos</key>
-			<real>490</real>
+			<real>610</real>
 		</dict>
 		<key>DE394F89-C4B4-497C-B6E8-5715050AC3CE</key>
 		<dict>
