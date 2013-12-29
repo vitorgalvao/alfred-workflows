@@ -80,7 +80,7 @@ else
 	user="$(getPref user 1)"
 	secret="$(getPref secret 1)"
 
-	if [[ -z $(find "${unreaditems}" -mmin -5) ]] || [[ ! -f "${unreaditems}" ]] ; then
+	if [[ -z $(find "${unreaditems}" -mmin -5) ]] || [[ ! -f "${unreaditems}" ]] || [[ ! -s "${unreaditems}" ]]; then
 		curl --silent "https://feeds.pinboard.in/rss/secret:${secret}/u:${user}/toread/" | grep '&lt;title&gt;\|&lt;link&gt;' | sed '1d;2d' | perl -pe 's/^\s+|\s+$//;s/^&lt;title&gt;(.*)&lt;\/title&gt;\n/\1,/;s/^&lt;link&gt;(.*)&lt;\/link&gt;/\1/' &gt; "${unreaditems}"
 	fi
 
