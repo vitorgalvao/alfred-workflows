@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string></string>
+	<string>com.vitorgalvao.alfred.downvid</string>
 	<key>connections</key>
 	<dict>
 		<key>6A286F10-FD49-4463-9540-0EECBE45438D</key>
@@ -38,9 +38,9 @@
 				<key>script</key>
 				<string>IFS=$'\n'
 
-# set notificator
-notificator() {
-	notificator.app/Contents/Resources/Scripts/notificator -t "DownVid" -m "${1}"
+# set notifications
+notification() {
+	./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "DownVid" -message "${1}"
 }
 
 # update youtube-dl if it's more than 15 days old
@@ -57,10 +57,10 @@ gettitle() {
 
 	# check if url is valid
 	if [[ -z "${title}" ]]; then
-		notificator "The url is invalid"
+		notification "The url is invalid"
 		exit 1
 	else
-		notificator "Downloading “${shorttitle}”"
+		notification "Downloading “${shorttitle}”"
 	fi
 }
 
@@ -83,7 +83,7 @@ fi
 
 getfile
 
-notificator "Downloaded “${shorttitle}”"</string>
+notification "Downloaded “${shorttitle}”"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
