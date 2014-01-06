@@ -1,5 +1,5 @@
 {
-	"version": 2.5,
+	"version": 2.6,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/DownVid.alfredworkflow",
-	"description": "Solved icon not appearing in notification"
+	"description": "Switched to terminal-notifier"
 }

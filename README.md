@@ -11,7 +11,7 @@ Prevent your computer from going to sleep.
 Run terminal commands without opening one, on the current Finder window.
 
 ### [DownVid](http://www.alfredforum.com/topic/2045-downvid-%E2%80%94-download-videos-from-popular-sources/)
-Downloads video from your browser's frontmost tab.
+Downloads video from your browser’s frontmost tab.
 
 ### [FormatSize](http://www.alfredforum.com/topic/2748-formatsize-%E2%80%94-shows-the-paper-size-mm-and-in-for-different-formats/)
 Shows the paper size (mm and in) for different formats.
@@ -26,7 +26,7 @@ Convert Markdown to BBCode
 Creates a new file in the current Finder directory.
 
 ### [PinAdd](http://www.alfredforum.com/topic/1230-pinadd-%E2%80%94-takes-arguments-as-tags-and-adds-your-browser%E2%80%99s-frontmost-tab-as-a-pinboard-bookmark/)
-Takes arguments as tags and adds your browser's frontmost tab as a pinboard bookmark.
+Takes arguments as tags and adds your browser’s frontmost tab as a pinboard bookmark.
 
 ### [PinUnread](http://www.alfredforum.com/topic/3037-pinunread-%E2%80%94-open-and-manage-your-pinboard-%E2%80%9Ctoread%E2%80%9D-bookmarks/)
 Open and manage your Pinboard “toread” bookmarks.
@@ -59,4 +59,4 @@ View and manage a sequence of files.
 Find words that contain a particular pattern.
 
 #### License
-The Unlicense (Public Domain, essentially).
+All the code in the workflows’ root directory is licensed under [The Unlicense](http://unlicense.org/UNLICENSE) (Public Domain, essentially). Applications and libraries inside a `_licensed` directory (if there is one) are not public domain, and are accompanied by their respective licenses.
