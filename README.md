@@ -37,6 +37,9 @@ Renames a directory or file (preserving the extension).
 ### [RepeatRepeat](http://www.alfredforum.com/topic/2740-repeatrepeat-%E2%80%94-proof-of-concept-to-make-a-script-filter-update-itself-without-further-user-input/)
 Proof of concept to make a script filter update itself without further user input.
 
+### [RespondQuickly](http://www.alfredforum.com/topic/3695-respondquickly-%E2%80%94-convert-selected-text-to-a-qr-code/)
+Convert selected text to a QR code.
+
 ### [RightClick](http://www.alfredforum.com/topic/3147-rightclick-%E2%80%94-do-a-right-click-on-finder-files-with-the-keyboard/)
 Do a right-click on Finder files, with the keyboard.
 
