@@ -31,6 +31,9 @@ Takes arguments as tags and adds your browser’s frontmost tab as a pinboard bo
 ### [PinUnread](http://www.alfredforum.com/topic/3037-pinunread-%E2%80%94-open-and-manage-your-pinboard-%E2%80%9Ctoread%E2%80%9D-bookmarks/)
 Open and manage your Pinboard “toread” bookmarks.
 
+### [RecentDownloads](http://www.alfredforum.com/topic/3737-recentdownloads-%E2%80%94-list-and-act-on-the-contents-of-your-downloads-directory/)
+List and act on the contents of your ~/Downloads directory.
+
 ### [RenameAction](http://www.alfredforum.com/topic/2722-renameaction-%E2%80%94-renames-a-directory-or-file-preserving-the-extension/)
 Renames a directory or file (preserving the extension).
 
