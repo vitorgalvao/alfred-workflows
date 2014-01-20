@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string></string>
+	<string>com.vitorgalvao.alfred.repeatrepeat</string>
 	<key>connections</key>
 	<dict>
 		<key>F6F32783-167C-4BD2-98FF-928A497F94C4</key>

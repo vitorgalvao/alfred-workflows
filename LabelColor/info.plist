@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string></string>
+	<string>com.vitorgalvao.alfred.labelcolor</string>
 	<key>connections</key>
 	<dict>
 		<key>1CDD71C9-6FA7-4886-8792-358DC4825B8C</key>
@@ -69,6 +69,23 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>tell application "Alfred 2" to search "labelcolor"</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>B10C3CEF-BFF1-4B96-9D33-79793DD863B0</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>acceptsmulti</key>
 				<true/>
 				<key>filetypes</key>
@@ -89,14 +106,14 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>tell application "Alfred 2" to search "labelcolor"</string>
+				<string>echo "{query}" | perl -pe 's/[\t\n]/\0/g' &gt; file_list</string>
 				<key>type</key>
-				<integer>6</integer>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>B10C3CEF-BFF1-4B96-9D33-79793DD863B0</string>
+			<string>77AA5EBA-F831-4E9E-9E7D-FD7665B66FD1</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -122,23 +139,6 @@
 			<string>alfred.workflow.trigger.hotkey</string>
 			<key>uid</key>
 			<string>7B358A3F-B206-4B26-BF0E-B9643D6808DE</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>echo "{query}" | perl -pe 's/[\t\n]/\0/g' &gt; file_list</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>77AA5EBA-F831-4E9E-9E7D-FD7665B66FD1</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>

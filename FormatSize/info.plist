@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string></string>
+	<string>com.vitorgalvao.alfred.formatsize</string>
 	<key>connections</key>
 	<dict/>
 	<key>createdby</key>

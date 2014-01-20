@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string></string>
+	<string>com.vitorgalvao.alfred.videoduration</string>
 	<key>connections</key>
 	<dict>
 		<key>1B14953E-E57E-44E2-9659-FEEDDFB44CC8</key>

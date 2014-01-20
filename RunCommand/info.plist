@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string></string>
+	<string>com.vitorgalvao.alfred.runcommand</string>
 	<key>connections</key>
 	<dict>
 		<key>19CDA0AB-1F06-4A9A-B336-C04305094E51</key>

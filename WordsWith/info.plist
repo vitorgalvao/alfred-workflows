@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string></string>
+	<string>com.vitorgalvao.alfred.wordswith</string>
 	<key>connections</key>
 	<dict>
 		<key>1D095271-389F-4505-902D-5AF68688F6E7</key>
@@ -81,7 +81,7 @@
 				<key>script</key>
 				<string>echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
 for word in $(grep "^{query}" ./words.txt); do
-	echo "&lt;item uid='start' arg=\"${word}\" valid='yes'&gt;"
+	echo "&lt;item uid='start' arg='${word}' valid='yes'&gt;"
 	echo "&lt;title&gt;${word}&lt;/title&gt;"
 	echo "&lt;subtitle&gt;&lt;/subtitle&gt;"
 	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
@@ -116,7 +116,7 @@ echo "&lt;/items&gt;"</string>
 				<key>script</key>
 				<string>echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
 for word in $(grep ".*{query}.*" ./words.txt); do
-	echo "&lt;item uid='anywhere' arg=\"${word}\" valid='yes'&gt;"
+	echo "&lt;item uid='anywhere' arg='${word}' valid='yes'&gt;"
 	echo "&lt;title&gt;${word}&lt;/title&gt;"
 	echo "&lt;subtitle&gt;&lt;/subtitle&gt;"
 	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
@@ -151,7 +151,7 @@ echo "&lt;/items&gt;"</string>
 				<key>script</key>
 				<string>echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
 for word in $(grep "{query}$" ./words.txt); do
-	echo "&lt;item uid='end' arg=\"${word}\" valid='yes'&gt;"
+	echo "&lt;item uid='end' arg='${word}' valid='yes'&gt;"
 	echo "&lt;title&gt;${word}&lt;/title&gt;"
 	echo "&lt;subtitle&gt;&lt;/subtitle&gt;"
 	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"

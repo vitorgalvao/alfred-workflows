@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string></string>
+	<string>com.vitorgalvao.alfred.rightclick</string>
 	<key>connections</key>
 	<dict>
 		<key>A73E4A13-FA16-4A7D-A9F5-40A4C5B2B0B0</key>
@@ -38,7 +38,7 @@
 				<key>hotkey</key>
 				<integer>-1</integer>
 				<key>hotmod</key>
-				<integer>1048576</integer>
+				<integer>524288</integer>
 				<key>hotstring</key>
 				<string>double tap</string>
 				<key>leftcursor</key>
