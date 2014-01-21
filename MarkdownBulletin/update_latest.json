@@ -1,5 +1,5 @@
 {
-	"version": 1.3,
+	"version": 1.4,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/MarkdownBulletin.alfredworkflow",
-	"description": "added support for quotes"
+	"description": "added support for strike through"
 }

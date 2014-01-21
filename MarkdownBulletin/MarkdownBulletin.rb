@@ -16,6 +16,9 @@ s = s.gsub /\*(\S.*?)\*/, '[i]\1[/i]'
 # horizontal rule
 s = s.gsub /^[- \*]{3,}$/, '[hr]'
 
+# strike through
+s = s.gsub /~~(.*)~~/, '[s]\1[/s]'
+
 # image that sends to url
 s = s.gsub /\[!\[.*\]\((.*)\)\]\((.*)\)/, '[url=\2][img=\1][/url]'
 
