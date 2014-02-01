@@ -22,7 +22,7 @@ Downloads video from your browser’s frontmost tab.
 [info](http://www.alfredforum.com/topic/2045-downvid-%E2%80%94-download-videos-from-popular-sources/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.downvid/downvid.alfredworkflow)
 
 ### FormatSize
-Shows the paper size (mm and in) for different formats.
+Reference paper sizes and device viewport widths
 
 [info](http://www.alfredforum.com/topic/2748-formatsize-%E2%80%94-shows-the-paper-size-mm-and-in-for-different-formats/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.formatsize/formatsize.alfredworkflow)
 

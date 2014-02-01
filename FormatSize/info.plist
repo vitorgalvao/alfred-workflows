@@ -9,7 +9,7 @@
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
 	<key>description</key>
-	<string>Shows the paper size (mm and in) for different formats</string>
+	<string>Reference paper sizes and device viewport widths</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -30,16 +30,15 @@
 				<key>script</key>
 				<string>IFS=$'\n'
 
-file="sizes/iso.txt"
+file="sizes/iso.csv"
 
 echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-for paper in $(grep -i "^{query}" "${file}"); do
-	format="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\1/')"
-	mm="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\2/')"
-	in="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\3/')"
-	echo "&lt;item uid='${format}' valid='no' autocomplete='${format}'&gt;"
-	echo "&lt;title&gt;${format}&lt;/title&gt;"
-	echo "&lt;subtitle&gt;${mm} mm  |  ${in} in&lt;/subtitle&gt;"
+for media in $(grep -i "^{query}" "${file}"); do
+	name="$(echo ${media} | sed 's/^\(.*\),\(.*\),\(.*\)$/\1/')"
+	size="$(echo ${media} | sed 's/^\(.*\),\(.*\),\(.*\)$/\2 mm  |  \3 in/')"
+	echo "&lt;item uid='${name}' valid='no' autocomplete='${name}'&gt;"
+	echo "&lt;title&gt;${name}&lt;/title&gt;"
+	echo "&lt;subtitle&gt;${size}&lt;/subtitle&gt;"
 	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
 	echo "&lt;/item&gt;"
 done
@@ -74,16 +73,15 @@ echo "&lt;/items&gt;"</string>
 				<key>script</key>
 				<string>IFS=$'\n'
 
-file="sizes/na.txt"
+file="sizes/na.csv"
 
 echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-for paper in $(grep -i "^{query}" "${file}"); do
-	format="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\1/')"
-	mm="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\2/')"
-	in="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\3/')"
-	echo "&lt;item uid='${format}' valid='no' autocomplete='${format}'&gt;"
-	echo "&lt;title&gt;${format}&lt;/title&gt;"
-	echo "&lt;subtitle&gt;${mm} mm  |  ${in} in&lt;/subtitle&gt;"
+for media in $(grep -i "^{query}" "${file}"); do
+	name="$(echo ${media} | sed 's/^\(.*\),\(.*\),\(.*\)$/\1/')"
+	size="$(echo ${media} | sed 's/^\(.*\),\(.*\),\(.*\)$/\2 mm  |  \3 in/')"
+	echo "&lt;item uid='${name}' valid='no' autocomplete='${name}'&gt;"
+	echo "&lt;title&gt;${name}&lt;/title&gt;"
+	echo "&lt;subtitle&gt;${size}&lt;/subtitle&gt;"
 	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
 	echo "&lt;/item&gt;"
 done
@@ -118,16 +116,15 @@ echo "&lt;/items&gt;"</string>
 				<key>script</key>
 				<string>IFS=$'\n'
 
-file="sizes/jis.txt"
+file="sizes/jis.csv"
 
 echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-for paper in $(grep -i "^{query}" "${file}"); do
-	format="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\1/')"
-	mm="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\2/')"
-	in="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\3/')"
-	echo "&lt;item uid='${format}' valid='no' autocomplete='${format}'&gt;"
-	echo "&lt;title&gt;${format}&lt;/title&gt;"
-	echo "&lt;subtitle&gt;${mm} mm  |  ${in} in&lt;/subtitle&gt;"
+for media in $(grep -i "^{query}" "${file}"); do
+	name="$(echo ${media} | sed 's/^\(.*\),\(.*\),\(.*\)$/\1/')"
+	size="$(echo ${media} | sed 's/^\(.*\),\(.*\),\(.*\)$/\2 mm  |  \3 in/')"
+	echo "&lt;item uid='${name}' valid='no' autocomplete='${name}'&gt;"
+	echo "&lt;title&gt;${name}&lt;/title&gt;"
+	echo "&lt;subtitle&gt;${size}&lt;/subtitle&gt;"
 	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
 	echo "&lt;/item&gt;"
 done
@@ -162,16 +159,15 @@ echo "&lt;/items&gt;"</string>
 				<key>script</key>
 				<string>IFS=$'\n'
 
-file="sizes/ansi.txt"
+file="sizes/ansi.csv"
 
 echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-for paper in $(grep -i "^{query}" "${file}"); do
-	format="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\1/')"
-	mm="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\2/')"
-	in="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\3/')"
-	echo "&lt;item uid='${format}' valid='no' autocomplete='${format}'&gt;"
-	echo "&lt;title&gt;${format}&lt;/title&gt;"
-	echo "&lt;subtitle&gt;${mm} mm  |  ${in} in&lt;/subtitle&gt;"
+for media in $(grep -i "^{query}" "${file}"); do
+	name="$(echo ${media} | sed 's/^\(.*\),\(.*\),\(.*\)$/\1/')"
+	size="$(echo ${media} | sed 's/^\(.*\),\(.*\),\(.*\)$/\2 mm  |  \3 in/')"
+	echo "&lt;item uid='${name}' valid='no' autocomplete='${name}'&gt;"
+	echo "&lt;title&gt;${name}&lt;/title&gt;"
+	echo "&lt;subtitle&gt;${size}&lt;/subtitle&gt;"
 	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
 	echo "&lt;/item&gt;"
 done
@@ -206,16 +202,15 @@ echo "&lt;/items&gt;"</string>
 				<key>script</key>
 				<string>IFS=$'\n'
 
-file="sizes/arch.txt"
+file="sizes/arch.csv"
 
 echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-for paper in $(grep -i "^{query}" "${file}"); do
-	format="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\1/')"
-	mm="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\2/')"
-	in="$(echo ${paper} | sed 's/^\(.*\),\(.*\),\(.*\)$/\3/')"
-	echo "&lt;item uid='${format}' valid='no' autocomplete='${format}'&gt;"
-	echo "&lt;title&gt;${format}&lt;/title&gt;"
-	echo "&lt;subtitle&gt;${mm} mm  |  ${in} in&lt;/subtitle&gt;"
+for media in $(grep -i "^{query}" "${file}"); do
+	name="$(echo ${media} | sed 's/^\(.*\),\(.*\),\(.*\)$/\1/')"
+	size="$(echo ${media} | sed 's/^\(.*\),\(.*\),\(.*\)$/\2 mm  |  \3 in/')"
+	echo "&lt;item uid='${name}' valid='no' autocomplete='${name}'&gt;"
+	echo "&lt;title&gt;${name}&lt;/title&gt;"
+	echo "&lt;subtitle&gt;${size}&lt;/subtitle&gt;"
 	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
 	echo "&lt;/item&gt;"
 done
@@ -236,6 +231,49 @@ echo "&lt;/items&gt;"</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>viewport</string>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>IFS=$'\n'
+
+file="sizes/viewport.csv"
+
+echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
+for media in $(grep -i ".*{query}.*" "${file}"); do
+	name="$(echo ${media} | sed 's/^\(.*\),\(.*\),\(.*\),\(.*\)$/\1 · \2/')"
+	size="$(echo ${media} | sed 's/^\(.*\),\(.*\),\(.*\),\(.*\)$/\3 x \4 (Portrait width x Landscape width)/')"
+	echo "&lt;item uid='${name}' valid='no' autocomplete='${name}'&gt;"
+	echo "&lt;title&gt;${name}&lt;/title&gt;"
+	echo "&lt;subtitle&gt;${size}&lt;/subtitle&gt;"
+	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
+	echo "&lt;/item&gt;"
+done
+echo "&lt;/items&gt;"</string>
+				<key>subtext</key>
+				<string>Search by a device’s name, brand, OS, or resolution</string>
+				<key>title</key>
+				<string>Viewport sizes for various mobile devices</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>AB9CA804-7253-4FC6-997B-D7EDCCEED678</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
@@ -250,6 +288,11 @@ echo "&lt;/items&gt;"</string>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
+		</dict>
+		<key>AB9CA804-7253-4FC6-997B-D7EDCCEED678</key>
+		<dict>
+			<key>ypos</key>
+			<real>610</real>
 		</dict>
 		<key>BD21EA10-41BC-4F6E-9688-FC115DD3E5FA</key>
 		<dict>
