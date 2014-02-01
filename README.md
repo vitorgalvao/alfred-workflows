@@ -24,7 +24,7 @@ Downloads video from your browser’s frontmost tab.
 ### FormatSize
 Reference paper sizes and device viewport widths
 
-[info](http://www.alfredforum.com/topic/2748-formatsize-%E2%80%94-shows-the-paper-size-mm-and-in-for-different-formats/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.formatsize/formatsize.alfredworkflow)
+[info](http://www.alfredforum.com/topic/2748-formatsize-%E2%80%94-reference-paper-sizes-and-device-viewport-widths/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.formatsize/formatsize.alfredworkflow)
 
 ### LabelColor
 Sets a label color for selected files and directories.
