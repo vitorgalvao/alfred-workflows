@@ -259,7 +259,7 @@ for media in $(grep -i ".*{query}.*" "${file}"); do
 done
 echo "&lt;/items&gt;"</string>
 				<key>subtext</key>
-				<string>Search by a device’s name, brand, OS, or resolution</string>
+				<string>Search by device name, brand, OS, or viewport width</string>
 				<key>title</key>
 				<string>Viewport sizes for various mobile devices</string>
 				<key>type</key>
