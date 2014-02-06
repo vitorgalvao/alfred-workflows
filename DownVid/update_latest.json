@@ -1,5 +1,5 @@
 {
-	"version": 2.7,
+	"version": 2.8,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/DownVid.alfredworkflow",
-	"description": "use '--restrict-filenames' by default"
+	"description": "Fix for adding names with special characters to WatchList"
 }

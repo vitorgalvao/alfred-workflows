@@ -36,7 +36,10 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>IFS=$'\n'
+				<string># deal with special characters
+export LANG=en_GB.UTF-8
+
+IFS=$'\n'
 
 # set notifications
 notification() {
@@ -50,7 +53,7 @@ fi
 
 gettitle() {
 	#file location
-	title=$(python youtube-dl --output "${downdir}/%(title)s.%(ext)s" --restrict-filenames --get-filename "${link}")
+	title=$(python youtube-dl --output "${downdir}/%(title)s.%(ext)s" --get-filename "${link}")
 
 	# short title
 	shorttitle=$(basename ${title%.*})
@@ -65,7 +68,7 @@ gettitle() {
 }
 
 getfile() {
-	python youtube-dl --quiet --restrict-filenames --output "${downdir}/%(title)s.%(ext)s" "${link}"
+	python youtube-dl --quiet --output "${downdir}/%(title)s.%(ext)s" "${link}"
 }
 
 # download
