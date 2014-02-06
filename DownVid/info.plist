@@ -50,7 +50,7 @@ fi
 
 gettitle() {
 	#file location
-	title=$(python youtube-dl --output "${downdir}/%(title)s.%(ext)s" --get-filename "${link}")
+	title=$(python youtube-dl --output "${downdir}/%(title)s.%(ext)s" --restrict-filenames --get-filename "${link}")
 
 	# short title
 	shorttitle=$(basename ${title%.*})
@@ -65,7 +65,7 @@ gettitle() {
 }
 
 getfile() {
-	python youtube-dl --quiet --output "${downdir}/%(title)s.%(ext)s" "${link}"
+	python youtube-dl --quiet --restrict-filenames --output "${downdir}/%(title)s.%(ext)s" "${link}"
 }
 
 # download
@@ -76,7 +76,7 @@ if [[ "{query}" == "addToWatchList"* ]]; then
 	gettitle
 	echo "${title}" &gt;&gt; "${watchlist}"
 else
-	link="$(cat "{query}")"
+	link="$(cat {query})"
 	downdir="${HOME}/Desktop"
 	gettitle
 fi

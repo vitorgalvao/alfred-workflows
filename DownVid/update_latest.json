@@ -1,5 +1,5 @@
 {
-	"version": 2.6,
+	"version": 2.7,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/DownVid.alfredworkflow",
-	"description": "Switched to terminal-notifier"
+	"description": "use '--restrict-filenames' by default"
 }
