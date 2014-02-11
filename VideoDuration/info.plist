@@ -71,12 +71,12 @@ convertmins() {
 
 # domain-specific
 if [[ ${url} == *'youtube.com'* ]] || [[ ${url} == *'youtu.be'* ]]; then
-    duration=$(curl --silent --location "${url}" | grep '&lt;meta itemprop="duration"' | sed 's/.*PT//;s/"&gt;//' | tr [:upper:] [:lower:])
+    duration=$(curl --silent --location "${url}" | grep '&lt;meta itemprop="duration"' | sed 's/.*PT//;s/"&gt;//' | tr '[:upper:]' '[:lower:]')
     duration=$(convertmins "${duration}")
 fi
 
 if [[ ${url} == *'vimeo.com'* ]]; then
-    duration=$(curl --silent --location "${url}" | grep '&lt;meta itemprop="duration"' | sed 's/.*PT//;s/"&gt;//' | tr [:upper:] [:lower:])
+    duration=$(curl --silent --location "${url}" | grep '&lt;meta itemprop="duration"' | sed 's/.*PT//;s/"&gt;//' | tr '[:upper:]' '[:lower:]')
 fi
 
 if [[ ${url} == *'ted.com'* ]]; then
@@ -85,30 +85,20 @@ if [[ ${url} == *'ted.com'* ]]; then
 fi
 
 # format the time string to remove extra zeros
-if [[ ${duration} == '0'?'h'* ]]; then
-    duration=$(echo ${duration} | sed 's/0//')
-fi
+[[ ${duration} == *'00h'* ]] &amp;&amp; duration=$(echo ${duration} | sed 's/00h//')
+[[ ${duration} == *'00m'* ]] &amp;&amp; duration=$(echo ${duration} | sed 's/00m//')
+[[ ${duration} == *'00s'* ]] &amp;&amp; duration=$(echo ${duration} | sed 's/00s//')
 
-if [[ ${duration} == '0h'* ]]; then
-    duration=$(echo ${duration} | sed 's/0h//')
-fi
+[[ ${duration} == '0'?'h'* ]] &amp;&amp; duration=$(echo ${duration} | sed 's/0//')
+[[ ${duration} == '0'?'m'* ]] &amp;&amp; duration=$(echo ${duration} | sed 's/0//')
+[[ ${duration} == '0'?'s'* ]] &amp;&amp; duration=$(echo ${duration} | sed 's/0//')
 
-if [[ ${duration} == '0'?'m'* ]]; then
-    duration=$(echo ${duration} | sed 's/0//')
-fi
-
-if [[ ${duration} == '0m'* ]]; then
-    duration=$(echo ${duration} | sed 's/0m//')
-fi
-
-if [[ ${duration} == '0'?'s'* ]]; then
-    duration=$(echo ${duration} | sed 's/0//')
-fi
+[[ ${duration} == '0h'* ]] &amp;&amp; duration=$(echo ${duration} | sed 's/0h//')
+[[ ${duration} == *'h0m'* ]] &amp;&amp; duration=$(echo ${duration} | sed 's/0m//')
+[[ ${duration} == *'m0s'* ]] &amp;&amp; duration=$(echo ${duration} | sed 's/0s//')
 
 # format duration; if it's empty (probably used on an unsupported website), it'll just show the url
-if [[ ! -z ${duration} ]]; then
-    duration=" [${duration}]"
-fi
+[[ ! -z ${duration} ]] &amp;&amp; duration=" [${duration}]"
 
 echo -n "${url}${duration}"</string>
 				<key>type</key>
