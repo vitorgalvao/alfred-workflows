@@ -4,6 +4,9 @@ Encoding::default_external = Encoding::UTF_8 if defined? Encoding
 # read text from shell
 s = $stdin.read
 
+# horizontal rule
+s = s.gsub /^(- *|\* *){3,}$/, '[hr]'
+
 # bold and italic
 s = s.gsub /\*\*\*(\S.*?)\*\*\*/, '[b][i]\1[/i][/b]'
 
@@ -12,9 +15,6 @@ s = s.gsub /\*\*(\S.*?)\*\*/, '[b]\1[/b]'
 
 # italic
 s = s.gsub /\*(\S.*?)\*/, '[i]\1[/i]'
-
-# horizontal rule
-s = s.gsub /^[- \*]{3,}$/, '[hr]'
 
 # strike through
 s = s.gsub /~~(.*)~~/, '[s]\1[/s]'
@@ -43,12 +43,12 @@ s = s.gsub /^(( {4}|\t).*)$\z/, "\\1\n[/code]" # if end of text
 s = s.gsub /(^ {4}|\t)/, '' # middle
 
 # inline code
-s = s.gsub /`(.*?)`/, '[u][b]\1[/b][/u]'
+s = s.gsub /`(.*?)`/, '[font=courier new,courier,monospace]\1[/font]'
 
 # headers
-s = s.gsub /^#\s(.*)/, '[size=7]\1[/size]' # big
-s = s.gsub /^##\s(.*)/, '[size=6]\1[/size]' # medium
-s = s.gsub /^###\s(.*)/, '[size=5]\1[/size]' # small
+s = s.gsub /^#\s(.*?)\s*#*$/, '[size=7]\1[/size]' # big
+s = s.gsub /^##\s(.*?)\s*#*$/, '[size=6]\1[/size]' # medium
+s = s.gsub /^###\s(.*?)\s*#*$/, '[size=5]\1[/size]' # small
 
 # lists
 ## unordered

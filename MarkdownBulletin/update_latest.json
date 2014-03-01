@@ -1,5 +1,5 @@
 {
-	"version": 1.4,
+	"version": 1.5,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/MarkdownBulletin.alfredworkflow",
-	"description": "added support for strike through"
+	"description": "bug fixes to hr; allow trailing # in headings; inline code now changes to monospaced font"
 }
