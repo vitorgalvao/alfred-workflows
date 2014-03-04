@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.vitorgalvao.alfred.incognitoclone</string>
+	<key>connections</key>
+	<dict>
+		<key>D1C78EAD-183B-46FC-93DD-CE9D62824D4D</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>F91EA669-611F-436A-89B4-0D448347CCB6</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>4F459C78-66B4-44BA-BB97-470BB0B95816</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Closes Chrome’s frontmost tab and opens it in an incognito window</string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Vítor Galvão</string>
+	<key>description</key>
+	<string>Opens Chrome’s frontmost tab in an incognito window</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>IncognitoClone</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>ic</string>
+				<key>subtext</key>
+				<string>Opens Chrome’s frontmost tab in an incognito window</string>
+				<key>text</key>
+				<string>IncognitoClone</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>D1C78EAD-183B-46FC-93DD-CE9D62824D4D</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>tell application "Google Chrome"	set theURL to URL of active tab of front window	make new window with properties {mode:"incognito"}	tell active tab of front window to set URL to theURLend tell</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>F91EA669-611F-436A-89B4-0D448347CCB6</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>tell application "Google Chrome"	set theURL to URL of active tab of front window	close active tab of front window	make new window with properties {mode:"incognito"}	tell active tab of front window to set URL to theURLend tell</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>4F459C78-66B4-44BA-BB97-470BB0B95816</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>4F459C78-66B4-44BA-BB97-470BB0B95816</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>D1C78EAD-183B-46FC-93DD-CE9D62824D4D</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>F91EA669-611F-436A-89B4-0D448347CCB6</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://vitorgalvao.com/</string>
+</dict>
+</plist>
