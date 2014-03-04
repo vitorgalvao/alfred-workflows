@@ -26,6 +26,11 @@ Reference paper sizes and device viewport widths
 
 [info](http://www.alfredforum.com/topic/2748-formatsize-%E2%80%94-reference-paper-sizes-and-device-viewport-widths/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.formatsize/formatsize.alfredworkflow)
 
+### IncognitoClone
+Opens Chrome’s frontmost tab in an incognito window
+
+[Info](http://www.alfredforum.com/topic/4003-incognitoclone-%E2%80%94-opens-chrome%E2%80%99s-frontmost-tab-in-an-incognito-window/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.incognitoclone/incognitoclone.alfredworkflow)
+
 ### LabelColor
 Sets a label color for selected files and directories.
 
