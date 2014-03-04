@@ -227,7 +227,7 @@ rm /tmp/runcommand</string>
 				<key>keyword</key>
 				<string>runcommand</string>
 				<key>subtext</key>
-				<string>Runs terminal command on selected files/directories</string>
+				<string>Use “{}” for file placeholders, if needed</string>
 				<key>text</key>
 				<string>RunCommand</string>
 				<key>withspace</key>
