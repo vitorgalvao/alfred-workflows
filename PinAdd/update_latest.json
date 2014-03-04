@@ -1,5 +1,5 @@
 {
-	"version": 3.3,
+	"version": 3.4,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/PinAdd.alfredworkflow",
-	"description": "When adding as unread from the shortcut, the notification will no longer steal focus momentarily"
+	"description": "Small change to configure message"
 }
