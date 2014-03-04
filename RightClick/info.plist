@@ -38,7 +38,7 @@
 				<key>hotkey</key>
 				<integer>-1</integer>
 				<key>hotmod</key>
-				<integer>524288</integer>
+				<integer>1048576</integer>
 				<key>hotstring</key>
 				<string>double tap</string>
 				<key>leftcursor</key>
@@ -59,7 +59,7 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>tell application "System Events"	tell application process "Finder"		set _selection to value of attribute "AXFocusedUIElement"		tell _selection to perform action "AXShowMenu"	end tellend tell</string>
+				<string>tell application "System Events" to set frontApp to name of first process whose frontmost is trueif (frontApp = "Finder") then	tell application "System Events"		tell application process "Finder"			set _selection to value of attribute "AXFocusedUIElement"			tell _selection to perform action "AXShowMenu"		end tell	end tellend if</string>
 				<key>type</key>
 				<integer>6</integer>
 			</dict>
