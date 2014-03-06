@@ -1,5 +1,3 @@
-[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=vitor&url=https://github.com/vitorgalvao/alfred-workflows&title=alfred-workflows&language=en_GB&tags=github,alfred&category=software)
-
 # Collection of Alfred Extension scripts
 ### CheckSpelling
 Spelling correction in various languages.
@@ -113,3 +111,11 @@ Find words that contain a particular pattern.
 
 #### License
 All the code in the workflows’ root directory is licensed under [The Unlicense](http://unlicense.org/UNLICENSE) (Public Domain, essentially). Applications and libraries inside a `_licensed` directory (if there is one) are not public domain, and are accompanied by their respective licenses.
+
+---
+
+#### Donations
+If you wish to support this project with a donation, you can do so via the following services.
+
+[![Flattr](https://dl.dropboxusercontent.com/s/3wgyqj4bqvrxl1g/donations_flattr.svg)](https://flattr.com/submit/auto?user_id=vitor&url=https://github.com/vitorgalvao/alfred-workflows&title=alfred-workflows&language=en_GB&tags=github,alfred&category=software)
+[![Gittip](https://dl.dropboxusercontent.com/s/2ak9rnqa11f1ham/donations_gittip.svg)](https://www.gittip.com/vitorgalvao/)
