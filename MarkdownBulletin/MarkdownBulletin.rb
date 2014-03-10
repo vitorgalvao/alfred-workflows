@@ -7,15 +7,6 @@ s = $stdin.read
 # horizontal rule
 s = s.gsub /^(- *|\* *){3,}$/, '[hr]'
 
-# image that sends to url
-s = s.gsub /\[!\[.*\]\((.*)\)\]\((.*)\)/, '[url=\2][img=\1][/url]'
-
-# image
-s = s.gsub /!\[.*\]\((.*?)\)/, '[img=\1]'
-
-# url
-s = s.gsub /\[(.*?)\]\((.*?)\)/, '[url=\2]\1[/url]'
-
 # bold and italic
 s = s.gsub /\*\*\*(\S.*?)\*\*\*/, '[b][i]\1[/i][/b]'
 
@@ -30,6 +21,15 @@ s = s.gsub /~~(.*)~~/, '[s]\1[/s]'
 
 # quote
 s = s.gsub /^>\s(.*)/, "[quote]\n\\1\n[/quote]"
+
+# image that sends to url
+s = s.gsub /\[!\[[^\]]*\]\(([^)]*)\)\]\(([^)]*)\)/, '[url=\2][img=\1][/url]'
+
+# image
+s = s.gsub /!\[[^\]]*\]\(([^)]*)\)/, '[img=\1]'
+
+# url
+s = s.gsub /\[([^\]]*)\]\(([^)]*)\)/, '[url=\2]\1[/url]'
 
 # code block
 ## with backticks
