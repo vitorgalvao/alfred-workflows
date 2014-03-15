@@ -1,4 +1,9 @@
 # Collection of Alfred Workflows
+### BugNot
+Get logins from bugmenot
+
+[info](http://www.alfredforum.com/topic/4075-bugnot-%E2%80%94-get-logins-from-bugmenot/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.bugnot/bugnot.alfredworkflow)
+
 ### CheckSpelling
 Spelling correction in various languages.
 
