@@ -1,4 +1,4 @@
-# Collection of Alfred Extension scripts
+# Collection of Alfred Workflows
 ### CheckSpelling
 Spelling correction in various languages.
 
