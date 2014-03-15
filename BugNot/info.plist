@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.vitorgalvao.alfred.bugnot</string>
+	<key>connections</key>
+	<dict>
+		<key>102D4873-1538-4B56-839D-379DC48A163C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>76A74D8D-DBCC-4053-87C7-3C7FEC7B5EEF</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>19EFC881-C598-4139-B02E-427554517796</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>76A74D8D-DBCC-4053-87C7-3C7FEC7B5EEF</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>3D696DA5-1D90-4A2A-A3A0-550BFDAAF148</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>623811E1-9EDE-4B64-8B2C-04D82D84AAA0</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>19EFC881-C598-4139-B02E-427554517796</string>
+				<key>modifiers</key>
+				<integer>262144</integer>
+				<key>modifiersubtext</key>
+				<string>Paste username</string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>102D4873-1538-4B56-839D-379DC48A163C</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Paste password</string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Vítor Galvão</string>
+	<key>description</key>
+	<string>Get logins from bugmenot</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>BugNot</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>bn</string>
+				<key>runningsubtext</key>
+				<string>Getting logins…</string>
+				<key>script</key>
+				<string>IFS=$'\n'
+
+ruby ./bugnot.rb '{query}'
+
+detailsFile="/tmp/bugnot"
+
+echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
+for line in $(cat "${detailsFile}"); do
+	username="$(echo "${line}" | awk -F '////' '{print $1}' | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"'\''})')"
+	password="$(echo "${line}" | awk -F '////' '{print $2}' | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"'\''})')"
+	success="$(echo "${line}" | awk -F '////' '{print $3}' | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"'\''})')"
+	echo "&lt;item uuid='{query}' valid='yes' arg=\"${username}////${password}\"&gt;"
+	echo "&lt;title&gt;${username}&lt;/title&gt;"
+	echo "&lt;subtitle&gt;${password}&lt;/subtitle&gt;"
+	echo "&lt;icon&gt;icons/${success}.png&lt;/icon&gt;"
+	echo "&lt;/item&gt;"
+done
+echo "&lt;/items&gt;"</string>
+				<key>subtext</key>
+				<string>Get logins from bugmenot</string>
+				<key>title</key>
+				<string>BugNot</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>3D696DA5-1D90-4A2A-A3A0-550BFDAAF148</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>username=$(echo '{query}' | awk -F '////' '{print $1}')
+password=$(echo '{query}' | awk -F '////' '{print $2}')
+
+osascript -e "tell application \"System Events\"	keystroke \"${username}\"	key code 48	keystroke \"${password}\"end tell"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>623811E1-9EDE-4B64-8B2C-04D82D84AAA0</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>echo '{query}' | awk -F '////' '{print $1}'</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>19EFC881-C598-4139-B02E-427554517796</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>76A74D8D-DBCC-4053-87C7-3C7FEC7B5EEF</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>echo '{query}' | awk -F '////' '{print $2}'</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>102D4873-1538-4B56-839D-379DC48A163C</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>102D4873-1538-4B56-839D-379DC48A163C</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
+		</dict>
+		<key>19EFC881-C598-4139-B02E-427554517796</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>3D696DA5-1D90-4A2A-A3A0-550BFDAAF148</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>623811E1-9EDE-4B64-8B2C-04D82D84AAA0</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>76A74D8D-DBCC-4053-87C7-3C7FEC7B5EEF</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://vitorgalvao.com/</string>
+</dict>
+</plist>
