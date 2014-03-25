@@ -1,5 +1,5 @@
 {
-	"version": 2.8,
+	"version": 2.9,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/DownVid.alfredworkflow",
-	"description": "Fix for adding names with special characters to WatchList"
+	"description": "Do not download entire playlists"
 }
