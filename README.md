@@ -54,6 +54,11 @@ Takes arguments as tags and adds your browser’s frontmost tab as a pinboard bo
 
 [info](http://www.alfredforum.com/topic/1230-pinadd-%E2%80%94-takes-arguments-as-tags-and-adds-your-browser%E2%80%99s-frontmost-tab-as-a-pinboard-bookmark/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.pinadd/pinadd.alfredworkflow)
 
+### PingPong
+Play a round of table tennis with Alfred.
+
+[info](http://www.alfredforum.com/topic/4176-pinpong-%E2%80%94-play-a-round-of-table-tennis-with-alfred/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.pingpong/pingpong.alfredworkflow)
+
 ### PinUnread
 Open and manage your Pinboard “toread” bookmarks.
 
