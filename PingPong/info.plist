@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.vitorgalvao.alfred.pingpong</string>
+	<key>connections</key>
+	<dict>
+		<key>0FCEC7D5-B732-4E5F-BAD4-7C9A0BBBDB35</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>947F1CD2-239D-4248-A0E2-7EC34F913700</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Vítor Galvão</string>
+	<key>description</key>
+	<string>Play a round of table tennis with Alfred</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>PingPong</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>scoreFile="/tmp/pingpongscore"
+if [[ ! -f "${scoreFile}" ]]; then
+	echo -n "0" &gt; "${scoreFile}"
+fi
+
+if [[ "{query}" == "pong" ]]; then
+	score=$[$(cat "${scoreFile}") + 1]
+	echo "${score}" &gt; "${scoreFile}"
+	osascript -e "tell application \"Alfred 2\" to search \"ping\""
+else
+	osascript -e "tell application \"Alfred 2\" to search \"scorepingpong\""
+fi</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>947F1CD2-239D-4248-A0E2-7EC34F913700</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>ping</string>
+				<key>runningsubtext</key>
+				<string>Ping!</string>
+				<key>script</key>
+				<string>echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
+randomNum="$(grep -m1 -ao '[1-9]' /dev/urandom | head -1)"
+for (( i = 1; i &lt;= 9; i++ )); do
+	if [[ "${i}" == "${randomNum}" ]]; then
+		smack="Pong!"
+		echo "&lt;item uuid='Smack' valid='yes' arg='pong'&gt;"
+	else
+		smack="Miss!"
+		echo "&lt;item uuid='Smack' valid='yes' arg='miss'&gt;"
+	fi
+	echo "&lt;item uid='Smack' valid='yes' arg='miss'&gt;"
+	echo "&lt;title&gt;${smack}&lt;/title&gt;"
+	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
+	echo "&lt;/item&gt;"
+done
+echo "&lt;/items&gt;"</string>
+				<key>subtext</key>
+				<string>Play a round of table tennis with Alfred</string>
+				<key>title</key>
+				<string>PingPong</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>0FCEC7D5-B732-4E5F-BAD4-7C9A0BBBDB35</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>scorepingpong</string>
+				<key>runningsubtext</key>
+				<string>Your score is…</string>
+				<key>script</key>
+				<string>scoreFile="/tmp/pingpongscore"
+score=$(cat "${scoreFile}")
+
+if [[ "${score}" == "1" ]]; then
+	message="You’ve smacked the ball once."
+elif [[ "${score}" &gt; "1" ]]; then
+	message="You’ve smacked the ball ${score} times."
+else
+	message="Call “ping” in Alfred, to start a game."
+fi
+
+cat &lt;&lt; EOF
+	&lt;?xml version='1.0'?&gt;&lt;items&gt;
+	  &lt;item uuid='Score' valid='no'&gt;
+	    &lt;title&gt;PingPong score&lt;/title&gt;
+	    &lt;subtitle&gt;${message}&lt;/subtitle&gt;
+	    &lt;icon&gt;icon.png&lt;/icon&gt;
+	  &lt;/item&gt;
+	&lt;/items&gt;
+EOF
+
+rm "${scoreFile}"</string>
+				<key>subtext</key>
+				<string>Shows how many time you’ve responded</string>
+				<key>title</key>
+				<string>PingPong score</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>D83530CA-1361-40F2-8729-91D0B32365C1</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>0FCEC7D5-B732-4E5F-BAD4-7C9A0BBBDB35</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>947F1CD2-239D-4248-A0E2-7EC34F913700</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>D83530CA-1361-40F2-8729-91D0B32365C1</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://vitorgalvao.com/</string>
+</dict>
+</plist>
