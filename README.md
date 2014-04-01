@@ -39,6 +39,11 @@ Sets a label color for selected files and directories.
 
 [info](http://www.alfredforum.com/topic/1334-labelcolor-%E2%80%94-sets-a-label-color-for-selected-files-and-directories/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.labelcolor/labelcolor.alfredworkflow)
 
+### LinkClean
+Removes extraneous information from URLs.
+
+[info](http://www.alfredforum.com/topic/4179-linkclean-%E2%80%94-removes-extraneous-information-from-urls/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.linkclean/linkclean.alfredworkflow)
+
 ### MarkdownBulletin
 Convert Markdown to BBCode.
 
