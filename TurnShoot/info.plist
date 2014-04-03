@@ -134,7 +134,7 @@ EOF</string>
 			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
-				<integer>2</integer>
+				<integer>1</integer>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>keyword</key>
@@ -144,8 +144,6 @@ EOF</string>
 				<key>script</key>
 				<string>shotsFile="/tmp/turnandshoot"
 [[ -f "${shotsFile}" ]] &amp;&amp; missed="no" || missed="yes"
-
-rm "${shotsFile}"
 
 echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
 echo "&lt;item uuid='Shot' valid='yes'&gt;"
@@ -179,7 +177,7 @@ echo "&lt;/items&gt;"</string>
 			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
-				<integer>2</integer>
+				<integer>1</integer>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>keyword</key>
@@ -188,12 +186,7 @@ echo "&lt;/items&gt;"</string>
 				<string>Loading…</string>
 				<key>script</key>
 				<string>shotsFile="/tmp/turnandshoot"
-if [[ -f "${shotsFile}" ]]; then
-	missed="no"
-	rm "${shotsFile}"
-else
-	missed="yes"
-fi
+[[ -f "${shotsFile}" ]] &amp;&amp; missed="no" || missed="yes"
 
 echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
 echo "&lt;item uuid='Shot' valid='yes'&gt;"
