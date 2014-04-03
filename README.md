@@ -109,6 +109,11 @@ Substitute words by checking against a thesaurs
 
 [info](http://www.alfredforum.com/topic/3954-synant-%E2%80%94-substitute-words-by-checking-against-a-thesaurs/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.synant/synant.alfredworkflow)
 
+TurnShoot
+A two-player game for Alfred
+
+[info](http://www.alfredforum.com/topic/4188-turnshoot-%E2%80%94-a-two-player-game-for-alfred/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.turnshoot/turnshoot.alfredworkflow)
+
 ### VideoDuration
 Outputs the url of a video on a supported website with its duration in square brackets.
 
