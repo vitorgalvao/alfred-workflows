@@ -6,11 +6,22 @@
 	<string>com.vitorgalvao.alfred.pingpong</string>
 	<key>connections</key>
 	<dict>
-		<key>0FCEC7D5-B732-4E5F-BAD4-7C9A0BBBDB35</key>
+		<key>4935E4E5-9198-4348-9FC2-9333F65EB86C</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>947F1CD2-239D-4248-A0E2-7EC34F913700</string>
+				<string>A6BFBD66-A039-416B-AD6D-3D70D55FC2F0</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>56BA617E-2DE5-4D64-8C30-D0FD4844DE6C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>A6BFBD66-A039-416B-AD6D-3D70D55FC2F0</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -36,15 +47,27 @@
 				<key>script</key>
 				<string>scoreFile="/tmp/pingpongscore"
 if [[ ! -f "${scoreFile}" ]]; then
-	echo -n "0" &gt; "${scoreFile}"
+	echo -n "-1" &gt; "${scoreFile}"
 fi
 
-if [[ "{query}" == "pong" ]]; then
+if [[ "{query}" == "miss" ]]; then
+	osascript -e "tell application \"Alfred 2\" to search \"scorepingpong\""
+else
 	score=$[$(cat "${scoreFile}") + 1]
 	echo "${score}" &gt; "${scoreFile}"
-	osascript -e "tell application \"Alfred 2\" to search \"ping\""
-else
-	osascript -e "tell application \"Alfred 2\" to search \"scorepingpong\""
+
+	difficulty() {
+		sleep "$1"
+		osascript -e "tell application \"Alfred 2\" to search \"scorepingpong\""
+	}
+
+	if [[ "{query}" == "medium" ]]; then
+		difficulty 2 &amp;
+	elif [[ "{query}" == "hard" ]]; then
+		difficulty 1 &amp;
+	fi
+
+	osascript -e "tell application \"Alfred 2\" to search \"pong {query}\""
 fi</string>
 				<key>type</key>
 				<integer>0</integer>
@@ -52,7 +75,7 @@ fi</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>947F1CD2-239D-4248-A0E2-7EC34F913700</string>
+			<string>A6BFBD66-A039-416B-AD6D-3D70D55FC2F0</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -66,24 +89,32 @@ fi</string>
 				<key>keyword</key>
 				<string>ping</string>
 				<key>runningsubtext</key>
-				<string>Ping!</string>
+				<string>Please wait…</string>
 				<key>script</key>
-				<string>echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-randomNum="$(grep -m1 -ao '[1-9]' /dev/urandom | head -1)"
-for (( i = 1; i &lt;= 9; i++ )); do
-	if [[ "${i}" == "${randomNum}" ]]; then
-		smack="Pong!"
-		echo "&lt;item uuid='Smack' valid='yes' arg='pong'&gt;"
-	else
-		smack="Miss!"
-		echo "&lt;item uuid='Smack' valid='yes' arg='miss'&gt;"
-	fi
-	echo "&lt;item uid='Smack' valid='yes' arg='miss'&gt;"
-	echo "&lt;title&gt;${smack}&lt;/title&gt;"
-	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
-	echo "&lt;/item&gt;"
-done
-echo "&lt;/items&gt;"</string>
+				<string>scoreFile="/tmp/pingpongscore"
+if [[ -f "${scoreFile}" ]]; then
+	rm "${scoreFile}"
+fi
+
+cat &lt;&lt; EOF
+	&lt;?xml version='1.0'?&gt;&lt;items&gt;
+	  &lt;item uid='easy' valid='yes' arg='easy'&gt;
+	    &lt;title&gt;Easy&lt;/title&gt;
+	    &lt;subtitle&gt;No time limit, just play around a bit&lt;/subtitle&gt;
+	    &lt;icon&gt;icon.png&lt;/icon&gt;
+	  &lt;/item&gt;
+	  &lt;item uid='medium' valid='yes' arg='medium'&gt;
+	    &lt;title&gt;Medium&lt;/title&gt;
+	    &lt;subtitle&gt;Doable, but you might reach for the shortcut keys&lt;/subtitle&gt;
+	    &lt;icon&gt;icon.png&lt;/icon&gt;
+	  &lt;/item&gt;
+	  &lt;item uid='hard' valid='yes' arg='hard'&gt;
+	    &lt;title&gt;Hard&lt;/title&gt;
+	    &lt;subtitle&gt;This was supposed to be relaxing&lt;/subtitle&gt;
+	    &lt;icon&gt;icon.png&lt;/icon&gt;
+	  &lt;/item&gt;
+	&lt;/items&gt;
+EOF</string>
 				<key>subtext</key>
 				<string>Play a round of table tennis with Alfred</string>
 				<key>title</key>
@@ -96,7 +127,51 @@ echo "&lt;/items&gt;"</string>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>0FCEC7D5-B732-4E5F-BAD4-7C9A0BBBDB35</string>
+			<string>56BA617E-2DE5-4D64-8C30-D0FD4844DE6C</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>pong</string>
+				<key>runningsubtext</key>
+				<string>Please wait… Ping!</string>
+				<key>script</key>
+				<string>echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
+randomNum="$(grep -m1 -ao '[1-9]' /dev/urandom | head -1)"
+for (( i = 1; i &lt;= 9; i++ )); do
+	if [[ "${i}" == "${randomNum}" ]]; then
+		smack="Pong!"
+		echo "&lt;item uuid='Smack' valid='yes' arg='{query}'&gt;"
+	else
+		smack="Miss!"
+		echo "&lt;item uuid='Smack' valid='yes' arg='miss'&gt;"
+	fi
+	echo "&lt;item uid='Smack' valid='yes' arg='miss'&gt;"
+	echo "&lt;title&gt;${smack}&lt;/title&gt;"
+	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
+	echo "&lt;/item&gt;"
+done
+echo "&lt;/items&gt;"</string>
+				<key>subtext</key>
+				<string>You need to call “ping” to start a game</string>
+				<key>title</key>
+				<string>PingPong</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>4935E4E5-9198-4348-9FC2-9333F65EB86C</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -115,7 +190,9 @@ echo "&lt;/items&gt;"</string>
 				<string>scoreFile="/tmp/pingpongscore"
 score=$(cat "${scoreFile}")
 
-if [[ "${score}" == "1" ]]; then
+if [[ "${score}" == "0" ]]; then
+	message="Try again."
+elif [[ "${score}" == "1" ]]; then
 	message="You’ve smacked the ball once."
 elif [[ "${score}" &gt; "1" ]]; then
 	message="You’ve smacked the ball ${score} times."
@@ -131,9 +208,7 @@ cat &lt;&lt; EOF
 	    &lt;icon&gt;icon.png&lt;/icon&gt;
 	  &lt;/item&gt;
 	&lt;/items&gt;
-EOF
-
-rm "${scoreFile}"</string>
+EOF</string>
 				<key>subtext</key>
 				<string>Shows how many time you’ve responded</string>
 				<key>title</key>
@@ -146,7 +221,7 @@ rm "${scoreFile}"</string>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>D83530CA-1361-40F2-8729-91D0B32365C1</string>
+			<string>60116713-040A-484C-8D7F-869093CFE306</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -155,20 +230,25 @@ rm "${scoreFile}"</string>
 	<string></string>
 	<key>uidata</key>
 	<dict>
-		<key>0FCEC7D5-B732-4E5F-BAD4-7C9A0BBBDB35</key>
-		<dict>
-			<key>ypos</key>
-			<real>10</real>
-		</dict>
-		<key>947F1CD2-239D-4248-A0E2-7EC34F913700</key>
-		<dict>
-			<key>ypos</key>
-			<real>10</real>
-		</dict>
-		<key>D83530CA-1361-40F2-8729-91D0B32365C1</key>
+		<key>4935E4E5-9198-4348-9FC2-9333F65EB86C</key>
 		<dict>
 			<key>ypos</key>
 			<real>130</real>
+		</dict>
+		<key>56BA617E-2DE5-4D64-8C30-D0FD4844DE6C</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>60116713-040A-484C-8D7F-869093CFE306</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
+		</dict>
+		<key>A6BFBD66-A039-416B-AD6D-3D70D55FC2F0</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
