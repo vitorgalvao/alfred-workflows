@@ -1,5 +1,5 @@
 {
-	"version": 2.9,
+	"version": 3.0,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/WatchList.alfredworkflow",
-	"description": "Added wli and external licensed apps"
+	"description": "Updated way XML is handled"
 }

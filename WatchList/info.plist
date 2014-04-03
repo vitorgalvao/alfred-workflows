@@ -204,14 +204,14 @@ if [[ -z $(cat ${towatch}) ]]; then
 	echo "&lt;/items&gt;"
 else
 	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-	towatch=$(cat ${towatch} | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"})')
+	towatch=$(cat ${towatch})
 	for file in $(echo "${towatch}" | grep -in ".*{query}.*"); do
 		line="$(echo ${file} | sed 's/:.*//')"
 		file="$(echo ${file} | sed 's/.*://')"
 		filename="$(basename ${file})"
 		echo "&lt;item uuid='${line}' arg='${line}' valid='yes'&gt;"
-		echo "&lt;title&gt;${filename}&lt;/title&gt;"
-		echo "&lt;subtitle&gt;${file}&lt;/subtitle&gt;"
+		echo "&lt;title&gt;&lt;![CDATA[${filename}]]&gt;&lt;/title&gt;"
+		echo "&lt;subtitle&gt;&lt;![CDATA[${file}]]&gt;&lt;/subtitle&gt;"
 		echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
 		echo "&lt;/item&gt;"
 	done
@@ -260,14 +260,14 @@ if [[ -z $(cat ${towatch}) ]]; then
 	echo "&lt;/items&gt;"
 else
 	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-	towatch=$(cat ${towatch} | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"})')
+	towatch=$(cat ${towatch})
 	for file in $(echo "${towatch}" | grep -in ".*{query}.*"); do
 		line="$(echo ${file} | sed 's/:.*//')"
 		file="$(echo ${file} | sed 's/.*://')"
-		duration="$(./_licensed/mediainfo/mediainfo --Output=Video\;%Duration/String2% ${file})"
+		duration="$(./_licensed/mediainfo/mediainfo --Output='Video;%Duration/String2%' ${file})"
 		filename="$(basename ${file})"
 		echo "&lt;item uuid='${line}' arg='${line}' valid='yes'&gt;"
-		echo "&lt;title&gt;${filename}&lt;/title&gt;"
+		echo "&lt;title&gt;&lt;![CDATA[${filename}]]&gt;&lt;/title&gt;"
 		echo "&lt;subtitle&gt;${duration}&lt;/subtitle&gt;"
 		echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
 		echo "&lt;/item&gt;"
@@ -346,14 +346,14 @@ if [[ -z $(cat ${watched}) ]]; then
 	echo "&lt;/items&gt;"
 else
 	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-	watched=$(cat ${watched} | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"})')
+	watched=$(cat ${watched})
 	for file in $(echo "${watched}" | grep -in ".*{query}.*"); do
 		line="$(echo ${file} | sed 's/:.*//')"
 		file="$(echo ${file} | sed 's/.*://')"
 		filename="$(basename ${file})"
 		echo "&lt;item uuid='${line}' arg='${line}' valid='yes'&gt;"
-		echo "&lt;title&gt;${filename}&lt;/title&gt;"
-		echo "&lt;subtitle&gt;${file}&lt;/subtitle&gt;"
+		echo "&lt;title&gt;&lt;![CDATA[${filename}]]&gt;&lt;/title&gt;"
+		echo "&lt;subtitle&gt;&lt;![CDATA[${file}]]&gt;&lt;/subtitle&gt;"
 		echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
 		echo "&lt;/item&gt;"
 	done
