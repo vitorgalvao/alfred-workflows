@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.vitorgalvao.alfred.turnshoot</string>
+	<key>connections</key>
+	<dict>
+		<key>08291D0D-7C93-48B4-8E99-8D33D59AD159</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>6246F2F3-2B38-4928-B362-2207568EB817</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>14A33190-682D-4FE5-A1E0-8F1601CA88DF</key>
+		<array/>
+		<key>23029A6D-4474-4070-9D48-9DDC39C7D6CC</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>6246F2F3-2B38-4928-B362-2207568EB817</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>4E42AF76-8549-4514-9EE1-C472298CBAC2</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>6246F2F3-2B38-4928-B362-2207568EB817</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Vítor Galvão</string>
+	<key>description</key>
+	<string>A two-player game for Alfred</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>TurnShoot</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>osascript -e "tell application \"Alfred 2\" to search \"prepare to turn…\""</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>6246F2F3-2B38-4928-B362-2207568EB817</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>turnshoot</string>
+				<key>subtext</key>
+				<string>Player 1 uses “q” and player 2 uses “p”</string>
+				<key>text</key>
+				<string>TurnShoot</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>4E42AF76-8549-4514-9EE1-C472298CBAC2</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>prepare to turn…</string>
+				<key>script</key>
+				<string>shotsFile="/tmp/turnandshoot"
+rm "${shotsFile}"
+
+randomNum="$(grep -m1 -ao '[3-6]' /dev/urandom | head -1)"
+sleep ${randomNum}
+
+touch "${shotsFile}"
+
+cat &lt;&lt; EOF
+	&lt;?xml version='1.0'?&gt;&lt;items&gt;
+	  &lt;item uuid='Shoot' valid='no'&gt;
+	    &lt;title&gt;Shoot!&lt;/title&gt;
+	    &lt;icon&gt;iconAlt.png&lt;/icon&gt;
+	  &lt;/item&gt;
+	&lt;/items&gt;
+EOF</string>
+				<key>title</key>
+				<string>Turn and…</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>14A33190-682D-4FE5-A1E0-8F1601CA88DF</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>prepare to turn…q</string>
+				<key>runningsubtext</key>
+				<string>Loading…</string>
+				<key>script</key>
+				<string>shotsFile="/tmp/turnandshoot"
+[[ -f "${shotsFile}" ]] &amp;&amp; missed="no" || missed="yes"
+
+rm "${shotsFile}"
+
+echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
+echo "&lt;item uuid='Shot' valid='yes'&gt;"
+if [[ "${missed}" == "yes" ]]; then
+	echo "&lt;title&gt;Player 1 missed…&lt;/title&gt;"
+	echo "&lt;subtitle&gt;Player 2 wins&lt;/subtitle&gt;"
+else
+	echo "&lt;title&gt;Player 1 hits!&lt;/title&gt;"
+	echo "&lt;subtitle&gt;Player 1 wins&lt;/subtitle&gt;"
+fi
+echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
+echo "&lt;/item&gt;"
+echo "&lt;/items&gt;"</string>
+				<key>subtext</key>
+				<string>Call “turnshoot” to start a game</string>
+				<key>title</key>
+				<string>Player 1</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>23029A6D-4474-4070-9D48-9DDC39C7D6CC</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>prepare to turn…p</string>
+				<key>runningsubtext</key>
+				<string>Loading…</string>
+				<key>script</key>
+				<string>shotsFile="/tmp/turnandshoot"
+if [[ -f "${shotsFile}" ]]; then
+	missed="no"
+	rm "${shotsFile}"
+else
+	missed="yes"
+fi
+
+echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
+echo "&lt;item uuid='Shot' valid='yes'&gt;"
+if [[ "${missed}" == "yes" ]]; then
+	echo "&lt;title&gt;Player 2 missed…&lt;/title&gt;"
+	echo "&lt;subtitle&gt;Player 1 wins&lt;/subtitle&gt;"
+else
+	echo "&lt;title&gt;Player 2 hits!&lt;/title&gt;"
+	echo "&lt;subtitle&gt;Player 2 wins&lt;/subtitle&gt;"
+fi
+echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
+echo "&lt;/item&gt;"
+echo "&lt;/items&gt;"</string>
+				<key>subtext</key>
+				<string>Call “turnshoot” to start a game</string>
+				<key>title</key>
+				<string>Player 2</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>08291D0D-7C93-48B4-8E99-8D33D59AD159</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>08291D0D-7C93-48B4-8E99-8D33D59AD159</key>
+		<dict>
+			<key>ypos</key>
+			<real>370</real>
+		</dict>
+		<key>14A33190-682D-4FE5-A1E0-8F1601CA88DF</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>23029A6D-4474-4070-9D48-9DDC39C7D6CC</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
+		</dict>
+		<key>4E42AF76-8549-4514-9EE1-C472298CBAC2</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>6246F2F3-2B38-4928-B362-2207568EB817</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://vitorgalvao.com/</string>
+</dict>
+</plist>
