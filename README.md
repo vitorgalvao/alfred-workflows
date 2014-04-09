@@ -2,7 +2,7 @@
 ### AlfredBookmarklet
 Use a browser bookmarklet via Alfred.
 
-
+[info](http://www.alfredforum.com/topic/4235-alfredbookmarklet-%E2%80%94-use-a-browser-bookmarklet-via-alfred/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.alfredbookmarklet/alfredbookmarklet.alfredworkflow)
 
 ### BugNot
 Get logins from bugmenot
