@@ -34,15 +34,15 @@
 			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
-				<integer>2</integer>
+				<integer>1</integer>
 				<key>keyword</key>
 				<string>strongpassword</string>
 				<key>subtext</key>
-				<string>Get a strong password</string>
+				<string>Get a strong password (with optional max number of characters)</string>
 				<key>text</key>
 				<string>StrongPassword</string>
 				<key>withspace</key>
-				<false/>
+				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.keyword</string>
@@ -55,13 +55,13 @@
 			<key>config</key>
 			<dict>
 				<key>escaping</key>
-				<integer>0</integer>
+				<integer>8</integer>
 				<key>script</key>
 				<string>notificator() {
-	notificator.app/Contents/Resources/Scripts/notificator -t "StrongPassword" -m "${1}"
+  notificator.app/Contents/Resources/Scripts/notificator -t "StrongPassword" -m "${1}"
 }
 
-curl 'https://www.grc.com/passwords.htm' | grep 'ASCII characters:' | perl -MHTML::Entities -ne 's/.*2&gt;|&lt;.*//g; print decode_entities($_)' | tr -d '\n' | pbcopy
+curl 'https://www.grc.com/passwords.htm' | grep 'ASCII characters:' | perl -MHTML::Entities -ne 's/.*2&gt;|&lt;.*//g; print decode_entities($_)' | tr -d '\n' | cut -c1-`echo {query} | tr -cd [:digit:]` | pbcopy
 
 notificator "Password copied to the clipboard"</string>
 				<key>type</key>
@@ -76,7 +76,11 @@ notificator "Password copied to the clipboard"</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string># StrongPassword
+
+Get a strong password from https://www.grc.com/passwords.htm directly to the clipboard
+
+Optionally supply a max number of characters, such as:  strongpassword 9</string>
 	<key>uidata</key>
 	<dict>
 		<key>15299C7A-CDEA-4359-8898-446F2892DB7C</key>
