@@ -81,11 +81,10 @@ notificator "Password copied to the clipboard (${charCount} characters)"</string
 		</dict>
 	</array>
 	<key>readme</key>
-	<string># StrongPassword
+	<string>Get a strong password from https://www.grc.com/passwords.htm directly to the clipboard.
 
-Get a strong password from https://www.grc.com/passwords.htm directly to the clipboard
-
-Optionally supply a max number of characters, such as:  strongpassword 9</string>
+Optionally supply a max number of characters, such as
+strongpassword 9</string>
 	<key>uidata</key>
 	<dict>
 		<key>15299C7A-CDEA-4359-8898-446F2892DB7C</key>
