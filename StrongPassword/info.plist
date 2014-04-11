@@ -34,15 +34,15 @@
 			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
-				<integer>2</integer>
+				<integer>1</integer>
 				<key>keyword</key>
 				<string>strongpassword</string>
 				<key>subtext</key>
-				<string>Get a strong password</string>
+				<string>Get a strong password (with optional maximum number of characters)</string>
 				<key>text</key>
 				<string>StrongPassword</string>
 				<key>withspace</key>
-				<false/>
+				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.keyword</string>
@@ -58,12 +58,17 @@
 				<integer>0</integer>
 				<key>script</key>
 				<string>notificator() {
-	notificator.app/Contents/Resources/Scripts/notificator -t "StrongPassword" -m "${1}"
+  notificator.app/Contents/Resources/Scripts/notificator -t "StrongPassword" -m "${1}"
 }
 
-curl 'https://www.grc.com/passwords.htm' | grep 'ASCII characters:' | perl -MHTML::Entities -ne 's/.*2&gt;|&lt;.*//g; print decode_entities($_)' | tr -d '\n' | pbcopy
+charCount=$(echo "{query}" | tr -cd [:digit:])
+if [[ -z "${charCount}" ]] || [[ "${charCount}" &gt; 63 ]]; then
+  charCount="63"
+fi
 
-notificator "Password copied to the clipboard"</string>
+curl 'https://www.grc.com/passwords.htm' | grep 'ASCII characters:' | perl -MHTML::Entities -ne 's/.*2&gt;|&lt;.*//g; print decode_entities($_)' | cut -c1-${charCount} | tr -d '\n' | pbcopy
+
+notificator "Password copied to the clipboard (${charCount} characters)"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -76,7 +81,10 @@ notificator "Password copied to the clipboard"</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string>Get a strong password from https://www.grc.com/passwords.htm directly to the clipboard.
+
+Optionally supply a max number of characters, such as
+strongpassword 9</string>
 	<key>uidata</key>
 	<dict>
 		<key>15299C7A-CDEA-4359-8898-446F2892DB7C</key>
