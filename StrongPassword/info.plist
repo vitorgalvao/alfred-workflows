@@ -23,7 +23,7 @@
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
 	<key>description</key>
-	<string>Get a strong password from https://www.grc.com/passwords.htm directly to the clipboard</string>
+	<string>Get a strong password by leveraging multiple resources</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -61,14 +61,15 @@
   notificator.app/Contents/Resources/Scripts/notificator -t "StrongPassword" -m "${1}"
 }
 
-charCount=$(echo "{query}" | tr -cd [:digit:])
-if [[ -z "${charCount}" ]] || [[ "${charCount}" &gt; 63 ]]; then
-  charCount="63"
+if [[ -z "{query}" ]] || [[ "{query}" -gt 64 ]]; then
+  number="64"
+else
+  number="{query}"
 fi
 
-curl 'https://www.grc.com/passwords.htm' | grep 'ASCII characters:' | perl -MHTML::Entities -ne 's/.*2&gt;|&lt;.*//g; print decode_entities($_)' | cut -c1-${charCount} | tr -d '\n' | pbcopy
+ruby getPassword.rb "${number}" | pbcopy
 
-notificator "Password copied to the clipboard (${charCount} characters)"</string>
+notificator "Password copied to the clipboard (${number} characters)"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
