@@ -107,7 +107,7 @@ Runs terminal command on selected files/directories
 ### StrongPassword
 Get a strong password by leveraging multiple sources
 
-[info](http://www.alfredforum.com/topic/1233-strongpassword-%E2%80%94-get-a-strong-password-from-httpswwwgrccompasswordshtm-directly-to-the-clipboard/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.strongpassword/strongpassword.alfredworkflow)
+[info](http://www.alfredforum.com/topic/1233-strongpassword-%E2%80%94-get-a-strong-password-by-leveraging-multiple-sources/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.strongpassword/strongpassword.alfredworkflow)
 
 ### SynAnt
 Substitute words by checking against a thesaurs
