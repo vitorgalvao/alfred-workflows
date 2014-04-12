@@ -1,5 +1,5 @@
 {
-	"version": 1.7,
+	"version": 1.8,
 	"download_url": "https://raw.github.com/vitorgalvao/alfred-workflows/master/bin/MarkdownBulletin.alfredworkflow",
-	"description": "further improvements to url handling"
+	"description": "headers are now bold"
 }
