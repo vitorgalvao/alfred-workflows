@@ -19,11 +19,6 @@ Prevent your computer from going to sleep
 
 [info](http://www.alfredforum.com/topic/3177-coffeecoffee-%E2%80%94-prevent-your-computer-from-going-to-sleep/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.coffeecoffee/coffeecoffee.alfredworkflow)
 
-### CommandRun
-Run terminal commands without opening one, on the current Finder window
-
-[info](http://www.alfredforum.com/topic/1868-commandrun-%E2%80%94-run-terminal-commands-without-opening-one-on-the-current-finder-window/?p=9887) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.commandrun/commandrun.alfredworkflow)
-
 ### DownVid
 Downloads video from your browser’s frontmost tab
 
@@ -100,9 +95,9 @@ Do a right-click on Finder files, with the keyboard
 [info](http://www.alfredforum.com/topic/3147-rightclick-%E2%80%94-do-a-right-click-on-finder-files-with-the-keyboard/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.rightclick/rightclick.alfredworkflow)
 
 ### RunCommand
-Runs terminal command on selected files/directories
+Run shell commands without opening a terminal
 
-[info](http://www.alfredforum.com/topic/1550-runcommand-%E2%80%94-runs-terminal-command-on-selected-filesdirectories/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.runcommand/runcommand.alfredworkflow)
+[info](http://www.alfredforum.com/topic/1550-runcommand-%E2%80%94-run-shell-commands-without-opening-a-terminal/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.runcommand/runcommand.alfredworkflow)
 
 ### StrongPassword
 Get a strong password by leveraging multiple sources
