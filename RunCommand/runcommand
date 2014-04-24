@@ -1,0 +1,30 @@
+runScope="$1"
+shift
+commandRun="$@"
+commandsFile="/tmp/runcommand"
+
+if [[ $SHELL == *'bash' ]]; then
+  shellFiles="source ${HOME}/.bash_profile ; source ${HOME}/.profile ; source ${HOME}/.bashrc"
+  setAliases="shopt -s expand_aliases"
+elif [[ $SHELL == *'zsh' ]]; then
+  shellFiles="source /etc/zshenv ; source ${HOME}/.zshenv ; source ${HOME}/.zshrc"
+  setAliases="setopt aliases"
+fi
+
+cat <<- EOF | perl -pe 's/^\s*//' > "${commandsFile}"
+  #!$SHELL
+  ${setAliases}
+  ${shellFiles}
+EOF
+
+if [[ "${runScope}" == 'runInDir' ]]; then
+  dirPath=$(osascript -e 'tell application "Finder" to return (quoted form of POSIX path of (insertion location as alias))')
+  echo "cd ${dirPath}" >> "${commandsFile}"
+  echo "${commandRun}" >> "${commandsFile}"
+else
+  echo "cat /tmp/runcommandfilelist | xargs -0 -J {} ${commandRun}" >> "${commandsFile}"
+fi
+
+chmod +x "${commandsFile}"
+${commandsFile}
+rm "${commandsFile}"

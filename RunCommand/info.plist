@@ -44,11 +44,22 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>38368F77-4820-4A56-BE9D-8E86E4BFA929</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1B016A28-C600-4740-8FA0-87F959C452C5</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>70D7DD2C-C248-44EB-8F75-538914807A66</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>3C3BFA6B-AE9B-47A7-A377-28AD784BA363</string>
+				<string>1B016A28-C600-4740-8FA0-87F959C452C5</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -66,11 +77,22 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>EFB1DBA9-4DEB-4703-8ABD-B0B63F394D35</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>38368F77-4820-4A56-BE9D-8E86E4BFA929</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
 	<key>description</key>
-	<string>Runs terminal command on selected files/directories</string>
+	<string>Run shell commands without opening a terminal</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -117,7 +139,7 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>echo "{query}" | perl -pe 's/[\t\n]/\0/g' &gt; "/tmp/runcommandfilelist"</string>
+				<string>echo '{query}' | perl -pe 's/[\t\n]/\0/g' &gt; '/tmp/runcommandfilelist'</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -145,6 +167,8 @@
 				<false/>
 				<key>modsmode</key>
 				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.trigger.hotkey</string>
@@ -159,31 +183,7 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>echo "cat /tmp/runcommandfilelist | xargs -0 -J {} {query}" &gt; /tmp/runcommand
-
-chmod +x /tmp/runcommand
-
-if [[ $SHELL == *'bash' ]]; then
-	source ${HOME}/.bash_profile
-	source ${HOME}/.profile
-	source ${HOME}/.bashrc
-	$SHELL /tmp/runcommand
-elif [[ $SHELL == *'zsh' ]]; then
-	source /etc/zshenv
-	source ${HOME}/.zshenv
-	source ${HOME}/.zshrc
-	$SHELL /tmp/runcommand
-elif [[ $SHELL == *'csh' ]]; then
-	source /etc/csh.cshrc
-	source ${HOME}/.cshrc
-	$SHELL /tmp/runcommand
-elif [[ $SHELL == *'tcsh' ]]; then
-	source /etc/csh.cshrc
-	source ${HOME}/.tcshrc
-	$SHELL /tmp/runcommand
-fi
-
-rm /tmp/runcommand</string>
+				<string>./runcommand runInFiles '{query}'</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -195,27 +195,10 @@ rm /tmp/runcommand</string>
 			<integer>0</integer>
 		</dict>
 		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<true/>
-				<key>output</key>
-				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>{query}</string>
-				<key>title</key>
-				<string>RunCommand</string>
-			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
+			<string>alfred.workflow.output.largetype</string>
 			<key>uid</key>
-			<string>3C3BFA6B-AE9B-47A7-A377-28AD784BA363</string>
+			<string>1B016A28-C600-4740-8FA0-87F959C452C5</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -240,6 +223,44 @@ rm /tmp/runcommand</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>./runcommand runInDir '{query}'</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>38368F77-4820-4A56-BE9D-8E86E4BFA929</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>.</string>
+				<key>subtext</key>
+				<string>Run shell commands on the current Finder window</string>
+				<key>text</key>
+				<string>RunCommand</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>EFB1DBA9-4DEB-4703-8ABD-B0B63F394D35</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
@@ -250,15 +271,20 @@ rm /tmp/runcommand</string>
 			<key>ypos</key>
 			<real>130</real>
 		</dict>
+		<key>1B016A28-C600-4740-8FA0-87F959C452C5</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
+		</dict>
 		<key>1C74CAA5-F3DA-4197-81A2-DD5E64E2E04C</key>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
-		<key>3C3BFA6B-AE9B-47A7-A377-28AD784BA363</key>
+		<key>38368F77-4820-4A56-BE9D-8E86E4BFA929</key>
 		<dict>
 			<key>ypos</key>
-			<real>250</real>
+			<real>370</real>
 		</dict>
 		<key>68CC8A56-102C-4023-BE9A-596453FDDB5C</key>
 		<dict>
@@ -274,6 +300,11 @@ rm /tmp/runcommand</string>
 		<dict>
 			<key>ypos</key>
 			<real>250</real>
+		</dict>
+		<key>EFB1DBA9-4DEB-4703-8ABD-B0B63F394D35</key>
+		<dict>
+			<key>ypos</key>
+			<real>370</real>
 		</dict>
 		<key>F6CEDF27-563A-4BE6-8F1B-CFFAE9BB0208</key>
 		<dict>
