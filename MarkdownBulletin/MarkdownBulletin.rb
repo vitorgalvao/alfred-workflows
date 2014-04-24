@@ -46,9 +46,9 @@ s = s.gsub /(^ {4}|\t)/, '' # middle
 s = s.gsub /`(.*?)`/, '[font=courier new,courier,monospace]\1[/font]'
 
 # headers
-s = s.gsub /^#\s(.*?)\s*#*$/, '[size=7][b]\1[/b][/size]' # big
-s = s.gsub /^##\s(.*?)\s*#*$/, '[size=6][b]\1[/b][/size]' # medium
-s = s.gsub /^###\s(.*?)\s*#*$/, '[size=5][b]\1[/b][/size]' # small
+s = s.gsub /^#\s(.*?)[ #]*$/, '[size=7][b]\1[/b][/size]' # big
+s = s.gsub /^##\s(.*?)[ #]*$/, '[size=6][b]\1[/b][/size]' # medium
+s = s.gsub /^###\s(.*?)[ #]*$/, '[size=5][b]\1[/b][/size]' # small
 
 # lists
 ## unordered
