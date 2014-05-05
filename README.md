@@ -140,3 +140,4 @@ If you wish to support this project with a donation, you can do so via
 [![Flattr](https://dl.dropboxusercontent.com/s/3wgyqj4bqvrxl1g/donations_flattr.svg)](https://flattr.com/submit/auto?user_id=vitor&url=https://github.com/vitorgalvao/alfred-workflows&title=alfred-workflows&language=en_GB&tags=github,alfred&category=software)
 [![Gittip](https://dl.dropboxusercontent.com/s/2ak9rnqa11f1ham/donations_gittip.svg)](https://gittip.com/vitorgalvao/)
 [![Bitcoin](https://dl.dropboxusercontent.com/s/zhlepx2l8aut79s/donations_bitcoin.svg)](https://dl.dropboxusercontent.com/s/02rg1yvnwaczh3m/bitcoin_tip_jar.txt)
+[![Paypayl](https://dl.dropboxusercontent.com/s/2q2fluda9z695le/donations_paypal.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=hgdesigns%40gmail%2ecom&item_name=Tip%20for%20vitorgalvao&currency_code=EUR)
