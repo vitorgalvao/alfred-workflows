@@ -17,6 +17,17 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>2E64AFDF-D743-40D1-9628-3EBB90CB167E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2C36AAF9-7F21-42CA-8646-ECA398B51F39</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>4B30C050-DEC1-4375-8B11-20FA04A89596</key>
 		<array>
 			<dict>
@@ -47,26 +58,23 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>originalFile="{query}"
+				<string>tmpFile="/tmp/renameactionfile"
+originalFile="{query}"
 
-echo -n "${originalFile}" &gt; originalFile
+echo -n "${originalFile}" &gt; "${tmpFile}"
 
 fileName=$(basename "${originalFile}")
 
 fileExtension=$(echo "${fileName}" | sed -n 's/\(.*\)\.\(.*\)$/.\2/p')
 fileNoExtension=$(echo "${fileName}" | sed 's/\(.*\)\.\(.*\)$/\1/')
 
-osascript -e "tell application \"Alfred 2\" to search \"rename to: ${fileNoExtension}\"
-tell application \"System Events\"
-	key code 123 using command down
-	repeat 2 times
-		key code 124 using option down
-	end repeat
-	repeat 2 times
-		key code 124
-	end repeat
-	key code 124 using {command down, shift down}
-end tell"</string>
+osascript -e "
+  tell application \"Alfred 2\" to run trigger \"rename\" in workflow \"com.vitorgalvao.alfred.renameaction\" with argument \"${fileNoExtension}\"
+  tell application \"System Events\"
+    key code 123 using command down
+    key code 124 using {command down, shift down}
+  end tell
+"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -100,7 +108,8 @@ end tell"</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>originalFile="$(cat ./originalFile)"
+				<string>tmpFile="/tmp/renameactionfile"
+originalFile="$(cat ${tmpFile})"
 
 filePath=$(dirname "${originalFile}")
 fileName=$(basename "${originalFile}")
@@ -110,7 +119,7 @@ fileNoExtension=$(echo "{fileName}" | sed 's/\(.*\)\.\(.*\)$/\1/')
 
 mv "${originalFile}" "${filePath}/{query}${fileExtension}"
 
-rm "./originalFile"</string>
+rm "${tmpFile}"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -118,6 +127,19 @@ rm "./originalFile"</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>D6AD9678-C017-40CD-BD91-5E4102C39AD3</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>triggerid</key>
+				<string>rename</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>2E64AFDF-D743-40D1-9628-3EBB90CB167E</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -156,6 +178,11 @@ rm "./originalFile"</string>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
+		</dict>
+		<key>2E64AFDF-D743-40D1-9628-3EBB90CB167E</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
 		</dict>
 		<key>4B30C050-DEC1-4375-8B11-20FA04A89596</key>
 		<dict>
