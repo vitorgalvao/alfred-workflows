@@ -20,7 +20,7 @@ Prevent your computer from going to sleep
 [info](http://www.alfredforum.com/topic/3177-coffeecoffee-%E2%80%94-prevent-your-computer-from-going-to-sleep/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.coffeecoffee/coffeecoffee.alfredworkflow)
 
 ### DownVid
-Downloads video from your browser’s frontmost tab
+Download videos from popular sources
 
 [info](http://www.alfredforum.com/topic/2045-downvid-%E2%80%94-download-videos-from-popular-sources/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.downvid/downvid.alfredworkflow)
 
