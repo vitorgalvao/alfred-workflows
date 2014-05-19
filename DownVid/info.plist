@@ -23,7 +23,7 @@
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
 	<key>description</key>
-	<string>Downloads video from your browser's frontmost tab</string>
+	<string>Download videos from popular sources</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -43,50 +43,54 @@ IFS=$'\n'
 
 # set notifications
 notification() {
-	./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "DownVid" -message "${1}"
+  ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "DownVid" -message "${1}"
 }
 
 # update youtube-dl if it's more than 15 days old
 if [[ $(find youtube-dl -mtime +15) ]]; then
-	python youtube-dl --update
+  python youtube-dl --update
 fi
 
 gettitle() {
-	#file location
-	title=$(python youtube-dl --no-playlist --output "${downdir}/%(title)s.%(ext)s" --get-filename "${link}")
+  # file location
+  filename=$(python youtube-dl --no-playlist --output "${downdir}/%(title)s.%(ext)s" --get-filename "${link}")
 
-	# short title
-	shorttitle=$(basename ${title%.*})
+  # title
+  title=$(basename ${filename%.*})
 
-	# check if url is valid
-	if [[ -z "${title}" ]]; then
-		notification "The url is invalid"
-		exit 1
-	else
-		notification "Downloading “${shorttitle}”"
-	fi
+  # check if url is valid
+  if [[ -z "${filename}" ]]; then
+    notification "The url is invalid"
+    exit 1
+  else
+    notification "Downloading “${title}”"
+  fi
 }
 
 getfile() {
-	python youtube-dl --quiet --no-playlist --output "${downdir}/%(title)s.%(ext)s" "${link}"
+  python youtube-dl --quiet --no-playlist --output "${downdir}/%(title)s.%(ext)s" "${link}"
+
+  # add metadata
+  xmlencodedurl=$(echo "${link}" | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"'\''})')
+  xattr -w com.apple.metadata:kMDItemWhereFroms '&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;&lt;plist version="1.0"&gt;&lt;array&gt;&lt;string&gt;'"${xmlencodedurl}"'&lt;/string&gt;&lt;/array&gt;&lt;/plist&gt;' "${filename}"
 }
 
 # download
 if [[ "{query}" == "addToWatchList"* ]]; then
-	watchlist="${HOME}/Library/Application Support/Alfred 2/Workflow Data/com.vitorgalvao.alfred.watchlist/towatch.txt"
-	link=$(cat "$(echo {query} | sed 's/addToWatchList //')")
-	downdir="${HOME}/Downloads"
-	gettitle
-	echo "${title}" &gt;&gt; "${watchlist}"
+  watchlist="${HOME}/Library/Application Support/Alfred 2/Workflow Data/com.vitorgalvao.alfred.watchlist/towatch.txt"
+  link=$(cat "$(echo {query} | sed 's/addToWatchList //')")
+  downdir="${HOME}/Downloads"
+  gettitle
+  echo "${filename}" &gt;&gt; "${watchlist}"
 else
-	link="$(cat {query})"
-	downdir="${HOME}/Desktop"
-	gettitle
+  link="$(cat {query})"
+  downdir="${HOME}/Desktop"
+  gettitle
 fi
 
 getfile
 
-notification "Downloaded “${shorttitle}”"</string>
+notification "Downloaded “${title}”"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
