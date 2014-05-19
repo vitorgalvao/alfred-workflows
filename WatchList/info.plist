@@ -6,7 +6,13 @@
 	<string>com.vitorgalvao.alfred.watchlist</string>
 	<key>connections</key>
 	<dict>
-		<key>07B1E7A5-CC4E-453F-A690-ADDD7FE1A8B1</key>
+		<key>0DDE2F4F-9DE8-4C40-BB85-ED0DF8C613EE</key>
+		<array/>
+		<key>20803797-C5B6-42F9-9F31-1425E194C1C3</key>
+		<array/>
+		<key>2C22F42C-C25C-4D4C-AB42-C31CE9234895</key>
+		<array/>
+		<key>3B6BF175-810F-4D1C-9E89-0F8BE1BCA98D</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -16,13 +22,15 @@
 				<key>modifiersubtext</key>
 				<string></string>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>7EE6AEBF-1246-428C-B2E9-C9F5BBCB5EF4</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Open URL in default browser</string>
+			</dict>
 		</array>
-		<key>0DDE2F4F-9DE8-4C40-BB85-ED0DF8C613EE</key>
-		<array/>
-		<key>20803797-C5B6-42F9-9F31-1425E194C1C3</key>
-		<array/>
-		<key>2C22F42C-C25C-4D4C-AB42-C31CE9234895</key>
-		<array/>
 		<key>3FB08D9D-FA61-4076-A99A-E8B45A21CC8D</key>
 		<array/>
 		<key>4B343886-E096-4B4A-B04A-AC6574D6FB41</key>
@@ -468,21 +476,90 @@ notification "Watched files were moved to the trash"</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>notification() {
+	./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "WatchList" -message "${1}"
+}
+source ./workflowHandler.sh
+watched="$(getDataDir)/watched.txt"
+
+filetoread=$(sed -n "{query}p" "${watched}")
+url=$(mdls -name kMDItemWhereFroms "${filetoread}" | sed -n "2p" | tr -d ' "\n')
+echo -n "${url}" | pbcopy
+
+notification "Copied link to clipboard"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>3FB08D9D-FA61-4076-A99A-E8B45A21CC8D</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argumenttype</key>
-				<integer>2</integer>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>0</integer>
 				<key>keyword</key>
-				<string>wlb</string>
+				<string>wls</string>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>source ./workflowHandler.sh
+watched="$(getDataDir)/watched.txt"
+
+IFS=$'\n'
+
+if [[ -z $(cat ${watched}) ]]; then
+	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
+	echo "&lt;item uuid='none' arg='none' valid='no'&gt;"
+	echo "&lt;title&gt;Share (wls)&lt;/title&gt;"
+	echo "&lt;subtitle&gt;You need to use this with watched files&lt;/subtitle&gt;"
+	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
+	echo "&lt;/item&gt;"
+	echo "&lt;/items&gt;"
+else
+	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
+	watched=$(cat ${watched})
+	for file in $(echo "${watched}" | grep -in ".*{query}.*"); do
+		line="$(echo ${file} | sed 's/:.*//')"
+		file="$(echo ${file} | sed 's/.*://')"
+		url="$(mdls -name kMDItemWhereFroms ${file} | sed -n "2p" | tr -d ' "\n')"
+		if [[ -z "${url}" ]]; then
+			url="This item has no metadata on where it's from"
+			valid="no"
+		else
+			valid="yes"
+		fi
+		filename="$(basename ${file})"
+		echo "&lt;item uuid='${line}' arg='${line}' valid='${valid}'&gt;"
+		echo "&lt;title&gt;&lt;![CDATA[${filename}]]&gt;&lt;/title&gt;"
+		echo "&lt;subtitle&gt;&lt;![CDATA[${url}]]&gt;&lt;/subtitle&gt;"
+		echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
+		echo "&lt;/item&gt;"
+	done
+	echo "&lt;/items&gt;"
+fi</string>
 				<key>subtext</key>
-				<string>Erase the lists</string>
-				<key>text</key>
-				<string>Blank (wlb)</string>
+				<string>Get URL from where item is from</string>
+				<key>title</key>
+				<string>Share (wls)</string>
+				<key>type</key>
+				<integer>0</integer>
 				<key>withspace</key>
 				<false/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
+			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>07B1E7A5-CC4E-453F-A690-ADDD7FE1A8B1</string>
+			<string>3B6BF175-810F-4D1C-9E89-0F8BE1BCA98D</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -496,20 +573,18 @@ notification "Watched files were moved to the trash"</string>
 	./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "WatchList" -message "${1}"
 }
 source ./workflowHandler.sh
-towatch="$(getDataDir)/towatch.txt"
 watched="$(getDataDir)/watched.txt"
 
-cat /dev/null &gt; "${towatch}"
-cat /dev/null &gt; "${watched}"
-
-notification "The lists were blanked"</string>
+filetoread=$(sed -n "{query}p" "${watched}")
+url=$(mdls -name kMDItemWhereFroms "${filetoread}" | sed -n "2p" | tr -d ' "\n')
+open "${url}"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>3FB08D9D-FA61-4076-A99A-E8B45A21CC8D</string>
+			<string>7EE6AEBF-1246-428C-B2E9-C9F5BBCB5EF4</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -518,11 +593,6 @@ notification "The lists were blanked"</string>
 	<string></string>
 	<key>uidata</key>
 	<dict>
-		<key>07B1E7A5-CC4E-453F-A690-ADDD7FE1A8B1</key>
-		<dict>
-			<key>ypos</key>
-			<real>730</real>
-		</dict>
 		<key>0DDE2F4F-9DE8-4C40-BB85-ED0DF8C613EE</key>
 		<dict>
 			<key>ypos</key>
@@ -537,6 +607,11 @@ notification "The lists were blanked"</string>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
+		</dict>
+		<key>3B6BF175-810F-4D1C-9E89-0F8BE1BCA98D</key>
+		<dict>
+			<key>ypos</key>
+			<real>730</real>
 		</dict>
 		<key>3FB08D9D-FA61-4076-A99A-E8B45A21CC8D</key>
 		<dict>
@@ -557,6 +632,11 @@ notification "The lists were blanked"</string>
 		<dict>
 			<key>ypos</key>
 			<real>250</real>
+		</dict>
+		<key>7EE6AEBF-1246-428C-B2E9-C9F5BBCB5EF4</key>
+		<dict>
+			<key>ypos</key>
+			<real>850</real>
 		</dict>
 		<key>7F8D7B1C-9061-4414-98C2-FEEB13C9314B</key>
 		<dict>
