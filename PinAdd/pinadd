@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Settings
-notificator() {
-	notificator.app/Contents/Resources/Scripts/notificator -t "PinAdd" -m "${1}"
+notification() {
+	./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "WatchList" -message "${1}"
 }
 source ./workflowHandler.sh
 
@@ -28,7 +28,7 @@ if [[ "${tags}" == "{{configureYourAccount}}"* ]]; then
 fi
 
 if [[ "${tags}" == "{{setAsPrivate}}"* ]]; then
-	tags="$(echo ${tags} | sed 's/{{setAsPrivate}} //')"
+	tags="$(echo ${tags} | sed -E 's/{{setAsPrivate}} ?//')"
 	private='&shared=no'
 else
 	private='&shared=yes'
@@ -50,7 +50,7 @@ result=$(curl --silent "https://api.pinboard.in/v1/posts/add?url=${url}&descript
 result=$(echo "${result}" | sed '1d;3d' | sed 's/.*"\(.*\)".*/\1/')
 
 if [[ ${result} != 'done' ]]; then
-	notificator "There was a problem adding the bookmark"
+	notification "There was a problem adding the bookmark"
 
 	# Add a file on the desktop, with the command to try again
 	retry="${HOME}/Desktop/PinAddRetry.command"
