@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.vitorgalvao.alfred.templatesmanager</string>
+	<key>connections</key>
+	<dict>
+		<key>11AFFEA0-D21E-4292-BDEE-86FFA87A2C59</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>5D95649E-E581-4899-92D2-F6D66496B030</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>29B19388-647E-4CA9-B92F-42A7740409AF</key>
+		<array/>
+		<key>2BE0A61B-CB15-41C0-894E-9F6E8265856E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>A8D5EF32-7D4B-4F16-B18E-BB6C10727FF6</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>40F85D42-9B2C-4908-8445-7669CE43DD18</key>
+		<array/>
+		<key>7C41DF16-D56D-429D-97B3-BA76D522947A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1D2D56FA-BAB3-44F2-B310-21C93DB38E31</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>7CF8B650-20A5-4F70-A3CE-F4BCB6835A26</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>B48B92E6-2EE0-483A-82D6-AEA852B932A4</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>40F85D42-9B2C-4908-8445-7669CE43DD18</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>If template is a directory, copy the files inside directly</string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>AF82572C-ADC9-4677-8690-F846CD053071</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Delete template</string>
+			</dict>
+		</array>
+		<key>E0DD7561-3519-45F6-86D7-4BF9171E5B4C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>29B19388-647E-4CA9-B92F-42A7740409AF</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>E5C08248-28E9-4EF7-817F-FA9B2BC335D2</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>4AF42D65-A49D-4255-9464-81F95707139B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>8AA35DAA-F759-46D0-87F7-E88219FC38EB</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Delete template link</string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Vítor Galvão</string>
+	<key>description</key>
+	<string>Save and reuse files and directory structures</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>TemplatesManager</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsmulti</key>
+				<false/>
+				<key>filetypes</key>
+				<array/>
+				<key>name</key>
+				<string>Add to TemplatesManager</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>7C41DF16-D56D-429D-97B3-BA76D522947A</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>require Dir.getwd + '/tmfunctions.rb'
+
+localAdd %q{{query}}</string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>1D2D56FA-BAB3-44F2-B310-21C93DB38E31</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>require Dir.getwd + '/tmfunctions.rb'
+
+localPut({query})</string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>B48B92E6-2EE0-483A-82D6-AEA852B932A4</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>tml</string>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>require Dir.getwd + '/tmfunctions.rb'
+
+localInfo</string>
+				<key>subtext</key>
+				<string>List local templates</string>
+				<key>title</key>
+				<string>List templates (tml)</string>
+				<key>type</key>
+				<integer>2</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>7CF8B650-20A5-4F70-A3CE-F4BCB6835A26</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>require Dir.getwd + '/tmfunctions.rb'
+
+localPutFilesOnly({query})</string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>40F85D42-9B2C-4908-8445-7669CE43DD18</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>require Dir.getwd + '/tmfunctions.rb'
+
+localDelete({query})</string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>AF82572C-ADC9-4677-8690-F846CD053071</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>tme</string>
+				<key>subtext</key>
+				<string>Open directory of local templates, to manually edit them</string>
+				<key>text</key>
+				<string>Edit templates (tme)</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>2BE0A61B-CB15-41C0-894E-9F6E8265856E</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>require Dir.getwd + '/tmfunctions.rb'
+
+localEdit</string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>A8D5EF32-7D4B-4F16-B18E-BB6C10727FF6</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>rtml</string>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>require Dir.getwd + '/tmfunctions.rb'
+
+remoteInfo</string>
+				<key>subtext</key>
+				<string>List remote templates</string>
+				<key>title</key>
+				<string>List templates (rtml)</string>
+				<key>type</key>
+				<integer>2</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>E5C08248-28E9-4EF7-817F-FA9B2BC335D2</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>require Dir.getwd + '/tmfunctions.rb'
+
+remotePut({query})</string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>4AF42D65-A49D-4255-9464-81F95707139B</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>require Dir.getwd + '/tmfunctions.rb'
+
+remoteDelete({query})</string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>8AA35DAA-F759-46D0-87F7-E88219FC38EB</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>require Dir.getwd + '/tmfunctions.rb'
+
+remoteEdit</string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>5D95649E-E581-4899-92D2-F6D66496B030</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>rtme</string>
+				<key>subtext</key>
+				<string>Open file of template urls, to manually edit them</string>
+				<key>text</key>
+				<string>Edit templates (rtme)</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>11AFFEA0-D21E-4292-BDEE-86FFA87A2C59</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>require Dir.getwd + '/tmfunctions.rb'
+
+remoteAdd(%x{'pbpaste'})</string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>29B19388-647E-4CA9-B92F-42A7740409AF</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>rtma</string>
+				<key>subtext</key>
+				<string>Takes the url in your clipboard, and adds it as a remote template</string>
+				<key>text</key>
+				<string>Add template from url (rtma)</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>E0DD7561-3519-45F6-86D7-4BF9171E5B4C</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>11AFFEA0-D21E-4292-BDEE-86FFA87A2C59</key>
+		<dict>
+			<key>ypos</key>
+			<real>850</real>
+		</dict>
+		<key>1D2D56FA-BAB3-44F2-B310-21C93DB38E31</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>29B19388-647E-4CA9-B92F-42A7740409AF</key>
+		<dict>
+			<key>ypos</key>
+			<real>970</real>
+		</dict>
+		<key>2BE0A61B-CB15-41C0-894E-9F6E8265856E</key>
+		<dict>
+			<key>ypos</key>
+			<real>490</real>
+		</dict>
+		<key>40F85D42-9B2C-4908-8445-7669CE43DD18</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
+		</dict>
+		<key>4AF42D65-A49D-4255-9464-81F95707139B</key>
+		<dict>
+			<key>ypos</key>
+			<real>610</real>
+		</dict>
+		<key>5D95649E-E581-4899-92D2-F6D66496B030</key>
+		<dict>
+			<key>ypos</key>
+			<real>850</real>
+		</dict>
+		<key>7C41DF16-D56D-429D-97B3-BA76D522947A</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>7CF8B650-20A5-4F70-A3CE-F4BCB6835A26</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>8AA35DAA-F759-46D0-87F7-E88219FC38EB</key>
+		<dict>
+			<key>ypos</key>
+			<real>730</real>
+		</dict>
+		<key>A8D5EF32-7D4B-4F16-B18E-BB6C10727FF6</key>
+		<dict>
+			<key>ypos</key>
+			<real>490</real>
+		</dict>
+		<key>AF82572C-ADC9-4677-8690-F846CD053071</key>
+		<dict>
+			<key>ypos</key>
+			<real>370</real>
+		</dict>
+		<key>B48B92E6-2EE0-483A-82D6-AEA852B932A4</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>E0DD7561-3519-45F6-86D7-4BF9171E5B4C</key>
+		<dict>
+			<key>ypos</key>
+			<real>970</real>
+		</dict>
+		<key>E5C08248-28E9-4EF7-817F-FA9B2BC335D2</key>
+		<dict>
+			<key>ypos</key>
+			<real>610</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://vitorgalvao.com/</string>
+</dict>
+</plist>
