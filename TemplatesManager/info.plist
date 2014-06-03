@@ -180,7 +180,7 @@ localPut({query})</string>
 				<key>script</key>
 				<string>require Dir.getwd + '/tmfunctions.rb'
 
-localInfo</string>
+localInfo('{query}')</string>
 				<key>subtext</key>
 				<string>List local templates</string>
 				<key>title</key>
@@ -289,7 +289,7 @@ localEdit</string>
 				<key>script</key>
 				<string>require Dir.getwd + '/tmfunctions.rb'
 
-remoteInfo</string>
+remoteInfo('{query}')</string>
 				<key>subtext</key>
 				<string>List remote templates</string>
 				<key>title</key>

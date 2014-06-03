@@ -73,7 +73,7 @@ def remoteDelete(remoteArrayPos)
   end
 end
 
-def localInfo
+def localInfo(searchQuery)
   puts "<?xml version='1.0'?><items>"
 
   if localList.empty?
@@ -86,17 +86,19 @@ def localInfo
     localList.each_index do |localArrayPos|
       templateTitle = localList[localArrayPos]
 
-      puts "<item uuid='#{localArrayPos}' arg='#{localArrayPos}' valid='yes'>"
-      puts "<title><![CDATA[#{templateTitle}]]></title>"
-      puts "<icon>icon.png</icon>"
-      puts "</item>"
+      if templateTitle =~ /#{searchQuery}/
+        puts "<item uuid='#{localArrayPos}' arg='#{localArrayPos}' valid='yes'>"
+        puts "<title><![CDATA[#{templateTitle}]]></title>"
+        puts "<icon>icon.png</icon>"
+        puts "</item>"
+      end
     end
   end
 
   puts "</items>"
 end
 
-def remoteInfo
+def remoteInfo(searchQuery)
   puts "<?xml version='1.0'?><items>"
 
   if remoteList.empty?
@@ -110,20 +112,37 @@ def remoteInfo
       templateSubtitle = remoteList[remoteArrayPos]
       templateTitle = File.basename(templateSubtitle)
 
-      puts "<item uuid='#{remoteArrayPos}' arg='#{remoteArrayPos}' valid='yes'>"
-      puts "<title><![CDATA[#{templateTitle}]]></title>"
-      puts "<subtitle><![CDATA[#{templateSubtitle}]]></subtitle>"
-      puts "<icon>icon.png</icon>"
-      puts "</item>"
+      if templateTitle =~ /#{searchQuery}/
+        puts "<item uuid='#{remoteArrayPos}' arg='#{remoteArrayPos}' valid='yes'>"
+        puts "<title><![CDATA[#{templateTitle}]]></title>"
+        puts "<subtitle><![CDATA[#{templateSubtitle}]]></subtitle>"
+        puts "<icon>icon.png</icon>"
+        puts "</item>"
+      end
     end
   end
 
   puts "</items>"
 end
 
+# run a _templatesmanagerscript.* in the copied directory
+def localScriptRun(location)
+  tmScript = Dir.entries(location).find{ |item| item =~ /_templatesmanagerscript\./ }
+  if tmScript
+    Dir.chdir(location)
+    system("./" + tmScript)
+  end
+end
+
 # Copy files and directories directly
 def localPut(localArrayPos)
-  FileUtils.cp_r(LocalTemplates + localList[localArrayPos], finderDir)
+  templateTitle = localList[localArrayPos]
+  itemLocation = LocalTemplates + templateTitle
+  FileUtils.cp_r(itemLocation, finderDir)
+
+  # run _templatesmanagerscript.*, if a directory was copied
+  destLocation = finderDir + templateTitle
+  localScriptRun(destLocation) if File.directory?(destLocation)
 end
 
 # If source is a directory, copy what's inside of it
@@ -136,6 +155,9 @@ def localPutFilesOnly(localArrayPos)
     abort 'This option should only be used on directories'
   else
     FileUtils.cp_r(Dir[itemLocation + '/*'], finderDir)
+
+    # run _templatesmanagerscript.*
+    localScriptRun(finderDir)
   end
 end
 
