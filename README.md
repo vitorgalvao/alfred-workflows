@@ -109,6 +109,11 @@ Substitute words by checking against a thesaurs
 
 [info](http://www.alfredforum.com/topic/3954-synant-%E2%80%94-substitute-words-by-checking-against-a-thesaurs/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.synant/synant.alfredworkflow)
 
+### TemplatesManager
+Save and reuse files, directory structures, and urls
+
+[info](http://www.alfredforum.com/topic/4434-templatesmanager-%E2%80%94-save-and-reuse-files-directory-structures-and-urls/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.templatesmanager/templatesmanager.alfredworkflow)
+
 ### TurnShoot
 A two-player game for Alfred
 
