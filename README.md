@@ -140,7 +140,7 @@ All the code in the workflows’ root directory is licensed under [The Unlicense
 ---
 
 #### Donations
-If you wish to support this project with a donation, you can do so via
+If you wish to support me with a donation, you can do so via
 
 [![Flattr](https://dl.dropboxusercontent.com/s/3wgyqj4bqvrxl1g/donations_flattr.svg)](https://flattr.com/submit/auto?user_id=vitor&url=https://github.com/vitorgalvao/alfred-workflows&title=alfred-workflows&language=en_GB&tags=github,alfred&category=software)
 [![Gittip](https://dl.dropboxusercontent.com/s/2ak9rnqa11f1ham/donations_gittip.svg)](https://gittip.com/vitorgalvao/)
