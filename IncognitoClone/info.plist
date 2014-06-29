@@ -22,7 +22,23 @@
 				<key>modifiers</key>
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
-				<string>Closes Chrome’s frontmost tab and opens it in an incognito window</string>
+				<string>Opens in incognito, and closes the original tab</string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>51478E73-B6B6-403C-B9C1-A8AD48651EAE</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Opens in window with new profile</string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>A644E54E-1092-4095-A58E-0937A8171089</string>
+				<key>modifiers</key>
+				<integer>262144</integer>
+				<key>modifiersubtext</key>
+				<string>Opens in window with new profile, and closes the original tab</string>
 			</dict>
 		</array>
 	</dict>
@@ -63,7 +79,8 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>tell application "Google Chrome"	set theURL to URL of active tab of front window	make new window with properties {mode:"incognito"}	tell active tab of front window to set URL to theURLend tell</string>
+				<string>tell application "Google Chrome"	set theURL to URL of active tab of front window	make new window with properties {mode:"incognito"}
+	tell active tab of front window to set URL to theURLend tell</string>
 				<key>type</key>
 				<integer>6</integer>
 			</dict>
@@ -91,6 +108,40 @@
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>tell application "Google Chrome"	set theURL to URL of active tab of front window	do shell script "open --new -a \"Google Chrome\" --args --user-data-dir=\"/tmp/incognitoclone-$RANDOM\" --no-first-run " &amp; theURLend tell</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>51478E73-B6B6-403C-B9C1-A8AD48651EAE</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>tell application "Google Chrome"	set theURL to URL of active tab of front window	close active tab of front window	do shell script "open --new -a \"Google Chrome\" --args --user-data-dir=\"/tmp/incognitoclone-$RANDOM\" --no-first-run " &amp; theURLend tell</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>A644E54E-1092-4095-A58E-0937A8171089</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
@@ -100,6 +151,16 @@
 		<dict>
 			<key>ypos</key>
 			<real>130</real>
+		</dict>
+		<key>51478E73-B6B6-403C-B9C1-A8AD48651EAE</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
+		</dict>
+		<key>A644E54E-1092-4095-A58E-0937A8171089</key>
+		<dict>
+			<key>ypos</key>
+			<real>370</real>
 		</dict>
 		<key>D1C78EAD-183B-46FC-93DD-CE9D62824D4D</key>
 		<dict>
