@@ -81,14 +81,14 @@ if [[ "{query}" == "addToWatchList"* ]]; then
   link=$(cat "$(echo {query} | sed 's/addToWatchList //')")
   downdir="${HOME}/Downloads"
   gettitle
-  echo "${filename}" &gt;&gt; "${watchlist}"
+  getfile
+  printf "${filename}\n$(cat "${watchlist}")" &gt; "${watchlist}"
 else
   link="$(cat {query})"
   downdir="${HOME}/Desktop"
+  getfile
   gettitle
 fi
-
-getfile
 
 notification "Downloaded “${title}”"</string>
 				<key>type</key>
