@@ -114,6 +114,11 @@ Save and reuse files, directory structures, and urls
 
 [info](http://www.alfredforum.com/topic/4434-templatesmanager-%E2%80%94-save-and-reuse-files-directory-structures-and-urls/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.templatesmanager/templatesmanager.alfredworkflow)
 
+### TemporaryEmail
+Get a temporary email inbox
+
+[info](http://www.alfredforum.com/topic/4643-temporaryemail-%E2%80%94-get-a-temporary-email-inbox/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.temporaryemail/temporaryemail.alfredworkflow)
+
 ### TurnShoot
 A two-player game for Alfred
 
