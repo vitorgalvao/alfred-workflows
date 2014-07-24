@@ -20,7 +20,7 @@
 				<key>destinationuid</key>
 				<string>4F459C78-66B4-44BA-BB97-470BB0B95816</string>
 				<key>modifiers</key>
-				<integer>1048576</integer>
+				<integer>262144</integer>
 				<key>modifiersubtext</key>
 				<string>Opens in incognito, and closes the original tab</string>
 			</dict>
@@ -36,7 +36,7 @@
 				<key>destinationuid</key>
 				<string>A644E54E-1092-4095-A58E-0937A8171089</string>
 				<key>modifiers</key>
-				<integer>262144</integer>
+				<integer>1048576</integer>
 				<key>modifiersubtext</key>
 				<string>Opens in window with new profile, and closes the original tab</string>
 			</dict>
