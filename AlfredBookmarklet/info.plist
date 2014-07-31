@@ -122,7 +122,7 @@ tell application "Safari" to tell front document to do JavaScript "&lt;bookmarkl
 			<key>uid</key>
 			<string>082A3A21-88BB-48A6-B6B7-CF89A9180213</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -130,7 +130,12 @@ tell application "Safari" to tell front document to do JavaScript "&lt;bookmarkl
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>print %q({query}).gsub('"', "'")</string>
+				<string>require 'uri'
+
+original_bookmarklet = %x{ pbpaste }
+bookmarklet = URI.unescape(original_bookmarklet).gsub('"', "'")
+
+print bookmarklet</string>
 				<key>type</key>
 				<integer>2</integer>
 			</dict>
@@ -145,15 +150,15 @@ tell application "Safari" to tell front document to do JavaScript "&lt;bookmarkl
 			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
-				<integer>0</integer>
+				<integer>2</integer>
 				<key>keyword</key>
-				<string>_convertquotes</string>
+				<string>_cleanbookmarklet</string>
 				<key>subtext</key>
-				<string>Paste your bookmarklet code in front</string>
+				<string>Copy the bookmarklet to the clipboard, and run this</string>
 				<key>text</key>
-				<string>Convert double quotes to single quotes</string>
+				<string>Cleans bookmarklet code</string>
 				<key>withspace</key>
-				<true/>
+				<false/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.keyword</string>
