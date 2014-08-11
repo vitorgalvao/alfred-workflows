@@ -6,6 +6,17 @@
 	<string>com.vitorgalvao.alfred.downvid</string>
 	<key>connections</key>
 	<dict>
+		<key>3B69F416-A08B-4618-99B6-E2AED211C9D8</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>70F43F68-4801-4544-8FA7-A21E6860042A</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>6A286F10-FD49-4463-9540-0EECBE45438D</key>
 		<array/>
 		<key>DC74421D-631A-44B1-AC86-ED7793CADE26</key>
@@ -68,11 +79,15 @@ gettitle() {
 }
 
 getfile() {
-  python youtube-dl --quiet --no-playlist --output "${downdir}/%(title)s.%(ext)s" "${link}"
+  progressfile="/tmp/downvidprogress"
+
+  python youtube-dl --no-playlist --newline --output "${downdir}/%(title)s.%(ext)s" "${link}" &gt; "${progressfile}"
 
   # add metadata
   xmlencodedurl=$(echo "${link}" | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"'\''})')
   xattr -w com.apple.metadata:kMDItemWhereFroms '&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;&lt;plist version="1.0"&gt;&lt;array&gt;&lt;string&gt;'"${xmlencodedurl}"'&lt;/string&gt;&lt;/array&gt;&lt;/plist&gt;' "${filename}"
+
+  rm "${progressfile}"
 }
 
 # download
@@ -86,8 +101,8 @@ if [[ "{query}" == "addToWatchList"* ]]; then
 else
   link="$(cat {query})"
   downdir="${HOME}/Desktop"
-  getfile
   gettitle
+  getfile
 fi
 
 notification "Downloaded “${title}”"</string>
@@ -120,7 +135,7 @@ echo -n "$(pbpaste)" &gt;&gt; "${randfile}"
 # Check if WatchList is being used, and show options accordingly
 watchlist="${HOME}/Library/Application Support/Alfred 2/Workflow Data/com.vitorgalvao.alfred.watchlist/towatch.txt"
 
-if [[ -f ${watchlist} ]]; then
+if [[ -f "${watchlist}" ]]; then
 cat &lt;&lt; EOF
 &lt;?xml version='1.0'?&gt;&lt;items&gt;
 	&lt;item uid='Regular Download' arg='${randfile}' valid='yes'&gt;
@@ -162,15 +177,97 @@ fi</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>dvp</string>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>progressfile="/tmp/downvidprogress"
+
+if [[ -f "${progressfile}" ]]; then
+
+filename=$(cat "${progressfile}" | grep '\[download\] Destination: ' | sed 's/\[download\] Destination: //')
+progress=$(cat "${progressfile}" | tail -1 | sed 's/^\[download\] *//')
+
+cat &lt;&lt; EOF
+&lt;?xml version='1.0'?&gt;&lt;items&gt;
+  &lt;item uid='Download progress' valid='yes'&gt;
+    &lt;title&gt;DownVid Progress&lt;/title&gt;
+    &lt;subtitle&gt;${progress} | &lt;![CDATA[$(basename "${filename}")]]&gt;&lt;/subtitle&gt;
+    &lt;icon&gt;icon.png&lt;/icon&gt;
+  &lt;/item&gt;
+&lt;/items&gt;
+EOF
+else
+cat &lt;&lt; EOF
+&lt;?xml version='1.0'?&gt;&lt;items&gt;
+  &lt;item uid='Download progress' valid='no'&gt;
+    &lt;title&gt;DownVid Progress&lt;/title&gt;
+    &lt;subtitle&gt;There is currently no download in progress&lt;/subtitle&gt;
+    &lt;icon&gt;icon.png&lt;/icon&gt;
+  &lt;/item&gt;
+&lt;/items&gt;
+EOF
+fi</string>
+				<key>subtext</key>
+				<string>Shows progress of the current DownVid download</string>
+				<key>title</key>
+				<string>DownVid Progress</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>3B69F416-A08B-4618-99B6-E2AED211C9D8</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>tell application "Alfred 2" to search "dvp"</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>70F43F68-4801-4544-8FA7-A21E6860042A</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
 	<key>uidata</key>
 	<dict>
+		<key>3B69F416-A08B-4618-99B6-E2AED211C9D8</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
 		<key>6A286F10-FD49-4463-9540-0EECBE45438D</key>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
+		</dict>
+		<key>70F43F68-4801-4544-8FA7-A21E6860042A</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
 		</dict>
 		<key>DC74421D-631A-44B1-AC86-ED7793CADE26</key>
 		<dict>
