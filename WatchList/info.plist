@@ -273,19 +273,20 @@ else
 		line="$(echo ${file} | sed 's/:.*//')"
 		file="$(echo ${file} | sed 's/.*://')"
 		duration="$(./_licensed/mediainfo/mediainfo --Output='Video;%Duration/String2%' ${file})"
+		size="$(du -h ${file} | perl -pe 's/^\s*(.*)\t.*/\1/')"
 		filename="$(basename ${file})"
 		echo "&lt;item uuid='${line}' arg='${line}' valid='yes'&gt;"
 		echo "&lt;title&gt;&lt;![CDATA[${filename}]]&gt;&lt;/title&gt;"
-		echo "&lt;subtitle&gt;${duration}&lt;/subtitle&gt;"
+		echo "&lt;subtitle&gt;${duration} | ${size}&lt;/subtitle&gt;"
 		echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
 		echo "&lt;/item&gt;"
 	done
 	echo "&lt;/items&gt;"
 fi</string>
 				<key>subtext</key>
-				<string>Pick a file to play</string>
+				<string>Show duration and size</string>
 				<key>title</key>
-				<string>Show durations (wli)</string>
+				<string>Show info (wli)</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
