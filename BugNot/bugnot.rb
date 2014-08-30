@@ -21,7 +21,7 @@ for account in 0..loginTotal-1
   loginSection = page.css('article.account')[account]
   username = loginSection.css('kbd')[0].text
   password = loginSection.css('kbd')[1].text
-  success = loginSection.css('li.success_rate').attr('class').text.gsub /\D*/, ''
+  success = loginSection.css('li.success_rate').attr('class').text.gsub(/\D*/, '')
 
   File.open(detailsFile, "a") do |f|
     f.puts username + "////" + password + "////" + success

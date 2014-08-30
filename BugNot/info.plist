@@ -84,18 +84,28 @@ ruby ./bugnot.rb '{query}'
 
 detailsFile="/tmp/bugnot"
 
-echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-for line in $(cat "${detailsFile}"); do
-	username="$(echo "${line}" | awk -F '////' '{print $1}' | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"'\''})')"
-	password="$(echo "${line}" | awk -F '////' '{print $2}' | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"'\''})')"
-	success="$(echo "${line}" | awk -F '////' '{print $3}' | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"'\''})')"
-	echo "&lt;item uuid='{query}' valid='yes' arg=\"${username}////${password}\"&gt;"
-	echo "&lt;title&gt;${username}&lt;/title&gt;"
-	echo "&lt;subtitle&gt;${password}&lt;/subtitle&gt;"
-	echo "&lt;icon&gt;icons/${success}.png&lt;/icon&gt;"
-	echo "&lt;/item&gt;"
-done
-echo "&lt;/items&gt;"</string>
+if [[ -f "${detailsFile}" ]]; then
+  echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
+  for line in $(cat "${detailsFile}"); do
+    username="$(echo "${line}" | awk -F '////' '{print $1}' | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"'\''})')"
+    password="$(echo "${line}" | awk -F '////' '{print $2}' | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"'\''})')"
+    success="$(echo "${line}" | awk -F '////' '{print $3}' | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"'\''})')"
+    echo "&lt;item uuid='{query}' valid='yes' arg=\"${username}////${password}\"&gt;"
+    echo "&lt;title&gt;${username}&lt;/title&gt;"
+    echo "&lt;subtitle&gt;${password}&lt;/subtitle&gt;"
+    echo "&lt;icon&gt;icons/${success}.png&lt;/icon&gt;"
+    echo "&lt;/item&gt;"
+  done
+  echo "&lt;/items&gt;"
+else
+  echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
+  echo "&lt;item uuid='noResult' valid='no'&gt;"
+  echo "&lt;title&gt;No logins availale for “{query}”&lt;/title&gt;"
+  echo "&lt;subtitle&gt;&lt;/subtitle&gt;"
+  echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
+  echo "&lt;/item&gt;"
+  echo "&lt;/items&gt;"
+fi</string>
 				<key>subtext</key>
 				<string>Get logins from bugmenot</string>
 				<key>title</key>
