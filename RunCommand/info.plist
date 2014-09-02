@@ -175,15 +175,15 @@
 			<key>uid</key>
 			<string>19CDA0AB-1F06-4A9A-B336-C04305094E51</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
 				<key>escaping</key>
-				<integer>0</integer>
+				<integer>102</integer>
 				<key>script</key>
-				<string>./runcommand runInFiles '{query}'</string>
+				<string>./runcommand runInFiles "{query}"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -227,9 +227,9 @@
 			<key>config</key>
 			<dict>
 				<key>escaping</key>
-				<integer>0</integer>
+				<integer>102</integer>
 				<key>script</key>
-				<string>./runcommand runInDir '{query}'</string>
+				<string>./runcommand runInDir "{query}"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
