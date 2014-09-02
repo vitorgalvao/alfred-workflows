@@ -44,6 +44,11 @@ Removes extraneous information from URLs
 
 [info](http://www.alfredforum.com/topic/4179-linkclean-%E2%80%94-removes-extraneous-information-from-urls/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.linkclean/linkclean.alfredworkflow)
 
+### MachineClean
+Lock your keyboard and trackpad temporarily, so you can clean them
+
+[info](http://www.alfredforum.com/topic/4834-machineclean-%E2%80%94-lock-your-keyboard-and-trackpad-temporarily-so-you-can-clean-them/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.machineclean/machineclean.alfredworkflow)
+
 ### MarkdownBulletin
 Convert Markdown to BBCode
 
