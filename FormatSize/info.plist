@@ -247,6 +247,11 @@ echo "&lt;/items&gt;"</string>
 
 file="sizes/viewport.csv"
 
+# update viewport.csv it's more than 30 days old
+if [[ $(find "${file}" -mtime +30) ]]; then
+  curl "http://viewportsizes.com/devices.csv" | cut -d , -f1-2 -f4-5 | tail -n +2 &gt; "${file}"
+fi
+
 echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
 for media in $(grep -i ".*{query}.*" "${file}"); do
 	name="$(echo ${media} | sed 's/^\(.*\),\(.*\),\(.*\),\(.*\)$/\1 · \2/')"
