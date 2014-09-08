@@ -46,6 +46,7 @@ BlackBerry Torch 9810,BlackBerry OS,320,-
 BlackBerry Torch 9860,BlackBerry OS,320,505
 BlackBerry Q10,BlackBerry OS,346,-
 BlackBerry Z10,BlackBerry OS,342,570
+Dell Venue 8,Windows 8,800,1280
 Galaxy Nexus,Android,360,598
 HP Slate 7 2800,Android,600,1024
 HP Slate 21,Android,1920,NA
@@ -59,7 +60,8 @@ HTC Desire,Android,320,533
 HTC Desire C,Android,320,480
 HTC Desire HD,Android,320,533
 HTC Desire S,Android,320,533
-HTC Desire X ,Android,320,533
+HTC Desire X,Android,320,533
+HTC Desire 700,Android,360,640
 HTC Desire Z (Vision),Android,480,800
 HTC Droid Eris,Android,320,480
 HTC Evo 3D,Android,540,960
@@ -98,8 +100,8 @@ iPhone 3GS,iOS,320,480
 iPhone 4,iOS,320,480
 iPhone 4S,iOS,320,480
 iPhone 5,iOS,320,568
-iPhone 5C,iOS,320,568
-iPhone 5S,iOS,320,568
+iPhone 5c,iOS,320,568
+iPhone 5s,iOS,320,568
 iPod Touch 4th Gen,iOS,320,480
 iPod Touch 5th Gen,iOS,320,568
 Kindle 3,Kindle,600,-
@@ -132,6 +134,7 @@ Motorola Defy Mini,Android,320,480
 Motorola Droid Bionic,Android,360,640
 Motorola Droid Razr,Android,360,640
 Motorola Droid 3,Android,360,559
+Motorola Electrify 2,Android,360,598
 Motorola Fire XT,Android,320,480
 Motorola FlipOut,Android,320,240
 Motorola Milestone,Android,320,569
@@ -174,6 +177,7 @@ Nokia Lumia 820,WP8,320,480
 Nokia Lumia 900,WP7,320,480
 Nokia Lumia 920,WP8,320,480
 Nokia Lumia 925,WP8,320,480
+Nokia Lumia 1520,WP8,320,480
 Nokia N9,MeeGo,320,496
 Nokia N900,Maemo,480,800
 Nokia N95,S60,240,-
