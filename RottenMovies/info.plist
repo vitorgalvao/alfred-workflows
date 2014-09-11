@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.vitorgalvao.alfred.rottenmovies</string>
+	<key>connections</key>
+	<dict>
+		<key>3D696DA5-1D90-4A2A-A3A0-550BFDAAF148</key>
+		<array/>
+	</dict>
+	<key>createdby</key>
+	<string>Vítor Galvão</string>
+	<key>description</key>
+	<string>Check movie scores from Rotten Tomatoes</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>RottenMovies</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>rt</string>
+				<key>runningsubtext</key>
+				<string>Getting scores…</string>
+				<key>script</key>
+				<string>export LANG=en_GB.UTF-8
+IFS=$'\n'
+
+ruby ./rottenmovies.rb "{query}"
+
+details_file="/tmp/rottenmovies"
+
+if [[ -f "${details_file}" ]]; then
+  echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
+  for line in $(cat "${details_file}"); do
+    IFS='⸗' read movie score freshness url &lt;&lt;&lt; "${line}"
+    echo "&lt;item uuid='movie' valid='no' autocomplete='${url}'&gt;"
+    echo "&lt;title&gt;${movie}&lt;/title&gt;"
+    echo "&lt;subtitle&gt;${score}&lt;/subtitle&gt;"
+    echo "&lt;icon&gt;icons/${freshness}.png&lt;/icon&gt;"
+    echo "&lt;/item&gt;"
+  done
+  echo "&lt;/items&gt;"
+else
+  echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
+  echo "&lt;item uuid='no_result' valid='no'&gt;"
+  echo "&lt;title&gt;No movies match “{query}”&lt;/title&gt;"
+  echo "&lt;subtitle&gt;&lt;/subtitle&gt;"
+  echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
+  echo "&lt;/item&gt;"
+  echo "&lt;/items&gt;"
+fi</string>
+				<key>subtext</key>
+				<string>Check movie scores from Rotten Tomatoes</string>
+				<key>title</key>
+				<string>RottenMovies</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>3D696DA5-1D90-4A2A-A3A0-550BFDAAF148</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>3D696DA5-1D90-4A2A-A3A0-550BFDAAF148</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://vitorgalvao.com/</string>
+</dict>
+</plist>

@@ -99,6 +99,11 @@ Do a right-click on Finder files, with the keyboard
 
 [info](http://www.alfredforum.com/topic/3147-rightclick-%E2%80%94-do-a-right-click-on-finder-files-with-the-keyboard/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.rightclick/rightclick.alfredworkflow)
 
+### RottenMovies
+Check movie scores from Rotten Tomatoes
+
+[info](http://www.alfredforum.com/topic/4875-rottenmovies-%E2%80%94-check-movie-scores-from-rotten-tomatoes/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.rottenmovies/rottenmovies.alfredworkflow)
+
 ### RunCommand
 Run shell commands without opening a terminal
 
