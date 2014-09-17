@@ -68,6 +68,10 @@ notification "Will lock trackpad and keyboard for ${time} seconds"
 
 osascript &lt;&lt; EOS
   do shell script "kextunload -bundle-id com.apple.driver.AppleUSBTCKeyboard ; kextunload -bundle-id com.apple.driver.AppleUSBMultitouch ; sleep ${time} ; kextload -bundle-id com.apple.driver.AppleUSBTCKeyboard ; kextload -bundle-id com.apple.driver.AppleUSBMultitouch" with administrator privileges
+
+  # restart BetterTouchTool, if it is running
+  tell application "System Events" to set betterTouchToolIsRunning to (name of processes) contains "BetterTouchTool"  if betterTouchToolIsRunning then    tell application "BetterTouchTool"      quit
+      delay 2      activate    end tell  end if
 EOS
 
 notification "Trackpad and keyboard unlocked"</string>
