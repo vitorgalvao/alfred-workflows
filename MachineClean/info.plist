@@ -64,10 +64,13 @@ default_time='50'
 time='{query}'
 [[ -z "${time}" ]] &amp;&amp; time="${default_time}"
 
+keyboard=$(kextstat | grep -i 'keyboard' | head -1 | awk '{ print $6 }')
+trackpad=$(kextstat | grep -i 'multitouch' | head -1 | awk '{ print $6 }')
+
 notification "Will lock trackpad and keyboard for ${time} seconds"
 
 osascript &lt;&lt; EOS
-  do shell script "kextunload -bundle-id com.apple.driver.AppleUSBTCKeyboard ; kextunload -bundle-id com.apple.driver.AppleUSBMultitouch ; sleep ${time} ; kextload -bundle-id com.apple.driver.AppleUSBTCKeyboard ; kextload -bundle-id com.apple.driver.AppleUSBMultitouch" with administrator privileges
+  do shell script "kextunload -bundle-id ${keyboard} ; kextunload -bundle-id ${trackpad} ; sleep ${time} ; kextload -bundle-id ${keyboard} ; kextload -bundle-id ${trackpad}" with administrator privileges
 
   # restart BetterTouchTool, if it is running
   tell application "System Events" to set betterTouchToolIsRunning to (name of processes) contains "BetterTouchTool"  if betterTouchToolIsRunning then    tell application "BetterTouchTool"      quit
