@@ -22,11 +22,11 @@ else
   page = Nokogiri::HTML(open("http://www.rottentomatoes.com/search/?search=" + CGI.escape(movie_to_search) + "#results_movies_tab"))
 end
 
-if page.css('title').text == 'Search Results - Rotten Tomatoes' # we're on the results list
-  movie_results = page.css('ul#movie_results_ul li.media_block')
+if page.at('title').text == 'Search Results - Rotten Tomatoes' # we're on the results list
+  movie_results = page.css('ul#movie_results_ul li.media')
 
   for movie_block in movie_results
-    movie_title = movie_block.css('h3.nomargin a').text
+    movie_title = movie_block.css('div.nomargin a.articleLink').text
     movie_year = movie_block.css('span.movie_year').text.strip
     movie_score = movie_block.css('span.tMeterScore').text
 
@@ -34,24 +34,24 @@ if page.css('title').text == 'Search Results - Rotten Tomatoes' # we're on the r
       movie_score = "—"
       movie_freshness = "noScore"
     else
-      movie_freshness = movie_block.css('span.tMeterIcon span')[0].attr('title')
+      movie_freshness = movie_block.css('span.icon.tiny').attr('class').value.gsub(/.*(certified|fresh|rotten|noScore).*/m, '\1')
     end
 
-    movie_url = movie_block.css('h3.nomargin a').attr('href').value
+    movie_url = movie_block.css('div.nomargin a.articleLink').attr('href').value
 
     File.open(details_file, "a") do |f|
       f.puts "#{movie_title} #{movie_year}".strip + "⸗" + "Critics: " + movie_score + "⸗" + movie_freshness + "⸗" + movie_url
     end
   end
 else # we're on the exact movie page
-  movie_block = page.css('div.movie_content_area')
+  movie_block = page.css('div#mainColumn')
   movie_title = movie_block.css('h1.movie_title span').text
-  movie_score_critics = movie_block.css('div#all-critics-numbers span.meter').text
-  movie_score_audience = movie_block.css('a.fan_side span.meter').text
-  movie_audience_subtext = movie_block.css('span.subText').text
-  movie_freshness = movie_block.css('div#all-critics-numbers span.meter').attr('class').value.gsub(/.*(certified|fresh|rotten|noScore).*/, '\1')
+  movie_score_critics = movie_block.css('div#all-critics-numbers span.meter-value span').text
+  movie_score_audience = movie_block.css('div.audience-score.meter span.meter-value').text
+  movie_audience_subtext = movie_block.css('div.audience-score.meter div.smaller.bold').text
+  movie_freshness = movie_block.css('div#all-critics-numbers span.meter-tomato').attr('class').value.gsub(/.*(certified|fresh|rotten|noScore).*/, '\1')
 
   File.open(details_file, "a") do |f|
-    f.puts movie_title + "⸗" + "Critics: " + movie_score_critics + "% | " + "Audience: " + movie_score_audience + "% " + movie_audience_subtext + "⸗" + movie_freshness
+    f.puts movie_title + "⸗" + "Critics: " + movie_score_critics + "% | " + "Audience: " + movie_score_audience + " " + movie_audience_subtext + "⸗" + movie_freshness
   end
 end
