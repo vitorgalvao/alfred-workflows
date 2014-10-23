@@ -40,18 +40,19 @@ if page.at('title').text == 'Search Results - Rotten Tomatoes' # we're on the re
     movie_url = movie_block.css('div.nomargin a.articleLink').attr('href').value
 
     File.open(details_file, "a") do |f|
-      f.puts "#{movie_title} #{movie_year}".strip + "⸗" + "Critics: " + movie_score + "⸗" + movie_freshness + "⸗" + movie_url
+      f.puts "#{movie_title} #{movie_year}" + "⸗" + "Critics: " + movie_score + "⸗" + movie_freshness + "⸗" + movie_url
     end
   end
 else # we're on the exact movie page
   movie_block = page.css('div#mainColumn')
-  movie_title = movie_block.css('h1.movie_title span').text
+  movie_title = movie_block.css('h1.movie_title span').text.strip.gsub(/\n.*/m, '')
+  movie_year = movie_block.css('h1.movie_title span span').text
   movie_score_critics = movie_block.css('div#all-critics-numbers span.meter-value span').text
   movie_score_audience = movie_block.css('div.audience-score.meter span.meter-value').text
   movie_audience_subtext = movie_block.css('div.audience-score.meter div.smaller.bold').text
   movie_freshness = movie_block.css('div#all-critics-numbers span.meter-tomato').attr('class').value.gsub(/.*(certified|fresh|rotten|noScore).*/, '\1')
 
   File.open(details_file, "a") do |f|
-    f.puts movie_title + "⸗" + "Critics: " + movie_score_critics + "% | " + "Audience: " + movie_score_audience + " " + movie_audience_subtext + "⸗" + movie_freshness
+    f.puts "#{movie_title} #{movie_year}" + "⸗" + "Critics: " + movie_score_critics + "% | " + "Audience: " + movie_score_audience + " " + movie_audience_subtext + "⸗" + movie_freshness
   end
 end
