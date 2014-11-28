@@ -134,6 +134,11 @@ A two-player game for Alfred
 
 [info](http://www.alfredforum.com/topic/4188-turnshoot-%E2%80%94-a-two-player-game-for-alfred/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.turnshoot/turnshoot.alfredworkflow)
 
+### UploadFile
+Upload files and directories for easy sharing
+
+[info](http://www.alfredforum.com/topic/5233-uploadfile-%E2%80%94-upload-files-and-directories-for-easy-sharing/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.uploadfile/uploadfile.alfredworkflow)
+
 ### VideoDuration
 Outputs the url of a video on a supported website with its duration in square brackets
 

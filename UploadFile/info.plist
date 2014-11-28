@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.vitorgalvao.alfred.uploadfile</string>
+	<key>connections</key>
+	<dict>
+		<key>3444071E-B0B8-4C12-9699-210912A13E67</key>
+		<array/>
+		<key>A697CADF-6E4A-4C9D-8D61-A8BFCE2DACA4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>FF2430EA-05D1-4301-872C-31E7109FE835</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>55E5D2C8-6F1C-416A-B7D8-C27393CF7485</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Cancel upload</string>
+			</dict>
+		</array>
+		<key>DEA90A14-B8E3-469F-B314-4F347CF478B3</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3444071E-B0B8-4C12-9699-210912A13E67</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Vítor Galvão</string>
+	<key>description</key>
+	<string>Upload files and directories for easy sharing</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>UploadFile</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>notification() {
+  ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title 'UploadFile' -message "${1}"
+}
+
+ascii_basename() {
+  basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'
+}
+
+transfer() {
+  progress_file='/tmp/uploadfile_progress'
+  name_file='/tmp/uploadfile_name' # for use with 'ufp' (in Alfred)
+
+  # prepare file and normalise name
+  full_file="$1"
+
+  if [[ -d "${full_file}" ]]; then
+    dir_name=$(ascii_basename "${full_file}")
+    zip_file="/tmp/${dir_name}.zip"
+    ditto -ck "${full_file}" "${zip_file}"
+    full_file="${zip_file}"
+  fi
+
+  file=$(ascii_basename "${full_file}")
+
+  echo -n "${file}" &gt; "${name_file}"
+
+  # message before starting upload
+  notification "Uploading “${file}”"
+
+  # upload and copy url to clipboard
+  curl --progress-bar --upload-file "${full_file}" "https://transfer.sh/${basefile}" 2&gt; "${progress_file}" | tr -d '\n' | pbcopy
+
+  # Play a sound
+  afplay /System/Library/Sounds/Ping.aiff
+} 
+
+transfer "{query}"
+notification "Uploaded “${file}”"
+
+# delete temporary files
+rm "${progress_file}" "${name_file}"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>3444071E-B0B8-4C12-9699-210912A13E67</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsmulti</key>
+				<false/>
+				<key>filetypes</key>
+				<array/>
+				<key>name</key>
+				<string>Upload File</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>DEA90A14-B8E3-469F-B314-4F347CF478B3</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>tell application "Alfred 2" to search "ufp"</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>FF2430EA-05D1-4301-872C-31E7109FE835</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>ufp</string>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>progress_file='/tmp/uploadfile_progress'
+name_file='/tmp/uploadfile_name'
+
+if [[ -f "${progress_file}" ]]; then
+
+filename=$(cat "${name_file}")
+progress=$(cat "${progress_file}" | perl -pe 's/.*\s//')
+
+cat &lt;&lt; EOF
+&lt;?xml version='1.0'?&gt;&lt;items&gt;
+  &lt;item uid='Upload progress' valid='yes'&gt;
+    &lt;title&gt;UploadFile Progress&lt;/title&gt;
+    &lt;subtitle&gt;${progress} | &lt;![CDATA[${filename}]]&gt;&lt;/subtitle&gt;
+    &lt;icon&gt;icon.png&lt;/icon&gt;
+  &lt;/item&gt;
+&lt;/items&gt;
+EOF
+else
+cat &lt;&lt; EOF
+&lt;?xml version='1.0'?&gt;&lt;items&gt;
+  &lt;item uid='Upload progress' valid='no'&gt;
+    &lt;title&gt;UploadFile Progress&lt;/title&gt;
+    &lt;subtitle&gt;There is currently no upload in progress&lt;/subtitle&gt;
+    &lt;icon&gt;icon.png&lt;/icon&gt;
+  &lt;/item&gt;
+&lt;/items&gt;
+EOF
+fi</string>
+				<key>subtext</key>
+				<string>Shows progress of the current UploadFile upload</string>
+				<key>title</key>
+				<string>UploadFile Progress</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>A697CADF-6E4A-4C9D-8D61-A8BFCE2DACA4</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string># set notifications
+notification() {
+  ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title 'UploadFile' -message "${1}"
+}
+
+progress_file='/tmp/uploadfile_progress'
+name_file='/tmp/uploadfile_name'
+file=$(cat "${name_file}")
+
+kill $(ps -A | grep "curl.*${file}" | awk '{print $1}')
+rm "${progress_file}" "${name_file}"
+
+notification 'Upload canceled'</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>55E5D2C8-6F1C-416A-B7D8-C27393CF7485</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>3444071E-B0B8-4C12-9699-210912A13E67</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>55E5D2C8-6F1C-416A-B7D8-C27393CF7485</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
+		</dict>
+		<key>A697CADF-6E4A-4C9D-8D61-A8BFCE2DACA4</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>DEA90A14-B8E3-469F-B314-4F347CF478B3</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>FF2430EA-05D1-4301-872C-31E7109FE835</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://vitorgalvao.com/</string>
+</dict>
+</plist>
