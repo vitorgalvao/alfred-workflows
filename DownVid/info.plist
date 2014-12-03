@@ -27,6 +27,17 @@
 		</array>
 		<key>6A286F10-FD49-4463-9540-0EECBE45438D</key>
 		<array/>
+		<key>B63C53CC-588B-476D-B85C-72FC8929D9E1</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>C3D0CBE7-F8E9-46FC-811D-FC53095A1262</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>D8524846-F942-4A77-9461-8BAED974B8CF</key>
 		<array>
 			<dict>
@@ -150,7 +161,7 @@ notification "Downloaded “${title}”"</string>
 				<string>Please wait…</string>
 				<key>script</key>
 				<string># Prepare random file
-randfile="/tmp/downvid$RANDOM.tmp"
+randfile="$(mktemp -t 'downvid')"
 echo -n "$(pbpaste)" &gt;&gt; "${randfile}"
 
 # Check if WatchList is being used, and show options accordingly
@@ -311,6 +322,44 @@ kill $(ps -A | grep 'python youtube-dl --no-playlist' | awk '{print $1}')</strin
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>cp -r ./services/* "${HOME}/Library/Services/"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>C3D0CBE7-F8E9-46FC-811D-FC53095A1262</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>installdownvidservices</string>
+				<key>subtext</key>
+				<string>Installs OS X Services to allow you to download from urls without having to manually call Alfred</string>
+				<key>text</key>
+				<string>Install DownVid Services</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>B63C53CC-588B-476D-B85C-72FC8929D9E1</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
@@ -330,6 +379,16 @@ kill $(ps -A | grep 'python youtube-dl --no-playlist' | awk '{print $1}')</strin
 		<dict>
 			<key>ypos</key>
 			<real>130</real>
+		</dict>
+		<key>B63C53CC-588B-476D-B85C-72FC8929D9E1</key>
+		<dict>
+			<key>ypos</key>
+			<real>370</real>
+		</dict>
+		<key>C3D0CBE7-F8E9-46FC-811D-FC53095A1262</key>
+		<dict>
+			<key>ypos</key>
+			<real>370</real>
 		</dict>
 		<key>D8524846-F942-4A77-9461-8BAED974B8CF</key>
 		<dict>
