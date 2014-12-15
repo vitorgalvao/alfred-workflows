@@ -33,6 +33,17 @@
 		</array>
 		<key>3FB08D9D-FA61-4076-A99A-E8B45A21CC8D</key>
 		<array/>
+		<key>475F7D72-F65B-4E51-99C1-65C581528087</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2C22F42C-C25C-4D4C-AB42-C31CE9234895</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>4B343886-E096-4B4A-B04A-AC6574D6FB41</key>
 		<array>
 			<dict>
@@ -55,7 +66,7 @@
 				<string></string>
 			</dict>
 		</array>
-		<key>62F8232B-5D0E-428E-9009-DEAC5E59AF3F</key>
+		<key>7F8D7B1C-9061-4414-98C2-FEEB13C9314B</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -66,7 +77,7 @@
 				<string></string>
 			</dict>
 		</array>
-		<key>7F8D7B1C-9061-4414-98C2-FEEB13C9314B</key>
+		<key>A9B03347-978A-4547-9F09-AC992131AEFB</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -137,19 +148,24 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>notification() {
-	./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "WatchList" -message "${1}"
-}
-source ./workflowHandler.sh
+				<string>source ./watchlist_functions.sh
 
-if [[ ! -d "$(getDataDir)" ]]; then
-	mkdir "$(getDataDir)"
+if [[ ! -d "${non_volatile_prefs_dir}" ]]; then
+  mkdir "${non_volatile_prefs_dir}"
 fi
 
-echo "{query}" | perl -pe 's/\t/\n/g' &gt;&gt; "$(getDataDir)/towatch.txt"
-touch "$(getDataDir)/watched.txt"
+files_to_add=$(echo "{query}" | perl -pe 's/\t/\n/g')
 
-notification "Added to watchlist"</string>
+for file in ${files_to_add}; do
+  item_duration="$(./_licensed/mediainfo/mediainfo --Output='Video;%Duration/String2%' ${file})"
+  item_size="$(du -h ${file} | perl -pe 's/^\s*(.*)\t.*/\1/')"
+  item_title="$(basename ${file})"
+
+  new_item="file⸗${item_title}⸗${file}⸗${item_size}⸗${item_duration}"
+  printf "${new_item}\n$(cat "${towatch}")" &gt; "${towatch}"
+done
+
+touch "${watched}"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -163,18 +179,29 @@ notification "Added to watchlist"</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>triggerid</key>
+				<string>add_to_watchlist</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>475F7D72-F65B-4E51-99C1-65C581528087</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>source ./workflowHandler.sh
-towatch="$(getDataDir)/towatch.txt"
-watched="$(getDataDir)/watched.txt"
+				<string>source ./watchlist_functions.sh
+line_number='{query}'
 
-filetoread=$(sed -n "{query}p" "${towatch}")
-open "${filetoread}"
-sed -i '' "{query}d" "${towatch}"
-echo "${filetoread}" | cat - "${watched}" &gt; "$(getDataDir)/tmp.txt"
-mv "$(getDataDir)/tmp.txt" "${watched}"</string>
+move_list_item towatch "${line_number}"
+
+item_location=$(cut -d'⸗' -f3 &lt;&lt;&lt; "${list_item}")
+open "${item_location}"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -197,33 +224,19 @@ mv "$(getDataDir)/tmp.txt" "${watched}"</string>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
-				<string>source ./workflowHandler.sh
-towatch="$(getDataDir)/towatch.txt"
-
-IFS=$'\n'
+				<string>source ./watchlist_functions.sh
+search_query='{query}'
 
 if [[ -z $(cat ${towatch}) ]]; then
-	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-	echo "&lt;item uuid='none' arg='none' valid='no'&gt;"
-	echo "&lt;title&gt;Play (wlp)&lt;/title&gt;"
-	echo "&lt;subtitle&gt;You have no unwatched files&lt;/subtitle&gt;"
-	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
-	echo "&lt;/item&gt;"
-	echo "&lt;/items&gt;"
+  echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
+  echo "&lt;item uuid='none' arg='none' valid='no'&gt;"
+  echo "&lt;title&gt;Play (wlp)&lt;/title&gt;"
+  echo "&lt;subtitle&gt;You have no files to watch&lt;/subtitle&gt;"
+  echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
+  echo "&lt;/item&gt;"
+  echo "&lt;/items&gt;"
 else
-	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-	towatch=$(cat ${towatch})
-	for file in $(echo "${towatch}" | grep -in ".*{query}.*"); do
-		line="$(echo ${file} | sed 's/:.*//')"
-		file="$(echo ${file} | sed 's/.*://')"
-		filename="$(basename ${file})"
-		echo "&lt;item uuid='${line}' arg='${line}' valid='yes'&gt;"
-		echo "&lt;title&gt;&lt;![CDATA[${filename}]]&gt;&lt;/title&gt;"
-		echo "&lt;subtitle&gt;&lt;![CDATA[${file}]]&gt;&lt;/subtitle&gt;"
-		echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
-		echo "&lt;/item&gt;"
-	done
-	echo "&lt;/items&gt;"
+  watch_script_filter towatch "${search_query}"
 fi</string>
 				<key>subtext</key>
 				<string>Pick a file to play</string>
@@ -244,58 +257,19 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argument</key>
+				<string>1</string>
 				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>wli</string>
-				<key>runningsubtext</key>
-				<string>Please wait…</string>
-				<key>script</key>
-				<string>source ./workflowHandler.sh
-towatch="$(getDataDir)/towatch.txt"
-
-IFS=$'\n'
-
-if [[ -z $(cat ${towatch}) ]]; then
-	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-	echo "&lt;item uuid='none' arg='none' valid='no'&gt;"
-	echo "&lt;title&gt;Play (wlp)&lt;/title&gt;"
-	echo "&lt;subtitle&gt;You have no unwatched files&lt;/subtitle&gt;"
-	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
-	echo "&lt;/item&gt;"
-	echo "&lt;/items&gt;"
-else
-	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-	towatch=$(cat ${towatch})
-	for file in $(echo "${towatch}" | grep -in ".*{query}.*"); do
-		line="$(echo ${file} | sed 's/:.*//')"
-		file="$(echo ${file} | sed 's/.*://')"
-		duration="$(./_licensed/mediainfo/mediainfo --Output='Video;%Duration/String2%' ${file})"
-		size="$(du -h ${file} | perl -pe 's/^\s*(.*)\t.*/\1/')"
-		filename="$(basename ${file})"
-		echo "&lt;item uuid='${line}' arg='${line}' valid='yes'&gt;"
-		echo "&lt;title&gt;&lt;![CDATA[${filename}]]&gt;&lt;/title&gt;"
-		echo "&lt;subtitle&gt;${duration} | ${size}&lt;/subtitle&gt;"
-		echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
-		echo "&lt;/item&gt;"
-	done
-	echo "&lt;/items&gt;"
-fi</string>
-				<key>subtext</key>
-				<string>Show duration and size</string>
-				<key>title</key>
-				<string>Show info (wli)</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<false/>
+				<integer>3</integer>
+				<key>triggerid</key>
+				<string>playnext</string>
+				<key>triggername</key>
+				<string>Play next</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
+			<string>alfred.workflow.trigger.remote</string>
 			<key>uid</key>
-			<string>62F8232B-5D0E-428E-9009-DEAC5E59AF3F</string>
+			<string>A9B03347-978A-4547-9F09-AC992131AEFB</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -305,17 +279,10 @@ fi</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>notification() {
-	./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "WatchList" -message "${1}"
-}
-source ./workflowHandler.sh
-towatch="$(getDataDir)/towatch.txt"
-watched="$(getDataDir)/watched.txt"
+				<string>source ./watchlist_functions.sh
+line_number='{query}'
 
-filetoread=$(sed -n "{query}p" "${watched}")
-sed -i '' "{query}d" "${watched}"
-echo "${filetoread}" | cat - "${towatch}" &gt; "$(getDataDir)/tmp.txt"
-mv "$(getDataDir)/tmp.txt" "${towatch}"
+move_list_item watched "${line_number}"
 
 notification "Marked as unwatched"</string>
 				<key>type</key>
@@ -340,33 +307,19 @@ notification "Marked as unwatched"</string>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
-				<string>source ./workflowHandler.sh
-watched="$(getDataDir)/watched.txt"
-
-IFS=$'\n'
+				<string>source ./watchlist_functions.sh
+search_query='{query}'
 
 if [[ -z $(cat ${watched}) ]]; then
-	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-	echo "&lt;item uuid='none' arg='none' valid='no'&gt;"
-	echo "&lt;title&gt;Unwatch (wlu)&lt;/title&gt;"
-	echo "&lt;subtitle&gt;You have no watched files&lt;/subtitle&gt;"
-	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
-	echo "&lt;/item&gt;"
-	echo "&lt;/items&gt;"
+  echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
+  echo "&lt;item uuid='none' arg='none' valid='no'&gt;"
+  echo "&lt;title&gt;Play (wlu)&lt;/title&gt;"
+  echo "&lt;subtitle&gt;You have no unwatched files&lt;/subtitle&gt;"
+  echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
+  echo "&lt;/item&gt;"
+  echo "&lt;/items&gt;"
 else
-	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-	watched=$(cat ${watched})
-	for file in $(echo "${watched}" | grep -in ".*{query}.*"); do
-		line="$(echo ${file} | sed 's/:.*//')"
-		file="$(echo ${file} | sed 's/.*://')"
-		filename="$(basename ${file})"
-		echo "&lt;item uuid='${line}' arg='${line}' valid='yes'&gt;"
-		echo "&lt;title&gt;&lt;![CDATA[${filename}]]&gt;&lt;/title&gt;"
-		echo "&lt;subtitle&gt;&lt;![CDATA[${file}]]&gt;&lt;/subtitle&gt;"
-		echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
-		echo "&lt;/item&gt;"
-	done
-	echo "&lt;/items&gt;"
+  watch_script_filter watched "${search_query}"
 fi</string>
 				<key>subtext</key>
 				<string>Pick a file to mark as unwatched</string>
@@ -390,12 +343,10 @@ fi</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>source ./workflowHandler.sh
-towatch="$(getDataDir)/towatch.txt"
-watched="$(getDataDir)/watched.txt"
+				<string>source ./watchlist_functions.sh
 
 touch "${towatch}" "${watched}"
-open "${towatch}" "${watched}"</string>
+open -t "${towatch}" "${watched}"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -433,13 +384,9 @@ open "${towatch}" "${watched}"</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>notification() {
-	./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "WatchList" -message "${1}"
-}
-source ./workflowHandler.sh
-watched="$(getDataDir)/watched.txt"
+				<string>source ./watchlist_functions.sh
 
-cat "${watched}" | perl -pe 's/\n/\0/' | xargs -0 ./_licensed/trash/trash
+cat "${watched}" | cut -d'⸗' -f3 | perl -pe 's/\n/\0/' | xargs -0 ./_licensed/trash/trash
 cat /dev/null &gt; "${watched}"
 
 notification "Watched files were moved to the trash"</string>
@@ -480,14 +427,11 @@ notification "Watched files were moved to the trash"</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>notification() {
-	./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "WatchList" -message "${1}"
-}
-source ./workflowHandler.sh
-watched="$(getDataDir)/watched.txt"
+				<string>source ./watchlist_functions.sh
+line_number='{query}'
 
-filetoread=$(sed -n "{query}p" "${watched}")
-url=$(mdls -name kMDItemWhereFroms "${filetoread}" | sed -n "2p" | tr -d ' "\n')
+item_location=$(sed -n "${line_number}p" "${watched}" | cut -d'⸗' -f3)
+url=$(get_item_origin_url "${item_location}")
 echo -n "${url}" | pbcopy
 
 notification "Copied link to clipboard"</string>
@@ -513,40 +457,19 @@ notification "Copied link to clipboard"</string>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
-				<string>source ./workflowHandler.sh
-watched="$(getDataDir)/watched.txt"
-
-IFS=$'\n'
+				<string>source ./watchlist_functions.sh
+search_query='{query}'
 
 if [[ -z $(cat ${watched}) ]]; then
-	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-	echo "&lt;item uuid='none' arg='none' valid='no'&gt;"
-	echo "&lt;title&gt;Share (wls)&lt;/title&gt;"
-	echo "&lt;subtitle&gt;You need to use this with watched files&lt;/subtitle&gt;"
-	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
-	echo "&lt;/item&gt;"
-	echo "&lt;/items&gt;"
+  echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
+  echo "&lt;item uuid='none' arg='none' valid='no'&gt;"
+  echo "&lt;title&gt;Share (wls)&lt;/title&gt;"
+  echo "&lt;subtitle&gt;You need to use this with watched files&lt;/subtitle&gt;"
+  echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
+  echo "&lt;/item&gt;"
+  echo "&lt;/items&gt;"
 else
-	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-	watched=$(cat ${watched})
-	for file in $(echo "${watched}" | grep -in ".*{query}.*"); do
-		line="$(echo ${file} | sed 's/:.*//')"
-		file="$(echo ${file} | sed 's/.*://')"
-		url="$(mdls -name kMDItemWhereFroms ${file} | sed -n "2p" | tr -d ' "\n')"
-		if [[ -z "${url}" ]]; then
-			url="This item has no metadata on where it's from"
-			valid="no"
-		else
-			valid="yes"
-		fi
-		filename="$(basename ${file})"
-		echo "&lt;item uuid='${line}' arg='${line}' valid='${valid}'&gt;"
-		echo "&lt;title&gt;&lt;![CDATA[${filename}]]&gt;&lt;/title&gt;"
-		echo "&lt;subtitle&gt;&lt;![CDATA[${url}]]&gt;&lt;/subtitle&gt;"
-		echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
-		echo "&lt;/item&gt;"
-	done
-	echo "&lt;/items&gt;"
+  watch_script_filter share "${search_query}"
 fi</string>
 				<key>subtext</key>
 				<string>Get URL from where item is from</string>
@@ -570,14 +493,11 @@ fi</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>notification() {
-	./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "WatchList" -message "${1}"
-}
-source ./workflowHandler.sh
-watched="$(getDataDir)/watched.txt"
+				<string>source ./watchlist_functions.sh
+line_number='{query}'
 
-filetoread=$(sed -n "{query}p" "${watched}")
-url=$(mdls -name kMDItemWhereFroms "${filetoread}" | sed -n "2p" | tr -d ' "\n')
+item_location=$(sed -n "${line_number}p" "${watched}" | cut -d'⸗' -f3)
+url=$(get_item_origin_url "${item_location}")
 open "${url}"</string>
 				<key>type</key>
 				<integer>0</integer>
@@ -619,6 +539,11 @@ open "${url}"</string>
 			<key>ypos</key>
 			<real>730</real>
 		</dict>
+		<key>475F7D72-F65B-4E51-99C1-65C581528087</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
 		<key>4B343886-E096-4B4A-B04A-AC6574D6FB41</key>
 		<dict>
 			<key>ypos</key>
@@ -629,11 +554,6 @@ open "${url}"</string>
 			<key>ypos</key>
 			<real>370</real>
 		</dict>
-		<key>62F8232B-5D0E-428E-9009-DEAC5E59AF3F</key>
-		<dict>
-			<key>ypos</key>
-			<real>250</real>
-		</dict>
 		<key>7EE6AEBF-1246-428C-B2E9-C9F5BBCB5EF4</key>
 		<dict>
 			<key>ypos</key>
@@ -642,7 +562,12 @@ open "${url}"</string>
 		<key>7F8D7B1C-9061-4414-98C2-FEEB13C9314B</key>
 		<dict>
 			<key>ypos</key>
-			<real>130</real>
+			<real>250</real>
+		</dict>
+		<key>A9B03347-978A-4547-9F09-AC992131AEFB</key>
+		<dict>
+			<key>ypos</key>
+			<real>310</real>
 		</dict>
 		<key>AA3CF56F-3E4D-4EB5-8019-B9E517648566</key>
 		<dict>
@@ -662,7 +587,7 @@ open "${url}"</string>
 		<key>DE394F89-C4B4-497C-B6E8-5715050AC3CE</key>
 		<dict>
 			<key>ypos</key>
-			<real>130</real>
+			<real>250</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
