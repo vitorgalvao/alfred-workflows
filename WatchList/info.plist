@@ -159,7 +159,7 @@ files_to_add=$(echo "{query}" | perl -pe 's/\t/\n/g')
 for file in ${files_to_add}; do
   item_duration="$(./_licensed/mediainfo/mediainfo --Output='Video;%Duration/String2%' ${file})"
   item_size="$(du -h ${file} | perl -pe 's/^\s*(.*)\t.*/\1/')"
-  item_title="$(basename ${file})"
+  item_title="$(basename ${file%.*})"
 
   new_item="file⸗${item_title}⸗${file}⸗${item_size}⸗${item_duration}"
   printf "${new_item}\n$(cat "${towatch}")" &gt; "${towatch}"
