@@ -124,12 +124,11 @@ getfile() {
 printf "{query}" &gt; "/tmp/downvidcurrentquery"
 
 if [[ "{query}" == "addToWatchList"* ]]; then
-  watchlist="${HOME}/Library/Application Support/Alfred 2/Workflow Data/com.vitorgalvao.alfred.watchlist/towatch.txt"
   link=$(cat "$(echo {query} | sed 's/addToWatchList //')")
   downdir="${HOME}/Downloads"
   gettitle
   getfile
-  printf "${filename}\n$(cat "${watchlist}")" &gt; "${watchlist}"
+  osascript -e "tell application \"Alfred 2\" to run trigger \"add_to_watchlist\" in workflow \"com.vitorgalvao.alfred.watchlist\" with argument \"${filename}\""
 else
   link="$(cat {query})"
   downdir="${HOME}/Desktop"
@@ -165,7 +164,7 @@ randfile="$(mktemp -t 'downvid')"
 echo -n "$(pbpaste)" &gt;&gt; "${randfile}"
 
 # Check if WatchList is being used, and show options accordingly
-watchlist="${HOME}/Library/Application Support/Alfred 2/Workflow Data/com.vitorgalvao.alfred.watchlist/towatch.txt"
+watchlist="${HOME}/Library/Application Support/Alfred 2/Workflow Data/com.vitorgalvao.alfred.watchlist/towatch"
 
 if [[ -f "${watchlist}" ]]; then
 cat &lt;&lt; EOF
