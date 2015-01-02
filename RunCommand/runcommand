@@ -1,14 +1,25 @@
 runScope="$1"
 shift
 commandRun="$@"
-commandsFile="/tmp/runcommand"
+commandsFile='/tmp/runcommand'
+
+# only source shell files that exist (prevents blocking errors in some shells)
+sourceShellFiles() {
+  for file in $@; do
+    [[ -f "${file}" ]] && shellFiles="${shellFiles} source ${file};"
+  done
+}
 
 if [[ $SHELL == *'bash' ]]; then
-  shellFiles="source ${HOME}/.bash_profile ; source ${HOME}/.profile ; source ${HOME}/.bashrc"
-  setAliases="shopt -s expand_aliases"
+  sourceShellFiles "${HOME}/.bash_profile" "${HOME}/.profile" "${HOME}/.bashrc"
+  setAliases='shopt -s expand_aliases'
 elif [[ $SHELL == *'zsh' ]]; then
-  shellFiles="source /etc/zshenv ; source ${HOME}/.zshenv ; source ${HOME}/.zshrc"
-  setAliases="setopt aliases"
+  sourceShellFiles '/etc/zshenv' "${HOME}/.zshenv" "${HOME}/.zshrc"
+  setAliases='setopt aliases'
+elif [[ $SHELL == *'tcsh' ]]; then
+  sourceShellFiles '/etc/csh.cshrc' "${HOME}/.tcshrc" "${HOME}/.cshrc"
+elif [[ $SHELL == *'csh' ]]; then
+  sourceShellFiles '/etc/csh.cshrc' "${HOME}/.cshrc"
 fi
 
 cat <<- EOF | perl -pe 's/^\s*//' > "${commandsFile}"
