@@ -202,6 +202,14 @@
 			<integer>0</integer>
 		</dict>
 		<dict>
+			<key>type</key>
+			<string>alfred.workflow.output.largetype</string>
+			<key>uid</key>
+			<string>1B016A28-C600-4740-8FA0-87F959C452C5</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
 			<key>config</key>
 			<dict>
 				<key>escaping</key>
@@ -215,14 +223,6 @@
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>70D7DD2C-C248-44EB-8F75-538914807A66</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>alfred.workflow.output.largetype</string>
-			<key>uid</key>
-			<string>1B016A28-C600-4740-8FA0-87F959C452C5</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>

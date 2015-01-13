@@ -2,6 +2,7 @@ runScope="$1"
 shift
 commandRun="$@"
 commandsFile='/tmp/runcommand'
+dirPath=$(osascript -e 'tell application "Finder" to return (quoted form of POSIX path of (insertion location as alias))')
 
 # only source shell files that exist (prevents blocking errors in some shells)
 sourceShellFiles() {
@@ -26,11 +27,10 @@ cat <<- EOF | perl -pe 's/^\s*//' > "${commandsFile}"
   #!$SHELL
   ${setAliases}
   ${shellFiles}
+  cd ${dirPath}
 EOF
 
 if [[ "${runScope}" == 'runInDir' ]]; then
-  dirPath=$(osascript -e 'tell application "Finder" to return (quoted form of POSIX path of (insertion location as alias))')
-  echo "cd ${dirPath}" >> "${commandsFile}"
   echo "${commandRun}" >> "${commandsFile}"
 else
   echo "cat /tmp/runcommandfilelist | xargs -0 -J {} ${commandRun}" >> "${commandsFile}"
