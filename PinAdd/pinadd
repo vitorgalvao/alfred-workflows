@@ -2,7 +2,7 @@
 
 # Settings
 notification() {
-	./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "WatchList" -message "${1}"
+	./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "PinAdd" -message "${1}"
 }
 source ./workflowHandler.sh
 
