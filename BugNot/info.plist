@@ -75,6 +75,10 @@
 				<integer>0</integer>
 				<key>keyword</key>
 				<string>bn</string>
+				<key>queuedelay</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>2</integer>
 				<key>runningsubtext</key>
 				<string>Getting logins…</string>
 				<key>script</key>
