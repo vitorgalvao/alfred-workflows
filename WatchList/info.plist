@@ -8,8 +8,30 @@
 	<dict>
 		<key>0DDE2F4F-9DE8-4C40-BB85-ED0DF8C613EE</key>
 		<array/>
+		<key>10E44EB4-6139-4E72-AD84-137F581D67A1</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>7F8D7B1C-9061-4414-98C2-FEEB13C9314B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>20803797-C5B6-42F9-9F31-1425E194C1C3</key>
 		<array/>
+		<key>2BD98040-76A3-48BE-8E0F-68D1F1F9C7E6</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>7EE6AEBF-1246-428C-B2E9-C9F5BBCB5EF4</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>2C22F42C-C25C-4D4C-AB42-C31CE9234895</key>
 		<array/>
 		<key>3B6BF175-810F-4D1C-9E89-0F8BE1BCA98D</key>
@@ -77,6 +99,17 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>87E67178-1A36-458D-9883-D7A839F8E020</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>B81E79EC-8587-4704-B6ED-6B72BD007014</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>A9B03347-978A-4547-9F09-AC992131AEFB</key>
 		<array>
 			<dict>
@@ -106,6 +139,17 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>B81E79EC-8587-4704-B6ED-6B72BD007014</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>D6023D14-C151-44A0-BC02-08938DB9D46E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>20803797-C5B6-42F9-9F31-1425E194C1C3</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -215,12 +259,41 @@ open "${item_location}"</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>triggerid</key>
+				<string>showlist</string>
+				<key>triggername</key>
+				<string>Show list</string>
+				<key>workflowonly</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.remote</string>
+			<key>uid</key>
+			<string>10E44EB4-6139-4E72-AD84-137F581D67A1</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>keyword</key>
 				<string>wlp</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
@@ -265,6 +338,8 @@ fi</string>
 				<string>playnext</string>
 				<key>triggername</key>
 				<string>Play next</string>
+				<key>workflowonly</key>
+				<false/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.trigger.remote</string>
@@ -304,6 +379,14 @@ notification "Marked as unwatched"</string>
 				<integer>0</integer>
 				<key>keyword</key>
 				<string>wlu</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
@@ -334,6 +417,27 @@ fi</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>52C95301-2DF9-4A14-86FA-7917CFC49D39</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>1</string>
+				<key>argumenttype</key>
+				<integer>3</integer>
+				<key>triggerid</key>
+				<string>unwatchlast</string>
+				<key>triggername</key>
+				<string>Unwatch last</string>
+				<key>workflowonly</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.remote</string>
+			<key>uid</key>
+			<string>D6023D14-C151-44A0-BC02-08938DB9D46E</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -424,6 +528,27 @@ notification "Watched files were moved to the trash"</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>triggerid</key>
+				<string>deletewatched</string>
+				<key>triggername</key>
+				<string>Delete watched</string>
+				<key>workflowonly</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.remote</string>
+			<key>uid</key>
+			<string>87E67178-1A36-458D-9883-D7A839F8E020</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
@@ -454,6 +579,14 @@ notification "Copied link to clipboard"</string>
 				<integer>0</integer>
 				<key>keyword</key>
 				<string>wls</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
@@ -490,6 +623,27 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argument</key>
+				<string>1</string>
+				<key>argumenttype</key>
+				<integer>3</integer>
+				<key>triggerid</key>
+				<string>sharelast</string>
+				<key>triggername</key>
+				<string>Share last</string>
+				<key>workflowonly</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.remote</string>
+			<key>uid</key>
+			<string>2BD98040-76A3-48BE-8E0F-68D1F1F9C7E6</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
@@ -517,12 +671,22 @@ open "${url}"</string>
 		<key>0DDE2F4F-9DE8-4C40-BB85-ED0DF8C613EE</key>
 		<dict>
 			<key>ypos</key>
-			<real>490</real>
+			<real>730</real>
+		</dict>
+		<key>10E44EB4-6139-4E72-AD84-137F581D67A1</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
 		</dict>
 		<key>20803797-C5B6-42F9-9F31-1425E194C1C3</key>
 		<dict>
 			<key>ypos</key>
-			<real>370</real>
+			<real>490</real>
+		</dict>
+		<key>2BD98040-76A3-48BE-8E0F-68D1F1F9C7E6</key>
+		<dict>
+			<key>ypos</key>
+			<real>1210</real>
 		</dict>
 		<key>2C22F42C-C25C-4D4C-AB42-C31CE9234895</key>
 		<dict>
@@ -532,12 +696,12 @@ open "${url}"</string>
 		<key>3B6BF175-810F-4D1C-9E89-0F8BE1BCA98D</key>
 		<dict>
 			<key>ypos</key>
-			<real>730</real>
+			<real>1090</real>
 		</dict>
 		<key>3FB08D9D-FA61-4076-A99A-E8B45A21CC8D</key>
 		<dict>
 			<key>ypos</key>
-			<real>730</real>
+			<real>1090</real>
 		</dict>
 		<key>475F7D72-F65B-4E51-99C1-65C581528087</key>
 		<dict>
@@ -547,27 +711,32 @@ open "${url}"</string>
 		<key>4B343886-E096-4B4A-B04A-AC6574D6FB41</key>
 		<dict>
 			<key>ypos</key>
-			<real>490</real>
+			<real>730</real>
 		</dict>
 		<key>52C95301-2DF9-4A14-86FA-7917CFC49D39</key>
 		<dict>
 			<key>ypos</key>
-			<real>370</real>
+			<real>490</real>
 		</dict>
 		<key>7EE6AEBF-1246-428C-B2E9-C9F5BBCB5EF4</key>
 		<dict>
 			<key>ypos</key>
-			<real>850</real>
+			<real>1210</real>
 		</dict>
 		<key>7F8D7B1C-9061-4414-98C2-FEEB13C9314B</key>
 		<dict>
 			<key>ypos</key>
 			<real>250</real>
 		</dict>
+		<key>87E67178-1A36-458D-9883-D7A839F8E020</key>
+		<dict>
+			<key>ypos</key>
+			<real>970</real>
+		</dict>
 		<key>A9B03347-978A-4547-9F09-AC992131AEFB</key>
 		<dict>
 			<key>ypos</key>
-			<real>310</real>
+			<real>370</real>
 		</dict>
 		<key>AA3CF56F-3E4D-4EB5-8019-B9E517648566</key>
 		<dict>
@@ -577,9 +746,14 @@ open "${url}"</string>
 		<key>B81E79EC-8587-4704-B6ED-6B72BD007014</key>
 		<dict>
 			<key>ypos</key>
-			<real>610</real>
+			<real>850</real>
 		</dict>
 		<key>C8A7E5CB-00A9-4A5B-9AD4-2D31987E06CE</key>
+		<dict>
+			<key>ypos</key>
+			<real>850</real>
+		</dict>
+		<key>D6023D14-C151-44A0-BC02-08938DB9D46E</key>
 		<dict>
 			<key>ypos</key>
 			<real>610</real>
