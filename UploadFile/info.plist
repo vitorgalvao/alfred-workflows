@@ -85,7 +85,7 @@ transfer() {
   notification "Uploading “${file}”"
 
   # upload and copy url to clipboard
-  curl --progress-bar --upload-file "${full_file}" "https://transfer.sh/${basefile}" 2&gt; "${progress_file}" | tr -d '\n' | pbcopy
+  curl --globoff --progress-bar --upload-file "${full_file}" "https://transfer.sh/${file}" 2&gt; "${progress_file}" | tr -d '\n' | pbcopy
 
   # Play a sound
   afplay /System/Library/Sounds/Ping.aiff
@@ -149,6 +149,14 @@ rm "${progress_file}" "${name_file}"</string>
 				<integer>0</integer>
 				<key>keyword</key>
 				<string>ufp</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
