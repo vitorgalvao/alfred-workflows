@@ -76,6 +76,8 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
@@ -94,6 +96,8 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
@@ -111,10 +115,13 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>tell application "Google Chrome"	set theURL to URL of active tab of front window	do shell script "open --new -a \"Google Chrome\" --args --user-data-dir=\"/tmp/incognitoclone-$RANDOM\" --no-first-run " &amp; theURLend tell</string>
+				<string>tell application "Google Chrome"	set theURL to URL of active tab of front window
+end telldo shell script "open --new -a \"Google Chrome\" --args --user-data-dir=\"/tmp/incognitoclone-$RANDOM\" --no-first-run " &amp; theURL</string>
 				<key>type</key>
 				<integer>6</integer>
 			</dict>
@@ -128,10 +135,14 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>tell application "Google Chrome"	set theURL to URL of active tab of front window	close active tab of front window	do shell script "open --new -a \"Google Chrome\" --args --user-data-dir=\"/tmp/incognitoclone-$RANDOM\" --no-first-run " &amp; theURLend tell</string>
+				<string>tell application "Google Chrome"	set theURL to URL of active tab of front window	close active tab of front windowend tell
+
+do shell script "open --new -a \"Google Chrome\" --args --user-data-dir=\"/tmp/incognitoclone-$RANDOM\" --no-first-run " &amp; theURL</string>
 				<key>type</key>
 				<integer>6</integer>
 			</dict>
