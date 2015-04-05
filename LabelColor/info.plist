@@ -36,6 +36,17 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>83A0987D-B75E-4DBE-BDCC-9B4B3EC65CA9</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1CDD71C9-6FA7-4886-8792-358DC4825B8C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>D9413737-68AF-44E7-8F3D-214676DFD4EF</key>
 		<array>
 			<dict>
@@ -69,23 +80,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>tell application "Alfred 2" to search "labelcolor"</string>
-				<key>type</key>
-				<integer>6</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>B10C3CEF-BFF1-4B96-9D33-79793DD863B0</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>acceptsmulti</key>
 				<true/>
 				<key>filetypes</key>
@@ -106,14 +100,14 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>echo "{query}" | perl -pe 's/[\t\n]/\0/g' &gt; file_list</string>
+				<string>tell application "Alfred 2" to run trigger "LabelColor" in workflow "com.vitorgalvao.alfred.labelcolor"</string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>6</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>77AA5EBA-F831-4E9E-9E7D-FD7665B66FD1</string>
+			<string>B10C3CEF-BFF1-4B96-9D33-79793DD863B0</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -134,11 +128,44 @@
 				<false/>
 				<key>modsmode</key>
 				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.trigger.hotkey</string>
 			<key>uid</key>
 			<string>7B358A3F-B206-4B26-BF0E-B9643D6808DE</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>file_list='/tmp/labelcolorfilelist'
+echo "{query}" | perl -pe 's/[\t\n]/\0/g' &gt; "${file_list}"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>77AA5EBA-F831-4E9E-9E7D-FD7665B66FD1</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>triggerid</key>
+				<string>LabelColor</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>83A0987D-B75E-4DBE-BDCC-9B4B3EC65CA9</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -148,11 +175,9 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>cat file_list | xargs -0 ./labelcolor {query}
-
-rm file_list
-
-exit 0</string>
+				<string>file_list='/tmp/labelcolorfilelist'
+cat "${file_list}" | xargs -0 ./labelcolor {query}
+rm "${file_list}"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -170,8 +195,14 @@ exit 0</string>
 				<integer>2</integer>
 				<key>escaping</key>
 				<integer>0</integer>
-				<key>keyword</key>
-				<string>labelcolor</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
@@ -259,6 +290,11 @@ EOF</string>
 		<dict>
 			<key>ypos</key>
 			<real>130</real>
+		</dict>
+		<key>83A0987D-B75E-4DBE-BDCC-9B4B3EC65CA9</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
 		</dict>
 		<key>B10C3CEF-BFF1-4B96-9D33-79793DD863B0</key>
 		<dict>
