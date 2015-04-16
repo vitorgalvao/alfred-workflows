@@ -6,7 +6,7 @@
 	<string>com.vitorgalvao.alfred.videoduration</string>
 	<key>connections</key>
 	<dict>
-		<key>1B14953E-E57E-44E2-9659-FEEDDFB44CC8</key>
+		<key>0A8B1E95-9DC0-48BB-B38D-20710C2F313E</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -27,6 +27,25 @@
 				<key>modifiersubtext</key>
 				<string></string>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>2C0E16F9-89ED-4222-836C-9C947864FD53</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>C601AB17-0AD8-4A33-9004-D235B2261E70</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>28B55659-9FD1-44B6-AA1E-C8BA1149FC87</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
 		</array>
 	</dict>
 	<key>createdby</key>
@@ -42,65 +61,18 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
-				<integer>0</integer>
+				<integer>102</integer>
 				<key>script</key>
 				<string>#!/bin/bash
 
-url="$(pbpaste)"
+[[ -n "{query}" ]] &amp;&amp; url="{query}" || url="$(pbpaste)"
 
-# functions
-convertsecs() {
-    ((h=${1}/3600))
-    ((m=(${1}%3600)/60))
-    ((s=${1}%60))
-    printf "%02dh%02dm%02ds" $h $m $s
-}
+duration=$(python youtube-dl --get-duration "${url}" | rev | sed 's/^/s/;s/:/m/;s/:/h/' | rev | sed 's/^/[/;s/$/]/')
 
-convertmins() {
-    if [[ ${1} == *'m'* ]] &amp;&amp; [[ $(echo ${1} | sed 's/m.*//') -gt 60 ]]; then
-        mins=$(echo ${1} | sed 's/m.*//')
-        ((h=${mins}/60))
-        ((m=${mins}-${h}*60))
-
-        echo ${1} | sed "s/.*m/${h}h${m}m/"
-    else
-        echo ${1}
-    fi
-}
-
-# domain-specific
-if [[ ${url} == *'youtube.com'* ]] || [[ ${url} == *'youtu.be'* ]]; then
-    duration=$(curl --silent --location "${url}" | grep '&lt;meta itemprop="duration"' | sed 's/.*PT//;s/"&gt;//' | tr '[:upper:]' '[:lower:]')
-    duration=$(convertmins "${duration}")
-fi
-
-if [[ ${url} == *'vimeo.com'* ]]; then
-    duration=$(curl --silent --location "${url}" | grep '&lt;meta itemprop="duration"' | sed 's/.*PT//;s/"&gt;//' | tr '[:upper:]' '[:lower:]')
-fi
-
-if [[ ${url} == *'ted.com'* ]]; then
-    duration=$(curl --silent --location "${url}" | grep '&lt;meta property="video:duration' | sed 's/.*content="\(.*\)".*/\1/')
-    duration=$(convertsecs "${duration}")
-fi
-
-# format the time string to remove extra zeros
-[[ ${duration} == *'00h'* ]] &amp;&amp; duration=$(echo ${duration} | sed 's/00h//')
-[[ ${duration} == *'00m'* ]] &amp;&amp; duration=$(echo ${duration} | sed 's/00m//')
-[[ ${duration} == *'00s'* ]] &amp;&amp; duration=$(echo ${duration} | sed 's/00s//')
-
-[[ ${duration} == '0'?'h'* ]] &amp;&amp; duration=$(echo ${duration} | sed 's/0//')
-[[ ${duration} == '0'?'m'* ]] &amp;&amp; duration=$(echo ${duration} | sed 's/0//')
-[[ ${duration} == '0'?'s'* ]] &amp;&amp; duration=$(echo ${duration} | sed 's/0//')
-
-[[ ${duration} == '0h'* ]] &amp;&amp; duration=$(echo ${duration} | sed 's/0h//')
-[[ ${duration} == *'h0m'* ]] &amp;&amp; duration=$(echo ${duration} | sed 's/0m//')
-[[ ${duration} == *'m0s'* ]] &amp;&amp; duration=$(echo ${duration} | sed 's/0s//')
-
-# format duration; if it's empty (probably used on an unsupported website), it'll just show the url
-[[ ! -z ${duration} ]] &amp;&amp; duration=" [${duration}]"
-
-echo -n "${url}${duration}"</string>
+echo -n "${url} ${duration}"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -108,6 +80,48 @@ echo -n "${url}${duration}"</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>28B55659-9FD1-44B6-AA1E-C8BA1149FC87</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>1</integer>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>hotstring</key>
+				<string></string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>0A8B1E95-9DC0-48BB-B38D-20710C2F313E</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<true/>
+				<key>clipboardtext</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>83F06055-1527-429B-91A0-E17E57616D3D</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -128,22 +142,29 @@ echo -n "${url}${duration}"</string>
 			<key>type</key>
 			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
-			<string>1B14953E-E57E-44E2-9659-FEEDDFB44CC8</string>
+			<string>C601AB17-0AD8-4A33-9004-D235B2261E70</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>autopaste</key>
-				<true/>
-				<key>clipboardtext</key>
-				<string></string>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string># update youtube-dl if it's more than 15 days old
+if [[ $(find youtube-dl -mtime +15) ]]; then
+  python youtube-dl --update
+fi</string>
+				<key>type</key>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.clipboard</string>
+			<string>alfred.workflow.output.script</string>
 			<key>uid</key>
-			<string>83F06055-1527-429B-91A0-E17E57616D3D</string>
+			<string>2C0E16F9-89ED-4222-836C-9C947864FD53</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -152,7 +173,7 @@ echo -n "${url}${duration}"</string>
 	<string></string>
 	<key>uidata</key>
 	<dict>
-		<key>1B14953E-E57E-44E2-9659-FEEDDFB44CC8</key>
+		<key>0A8B1E95-9DC0-48BB-B38D-20710C2F313E</key>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
@@ -162,10 +183,20 @@ echo -n "${url}${duration}"</string>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
+		<key>2C0E16F9-89ED-4222-836C-9C947864FD53</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
 		<key>83F06055-1527-429B-91A0-E17E57616D3D</key>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
+		</dict>
+		<key>C601AB17-0AD8-4A33-9004-D235B2261E70</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
