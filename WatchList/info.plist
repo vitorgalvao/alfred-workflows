@@ -98,6 +98,14 @@
 				<key>modifiersubtext</key>
 				<string></string>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>483A304F-AF92-4677-B14D-20B160044F84</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Open without a new window for the app</string>
+			</dict>
 		</array>
 		<key>87E67178-1A36-458D-9883-D7A839F8E020</key>
 		<array>
@@ -114,7 +122,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>DE394F89-C4B4-497C-B6E8-5715050AC3CE</string>
+				<string>483A304F-AF92-4677-B14D-20B160044F84</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -189,6 +197,8 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
@@ -230,50 +240,6 @@ touch "${watched}"</string>
 			<string>alfred.workflow.trigger.external</string>
 			<key>uid</key>
 			<string>475F7D72-F65B-4E51-99C1-65C581528087</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>source ./watchlist_functions.sh
-line_number='{query}'
-
-move_list_item towatch "${line_number}"
-
-item_location=$(cut -d'⸗' -f3 &lt;&lt;&lt; "${list_item}")
-open "${item_location}"</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>DE394F89-C4B4-497C-B6E8-5715050AC3CE</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string></string>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>triggerid</key>
-				<string>showlist</string>
-				<key>triggername</key>
-				<string>Show list</string>
-				<key>workflowonly</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.remote</string>
-			<key>uid</key>
-			<string>10E44EB4-6139-4E72-AD84-137F581D67A1</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -330,6 +296,52 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>source ./watchlist_functions.sh
+line_number='{query}'
+
+move_list_item towatch "${line_number}"
+
+item_location=$(cut -d'⸗' -f3 &lt;&lt;&lt; "${list_item}")
+open -n "${item_location}"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>DE394F89-C4B4-497C-B6E8-5715050AC3CE</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>triggerid</key>
+				<string>showlist</string>
+				<key>triggername</key>
+				<string>Show list</string>
+				<key>workflowonly</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.remote</string>
+			<key>uid</key>
+			<string>10E44EB4-6139-4E72-AD84-137F581D67A1</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argument</key>
 				<string>1</string>
 				<key>argumenttype</key>
@@ -351,6 +363,33 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>source ./watchlist_functions.sh
+line_number='{query}'
+
+move_list_item towatch "${line_number}"
+
+item_location=$(cut -d'⸗' -f3 &lt;&lt;&lt; "${list_item}")
+open "${item_location}"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>483A304F-AF92-4677-B14D-20B160044F84</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
@@ -444,6 +483,29 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>wle</string>
+				<key>subtext</key>
+				<string>Open the lists in your default text editor, for manual editing</string>
+				<key>text</key>
+				<string>Edit (wle)</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>4B343886-E096-4B4A-B04A-AC6574D6FB41</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
@@ -467,24 +529,26 @@ open -t "${towatch}" "${watched}"</string>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>keyword</key>
-				<string>wle</string>
+				<string>wld</string>
 				<key>subtext</key>
-				<string>Open the lists in your default text editor, for manual editing</string>
+				<string>Move your watched files to the trash</string>
 				<key>text</key>
-				<string>Edit (wle)</string>
+				<string>Delete (wld)</string>
 				<key>withspace</key>
 				<false/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
-			<string>4B343886-E096-4B4A-B04A-AC6574D6FB41</string>
+			<string>C8A7E5CB-00A9-4A5B-9AD4-2D31987E06CE</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
@@ -501,27 +565,6 @@ notification "Watched files were moved to the trash"</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>B81E79EC-8587-4704-B6ED-6B72BD007014</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>keyword</key>
-				<string>wld</string>
-				<key>subtext</key>
-				<string>Move your watched files to the trash</string>
-				<key>text</key>
-				<string>Delete (wld)</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>C8A7E5CB-00A9-4A5B-9AD4-2D31987E06CE</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -599,6 +642,8 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
@@ -644,6 +689,8 @@ notification "Copied link to clipboard"</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
@@ -707,6 +754,11 @@ open "${url}"</string>
 		<dict>
 			<key>ypos</key>
 			<real>130</real>
+		</dict>
+		<key>483A304F-AF92-4677-B14D-20B160044F84</key>
+		<dict>
+			<key>ypos</key>
+			<real>370</real>
 		</dict>
 		<key>4B343886-E096-4B4A-B04A-AC6574D6FB41</key>
 		<dict>
