@@ -14,7 +14,7 @@ def finderDir
      else
      return (POSIX path of (path to home folder))
      end if
-     end tell'}.gsub(/\n$/, '/')
+     end tell'}.sub(/\n$/, '/')
 end
 
 def notification(message)
