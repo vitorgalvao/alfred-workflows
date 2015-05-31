@@ -74,6 +74,8 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
@@ -111,7 +113,11 @@ gettitle() {
 getfile() {
   progressfile="/tmp/downvidprogress"
 
-  python youtube-dl --no-playlist --newline --output "${downdir}/%(title)s.%(ext)s" "${link}" &gt; "${progressfile}"
+  # download and embed subtitles, if we can find ffmpeg or avconv
+  PATH=/usr/local/bin:$PATH
+  [[ "$(which ffmpeg avconv)" ]] &amp;&amp; IFS=' ' subsoptions='--all-subs --embed-subs'
+
+  python youtube-dl ${subsoptions} --no-playlist --newline --output "${downdir}/%(title)s.%(ext)s" "${link}" &gt; "${progressfile}"
 
   # add metadata
   xmlencodedurl=$(echo "${link}" | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"'\''})')
@@ -156,6 +162,14 @@ notification "Downloaded “${title}”"</string>
 				<integer>0</integer>
 				<key>keyword</key>
 				<string>dv</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
@@ -230,6 +244,14 @@ fi</string>
 				<integer>0</integer>
 				<key>keyword</key>
 				<string>dvp</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
@@ -279,6 +301,8 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
@@ -296,6 +320,8 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
@@ -324,6 +350,8 @@ kill $(ps -A | grep 'python youtube-dl --no-playlist' | awk '{print $1}')</strin
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
