@@ -79,10 +79,15 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string># deal with special characters
-export LANG=en_GB.UTF-8
-
+				<string>export LANG=en_GB.UTF-8 # deal with special characters in names
 IFS=$'\n'
+
+# global obtions for downloads
+# download and embed subtitles, if we can find ffmpeg or avconv
+PATH=/usr/local/bin:$PATH
+[[ "$(which ffmpeg avconv)" ]] &amp;&amp; IFS=' ' subsoptions='--all-subs --embed-subs'
+# force a fileformat, for consistency between gettitle and getfile
+IFS=' ' fileformat='-f bestvideo[ext=mp4]+bestaudio[ext=m4a]'
 
 # set notifications
 notification() {
@@ -96,7 +101,7 @@ fi
 
 gettitle() {
   # file location
-  filename=$(python youtube-dl --no-playlist --output "${downdir}/%(title)s.%(ext)s" --get-filename "${link}")
+  filename=$(python youtube-dl ${fileformat} --no-playlist --output "${downdir}/%(title)s.%(ext)s" --get-filename "${link}")
 
   # title
   title=$(basename ${filename%.*})
@@ -113,12 +118,7 @@ gettitle() {
 getfile() {
   progressfile="/tmp/downvidprogress"
 
-  # download and embed subtitles, if we can find ffmpeg or avconv
-  # force it into mp4 to prevent discrepancies between gettitle and getfile
-  PATH=/usr/local/bin:$PATH
-  [[ "$(which ffmpeg avconv)" ]] &amp;&amp; IFS=' ' subsoptions='--all-subs --embed-subs --merge-output-format mp4'
-
-  python youtube-dl ${subsoptions} --no-playlist --newline --output "${downdir}/%(title)s.%(ext)s" "${link}" &gt; "${progressfile}"
+  python youtube-dl ${subsoptions} ${fileformat} --no-playlist --newline --output "${downdir}/%(title)s.%(ext)s" "${link}" &gt; "${progressfile}"
 
   # add metadata
   xmlencodedurl=$(echo "${link}" | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"'\''})')
