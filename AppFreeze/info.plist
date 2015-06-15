@@ -90,9 +90,15 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>front_app=$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')
+				<string>notification() {
+  ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "AppFreeze" -message "${1}"
+}
 
-killall -STOP -c "${front_app}"</string>
+front_app=$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')
+
+killall -STOP -c "${front_app}"
+
+notification "Froze ${front_app}"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -157,9 +163,15 @@ killall -STOP -c "${front_app}"</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>front_app=$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')
+				<string>notification() {
+  ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "AppFreeze" -message "${1}"
+}
 
-killall -CONT -c "${front_app}"</string>
+front_app=$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')
+
+killall -CONT -c "${front_app}"
+
+notification "Unfroze ${front_app}"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
