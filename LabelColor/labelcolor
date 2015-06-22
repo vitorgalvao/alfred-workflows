@@ -1,36 +1,54 @@
+#!/bin/bash
+
+readonly program="$(basename "$0")"
+
+# Instructions on how to use the script
+# Shown with when no arguments are given
+# --------------------------------------
+usage() {
+echo "usage: $program <color> <files>
+
+Available color options:
+none (to remove label), orange, red, yellow, blue, purple, green, gray"
+}
+
+if [[ -z ${1} ]]; then
+  usage
+  exit 1
+fi
+
 # Use first argument as color
 # ---------------------------
-color=${1}
+color_name=${1}
 shift
 
-# Covert color name to appropriate number
+# Covert color name to appropriate index
 # Check if color is valid
-# ---------------------------------------
-isValidColor="False"
+# --------------------------------------
+color_array=('none' 'orange' 'red' 'yellow' 'blue' 'purple' 'green' 'gray')
 
-colorArray=('none' 'orange' 'red' 'yellow' 'blue' 'purple' 'green' 'gray')
-
-for (( i = 0; i < ${#colorArray[@]}; i++ )); do
-	if [[ "${colorArray[$i]}" = "${color}" ]]; then
-		color="${i}"
-		isValidColor="True"
-	fi
+for i in "${!color_array[@]}"; do
+  if [[ "${color_array[$i]}" = "${color_name}" ]]; then
+    color_index="${i}"
+  fi
 done
 
-if [[ "${isValidColor}" = "False" ]]; then
-	exit 1
+if [[ -z "${color_index}" ]]; then
+  echo "Please choose a valid color."
+  usage
+  exit 1
 fi
 
 # Set the label
 # -------------
-osascript - "${color}" "$@" << EOF &>/dev/null
-	on run argv
-		set labelIndex to (item 1 of argv as number)
-		repeat with i from 2 to (count of argv)
-			tell application "Finder"
-				set theFile to POSIX file (item i of argv) as alias
-				set label index of theFile to labelIndex
-			end tell
-		end repeat
-	end run
+osascript - "${color_index}" "$@" << EOF &>/dev/null
+  on run argv
+    set labelIndex to (item 1 of argv as number)
+    repeat with i from 2 to (count of argv)
+      tell application "Finder"
+        set theFile to POSIX file (item i of argv) as alias
+        set label index of theFile to labelIndex
+      end tell
+    end repeat
+  end run
 EOF
