@@ -87,7 +87,7 @@ IFS=$'\n'
 PATH=/usr/local/bin:$PATH
 [[ "$(which ffmpeg avconv)" ]] &amp;&amp; IFS=' ' subsoptions='--all-subs --embed-subs'
 # force a fileformat, for consistency between gettitle and getfile
-IFS=' ' fileformat='-f bestvideo[ext=mp4]+bestaudio[ext=m4a]'
+IFS=' ' fileformat='-f bestvideo[ext=mp4]+bestaudio[ext=m4a]/best'
 
 # set notifications
 notification() {
