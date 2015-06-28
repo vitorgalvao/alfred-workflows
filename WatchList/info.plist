@@ -6,6 +6,17 @@
 	<string>com.vitorgalvao.alfred.watchlist</string>
 	<key>connections</key>
 	<dict>
+		<key>006E81EE-A542-4616-AE6B-5262EF4E59C5</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2A1A7853-05AD-43B6-AFF0-55104517AB51</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>0DDE2F4F-9DE8-4C40-BB85-ED0DF8C613EE</key>
 		<array/>
 		<key>10E44EB4-6139-4E72-AD84-137F581D67A1</key>
@@ -162,7 +173,7 @@
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
 	<key>description</key>
-	<string>View and manage a sequence of files</string>
+	<string>Watch and manage local videos and streams</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -226,12 +237,70 @@ touch "${watched}"</string>
 			<key>config</key>
 			<dict>
 				<key>triggerid</key>
-				<string>add_to_watchlist</string>
+				<string>add_file_to_watchlist</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.trigger.external</string>
 			<key>uid</key>
 			<string>475F7D72-F65B-4E51-99C1-65C581528087</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>swl</string>
+				<key>subtext</key>
+				<string>Adds url to play video from stream</string>
+				<key>text</key>
+				<string>Stream add (swl)</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>006E81EE-A542-4616-AE6B-5262EF4E59C5</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>source ./watchlist_functions.sh
+
+if [[ ! -d "${non_volatile_prefs_dir}" ]]; then
+  mkdir "${non_volatile_prefs_dir}"
+fi
+
+item_location="$(pbpaste)"
+item_title=$(youtube-dl --no-playlist --get-title "${item_location}")
+item_duration=$(youtube-dl --no-playlist --get-duration "${item_location}" | rev | sed 's/^/s/;s/:/ nm/;s/:/ h/' | rev)
+
+new_item="stream⸗${item_title}⸗${item_location}⸗n/a (stream)⸗${item_duration}"
+printf "${new_item}\n$(cat "${towatch}")" &gt; "${towatch}"
+
+notification "Added ${item_title} as stream"
+
+# update youtube-dl if it's more than 15 days old
+if [[ $(find youtube-dl -mtime +15) ]]; then
+  python youtube-dl --update
+fi</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>2A1A7853-05AD-43B6-AFF0-55104517AB51</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -267,7 +336,8 @@ if [[ -z $(cat ${towatch}) ]]; then
   echo "&lt;/item&gt;"
   echo "&lt;/items&gt;"
 else
-  watch_script_filter towatch "${search_query}"
+  use_list towatch
+  watch_script_filter "${search_query}"
 fi</string>
 				<key>subtext</key>
 				<string>Pick a file to play</string>
@@ -294,12 +364,14 @@ fi</string>
 				<integer>0</integer>
 				<key>script</key>
 				<string>source ./watchlist_functions.sh
+use_list towatch
 line_number='{query}'
 
-move_list_item towatch "${line_number}"
+load_item "${line_number}"
 
-item_location=$(cut -d'⸗' -f3 &lt;&lt;&lt; "${list_item}")
-open "${item_location}"</string>
+play_file "${item_location}"
+
+move_list_item "${line_number}"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -361,11 +433,14 @@ open "${item_location}"</string>
 				<integer>0</integer>
 				<key>script</key>
 				<string>source ./watchlist_functions.sh
+use_list watched
 line_number='{query}'
 
-move_list_item watched "${line_number}"
+load_item "${line_number}"
 
-notification "Marked as unwatched"</string>
+move_list_item "${line_number}"
+
+notification "Marked ${item_title} as unwatched"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -408,7 +483,8 @@ if [[ -z $(cat ${watched}) ]]; then
   echo "&lt;/item&gt;"
   echo "&lt;/items&gt;"
 else
-  watch_script_filter watched "${search_query}"
+  use_list watched
+  watch_script_filter "${search_query}"
 fi</string>
 				<key>subtext</key>
 				<string>Pick a file to mark as unwatched</string>
@@ -520,9 +596,10 @@ open -t "${towatch}" "${watched}"</string>
 				<integer>0</integer>
 				<key>script</key>
 				<string>source ./watchlist_functions.sh
+use_list watched
 
-cat "${watched}" | cut -d'⸗' -f3 | perl -pe 's/\n/\0/' | xargs -0 ./_licensed/trash/trash
-cat /dev/null &gt; "${watched}"
+cat "${list}" | cut -d'⸗' -f3 | perl -pe 's/\n/\0/' | xargs -0 ./_licensed/trash/trash
+cat /dev/null &gt; "${list}"
 
 notification "Watched files were moved to the trash"</string>
 				<key>type</key>
@@ -588,7 +665,8 @@ if [[ -z $(cat ${watched}) ]]; then
   echo "&lt;/item&gt;"
   echo "&lt;/items&gt;"
 else
-  watch_script_filter share "${search_query}"
+  use_list share
+  watch_script_filter "${search_query}"
 fi</string>
 				<key>subtext</key>
 				<string>Get URL from where item is from</string>
@@ -615,10 +693,13 @@ fi</string>
 				<integer>0</integer>
 				<key>script</key>
 				<string>source ./watchlist_functions.sh
+use_list share
 line_number='{query}'
 
-item_location=$(sed -n "${line_number}p" "${watched}" | cut -d'⸗' -f3)
-url=$(get_item_origin_url "${item_location}")
+load_item "${line_number}"
+
+url=$(get_item_origin_url "${item_type}" "${item_location}")
+
 echo -n "${url}" | pbcopy
 
 notification "Copied link to clipboard"</string>
@@ -662,10 +743,13 @@ notification "Copied link to clipboard"</string>
 				<integer>0</integer>
 				<key>script</key>
 				<string>source ./watchlist_functions.sh
+use_list share
 line_number='{query}'
 
-item_location=$(sed -n "${line_number}p" "${watched}" | cut -d'⸗' -f3)
-url=$(get_item_origin_url "${item_location}")
+load_item "${line_number}"
+
+url=$(get_item_origin_url "${item_type}" "${item_location}")
+
 open "${url}"</string>
 				<key>type</key>
 				<integer>0</integer>
@@ -682,25 +766,35 @@ open "${url}"</string>
 	<string></string>
 	<key>uidata</key>
 	<dict>
-		<key>0DDE2F4F-9DE8-4C40-BB85-ED0DF8C613EE</key>
-		<dict>
-			<key>ypos</key>
-			<real>730</real>
-		</dict>
-		<key>10E44EB4-6139-4E72-AD84-137F581D67A1</key>
+		<key>006E81EE-A542-4616-AE6B-5262EF4E59C5</key>
 		<dict>
 			<key>ypos</key>
 			<real>250</real>
 		</dict>
+		<key>0DDE2F4F-9DE8-4C40-BB85-ED0DF8C613EE</key>
+		<dict>
+			<key>ypos</key>
+			<real>850</real>
+		</dict>
+		<key>10E44EB4-6139-4E72-AD84-137F581D67A1</key>
+		<dict>
+			<key>ypos</key>
+			<real>370</real>
+		</dict>
 		<key>20803797-C5B6-42F9-9F31-1425E194C1C3</key>
 		<dict>
 			<key>ypos</key>
-			<real>490</real>
+			<real>610</real>
+		</dict>
+		<key>2A1A7853-05AD-43B6-AFF0-55104517AB51</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
 		</dict>
 		<key>2BD98040-76A3-48BE-8E0F-68D1F1F9C7E6</key>
 		<dict>
 			<key>ypos</key>
-			<real>1210</real>
+			<real>1330</real>
 		</dict>
 		<key>2C22F42C-C25C-4D4C-AB42-C31CE9234895</key>
 		<dict>
@@ -710,12 +804,12 @@ open "${url}"</string>
 		<key>3B6BF175-810F-4D1C-9E89-0F8BE1BCA98D</key>
 		<dict>
 			<key>ypos</key>
-			<real>1090</real>
+			<real>1210</real>
 		</dict>
 		<key>3FB08D9D-FA61-4076-A99A-E8B45A21CC8D</key>
 		<dict>
 			<key>ypos</key>
-			<real>1090</real>
+			<real>1210</real>
 		</dict>
 		<key>475F7D72-F65B-4E51-99C1-65C581528087</key>
 		<dict>
@@ -725,32 +819,32 @@ open "${url}"</string>
 		<key>4B343886-E096-4B4A-B04A-AC6574D6FB41</key>
 		<dict>
 			<key>ypos</key>
-			<real>730</real>
+			<real>850</real>
 		</dict>
 		<key>52C95301-2DF9-4A14-86FA-7917CFC49D39</key>
 		<dict>
 			<key>ypos</key>
-			<real>490</real>
+			<real>610</real>
 		</dict>
 		<key>7EE6AEBF-1246-428C-B2E9-C9F5BBCB5EF4</key>
 		<dict>
 			<key>ypos</key>
-			<real>1210</real>
+			<real>1330</real>
 		</dict>
 		<key>7F8D7B1C-9061-4414-98C2-FEEB13C9314B</key>
 		<dict>
 			<key>ypos</key>
-			<real>250</real>
+			<real>370</real>
 		</dict>
 		<key>87E67178-1A36-458D-9883-D7A839F8E020</key>
 		<dict>
 			<key>ypos</key>
-			<real>970</real>
+			<real>1090</real>
 		</dict>
 		<key>A9B03347-978A-4547-9F09-AC992131AEFB</key>
 		<dict>
 			<key>ypos</key>
-			<real>370</real>
+			<real>490</real>
 		</dict>
 		<key>AA3CF56F-3E4D-4EB5-8019-B9E517648566</key>
 		<dict>
@@ -760,22 +854,22 @@ open "${url}"</string>
 		<key>B81E79EC-8587-4704-B6ED-6B72BD007014</key>
 		<dict>
 			<key>ypos</key>
-			<real>850</real>
+			<real>970</real>
 		</dict>
 		<key>C8A7E5CB-00A9-4A5B-9AD4-2D31987E06CE</key>
 		<dict>
 			<key>ypos</key>
-			<real>850</real>
+			<real>970</real>
 		</dict>
 		<key>D6023D14-C151-44A0-BC02-08938DB9D46E</key>
 		<dict>
 			<key>ypos</key>
-			<real>610</real>
+			<real>730</real>
 		</dict>
 		<key>DE394F89-C4B4-497C-B6E8-5715050AC3CE</key>
 		<dict>
 			<key>ypos</key>
-			<real>250</real>
+			<real>370</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>

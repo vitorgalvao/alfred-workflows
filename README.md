@@ -150,9 +150,9 @@ Outputs the url of a video on a supported website with its duration in square br
 [info](http://www.alfredforum.com/topic/1393-videoduration-%E2%80%94-outputs-the-url-of-a-video-on-a-supported-website-with-its-duration-in-square-brackets/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.videoduration/videoduration.alfredworkflow)
 
 ### WatchList
-View and manage a sequence of files
+Watch and manage local videos and streams
 
-[info](http://www.alfredforum.com/topic/1931-watchlist-%E2%80%94-view-and-manage-a-sequence-of-files/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.watchlist/watchlist.alfredworkflow)
+[info](http://www.alfredforum.com/topic/1931-watchlist-%E2%80%94-watch-and-manage-local-videos-and-streams/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.watchlist/watchlist.alfredworkflow)
 
 ### WordsWith
 Find words that contain a particular pattern
