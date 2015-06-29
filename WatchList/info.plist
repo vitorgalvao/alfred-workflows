@@ -206,6 +206,7 @@
 				<integer>102</integer>
 				<key>script</key>
 				<string>source ./watchlist_functions.sh
+use_list towatch
 
 if [[ ! -d "${non_volatile_prefs_dir}" ]]; then
   mkdir "${non_volatile_prefs_dir}"
@@ -219,7 +220,7 @@ for file in ${files_to_add}; do
   item_title="$(basename ${file%.*})"
 
   new_item="file⸗${item_title}⸗${file}⸗${item_size}⸗${item_duration}"
-  printf "${new_item}\n$(cat "${towatch}")" &gt; "${towatch}"
+  printf "%s\n$(cat "${list}")" "${new_item}" &gt; "${list}"
 done
 
 touch "${watched}"</string>
@@ -276,6 +277,7 @@ touch "${watched}"</string>
 				<integer>102</integer>
 				<key>script</key>
 				<string>source ./watchlist_functions.sh
+use_list towatch
 
 if [[ ! -d "${non_volatile_prefs_dir}" ]]; then
   mkdir "${non_volatile_prefs_dir}"
@@ -286,9 +288,13 @@ item_title=$(youtube-dl --no-playlist --get-title "${item_location}")
 item_duration=$(youtube-dl --no-playlist --get-duration "${item_location}" | rev | sed 's/^/s/;s/:/ nm/;s/:/ h/' | rev)
 
 new_item="stream⸗${item_title}⸗${item_location}⸗n/a (stream)⸗${item_duration}"
-printf "${new_item}\n$(cat "${towatch}")" &gt; "${towatch}"
+
+printf "%s\n$(cat "${list}")" "${new_item}" &gt; "${list}"
+
 
 notification "Added ${item_title} as stream"
+
+touch "${watched}"
 
 # update youtube-dl if it's more than 15 days old
 if [[ $(find youtube-dl -mtime +15) ]]; then

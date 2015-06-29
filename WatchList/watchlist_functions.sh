@@ -96,7 +96,7 @@ move_list_item() {
 
   list_item=$(sed -n "${line_number}p" "${origin_list}")
   sed -i '' "${line_number}d" "${origin_list}"
-  printf "${list_item}\n$(cat "${destiny_list}")" > "${destiny_list}"
+  printf "%s\n$(cat "${destiny_list}")" "${list_item}" > "${destiny_list}"
 }
 
 watch_script_filter() {
