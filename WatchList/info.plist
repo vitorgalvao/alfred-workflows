@@ -220,7 +220,10 @@ for file in ${files_to_add}; do
   item_title="$(basename ${file%.*})"
 
   new_item="file⸗${item_title}⸗${file}⸗${item_size}⸗${item_duration}"
-  printf "%s\n$(cat "${list}")" "${new_item}" &gt; "${list}"
+  
+  tmp_file="$(mktemp -t watchlist)"
+  echo "${new_item}" | cat - "${list}" &gt; "${tmp_file}"
+  mv "${tmp_file}" "${list}"
 done
 
 touch "${watched}"</string>
@@ -287,12 +290,18 @@ item_location="$(pbpaste)"
 item_title=$(youtube-dl --no-playlist --get-title "${item_location}")
 item_duration=$(youtube-dl --no-playlist --get-duration "${item_location}" | rev | sed 's/^/s/;s/:/ nm/;s/:/ h/' | rev)
 
-new_item="stream⸗${item_title}⸗${item_location}⸗n/a (stream)⸗${item_duration}"
+if [[ -n "${item_title}" ]]; then
+  new_item="stream⸗${item_title}⸗${item_location}⸗n/a (stream)⸗${item_duration}"
 
-printf "%s\n$(cat "${list}")" "${new_item}" &gt; "${list}"
+  tmp_file="$(mktemp -t watchlist)"
+  echo "${new_item}" | cat - "${list}" &gt; "${tmp_file}"
+  mv "${tmp_file}" "${list}"
 
-
-notification "Added ${item_title} as stream"
+  notification "Added ${item_title} as stream"
+else
+  notification 'Could not add that link as a stream'
+  exit 1
+fi
 
 touch "${watched}"
 
