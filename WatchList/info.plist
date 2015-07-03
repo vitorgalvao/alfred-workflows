@@ -291,6 +291,14 @@ item_title=$(youtube-dl --no-playlist --get-title "${item_location}")
 item_duration=$(youtube-dl --no-playlist --get-duration "${item_location}" | rev | sed 's/^/s/;s/:/ nm/;s/:/ h/' | rev)
 
 if [[ -n "${item_title}" ]]; then
+  # fix for websites that need various video parts, causing title and duration to repeat
+  total_parts=$(wc -l &lt;&lt;&lt; "${item_title}" | perl -pe 's/\s*//')
+  if [[ "${total_parts}" &gt; 1 ]]; then
+    remaining_parts="$((total_parts - 1))"
+    item_title=$(head -1 &lt;&lt;&lt; "${item_title}" | sed "s/$/ (and ${remaining_parts} more)/")
+    item_duration=$(head -1 &lt;&lt;&lt; "${item_duration}")
+  fi
+
   new_item="stream⸗${item_title}⸗${item_location}⸗n/a (stream)⸗${item_duration}"
 
   tmp_file="$(mktemp -t watchlist)"
