@@ -220,10 +220,7 @@ for file in ${files_to_add}; do
   item_title="$(basename ${file%.*})"
 
   new_item="file⸗${item_title}⸗${file}⸗${item_size}⸗${item_duration}"
-  
-  tmp_file="$(mktemp -t watchlist)"
-  echo "${new_item}" | cat - "${list}" &gt; "${tmp_file}"
-  mv "${tmp_file}" "${list}"
+  prepend "${new_item}" "${list}"
 done
 
 touch "${watched}"</string>
@@ -300,11 +297,7 @@ if [[ -n "${item_title}" ]]; then
   fi
 
   new_item="stream⸗${item_title}⸗${item_location}⸗n/a (stream)⸗${item_duration}"
-
-  tmp_file="$(mktemp -t watchlist)"
-  echo "${new_item}" | cat - "${list}" &gt; "${tmp_file}"
-  mv "${tmp_file}" "${list}"
-
+  prepend "${new_item}" "${list}"
   notification "Added ${item_title} as stream"
 else
   notification 'Could not add that link as a stream'

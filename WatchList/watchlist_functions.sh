@@ -18,6 +18,17 @@ wrong_item_type() {
   exit 1
 }
 
+prepend() {
+  line_to_prepend="$1"
+  file_to_prepend_to="$2"
+  tmp_prepend_file="$(mktemp -t prepend)"
+
+  echo "${line_to_prepend}" | cat - "${file_to_prepend_to}" > "${tmp_prepend_file}"
+  mv "${tmp_prepend_file}" "${file_to_prepend_to}"
+
+  unset line_to_prepend file_to_prepend_to tmp_prepend_file
+}
+
 use_list() {
   chosen_list="$1"
 
@@ -96,7 +107,7 @@ move_list_item() {
 
   list_item=$(sed -n "${line_number}p" "${origin_list}")
   sed -i '' "${line_number}d" "${origin_list}"
-  printf "%s\n$(cat "${destiny_list}")" "${list_item}" > "${destiny_list}"
+  prepend "${list_item}" "${destiny_list}"
 }
 
 watch_script_filter() {
