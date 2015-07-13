@@ -17,6 +17,17 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>C1339DD4-C707-4C1A-A181-0F557CAE7ABF</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>BE1B713B-A9BB-42FC-968B-0DACA2212AB4</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>FF316160-82F1-4AC1-8D82-72A1F0AC9ED6</key>
 		<array/>
 	</dict>
@@ -80,6 +91,56 @@ notification "Password copied to the clipboard (${number} characters)"</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>strongpasswordlow</string>
+				<key>subtext</key>
+				<string>Get a weak password (with optional maximum number of characters)</string>
+				<key>text</key>
+				<string>LessStrongPassword</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>C1339DD4-C707-4C1A-A181-0F557CAE7ABF</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>notification() {
+  ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "LessStrongPassword" -message "${1}"
+}
+
+if [[ -z "{query}" ]] || [[ "{query}" -gt 64 ]]; then
+  number="64"
+else
+  number="{query}"
+fi
+
+ruby getPasswordlessSecure.rb "${number}" | pbcopy
+
+notification "Password copied to the clipboard (${number} characters)"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>BE1B713B-A9BB-42FC-968B-0DACA2212AB4</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>Get a strong password from https://www.grc.com/passwords.htm directly to the clipboard.
@@ -92,6 +153,16 @@ strongpassword 9</string>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
+		</dict>
+		<key>BE1B713B-A9BB-42FC-968B-0DACA2212AB4</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>C1339DD4-C707-4C1A-A181-0F557CAE7ABF</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
 		</dict>
 		<key>FF316160-82F1-4AC1-8D82-72A1F0AC9ED6</key>
 		<dict>
