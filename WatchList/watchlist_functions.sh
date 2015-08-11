@@ -19,14 +19,14 @@ wrong_item_type() {
 }
 
 prepend() {
+  local line_to_prepend file_to_prepend_to tmp_prepend_file
+
   line_to_prepend="$1"
   file_to_prepend_to="$2"
   tmp_prepend_file="$(mktemp -t prepend)"
 
   echo "${line_to_prepend}" | cat - "${file_to_prepend_to}" > "${tmp_prepend_file}"
   mv "${tmp_prepend_file}" "${file_to_prepend_to}"
-
-  unset line_to_prepend file_to_prepend_to tmp_prepend_file
 }
 
 use_list() {
