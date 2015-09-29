@@ -121,6 +121,17 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>A0CB4B50-6085-4C77-BA3D-435ABE469ECE</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>B81E79EC-8587-4704-B6ED-6B72BD007014</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>A9B03347-978A-4547-9F09-AC992131AEFB</key>
 		<array>
 			<dict>
@@ -652,6 +663,19 @@ notification "Watched files were moved to the trash"</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>triggerid</key>
+				<string>delete_watched_files_from_watchlist</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>A0CB4B50-6085-4C77-BA3D-435ABE469ECE</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -810,7 +834,7 @@ open "${url}"</string>
 		<key>2BD98040-76A3-48BE-8E0F-68D1F1F9C7E6</key>
 		<dict>
 			<key>ypos</key>
-			<real>1330</real>
+			<real>1450</real>
 		</dict>
 		<key>2C22F42C-C25C-4D4C-AB42-C31CE9234895</key>
 		<dict>
@@ -820,12 +844,12 @@ open "${url}"</string>
 		<key>3B6BF175-810F-4D1C-9E89-0F8BE1BCA98D</key>
 		<dict>
 			<key>ypos</key>
-			<real>1210</real>
+			<real>1330</real>
 		</dict>
 		<key>3FB08D9D-FA61-4076-A99A-E8B45A21CC8D</key>
 		<dict>
 			<key>ypos</key>
-			<real>1210</real>
+			<real>1330</real>
 		</dict>
 		<key>475F7D72-F65B-4E51-99C1-65C581528087</key>
 		<dict>
@@ -845,7 +869,7 @@ open "${url}"</string>
 		<key>7EE6AEBF-1246-428C-B2E9-C9F5BBCB5EF4</key>
 		<dict>
 			<key>ypos</key>
-			<real>1330</real>
+			<real>1450</real>
 		</dict>
 		<key>7F8D7B1C-9061-4414-98C2-FEEB13C9314B</key>
 		<dict>
@@ -856,6 +880,11 @@ open "${url}"</string>
 		<dict>
 			<key>ypos</key>
 			<real>1090</real>
+		</dict>
+		<key>A0CB4B50-6085-4C77-BA3D-435ABE469ECE</key>
+		<dict>
+			<key>ypos</key>
+			<real>1210</real>
 		</dict>
 		<key>A9B03347-978A-4547-9F09-AC992131AEFB</key>
 		<dict>
