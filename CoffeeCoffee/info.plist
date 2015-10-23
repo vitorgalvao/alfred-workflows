@@ -39,6 +39,14 @@
 				<integer>0</integer>
 				<key>keyword</key>
 				<string>coffee</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
@@ -78,16 +86,18 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
 				<string>if [[ {query} == 'off' ]]; then
 	killall caffeinate
 elif [[ {query} == 'on' ]]; then
-	caffeinate &gt; /dev/null 2&gt;&amp;1 &amp;
+	caffeinate &amp;&gt; /dev/null &amp;
 else
 	time="$(($(echo {query} | sed 's/on//')*60))"
-	caffeinate -t ${time} &gt; /dev/null 2&gt;&amp;1 &amp;
+	caffeinate -t ${time} &amp;&gt; /dev/null &amp;
 fi</string>
 				<key>type</key>
 				<integer>0</integer>
