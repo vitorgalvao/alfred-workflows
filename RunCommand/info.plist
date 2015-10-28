@@ -94,6 +94,14 @@
 				<key>destinationuid</key>
 				<string>38368F77-4820-4A56-BE9D-8E86E4BFA929</string>
 				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Show result on exit</string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>1F82ADA4-53CA-4378-8207-6D1AC40A0E15</string>
+				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
@@ -130,6 +138,8 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
@@ -147,6 +157,8 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
@@ -202,16 +214,10 @@
 			<integer>0</integer>
 		</dict>
 		<dict>
-			<key>type</key>
-			<string>alfred.workflow.output.largetype</string>
-			<key>uid</key>
-			<string>1B016A28-C600-4740-8FA0-87F959C452C5</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
@@ -246,8 +252,18 @@
 			<integer>0</integer>
 		</dict>
 		<dict>
+			<key>type</key>
+			<string>alfred.workflow.output.largetype</string>
+			<key>uid</key>
+			<string>1B016A28-C600-4740-8FA0-87F959C452C5</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
@@ -283,6 +299,25 @@
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>./runcommand runInDir "{query}"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>1F82ADA4-53CA-4378-8207-6D1AC40A0E15</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
@@ -302,6 +337,11 @@
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
+		</dict>
+		<key>1F82ADA4-53CA-4378-8207-6D1AC40A0E15</key>
+		<dict>
+			<key>ypos</key>
+			<real>490</real>
 		</dict>
 		<key>38368F77-4820-4A56-BE9D-8E86E4BFA929</key>
 		<dict>
