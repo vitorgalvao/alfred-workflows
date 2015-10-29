@@ -54,22 +54,24 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
 				<string>notification() {
-  ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "TemporaryEmail" -message "${1}"
+  ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title 'TemporaryEmail' -message "${1}"
 }
 
-argument="{query}"
+argument='{query}'
 
 if [[ "${argument}" != '' ]]; then
   argument=$(echo "${argument}" | sed 's| ||g')
-  email="${argument}@harakirimail.com"
-  url="https://harakirimail.com/inbox/${argument}"
+  email="${argument}@teleosaurs.xyz"
+  url="http://teleosaurs.xyz/inbox/${argument}"
 else
-  email=$(curl --silent 'https://harakirimail.com/' | grep 'id="randominboxLink"' | sed -E 's/.*&gt;(.*@harakirimail.com).*/\1/')
-  url=$(echo -n "${email}" | sed -E 's|(.*)@.*|https://harakirimail.com/inbox/\1|')
+  email=$(curl --silent 'https://fakena.me/random/' | grep 'http://teleosaurs.xyz/inbox/' | sed -E 's/.*&gt;(.*@teleosaurs.xyz).*/\1/')
+  url=$(echo -n "${email}" | sed -E 's|(.*)@.*|http://teleosaurs.xyz/inbox/\1|')
 fi
 
 front_browser=$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')
