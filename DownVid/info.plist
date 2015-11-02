@@ -135,7 +135,7 @@ if [[ "{query}" == "addToWatchList"* ]]; then
   downdir="${HOME}/Downloads"
   gettitle
   getfile
-  osascript -e "tell application \"Alfred 2\" to run trigger \"add_to_watchlist\" in workflow \"com.vitorgalvao.alfred.watchlist\" with argument \"${filename}\""
+  osascript -e "tell application \"Alfred 2\" to run trigger \"add_file_to_watchlist\" in workflow \"com.vitorgalvao.alfred.watchlist\" with argument \"${filename}\""
 else
   link="$(cat {query})"
   downdir="${HOME}/Desktop"
