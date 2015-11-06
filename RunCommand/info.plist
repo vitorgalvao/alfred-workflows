@@ -44,7 +44,20 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>1F82ADA4-53CA-4378-8207-6D1AC40A0E15</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1B016A28-C600-4740-8FA0-87F959C452C5</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>38368F77-4820-4A56-BE9D-8E86E4BFA929</key>
+		<array/>
+		<key>4F728955-5237-45A7-8665-A94FC85E300E</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -56,16 +69,7 @@
 			</dict>
 		</array>
 		<key>70D7DD2C-C248-44EB-8F75-538914807A66</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>1B016A28-C600-4740-8FA0-87F959C452C5</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
+		<array/>
 		<key>BC3ADE81-4A31-4D07-A1C8-11BF79A65DE9</key>
 		<array>
 			<dict>
@@ -75,6 +79,14 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>4F728955-5237-45A7-8665-A94FC85E300E</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Show result on exit</string>
 			</dict>
 		</array>
 		<key>E7E29D22-8238-4B15-A125-541CDB088237</key>
@@ -94,17 +106,17 @@
 				<key>destinationuid</key>
 				<string>38368F77-4820-4A56-BE9D-8E86E4BFA929</string>
 				<key>modifiers</key>
-				<integer>1048576</integer>
+				<integer>0</integer>
 				<key>modifiersubtext</key>
-				<string>Show result on exit</string>
+				<string></string>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
 				<string>1F82ADA4-53CA-4378-8207-6D1AC40A0E15</string>
 				<key>modifiers</key>
-				<integer>0</integer>
+				<integer>1048576</integer>
 				<key>modifiersubtext</key>
-				<string></string>
+				<string>Show result on exit</string>
 			</dict>
 		</array>
 	</dict>
@@ -203,13 +215,19 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>triggerid</key>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>subtext</key>
+				<string>Use “{}” for file placeholders, if needed</string>
+				<key>text</key>
 				<string>RunCommand</string>
+				<key>withspace</key>
+				<false/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
+			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
-			<string>E7E29D22-8238-4B15-A125-541CDB088237</string>
+			<string>BC3ADE81-4A31-4D07-A1C8-11BF79A65DE9</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -235,19 +253,13 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>subtext</key>
-				<string>Use “{}” for file placeholders, if needed</string>
-				<key>text</key>
+				<key>triggerid</key>
 				<string>RunCommand</string>
-				<key>withspace</key>
-				<false/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
+			<string>alfred.workflow.trigger.external</string>
 			<key>uid</key>
-			<string>BC3ADE81-4A31-4D07-A1C8-11BF79A65DE9</string>
+			<string>E7E29D22-8238-4B15-A125-541CDB088237</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -256,6 +268,25 @@
 			<string>alfred.workflow.output.largetype</string>
 			<key>uid</key>
 			<string>1B016A28-C600-4740-8FA0-87F959C452C5</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>./runcommand runInFiles "{query}"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>4F728955-5237-45A7-8665-A94FC85E300E</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -341,9 +372,14 @@
 		<key>1F82ADA4-53CA-4378-8207-6D1AC40A0E15</key>
 		<dict>
 			<key>ypos</key>
-			<real>490</real>
+			<real>610</real>
 		</dict>
 		<key>38368F77-4820-4A56-BE9D-8E86E4BFA929</key>
+		<dict>
+			<key>ypos</key>
+			<real>490</real>
+		</dict>
+		<key>4F728955-5237-45A7-8665-A94FC85E300E</key>
 		<dict>
 			<key>ypos</key>
 			<real>370</real>
@@ -371,7 +407,7 @@
 		<key>EFB1DBA9-4DEB-4703-8ABD-B0B63F394D35</key>
 		<dict>
 			<key>ypos</key>
-			<real>370</real>
+			<real>490</real>
 		</dict>
 		<key>F6CEDF27-563A-4BE6-8F1B-CFFAE9BB0208</key>
 		<dict>
