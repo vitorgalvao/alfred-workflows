@@ -239,7 +239,20 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>./runcommand runInFiles "{query}"</string>
+				<string>./runcommand runInFiles "{query}"
+
+# send exit status
+exit_status="$?"
+
+if [[ "${exit_status}" == '0' ]]; then
+  exit_status='Success'
+  exit_message='The command finished successfully.'
+else
+  exit_sub="${exit_status} (exit status)"
+  exit_message="The command exited with an error."
+fi
+
+./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "RunCommand" -subtitle "${exit_sub}" -message "${exit_message}"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -298,7 +311,20 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>./runcommand runInDir "{query}"</string>
+				<string>./runcommand runInDir "{query}"
+
+# send exit status
+exit_status="$?"
+
+if [[ "${exit_status}" == '0' ]]; then
+  exit_sub='Success'
+  exit_message='The command finished successfully.'
+else
+  exit_sub="${exit_status} (exit status)"
+  exit_message="The command exited with an error."
+fi
+
+./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "RunCommand" -subtitle "${exit_sub}" -message "${exit_message}"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -362,7 +388,7 @@
 		<key>1B016A28-C600-4740-8FA0-87F959C452C5</key>
 		<dict>
 			<key>ypos</key>
-			<real>250</real>
+			<real>370</real>
 		</dict>
 		<key>1C74CAA5-F3DA-4197-81A2-DD5E64E2E04C</key>
 		<dict>

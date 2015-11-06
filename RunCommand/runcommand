@@ -38,4 +38,7 @@ fi
 
 chmod +x "${commandsFile}"
 ${commandsFile}
+exit_status="$?" # needed to record the exit status from the actual command, not from the next 'rm'
 rm "${commandsFile}"
+
+exit "${exit_status}"
