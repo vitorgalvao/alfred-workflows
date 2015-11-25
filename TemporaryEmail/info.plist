@@ -68,9 +68,9 @@ argument='{query}'
 if [[ "${argument}" != '' ]]; then
   argument=$(echo "${argument}" | sed 's| ||g')
   email="${argument}@teleosaurs.xyz"
-  url="http://teleosaurs.xyz/inbox/${argument}"
+  url="https://teleosaurs.xyz/inbox/${argument}"
 else
-  email=$(curl --silent 'https://fakena.me/random/' | grep 'http://teleosaurs.xyz/inbox/' | sed -E 's/.*&gt;(.*@teleosaurs.xyz).*/\1/')
+  email=$(curl --silent 'https://fakena.me/random/' | grep 'https://teleosaurs.xyz/inbox/' | sed -E 's/.*&gt;(.*@teleosaurs.xyz).*/\1/')
   url=$(echo -n "${email}" | sed -E 's|(.*)@.*|http://teleosaurs.xyz/inbox/\1|')
 fi
 
