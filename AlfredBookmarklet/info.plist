@@ -66,12 +66,14 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>tell application "Google Chrome" to tell active tab of front window to execute javascript "&lt;bookmarklet_code_here&gt;"
+				<string>tell application "Google Chrome" to tell active tab of front window to set the URL to "&lt;bookmarklet_code_here&gt;"
 
-tell application "Safari" to tell front document to do JavaScript "&lt;bookmarklet_code_here&gt;"</string>
+tell application "Safari" to set the URL of the front document to "&lt;bookmarklet_code_here&gt;"</string>
 				<key>type</key>
 				<integer>6</integer>
 			</dict>
@@ -127,6 +129,8 @@ tell application "Safari" to tell front document to do JavaScript "&lt;bookmarkl
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
