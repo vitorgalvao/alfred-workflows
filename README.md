@@ -164,10 +164,8 @@ All the code in the workflows’ root directory is licensed under [The Unlicense
 
 ---
 
-#### Donations
-If you wish to support me with a donation, you can do so via
+#### Support the author
+To support me with a donation, pick a method below.
 
-[![Flattr](https://dl.dropboxusercontent.com/s/3wgyqj4bqvrxl1g/donations_flattr.svg)](https://flattr.com/submit/auto?user_id=vitor&url=https://github.com/vitorgalvao/alfred-workflows&title=alfred-workflows&language=en_GB&tags=github,alfred&category=software)
-[![Gratipay](https://dl.dropboxusercontent.com/s/gat64icoqwwm703/donations_gratipay.svg)](https://gratipay.com/vitorgalvao/)
-[![Bitcoin](https://dl.dropboxusercontent.com/s/zhlepx2l8aut79s/donations_bitcoin.svg)](https://dl.dropboxusercontent.com/s/n8k06vxyver48yf/bitcoin_tip_jar.html)
-[![Paypayl](https://dl.dropboxusercontent.com/s/2q2fluda9z695le/donations_paypal.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=hgdesigns%40gmail%2ecom&item_name=Tip%20for%20vitorgalvao&currency_code=EUR)
+[<img src='https://upload.wikimedia.org/wikipedia/commons/5/53/PayPal_2014_logo.svg' height='18' alt='Support via Paypal'>](https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=hgdesigns%40gmail%2ecom&item_name=Tip%20for%20vitorgalvao&currency_code=EUR)&nbsp;&nbsp;
+[<img src='https://upload.wikimedia.org/wikipedia/commons/c/c5/Bitcoin_logo.svg' height='15' alt='Support via Bitcoin'>](https://dl.dropboxusercontent.com/s/n8k06vxyver48yf/bitcoin_tip_jar.html)
