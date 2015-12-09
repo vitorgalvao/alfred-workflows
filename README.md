@@ -154,6 +154,11 @@ Watch and manage local videos and streams
 
 [info](http://www.alfredforum.com/topic/1931-watchlist-%E2%80%94-watch-and-manage-local-videos-and-streams/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.watchlist/watchlist.alfredworkflow)
 
+### WebScreenshot
+Take screenshots directly to the web
+
+[info](http://www.alfredforum.com/topic/8385-webscreenshot-%E2%80%94-take-screenshots-directly-to-the-web/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.webscreenshot/webscreenshot.alfredworkflow)
+
 ### WordsWith
 Find words that contain a particular pattern
 
