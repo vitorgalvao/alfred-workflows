@@ -83,11 +83,13 @@
 IFS=$'\n'
 
 # global obtions for downloads
-# download and embed subtitles, if we can find ffmpeg or avconv
 PATH=/usr/local/bin:$PATH
-[[ "$(which ffmpeg avconv)" ]] &amp;&amp; IFS=' ' subsoptions='--all-subs --embed-subs'
-# force a fileformat, for consistency between gettitle and getfile
-IFS=' ' fileformat='--format bestvideo[ext=mp4]+bestaudio[ext=m4a]/best'
+if [[ "$(which ffmpeg avconv)" ]]; then
+  # download and embed subtitles
+  IFS=' ' subsoptions='--all-subs --embed-subs'
+  # force a fileformat, for consistency between gettitle and getfile
+  IFS=' ' fileformat='--format bestvideo[ext=mp4]+bestaudio[ext=m4a]/best'
+fi
 
 # set notifications
 notification() {
