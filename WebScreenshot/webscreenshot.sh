@@ -1,23 +1,74 @@
-imgur_screenshot='./_licensed/imgur-screenshot/imgur-screenshot.sh'
+#!/bin/bash
+
+set -e # abort on any failure
+
+imgur_screenshot_exec='./_licensed/imgur-screenshot/imgur-screenshot.sh'
+resample_dpi_exec='./_licensed/resample-dpi/resample-dpi'
+
+tmp_name="$(mktemp)"
 
 notification() {
-  ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title 'CloudScreenshot' -message "${1}"
+  ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title 'WebScreenshot' -message "${1}"
 }
 
-# Are we taking a screenshot or updating an existing file?
-[[ "$1" == 'upload_image' ]] && image_file="$2"
+check_failure() {
+  if [[ "$?" != '0' ]]; then
+    afplay /System/Library/Sounds/Funk.aiff
+    notification 'Screenshot not uploaded.'
+  fi
+}
 
-# upload file and check for version
-bash "${imgur_screenshot}" --open false --keep-file false "${image_file}"
-
-# Act depending on outcome
-if [[ "$?" == '0' ]]; then
+show_success() {
   afplay /System/Library/Sounds/Ping.aiff
   notification 'Link copied to clipboard.'
-else
-  afplay /System/Library/Sounds/Funk.aiff
-  notification 'Screenshot not uploaded.'
+}
+
+resample_dpi() {
+  local screenshot_file="$1"
+  bash "${resample_dpi_exec}" "${screenshot_file}" &>/dev/null
+
+  echo "${screenshot_file}"
+}
+
+take_screenshot() {
+  local screenshot_file="${tmp_name}.png"
+  screencapture -i "${screenshot_file}"
+
+  check_failure
+  echo "${screenshot_file}"
+}
+
+copy_image() {
+  local file_name="$1"
+  local file_extension=$([[ "${file_name}" = *.* ]] && echo ".${file_name##*.}" || echo '')
+  local screenshot_file="${tmp_name}.${file_extension}"
+  cp "${file_name}" "${screenshot_file}"
+
+  echo "${screenshot_file}"
+}
+
+upload_file() {
+  local screenshot_file="$1"
+  bash "${imgur_screenshot_exec}" --open false "${screenshot_file}"
+
+  check_failure
+  show_success
+}
+
+if [[ "$1" == 'take_screenshot' ]]; then
+  screenshot_file=$(take_screenshot)
+  shift
+elif [[ "$1" == 'upload_image' ]]; then
+  screenshot_file="$(copy_image "$2")"
+  shift 2
 fi
 
-# update if older than 15 days
+if [[ "$1" == 'resample' ]]; then
+  screenshot_file="$(resample_dpi "${screenshot_file}")"
+fi
+
+upload_file "${screenshot_file}"
+
+# update external software
 [[ $(find "${imgur_screenshot}" -mtime +15) ]] && bash "${imgur_screenshot}" --update
+[[ $(find "${resample_dpi_exec}" -mtime +90) ]] && curl --location 'https://raw.githubusercontent.com/cowboy/dotfiles/master/bin/resample-dpi' --output "${resample_dpi_exec}"

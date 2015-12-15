@@ -68,7 +68,6 @@ auto_delete=""
 copy_url="true"
 keep_file="true"
 check_update="true"
-auto_update="false"
 
 # NOTICE: if you make changes here, also edit the docs at
 # https://github.com/jomo/imgur-screenshot/wiki/Config
@@ -146,13 +145,6 @@ function check_for_update() {
       echo "Version ${remote_version} is available (You have ${current_version})"
       notify ok "Update found" "Version ${remote_version} is available (You have ${current_version}). https://github.com/jomo/imgur-screenshot"
       echo "Check https://github.com/jomo/imgur-screenshot/releases/${remote_version} for more info."
-
-      if [ "${auto_update}" == "true" ]; then
-        run_update
-      else
-        echo "Use --update to install the new version"
-      fi
-
     elif [ -z "${current_version}" ] || [ -z "${remote_version}" ]; then
       echo "Invalid empty version string"
       echo "Current (local) version: '${current_version}'"
@@ -164,27 +156,6 @@ function check_for_update() {
     echo "Failed to check for latest version: ${remote_version}"
   fi
 }
-
-function run_update() {
-  set -e
-  local remote_script="https://github.com/jomo/imgur-screenshot/releases/download/${remote_version}/imgur-screenshot.sh"
-  local that
-  local this_script
-  local tmp_script
-
-  tmp_script="$(mktemp)"
-
-  # determine the script's location
-  that="$(which "$0")"
-  this_script="$(readlink "$that" || echo "$that")"
-
-  # Download latest version
-  echo "Downloading and installing latest version..."
-  curl --compressed -fL -'#' "${remote_script}" > "${tmp_script}"
-  mv "${tmp_script}" "${this_script}"
-  echo "Successfully updated to ${remote_version}."
-}
-
 
 function check_oauth2_client_secrets() {
   if [ -z "${imgur_acct_key}" ] || [ -z "${imgur_secret}" ]; then
@@ -430,12 +401,13 @@ while [ ${#} != 0 ]; do
     echo "  -c, --connect                Show connected imgur account, exit"
     echo "  -o, --open <true|false>      Override 'open' config"
     echo "  -e, --edit <true|false>      Override 'edit' config"
+    echo "  -i, --edit-command <command> Override 'edit_command' config (include '%img'), sets --edit 'true'"
     echo "  -l, --login <true|false>     Override 'login' config"
     echo "  -a, --album <album_title>    Create new album and upload there"
     echo "  -A, --album-id <album_id>    Override 'album_id' config"
     echo "  -k, --keep-file <true|false> Override 'keep_file' config"
     echo "  -d, --auto-delete <s>        Automatically delete image after <s> seconds"
-    echo "  -u, --update                 Check for a newer version, install if available, exit"
+    echo "  -u, --update                 Check for updates, exit"
     echo "  file                         Upload file instead of taking a screenshot"
     exit 0;;
   -v | --version)
@@ -455,6 +427,10 @@ while [ ${#} != 0 ]; do
     shift 2;;
   -e | --edit)
     edit="${2}"
+    shift 2;;
+  -i | --edit-command)
+    edit_command="${2}"
+    edit="true"
     shift 2;;
   -l | --login)
     login="${2}"
@@ -476,7 +452,6 @@ while [ ${#} != 0 ]; do
     auto_delete="${2}"
     shift 2;;
   -u | --update)
-    auto_update="true"
     check_for_update
     exit 0;;
   *)

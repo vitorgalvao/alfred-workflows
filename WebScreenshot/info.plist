@@ -19,6 +19,28 @@
 		</array>
 		<key>6F290C99-0052-46BF-BB61-CDDB316DEBB1</key>
 		<array/>
+		<key>7514A737-EA6D-4E6E-8F98-A4A5F4511C0A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>34364BEB-EC4B-46DA-8E66-C5DB73334206</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>C27FD00F-55A5-4455-90A8-D7CC8DF84E7F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>FD6A97DA-43C8-408F-987F-349E9A6ABE52</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>CD71AE4A-3C50-4C2E-9E08-A7C4D90A6E13</key>
 		<array/>
 		<key>E29003AD-6B07-4A51-B8E5-814A5F3F7270</key>
@@ -46,6 +68,25 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>bash ./webscreenshot.sh take_screenshot no_resample</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>6F290C99-0052-46BF-BB61-CDDB316DEBB1</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>action</key>
 				<integer>0</integer>
 				<key>argument</key>
@@ -53,7 +94,7 @@
 				<key>hotkey</key>
 				<integer>21</integer>
 				<key>hotmod</key>
-				<integer>655360</integer>
+				<integer>1703936</integer>
 				<key>hotstring</key>
 				<string>4</string>
 				<key>leftcursor</key>
@@ -78,16 +119,43 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>bash ./webscreenshot.sh</string>
+				<string>bash ./webscreenshot.sh take_screenshot resample</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>6F290C99-0052-46BF-BB61-CDDB316DEBB1</string>
+			<string>34364BEB-EC4B-46DA-8E66-C5DB73334206</string>
 			<key>version</key>
 			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>hotkey</key>
+				<integer>21</integer>
+				<key>hotmod</key>
+				<integer>655360</integer>
+				<key>hotstring</key>
+				<string>4</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>7514A737-EA6D-4E6E-8F98-A4A5F4511C0A</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -97,7 +165,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>bash ./webscreenshot.sh upload_image "{query}"</string>
+				<string>bash ./webscreenshot.sh upload_image "{query}" no_resample</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -131,12 +199,59 @@
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsmulti</key>
+				<false/>
+				<key>filetypes</key>
+				<array>
+					<string>com.adobe.pdf</string>
+					<string>com.compuserve.gif</string>
+					<string>public.jpeg</string>
+					<string>public.png</string>
+					<string>public.tiff</string>
+				</array>
+				<key>name</key>
+				<string>WebScreenshot (resample)</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>C27FD00F-55A5-4455-90A8-D7CC8DF84E7F</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>bash ./webscreenshot.sh upload_image "{query}" resample</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>FD6A97DA-43C8-408F-987F-349E9A6ABE52</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
 	<key>uidata</key>
 	<dict>
 		<key>181BA7A8-03C0-48A9-AC97-CA21785D1FC1</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
+		</dict>
+		<key>34364BEB-EC4B-46DA-8E66-C5DB73334206</key>
 		<dict>
 			<key>ypos</key>
 			<real>130</real>
@@ -146,15 +261,30 @@
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
-		<key>CD71AE4A-3C50-4C2E-9E08-A7C4D90A6E13</key>
+		<key>7514A737-EA6D-4E6E-8F98-A4A5F4511C0A</key>
 		<dict>
 			<key>ypos</key>
 			<real>130</real>
+		</dict>
+		<key>C27FD00F-55A5-4455-90A8-D7CC8DF84E7F</key>
+		<dict>
+			<key>ypos</key>
+			<real>370</real>
+		</dict>
+		<key>CD71AE4A-3C50-4C2E-9E08-A7C4D90A6E13</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
 		</dict>
 		<key>E29003AD-6B07-4A51-B8E5-814A5F3F7270</key>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
+		</dict>
+		<key>FD6A97DA-43C8-408F-987F-349E9A6ABE52</key>
+		<dict>
+			<key>ypos</key>
+			<real>370</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
