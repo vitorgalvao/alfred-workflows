@@ -5,7 +5,7 @@ set -e # abort on any failure
 imgur_screenshot_exec='./_licensed/imgur-screenshot/imgur-screenshot.sh'
 resample_dpi_exec='./_licensed/resample-dpi/resample-dpi'
 
-tmp_name="$(mktemp)"
+tmp_name="$(mktemp -t 'webscreenshot')"
 
 notification() {
   ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title 'WebScreenshot' -message "${1}"
