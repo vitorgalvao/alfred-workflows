@@ -13,13 +13,13 @@ notification() {
 
 check_failure() {
   if [[ "$?" != '0' ]]; then
-    afplay /System/Library/Sounds/Funk.aiff
+    afplay /System/Library/Sounds/Funk.aiff &
     notification 'Screenshot not uploaded.'
   fi
 }
 
 show_success() {
-  afplay /System/Library/Sounds/Ping.aiff
+  afplay /System/Library/Sounds/Ping.aiff &
   notification 'Link copied to clipboard.'
 }
 
@@ -70,5 +70,5 @@ fi
 upload_file "${screenshot_file}"
 
 # update external software
-[[ $(find "${imgur_screenshot}" -mtime +15) ]] && bash "${imgur_screenshot}" --update
+[[ $(find "${imgur_screenshot_exec}" -mtime +15) ]] && bash "${imgur_screenshot_exec}" --update
 [[ $(find "${resample_dpi_exec}" -mtime +90) ]] && curl --location 'https://raw.githubusercontent.com/cowboy/dotfiles/master/bin/resample-dpi' --output "${resample_dpi_exec}"
