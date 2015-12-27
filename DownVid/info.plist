@@ -6,6 +6,17 @@
 	<string>com.vitorgalvao.alfred.downvid</string>
 	<key>connections</key>
 	<dict>
+		<key>2D801B88-7E16-4D15-884D-CF189C66910E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3B69F416-A08B-4618-99B6-E2AED211C9D8</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>3B69F416-A08B-4618-99B6-E2AED211C9D8</key>
 		<array>
 			<dict>
@@ -22,7 +33,15 @@
 				<key>modifiers</key>
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
-				<string>Restart download at bottom of queue</string>
+				<string>Restart current download at bottom of queue</string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>C95B128B-0AD1-41F2-A2D6-42BE6FE84306</string>
+				<key>modifiers</key>
+				<integer>262144</integer>
+				<key>modifiersubtext</key>
+				<string>Abort current download</string>
 			</dict>
 		</array>
 		<key>6A286F10-FD49-4463-9540-0EECBE45438D</key>
@@ -59,6 +78,25 @@
 				<key>modifiersubtext</key>
 				<string></string>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>AE972882-C947-41D6-9934-98ED94A54F3E</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Download full playlist</string>
+			</dict>
+		</array>
+		<key>E2E18310-059A-4E62-92D0-433499DCFE0B</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>AE972882-C947-41D6-9934-98ED94A54F3E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
 		</array>
 	</dict>
 	<key>createdby</key>
@@ -74,78 +112,25 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>triggerid</key>
+				<string>new</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>D8524846-F942-4A77-9461-8BAED974B8CF</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>export LANG=en_GB.UTF-8 # deal with special characters in names
-IFS=$'\n'
-
-# global obtions for downloads
-PATH=/usr/local/bin:$PATH
-if [[ "$(which ffmpeg avconv)" ]]; then
-  # download and embed subtitles
-  IFS=' ' subsoptions='--all-subs --embed-subs'
-  # force a fileformat, for consistency between gettitle and getfile
-  IFS=' ' fileformat='--format bestvideo[ext=mp4]+bestaudio[ext=m4a]/best'
-fi
-
-# set notifications
-notification() {
-  ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "DownVid" -message "${1}"
-}
-
-# update youtube-dl if it's more than 15 days old
-if [[ $(find youtube-dl -mtime +15) ]]; then
-  python youtube-dl --update
-fi
-
-gettitle() {
-  # file location
-  filename=$(python youtube-dl ${fileformat} --no-playlist --output "${downdir}/%(title)s.%(ext)s" --get-filename "${link}")
-
-  # title
-  title=$(basename ${filename%.*})
-
-  # check if url is valid
-  if [[ -z "${filename}" ]]; then
-    notification "The url is invalid"
-    exit 1
-  else
-    notification "Downloading “${title}”"
-  fi
-}
-
-getfile() {
-  progressfile="/tmp/downvidprogress"
-
-  python youtube-dl ${subsoptions} ${fileformat} --no-playlist --newline --output "${downdir}/%(title)s.%(ext)s" "${link}" &gt; "${progressfile}"
-
-  # add metadata
-  xmlencodedurl=$(echo "${link}" | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"'\''})')
-  xattr -w com.apple.metadata:kMDItemWhereFroms '&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;&lt;plist version="1.0"&gt;&lt;array&gt;&lt;string&gt;'"${xmlencodedurl}"'&lt;/string&gt;&lt;/array&gt;&lt;/plist&gt;' "${filename}"
-
-  rm "${progressfile}"
-}
-
-# download
-printf "{query}" &gt; "/tmp/downvidcurrentquery"
-
-if [[ "{query}" == "addToWatchList"* ]]; then
-  link=$(cat "$(echo {query} | sed 's/addToWatchList //')")
-  downdir="${HOME}/Downloads"
-  gettitle
-  getfile
-  osascript -e "tell application \"Alfred 2\" to run trigger \"add_file_to_watchlist\" in workflow \"com.vitorgalvao.alfred.watchlist\" with argument \"${filename}\""
-else
-  link="$(cat {query})"
-  downdir="${HOME}/Desktop"
-  gettitle
-  getfile
-fi
-
-notification "Downloaded “${title}”"</string>
+				<string>bash downvid.sh '{query} playlist_false'</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -186,12 +171,12 @@ watchlist="${HOME}/Library/Application Support/Alfred 2/Workflow Data/com.vitorg
 if [[ -f "${watchlist}" ]]; then
 cat &lt;&lt; EOF
 &lt;?xml version='1.0'?&gt;&lt;items&gt;
-	&lt;item uid='Regular Download' arg='${randfile}' valid='yes'&gt;
+	&lt;item uid='Regular Download' arg='${randfile} watchlist_false' valid='yes'&gt;
 		&lt;title&gt;DownVid&lt;/title&gt;
 		&lt;subtitle&gt;Downloads the video to your Desktop&lt;/subtitle&gt;
 		&lt;icon&gt;icon.png&lt;/icon&gt;
 	&lt;/item&gt;
-	&lt;item uid='Download To WatchList' arg='addToWatchList ${randfile}' valid='yes'&gt;
+	&lt;item uid='Download To WatchList' arg='${randfile} watchlist_true' valid='yes'&gt;
 		&lt;title&gt;DownVid + WatchList&lt;/title&gt;
 		&lt;subtitle&gt;Downloads the video to ~/Downloads and adds it to your watchlist&lt;/subtitle&gt;
 		&lt;icon&gt;icon.png&lt;/icon&gt;
@@ -228,13 +213,51 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>bash downvid.sh '{query} playlist_true'</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>AE972882-C947-41D6-9934-98ED94A54F3E</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>triggerid</key>
-				<string>new</string>
+				<string>new_with_playlist</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.trigger.external</string>
 			<key>uid</key>
-			<string>D8524846-F942-4A77-9461-8BAED974B8CF</string>
+			<string>E2E18310-059A-4E62-92D0-433499DCFE0B</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>tell application "Alfred 2" to run trigger "download_status" in workflow "com.vitorgalvao.alfred.downvid"</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>70F43F68-4801-4544-8FA7-A21E6860042A</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -277,7 +300,7 @@ EOF
 else
 cat &lt;&lt; EOF
 &lt;?xml version='1.0'?&gt;&lt;items&gt;
-  &lt;item uid='Download progress' valid='no'&gt;
+  &lt;item uid='Download progress' valid='yes'&gt;
     &lt;title&gt;DownVid Progress&lt;/title&gt;
     &lt;subtitle&gt;There is currently no download in progress&lt;/subtitle&gt;
     &lt;icon&gt;icon.png&lt;/icon&gt;
@@ -304,19 +327,13 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>tell application "Alfred 2" to search "dvp"</string>
-				<key>type</key>
-				<integer>6</integer>
+				<key>triggerid</key>
+				<string>download_status</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.trigger.external</string>
 			<key>uid</key>
-			<string>70F43F68-4801-4544-8FA7-A21E6860042A</string>
+			<string>2D801B88-7E16-4D15-884D-CF189C66910E</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -328,18 +345,7 @@ fi</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string># set notifications
-notification() {
-  ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "DownVid" -message "${1}"
-}
-
-notification "Restarting download at bottom of queue"
-
-currentquery=$(cat "/tmp/downvidcurrentquery")
-
-osascript -e "tell application \"Alfred 2\" to run trigger \"new\" in workflow \"com.vitorgalvao.alfred.downvid\" with argument \"${currentquery}\""
-
-kill $(ps -A | grep 'python youtube-dl --no-playlist' | awk '{print $1}')</string>
+				<string>bash downvid_restart.sh restart_download_true</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -347,6 +353,25 @@ kill $(ps -A | grep 'python youtube-dl --no-playlist' | awk '{print $1}')</strin
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>E46D269F-3FF9-4B6F-ACAC-6895E0BA46CC</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>bash downvid_restart.sh restart_download_false</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>C95B128B-0AD1-41F2-A2D6-42BE6FE84306</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -395,10 +420,15 @@ kill $(ps -A | grep 'python youtube-dl --no-playlist' | awk '{print $1}')</strin
 	<string></string>
 	<key>uidata</key>
 	<dict>
+		<key>2D801B88-7E16-4D15-884D-CF189C66910E</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
+		</dict>
 		<key>3B69F416-A08B-4618-99B6-E2AED211C9D8</key>
 		<dict>
 			<key>ypos</key>
-			<real>130</real>
+			<real>250</real>
 		</dict>
 		<key>6A286F10-FD49-4463-9540-0EECBE45438D</key>
 		<dict>
@@ -408,32 +438,47 @@ kill $(ps -A | grep 'python youtube-dl --no-playlist' | awk '{print $1}')</strin
 		<key>70F43F68-4801-4544-8FA7-A21E6860042A</key>
 		<dict>
 			<key>ypos</key>
+			<real>250</real>
+		</dict>
+		<key>AE972882-C947-41D6-9934-98ED94A54F3E</key>
+		<dict>
+			<key>ypos</key>
 			<real>130</real>
 		</dict>
 		<key>B63C53CC-588B-476D-B85C-72FC8929D9E1</key>
 		<dict>
 			<key>ypos</key>
-			<real>370</real>
+			<real>610</real>
 		</dict>
 		<key>C3D0CBE7-F8E9-46FC-811D-FC53095A1262</key>
 		<dict>
 			<key>ypos</key>
-			<real>370</real>
+			<real>610</real>
+		</dict>
+		<key>C95B128B-0AD1-41F2-A2D6-42BE6FE84306</key>
+		<dict>
+			<key>ypos</key>
+			<real>490</real>
 		</dict>
 		<key>D8524846-F942-4A77-9461-8BAED974B8CF</key>
 		<dict>
 			<key>ypos</key>
-			<real>70</real>
+			<real>10</real>
 		</dict>
 		<key>DC74421D-631A-44B1-AC86-ED7793CADE26</key>
 		<dict>
 			<key>ypos</key>
-			<real>10</real>
+			<real>70</real>
+		</dict>
+		<key>E2E18310-059A-4E62-92D0-433499DCFE0B</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
 		</dict>
 		<key>E46D269F-3FF9-4B6F-ACAC-6895E0BA46CC</key>
 		<dict>
 			<key>ypos</key>
-			<real>250</real>
+			<real>370</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
