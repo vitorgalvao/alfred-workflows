@@ -5,9 +5,9 @@ IFS=$'\n'
 PATH=/usr/local/bin:$PATH
 if [[ "$(which ffmpeg avconv)" ]]; then
   # download and embed subtitles
-  IFS=' ' subs_options='--all-subs --embed-subs'
+  subs_options=(--all-subs --embed-subs)
   # force a fileformat, for consistency between gettitle and getfile
-  IFS=' ' file_format='--format bestvideo[ext=mp4]+bestaudio[ext=m4a]/best'
+  file_format=(--format bestvideo[ext=mp4]+bestaudio[ext=m4a]/best)
 fi
 
 # parse query
@@ -37,7 +37,7 @@ fi
 
 gettitle() {
   # file location
-  filename=$(python youtube-dl --get-filename --ignore-errors ${file_format} ${playlist_options} --output "${downdir}/${title_template}" "${link}")
+  filename=$(python youtube-dl --get-filename --ignore-errors ${file_format[@]} ${playlist_options} --output "${downdir}/${title_template}" "${link}")
 
   # title
   title=$(basename "${filename%.*}")
@@ -54,7 +54,7 @@ gettitle() {
 getfile() {
   progressfile='/tmp/downvidprogress'
 
-  python youtube-dl --newline ${subs_options} --ignore-errors ${file_format} ${playlist_options} --output "${downdir}/${title_template}" "${link}" > "${progressfile}"
+  python youtube-dl --newline ${subs_options[@]} --ignore-errors ${file_format[@]} ${playlist_options} --output "${downdir}/${title_template}" "${link}" > "${progressfile}"
 
   # add metadata
   xmlencodedurl=$(echo "${link}" | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&<>"'\''})')
