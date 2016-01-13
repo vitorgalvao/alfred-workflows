@@ -52,6 +52,8 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
@@ -64,6 +66,13 @@ default_time='50'
 time='{query}'
 [[ -z "${time}" ]] &amp;&amp; time="${default_time}"
 
+# Abort if on a MacBook Air
+if [[ "$(sysctl hw.model)" == *'MacBookAir'* ]]; then
+  notification 'This does not work on the MacBook Air'
+  open 'https://github.com/vitorgalvao/alfred-workflows/issues/19'
+  exit 1
+fi
+
 keyboard=$(kextstat | grep -i 'keyboard' | head -1 | awk '{ print $6 }')
 trackpad=$(kextstat | grep -i 'multitouch' | head -1 | awk '{ print $6 }')
 
@@ -72,9 +81,14 @@ notification "Will lock trackpad and keyboard for ${time} seconds"
 osascript &lt;&lt; EOS
   do shell script "kextunload -bundle-id ${keyboard} ; kextunload -bundle-id ${trackpad} ; sleep ${time} ; kextload -bundle-id ${keyboard} ; kextload -bundle-id ${trackpad}" with administrator privileges
 
-  # restart BetterTouchTool, if it is running
-  tell application "System Events" to set betterTouchToolIsRunning to (name of processes) contains "BetterTouchTool"  if betterTouchToolIsRunning then    tell application "BetterTouchTool"      quit
-      delay 2      activate    end tell  end if
+  # Restart BetterTouchTool, if it is running
+  if application "BetterTouchTool" is running then
+    tell application "BetterTouchTool"
+      quit
+      delay 2
+      activate
+    end tell
+  end if
 EOS
 
 notification "Trackpad and keyboard unlocked"</string>
