@@ -8,6 +8,17 @@
 	<dict>
 		<key>3444071E-B0B8-4C12-9699-210912A13E67</key>
 		<array/>
+		<key>6EBC28E3-A781-4D79-9DE6-6B172EF01132</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>A697CADF-6E4A-4C9D-8D61-A8BFCE2DACA4</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>A697CADF-6E4A-4C9D-8D61-A8BFCE2DACA4</key>
 		<array>
 			<dict>
@@ -52,6 +63,8 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
@@ -126,10 +139,12 @@ rm "${progress_file}" "${name_file}"</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>tell application "Alfred 2" to search "ufp"</string>
+				<string>tell application "Alfred 2" to run trigger "upload_status" in workflow "com.vitorgalvao.alfred.uploadfile"</string>
 				<key>type</key>
 				<integer>6</integer>
 			</dict>
@@ -207,6 +222,21 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>triggerid</key>
+				<string>upload_status</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>6EBC28E3-A781-4D79-9DE6-6B172EF01132</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
@@ -247,6 +277,11 @@ notification 'Upload canceled'</string>
 		<dict>
 			<key>ypos</key>
 			<real>250</real>
+		</dict>
+		<key>6EBC28E3-A781-4D79-9DE6-6B172EF01132</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
 		</dict>
 		<key>A697CADF-6E4A-4C9D-8D61-A8BFCE2DACA4</key>
 		<dict>
