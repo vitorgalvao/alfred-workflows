@@ -300,7 +300,7 @@ EOF
 else
 cat &lt;&lt; EOF
 &lt;?xml version='1.0'?&gt;&lt;items&gt;
-  &lt;item uid='Download progress' valid='yes'&gt;
+  &lt;item uid='Download progress' valid='no'&gt;
     &lt;title&gt;DownVid Progress&lt;/title&gt;
     &lt;subtitle&gt;There is currently no download in progress&lt;/subtitle&gt;
     &lt;icon&gt;icon.png&lt;/icon&gt;
