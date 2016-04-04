@@ -17,7 +17,7 @@ if [ "${1}" = "--debug" ]; then
   set -x
 fi
 
-current_version="v1.7.0"
+current_version="v1.7.1"
 
 function is_mac() {
   uname | grep -q "Darwin"
@@ -27,7 +27,7 @@ function is_mac() {
 
 # You can override the config in ~/.config/imgur-screenshot/settings.conf
 
-imgur_anon_id="9e603f08c0e541c"
+imgur_anon_id="ea6c0ef2987808e"
 imgur_icon_path="${HOME}/Pictures/imgur.png"
 
 imgur_acct_key=""
@@ -68,6 +68,7 @@ auto_delete=""
 copy_url="true"
 keep_file="true"
 check_update="true"
+auto_update="false"
 
 # NOTICE: if you make changes here, also edit the docs at
 # https://github.com/jomo/imgur-screenshot/wiki/Config
@@ -145,6 +146,13 @@ function check_for_update() {
       echo "Version ${remote_version} is available (You have ${current_version})"
       notify ok "Update found" "Version ${remote_version} is available (You have ${current_version}). https://github.com/jomo/imgur-screenshot"
       echo "Check https://github.com/jomo/imgur-screenshot/releases/${remote_version} for more info."
+
+      if [ "${auto_update}" == "true" ]; then
+        run_update
+      else
+        echo "Use --update to install the new version"
+      fi
+
     elif [ -z "${current_version}" ] || [ -z "${remote_version}" ]; then
       echo "Invalid empty version string"
       echo "Current (local) version: '${current_version}'"
@@ -156,6 +164,27 @@ function check_for_update() {
     echo "Failed to check for latest version: ${remote_version}"
   fi
 }
+
+function run_update() {
+  set -e
+  local remote_script="https://github.com/jomo/imgur-screenshot/releases/download/${remote_version}/imgur-screenshot.sh"
+  local that
+  local this_script
+  local tmp_script
+
+  tmp_script="$(mktemp)"
+
+  # determine the script's location
+  that="$(which "$0")"
+  this_script="$(readlink "$that" || echo "$that")"
+
+  # Download latest version
+  echo "Downloading and installing latest version..."
+  curl --compressed -fL -'#' "${remote_script}" > "${tmp_script}"
+  mv "${tmp_script}" "${this_script}"
+  echo "Successfully updated to ${remote_version}."
+}
+
 
 function check_oauth2_client_secrets() {
   if [ -z "${imgur_acct_key}" ] || [ -z "${imgur_secret}" ]; then
@@ -392,7 +421,7 @@ while [ ${#} != 0 ]; do
   case "${1}" in
   -h | --help)
     echo "usage: ${0} [--debug] [-c | --check | -v | -h | -u]"
-    echo "       ${0} [--debug] [optiion]... [file]..."
+    echo "       ${0} [--debug] [option]... [file]..."
     echo ""
     echo "      --debug                  Enable debugging, must be first option"
     echo "  -h, --help                   Show this help, exit"
@@ -407,7 +436,7 @@ while [ ${#} != 0 ]; do
     echo "  -A, --album-id <album_id>    Override 'album_id' config"
     echo "  -k, --keep-file <true|false> Override 'keep_file' config"
     echo "  -d, --auto-delete <s>        Automatically delete image after <s> seconds"
-    echo "  -u, --update                 Check for updates, exit"
+    echo "  -u, --update                 Check for a newer version, install if available, exit"
     echo "  file                         Upload file instead of taking a screenshot"
     exit 0;;
   -v | --version)
@@ -452,6 +481,7 @@ while [ ${#} != 0 ]; do
     auto_delete="${2}"
     shift 2;;
   -u | --update)
+    auto_update="true"
     check_for_update
     exit 0;;
   *)
