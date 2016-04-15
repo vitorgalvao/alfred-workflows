@@ -43,7 +43,7 @@ s = s.gsub /^(( {4}|\t).*)$\z/, "\\1\n[/code]" # if end of text
 s = s.gsub /(^ {4}|\t)/, '' # middle
 
 # inline code
-s = s.gsub /`(.*?)`/, '[font=courier new,courier,monospace]\1[/font]'
+s = s.gsub /`(.*?)`/, '[background=#eee][font=courier new,courier,monospace]\1[/font][/background]'
 
 # headers
 s = s.gsub /^#\s(.*?)[ #]*$/, '[size=7][b]\1[/b][/size]' # big
