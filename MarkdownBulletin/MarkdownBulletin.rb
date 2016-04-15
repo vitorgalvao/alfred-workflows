@@ -4,6 +4,9 @@ Encoding::default_external = Encoding::UTF_8 if defined? Encoding
 # read text from shell
 s = $stdin.read
 
+# remove trailing non-breaking space added automatically by forum software
+s = s.gsub / +$/, ''
+
 # horizontal rule
 s = s.gsub /^(- *|\* *){3,}$/, '[hr]'
 
