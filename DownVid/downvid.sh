@@ -1,5 +1,8 @@
-export LANG=en_GB.UTF-8 # deal with special characters in names
 IFS=$'\n'
+
+# Workflow Environment Variables
+wev_downdir="${HOME}/${download_dir}"
+wev_watchlist_downdir="${HOME}/${watchlist_download_dir}"
 
 # global options for downloads
 PATH=/usr/local/bin:$PATH
@@ -68,12 +71,12 @@ echo -n "${full_query}" > '/tmp/downvidcurrentquery'
 link="$(cat ${link_file})"
 
 if [[ "${watchlist_bool}" == 'true' ]]; then
-  downdir="${HOME}/Downloads"
+  downdir="${wev_watchlist_downdir}"
   gettitle
   getfile
-  osascript -e "tell application \"Alfred 2\" to run trigger \"add_file_to_watchlist\" in workflow \"com.vitorgalvao.alfred.watchlist\" with argument \"${filename}\""
+  osascript -e "tell application \"Alfred 3\" to run trigger \"add_file_to_watchlist\" in workflow \"com.vitorgalvao.alfred.watchlist\" with argument \"${filename}\""
 else
-  downdir="${HOME}/Desktop"
+  downdir="${wev_downdir}"
   gettitle
   getfile
 fi

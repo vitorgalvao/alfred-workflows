@@ -15,6 +15,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>3B69F416-A08B-4618-99B6-E2AED211C9D8</key>
@@ -26,6 +28,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -34,6 +38,8 @@
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
 				<string>Restart current download at bottom of queue</string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -42,6 +48,8 @@
 				<integer>262144</integer>
 				<key>modifiersubtext</key>
 				<string>Abort current download</string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>6A286F10-FD49-4463-9540-0EECBE45438D</key>
@@ -55,6 +63,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>D8524846-F942-4A77-9461-8BAED974B8CF</key>
@@ -66,6 +76,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>DC74421D-631A-44B1-AC86-ED7793CADE26</key>
@@ -77,6 +89,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -85,6 +99,8 @@
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
 				<string>Download full playlist</string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>E2E18310-059A-4E62-92D0-433499DCFE0B</key>
@@ -96,6 +112,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 	</dict>
@@ -120,7 +138,7 @@
 			<key>uid</key>
 			<string>D8524846-F942-4A77-9461-8BAED974B8CF</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -131,6 +149,10 @@
 				<integer>0</integer>
 				<key>script</key>
 				<string>bash downvid.sh '{query} playlist_false'</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -139,11 +161,13 @@
 			<key>uid</key>
 			<string>6A286F10-FD49-4463-9540-0EECBE45438D</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>escaping</key>
@@ -166,7 +190,7 @@ randfile="$(mktemp -t 'downvid')"
 echo -n "$(pbpaste)" &gt;&gt; "${randfile}"
 
 # Check if WatchList is being used, and show options accordingly
-watchlist="${HOME}/Library/Application Support/Alfred 2/Workflow Data/com.vitorgalvao.alfred.watchlist/towatch"
+watchlist="$(dirname "${alfred_workflow_data}")/com.vitorgalvao.alfred.watchlist/towatch"
 
 if [[ -f "${watchlist}" ]]; then
 cat &lt;&lt; EOF
@@ -194,6 +218,10 @@ cat &lt;&lt; EOF
 &lt;/items&gt;
 EOF
 fi</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
 				<string>Download videos from popular sources (uses the URL in your clipboard)</string>
 				<key>title</key>
@@ -208,7 +236,7 @@ fi</string>
 			<key>uid</key>
 			<string>DC74421D-631A-44B1-AC86-ED7793CADE26</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -219,6 +247,10 @@ fi</string>
 				<integer>0</integer>
 				<key>script</key>
 				<string>bash downvid.sh '{query} playlist_true'</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -227,7 +259,7 @@ fi</string>
 			<key>uid</key>
 			<string>AE972882-C947-41D6-9934-98ED94A54F3E</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -240,7 +272,7 @@ fi</string>
 			<key>uid</key>
 			<string>E2E18310-059A-4E62-92D0-433499DCFE0B</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -250,7 +282,11 @@ fi</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>tell application "Alfred 2" to run trigger "download_status" in workflow "com.vitorgalvao.alfred.downvid"</string>
+				<string>tell application "Alfred 3" to run trigger "download_status" in workflow "com.vitorgalvao.alfred.downvid"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>6</integer>
 			</dict>
@@ -259,11 +295,13 @@ fi</string>
 			<key>uid</key>
 			<string>70F43F68-4801-4544-8FA7-A21E6860042A</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>escaping</key>
@@ -308,6 +346,10 @@ cat &lt;&lt; EOF
 &lt;/items&gt;
 EOF
 fi</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
 				<string>Shows progress of the current DownVid download</string>
 				<key>title</key>
@@ -322,7 +364,7 @@ fi</string>
 			<key>uid</key>
 			<string>3B69F416-A08B-4618-99B6-E2AED211C9D8</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -335,7 +377,7 @@ fi</string>
 			<key>uid</key>
 			<string>2D801B88-7E16-4D15-884D-CF189C66910E</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -346,6 +388,10 @@ fi</string>
 				<integer>0</integer>
 				<key>script</key>
 				<string>bash downvid_restart.sh restart_download_true</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -354,7 +400,7 @@ fi</string>
 			<key>uid</key>
 			<string>E46D269F-3FF9-4B6F-ACAC-6895E0BA46CC</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -365,6 +411,10 @@ fi</string>
 				<integer>0</integer>
 				<key>script</key>
 				<string>bash downvid_restart.sh restart_download_false</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -373,7 +423,7 @@ fi</string>
 			<key>uid</key>
 			<string>C95B128B-0AD1-41F2-A2D6-42BE6FE84306</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -384,6 +434,10 @@ fi</string>
 				<integer>0</integer>
 				<key>script</key>
 				<string>cp -r ./services/* "${HOME}/Library/Services/"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -392,7 +446,7 @@ fi</string>
 			<key>uid</key>
 			<string>C3D0CBE7-F8E9-46FC-811D-FC53095A1262</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -413,74 +467,119 @@ fi</string>
 			<key>uid</key>
 			<string>B63C53CC-588B-476D-B85C-72FC8929D9E1</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string>Download videos from [a plethora of video sites](https://rg3.github.io/youtube-dl/supportedsites.html), even when embedded.
+
+Copy a link to your clipboard, run `dv`, and you’re done. It’ll show you a notification when it starts downloading, and another one when it’s finished.
+
+If you have [WatchList](http://www.alfredforum.com/topic/1931-watchlist-%E2%80%94-view-and-manage-a-sequence-of-files/), it’ll show you an extra option, to automatically add the downloaded video to your watchlist.
+ 
+Run it with the ⌘ modifier, and it’ll download the full playlist the video is part of.
+
+To see the download progress, run `dvp`. Actioning this option will refresh its state. Actioning it with the ⌘ modifier will restart the current download (adding it to the back of the queue), while actioning with ⌃ will abort the current download.
+ 
+You can also add DownVid actions as OS X Services, by running `installdownvidservices` (if you ever want to remove them, simply delete them from the ~/Library/Services directory). What this means is wherever you find a URL, you’ll be able to right click it and start the download right from the context menu.
+
+The two Workflow Environment Variables represent the directories (relative to your home) where to download the videos.</string>
 	<key>uidata</key>
 	<dict>
 		<key>2D801B88-7E16-4D15-884D-CF189C66910E</key>
 		<dict>
+			<key>xpos</key>
+			<integer>100</integer>
 			<key>ypos</key>
 			<real>250</real>
 		</dict>
 		<key>3B69F416-A08B-4618-99B6-E2AED211C9D8</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>250</real>
 		</dict>
 		<key>6A286F10-FD49-4463-9540-0EECBE45438D</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
 		<key>70F43F68-4801-4544-8FA7-A21E6860042A</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>250</real>
 		</dict>
 		<key>AE972882-C947-41D6-9934-98ED94A54F3E</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>130</real>
 		</dict>
 		<key>B63C53CC-588B-476D-B85C-72FC8929D9E1</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>610</real>
 		</dict>
 		<key>C3D0CBE7-F8E9-46FC-811D-FC53095A1262</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>610</real>
 		</dict>
 		<key>C95B128B-0AD1-41F2-A2D6-42BE6FE84306</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>490</real>
 		</dict>
 		<key>D8524846-F942-4A77-9461-8BAED974B8CF</key>
 		<dict>
+			<key>xpos</key>
+			<integer>100</integer>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
 		<key>DC74421D-631A-44B1-AC86-ED7793CADE26</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>70</real>
 		</dict>
 		<key>E2E18310-059A-4E62-92D0-433499DCFE0B</key>
 		<dict>
+			<key>xpos</key>
+			<integer>100</integer>
 			<key>ypos</key>
 			<real>130</real>
 		</dict>
 		<key>E46D269F-3FF9-4B6F-ACAC-6895E0BA46CC</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>370</real>
 		</dict>
 	</dict>
+	<key>variables</key>
+	<dict>
+		<key>download_dir</key>
+		<string>Desktop</string>
+		<key>watchlist_download_dir</key>
+		<string>Downloads</string>
+	</dict>
+	<key>version</key>
+	<string>1.16.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
