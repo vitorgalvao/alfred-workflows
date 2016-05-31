@@ -15,6 +15,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>2E64AFDF-D743-40D1-9628-3EBB90CB167E</key>
@@ -26,6 +28,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>4B30C050-DEC1-4375-8B11-20FA04A89596</key>
@@ -37,6 +41,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>D6AD9678-C017-40CD-BD91-5E4102C39AD3</key>
@@ -55,6 +61,8 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
@@ -69,12 +77,16 @@ fileExtension=$(echo "${fileName}" | sed -n 's/\(.*\)\.\(.*\)$/.\2/p')
 fileNoExtension=$(echo "${fileName}" | sed 's/\(.*\)\.\(.*\)$/\1/')
 
 osascript -e "
-  tell application \"Alfred 2\" to run trigger \"rename\" in workflow \"com.vitorgalvao.alfred.renameaction\" with argument \"${fileNoExtension}\"
+  tell application \"Alfred 3\" to run trigger \"rename\" in workflow \"com.vitorgalvao.alfred.renameaction\" with argument \"${fileNoExtension}\"
   tell application \"System Events\"
     key code 123 using command down
     key code 124 using {command down, shift down}
   end tell
 "</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -83,7 +95,7 @@ osascript -e "
 			<key>uid</key>
 			<string>2D996A5F-76DB-4596-BAC7-C918B0EFD902</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -100,11 +112,13 @@ osascript -e "
 			<key>uid</key>
 			<string>4B30C050-DEC1-4375-8B11-20FA04A89596</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
@@ -120,6 +134,10 @@ fileNoExtension=$(echo "{fileName}" | sed 's/\(.*\)\.\(.*\)$/\1/')
 mv "${originalFile}" "${filePath}/{query}${fileExtension}"
 
 rm "${tmpFile}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -128,7 +146,7 @@ rm "${tmpFile}"</string>
 			<key>uid</key>
 			<string>D6AD9678-C017-40CD-BD91-5E4102C39AD3</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -141,7 +159,7 @@ rm "${tmpFile}"</string>
 			<key>uid</key>
 			<string>2E64AFDF-D743-40D1-9628-3EBB90CB167E</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -162,7 +180,7 @@ rm "${tmpFile}"</string>
 			<key>uid</key>
 			<string>2C36AAF9-7F21-42CA-8646-ECA398B51F39</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -171,26 +189,36 @@ rm "${tmpFile}"</string>
 	<dict>
 		<key>2C36AAF9-7F21-42CA-8646-ECA398B51F39</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>130</real>
 		</dict>
 		<key>2D996A5F-76DB-4596-BAC7-C918B0EFD902</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
 		<key>2E64AFDF-D743-40D1-9628-3EBB90CB167E</key>
 		<dict>
+			<key>xpos</key>
+			<integer>100</integer>
 			<key>ypos</key>
 			<real>130</real>
 		</dict>
 		<key>4B30C050-DEC1-4375-8B11-20FA04A89596</key>
 		<dict>
+			<key>xpos</key>
+			<integer>100</integer>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
 		<key>D6AD9678-C017-40CD-BD91-5E4102C39AD3</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>130</real>
 		</dict>
