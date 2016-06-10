@@ -69,7 +69,7 @@ s = s.gsub /^(\d\.\s.*)\z/, "\\1\n[/list]" # if end of text
 s = s.gsub /^\d\.\s(.*)/, '[*]\1[/*]' # middle
 
 # footnotes
-s = s.gsub /^(\[\^.*?\].*)/, "\n\\1" # spacing between references
+s = s.gsub /^(\[\^.*?\]:.*)/, "\n\\1" # spacing between references
 s = s.gsub /^\n{2}(\[\^.*?\])/, "\n" + '[hr]' + "\n\\1" # division before references
 s = s.gsub /\[\^(.*?)\]/, '[sup]\1[/sup]' # footnotes in text
 
