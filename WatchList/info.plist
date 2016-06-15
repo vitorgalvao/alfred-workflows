@@ -15,6 +15,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>0DDE2F4F-9DE8-4C40-BB85-ED0DF8C613EE</key>
@@ -28,6 +30,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>20803797-C5B6-42F9-9F31-1425E194C1C3</key>
@@ -41,6 +45,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>2C22F42C-C25C-4D4C-AB42-C31CE9234895</key>
@@ -54,6 +60,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -62,6 +70,8 @@
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
 				<string>Open URL in default browser</string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>3FB08D9D-FA61-4076-A99A-E8B45A21CC8D</key>
@@ -75,6 +85,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>4B343886-E096-4B4A-B04A-AC6574D6FB41</key>
@@ -86,6 +98,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>52C95301-2DF9-4A14-86FA-7917CFC49D39</key>
@@ -97,6 +111,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>7F8D7B1C-9061-4414-98C2-FEEB13C9314B</key>
@@ -108,6 +124,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>87E67178-1A36-458D-9883-D7A839F8E020</key>
@@ -119,6 +137,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>A0CB4B50-6085-4C77-BA3D-435ABE469ECE</key>
@@ -130,6 +150,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>A9B03347-978A-4547-9F09-AC992131AEFB</key>
@@ -141,6 +163,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>AA3CF56F-3E4D-4EB5-8019-B9E517648566</key>
@@ -152,6 +176,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>B81E79EC-8587-4704-B6ED-6B72BD007014</key>
@@ -165,6 +191,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>D6023D14-C151-44A0-BC02-08938DB9D46E</key>
@@ -176,6 +204,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>DE394F89-C4B4-497C-B6E8-5715050AC3CE</key>
@@ -206,7 +236,7 @@
 			<key>uid</key>
 			<string>AA3CF56F-3E4D-4EB5-8019-B9E517648566</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -235,6 +265,10 @@ for file in ${files_to_add}; do
 done
 
 touch "${watched}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -243,7 +277,7 @@ touch "${watched}"</string>
 			<key>uid</key>
 			<string>2C22F42C-C25C-4D4C-AB42-C31CE9234895</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -256,7 +290,7 @@ touch "${watched}"</string>
 			<key>uid</key>
 			<string>475F7D72-F65B-4E51-99C1-65C581528087</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -277,7 +311,7 @@ touch "${watched}"</string>
 			<key>uid</key>
 			<string>006E81EE-A542-4616-AE6B-5262EF4E59C5</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -321,6 +355,10 @@ touch "${watched}"
 if [[ $(find youtube-dl -mtime +15) ]]; then
   python youtube-dl --update
 fi</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -329,11 +367,13 @@ fi</string>
 			<key>uid</key>
 			<string>2A1A7853-05AD-43B6-AFF0-55104517AB51</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -366,6 +406,10 @@ else
   use_list towatch
   watch_script_filter "${search_query}"
 fi</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
 				<string>Pick a file to play</string>
 				<key>title</key>
@@ -380,7 +424,7 @@ fi</string>
 			<key>uid</key>
 			<string>7F8D7B1C-9061-4414-98C2-FEEB13C9314B</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -399,6 +443,10 @@ load_item "${line_number}"
 play_file "${item_location}"
 
 move_list_item "${line_number}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -407,7 +455,7 @@ move_list_item "${line_number}"</string>
 			<key>uid</key>
 			<string>DE394F89-C4B4-497C-B6E8-5715050AC3CE</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -428,7 +476,7 @@ move_list_item "${line_number}"</string>
 			<key>uid</key>
 			<string>10E44EB4-6139-4E72-AD84-137F581D67A1</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -449,7 +497,7 @@ move_list_item "${line_number}"</string>
 			<key>uid</key>
 			<string>A9B03347-978A-4547-9F09-AC992131AEFB</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -468,6 +516,10 @@ load_item "${line_number}"
 move_list_item "${line_number}"
 
 notification "Marked ${item_title} as unwatched"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -476,11 +528,13 @@ notification "Marked ${item_title} as unwatched"</string>
 			<key>uid</key>
 			<string>20803797-C5B6-42F9-9F31-1425E194C1C3</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -513,6 +567,10 @@ else
   use_list watched
   watch_script_filter "${search_query}"
 fi</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
 				<string>Pick a file to mark as unwatched</string>
 				<key>title</key>
@@ -527,7 +585,7 @@ fi</string>
 			<key>uid</key>
 			<string>52C95301-2DF9-4A14-86FA-7917CFC49D39</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -548,7 +606,7 @@ fi</string>
 			<key>uid</key>
 			<string>D6023D14-C151-44A0-BC02-08938DB9D46E</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -569,7 +627,7 @@ fi</string>
 			<key>uid</key>
 			<string>4B343886-E096-4B4A-B04A-AC6574D6FB41</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -583,6 +641,10 @@ fi</string>
 
 touch "${towatch}" "${watched}"
 open -t "${towatch}" "${watched}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -591,7 +653,7 @@ open -t "${towatch}" "${watched}"</string>
 			<key>uid</key>
 			<string>0DDE2F4F-9DE8-4C40-BB85-ED0DF8C613EE</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -612,7 +674,7 @@ open -t "${towatch}" "${watched}"</string>
 			<key>uid</key>
 			<string>C8A7E5CB-00A9-4A5B-9AD4-2D31987E06CE</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -629,6 +691,10 @@ cat "${list}" | cut -d'⸗' -f3 | perl -pe 's/\n/\0/' | xargs -0 ./_licensed/tra
 cat /dev/null &gt; "${list}"
 
 notification "Watched files were moved to the trash"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -637,7 +703,7 @@ notification "Watched files were moved to the trash"</string>
 			<key>uid</key>
 			<string>B81E79EC-8587-4704-B6ED-6B72BD007014</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -658,7 +724,7 @@ notification "Watched files were moved to the trash"</string>
 			<key>uid</key>
 			<string>87E67178-1A36-458D-9883-D7A839F8E020</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -671,11 +737,13 @@ notification "Watched files were moved to the trash"</string>
 			<key>uid</key>
 			<string>A0CB4B50-6085-4C77-BA3D-435ABE469ECE</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -708,6 +776,10 @@ else
   use_list share
   watch_script_filter "${search_query}"
 fi</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
 				<string>Get URL from where item is from</string>
 				<key>title</key>
@@ -722,7 +794,7 @@ fi</string>
 			<key>uid</key>
 			<string>3B6BF175-810F-4D1C-9E89-0F8BE1BCA98D</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -743,6 +815,10 @@ url=$(get_item_origin_url "${item_type}" "${item_location}")
 echo -n "${url}" | pbcopy
 
 notification "Copied link to clipboard"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -751,7 +827,7 @@ notification "Copied link to clipboard"</string>
 			<key>uid</key>
 			<string>3FB08D9D-FA61-4076-A99A-E8B45A21CC8D</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -772,7 +848,7 @@ notification "Copied link to clipboard"</string>
 			<key>uid</key>
 			<string>2BD98040-76A3-48BE-8E0F-68D1F1F9C7E6</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -791,6 +867,10 @@ load_item "${line_number}"
 url=$(get_item_origin_url "${item_type}" "${item_location}")
 
 open "${url}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -799,124 +879,196 @@ open "${url}"</string>
 			<key>uid</key>
 			<string>7EE6AEBF-1246-428C-B2E9-C9F5BBCB5EF4</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string>View and manage a list of files and video streams, at your own pace. It was done with video in mind, but works with just about any file or directory.
+ 
+Very often we have series of videos and streams that we’d like to watch but not necessarily keep after, but keeping track of them all and which we’ve already seen (and are thus safe to get rid of), can be a chore.
+ 
+To use, select in the Finder the files (or directories) you wish to add to your list, and apply the file action `Add to watchlist`. Every time you do this, the new files will be appended to the list. You then have some options you can pick from, all starting with `wl`.
+
+![](http://i.imgur.com/rN3bl4u.png)
+
+If you choose any of the options that let you pick from a list (`wlp`, `wlu`, and `wls`) and continue typing after it (don’t put a space, just continue typing), you’ll start filtering — names, file sizes, durations, and a few more — so you can quickly find the ones you want.
+
+![](http://i.imgur.com/F3CuxuD.png)
+
+Items starting with a ≈ are streams. They also show no file size (since they aren’t taking up any) and show the link they were taken from, as opposed to a location on disk. To be able to stream video, you need to have either [mpv](http://mpv.io/) or [VLC](http://www.videolan.org/vlc/index.html).
+
+![](http://i.imgur.com/HTe0cH9.png)
+
+Sharing is particularly useful when you want to send the original link of something you watched to someone else, or to save it somewhere. It also gets it from downloaded files, if they have that metadata ([DownVid](http://www.alfredforum.com/topic/2045-downvid-%E2%80%94-download-videos-from-popular-sources/), for example, adds it to downloaded videos). Use ⌘ to open the url in the default browser, as opposed to copying to the clipboard.
+
+![](http://i.imgur.com/pleW6Qs.png)
+
+`swl` will add the url in your clipboard as a stream.
+
+You can also control parts of the workflow with [Alfred Remote](http://www.alfredapp.com/remote/).
+
+![](http://i.imgur.com/ylgLbGJ.png)
+
+If you use [DownVid](http://www.alfredforum.com/topic/2045-downvid-%E2%80%94-download-videos-from-popular-sources/), it has an option to add the downloaded video files directly to your watchlist.</string>
 	<key>uidata</key>
 	<dict>
 		<key>006E81EE-A542-4616-AE6B-5262EF4E59C5</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>250</real>
 		</dict>
 		<key>0DDE2F4F-9DE8-4C40-BB85-ED0DF8C613EE</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>850</real>
 		</dict>
 		<key>10E44EB4-6139-4E72-AD84-137F581D67A1</key>
 		<dict>
+			<key>xpos</key>
+			<integer>100</integer>
 			<key>ypos</key>
 			<real>370</real>
 		</dict>
 		<key>20803797-C5B6-42F9-9F31-1425E194C1C3</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>610</real>
 		</dict>
 		<key>2A1A7853-05AD-43B6-AFF0-55104517AB51</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
-			<real>250</real>
+			<integer>250</integer>
 		</dict>
 		<key>2BD98040-76A3-48BE-8E0F-68D1F1F9C7E6</key>
 		<dict>
+			<key>xpos</key>
+			<integer>100</integer>
 			<key>ypos</key>
 			<real>1450</real>
 		</dict>
 		<key>2C22F42C-C25C-4D4C-AB42-C31CE9234895</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
 		<key>3B6BF175-810F-4D1C-9E89-0F8BE1BCA98D</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>1330</real>
 		</dict>
 		<key>3FB08D9D-FA61-4076-A99A-E8B45A21CC8D</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>1330</real>
 		</dict>
 		<key>475F7D72-F65B-4E51-99C1-65C581528087</key>
 		<dict>
+			<key>xpos</key>
+			<integer>100</integer>
 			<key>ypos</key>
 			<real>130</real>
 		</dict>
 		<key>4B343886-E096-4B4A-B04A-AC6574D6FB41</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>850</real>
 		</dict>
 		<key>52C95301-2DF9-4A14-86FA-7917CFC49D39</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>610</real>
 		</dict>
 		<key>7EE6AEBF-1246-428C-B2E9-C9F5BBCB5EF4</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>1450</real>
 		</dict>
 		<key>7F8D7B1C-9061-4414-98C2-FEEB13C9314B</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>370</real>
 		</dict>
 		<key>87E67178-1A36-458D-9883-D7A839F8E020</key>
 		<dict>
+			<key>xpos</key>
+			<integer>100</integer>
 			<key>ypos</key>
 			<real>1090</real>
 		</dict>
 		<key>A0CB4B50-6085-4C77-BA3D-435ABE469ECE</key>
 		<dict>
+			<key>xpos</key>
+			<integer>100</integer>
 			<key>ypos</key>
 			<real>1210</real>
 		</dict>
 		<key>A9B03347-978A-4547-9F09-AC992131AEFB</key>
 		<dict>
+			<key>xpos</key>
+			<integer>100</integer>
 			<key>ypos</key>
 			<real>490</real>
 		</dict>
 		<key>AA3CF56F-3E4D-4EB5-8019-B9E517648566</key>
 		<dict>
+			<key>xpos</key>
+			<integer>100</integer>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
 		<key>B81E79EC-8587-4704-B6ED-6B72BD007014</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>970</real>
 		</dict>
 		<key>C8A7E5CB-00A9-4A5B-9AD4-2D31987E06CE</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>970</real>
 		</dict>
 		<key>D6023D14-C151-44A0-BC02-08938DB9D46E</key>
 		<dict>
+			<key>xpos</key>
+			<integer>100</integer>
 			<key>ypos</key>
 			<real>730</real>
 		</dict>
 		<key>DE394F89-C4B4-497C-B6E8-5715050AC3CE</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>370</real>
 		</dict>
 	</dict>
+	<key>version</key>
+	<string>1.10.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

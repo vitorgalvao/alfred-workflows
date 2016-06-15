@@ -3,10 +3,8 @@ PATH=$(pwd):$PATH # to load youtube-dl
 IFS=$'\n'
 
 # global variables
-readonly workflow_bundle_id="com.vitorgalvao.alfred.watchlist"
-readonly non_volatile_prefs_dir="${HOME}/Library/Application Support/Alfred 2/Workflow Data/${workflow_bundle_id}"
-readonly towatch="${non_volatile_prefs_dir}/towatch"
-readonly watched="${non_volatile_prefs_dir}/watched"
+readonly towatch="${alfred_workflow_data}/towatch"
+readonly watched="${alfred_workflow_data}/watched"
 
 # functions
 notification() {
