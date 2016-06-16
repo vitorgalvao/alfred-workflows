@@ -19,12 +19,22 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>keyword</key>
 				<string>paperiso</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
@@ -43,6 +53,10 @@ for media in $(grep -i "^{query}" "${file}"); do
 	echo "&lt;/item&gt;"
 done
 echo "&lt;/items&gt;"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
 				<string>A, B, and C series</string>
 				<key>title</key>
@@ -57,17 +71,27 @@ echo "&lt;/items&gt;"</string>
 			<key>uid</key>
 			<string>785C12C1-537B-4D4D-AA2B-25D2C5D33231</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>keyword</key>
 				<string>paperna</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
@@ -86,6 +110,10 @@ for media in $(grep -i "^{query}" "${file}"); do
 	echo "&lt;/item&gt;"
 done
 echo "&lt;/items&gt;"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
 				<string>Loose sizes</string>
 				<key>title</key>
@@ -100,17 +128,27 @@ echo "&lt;/items&gt;"</string>
 			<key>uid</key>
 			<string>BD54C221-BA04-4681-BD20-2A8FE610186F</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>keyword</key>
 				<string>paperjis</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
@@ -129,6 +167,10 @@ for media in $(grep -i "^{query}" "${file}"); do
 	echo "&lt;/item&gt;"
 done
 echo "&lt;/items&gt;"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
 				<string>B series, Shiroku ban, Kiku</string>
 				<key>title</key>
@@ -143,17 +185,27 @@ echo "&lt;/items&gt;"</string>
 			<key>uid</key>
 			<string>BD21EA10-41BC-4F6E-9688-FC115DD3E5FA</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>keyword</key>
 				<string>paperansi</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
@@ -172,6 +224,10 @@ for media in $(grep -i "^{query}" "${file}"); do
 	echo "&lt;/item&gt;"
 done
 echo "&lt;/items&gt;"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
 				<string>ANSI series</string>
 				<key>title</key>
@@ -186,17 +242,27 @@ echo "&lt;/items&gt;"</string>
 			<key>uid</key>
 			<string>18F65376-7567-4DB6-AE98-CA42FD18DB64</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>keyword</key>
 				<string>paperarch</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
@@ -215,6 +281,10 @@ for media in $(grep -i "^{query}" "${file}"); do
 	echo "&lt;/item&gt;"
 done
 echo "&lt;/items&gt;"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
 				<string>Arch series</string>
 				<key>title</key>
@@ -229,17 +299,27 @@ echo "&lt;/items&gt;"</string>
 			<key>uid</key>
 			<string>F25005BB-AA14-480E-B744-0131E97DFED3</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>keyword</key>
 				<string>viewport</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
@@ -249,7 +329,7 @@ file="sizes/viewport.csv"
 
 # update viewport.csv it's more than 30 days old
 if [[ $(find "${file}" -mtime +30) ]]; then
-  curl "http://viewportsizes.com/devices.csv" | cut -d , -f1-2 -f4-5 | tail -n +2 &gt; "${file}"
+  curl "http://viewportsizes.com/devices.csv" | cut -d , -f1-2 -f4-5 | tail +2 &gt; "${file}"
 fi
 
 echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
@@ -263,6 +343,10 @@ for media in $(grep -i ".*{query}.*" "${file}"); do
 	echo "&lt;/item&gt;"
 done
 echo "&lt;/items&gt;"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
 				<string>Search by device name, brand, OS, or viewport width</string>
 				<key>title</key>
@@ -277,44 +361,66 @@ echo "&lt;/items&gt;"</string>
 			<key>uid</key>
 			<string>AB9CA804-7253-4FC6-997B-D7EDCCEED678</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string>Quick reference for different standard paper formats and viewport sizes of different devices.
+
+For paper sizes, type `paper`, and you’ll see the available standards; all of them have different shortcuts which you can narrow down by starting to type the name of the format you want (so typing `paperiso b3` will only show you the B3 size of the ISO 126 standard).
+
+For viewport sizes, type `viewport`, and you’ll see the available devices. You can narrow them down by device name, brand, OS, and even viewport width (in case you want to find similar ones).
+
+![](http://i.imgur.com/Ei8Rmux.gif)
+
+Paper sizes were taken from [wikipedia](https://en.wikipedia.org/wiki/Paper_sizes) and viewport sizes from [viewportsizes.com](http://viewportsizes.com/).</string>
 	<key>uidata</key>
 	<dict>
 		<key>18F65376-7567-4DB6-AE98-CA42FD18DB64</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>370</real>
 		</dict>
 		<key>785C12C1-537B-4D4D-AA2B-25D2C5D33231</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
 		<key>AB9CA804-7253-4FC6-997B-D7EDCCEED678</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>610</real>
 		</dict>
 		<key>BD21EA10-41BC-4F6E-9688-FC115DD3E5FA</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>250</real>
 		</dict>
 		<key>BD54C221-BA04-4681-BD20-2A8FE610186F</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>130</real>
 		</dict>
 		<key>F25005BB-AA14-480E-B744-0131E97DFED3</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>490</real>
 		</dict>
 	</dict>
+	<key>version</key>
+	<string>1.3</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
