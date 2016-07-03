@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.vitorgalvao.alfred.shortfilms</string>
+	<key>connections</key>
+	<dict>
+		<key>325E0A83-2F46-4696-80F4-7D41608F65DC</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>5777145B-F30B-4A39-8BB6-AA07F81401E1</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>F52ABFBA-FC4F-400F-BF1B-AAF7B723052C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>F622CD2F-A79C-41E3-91E5-1BF5B66F3F52</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>F54CC291-7B66-4D5A-A599-BD512EC630DD</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>97081E49-C4BE-4918-A447-B006C76E98FD</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Vítor Galvão</string>
+	<key>description</key>
+	<string>Stream from a selection of short films</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>ShortFilms</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>function warning {
+  osascript -e "display dialog \"${1}\" with icon caution buttons (\"OK\") default button 1"
+  exit 1
+}
+
+PATH="${youtube_dl_path}:$PATH"
+
+if [[ "$(mdfind kMDItemCFBundleIdentifier = io.mpv)" ]]; then
+  video_player='mpv'
+  [[ ! $(which 'youtube-dl') ]] &amp;&amp; warning 'You need youtube-dl in your youtube_dl_path to be able to stream with mpv'
+elif [[ "$(mdfind kMDItemCFBundleIdentifier = org.videolan.vlc)" ]]; then
+  video_player='vlc'
+else
+  warning 'You need either mpv or vlc, to stream a video.'
+fi
+
+open -a "${video_player}" "${1}"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>5777145B-F30B-4A39-8BB6-AA07F81401E1</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<true/>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>shorts</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Updating list; it may take a while…</string>
+				<key>script</key>
+				<string>ruby shortfilms.rb</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Stream from a selection of short films</string>
+				<key>title</key>
+				<string>ShortFilms</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>325E0A83-2F46-4696-80F4-7D41608F65DC</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>ruby shortfilms.rb update_list</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>97081E49-C4BE-4918-A447-B006C76E98FD</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>triggerid</key>
+				<string>build_list</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>F54CC291-7B66-4D5A-A599-BD512EC630DD</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>plist_file='com.vitorgalvao.launchd.alfredshortfilmsupdate.plist'
+launchagents_dir="${HOME}/Library/LaunchAgents"
+mkdir -p "${launchagents_dir}"
+
+action="${1}"
+
+if [[ "${action}" == 'install' ]]; then
+  cp "${plist_file}" "${launchagents_dir}"
+  launchctl load -w "${launchagents_dir}/${plist_file}"
+else
+  launchctl unload -w "${launchagents_dir}/${plist_file}"
+  rm "${launchagents_dir}/${plist_file}"
+fi</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>F622CD2F-A79C-41E3-91E5-1BF5B66F3F52</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>:shortfilmslaunchd</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>cat &lt;&lt; EOF
+{"items": [
+  {
+    "title": "Install ShortFilms launchd service",
+    "subtitle": "Films list will update once a day automatically",
+	"arg": "install"
+  },
+  {
+    "title": "Remove ShortFilms launchd service",
+    "subtitle": "Stop auto-updating films list",
+	"arg": "uninstall"
+  }
+]}
+EOF</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>Install/remove ShortFilms launchd service</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>F52ABFBA-FC4F-400F-BF1B-AAF7B723052C</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>Stream from a selection of short films, powered by [Short of the Week](https://www.shortoftheweek.com/).
+
+Run `shorts` and it’ll download and show a list of the latest films. Pick one and it’ll start streaming.
+![](https://i.imgur.com/UGheFu1.png)
+
+Short of the Week publishes a new short every day and building the initial list takes a few seconds, so after the initial download the list is cached for one day. If you want the list ready at all times without having to wait, run `:shortfilmslaunchd` to install (or later remove) a `launchd` service to seamlessly update the list every day at 2PM.
+![](https://i.imgur.com/dx18fN4.png)
+
+Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` takes precedence). For `mpv`, `youtube-dl` is a requirement; use the `youtube_dl_path` workflow environment variable to set its path, if needed.</string>
+	<key>uidata</key>
+	<dict>
+		<key>325E0A83-2F46-4696-80F4-7D41608F65DC</key>
+		<dict>
+			<key>xpos</key>
+			<integer>130</integer>
+			<key>ypos</key>
+			<integer>40</integer>
+		</dict>
+		<key>5777145B-F30B-4A39-8BB6-AA07F81401E1</key>
+		<dict>
+			<key>xpos</key>
+			<integer>340</integer>
+			<key>ypos</key>
+			<integer>40</integer>
+		</dict>
+		<key>97081E49-C4BE-4918-A447-B006C76E98FD</key>
+		<dict>
+			<key>xpos</key>
+			<integer>340</integer>
+			<key>ypos</key>
+			<integer>170</integer>
+		</dict>
+		<key>F52ABFBA-FC4F-400F-BF1B-AAF7B723052C</key>
+		<dict>
+			<key>xpos</key>
+			<integer>130</integer>
+			<key>ypos</key>
+			<integer>300</integer>
+		</dict>
+		<key>F54CC291-7B66-4D5A-A599-BD512EC630DD</key>
+		<dict>
+			<key>xpos</key>
+			<integer>130</integer>
+			<key>ypos</key>
+			<integer>170</integer>
+		</dict>
+		<key>F622CD2F-A79C-41E3-91E5-1BF5B66F3F52</key>
+		<dict>
+			<key>xpos</key>
+			<integer>340</integer>
+			<key>ypos</key>
+			<integer>300</integer>
+		</dict>
+	</dict>
+	<key>variables</key>
+	<dict>
+		<key>youtube_dl_path</key>
+		<string>/usr/local/bin</string>
+	</dict>
+	<key>version</key>
+	<string>1.0.0</string>
+	<key>webaddress</key>
+	<string>http://vitorgalvao.com/</string>
+</dict>
+</plist>

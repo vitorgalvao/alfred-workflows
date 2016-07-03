@@ -114,6 +114,11 @@ Run shell commands without opening a terminal
 
 [info](http://www.alfredforum.com/topic/1550-runcommand-%E2%80%94-run-shell-commands-without-opening-a-terminal/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.runcommand/runcommand.alfredworkflow)
 
+### ShortFilms
+Stream from a selection of short films
+
+[info](http://www.alfredforum.com/topic/9206-shortfilms-%E2%80%94-stream-from-a-selection-of-short-films/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.shortfilms/shortfilms.alfredworkflow)
+
 ### StrongPassword
 Get a strong password by leveraging multiple sources
 
