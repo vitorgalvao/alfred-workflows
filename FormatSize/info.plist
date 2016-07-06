@@ -420,7 +420,7 @@ Paper sizes were taken from [wikipedia](https://en.wikipedia.org/wiki/Paper_size
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.3</string>
+	<string>1.3.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
