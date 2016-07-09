@@ -1,6 +1,3 @@
-# fix needed in Alfred (see http://www.alfredforum.com/topic/3173-ruby-workflows-in-mavericks/page-2#entry19605)
-Encoding::default_external = Encoding::UTF_8 if defined? Encoding
-
 # read text from shell
 s = $stdin.read
 
