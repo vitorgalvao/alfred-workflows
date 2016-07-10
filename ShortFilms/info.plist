@@ -18,6 +18,16 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>DA016DD9-461A-4D51-827E-71D31165E59E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
 		</array>
 		<key>F52ABFBA-FC4F-400F-BF1B-AAF7B723052C</key>
 		<array>
@@ -56,45 +66,6 @@
 	<string>ShortFilms</string>
 	<key>objects</key>
 	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>function warning {
-  osascript -e "display dialog \"${1}\" with icon caution buttons (\"OK\") default button 1"
-  exit 1
-}
-
-PATH="${youtube_dl_path}:$PATH"
-
-if [[ "$(mdfind kMDItemCFBundleIdentifier = io.mpv)" ]]; then
-  video_player='mpv'
-  [[ ! $(which 'youtube-dl') ]] &amp;&amp; warning 'You need youtube-dl in your youtube_dl_path to be able to stream with mpv'
-elif [[ "$(mdfind kMDItemCFBundleIdentifier = org.videolan.vlc)" ]]; then
-  video_player='vlc'
-else
-  warning 'You need either mpv or vlc, to stream a video.'
-fi
-
-open -a "${video_player}" "${1}"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>5777145B-F30B-4A39-8BB6-AA07F81401E1</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -146,7 +117,23 @@ open -a "${video_player}" "${1}"</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>ruby shortfilms.rb update_list</string>
+				<string>function warning {
+  osascript -e "display dialog \"${1}\" with icon caution buttons (\"OK\") default button 1"
+  exit 1
+}
+
+PATH="${youtube_dl_path}:$PATH"
+
+if [[ "$(mdfind kMDItemCFBundleIdentifier = io.mpv)" ]]; then
+  video_player='mpv'
+  [[ ! $(which 'youtube-dl') ]] &amp;&amp; warning 'You need youtube-dl in your youtube_dl_path to be able to stream with mpv'
+elif [[ "$(mdfind kMDItemCFBundleIdentifier = org.videolan.vlc)" ]]; then
+  video_player='vlc'
+else
+  warning 'You need either mpv or vlc, to stream a video.'
+fi
+
+open -a "${video_player}" "${1}"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -157,7 +144,87 @@ open -a "${video_player}" "${1}"</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>97081E49-C4BE-4918-A447-B006C76E98FD</string>
+			<string>5777145B-F30B-4A39-8BB6-AA07F81401E1</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>readonly local_file='info.plist' # Local file to compare to remote_file
+readonly remote_file='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/ShortFilms/info.plist' # Remote file (URL) to compare to local_file
+readonly workflow_url='https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.shortfilms/shortfilms.alfredworkflow' # URL to directly download workflow or workflow download page
+readonly workflow_type='workflow' # Either 'workflow' if workflow_url points to direct download, or 'page' if it points to download page
+readonly frequency_check='15' # Days between update checks
+
+# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED UNLESS YOU KNOW WHAT YOU ARE DOING
+function abort {
+  echo "${1}" 1&gt;&amp;2
+  exit 1
+}
+
+function url_exists {
+  if curl --silent --location --output /dev/null --fail --range 0-0 "${1}"; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+function notification {
+  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
+
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+  else
+    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  fi
+}
+
+# Sanity checks
+[[ ! -f "${local_file}" ]] &amp;&amp; abort '"local_file" appears to not point to an existing file'
+if ! url_exists "${remote_file}"; then abort '"remote_file" appears to not be reachable'; fi
+[[ ! "${workflow_type}" =~ ^(workflow|page)$ ]] &amp;&amp; abort '"workflow_type" needs to be one of "workflow" or "page"'
+[[ ! "${frequency_check}" =~ ^[0-9]+$ ]] &amp;&amp; abort '"frequency_check" appears to not be a number'
+
+# Check for updates
+if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
+  readonly tmp_file="$(mktemp)"
+  curl --silent --location --output "${tmp_file}" "${remote_file}"
+
+  if [[ "$(diff "${local_file}" "${tmp_file}")" ]]; then
+    if [[ "${workflow_type}" == 'page' ]]; then
+      notification 'Opening download page…'
+      open "${workflow_url}"
+    else
+      if url_exists "${workflow_url}"; then
+        notification 'Downloading and installing…'
+        curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${workflow_url}"
+        open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
+      else
+        abort '"workflow_url" appears to not be reachable'
+      fi # url_exists
+    fi # workflow_type
+  fi # diff
+else
+  touch "${local_file}" # Reset timer by touching local file
+fi #find</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>DA016DD9-461A-4D51-827E-71D31165E59E</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -182,19 +249,7 @@ open -a "${video_player}" "${1}"</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>plist_file='com.vitorgalvao.launchd.alfredshortfilmsupdate.plist'
-launchagents_dir="${HOME}/Library/LaunchAgents"
-mkdir -p "${launchagents_dir}"
-
-action="${1}"
-
-if [[ "${action}" == 'install' ]]; then
-  cp "${plist_file}" "${launchagents_dir}"
-  launchctl load -w "${launchagents_dir}/${plist_file}"
-else
-  launchctl unload -w "${launchagents_dir}/${plist_file}"
-  rm "${launchagents_dir}/${plist_file}"
-fi</string>
+				<string>ruby shortfilms.rb update_list</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -205,7 +260,7 @@ fi</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>F622CD2F-A79C-41E3-91E5-1BF5B66F3F52</string>
+			<string>97081E49-C4BE-4918-A447-B006C76E98FD</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -265,6 +320,41 @@ EOF</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>plist_file='com.vitorgalvao.launchd.alfredshortfilmsupdate.plist'
+launchagents_dir="${HOME}/Library/LaunchAgents"
+mkdir -p "${launchagents_dir}"
+
+action="${1}"
+
+if [[ "${action}" == 'install' ]]; then
+  cp "${plist_file}" "${launchagents_dir}"
+  launchctl load -w "${launchagents_dir}/${plist_file}"
+else
+  launchctl unload -w "${launchagents_dir}/${plist_file}"
+  rm "${launchagents_dir}/${plist_file}"
+fi</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>F622CD2F-A79C-41E3-91E5-1BF5B66F3F52</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>Stream from a selection of short films, powered by [Short of the Week](https://www.shortoftheweek.com/).
@@ -297,28 +387,39 @@ Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` 
 			<key>xpos</key>
 			<integer>340</integer>
 			<key>ypos</key>
-			<integer>170</integer>
+			<integer>310</integer>
+		</dict>
+		<key>DA016DD9-461A-4D51-827E-71D31165E59E</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>340</integer>
+			<key>ypos</key>
+			<integer>160</integer>
 		</dict>
 		<key>F52ABFBA-FC4F-400F-BF1B-AAF7B723052C</key>
 		<dict>
 			<key>xpos</key>
 			<integer>130</integer>
 			<key>ypos</key>
-			<integer>300</integer>
+			<integer>440</integer>
 		</dict>
 		<key>F54CC291-7B66-4D5A-A599-BD512EC630DD</key>
 		<dict>
 			<key>xpos</key>
 			<integer>130</integer>
 			<key>ypos</key>
-			<integer>170</integer>
+			<integer>310</integer>
 		</dict>
 		<key>F622CD2F-A79C-41E3-91E5-1BF5B66F3F52</key>
 		<dict>
 			<key>xpos</key>
 			<integer>340</integer>
 			<key>ypos</key>
-			<integer>300</integer>
+			<integer>440</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
@@ -327,7 +428,7 @@ Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` 
 		<string>/usr/local/bin</string>
 	</dict>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
