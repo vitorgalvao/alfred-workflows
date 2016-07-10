@@ -127,6 +127,16 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>8FBC95B8-A15A-407C-8140-0C45FA2A3036</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
 		</array>
 		<key>87E67178-1A36-458D-9883-D7A839F8E020</key>
 		<array>
@@ -498,6 +508,86 @@ move_list_item "${line_number}"</string>
 			<string>A9B03347-978A-4547-9F09-AC992131AEFB</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>readonly local_file='info.plist' # Local file to compare to remote_file
+readonly remote_file='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/WatchList/info.plist' # Remote file (URL) to compare to local_file
+readonly workflow_url='https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.watchlist/watchlist.alfredworkflow' # URL to directly download workflow or workflow download page
+readonly workflow_type='workflow' # Either 'workflow' if workflow_url points to direct download, or 'page' if it points to download page
+readonly frequency_check='15' # Days between update checks
+
+# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED UNLESS YOU KNOW WHAT YOU ARE DOING
+function abort {
+  echo "${1}" 1&gt;&amp;2
+  exit 1
+}
+
+function url_exists {
+  if curl --silent --location --output /dev/null --fail --range 0-0 "${1}"; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+function notification {
+  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
+
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+  else
+    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  fi
+}
+
+# Sanity checks
+[[ ! -f "${local_file}" ]] &amp;&amp; abort '"local_file" appears to not point to an existing file'
+if ! url_exists "${remote_file}"; then abort '"remote_file" appears to not be reachable'; fi
+[[ ! "${workflow_type}" =~ ^(workflow|page)$ ]] &amp;&amp; abort '"workflow_type" needs to be one of "workflow" or "page"'
+[[ ! "${frequency_check}" =~ ^[0-9]+$ ]] &amp;&amp; abort '"frequency_check" appears to not be a number'
+
+# Check for updates
+if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
+  readonly tmp_file="$(mktemp)"
+  curl --silent --location --output "${tmp_file}" "${remote_file}"
+
+  if [[ "$(diff "${local_file}" "${tmp_file}")" ]]; then
+    if [[ "${workflow_type}" == 'page' ]]; then
+      notification 'Opening download page…'
+      open "${workflow_url}"
+    else
+      if url_exists "${workflow_url}"; then
+        notification 'Downloading and installing…'
+        curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${workflow_url}"
+        open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
+      else
+        abort '"workflow_url" appears to not be reachable'
+      fi # url_exists
+    fi # workflow_type
+  fi # diff
+else
+  touch "${local_file}" # Reset timer by touching local file
+fi #find</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>8FBC95B8-A15A-407C-8140-0C45FA2A3036</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1017,6 +1107,17 @@ If you use [DownVid](http://www.alfredforum.com/topic/2045-downvid-%E2%80%94-dow
 			<key>ypos</key>
 			<real>1090</real>
 		</dict>
+		<key>8FBC95B8-A15A-407C-8140-0C45FA2A3036</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>500</integer>
+			<key>ypos</key>
+			<integer>490</integer>
+		</dict>
 		<key>A0CB4B50-6085-4C77-BA3D-435ABE469ECE</key>
 		<dict>
 			<key>xpos</key>
@@ -1068,7 +1169,7 @@ If you use [DownVid](http://www.alfredforum.com/topic/2045-downvid-%E2%80%94-dow
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.10.0</string>
+	<string>1.11.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
