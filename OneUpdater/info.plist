@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.vitorgalvao.alfred.oneupdater</string>
+	<key>connections</key>
+	<dict>
+		<key>D67A4DF5-8983-41A5-A8E8-B0E7AC95B022</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E3710884-D276-4C58-976D-9C98744E8067</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Vítor Galvão</string>
+	<key>description</key>
+	<string>Update workflows with a single node</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>OneUpdater</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>:updateoneupdater</string>
+				<key>subtext</key>
+				<string>Check for updates and install them if they exist</string>
+				<key>text</key>
+				<string>Update OneUpdater</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>D67A4DF5-8983-41A5-A8E8-B0E7AC95B022</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>readonly local_file='info.plist' # Local file to compare to remote_file
+readonly remote_file='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/OneUpdater/info.plist' # Remote file (URL) to compare to local_file
+readonly workflow_url='https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.oneupdater/oneupdater.alfredworkflow' # URL to directly download workflow or workflow download page
+readonly workflow_type='workflow' # Either 'workflow' if workflow_url points to direct download, or 'page' if it points to download page
+frequency_check='15' # Days between update checks
+
+# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED UNLESS YOU KNOW WHAT YOU ARE DOING
+function abort {
+  echo "${1}" 1&gt;&amp;2
+  exit 1
+}
+
+function url_exists {
+  if curl --silent --location --output /dev/null --fail --range 0-0 "${1}"; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+function notification {
+  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
+
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+  else
+    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  fi
+}
+
+# Sanity checks
+[[ ! -f "${local_file}" ]] &amp;&amp; abort '"local_file" appears to not point to an existing file'
+if ! url_exists "${remote_file}"; then abort '"remote_file" appears to not be reachable'; fi
+[[ ! "${workflow_type}" =~ ^(workflow|page)$ ]] &amp;&amp; abort '"workflow_type" needs to be one of "workflow" or "page"'
+[[ ! "${frequency_check}" =~ ^[0-9]+$ ]] &amp;&amp; abort '"frequency_check" appears to not be a number'
+
+# Check for updates
+if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
+  readonly tmp_file="$(mktemp)"
+  curl --silent --location --output "${tmp_file}" "${remote_file}"
+
+  if [[ "$(diff "${local_file}" "${tmp_file}")" ]]; then
+    if [[ "${workflow_type}" == 'page' ]]; then
+      notification 'Opening download page…'
+      open "${workflow_url}"
+    else
+      if url_exists "${workflow_url}"; then
+        notification 'Downloading and installing…'
+        curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${workflow_url}"
+        open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
+      else
+        abort '"workflow_url" appears to not be reachable'
+      fi # url_exists
+    fi # workflow_type
+  fi # diff
+else
+  touch "${local_file}" # Reset timer by touching local file
+fi #find</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>E3710884-D276-4C58-976D-9C98744E8067</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>readonly local_file='info.plist' # Local file to compare to remote_file
+readonly remote_file='https://someserver.tld/myworkflow/info.plist' # Remote file (URL) to compare to local_file
+readonly workflow_url='https://someserver.tld/myworkflow.alfredworkflow' # URL to directly download workflow or workflow download page
+readonly workflow_type='workflow' # Either 'workflow' if workflow_url points to direct download, or 'page' if it points to download page
+readonly frequency_check='15' # Days between update checks
+
+# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED UNLESS YOU KNOW WHAT YOU ARE DOING
+function abort {
+  echo "${1}" 1&gt;&amp;2
+  exit 1
+}
+
+function url_exists {
+  if curl --silent --location --output /dev/null --fail --range 0-0 "${1}"; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+function notification {
+  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
+
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+  else
+    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  fi
+}
+
+# Sanity checks
+[[ ! -f "${local_file}" ]] &amp;&amp; abort '"local_file" appears to not point to an existing file'
+if ! url_exists "${remote_file}"; then abort '"remote_file" appears to not be reachable'; fi
+[[ ! "${workflow_type}" =~ ^(workflow|page)$ ]] &amp;&amp; abort '"workflow_type" needs to be one of "workflow" or "page"'
+[[ ! "${frequency_check}" =~ ^[0-9]+$ ]] &amp;&amp; abort '"frequency_check" appears to not be a number'
+
+# Check for updates
+if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
+  readonly tmp_file="$(mktemp)"
+  curl --silent --location --output "${tmp_file}" "${remote_file}"
+
+  if [[ "$(diff "${local_file}" "${tmp_file}")" ]]; then
+    if [[ "${workflow_type}" == 'page' ]]; then
+      notification 'Opening download page…'
+      open "${workflow_url}"
+    else
+      if url_exists "${workflow_url}"; then
+        notification 'Downloading and installing…'
+        curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${workflow_url}"
+        open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
+      else
+        abort '"workflow_url" appears to not be reachable'
+      fi # url_exists
+    fi # workflow_type
+  fi # diff
+else
+  touch "${local_file}" # Reset timer by touching local file
+fi #find</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>8B7950F9-65DF-4443-90EB-232479737B7B</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>`OneUpdater` is an updater you can plug into your workflows with minimal configuration, to keep them up-to-date in users’ machines.
+
+Easiest way to use it is to copy its `OneUpdater` node (the pink one, with the note) to another workflow. Connect it to the most used action and double click to edit it. Fill the top variables with the correct values, and you’re done.
+
+![Setting up OneUpdater](https://i.imgur.com/T6nabhe.gif)
+
+The top lines (the ones that need changing) have comments explaining what they mean and some example values, but here’s an overview with a real example, from [MarkdownBulletin](http://www.alfredforum.com/topic/3517-markdownbulletin-%E2%80%94-convert-markdown-to-bbcode/):
+
+```
+readonly local_file='info.plist'
+readonly remote_file='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MarkdownBulletin/info.plist' 
+readonly workflow_url='https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.markdownbulletin/markdownbulletin.alfredworkflow'
+readonly workflow_type='workflow'
+readonly frequency_check='15'
+```
+
+`local_file` is some file inside the workflow’s directory (or anywhere, really) and `remote_file` is a file on a server. When checking for updates (in this case every 15 days, the number in `frequency_check`), `remote_file` will be downloaded and compared to `local_file`. If they differ, the code will continue. If `workflow_type` is set to `workflow`, `workflow_url` will be treated as the direct URL to a `.alfredworkflow`; it will be downloaded and opened. If `workflow_type` is set to `page`, `workflow_url` will be treated as a webpage and opened in the default browser.
+
+For all this to work smoothly, your `local_file` (and its equivalent `remote_file`) should be one you always change with every update. With Alfred 3, `info.plist` becomes a prime candidate as you need only update its version (which you should be doing, anyway) for the file to change.
+
+When any update happens, the user will be informed via a notification. If you have `terminal-notfier` somewhere in your workflow directory, it will use that, otherwise it will use a plain AppleScript-called notification.</string>
+	<key>uidata</key>
+	<dict>
+		<key>8B7950F9-65DF-4443-90EB-232479737B7B</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>400</integer>
+			<key>ypos</key>
+			<integer>150</integer>
+		</dict>
+		<key>D67A4DF5-8983-41A5-A8E8-B0E7AC95B022</key>
+		<dict>
+			<key>xpos</key>
+			<integer>150</integer>
+			<key>ypos</key>
+			<integer>20</integer>
+		</dict>
+		<key>E3710884-D276-4C58-976D-9C98744E8067</key>
+		<dict>
+			<key>xpos</key>
+			<integer>400</integer>
+			<key>ypos</key>
+			<integer>20</integer>
+		</dict>
+	</dict>
+	<key>version</key>
+	<string>1.0.0</string>
+	<key>webaddress</key>
+	<string>http://vitorgalvao.com/</string>
+</dict>
+</plist>

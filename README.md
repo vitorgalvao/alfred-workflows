@@ -64,6 +64,11 @@ Creates a new file in the current Finder directory
 
 [info](http://www.alfredforum.com/topic/2957-newfile-%E2%80%94-creates-a-new-file-in-the-current-finder-directory/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.newfile/newfile.alfredworkflow)
 
+### OneUpdater
+Update workflows with a single node
+
+[info](http://www.alfredforum.com/topic/9224-oneupdater-%E2%80%94-update-workflows-with-a-single-node/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.oneupdater/oneupdater.alfredworkflow)
+
 ### PinAdd
 Takes arguments as tags and adds your browser’s frontmost tab as a pinboard bookmark
 
