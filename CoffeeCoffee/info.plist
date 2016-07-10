@@ -17,6 +17,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 	</dict>
@@ -33,6 +35,8 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -67,6 +71,10 @@ echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;
   &lt;/item&gt;
 &lt;/items&gt;"
 fi</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
 				<string>Prevent your computer from going to sleep</string>
 				<key>title</key>
@@ -81,7 +89,7 @@ fi</string>
 			<key>uid</key>
 			<string>94757117-A2E1-4FE7-A171-555588BE76FF</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -92,13 +100,17 @@ fi</string>
 				<integer>0</integer>
 				<key>script</key>
 				<string>if [[ {query} == 'off' ]]; then
-	killall caffeinate
+  killall caffeinate
 elif [[ {query} == 'on' ]]; then
-	caffeinate &amp;&gt; /dev/null &amp;
+  caffeinate &amp;&gt; /dev/null &amp;
 else
-	time="$(($(echo {query} | sed 's/on//')*60))"
-	caffeinate -t ${time} &amp;&gt; /dev/null &amp;
+  time="$(($(echo {query} | sed 's/on//')*60))"
+  caffeinate -t ${time} &amp;&gt; /dev/null &amp;
 fi</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -107,24 +119,39 @@ fi</string>
 			<key>uid</key>
 			<string>0B01601F-72A7-4C92-8B67-197D677D2A12</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string>Prevent your computer from going to sleep. Uses [`caffeinate`](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/caffeinate.8.html) under the hood, so no third-party apps are required.
+
+Type `coffee` to turn it on
+![](http://i.imgur.com/4o338J7.png)
+
+If you type a space and number, after, it’ll be active only for that amount of minutes
+![](http://i.imgur.com/NOfkejN.png)
+ 
+Run `coffee` again to manually turn it off
+![](http://i.imgur.com/4fjhrTT.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>0B01601F-72A7-4C92-8B67-197D677D2A12</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
 		<key>94757117-A2E1-4FE7-A171-555588BE76FF</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
 	</dict>
+	<key>version</key>
+	<string>1.0.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
