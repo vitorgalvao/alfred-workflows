@@ -15,28 +15,37 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>7B358A3F-B206-4B26-BF0E-B9643D6808DE</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>B10C3CEF-BFF1-4B96-9D33-79793DD863B0</string>
+				<string>E43EBBB7-5055-4B3F-BF52-4FA761A06EAB</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>77AA5EBA-F831-4E9E-9E7D-FD7665B66FD1</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
-		<key>83A0987D-B75E-4DBE-BDCC-9B4B3EC65CA9</key>
+		<key>D9413737-68AF-44E7-8F3D-214676DFD4EF</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E43EBBB7-5055-4B3F-BF52-4FA761A06EAB</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>E43EBBB7-5055-4B3F-BF52-4FA761A06EAB</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -45,25 +54,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
-			</dict>
-		</array>
-		<key>D9413737-68AF-44E7-8F3D-214676DFD4EF</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>B10C3CEF-BFF1-4B96-9D33-79793DD863B0</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>77AA5EBA-F831-4E9E-9E7D-FD7665B66FD1</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 	</dict>
@@ -92,86 +84,21 @@
 			<key>uid</key>
 			<string>D9413737-68AF-44E7-8F3D-214676DFD4EF</string>
 			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>tell application "Alfred 2" to run trigger "LabelColor" in workflow "com.vitorgalvao.alfred.labelcolor"</string>
-				<key>type</key>
-				<integer>6</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>B10C3CEF-BFF1-4B96-9D33-79793DD863B0</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>action</key>
-				<integer>0</integer>
-				<key>argument</key>
-				<integer>1</integer>
-				<key>leftcursor</key>
-				<false/>
-				<key>modsmode</key>
-				<integer>0</integer>
-				<key>relatedAppsMode</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.hotkey</string>
-			<key>uid</key>
-			<string>7B358A3F-B206-4B26-BF0E-B9643D6808DE</string>
-			<key>version</key>
 			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>file_list='/tmp/labelcolorfilelist'
-echo "{query}" | perl -pe 's/[\t\n]/\0/g' &gt; "${file_list}"</string>
-				<key>type</key>
+				<string>perl -pe 's/[\t\n]/\0/g' &lt;&lt;&lt; "${file_list}" | xargs -0 ./labelcolor {query}</string>
+				<key>scriptargtype</key>
 				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>77AA5EBA-F831-4E9E-9E7D-FD7665B66FD1</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>triggerid</key>
-				<string>LabelColor</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>83A0987D-B75E-4DBE-BDCC-9B4B3EC65CA9</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>file_list='/tmp/labelcolorfilelist'
-cat "${file_list}" | xargs -0 ./labelcolor {query}
-rm "${file_list}"</string>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -180,11 +107,13 @@ rm "${file_list}"</string>
 			<key>uid</key>
 			<string>3387B057-FF89-44FF-8D81-1C1CB554C09C</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>escaping</key>
@@ -244,6 +173,10 @@ rm "${file_list}"</string>
   &lt;/item&gt;
 &lt;/items&gt;
 EOF</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
 				<string>none (removes label), orange, red, yellow, blue, purple, green, gray</string>
 				<key>title</key>
@@ -258,49 +191,98 @@ EOF</string>
 			<key>uid</key>
 			<string>1CDD71C9-6FA7-4886-8792-358DC4825B8C</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>variables</key>
+				<dict>
+					<key>file_list</key>
+					<string>{query}</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>E43EBBB7-5055-4B3F-BF52-4FA761A06EAB</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>1</integer>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>7B358A3F-B206-4B26-BF0E-B9643D6808DE</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string>File action to set the label color for the chosen files and/or directories.
+ 
+Use Alfred to pick what you want to apply (or remove) a label to and pick “Label” as the action, or use the keyboard shortcut. Alfred’s main window will appear and you simply select an option.
+
+![](http://i.imgur.com/5Ns4dAN.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>1CDD71C9-6FA7-4886-8792-358DC4825B8C</key>
 		<dict>
+			<key>xpos</key>
+			<integer>390</integer>
 			<key>ypos</key>
-			<real>250</real>
+			<integer>20</integer>
 		</dict>
 		<key>3387B057-FF89-44FF-8D81-1C1CB554C09C</key>
 		<dict>
+			<key>xpos</key>
+			<integer>590</integer>
 			<key>ypos</key>
-			<real>250</real>
-		</dict>
-		<key>77AA5EBA-F831-4E9E-9E7D-FD7665B66FD1</key>
-		<dict>
-			<key>ypos</key>
-			<real>130</real>
+			<integer>20</integer>
 		</dict>
 		<key>7B358A3F-B206-4B26-BF0E-B9643D6808DE</key>
 		<dict>
+			<key>xpos</key>
+			<integer>60</integer>
 			<key>ypos</key>
-			<real>130</real>
-		</dict>
-		<key>83A0987D-B75E-4DBE-BDCC-9B4B3EC65CA9</key>
-		<dict>
-			<key>ypos</key>
-			<real>250</real>
-		</dict>
-		<key>B10C3CEF-BFF1-4B96-9D33-79793DD863B0</key>
-		<dict>
-			<key>ypos</key>
-			<real>10</real>
+			<integer>140</integer>
 		</dict>
 		<key>D9413737-68AF-44E7-8F3D-214676DFD4EF</key>
 		<dict>
+			<key>xpos</key>
+			<integer>60</integer>
 			<key>ypos</key>
-			<real>10</real>
+			<integer>20</integer>
+		</dict>
+		<key>E43EBBB7-5055-4B3F-BF52-4FA761A06EAB</key>
+		<dict>
+			<key>xpos</key>
+			<integer>280</integer>
+			<key>ypos</key>
+			<integer>50</integer>
 		</dict>
 	</dict>
+	<key>version</key>
+	<string>1.0.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
