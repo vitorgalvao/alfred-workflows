@@ -8,19 +8,19 @@ readonly watched="${alfred_workflow_data}/watched"
 
 # functions
 notification() {
-  ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "WatchList" -message "${1}"
+  ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -message "${1}"
 }
 
 wrong_item_type() {
-  echo "Something went wrong. Item type is invalid ($1)."
+  echo "Something went wrong. Item type is invalid (${1})."
   exit 1
 }
 
 prepend() {
   local line_to_prepend file_to_prepend_to tmp_prepend_file
 
-  line_to_prepend="$1"
-  file_to_prepend_to="$2"
+  line_to_prepend="${1}"
+  file_to_prepend_to="${2}"
   tmp_prepend_file="$(mktemp -t prepend)"
 
   echo "${line_to_prepend}" | cat - "${file_to_prepend_to}" > "${tmp_prepend_file}"
@@ -28,7 +28,7 @@ prepend() {
 }
 
 use_list() {
-  chosen_list="$1"
+  chosen_list="${1}"
 
   if [[ "${chosen_list}" == 'towatch' ]]; then
     list="${towatch}"
@@ -46,7 +46,7 @@ use_list() {
 }
 
 load_item() {
-  line_number="$1"
+  line_number="${1}"
 
   list_item=$(sed -n "${line_number}p" "${list}")
   IFS='⸗' read item_type item_title item_location item_size item_duration <<< "${list_item}"
@@ -64,7 +64,7 @@ what_video_player() {
 }
 
 play_file() {
-  item_location="$1"
+  item_location="${1}"
 
   if [[ "${item_type}" == 'file' ]]; then
     open "${item_location}"
@@ -77,8 +77,8 @@ play_file() {
 }
 
 get_item_origin_url() {
-  item_type="$1"
-  item_location="$2"
+  item_type="${1}"
+  item_location="${2}"
 
   if [[ "${item_type}" == 'file' ]]; then
     mdls -name kMDItemWhereFroms "${item_location}" | sed -n '2p' | tr -d ' "\n'
@@ -90,7 +90,7 @@ get_item_origin_url() {
 }
 
 move_list_item() {
-  line_number="$1"
+  line_number="${1}"
 
   if [[ "${chosen_list}" == 'towatch' ]]; then
     origin_list="${towatch}"
@@ -109,7 +109,7 @@ move_list_item() {
 }
 
 watch_script_filter() {
-  search="$1"
+  search="${1}"
 
   echo "<?xml version='1.0'?><items>"
   list_contents=$(cat "${list}")
