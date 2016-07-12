@@ -1,9 +1,9 @@
 # set notifications
 notification() {
-  ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title 'DownVid' -message "$1"
+  ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -message "${1}"
 }
 
-if [[ "$1" == 'restart_download_true' ]]; then
+if [[ "${1}" == 'restart_download_true' ]]; then
   notification 'Restarting download at bottom of queue'
   currentquery=$(cat '/tmp/downvidcurrentquery')
 

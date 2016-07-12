@@ -30,7 +30,7 @@ fi
 
 # set notifications
 notification() {
-  ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title 'DownVid' -message "$1"
+  ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -message "${1}"
 }
 
 # update youtube-dl if it's more than 15 days old
