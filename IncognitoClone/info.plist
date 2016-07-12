@@ -15,6 +15,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -23,6 +25,8 @@
 				<integer>262144</integer>
 				<key>modifiersubtext</key>
 				<string>Opens in incognito, and closes the original tab</string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -31,6 +35,8 @@
 				<integer>524288</integer>
 				<key>modifiersubtext</key>
 				<string>Opens in window with new profile</string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -39,6 +45,8 @@
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
 				<string>Opens in window with new profile, and closes the original tab</string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 	</dict>
@@ -71,7 +79,7 @@
 			<key>uid</key>
 			<string>D1C78EAD-183B-46FC-93DD-CE9D62824D4D</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -83,6 +91,10 @@
 				<key>script</key>
 				<string>tell application "Google Chrome"	set theURL to URL of active tab of front window	make new window with properties {mode:"incognito"}
 	tell active tab of front window to set URL to theURLend tell</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>6</integer>
 			</dict>
@@ -91,7 +103,7 @@
 			<key>uid</key>
 			<string>F91EA669-611F-436A-89B4-0D448347CCB6</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -102,6 +114,10 @@
 				<integer>0</integer>
 				<key>script</key>
 				<string>tell application "Google Chrome"	set theURL to URL of active tab of front window	close active tab of front window	make new window with properties {mode:"incognito"}	tell active tab of front window to set URL to theURLend tell</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>6</integer>
 			</dict>
@@ -110,7 +126,7 @@
 			<key>uid</key>
 			<string>4F459C78-66B4-44BA-BB97-470BB0B95816</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -122,6 +138,10 @@
 				<key>script</key>
 				<string>tell application "Google Chrome"	set theURL to URL of active tab of front window
 end telldo shell script "open --new -a \"Google Chrome\" --args --user-data-dir=\"/tmp/incognitoclone-$RANDOM\" --no-first-run " &amp; theURL</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>6</integer>
 			</dict>
@@ -130,7 +150,7 @@ end telldo shell script "open --new -a \"Google Chrome\" --args --user-data-di
 			<key>uid</key>
 			<string>51478E73-B6B6-403C-B9C1-A8AD48651EAE</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -143,6 +163,10 @@ end telldo shell script "open --new -a \"Google Chrome\" --args --user-data-di
 				<string>tell application "Google Chrome"	set theURL to URL of active tab of front window	close active tab of front windowend tell
 
 do shell script "open --new -a \"Google Chrome\" --args --user-data-dir=\"/tmp/incognitoclone-$RANDOM\" --no-first-run " &amp; theURL</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>6</integer>
 			</dict>
@@ -151,39 +175,53 @@ do shell script "open --new -a \"Google Chrome\" --args --user-data-dir=\"/tmp/i
 			<key>uid</key>
 			<string>A644E54E-1092-4095-A58E-0937A8171089</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string>Quickly open your current Chrome tab in incognito mode or a new Chrome instance with an empty profile — the latter means it’ll act just as if you hadn’t changed a single setting, which is particularly useful when something you changed (like preventing plugins from loading) is making it difficult to use a page.
+ 
+Call it with `ic`, and it will open a new incognito window with your current tab. ⌘↩ will also close the tab in your current window. ⌥↩ to open the current tab in a new Chrome instance, and ^↩ to also close the tab in the current window.</string>
 	<key>uidata</key>
 	<dict>
 		<key>4F459C78-66B4-44BA-BB97-470BB0B95816</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>130</real>
 		</dict>
 		<key>51478E73-B6B6-403C-B9C1-A8AD48651EAE</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>250</real>
 		</dict>
 		<key>A644E54E-1092-4095-A58E-0937A8171089</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>370</real>
 		</dict>
 		<key>D1C78EAD-183B-46FC-93DD-CE9D62824D4D</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
 		<key>F91EA669-611F-436A-89B4-0D448347CCB6</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
 	</dict>
+	<key>version</key>
+	<string>1.0.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
