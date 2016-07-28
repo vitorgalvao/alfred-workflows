@@ -17,7 +17,7 @@ if [ "${1}" = "--debug" ]; then
   set -x
 fi
 
-current_version="v1.7.1"
+current_version="v1.7.3"
 
 function is_mac() {
   uname | grep -q "Darwin"
@@ -263,7 +263,7 @@ function save_access_token() {
 
   access_token="$(egrep -o 'access_token":".*"' <<<"${1}" | cut -d '"' -f 3)"
   refresh_token="$(egrep -o 'refresh_token":".*"' <<<"${1}" | cut -d '"' -f 3)"
-  expires_in="$(egrep -o 'expires_in":".*"' <<<"${1}" | cut -d '"' -f 3)"
+  expires_in="$(egrep -o 'expires_in":[0-9]*' <<<"${1}" | cut -d ':' -f 2)"
   token_expire_time="$(( $(date +%s) + expires_in ))"
 
   # create dir if not exist
