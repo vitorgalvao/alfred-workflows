@@ -17,10 +17,12 @@ else
 end
 
 if movie_to_search.match(/^\/m\//) # the argument given was a movie page url
-  page = Nokogiri::HTML(open("http://www.rottentomatoes.com/" + movie_to_search))
+  html = open("https://www.rottentomatoes.com/" + movie_to_search)
 else
-  page = Nokogiri::HTML(open("http://www.rottentomatoes.com/search/?search=" + CGI.escape(movie_to_search) + "#results_movies_tab"))
+  html = open("https://www.rottentomatoes.com/search/?search=" + CGI.escape(movie_to_search))
 end
+
+page = Nokogiri::HTML(html)
 
 if page.at('title').text == 'Search Results - Rotten Tomatoes' # we're on the results list
   movie_results = page.css('ul#movie_results_ul li.media')
