@@ -22,13 +22,19 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
 				<string>rt</string>
-				<key>queuedelay</key>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
 				<integer>0</integer>
 				<key>queuemode</key>
 				<integer>2</integer>
@@ -62,6 +68,10 @@ else
   echo "&lt;/item&gt;"
   echo "&lt;/items&gt;"
 fi</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
 				<string>Check movie scores from Rotten Tomatoes</string>
 				<key>title</key>
@@ -76,19 +86,29 @@ fi</string>
 			<key>uid</key>
 			<string>3D696DA5-1D90-4A2A-A3A0-550BFDAAF148</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string>Type `rt` and a query to get results. If more than one movie matches, you’ll see a list.
+
+![RottenMovies search](http://i.imgur.com/E06Kc6I.png)
+
+Press ↩ on a movie on the list to get further details (these will appear by default if your initial query has only one result).
+
+![RottenMovies details](http://i.imgur.com/6y7joac.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>3D696DA5-1D90-4A2A-A3A0-550BFDAAF148</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
 	</dict>
+	<key>version</key>
+	<string>1.0.4</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
