@@ -36,8 +36,9 @@ def main(wf):
     # Get query from Alfred
 
     qu = r"osascript -e 'tell application" + r'"Finder"' + r"to return (quoted form of POSIX path of (target of window 1 as alias))'"
-    path = get_stdout_lines(qu, False)[0].replace("'", "")
-    os.chdir(path)
+    out = get_stdout_lines(qu)
+    if out:
+        os.chdir(out[0].replace("'", ""))
 
     res = list()
 
