@@ -4,6 +4,8 @@
 <dict>
 	<key>bundleid</key>
 	<string>com.vitorgalvao.alfred.runcommand</string>
+	<key>category</key>
+	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
 		<key>19CDA0AB-1F06-4A9A-B336-C04305094E51</key>
@@ -15,6 +17,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -23,6 +27,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>1C74CAA5-F3DA-4197-81A2-DD5E64E2E04C</key>
@@ -34,6 +40,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -42,6 +50,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>1F82ADA4-53CA-4378-8207-6D1AC40A0E15</key>
@@ -53,6 +63,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>38368F77-4820-4A56-BE9D-8E86E4BFA929</key>
@@ -66,6 +78,31 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>53DAE180-8315-4067-B38D-765F2ED09221</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1F82ADA4-53CA-4378-8207-6D1AC40A0E15</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>1E79EBFB-C35A-4A44-8E4C-7D3A32BE33C4</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Copy to Clipboard</string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>70D7DD2C-C248-44EB-8F75-538914807A66</key>
@@ -79,6 +116,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -87,6 +126,8 @@
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
 				<string>Show result on exit</string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>E7E29D22-8238-4B15-A125-541CDB088237</key>
@@ -98,6 +139,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>EFB1DBA9-4DEB-4703-8ABD-B0B63F394D35</key>
@@ -109,6 +152,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -117,11 +162,13 @@
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
 				<string>Show result on exit</string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 	</dict>
 	<key>createdby</key>
-	<string>Vítor Galvão</string>
+	<string>Vítor Galvão / Dominykas Grigonis</string>
 	<key>description</key>
 	<string>Run shell commands without opening a terminal</string>
 	<key>disabled</key>
@@ -145,7 +192,7 @@
 			<key>uid</key>
 			<string>1C74CAA5-F3DA-4197-81A2-DD5E64E2E04C</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -156,6 +203,10 @@
 				<integer>0</integer>
 				<key>script</key>
 				<string>tell application "Alfred 2" to run trigger "RunCommand" in workflow "com.vitorgalvao.alfred.runcommand"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>6</integer>
 			</dict>
@@ -164,7 +215,7 @@
 			<key>uid</key>
 			<string>F6CEDF27-563A-4BE6-8F1B-CFFAE9BB0208</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -175,6 +226,10 @@
 				<integer>102</integer>
 				<key>script</key>
 				<string>echo "{query}" | perl -pe 's/[\t\n]/\0/g' &gt; '/tmp/runcommandfilelist'</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -183,7 +238,7 @@
 			<key>uid</key>
 			<string>68CC8A56-102C-4023-BE9A-596453FDDB5C</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -193,11 +248,9 @@
 				<key>argument</key>
 				<integer>1</integer>
 				<key>hotkey</key>
-				<integer>15</integer>
+				<integer>0</integer>
 				<key>hotmod</key>
-				<integer>1835008</integer>
-				<key>hotstring</key>
-				<string>R</string>
+				<integer>0</integer>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -210,26 +263,7 @@
 			<key>uid</key>
 			<string>19CDA0AB-1F06-4A9A-B336-C04305094E51</string>
 			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>subtext</key>
-				<string>Use “{}” for file placeholders, if needed</string>
-				<key>text</key>
-				<string>RunCommand</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>BC3ADE81-4A31-4D07-A1C8-11BF79A65DE9</string>
-			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -253,6 +287,10 @@ else
 fi
 
 ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "RunCommand" -subtitle "${exit_sub}" -message "${exit_message}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -261,7 +299,26 @@ fi
 			<key>uid</key>
 			<string>70D7DD2C-C248-44EB-8F75-538914807A66</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>subtext</key>
+				<string>Use “{}” for file placeholders, if needed</string>
+				<key>text</key>
+				<string>RunCommand</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>BC3ADE81-4A31-4D07-A1C8-11BF79A65DE9</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -274,15 +331,7 @@ fi
 			<key>uid</key>
 			<string>E7E29D22-8238-4B15-A125-541CDB088237</string>
 			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>alfred.workflow.output.largetype</string>
-			<key>uid</key>
-			<string>1B016A28-C600-4740-8FA0-87F959C452C5</string>
-			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -293,6 +342,10 @@ fi
 				<integer>102</integer>
 				<key>script</key>
 				<string>./runcommand runInFiles "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -301,7 +354,20 @@ fi
 			<key>uid</key>
 			<string>4F728955-5237-45A7-8665-A94FC85E300E</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>largetypetext</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.largetype</string>
+			<key>uid</key>
+			<string>1B016A28-C600-4740-8FA0-87F959C452C5</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -325,6 +391,10 @@ else
 fi
 
 ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "RunCommand" -subtitle "${exit_sub}" -message "${exit_message}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -333,7 +403,7 @@ fi
 			<key>uid</key>
 			<string>38368F77-4820-4A56-BE9D-8E86E4BFA929</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -354,7 +424,7 @@ fi
 			<key>uid</key>
 			<string>EFB1DBA9-4DEB-4703-8ABD-B0B63F394D35</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -365,6 +435,10 @@ fi
 				<integer>102</integer>
 				<key>script</key>
 				<string>./runcommand runInDir "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -373,7 +447,67 @@ fi
 			<key>uid</key>
 			<string>1F82ADA4-53CA-4378-8207-6D1AC40A0E15</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>1E79EBFB-C35A-4A44-8E4C-7D3A32BE33C4</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>keyword</key>
+				<string>$</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string>/usr/bin/python -Q new sh_autocompletion.py "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Run shell commands on the current Finder window</string>
+				<key>title</key>
+				<string>Run CMD</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>53DAE180-8315-4067-B38D-765F2ED09221</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -382,63 +516,101 @@ fi
 	<dict>
 		<key>19CDA0AB-1F06-4A9A-B336-C04305094E51</key>
 		<dict>
+			<key>xpos</key>
+			<integer>100</integer>
 			<key>ypos</key>
-			<real>130</real>
+			<integer>120</integer>
 		</dict>
 		<key>1B016A28-C600-4740-8FA0-87F959C452C5</key>
 		<dict>
+			<key>xpos</key>
+			<integer>700</integer>
 			<key>ypos</key>
-			<real>370</real>
+			<integer>450</integer>
 		</dict>
 		<key>1C74CAA5-F3DA-4197-81A2-DD5E64E2E04C</key>
 		<dict>
+			<key>xpos</key>
+			<integer>100</integer>
 			<key>ypos</key>
 			<real>10</real>
+		</dict>
+		<key>1E79EBFB-C35A-4A44-8E4C-7D3A32BE33C4</key>
+		<dict>
+			<key>xpos</key>
+			<integer>700</integer>
+			<key>ypos</key>
+			<integer>670</integer>
 		</dict>
 		<key>1F82ADA4-53CA-4378-8207-6D1AC40A0E15</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
-			<real>610</real>
+			<integer>570</integer>
 		</dict>
 		<key>38368F77-4820-4A56-BE9D-8E86E4BFA929</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
-			<real>490</real>
+			<integer>460</integer>
 		</dict>
 		<key>4F728955-5237-45A7-8665-A94FC85E300E</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
-			<real>370</real>
+			<integer>350</integer>
+		</dict>
+		<key>53DAE180-8315-4067-B38D-765F2ED09221</key>
+		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
+			<key>ypos</key>
+			<integer>670</integer>
 		</dict>
 		<key>68CC8A56-102C-4023-BE9A-596453FDDB5C</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
-			<real>130</real>
+			<integer>120</integer>
 		</dict>
 		<key>70D7DD2C-C248-44EB-8F75-538914807A66</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
-			<real>250</real>
+			<integer>240</integer>
 		</dict>
 		<key>BC3ADE81-4A31-4D07-A1C8-11BF79A65DE9</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
-			<real>250</real>
+			<integer>280</integer>
 		</dict>
 		<key>E7E29D22-8238-4B15-A125-541CDB088237</key>
 		<dict>
+			<key>xpos</key>
+			<integer>100</integer>
 			<key>ypos</key>
-			<real>250</real>
+			<integer>280</integer>
 		</dict>
 		<key>EFB1DBA9-4DEB-4703-8ABD-B0B63F394D35</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
-			<real>490</real>
+			<integer>460</integer>
 		</dict>
 		<key>F6CEDF27-563A-4BE6-8F1B-CFFAE9BB0208</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
-			<real>10</real>
+			<integer>10</integer>
 		</dict>
 	</dict>
 	<key>webaddress</key>

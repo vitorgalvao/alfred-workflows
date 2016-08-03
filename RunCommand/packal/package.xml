@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<workflow>
+  <name>RunCommand</name>
+  <version>1.8</version>
+  <bundle>com.vitorgalvao.alfred.runcommand</bundle>
+  <updated>1446859272</updated>
+  <file>runcommand.alfredworkflow</file>
+</workflow>
