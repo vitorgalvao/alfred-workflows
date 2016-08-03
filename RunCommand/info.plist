@@ -4,6 +4,8 @@
 <dict>
 	<key>bundleid</key>
 	<string>com.vitorgalvao.alfred.runcommand</string>
+	<key>category</key>
+	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
 		<key>19CDA0AB-1F06-4A9A-B336-C04305094E51</key>
@@ -68,6 +70,25 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>53DAE180-8315-4067-B38D-765F2ED09221</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1F82ADA4-53CA-4378-8207-6D1AC40A0E15</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>1E79EBFB-C35A-4A44-8E4C-7D3A32BE33C4</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Copy to Clipboard</string>
+			</dict>
+		</array>
 		<key>70D7DD2C-C248-44EB-8F75-538914807A66</key>
 		<array/>
 		<key>BC3ADE81-4A31-4D07-A1C8-11BF79A65DE9</key>
@@ -121,7 +142,7 @@
 		</array>
 	</dict>
 	<key>createdby</key>
-	<string>Vítor Galvão</string>
+	<string>Vítor Galvão / Dominykas Grigonis</string>
 	<key>description</key>
 	<string>Run shell commands without opening a terminal</string>
 	<key>disabled</key>
@@ -193,11 +214,9 @@
 				<key>argument</key>
 				<integer>1</integer>
 				<key>hotkey</key>
-				<integer>15</integer>
+				<integer>0</integer>
 				<key>hotmod</key>
-				<integer>1835008</integer>
-				<key>hotstring</key>
-				<string>R</string>
+				<integer>0</integer>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -277,14 +296,6 @@ fi
 			<integer>0</integer>
 		</dict>
 		<dict>
-			<key>type</key>
-			<string>alfred.workflow.output.largetype</string>
-			<key>uid</key>
-			<string>1B016A28-C600-4740-8FA0-87F959C452C5</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
 			<key>config</key>
 			<dict>
 				<key>concurrently</key>
@@ -300,6 +311,14 @@ fi
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>4F728955-5237-45A7-8665-A94FC85E300E</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>alfred.workflow.output.largetype</string>
+			<key>uid</key>
+			<string>1B016A28-C600-4740-8FA0-87F959C452C5</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -375,6 +394,56 @@ fi
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>1E79EBFB-C35A-4A44-8E4C-7D3A32BE33C4</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>keyword</key>
+				<string>$</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>script</key>
+				<string>/usr/bin/python -Q new sh_autocompletion.py "{query}"</string>
+				<key>subtext</key>
+				<string>Run shell commands on the current Finder window</string>
+				<key>title</key>
+				<string>Run CMD</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>53DAE180-8315-4067-B38D-765F2ED09221</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
@@ -383,7 +452,7 @@ fi
 		<key>19CDA0AB-1F06-4A9A-B336-C04305094E51</key>
 		<dict>
 			<key>ypos</key>
-			<real>130</real>
+			<real>110</real>
 		</dict>
 		<key>1B016A28-C600-4740-8FA0-87F959C452C5</key>
 		<dict>
@@ -395,45 +464,55 @@ fi
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
+		<key>1E79EBFB-C35A-4A44-8E4C-7D3A32BE33C4</key>
+		<dict>
+			<key>ypos</key>
+			<real>600</real>
+		</dict>
 		<key>1F82ADA4-53CA-4378-8207-6D1AC40A0E15</key>
 		<dict>
 			<key>ypos</key>
-			<real>610</real>
+			<real>520</real>
 		</dict>
 		<key>38368F77-4820-4A56-BE9D-8E86E4BFA929</key>
 		<dict>
 			<key>ypos</key>
-			<real>490</real>
+			<real>420</real>
 		</dict>
 		<key>4F728955-5237-45A7-8665-A94FC85E300E</key>
 		<dict>
 			<key>ypos</key>
-			<real>370</real>
+			<real>320</real>
+		</dict>
+		<key>53DAE180-8315-4067-B38D-765F2ED09221</key>
+		<dict>
+			<key>ypos</key>
+			<real>600</real>
 		</dict>
 		<key>68CC8A56-102C-4023-BE9A-596453FDDB5C</key>
 		<dict>
 			<key>ypos</key>
-			<real>130</real>
+			<real>110</real>
 		</dict>
 		<key>70D7DD2C-C248-44EB-8F75-538914807A66</key>
 		<dict>
 			<key>ypos</key>
-			<real>250</real>
+			<real>220</real>
 		</dict>
 		<key>BC3ADE81-4A31-4D07-A1C8-11BF79A65DE9</key>
 		<dict>
 			<key>ypos</key>
-			<real>250</real>
+			<real>220</real>
 		</dict>
 		<key>E7E29D22-8238-4B15-A125-541CDB088237</key>
 		<dict>
 			<key>ypos</key>
-			<real>250</real>
+			<real>220</real>
 		</dict>
 		<key>EFB1DBA9-4DEB-4703-8ABD-B0B63F394D35</key>
 		<dict>
 			<key>ypos</key>
-			<real>490</real>
+			<real>420</real>
 		</dict>
 		<key>F6CEDF27-563A-4BE6-8F1B-CFFAE9BB0208</key>
 		<dict>
