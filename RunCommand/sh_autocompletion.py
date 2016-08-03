@@ -3,6 +3,7 @@
 # TUTORIAL
 # http://www.deanishe.net/alfred-workflow/tutorial_1.html#adding-a-script-filter
 
+import os
 import sys
 import re
 from subprocess import check_output, CalledProcessError, PIPE
@@ -17,23 +18,27 @@ def uniq_list(l):
     return [x for x in l if x not in used and (used.append(x) or True)]
 
 
-def get_stdout_lines(qu):
+def get_stdout_lines(qu, suppress=True):
     """Calls command and returns standard output in list as lines"""
-    try:
-        ls_output = check_output(qu, shell=True, stderr=PIPE).decode('utf-8').splitlines()
-        # return [s.strip().replace('\x08', '') for s in ls_output]
-        rx = '(\x08)..(\x08)'
-        return [
-            re.subn(rx, '', s.strip())[0].replace('\x08', '')
-            for s in ls_output
-            if s
-        ]
-    except CalledProcessError:
-        return []
+    if suppress:
+        try:
+            ls_output = check_output(qu, shell=True, stderr=PIPE).decode('utf-8').splitlines()
+            # return [s.strip().replace('\x08', '') for s in ls_output]
+        except CalledProcessError:
+            ls_output = []
+    else:
+        ls_output = check_output(qu, shell=True).decode('utf-8').splitlines()
+    rx = '(\x08)..(\x08)'
+    return [re.subn(rx, '', s.strip())[0].replace('\x08', '') for s in ls_output if s]
 
 
 def main(wf):
     # Get query from Alfred
+
+    qu = r"osascript -e 'tell application" + r'"Finder"' + r"to return (quoted form of POSIX path of (target of window 1 as alias))'"
+    path = get_stdout_lines(qu, False)[0].replace("'", "")
+    os.chdir(path)
+
     res = list()
 
     if wf.args:     # len(wf.args) != 0?
@@ -66,8 +71,8 @@ def main(wf):
 
             else:
                 # Get directory
-                qu = r"compgen -A function -d {wm1}".format(wm1=wm1) # k
-                res += get_stdout_lines(qu)
+                qu = r"compgen -d {wm1}".format(wm1=wm1) # k
+                res += [s + '/' for s in get_stdout_lines(qu)]
                 # Get commands (beginning first)
                 qu = r"compgen -A function -abc {wm1}".format(wm1=wm1) # k
                 res += get_stdout_lines(qu)
