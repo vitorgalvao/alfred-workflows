@@ -10,11 +10,13 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>F6CEDF27-563A-4BE6-8F1B-CFFAE9BB0208</string>
+				<string>EA822D39-F028-468E-95AB-6BB329348CDE</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -23,17 +25,21 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>1C74CAA5-F3DA-4197-81A2-DD5E64E2E04C</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>F6CEDF27-563A-4BE6-8F1B-CFFAE9BB0208</string>
+				<string>EA822D39-F028-468E-95AB-6BB329348CDE</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -42,6 +48,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>1F82ADA4-53CA-4378-8207-6D1AC40A0E15</key>
@@ -53,10 +61,23 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>38368F77-4820-4A56-BE9D-8E86E4BFA929</key>
-		<array/>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>4D5F3055-03ED-46E0-BA61-166650AA30EE</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>4F728955-5237-45A7-8665-A94FC85E300E</key>
 		<array>
 			<dict>
@@ -66,10 +87,23 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>70D7DD2C-C248-44EB-8F75-538914807A66</key>
-		<array/>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>4D5F3055-03ED-46E0-BA61-166650AA30EE</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>BC3ADE81-4A31-4D07-A1C8-11BF79A65DE9</key>
 		<array>
 			<dict>
@@ -79,6 +113,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -87,6 +123,8 @@
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
 				<string>Show result on exit</string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>E7E29D22-8238-4B15-A125-541CDB088237</key>
@@ -98,6 +136,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>EFB1DBA9-4DEB-4703-8ABD-B0B63F394D35</key>
@@ -109,6 +149,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -117,6 +159,8 @@
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
 				<string>Show result on exit</string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 	</dict>
@@ -133,6 +177,25 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>externaltriggerid</key>
+				<string>RunCommand</string>
+				<key>passinputasargument</key>
+				<false/>
+				<key>passvariables</key>
+				<false/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>EA822D39-F028-468E-95AB-6BB329348CDE</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>acceptsmulti</key>
 				<true/>
 				<key>filetypes</key>
@@ -145,26 +208,7 @@
 			<key>uid</key>
 			<string>1C74CAA5-F3DA-4197-81A2-DD5E64E2E04C</string>
 			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>tell application "Alfred 2" to run trigger "RunCommand" in workflow "com.vitorgalvao.alfred.runcommand"</string>
-				<key>type</key>
-				<integer>6</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>F6CEDF27-563A-4BE6-8F1B-CFFAE9BB0208</string>
-			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -175,6 +219,10 @@
 				<integer>102</integer>
 				<key>script</key>
 				<string>echo "{query}" | perl -pe 's/[\t\n]/\0/g' &gt; '/tmp/runcommandfilelist'</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -183,7 +231,7 @@
 			<key>uid</key>
 			<string>68CC8A56-102C-4023-BE9A-596453FDDB5C</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -193,11 +241,9 @@
 				<key>argument</key>
 				<integer>1</integer>
 				<key>hotkey</key>
-				<integer>15</integer>
+				<integer>0</integer>
 				<key>hotmod</key>
-				<integer>1835008</integer>
-				<key>hotstring</key>
-				<string>R</string>
+				<integer>0</integer>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -210,7 +256,7 @@
 			<key>uid</key>
 			<string>19CDA0AB-1F06-4A9A-B336-C04305094E51</string>
 			<key>version</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -229,7 +275,7 @@
 			<key>uid</key>
 			<string>BC3ADE81-4A31-4D07-A1C8-11BF79A65DE9</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -252,7 +298,11 @@ else
   exit_message="The command exited with an error."
 fi
 
-./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "RunCommand" -subtitle "${exit_sub}" -message "${exit_message}"</string>
+./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle "${exit_sub}" -message "${exit_message}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -261,7 +311,7 @@ fi
 			<key>uid</key>
 			<string>70D7DD2C-C248-44EB-8F75-538914807A66</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -274,15 +324,20 @@ fi
 			<key>uid</key>
 			<string>E7E29D22-8238-4B15-A125-541CDB088237</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
+			<key>config</key>
+			<dict>
+				<key>largetypetext</key>
+				<string>{query}</string>
+			</dict>
 			<key>type</key>
 			<string>alfred.workflow.output.largetype</string>
 			<key>uid</key>
 			<string>1B016A28-C600-4740-8FA0-87F959C452C5</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -293,6 +348,10 @@ fi
 				<integer>102</integer>
 				<key>script</key>
 				<string>./runcommand runInFiles "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -405,6 +464,10 @@ else
 fi
 
 ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "RunCommand" -subtitle "${exit_sub}" -message "${exit_message}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -413,7 +476,7 @@ fi
 			<key>uid</key>
 			<string>38368F77-4820-4A56-BE9D-8E86E4BFA929</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -434,7 +497,7 @@ fi
 			<key>uid</key>
 			<string>EFB1DBA9-4DEB-4703-8ABD-B0B63F394D35</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -445,6 +508,10 @@ fi
 				<integer>102</integer>
 				<key>script</key>
 				<string>./runcommand runInDir "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -453,74 +520,119 @@ fi
 			<key>uid</key>
 			<string>1F82ADA4-53CA-4378-8207-6D1AC40A0E15</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string>Provides both a `File Action` to run shell commands on selected files/directories and a `Keyword` to run them on the current directory. It will detect your default shell, and if it’s `bash`, `zsh`, `tcsh`, `csh`, or `fish`, it’ll load the appropriate startup files and your aliases.
+ 
+For the `File Action`, use Alfred to pick what you want to run a command on and choose `RunCommand`. Alfred’s main window will appear and you simply type the command you want.
+ 
+For the `Keyword`, type `.` followed by a command. A space between the period and the command is not necessary. This will run the command on the active Finder window (e.g. `.touch this_file`). You can also easily chain commands (`.cd Desktop &amp;&amp; rm that_file`).
+
+For commands that would benefit from the files not being at the end (like `cp` and `mv`), you can use `{}` as a placeholder for the files. So if you select some files and want to copy them to `~/Desktop/` you’d type `cp {} ~/Desktop/`.
+
+To get the output of the command as `Large Type`, use ⌘ when actioning it.</string>
 	<key>uidata</key>
 	<dict>
 		<key>19CDA0AB-1F06-4A9A-B336-C04305094E51</key>
 		<dict>
+			<key>xpos</key>
+			<integer>100</integer>
 			<key>ypos</key>
 			<real>130</real>
 		</dict>
 		<key>1B016A28-C600-4740-8FA0-87F959C452C5</key>
 		<dict>
+			<key>xpos</key>
+			<integer>700</integer>
 			<key>ypos</key>
 			<real>370</real>
 		</dict>
 		<key>1C74CAA5-F3DA-4197-81A2-DD5E64E2E04C</key>
 		<dict>
+			<key>xpos</key>
+			<integer>100</integer>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
 		<key>1F82ADA4-53CA-4378-8207-6D1AC40A0E15</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>610</real>
 		</dict>
 		<key>38368F77-4820-4A56-BE9D-8E86E4BFA929</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>490</real>
 		</dict>
+		<key>4D5F3055-03ED-46E0-BA61-166650AA30EE</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>700</integer>
+			<key>ypos</key>
+			<integer>490</integer>
+		</dict>
 		<key>4F728955-5237-45A7-8665-A94FC85E300E</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>370</real>
 		</dict>
 		<key>68CC8A56-102C-4023-BE9A-596453FDDB5C</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>130</real>
 		</dict>
 		<key>70D7DD2C-C248-44EB-8F75-538914807A66</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>250</real>
 		</dict>
 		<key>BC3ADE81-4A31-4D07-A1C8-11BF79A65DE9</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>250</real>
 		</dict>
 		<key>E7E29D22-8238-4B15-A125-541CDB088237</key>
 		<dict>
+			<key>xpos</key>
+			<integer>100</integer>
 			<key>ypos</key>
 			<real>250</real>
 		</dict>
+		<key>EA822D39-F028-468E-95AB-6BB329348CDE</key>
+		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
+			<key>ypos</key>
+			<integer>10</integer>
+		</dict>
 		<key>EFB1DBA9-4DEB-4703-8ABD-B0B63F394D35</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>490</real>
 		</dict>
-		<key>F6CEDF27-563A-4BE6-8F1B-CFFAE9BB0208</key>
-		<dict>
-			<key>ypos</key>
-			<real>10</real>
-		</dict>
 	</dict>
+	<key>version</key>
+	<string>1.9.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
