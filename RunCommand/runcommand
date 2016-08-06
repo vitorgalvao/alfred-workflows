@@ -23,6 +23,8 @@ elif [[ $SHELL == *'csh' ]]; then
   sourceShellFiles '/etc/csh.cshrc' "${HOME}/.cshrc"
 elif [[ $SHELL == *'fish' ]]; then
   sourceShellFiles "$HOME/.config/fish/config.fish" # variables cannot be bracketed in fish
+else
+  echo 'Unrecognised shell.' 1>&2
 fi
 
 cat <<- EOF | perl -pe 's/^\s*//' > "${commandsFile}"
