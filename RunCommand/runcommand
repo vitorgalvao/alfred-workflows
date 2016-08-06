@@ -21,6 +21,8 @@ elif [[ $SHELL == *'tcsh' ]]; then
   sourceShellFiles '/etc/csh.cshrc' "${HOME}/.tcshrc" "${HOME}/.cshrc"
 elif [[ $SHELL == *'csh' ]]; then
   sourceShellFiles '/etc/csh.cshrc' "${HOME}/.cshrc"
+elif [[ $SHELL == *'fish' ]]; then
+  sourceShellFiles "$HOME/.config/fish/config.fish" # variables cannot be bracketed in fish
 fi
 
 cat <<- EOF | perl -pe 's/^\s*//' > "${commandsFile}"
