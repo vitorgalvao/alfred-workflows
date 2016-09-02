@@ -23,7 +23,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>70F43F68-4801-4544-8FA7-A21E6860042A</string>
+				<string>F4389CF4-7E17-4E14-8852-4B546A73AF99</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -367,29 +367,6 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>tell application "Alfred 3" to run trigger "download_status" in workflow "com.vitorgalvao.alfred.downvid"</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>6</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>70F43F68-4801-4544-8FA7-A21E6860042A</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>argumenttype</key>
@@ -466,6 +443,25 @@ fi</string>
 			<string>alfred.workflow.trigger.external</string>
 			<key>uid</key>
 			<string>2D801B88-7E16-4D15-884D-CF189C66910E</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>externaltriggerid</key>
+				<string>download_status</string>
+				<key>passinputasargument</key>
+				<false/>
+				<key>passvariables</key>
+				<false/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>F4389CF4-7E17-4E14-8852-4B546A73AF99</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -597,13 +593,6 @@ The two Workflow Environment Variables represent the directories (relative to yo
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
-		<key>70F43F68-4801-4544-8FA7-A21E6860042A</key>
-		<dict>
-			<key>xpos</key>
-			<integer>500</integer>
-			<key>ypos</key>
-			<real>250</real>
-		</dict>
 		<key>AE972882-C947-41D6-9934-98ED94A54F3E</key>
 		<dict>
 			<key>xpos</key>
@@ -671,6 +660,13 @@ The two Workflow Environment Variables represent the directories (relative to yo
 			<key>ypos</key>
 			<real>370</real>
 		</dict>
+		<key>F4389CF4-7E17-4E14-8852-4B546A73AF99</key>
+		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
+			<key>ypos</key>
+			<integer>250</integer>
+		</dict>
 	</dict>
 	<key>variables</key>
 	<dict>
@@ -680,7 +676,7 @@ The two Workflow Environment Variables represent the directories (relative to yo
 		<string>Downloads</string>
 	</dict>
 	<key>version</key>
-	<string>1.17.1</string>
+	<string>1.18.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
