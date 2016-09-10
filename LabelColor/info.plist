@@ -72,23 +72,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>acceptsmulti</key>
-				<true/>
-				<key>filetypes</key>
-				<array/>
-				<key>name</key>
-				<string>Label</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.action</string>
-			<key>uid</key>
-			<string>D9413737-68AF-44E7-8F3D-214676DFD4EF</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -112,8 +95,25 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>acceptsmulti</key>
+				<true/>
+				<key>filetypes</key>
+				<array/>
+				<key>name</key>
+				<string>Label</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>D9413737-68AF-44E7-8F3D-214676DFD4EF</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
-				<false/>
+				<true/>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>escaping</key>
@@ -240,7 +240,7 @@ EOF</string>
 	<key>readme</key>
 	<string>File action to set the label color for the chosen files and/or directories.
  
-Use Alfred to pick what you want to apply (or remove) a label to and pick “Label” as the action, or use the keyboard shortcut. Alfred’s main window will appear and you simply select an option.
+Use Alfred to pick what you want to apply (or remove) a label to and pick “Label” as the action, or use the keyboard shortcut. Alfred’s main window will appear and you simply select an option or type the color’s name.
 
 ![](http://i.imgur.com/5Ns4dAN.png)</string>
 	<key>uidata</key>
@@ -282,7 +282,7 @@ Use Alfred to pick what you want to apply (or remove) a label to and pick “Lab
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
