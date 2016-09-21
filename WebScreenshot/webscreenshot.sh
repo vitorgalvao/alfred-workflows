@@ -2,10 +2,11 @@
 
 set -e # abort on any failure
 
-imgur_screenshot_exec='./_licensed/imgur-screenshot/imgur-screenshot.sh'
+imgur_uploader_exec='./imgur'
 resample_dpi_exec='./_licensed/resample-dpi/resample-dpi'
 
 tmp_name="$(mktemp -t 'webscreenshot')"
+delete_url_file='/tmp/webscreenshot_latest_upload_delete_url.txt'
 
 notification() {
   ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -message "${1}"
@@ -49,7 +50,7 @@ copy_image() {
 
 upload_file() {
   local screenshot_file="${1}"
-  bash "${imgur_screenshot_exec}" --open false "${screenshot_file}"
+  bash "${imgur_uploader_exec}" "${screenshot_file}" 2> "${delete_url_file}" | pbcopy
 
   check_failure
   show_success
@@ -68,7 +69,3 @@ if [[ "${1}" == 'resample' ]]; then
 fi
 
 upload_file "${screenshot_file}"
-
-# update external software
-[[ $(find "${imgur_screenshot_exec}" -mtime +15) ]] && bash "${imgur_screenshot_exec}" --update
-[[ $(find "${resample_dpi_exec}" -mtime +90) ]] && curl --location 'https://raw.githubusercontent.com/cowboy/dotfiles/master/bin/resample-dpi' --output "${resample_dpi_exec}"
