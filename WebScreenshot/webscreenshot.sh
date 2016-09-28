@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e # abort on any failure
+set -e # Abort on any failure.
 
 imgur_uploader_exec='./imgur'
 resample_dpi_exec='./_licensed/resample-dpi/resample-dpi'
@@ -50,7 +50,10 @@ copy_image() {
 
 upload_file() {
   local screenshot_file="${1}"
-  bash "${imgur_uploader_exec}" "${screenshot_file}" 2> "${delete_url_file}" | pbcopy
+  bash "${imgur_uploader_exec}" "${screenshot_file}" 2>> "${delete_url_file}" | tr -d '\n' | pbcopy
+
+  echo "└ Uploaded on $(date)" >> ${delete_url_file}
+  sed -i '' "/Haven't copied to the clipboard: no \$DISPLAY/d" "${delete_url_file}" # Erase the message that is always shown (https://github.com/tremby/imgur.sh/issues/6).
 
   check_failure
   show_success

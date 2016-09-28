@@ -397,7 +397,7 @@ fi #find</string>
 	<key>readme</key>
 	<string>Take screenshots with a keyboard shortcut (⌥⇧4 is the one I prefer) and upload them directly to [imgur](https://imgur.com/). Will produce both a sound and a visual notification when done, and copy the resulting direct link to your clipboard.
 
-A link to delete the image will also be produced and saved to `/tmp/webscreenshot_latest_upload_delete_url.txt`. This file will be overwritten on every usage.
+A link to delete the image will also be produced and saved to `/tmp/webscreenshot_latest_upload_delete_url.txt`.
 
 You may also use it to upload an image (or pdf, since imgur also supports it as an upload, but converts it to png) by picking the WebScreenshot File Action.
 
@@ -473,7 +473,7 @@ Each of those has a counterpart. The top ones leave the images untouched, while 
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.2.0</string>
+	<string>1.3.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
