@@ -89,6 +89,11 @@ List and act on the contents of your ~/Downloads directory
 
 [info](http://www.alfredforum.com/topic/3737-recentdownloads-%E2%80%94-list-and-act-on-the-contents-of-your-downloads-directory/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.recentdownloads/recentdownloads.alfredworkflow)
 
+### RemoveQuarantine
+Remove the quarantine attribute from your apps
+
+[info](http://www.alfredforum.com/topic/9577-removequarantine-%E2%80%94-remove-the-quarantine-attribute-from-your-apps/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.removequarantine/removequarantine.alfredworkflow)
+
 ### RenameAction
 Renames a directory or file (preserving the extension)
 

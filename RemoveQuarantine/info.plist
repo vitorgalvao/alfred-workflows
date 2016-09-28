@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.vitorgalvao.alfred.removequarantine</string>
+	<key>connections</key>
+	<dict>
+		<key>8A0A36B3-0A1C-4F9B-B056-1CAC58E3266F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>57E5FCE3-A396-4994-B57D-D2645AFE5445</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>01A5684E-EDA0-4001-8088-4E6DB47C97B2</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>B7C223E0-57D2-4067-AF52-F5160C420029</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>57E5FCE3-A396-4994-B57D-D2645AFE5445</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>01A5684E-EDA0-4001-8088-4E6DB47C97B2</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Vítor Galvão</string>
+	<key>description</key>
+	<string>Remove the quarantine attribute from your apps</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>RemoveQuarantine</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>perl -pe 's/[\t\n]/\0/g' &lt;&lt;&lt; '{query}' | xargs -0 xattr -d com.apple.quarantine</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>57E5FCE3-A396-4994-B57D-D2645AFE5445</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<true/>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>rq</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Getting app list…</string>
+				<key>script</key>
+				<string>#!/bin/bash
+
+app_list=()
+
+for app in /Applications/*; do
+  [[ $(xattr "${app}" | grep 'com.apple.quarantine') ]] &amp;&amp; app_list+=("${app}")
+done
+
+if [[ ${#app_list[@]} -eq 0 ]]; then
+  echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;
+    &lt;item valid='no'&gt;
+    &lt;title&gt;You have no quarantined applications at the root of /Applications&lt;/title&gt;
+    &lt;subtitle&gt;Use this workflow’s File Action if you need more granularity&lt;/subtitle&gt;
+    &lt;/item&gt;
+  &lt;/items&gt;"
+else
+  echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
+  for app in "${app_list[@]}"; do
+  	echo "&lt;item arg='${app}' type='file:skipcheck' valid='yes'&gt;"
+  	echo "&lt;title&gt;$(basename "${app}")&lt;/title&gt;"
+  	echo "&lt;icon type='fileicon'&gt;${app}&lt;/icon&gt;"
+  	echo "&lt;/item&gt;"
+  done
+  echo "&lt;/items&gt;"
+fi</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Remove the quarantine attribute from your apps</string>
+				<key>title</key>
+				<string>RemoveQuarantine</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>8A0A36B3-0A1C-4F9B-B056-1CAC58E3266F</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>readonly local_file='info.plist' # Local file to compare to remote_file
+readonly remote_file='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RemoveQuarantine/info.plist' # Remote file (URL) to compare to local_file
+readonly workflow_url='https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.removequarantine/removequarantine.alfredworkflow' # URL to directly download workflow or workflow download page
+readonly workflow_type='workflow' # Either 'workflow' if workflow_url points to direct download, or 'page' if it points to download page
+readonly frequency_check='15' # Days between update checks
+
+# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED UNLESS YOU KNOW WHAT YOU ARE DOING
+function abort {
+  echo "${1}" 1&gt;&amp;2
+  exit 1
+}
+
+function url_exists {
+  if curl --silent --location --output /dev/null --fail --range 0-0 "${1}"; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+function notification {
+  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
+
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+  else
+    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  fi
+}
+
+# Local sanity checks
+[[ ! -f "${local_file}" ]] &amp;&amp; abort '"local_file" appears to not point to an existing file'
+[[ ! "${workflow_type}" =~ ^(workflow|page)$ ]] &amp;&amp; abort '"workflow_type" needs to be one of "workflow" or "page"'
+[[ ! "${frequency_check}" =~ ^[0-9]+$ ]] &amp;&amp; abort '"frequency_check" appears to not be a number'
+
+# Check for updates
+if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
+  if ! url_exists "${remote_file}"; then abort "'remote_file' ("${remote_file}") appears to not be reachable"; fi # Remote sanity check
+  
+  readonly tmp_file="$(mktemp)"
+  curl --silent --location --output "${tmp_file}" "${remote_file}"
+
+  if [[ "$(diff "${local_file}" "${tmp_file}")" ]]; then
+    if [[ "${workflow_type}" == 'page' ]]; then
+      notification 'Opening download page…'
+      open "${workflow_url}"
+    else
+      if url_exists "${workflow_url}"; then
+        notification 'Downloading and installing…'
+        curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${workflow_url}"
+        open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
+      else
+        abort '"workflow_url" appears to not be reachable'
+      fi # url_exists
+    fi # workflow_type
+  fi # diff
+else
+  touch "${local_file}" # Reset timer by touching local file
+fi #find</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>01A5684E-EDA0-4001-8088-4E6DB47C97B2</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsmulti</key>
+				<true/>
+				<key>filetypes</key>
+				<array>
+					<string>com.apple.application-bundle</string>
+				</array>
+				<key>name</key>
+				<string>RemoveQuarantine</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>B7C223E0-57D2-4067-AF52-F5160C420029</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>Call `rq` and a list of your top-level apps at `/Applications` with the file quarantine attribute will be shown. Action any of them and the quarantine will be removed.
+
+Results are treated as files, so you can select a bunch of them at once via the File Buffer, to act on multiple apps.
+
+If the app you want to remove the attribute from is located anywhere else, you can find it and use the File Action on it for the same effect.
+
+Warning: quarantining is a macOS security feature, and I do not recommend you disable it completely. This workflow was built exactly so you don’t have to, and can deal with it on a case-by-case basis. This simply makes the manual process more convenient and you should remove the quarantine attribute from apps at your own risk. Find more on file quarantine on [Apple’s documentation](https://developer.apple.com/library/content/releasenotes/Carbon/RN-LaunchServices/index.html).</string>
+	<key>uidata</key>
+	<dict>
+		<key>01A5684E-EDA0-4001-8088-4E6DB47C97B2</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>430</integer>
+			<key>ypos</key>
+			<integer>160</integer>
+		</dict>
+		<key>57E5FCE3-A396-4994-B57D-D2645AFE5445</key>
+		<dict>
+			<key>xpos</key>
+			<integer>430</integer>
+			<key>ypos</key>
+			<integer>30</integer>
+		</dict>
+		<key>8A0A36B3-0A1C-4F9B-B056-1CAC58E3266F</key>
+		<dict>
+			<key>xpos</key>
+			<integer>190</integer>
+			<key>ypos</key>
+			<integer>30</integer>
+		</dict>
+		<key>B7C223E0-57D2-4067-AF52-F5160C420029</key>
+		<dict>
+			<key>xpos</key>
+			<integer>190</integer>
+			<key>ypos</key>
+			<integer>160</integer>
+		</dict>
+	</dict>
+	<key>version</key>
+	<string>1.0.0</string>
+	<key>webaddress</key>
+	<string>http://vitorgalvao.com/</string>
+</dict>
+</plist>
