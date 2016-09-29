@@ -67,7 +67,7 @@ Creates a new file in the current Finder directory
 ### OneUpdater <img src='http://i.imgur.com/GvppuDc.png' width='60' align='center' alt='OneUpdater icon'>
 Update workflows with a single node
 
-[info](http://www.alfredforum.com/topic/9224-oneupdater-%E2%80%94-update-workflows-with-a-single-node/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.oneupdater/oneupdater.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/OneUpdater) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/OneUpdater/OneUpdater.alfredworkflow)
 
 ### PinAdd
 Takes arguments as tags and adds your browser’s frontmost tab as a pinboard bookmark
