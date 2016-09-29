@@ -28,14 +28,15 @@ function notification {
   fi
 }
 
-# Sanity checks
-[[ ! -f "${local_file}" ]] && abort '"local_file" appears to not point to an existing file'
-if ! url_exists "${remote_file}"; then abort '"remote_file" appears to not be reachable'; fi
-[[ ! "${workflow_type}" =~ ^(workflow|page)$ ]] && abort '"workflow_type" needs to be one of "workflow" or "page"'
-[[ ! "${frequency_check}" =~ ^[0-9]+$ ]] && abort '"frequency_check" appears to not be a number'
+# Local sanity checks
+[[ ! -f "${local_file}" ]] && abort "'local_file' ("${local_file}") appears to not point to an existing file."
+[[ ! "${workflow_type}" =~ ^(workflow|page)$ ]] && abort "'workflow_type' ("${workflow_type}") needs to be one of 'workflow' or 'page'."
+[[ ! "${frequency_check}" =~ ^[0-9]+$ ]] && abort "'frequency_check' ("${frequency_check}") appears to not be a number."
 
 # Check for updates
 if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
+  if ! url_exists "${remote_file}"; then abort "'remote_file' ("${remote_file}") appears to not be reachable."; fi # Remote sanity check
+
   readonly tmp_file="$(mktemp)"
   curl --silent --location --output "${tmp_file}" "${remote_file}"
 
@@ -49,7 +50,7 @@ if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
         curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${workflow_url}"
         open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
       else
-        abort '"workflow_url" appears to not be reachable'
+        abort "'workflow_url' ("${workflow_url}") appears to not be reachable."
       fi # url_exists
     fi # workflow_type
   fi # diff
