@@ -340,8 +340,6 @@ readonly frequency_check='15'
 
 For it to work smoothly, `local_file` (and its equivalent `remote_file`) should be one that always changes with every update. With Alfred 3, `info.plist` becomes a prime candidate as only its version needs to be updated (which should be done, anyway) for the file to change.
 
-Since there’s no update file for the developer to manage, you can also configure `OneUpdater` on a workflow you haven’t developed and it will still work (provided the developer has the source available somewhere).
-
 When any update happens, the user will be informed via a notification. It will use `terminal-notfier` if it is somewhere in the workflow’s directory, otherwise it will use a plain AppleScript-called notification.</string>
 	<key>uidata</key>
 	<dict>
@@ -383,7 +381,7 @@ When any update happens, the user will be informed via a notification. It will u
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.1</string>
+	<string>1.1.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

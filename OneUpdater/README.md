@@ -14,7 +14,7 @@ The top lines (the ones that need changing) have comments explaining what they m
 
 ```
 readonly local_file='info.plist'
-readonly remote_file='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MarkdownBulletin/info.plist' 
+readonly remote_file='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MarkdownBulletin/info.plist'
 readonly workflow_url='https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.markdownbulletin/markdownbulletin.alfredworkflow'
 readonly workflow_type='workflow'
 readonly frequency_check='15'
@@ -23,7 +23,5 @@ readonly frequency_check='15'
 `local_file` is some file inside the workflow’s directory (or anywhere, really) and `remote_file` is a file on a server. When checking for updates (in this case every 15 days, the number in `frequency_check`), `remote_file` will be downloaded and compared to `local_file`. If they differ, the code will continue. If `workflow_type` is set to `workflow`, `workflow_url` will be treated as the direct URL to a `.alfredworkflow`; it will be downloaded and opened. If `workflow_type` is set to `page`, `workflow_url` will be treated as a webpage and opened in the default browser.
 
 For it to work smoothly, `local_file` (and its equivalent `remote_file`) should be one that always changes with every update. With Alfred 3, `info.plist` becomes a prime candidate as only its version needs to be updated (which should be done, anyway) for the file to change.
-
-Since there’s no update file for the developer to manage, you can also configure `OneUpdater` on a workflow you haven’t developed and it will still work (provided the developer has the source available somewhere).
 
 When any update happens, the user will be informed via a notification. It will use `terminal-notfier` if it is somewhere in the workflow’s directory, otherwise it will use a plain AppleScript-called notification.
