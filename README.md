@@ -9,7 +9,7 @@ Pauses and resumes execution of the frontmost app
 
 [info](http://www.alfredforum.com/topic/5939-appfreeze-%E2%80%94-pauses-and-resumes-execution-of-the-frontmost-app/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.appfreeze/appfreeze.alfredworkflow)
 
-### BugNot
+### BugNot <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/BugNot/source/icon.png' width='60' align='center' alt='BugNot icon'>
 Get logins from bugmenot
 
 [info](http://www.alfredforum.com/topic/4075-bugnot-%E2%80%94-get-logins-from-bugmenot/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.bugnot/bugnot.alfredworkflow)
