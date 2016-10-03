@@ -64,7 +64,7 @@ Creates a new file in the current Finder directory
 
 [info](http://www.alfredforum.com/topic/2957-newfile-%E2%80%94-creates-a-new-file-in-the-current-finder-directory/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.newfile/newfile.alfredworkflow)
 
-### OneUpdater <img src='http://i.imgur.com/GvppuDc.png' width='60' align='center' alt='OneUpdater icon'>
+### OneUpdater <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/OneUpdater/source/icon.png' width='60' align='center' alt='OneUpdater icon'>
 Update workflows with a single node
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/OneUpdater) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/OneUpdater/OneUpdater.alfredworkflow)
