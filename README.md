@@ -19,10 +19,10 @@ Spelling correction in various languages
 
 [info](http://www.alfredforum.com/topic/3586-checkspelling-%E2%80%94-check-and-correct-spelling-in-multiple-languages/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.checkspelling/checkspelling.alfredworkflow)
 
-### CoffeeCoffee
+### CoffeeCoffee <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/CoffeeCoffee/source/icon.png' width='60' align='center' alt='CoffeeCoffee icon'>
 Prevent your computer from going to sleep
 
-[info](http://www.alfredforum.com/topic/3177-coffeecoffee-%E2%80%94-prevent-your-computer-from-going-to-sleep/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.coffeecoffee/coffeecoffee.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/CoffeeCoffee) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/CoffeeCoffee/CoffeeCoffee.alfredworkflow)
 
 ### DownVid
 Download videos from popular sources
