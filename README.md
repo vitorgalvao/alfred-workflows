@@ -12,7 +12,7 @@ Pauses and resumes execution of the frontmost app
 ### BugNot <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/BugNot/source/icon.png' width='60' align='center' alt='BugNot icon'>
 Get logins from bugmenot
 
-[info](http://www.alfredforum.com/topic/4075-bugnot-%E2%80%94-get-logins-from-bugmenot/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.bugnot/bugnot.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/BugNot) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/BugNot/BugNot.alfredworkflow)
 
 ### CheckSpelling
 Spelling correction in various languages
