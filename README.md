@@ -89,7 +89,7 @@ List and act on the contents of your ~/Downloads directory
 
 [info](http://www.alfredforum.com/topic/3737-recentdownloads-%E2%80%94-list-and-act-on-the-contents-of-your-downloads-directory/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.recentdownloads/recentdownloads.alfredworkflow)
 
-### RemoveQuarantine <img src='https://i.imgur.com/Gqxa3u8.png' width='60' align='center' alt='RemoveQuarantine icon'>
+### RemoveQuarantine <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RemoveQuarantine/source/icon.png' width='60' align='center' alt='RemoveQuarantine icon'>
 Remove the quarantine attribute from your apps
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/RemoveQuarantine) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RemoveQuarantine/RemoveQuarantine.alfredworkflow)
