@@ -44,10 +44,10 @@ Sets a label color for selected files and directories
 
 [info](http://www.alfredforum.com/topic/1334-labelcolor-%E2%80%94-sets-a-label-color-for-selected-files-and-directories/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.labelcolor/labelcolor.alfredworkflow)
 
-### LinkClean
+### LinkClean <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/LinkClean/source/icon.png' width='60' align='center' alt='LinkClean icon'>
 Removes extraneous information from URLs
 
-[info](http://www.alfredforum.com/topic/4179-linkclean-%E2%80%94-removes-extraneous-information-from-urls/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.linkclean/linkclean.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/LinkClean) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/LinkClean/LinkClean.alfredworkflow)
 
 ### MachineClean
 Lock your keyboard and trackpad temporarily, so you can clean them
