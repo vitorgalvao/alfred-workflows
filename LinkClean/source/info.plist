@@ -20,7 +20,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>B61FCF4E-D134-47B4-9003-4F0AF5A18802</string>
+				<string>BAA0F9AC-0589-4018-9BA2-D3C98FD28642</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -225,9 +225,9 @@ if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
         abort "'workflow_url' ("${workflow_url}") appears to not be reachable."
       fi # url_exists
     fi # workflow_type
+  else
+    touch "${local_file}" # Reset timer by touching local file
   fi # diff
-else
-  touch "${local_file}" # Reset timer by touching local file
 fi #find</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
@@ -239,7 +239,7 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>B61FCF4E-D134-47B4-9003-4F0AF5A18802</string>
+			<string>BAA0F9AC-0589-4018-9BA2-D3C98FD28642</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -268,7 +268,7 @@ The option for shortened links will also work on long URLs. This option, however
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
-		<key>B61FCF4E-D134-47B4-9003-4F0AF5A18802</key>
+		<key>BAA0F9AC-0589-4018-9BA2-D3C98FD28642</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>12</integer>
@@ -288,7 +288,7 @@ The option for shortened links will also work on long URLs. This option, however
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>1.0.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
