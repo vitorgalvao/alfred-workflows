@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.vitorgalvao.alfred.newfile</string>
+	<key>connections</key>
+	<dict>
+		<key>137E4749-7D83-426A-A8C4-AB736358775E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>9954B863-DC31-488D-8184-2568AC55AE82</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>22E5ACE0-2434-43F3-A5AA-F146F8B1C17A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>47EC24AA-00DE-4A0A-A59A-D0F4EE5AA1BC</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>47EC24AA-00DE-4A0A-A59A-D0F4EE5AA1BC</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>59F5BFC8-18D5-467A-942F-D0E6F9FFF08C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>9954B863-DC31-488D-8184-2568AC55AE82</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>47EC24AA-00DE-4A0A-A59A-D0F4EE5AA1BC</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>D03807E1-1B7E-4FBD-B4C0-877B87E2AB86</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>22E5ACE0-2434-43F3-A5AA-F146F8B1C17A</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Vítor Galvão</string>
+	<key>description</key>
+	<string>Creates a new file in the current Finder directory</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>NewFile</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>nf</string>
+				<key>subtext</key>
+				<string>Separate multiple names with a “/” (if no extension is given, “.txt” will be used)</string>
+				<key>text</key>
+				<string>Create new file(s)</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>D03807E1-1B7E-4FBD-B4C0-877B87E2AB86</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>{query}</string>
+				<key>variables</key>
+				<dict>
+					<key>open_files</key>
+					<string>no</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>22E5ACE0-2434-43F3-A5AA-F146F8B1C17A</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>IFS=$'\t\n'
+
+files="$(echo "$@" | perl -pe 's/\//\t/g')"
+
+dirPath="$(osascript -e 'tell application "System Events" to set frontApp to name of first process whose frontmost is true
+
+if (frontApp is "Finder") then
+  try
+    tell application "Finder" to return (POSIX path of (folder of the front window as alias))
+  on error
+    return (POSIX path of (path to desktop))
+  end try
+else
+  return (POSIX path of (path to desktop))
+end if')"
+
+for file in ${files}; do
+  fileExtension=$(echo ${file} | sed -n 's/\(.*\)\.\(.*\)$/.\2/p')
+  fileNoExtension=$(echo ${file} | sed 's/\(.*\)\.\(.*\)$/\1/')
+
+  if [[ -z ${fileExtension} ]]; then fileExtension=".txt"; fi
+
+  fileLocation="${dirPath}${fileNoExtension}${fileExtension}"
+
+  touch "${fileLocation}"
+  if [[ ${open_files} == 'yes' ]]; then open "${fileLocation}"; fi
+done</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>47EC24AA-00DE-4A0A-A59A-D0F4EE5AA1BC</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>readonly local_file='info.plist'
+readonly remote_file="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
+readonly workflow_url="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/${alfred_workflow_name}.alfredworkflow"
+readonly workflow_type='workflow'
+frequency_check='15'
+
+# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED UNLESS YOU KNOW WHAT YOU ARE DOING
+function abort {
+  echo "${1}" 1&gt;&amp;2
+  exit 1
+}
+
+function url_exists {
+  if curl --silent --location --output /dev/null --fail --range 0-0 "${1}"; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+function notification {
+  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
+
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+  else
+    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  fi
+}
+
+# Local sanity checks
+[[ ! -f "${local_file}" ]] &amp;&amp; abort "'local_file' ("${local_file}") appears to not point to an existing file."
+[[ ! "${workflow_type}" =~ ^(workflow|page)$ ]] &amp;&amp; abort "'workflow_type' ("${workflow_type}") needs to be one of 'workflow' or 'page'."
+[[ ! "${frequency_check}" =~ ^[0-9]+$ ]] &amp;&amp; abort "'frequency_check' ("${frequency_check}") appears to not be a number."
+
+# Check for updates
+if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
+  if ! url_exists "${remote_file}"; then abort "'remote_file' ("${remote_file}") appears to not be reachable."; fi # Remote sanity check
+  
+  readonly tmp_file="$(mktemp)"
+  curl --silent --location --output "${tmp_file}" "${remote_file}"
+
+  if [[ "$(diff "${local_file}" "${tmp_file}")" ]]; then
+    if [[ "${workflow_type}" == 'page' ]]; then
+      notification 'Opening download page…'
+      open "${workflow_url}"
+    else
+      if url_exists "${workflow_url}"; then
+        notification 'Downloading and installing…'
+        curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${workflow_url}"
+        open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
+      else
+        abort "'workflow_url' ("${workflow_url}") appears to not be reachable."
+      fi # url_exists
+    fi # workflow_type
+  else
+    touch "${local_file}" # Reset timer by touching local file
+  fi # diff
+fi #find</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>59F5BFC8-18D5-467A-942F-D0E6F9FFF08C</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>nfo</string>
+				<key>subtext</key>
+				<string>Separate multiple names with a “/” (if no extension is given, “.txt” will be used)</string>
+				<key>text</key>
+				<string>Create and open new file(s)</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>137E4749-7D83-426A-A8C4-AB736358775E</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>{query}</string>
+				<key>variables</key>
+				<dict>
+					<key>open_files</key>
+					<string>yes</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>9954B863-DC31-488D-8184-2568AC55AE82</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>Call `nf` followed by a file name (if you don’t give it an extension, it’ll be `.txt`) to make a new file. If you type `nfo` instead the files will open after creation. If you have a Finder window as your frontmost window, the file will be created there, otherwise it will be created on your Desktop.
+
+![](http://i.imgur.com/h7QWrBg.png)</string>
+	<key>uidata</key>
+	<dict>
+		<key>137E4749-7D83-426A-A8C4-AB736358775E</key>
+		<dict>
+			<key>xpos</key>
+			<integer>120</integer>
+			<key>ypos</key>
+			<integer>130</integer>
+		</dict>
+		<key>22E5ACE0-2434-43F3-A5AA-F146F8B1C17A</key>
+		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
+			<key>ypos</key>
+			<integer>40</integer>
+		</dict>
+		<key>47EC24AA-00DE-4A0A-A59A-D0F4EE5AA1BC</key>
+		<dict>
+			<key>xpos</key>
+			<integer>410</integer>
+			<key>ypos</key>
+			<integer>70</integer>
+		</dict>
+		<key>59F5BFC8-18D5-467A-942F-D0E6F9FFF08C</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>600</integer>
+			<key>ypos</key>
+			<integer>70</integer>
+		</dict>
+		<key>9954B863-DC31-488D-8184-2568AC55AE82</key>
+		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
+			<key>ypos</key>
+			<integer>160</integer>
+		</dict>
+		<key>D03807E1-1B7E-4FBD-B4C0-877B87E2AB86</key>
+		<dict>
+			<key>xpos</key>
+			<integer>120</integer>
+			<key>ypos</key>
+			<integer>10</integer>
+		</dict>
+	</dict>
+	<key>version</key>
+	<string>1.0.0</string>
+	<key>webaddress</key>
+	<string>http://vitorgalvao.com/</string>
+</dict>
+</plist>

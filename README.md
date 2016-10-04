@@ -59,10 +59,10 @@ Convert Markdown to BBCode
 
 [info](http://www.alfredforum.com/topic/3517-markdownbulletin-%E2%80%94-convert-markdown-to-bbcode/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.markdownbulletin/markdownbulletin.alfredworkflow)
 
-### NewFile
+### NewFile <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/NewFile/source/icon.png' width='60' align='center' alt='NewFile icon'>
 Creates a new file in the current Finder directory
 
-[info](http://www.alfredforum.com/topic/2957-newfile-%E2%80%94-creates-a-new-file-in-the-current-finder-directory/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.newfile/newfile.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/NewFile) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/NewFile/NewFile.alfredworkflow)
 
 ### OneUpdater <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/OneUpdater/source/icon.png' width='60' align='center' alt='OneUpdater icon'>
 Update workflows with a single node
