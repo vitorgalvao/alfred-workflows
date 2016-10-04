@@ -22,7 +22,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>9BB765EA-98E5-4A5D-AB99-206B67D5D966</string>
+				<string>11730DC6-11C4-4007-9372-316366B1DD81</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -194,9 +194,9 @@ if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
         abort "'workflow_url' ("${workflow_url}") appears to not be reachable."
       fi # url_exists
     fi # workflow_type
+  else
+    touch "${local_file}" # Reset timer by touching local file
   fi # diff
-else
-  touch "${local_file}" # Reset timer by touching local file
 fi #find</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
@@ -208,7 +208,7 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>9BB765EA-98E5-4A5D-AB99-206B67D5D966</string>
+			<string>11730DC6-11C4-4007-9372-316366B1DD81</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -233,14 +233,7 @@ Run `coffee` again to manually turn it off
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
-		<key>94757117-A2E1-4FE7-A171-555588BE76FF</key>
-		<dict>
-			<key>xpos</key>
-			<integer>280</integer>
-			<key>ypos</key>
-			<integer>10</integer>
-		</dict>
-		<key>9BB765EA-98E5-4A5D-AB99-206B67D5D966</key>
+		<key>11730DC6-11C4-4007-9372-316366B1DD81</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>12</integer>
@@ -251,9 +244,16 @@ Run `coffee` again to manually turn it off
 			<key>ypos</key>
 			<integer>130</integer>
 		</dict>
+		<key>94757117-A2E1-4FE7-A171-555588BE76FF</key>
+		<dict>
+			<key>xpos</key>
+			<integer>280</integer>
+			<key>ypos</key>
+			<integer>10</integer>
+		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>1.0.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
