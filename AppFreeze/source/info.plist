@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.vitorgalvao.alfred.appfreeze</string>
+	<key>connections</key>
+	<dict>
+		<key>391EDE9B-08C4-4B4A-A84B-8AB481A2F7B2</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>FFEB7D08-F086-4CCA-AAED-888F19EB4812</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>5DD52708-CA8D-4444-9E93-254386BF04EC</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3D5954AA-978D-4F67-9529-227E64503BC1</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>B5E21680-DC90-4677-AD06-F60A31AE9161</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>5DD52708-CA8D-4444-9E93-254386BF04EC</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>CE15752D-DC11-4A3C-BD59-454E1EF945E5</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>FFEB7D08-F086-4CCA-AAED-888F19EB4812</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>F2D0B64D-D1F4-4F2F-9EF3-D5544B1E22F6</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>5DD52708-CA8D-4444-9E93-254386BF04EC</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>FFEB7D08-F086-4CCA-AAED-888F19EB4812</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3D5954AA-978D-4F67-9529-227E64503BC1</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Vítor Galvão</string>
+	<key>description</key>
+	<string>Pauses and resumes execution of the frontmost app</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>AppFreeze</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>notification() {
+  ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -message "${1}"
+}
+
+front_app=$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')
+
+killall -STOP -c "${front_app}"
+
+notification "Froze ${front_app}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>FFEB7D08-F086-4CCA-AAED-888F19EB4812</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>freeze</string>
+				<key>subtext</key>
+				<string>Pauses execution of frontmost app</string>
+				<key>text</key>
+				<string>Freeze</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>391EDE9B-08C4-4B4A-A84B-8AB481A2F7B2</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>CE15752D-DC11-4A3C-BD59-454E1EF945E5</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>readonly local_file='info.plist'
+readonly remote_file="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
+readonly workflow_url="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/${alfred_workflow_name}.alfredworkflow"
+readonly workflow_type='workflow'
+frequency_check='15'
+
+# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED UNLESS YOU KNOW WHAT YOU ARE DOING
+function abort {
+  echo "${1}" 1&gt;&amp;2
+  exit 1
+}
+
+function url_exists {
+  if curl --silent --location --output /dev/null --fail --range 0-0 "${1}"; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+function notification {
+  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
+
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+  else
+    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  fi
+}
+
+# Local sanity checks
+[[ ! -f "${local_file}" ]] &amp;&amp; abort "'local_file' ("${local_file}") appears to not point to an existing file."
+[[ ! "${workflow_type}" =~ ^(workflow|page)$ ]] &amp;&amp; abort "'workflow_type' ("${workflow_type}") needs to be one of 'workflow' or 'page'."
+[[ ! "${frequency_check}" =~ ^[0-9]+$ ]] &amp;&amp; abort "'frequency_check' ("${frequency_check}") appears to not be a number."
+
+# Check for updates
+if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
+  if ! url_exists "${remote_file}"; then abort "'remote_file' ("${remote_file}") appears to not be reachable."; fi # Remote sanity check
+  
+  readonly tmp_file="$(mktemp)"
+  curl --silent --location --output "${tmp_file}" "${remote_file}"
+
+  if [[ "$(diff "${local_file}" "${tmp_file}")" ]]; then
+    if [[ "${workflow_type}" == 'page' ]]; then
+      notification 'Opening download page…'
+      open "${workflow_url}"
+    else
+      if url_exists "${workflow_url}"; then
+        notification 'Downloading and installing…'
+        curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${workflow_url}"
+        open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
+      else
+        abort "'workflow_url' ("${workflow_url}") appears to not be reachable."
+      fi # url_exists
+    fi # workflow_type
+  else
+    touch "${local_file}" # Reset timer by touching local file
+  fi # diff
+fi #find</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>3D5954AA-978D-4F67-9529-227E64503BC1</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>notification() {
+  ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -message "${1}"
+}
+
+front_app=$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')
+
+killall -CONT -c "${front_app}"
+
+notification "Unfroze ${front_app}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>5DD52708-CA8D-4444-9E93-254386BF04EC</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>unfreeze</string>
+				<key>subtext</key>
+				<string>Resumes execution of frontmost app</string>
+				<key>text</key>
+				<string>Unfreeze</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>B5E21680-DC90-4677-AD06-F60A31AE9161</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>F2D0B64D-D1F4-4F2F-9EF3-D5544B1E22F6</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>Pause and resume execution of the frontmost app. Directly inspired by [Universal Pause Button](https://github.com/ryanries/UniversalPauseButton) and [they story](https://github.com/ryanries/UniversalPauseButton/blob/dc5a3d5173e153012fee850e557755e250da9105/README.md).
+
+Set keyboard shortcuts or use the keywords `freeze` and `unfreeze` to call it.
+
+![](http://i.imgur.com/W7FfE3E.png)
+![](http://i.imgur.com/JPBuH4R.png)</string>
+	<key>uidata</key>
+	<dict>
+		<key>391EDE9B-08C4-4B4A-A84B-8AB481A2F7B2</key>
+		<dict>
+			<key>xpos</key>
+			<integer>260</integer>
+			<key>ypos</key>
+			<integer>10</integer>
+		</dict>
+		<key>3D5954AA-978D-4F67-9529-227E64503BC1</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>650</integer>
+			<key>ypos</key>
+			<integer>70</integer>
+		</dict>
+		<key>5DD52708-CA8D-4444-9E93-254386BF04EC</key>
+		<dict>
+			<key>xpos</key>
+			<integer>460</integer>
+			<key>ypos</key>
+			<integer>130</integer>
+		</dict>
+		<key>B5E21680-DC90-4677-AD06-F60A31AE9161</key>
+		<dict>
+			<key>xpos</key>
+			<integer>260</integer>
+			<key>ypos</key>
+			<integer>130</integer>
+		</dict>
+		<key>CE15752D-DC11-4A3C-BD59-454E1EF945E5</key>
+		<dict>
+			<key>xpos</key>
+			<integer>60</integer>
+			<key>ypos</key>
+			<integer>70</integer>
+		</dict>
+		<key>F2D0B64D-D1F4-4F2F-9EF3-D5544B1E22F6</key>
+		<dict>
+			<key>xpos</key>
+			<integer>60</integer>
+			<key>ypos</key>
+			<integer>190</integer>
+		</dict>
+		<key>FFEB7D08-F086-4CCA-AAED-888F19EB4812</key>
+		<dict>
+			<key>xpos</key>
+			<integer>460</integer>
+			<key>ypos</key>
+			<integer>10</integer>
+		</dict>
+	</dict>
+	<key>version</key>
+	<string>1.0.0</string>
+	<key>webaddress</key>
+	<string>http://vitorgalvao.com/</string>
+</dict>
+</plist>

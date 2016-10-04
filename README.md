@@ -4,10 +4,10 @@ Use a browser bookmarklet via Alfred
 
 [info](http://www.alfredforum.com/topic/4235-alfredbookmarklet-%E2%80%94-use-a-browser-bookmarklet-via-alfred/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.alfredbookmarklet/alfredbookmarklet.alfredworkflow)
 
-### AppFreeze
+### AppFreeze <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/AppFreeze/source/icon.png' width='60' align='center' alt='AppFreeze icon'>
 Pauses and resumes execution of the frontmost app
 
-[info](http://www.alfredforum.com/topic/5939-appfreeze-%E2%80%94-pauses-and-resumes-execution-of-the-frontmost-app/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.appfreeze/appfreeze.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/AppFreeze) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/AppFreeze/AppFreeze.alfredworkflow)
 
 ### BugNot <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/BugNot/source/icon.png' width='60' align='center' alt='BugNot icon'>
 Get logins from bugmenot
