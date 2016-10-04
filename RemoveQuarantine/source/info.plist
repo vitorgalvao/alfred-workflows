@@ -216,9 +216,9 @@ if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
         abort "'workflow_url' ("${workflow_url}") appears to not be reachable."
       fi # url_exists
     fi # workflow_type
+  else
+    touch "${local_file}" # Reset timer by touching local file
   fi # diff
-else
-  touch "${local_file}" # Reset timer by touching local file
 fi #find</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
@@ -302,7 +302,7 @@ Warning: quarantining is a macOS security feature, and I do not recommend you di
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.1</string>
+	<string>1.0.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
