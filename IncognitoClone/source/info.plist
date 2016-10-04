@@ -10,7 +10,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>E0C30D7E-304F-407D-9C6B-DB1FC148BC1F</string>
+				<string>2E8E8F51-96F6-4B70-B320-4C03F3B2515A</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -23,7 +23,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>E0C30D7E-304F-407D-9C6B-DB1FC148BC1F</string>
+				<string>2E8E8F51-96F6-4B70-B320-4C03F3B2515A</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -36,7 +36,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>E0C30D7E-304F-407D-9C6B-DB1FC148BC1F</string>
+				<string>2E8E8F51-96F6-4B70-B320-4C03F3B2515A</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -92,7 +92,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>E0C30D7E-304F-407D-9C6B-DB1FC148BC1F</string>
+				<string>2E8E8F51-96F6-4B70-B320-4C03F3B2515A</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -175,9 +175,9 @@ if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
         abort "'workflow_url' ("${workflow_url}") appears to not be reachable."
       fi # url_exists
     fi # workflow_type
+  else
+    touch "${local_file}" # Reset timer by touching local file
   fi # diff
-else
-  touch "${local_file}" # Reset timer by touching local file
 fi #find</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
@@ -189,7 +189,7 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>E0C30D7E-304F-407D-9C6B-DB1FC148BC1F</string>
+			<string>2E8E8F51-96F6-4B70-B320-4C03F3B2515A</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -317,6 +317,17 @@ do shell script "open --new -a \"Google Chrome\" --args --user-data-dir=\"/tmp/i
 Call it with `ic`, and it will open a new incognito window with your current tab. ⌘↩ will also close the tab in your current window. ⌥↩ to open the current tab in a new Chrome instance, and ⌃↩ to also close the tab in the current window.</string>
 	<key>uidata</key>
 	<dict>
+		<key>2E8E8F51-96F6-4B70-B320-4C03F3B2515A</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>540</integer>
+			<key>ypos</key>
+			<integer>10</integer>
+		</dict>
 		<key>4F459C78-66B4-44BA-BB97-470BB0B95816</key>
 		<dict>
 			<key>xpos</key>
@@ -345,17 +356,6 @@ Call it with `ic`, and it will open a new incognito window with your current tab
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
-		<key>E0C30D7E-304F-407D-9C6B-DB1FC148BC1F</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>note</key>
-			<string>OneUpdater</string>
-			<key>xpos</key>
-			<integer>540</integer>
-			<key>ypos</key>
-			<integer>10</integer>
-		</dict>
 		<key>F91EA669-611F-436A-89B4-0D448347CCB6</key>
 		<dict>
 			<key>xpos</key>
@@ -365,7 +365,7 @@ Call it with `ic`, and it will open a new incognito window with your current tab
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>1.0.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
