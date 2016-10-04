@@ -66,7 +66,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>DD2CE0F4-4678-4B6D-9DA6-435F845443F3</string>
+				<string>2A7DF064-61D6-4D82-B1D5-C3E11096D5CE</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -86,6 +86,32 @@
 	<string>BugNot</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>username=$(echo '{query}' | awk -F '////' '{print $1}')
+password=$(echo '{query}' | awk -F '////' '{print $2}')
+
+osascript -e "tell application \"System Events\"	keystroke \"${username}\"	key code 48	keystroke \"${password}\"end tell"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>623811E1-9EDE-4B64-8B2C-04D82D84AAA0</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -159,26 +185,17 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
+				<key>autopaste</key>
 				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>username=$(echo '{query}' | awk -F '////' '{print $1}')
-password=$(echo '{query}' | awk -F '////' '{print $2}')
-
-osascript -e "tell application \"System Events\"	keystroke \"${username}\"	key code 48	keystroke \"${password}\"end tell"</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>transient</key>
+				<false/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.output.clipboard</string>
 			<key>uid</key>
-			<string>623811E1-9EDE-4B64-8B2C-04D82D84AAA0</string>
+			<string>76A74D8D-DBCC-4053-87C7-3C7FEC7B5EEF</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -202,23 +219,6 @@ osascript -e "tell application \"System Events\"	keystroke \"${username}\"	key
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>19EFC881-C598-4139-B02E-427554517796</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>autopaste</key>
-				<false/>
-				<key>clipboardtext</key>
-				<string>{query}</string>
-				<key>transient</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.clipboard</string>
-			<key>uid</key>
-			<string>76A74D8D-DBCC-4053-87C7-3C7FEC7B5EEF</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -308,9 +308,9 @@ if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
         abort "'workflow_url' ("${workflow_url}") appears to not be reachable."
       fi # url_exists
     fi # workflow_type
+  else
+    touch "${local_file}" # Reset timer by touching local file
   fi # diff
-else
-  touch "${local_file}" # Reset timer by touching local file
 fi #find</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
@@ -322,7 +322,7 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>DD2CE0F4-4678-4B6D-9DA6-435F845443F3</string>
+			<string>2A7DF064-61D6-4D82-B1D5-C3E11096D5CE</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -349,6 +349,17 @@ If you had the login box selected prior to calling the workflow, hit â†© and itâ
 			<key>ypos</key>
 			<integer>130</integer>
 		</dict>
+		<key>2A7DF064-61D6-4D82-B1D5-C3E11096D5CE</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>360</integer>
+			<key>ypos</key>
+			<integer>370</integer>
+		</dict>
 		<key>3D696DA5-1D90-4A2A-A3A0-550BFDAAF148</key>
 		<dict>
 			<key>xpos</key>
@@ -370,20 +381,9 @@ If you had the login box selected prior to calling the workflow, hit â†© and itâ
 			<key>ypos</key>
 			<integer>130</integer>
 		</dict>
-		<key>DD2CE0F4-4678-4B6D-9DA6-435F845443F3</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>note</key>
-			<string>OneUpdater</string>
-			<key>xpos</key>
-			<integer>360</integer>
-			<key>ypos</key>
-			<integer>370</integer>
-		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>1.0.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
