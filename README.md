@@ -39,10 +39,10 @@ Opens Chrome’s frontmost tab in an incognito window
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/IncognitoClone) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/IncognitoClone/IncognitoClone.alfredworkflow)
 
-### LabelColor
+### LabelColor <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/LabelColor/source/icon.png' width='60' align='center' alt='LabelColor icon'>
 Sets a label color for selected files and directories
 
-[info](http://www.alfredforum.com/topic/1334-labelcolor-%E2%80%94-sets-a-label-color-for-selected-files-and-directories/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.labelcolor/labelcolor.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/LabelColor) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/LabelColor/LabelColor.alfredworkflow)
 
 ### LinkClean <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/LinkClean/source/icon.png' width='60' align='center' alt='LinkClean icon'>
 Removes extraneous information from URLs
