@@ -14,10 +14,10 @@ Get logins from bugmenot
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/BugNot) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/BugNot/BugNot.alfredworkflow)
 
-### CheckSpelling
+### CheckSpelling <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/CheckSpelling/source/icon.png' width='60' align='center' alt='CheckSpelling icon'>
 Spelling correction in various languages
 
-[info](http://www.alfredforum.com/topic/3586-checkspelling-%E2%80%94-check-and-correct-spelling-in-multiple-languages/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.checkspelling/checkspelling.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/CheckSpelling) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/CheckSpelling/CheckSpelling.alfredworkflow)
 
 ### CoffeeCoffee <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/CoffeeCoffee/source/icon.png' width='60' align='center' alt='CoffeeCoffee icon'>
 Prevent your computer from going to sleep
