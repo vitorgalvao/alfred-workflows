@@ -15,6 +15,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>29B19388-647E-4CA9-B92F-42A7740409AF</key>
@@ -28,10 +30,25 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>40F85D42-9B2C-4908-8445-7669CE43DD18</key>
 		<array/>
+		<key>4AF42D65-A49D-4255-9464-81F95707139B</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>C50B4A87-93CB-4E9E-9D26-76F5743E6700</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>7C41DF16-D56D-429D-97B3-BA76D522947A</key>
 		<array>
 			<dict>
@@ -41,6 +58,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>7CF8B650-20A5-4F70-A3CE-F4BCB6835A26</key>
@@ -52,6 +71,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -60,6 +81,8 @@
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
 				<string>If template is a directory, copy the files inside directly</string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -68,6 +91,23 @@
 				<integer>524288</integer>
 				<key>modifiersubtext</key>
 				<string>Delete template</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>A8D5EF32-7D4B-4F16-B18E-BB6C10727FF6</key>
+		<array/>
+		<key>B48B92E6-2EE0-483A-82D6-AEA852B932A4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>C50B4A87-93CB-4E9E-9D26-76F5743E6700</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>E0DD7561-3519-45F6-86D7-4BF9171E5B4C</key>
@@ -79,6 +119,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>E5C08248-28E9-4EF7-817F-FA9B2BC335D2</key>
@@ -90,6 +132,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -98,6 +142,8 @@
 				<integer>524288</integer>
 				<key>modifiersubtext</key>
 				<string>Delete template link</string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 	</dict>
@@ -126,17 +172,23 @@
 			<key>uid</key>
 			<string>7C41DF16-D56D-429D-97B3-BA76D522947A</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
 				<string>require Dir.getwd + '/tmfunctions.rb'
 
 localAdd %q{{query}}</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>2</integer>
 			</dict>
@@ -145,17 +197,23 @@ localAdd %q{{query}}</string>
 			<key>uid</key>
 			<string>1D2D56FA-BAB3-44F2-B310-21C93DB38E31</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
 				<string>require Dir.getwd + '/tmfunctions.rb'
 
 localPut({query})</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>2</integer>
 			</dict>
@@ -164,23 +222,37 @@ localPut({query})</string>
 			<key>uid</key>
 			<string>B48B92E6-2EE0-483A-82D6-AEA852B932A4</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>keyword</key>
 				<string>tml</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
 				<string>require Dir.getwd + '/tmfunctions.rb'
 
 localInfo('{query}')</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
 				<string>List local templates</string>
 				<key>title</key>
@@ -195,17 +267,23 @@ localInfo('{query}')</string>
 			<key>uid</key>
 			<string>7CF8B650-20A5-4F70-A3CE-F4BCB6835A26</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
 				<string>require Dir.getwd + '/tmfunctions.rb'
 
 localPutFilesOnly({query})</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>2</integer>
 			</dict>
@@ -214,17 +292,104 @@ localPutFilesOnly({query})</string>
 			<key>uid</key>
 			<string>40F85D42-9B2C-4908-8445-7669CE43DD18</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>readonly local_file='info.plist'
+readonly remote_file="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
+readonly workflow_url="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/${alfred_workflow_name}.alfredworkflow"
+readonly workflow_type='workflow'
+frequency_check='15'
+
+# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED UNLESS YOU KNOW WHAT YOU ARE DOING
+function abort {
+  echo "${1}" 1&gt;&amp;2
+  exit 1
+}
+
+function url_exists {
+  if curl --silent --location --output /dev/null --fail --range 0-0 "${1}"; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+function notification {
+  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
+
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+  else
+    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  fi
+}
+
+# Local sanity checks
+[[ ! -f "${local_file}" ]] &amp;&amp; abort "'local_file' ("${local_file}") appears to not point to an existing file."
+[[ ! "${workflow_type}" =~ ^(workflow|page)$ ]] &amp;&amp; abort "'workflow_type' ("${workflow_type}") needs to be one of 'workflow' or 'page'."
+[[ ! "${frequency_check}" =~ ^[0-9]+$ ]] &amp;&amp; abort "'frequency_check' ("${frequency_check}") appears to not be a number."
+
+# Check for updates
+if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
+  if ! url_exists "${remote_file}"; then abort "'remote_file' ("${remote_file}") appears to not be reachable."; fi # Remote sanity check
+  
+  readonly tmp_file="$(mktemp)"
+  curl --silent --location --output "${tmp_file}" "${remote_file}"
+
+  if [[ "$(diff "${local_file}" "${tmp_file}")" ]]; then
+    if [[ "${workflow_type}" == 'page' ]]; then
+      notification 'Opening download page…'
+      open "${workflow_url}"
+    else
+      if url_exists "${workflow_url}"; then
+        notification 'Downloading and installing…'
+        curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${workflow_url}"
+        open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
+      else
+        abort "'workflow_url' ("${workflow_url}") appears to not be reachable."
+      fi # url_exists
+    fi # workflow_type
+  else
+    touch "${local_file}" # Reset timer by touching local file
+  fi # diff
+fi #find</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>C50B4A87-93CB-4E9E-9D26-76F5743E6700</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
 				<string>require Dir.getwd + '/tmfunctions.rb'
 
 localDelete({query})</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>2</integer>
 			</dict>
@@ -233,7 +398,7 @@ localDelete({query})</string>
 			<key>uid</key>
 			<string>AF82572C-ADC9-4677-8690-F846CD053071</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -254,17 +419,23 @@ localDelete({query})</string>
 			<key>uid</key>
 			<string>2BE0A61B-CB15-41C0-894E-9F6E8265856E</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
 				<string>require Dir.getwd + '/tmfunctions.rb'
 
 localEdit</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>2</integer>
 			</dict>
@@ -273,23 +444,37 @@ localEdit</string>
 			<key>uid</key>
 			<string>A8D5EF32-7D4B-4F16-B18E-BB6C10727FF6</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>keyword</key>
 				<string>rtml</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
 				<string>require Dir.getwd + '/tmfunctions.rb'
 
 remoteInfo('{query}')</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
 				<string>List remote templates</string>
 				<key>title</key>
@@ -304,17 +489,23 @@ remoteInfo('{query}')</string>
 			<key>uid</key>
 			<string>E5C08248-28E9-4EF7-817F-FA9B2BC335D2</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
 				<string>require Dir.getwd + '/tmfunctions.rb'
 
 remotePut({query})</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>2</integer>
 			</dict>
@@ -323,17 +514,23 @@ remotePut({query})</string>
 			<key>uid</key>
 			<string>4AF42D65-A49D-4255-9464-81F95707139B</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
 				<string>require Dir.getwd + '/tmfunctions.rb'
 
 remoteDelete({query})</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>2</integer>
 			</dict>
@@ -342,17 +539,23 @@ remoteDelete({query})</string>
 			<key>uid</key>
 			<string>8AA35DAA-F759-46D0-87F7-E88219FC38EB</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
 				<string>require Dir.getwd + '/tmfunctions.rb'
 
 remoteEdit</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>2</integer>
 			</dict>
@@ -361,7 +564,7 @@ remoteEdit</string>
 			<key>uid</key>
 			<string>5D95649E-E581-4899-92D2-F6D66496B030</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -382,17 +585,23 @@ remoteEdit</string>
 			<key>uid</key>
 			<string>11AFFEA0-D21E-4292-BDEE-86FFA87A2C59</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
 				<string>require Dir.getwd + '/tmfunctions.rb'
 
 remoteAdd(%x{'pbpaste'})</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>2</integer>
 			</dict>
@@ -401,7 +610,7 @@ remoteAdd(%x{'pbpaste'})</string>
 			<key>uid</key>
 			<string>29B19388-647E-4CA9-B92F-42A7740409AF</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -422,89 +631,148 @@ remoteAdd(%x{'pbpaste'})</string>
 			<key>uid</key>
 			<string>E0DD7561-3519-45F6-86D7-4BF9171E5B4C</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string>If you regularly need to set the same files or directory structures somewhere, say a set of prebuilt scripts and template files for certain types of regular projects, this workflow is meant to make your life easier.
+
+It can take files, directory structures, and even URLs, and set them up as templates that’ll be copied over to your frontmost Finder window. Files and directory structures will be saved with the workflow (so they sync across devices), and urls will be downloaded when requested (so you always get the latest version).
+
+If you have a template that consists of a directory, you can place inside it an executable script with the name starting as `_templatesmanagerscript`. (the extension will be your pick), to be executed automatically after copying.
+
+It has a lot of options and you’ll likely use most of them, so I’ll fire through them succinctly:
+
++ **Add to TemplatesManager** [File Action] — Add a file or directory to your local templates.
++ **tml** *TemplatesManagerList* [Script Filter] — Show a list of your local templates. Type to sort with your query. Press ↩ to copy the selected one to your frontmost Finder window.
++ **tml** (with ⌘) — If the selected template is a directory, instead of copying the directory itself, copy what’s inside it.
++ **tml** (with ⌥) — Delete your template.
++ **tme** *TemplatesManagerEdit* [Keyword] — Open the templates directory so you can add, remove, and edit them manually.
++ **rtml** *RemoteTemplatesManagerList* [Script Filter] — Show a list of your remote templates (download name and url). Type to sort with your query. Press ↩ on the selected one to download the file to your frontmost Finder window.
++ **rtml** (with ⌥) — Remove the url from your remote templates list.
++ **rtme** *RemoteTemplatesManagerEdit* [Keyword] — Open the remote templates urls file in a text editor so you can add, remove, and edit them manually.
++ **rtma** RemoteTemplatesManagerAdd [Keyword] — takes the URL in your clipboard and adds it to your remote templates list.</string>
 	<key>uidata</key>
 	<dict>
 		<key>11AFFEA0-D21E-4292-BDEE-86FFA87A2C59</key>
 		<dict>
+			<key>xpos</key>
+			<integer>180</integer>
 			<key>ypos</key>
-			<real>850</real>
+			<integer>850</integer>
 		</dict>
 		<key>1D2D56FA-BAB3-44F2-B310-21C93DB38E31</key>
 		<dict>
+			<key>xpos</key>
+			<integer>380</integer>
 			<key>ypos</key>
-			<real>10</real>
+			<integer>10</integer>
 		</dict>
 		<key>29B19388-647E-4CA9-B92F-42A7740409AF</key>
 		<dict>
+			<key>xpos</key>
+			<integer>380</integer>
 			<key>ypos</key>
-			<real>970</real>
+			<integer>970</integer>
 		</dict>
 		<key>2BE0A61B-CB15-41C0-894E-9F6E8265856E</key>
 		<dict>
+			<key>xpos</key>
+			<integer>180</integer>
 			<key>ypos</key>
-			<real>490</real>
+			<integer>490</integer>
 		</dict>
 		<key>40F85D42-9B2C-4908-8445-7669CE43DD18</key>
 		<dict>
+			<key>xpos</key>
+			<integer>380</integer>
 			<key>ypos</key>
-			<real>250</real>
+			<integer>250</integer>
 		</dict>
 		<key>4AF42D65-A49D-4255-9464-81F95707139B</key>
 		<dict>
+			<key>xpos</key>
+			<integer>380</integer>
 			<key>ypos</key>
-			<real>610</real>
+			<integer>610</integer>
 		</dict>
 		<key>5D95649E-E581-4899-92D2-F6D66496B030</key>
 		<dict>
+			<key>xpos</key>
+			<integer>380</integer>
 			<key>ypos</key>
-			<real>850</real>
+			<integer>850</integer>
 		</dict>
 		<key>7C41DF16-D56D-429D-97B3-BA76D522947A</key>
 		<dict>
+			<key>xpos</key>
+			<integer>40</integer>
 			<key>ypos</key>
-			<real>10</real>
+			<integer>10</integer>
 		</dict>
 		<key>7CF8B650-20A5-4F70-A3CE-F4BCB6835A26</key>
 		<dict>
+			<key>xpos</key>
+			<integer>180</integer>
 			<key>ypos</key>
-			<real>130</real>
+			<integer>130</integer>
 		</dict>
 		<key>8AA35DAA-F759-46D0-87F7-E88219FC38EB</key>
 		<dict>
+			<key>xpos</key>
+			<integer>380</integer>
 			<key>ypos</key>
-			<real>730</real>
+			<integer>730</integer>
 		</dict>
 		<key>A8D5EF32-7D4B-4F16-B18E-BB6C10727FF6</key>
 		<dict>
+			<key>xpos</key>
+			<integer>380</integer>
 			<key>ypos</key>
-			<real>490</real>
+			<integer>490</integer>
 		</dict>
 		<key>AF82572C-ADC9-4677-8690-F846CD053071</key>
 		<dict>
+			<key>xpos</key>
+			<integer>380</integer>
 			<key>ypos</key>
-			<real>370</real>
+			<integer>370</integer>
 		</dict>
 		<key>B48B92E6-2EE0-483A-82D6-AEA852B932A4</key>
 		<dict>
+			<key>xpos</key>
+			<integer>380</integer>
 			<key>ypos</key>
-			<real>130</real>
+			<integer>130</integer>
+		</dict>
+		<key>C50B4A87-93CB-4E9E-9D26-76F5743E6700</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>600</integer>
+			<key>ypos</key>
+			<integer>370</integer>
 		</dict>
 		<key>E0DD7561-3519-45F6-86D7-4BF9171E5B4C</key>
 		<dict>
+			<key>xpos</key>
+			<integer>180</integer>
 			<key>ypos</key>
-			<real>970</real>
+			<integer>970</integer>
 		</dict>
 		<key>E5C08248-28E9-4EF7-817F-FA9B2BC335D2</key>
 		<dict>
+			<key>xpos</key>
+			<integer>180</integer>
 			<key>ypos</key>
-			<real>610</real>
+			<integer>610</integer>
 		</dict>
 	</dict>
+	<key>version</key>
+	<string>1.0.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
