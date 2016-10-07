@@ -20,7 +20,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>DA016DD9-461A-4D51-827E-71D31165E59E</string>
+				<string>1A25374D-BC83-4437-952C-759D69E228D3</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -156,11 +156,11 @@ open -a "${video_player}" "${1}"</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>readonly local_file='info.plist' # Local file to compare to remote_file
-readonly remote_file='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/ShortFilms/info.plist' # Remote file (URL) to compare to local_file
-readonly workflow_url='https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.shortfilms/shortfilms.alfredworkflow' # URL to directly download workflow or workflow download page
-readonly workflow_type='workflow' # Either 'workflow' if workflow_url points to direct download, or 'page' if it points to download page
-readonly frequency_check='15' # Days between update checks
+				<string>readonly local_file='info.plist'
+readonly remote_file="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
+readonly workflow_url="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/${alfred_workflow_name}.alfredworkflow"
+readonly workflow_type='workflow'
+frequency_check='15'
 
 # FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED UNLESS YOU KNOW WHAT YOU ARE DOING
 function abort {
@@ -186,14 +186,15 @@ function notification {
   fi
 }
 
-# Sanity checks
-[[ ! -f "${local_file}" ]] &amp;&amp; abort '"local_file" appears to not point to an existing file'
-if ! url_exists "${remote_file}"; then abort '"remote_file" appears to not be reachable'; fi
-[[ ! "${workflow_type}" =~ ^(workflow|page)$ ]] &amp;&amp; abort '"workflow_type" needs to be one of "workflow" or "page"'
-[[ ! "${frequency_check}" =~ ^[0-9]+$ ]] &amp;&amp; abort '"frequency_check" appears to not be a number'
+# Local sanity checks
+[[ ! -f "${local_file}" ]] &amp;&amp; abort "'local_file' ("${local_file}") appears to not point to an existing file."
+[[ ! "${workflow_type}" =~ ^(workflow|page)$ ]] &amp;&amp; abort "'workflow_type' ("${workflow_type}") needs to be one of 'workflow' or 'page'."
+[[ ! "${frequency_check}" =~ ^[0-9]+$ ]] &amp;&amp; abort "'frequency_check' ("${frequency_check}") appears to not be a number."
 
 # Check for updates
 if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
+  if ! url_exists "${remote_file}"; then abort "'remote_file' ("${remote_file}") appears to not be reachable."; fi # Remote sanity check
+  
   readonly tmp_file="$(mktemp)"
   curl --silent --location --output "${tmp_file}" "${remote_file}"
 
@@ -207,12 +208,12 @@ if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
         curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${workflow_url}"
         open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
       else
-        abort '"workflow_url" appears to not be reachable'
+        abort "'workflow_url' ("${workflow_url}") appears to not be reachable."
       fi # url_exists
     fi # workflow_type
+  else
+    touch "${local_file}" # Reset timer by touching local file
   fi # diff
-else
-  touch "${local_file}" # Reset timer by touching local file
 fi #find</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
@@ -224,7 +225,7 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>DA016DD9-461A-4D51-827E-71D31165E59E</string>
+			<string>1A25374D-BC83-4437-952C-759D69E228D3</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -360,14 +361,27 @@ fi</string>
 	<string>Stream from a selection of short films, powered by [Short of the Week](https://www.shortoftheweek.com/).
 
 Run `shorts` and it’ll download and show a list of the latest films. Pick one and it’ll start streaming.
-![](https://i.imgur.com/UGheFu1.png)
+
+![](http://i.imgur.com/lSdFrwH.png)
 
 Short of the Week publishes a new short every day and building the initial list takes a few seconds, so after the initial download the list is cached for one day. If you want the list ready at all times without having to wait, run `:shortfilmslaunchd` to install (or later remove) a `launchd` service to seamlessly update the list every day at 2PM.
-![](https://i.imgur.com/dx18fN4.png)
 
-Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` takes precedence). For `mpv`, `youtube-dl` is a requirement; use the `youtube_dl_path` workflow environment variable to set its path, if needed.</string>
+![](http://i.imgur.com/XwpXJSY.png)
+
+Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` takes precedence). For `mpv`, `youtube-dl` is a requirement; use the `youtube_dl_path` Workflow Environment Variable to set its path, if needed.</string>
 	<key>uidata</key>
 	<dict>
+		<key>1A25374D-BC83-4437-952C-759D69E228D3</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>340</integer>
+			<key>ypos</key>
+			<integer>160</integer>
+		</dict>
 		<key>325E0A83-2F46-4696-80F4-7D41608F65DC</key>
 		<dict>
 			<key>xpos</key>
@@ -388,17 +402,6 @@ Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` 
 			<integer>340</integer>
 			<key>ypos</key>
 			<integer>310</integer>
-		</dict>
-		<key>DA016DD9-461A-4D51-827E-71D31165E59E</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>note</key>
-			<string>OneUpdater</string>
-			<key>xpos</key>
-			<integer>340</integer>
-			<key>ypos</key>
-			<integer>160</integer>
 		</dict>
 		<key>F52ABFBA-FC4F-400F-BF1B-AAF7B723052C</key>
 		<dict>
@@ -428,7 +431,7 @@ Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` 
 		<string>/usr/local/bin</string>
 	</dict>
 	<key>version</key>
-	<string>1.1.0</string>
+	<string>1.1.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
