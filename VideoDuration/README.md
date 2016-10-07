@@ -1,0 +1,1 @@
+Select a URL and press the Hotkey, or copy a URL and call `videoduration`. The workflow will copy to your clipboard and paste to your frontmost app the url of the page together with the duration of the video in square brackets.
