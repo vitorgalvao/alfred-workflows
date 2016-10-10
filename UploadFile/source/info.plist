@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.vitorgalvao.alfred.uploadfile</string>
+	<key>connections</key>
+	<dict>
+		<key>3444071E-B0B8-4C12-9699-210912A13E67</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>DBF6FE20-BE01-4D32-89D7-CC39014BA351</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>6EBC28E3-A781-4D79-9DE6-6B172EF01132</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>A697CADF-6E4A-4C9D-8D61-A8BFCE2DACA4</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>A697CADF-6E4A-4C9D-8D61-A8BFCE2DACA4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>407A6879-70A9-4E72-BAFF-43D3F41B7CED</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>55E5D2C8-6F1C-416A-B7D8-C27393CF7485</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Cancel upload</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>DEA90A14-B8E3-469F-B314-4F347CF478B3</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3444071E-B0B8-4C12-9699-210912A13E67</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Vítor Galvão</string>
+	<key>description</key>
+	<string>Upload files and directories for easy sharing</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>UploadFile</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>bash uploadfile.sh upload '{query}'</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>3444071E-B0B8-4C12-9699-210912A13E67</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>readonly local_file='info.plist'
+readonly remote_file="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
+readonly workflow_url="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/${alfred_workflow_name}.alfredworkflow"
+readonly workflow_type='workflow'
+frequency_check='15'
+
+# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED UNLESS YOU KNOW WHAT YOU ARE DOING
+function abort {
+  echo "${1}" 1&gt;&amp;2
+  exit 1
+}
+
+function url_exists {
+  if curl --silent --location --output /dev/null --fail --range 0-0 "${1}"; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+function notification {
+  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
+
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+  else
+    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  fi
+}
+
+# Local sanity checks
+[[ ! -f "${local_file}" ]] &amp;&amp; abort "'local_file' ("${local_file}") appears to not point to an existing file."
+[[ ! "${workflow_type}" =~ ^(workflow|page)$ ]] &amp;&amp; abort "'workflow_type' ("${workflow_type}") needs to be one of 'workflow' or 'page'."
+[[ ! "${frequency_check}" =~ ^[0-9]+$ ]] &amp;&amp; abort "'frequency_check' ("${frequency_check}") appears to not be a number."
+
+# Check for updates
+if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
+  if ! url_exists "${remote_file}"; then abort "'remote_file' ("${remote_file}") appears to not be reachable."; fi # Remote sanity check
+  
+  readonly tmp_file="$(mktemp)"
+  curl --silent --location --output "${tmp_file}" "${remote_file}"
+
+  if [[ "$(diff "${local_file}" "${tmp_file}")" ]]; then
+    if [[ "${workflow_type}" == 'page' ]]; then
+      notification 'Opening download page…'
+      open "${workflow_url}"
+    else
+      if url_exists "${workflow_url}"; then
+        notification 'Downloading and installing…'
+        curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${workflow_url}"
+        open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
+      else
+        abort "'workflow_url' ("${workflow_url}") appears to not be reachable."
+      fi # url_exists
+    fi # workflow_type
+  else
+    touch "${local_file}" # Reset timer by touching local file
+  fi # diff
+fi #find</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>DBF6FE20-BE01-4D32-89D7-CC39014BA351</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsmulti</key>
+				<false/>
+				<key>filetypes</key>
+				<array/>
+				<key>name</key>
+				<string>Upload file</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>DEA90A14-B8E3-469F-B314-4F347CF478B3</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>triggerid</key>
+				<string>upload_status</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>6EBC28E3-A781-4D79-9DE6-6B172EF01132</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>ufp</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>progress_file='/tmp/uploadfile_progress'
+name_file='/tmp/uploadfile_name'
+
+if [[ -f "${progress_file}" ]]; then
+
+filename=$(cat "${name_file}")
+progress=$(cat "${progress_file}" | perl -pe 's/.*\s//')
+
+cat &lt;&lt; EOF
+&lt;?xml version='1.0'?&gt;&lt;items&gt;
+  &lt;item uid='Upload progress' valid='yes'&gt;
+    &lt;title&gt;UploadFile progress&lt;/title&gt;
+    &lt;subtitle&gt;${progress} | &lt;![CDATA[${filename}]]&gt;&lt;/subtitle&gt;
+    &lt;icon&gt;icon.png&lt;/icon&gt;
+  &lt;/item&gt;
+&lt;/items&gt;
+EOF
+else
+cat &lt;&lt; EOF
+&lt;?xml version='1.0'?&gt;&lt;items&gt;
+  &lt;item uid='Upload progress' valid='no'&gt;
+    &lt;title&gt;UploadFile progress&lt;/title&gt;
+    &lt;subtitle&gt;There is currently no upload in progress&lt;/subtitle&gt;
+    &lt;icon&gt;icon.png&lt;/icon&gt;
+  &lt;/item&gt;
+&lt;/items&gt;
+EOF
+fi</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Shows progress of the current UploadFile upload</string>
+				<key>title</key>
+				<string>UploadFile Progress</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>A697CADF-6E4A-4C9D-8D61-A8BFCE2DACA4</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>externaltriggerid</key>
+				<string>upload_status</string>
+				<key>passinputasargument</key>
+				<false/>
+				<key>passvariables</key>
+				<false/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>407A6879-70A9-4E72-BAFF-43D3F41B7CED</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>bash uploadfile.sh abort</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>55E5D2C8-6F1C-416A-B7D8-C27393CF7485</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>Upload files to [transfer.sh](https://transfer.sh/) directly from Alfred.
+
+Pick a file (or directory, which will be compressed to a `.zip`) to upload via the `Upload file` `File Action`.
+
+![](http://i.imgur.com/3jmzNse.png)
+
+You can check your upload progress with `ufp`.
+
+![](https://i.imgur.com/2WU6Quf.png)
+
+Press ↩ to refresh the upload progress, or ⌘↩ to cancel the transfer.
+
+You’ll get notifications of the various phases, with a sound when it’s complete (or canceled). The download URL will be copied to your clipboard.
+
+![](https://i.imgur.com/PkunyPD.png)</string>
+	<key>uidata</key>
+	<dict>
+		<key>3444071E-B0B8-4C12-9699-210912A13E67</key>
+		<dict>
+			<key>xpos</key>
+			<integer>450</integer>
+			<key>ypos</key>
+			<integer>10</integer>
+		</dict>
+		<key>407A6879-70A9-4E72-BAFF-43D3F41B7CED</key>
+		<dict>
+			<key>xpos</key>
+			<integer>450</integer>
+			<key>ypos</key>
+			<integer>130</integer>
+		</dict>
+		<key>55E5D2C8-6F1C-416A-B7D8-C27393CF7485</key>
+		<dict>
+			<key>xpos</key>
+			<integer>450</integer>
+			<key>ypos</key>
+			<integer>250</integer>
+		</dict>
+		<key>6EBC28E3-A781-4D79-9DE6-6B172EF01132</key>
+		<dict>
+			<key>xpos</key>
+			<integer>50</integer>
+			<key>ypos</key>
+			<integer>130</integer>
+		</dict>
+		<key>A697CADF-6E4A-4C9D-8D61-A8BFCE2DACA4</key>
+		<dict>
+			<key>xpos</key>
+			<integer>250</integer>
+			<key>ypos</key>
+			<integer>130</integer>
+		</dict>
+		<key>DBF6FE20-BE01-4D32-89D7-CC39014BA351</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>640</integer>
+			<key>ypos</key>
+			<integer>10</integer>
+		</dict>
+		<key>DEA90A14-B8E3-469F-B314-4F347CF478B3</key>
+		<dict>
+			<key>xpos</key>
+			<integer>50</integer>
+			<key>ypos</key>
+			<integer>10</integer>
+		</dict>
+	</dict>
+	<key>version</key>
+	<string>1.0.0</string>
+	<key>webaddress</key>
+	<string>http://vitorgalvao.com/</string>
+</dict>
+</plist>
