@@ -1,8 +1,8 @@
 # Collection of Alfred Workflows
-### AlfredBookmarklet
+### AlfredBookmarklet <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/AlfredBookmarklet/source/icon.png' width='60' align='center' alt='AlfredBookmarklet icon'>
 Use a browser bookmarklet via Alfred
 
-[info](http://www.alfredforum.com/topic/4235-alfredbookmarklet-%E2%80%94-use-a-browser-bookmarklet-via-alfred/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.alfredbookmarklet/alfredbookmarklet.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/AlfredBookmarklet) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/AlfredBookmarklet/AlfredBookmarklet.alfredworkflow)
 
 ### AppFreeze <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/AppFreeze/source/icon.png' width='60' align='center' alt='AppFreeze icon'>
 Pauses and resumes execution of the frontmost app
@@ -24,15 +24,15 @@ Prevent your computer from going to sleep
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/CoffeeCoffee) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/CoffeeCoffee/CoffeeCoffee.alfredworkflow)
 
-### DownVid
+### DownVid <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/DownVid/source/icon.png' width='60' align='center' alt='DownVid icon'>
 Download videos from popular sources
 
-[info](http://www.alfredforum.com/topic/2045-downvid-%E2%80%94-download-videos-from-popular-sources/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.downvid/downvid.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownVid) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/DownVid/DownVid.alfredworkflow)
 
-### FormatSize
+### FormatSize <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/FormatSize/source/icon.png' width='60' align='center' alt='FormatSize icon'>
 Reference paper sizes and device viewport widths
 
-[info](http://www.alfredforum.com/topic/2748-formatsize-%E2%80%94-reference-paper-sizes-and-device-viewport-widths/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.formatsize/formatsize.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/FormatSize) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/FormatSize/FormatSize.alfredworkflow)
 
 ### IncognitoClone <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/IncognitoClone/source/icon.png' width='60' align='center' alt='IncognitoClone icon'>
 Opens Chrome’s frontmost tab in an incognito window
@@ -49,15 +49,15 @@ Removes extraneous information from URLs
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/LinkClean) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/LinkClean/LinkClean.alfredworkflow)
 
-### MachineClean
+### MachineClean <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MachineClean/source/icon.png' width='60' align='center' alt='MachineClean icon'>
 Lock your keyboard and trackpad temporarily, so you can clean them
 
-[info](http://www.alfredforum.com/topic/4834-machineclean-%E2%80%94-lock-your-keyboard-and-trackpad-temporarily-so-you-can-clean-them/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.machineclean/machineclean.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/MachineClean) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MachineClean/MachineClean.alfredworkflow)
 
-### MarkdownBulletin
+### MarkdownBulletin <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MarkdownBulletin/source/icon.png' width='60' align='center' alt='MarkdownBulletin icon'>
 Convert Markdown to BBCode
 
-[info](http://www.alfredforum.com/topic/3517-markdownbulletin-%E2%80%94-convert-markdown-to-bbcode/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.markdownbulletin/markdownbulletin.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/MarkdownBulletin) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MarkdownBulletin/MarkdownBulletin.alfredworkflow)
 
 ### NewFile <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/NewFile/source/icon.png' width='60' align='center' alt='NewFile icon'>
 Creates a new file in the current Finder directory
@@ -69,115 +69,115 @@ Update workflows with a single node
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/OneUpdater) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/OneUpdater/OneUpdater.alfredworkflow)
 
-### PinAdd
+### PinAdd <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/PinAdd/source/icon.png' width='60' align='center' alt='PinAdd icon'>
 Takes arguments as tags and adds your browser’s frontmost tab as a pinboard bookmark
 
-[info](http://www.alfredforum.com/topic/1230-pinadd-%E2%80%94-takes-arguments-as-tags-and-adds-your-browser%E2%80%99s-frontmost-tab-as-a-pinboard-bookmark/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.pinadd/pinadd.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/PinAdd) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/PinAdd/PinAdd.alfredworkflow)
 
-### PingPong
+### PingPong <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/PingPong/source/icon.png' width='60' align='center' alt='PingPong icon'>
 Play a round of table tennis with Alfred
 
-[info](http://www.alfredforum.com/topic/4176-pinpong-%E2%80%94-play-a-round-of-table-tennis-with-alfred/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.pingpong/pingpong.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/PingPong) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/PingPong/PingPong.alfredworkflow)
 
-### PinUnread
+### PinUnread <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/PinUnread/source/icon.png' width='60' align='center' alt='PinUnread icon'>
 Open and manage your Pinboard “toread” bookmarks
 
-[info](http://www.alfredforum.com/topic/3037-pinunread-%E2%80%94-open-and-manage-your-pinboard-%E2%80%9Ctoread%E2%80%9D-bookmarks/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.pinunread/pinunread.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/PinUnread) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/PinUnread/PinUnread.alfredworkflow)
 
-### RecentDownloads
+### RecentDownloads <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RecentDownloads/source/icon.png' width='60' align='center' alt='RecentDownloads icon'>
 List and act on the contents of your ~/Downloads directory
 
-[info](http://www.alfredforum.com/topic/3737-recentdownloads-%E2%80%94-list-and-act-on-the-contents-of-your-downloads-directory/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.recentdownloads/recentdownloads.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/RecentDownloads) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RecentDownloads/RecentDownloads.alfredworkflow)
 
 ### RemoveQuarantine <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RemoveQuarantine/source/icon.png' width='60' align='center' alt='RemoveQuarantine icon'>
 Remove the quarantine attribute from your apps
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/RemoveQuarantine) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RemoveQuarantine/RemoveQuarantine.alfredworkflow)
 
-### RenameAction
+### RenameAction <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RenameAction/source/icon.png' width='60' align='center' alt='RenameAction icon'>
 Renames a directory or file (preserving the extension)
 
-[info](http://www.alfredforum.com/topic/2722-renameaction-%E2%80%94-renames-a-directory-or-file-preserving-the-extension/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.renameaction/renameaction.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/RenameAction) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RenameAction/RenameAction.alfredworkflow)
 
-### RepeatRepeat
+### RepeatRepeat <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RepeatRepeat/source/icon.png' width='60' align='center' alt='RepeatRepeat icon'>
 Proof of concept to make a script filter update itself without further user input
 
-[info](http://www.alfredforum.com/topic/2740-repeatrepeat-%E2%80%94-proof-of-concept-to-make-a-script-filter-update-itself-without-further-user-input/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.repeatrepeat/repeatrepeat.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/RepeatRepeat) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RepeatRepeat/RepeatRepeat.alfredworkflow)
 
-### RespondQuickly
+### RespondQuickly <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RespondQuickly/source/icon.png' width='60' align='center' alt='RespondQuickly icon'>
 Convert selected text to a QR code
 
-[info](http://www.alfredforum.com/topic/3695-respondquickly-%E2%80%94-convert-selected-text-to-a-qr-code/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.respondquickly/respondquickly.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/RespondQuickly) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RespondQuickly/RespondQuickly.alfredworkflow)
 
-### RightClick
+### RightClick <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RightClick/source/icon.png' width='60' align='center' alt='RightClick icon'>
 Do a right-click on Finder files, with the keyboard
 
-[info](http://www.alfredforum.com/topic/3147-rightclick-%E2%80%94-do-a-right-click-on-finder-files-with-the-keyboard/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.rightclick/rightclick.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/RightClick) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RightClick/RightClick.alfredworkflow)
 
-### RottenMovies
+### RottenMovies <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RottenMovies/source/icon.png' width='60' align='center' alt='RottenMovies icon'>
 Check movie scores from Rotten Tomatoes
 
-[info](http://www.alfredforum.com/topic/4875-rottenmovies-%E2%80%94-check-movie-scores-from-rotten-tomatoes/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.rottenmovies/rottenmovies.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/RottenMovies) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RottenMovies/RottenMovies.alfredworkflow)
 
-### RunCommand
+### RunCommand <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RunCommand/source/icon.png' width='60' align='center' alt='RunCommand icon'>
 Run shell commands without opening a terminal
 
-[info](http://www.alfredforum.com/topic/1550-runcommand-%E2%80%94-run-shell-commands-without-opening-a-terminal/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.runcommand/runcommand.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/RunCommand) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RunCommand/RunCommand.alfredworkflow)
 
-### ShortFilms
+### ShortFilms <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/ShortFilms/source/icon.png' width='60' align='center' alt='ShortFilms icon'>
 Stream from a selection of short films
 
-[info](http://www.alfredforum.com/topic/9206-shortfilms-%E2%80%94-stream-from-a-selection-of-short-films/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.shortfilms/shortfilms.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/ShortFilms) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/ShortFilms/ShortFilms.alfredworkflow)
 
-### StrongPassword
+### StrongPassword <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/StrongPassword/source/icon.png' width='60' align='center' alt='StrongPassword icon'>
 Get a strong password by leveraging multiple sources
 
-[info](http://www.alfredforum.com/topic/1233-strongpassword-%E2%80%94-get-a-strong-password-by-leveraging-multiple-sources/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.strongpassword/strongpassword.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/StrongPassword) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/StrongPassword/StrongPassword.alfredworkflow)
 
-### SynAnt
+### SynAnt <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/SynAnt/source/icon.png' width='60' align='center' alt='SynAnt icon'>
 Substitute words by checking against a thesaurus
 
-[info](http://www.alfredforum.com/topic/3954-synant-%E2%80%94-substitute-words-by-checking-against-a-thesaurs/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.synant/synant.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/SynAnt) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/SynAnt/SynAnt.alfredworkflow)
 
-### TemplatesManager
+### TemplatesManager <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/TemplatesManager/source/icon.png' width='60' align='center' alt='TemplatesManager icon'>
 Save and reuse files, directory structures, and urls
 
-[info](http://www.alfredforum.com/topic/4434-templatesmanager-%E2%80%94-save-and-reuse-files-directory-structures-and-urls/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.templatesmanager/templatesmanager.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/TemplatesManager) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/TemplatesManager/TemplatesManager.alfredworkflow)
 
-### TemporaryEmail
+### TemporaryEmail <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/TemporaryEmail/source/icon.png' width='60' align='center' alt='TemporaryEmail icon'>
 Get a temporary email inbox
 
-[info](http://www.alfredforum.com/topic/4643-temporaryemail-%E2%80%94-get-a-temporary-email-inbox/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.temporaryemail/temporaryemail.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/TemporaryEmail) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/TemporaryEmail/TemporaryEmail.alfredworkflow)
 
-### TurnShoot
+### TurnShoot <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/TurnShoot/source/icon.png' width='60' align='center' alt='TurnShoot icon'>
 A two-player game for Alfred
 
-[info](http://www.alfredforum.com/topic/4188-turnshoot-%E2%80%94-a-two-player-game-for-alfred/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.turnshoot/turnshoot.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/TurnShoot) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/TurnShoot/TurnShoot.alfredworkflow)
 
-### UploadFile
+### UploadFile <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/UploadFile/source/icon.png' width='60' align='center' alt='UploadFile icon'>
 Upload files and directories for easy sharing
 
-[info](http://www.alfredforum.com/topic/5233-uploadfile-%E2%80%94-upload-files-and-directories-for-easy-sharing/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.uploadfile/uploadfile.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/UploadFile) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/UploadFile/UploadFile.alfredworkflow)
 
-### VideoDuration
+### VideoDuration <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/VideoDuration/source/icon.png' width='60' align='center' alt='VideoDuration icon'>
 Outputs the url of a video on a supported website with its duration in square brackets
 
-[info](http://www.alfredforum.com/topic/1393-videoduration-%E2%80%94-outputs-the-url-of-a-video-on-a-supported-website-with-its-duration-in-square-brackets/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.videoduration/videoduration.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/VideoDuration) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/VideoDuration/VideoDuration.alfredworkflow)
 
-### WatchList
+### WatchList <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/WatchList/source/icon.png' width='60' align='center' alt='WatchList icon'>
 Watch and manage local videos and streams
 
-[info](http://www.alfredforum.com/topic/1931-watchlist-%E2%80%94-watch-and-manage-local-videos-and-streams/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.watchlist/watchlist.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/WatchList) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/WatchList/WatchList.alfredworkflow)
 
-### WebScreenshot
+### WebScreenshot <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/WebScreenshot/source/icon.png' width='60' align='center' alt='WebScreenshot icon'>
 Take screenshots directly to the web
 
-[info](http://www.alfredforum.com/topic/8385-webscreenshot-%E2%80%94-take-screenshots-directly-to-the-web/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.webscreenshot/webscreenshot.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/WebScreenshot) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/WebScreenshot/WebScreenshot.alfredworkflow)
 
-### WordsWith
+### WordsWith <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/WordsWith/source/icon.png' width='60' align='center' alt='WordsWith icon'>
 Find words that contain a particular pattern
 
-[info](http://www.alfredforum.com/topic/2771-wordswith-%E2%80%94-find-words-that-contain-a-particular-pattern/) | [download](https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.wordwith/wordswith.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/WordsWith) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/WordsWith/WordsWith.alfredworkflow)
 
 #### License
 All the code in the workflows’ root directory is licensed under [The Unlicense](http://unlicense.org/UNLICENSE) (Public Domain, essentially). Applications and libraries inside a `_licensed` directory (if there is one) are not public domain, and are accompanied by their respective licenses.
