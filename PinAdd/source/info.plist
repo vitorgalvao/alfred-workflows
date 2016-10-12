@@ -17,6 +17,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>41A5A177-9A68-4BE7-870A-2F6797AC2464</key>
@@ -28,10 +30,23 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>81A6DF13-548C-431D-9624-F1B2D7DBCA78</key>
-		<array/>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>988412F7-52A3-4F42-BED1-3724583DED53</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>E229E8F1-226C-4996-A83D-C181DAEFB268</key>
 		<array>
 			<dict>
@@ -41,6 +56,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>EB540A71-1528-4CD8-BF49-FF90C76826DB</key>
@@ -52,10 +69,23 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 		<key>EDD912EA-404B-4820-BFCB-02B5A7CAD013</key>
-		<array/>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>988412F7-52A3-4F42-BED1-3724583DED53</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>F4113C0F-FB1F-41A5-BE53-DAB478C918FA</key>
 		<array/>
 	</dict>
@@ -72,6 +102,8 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>escaping</key>
@@ -104,6 +136,10 @@ EOF
 else
 	source ./setTitleAndURL
 fi</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
 				<string>Please wait…</string>
 				<key>title</key>
@@ -118,7 +154,7 @@ fi</string>
 			<key>uid</key>
 			<string>147225F5-C2E2-4FE1-AACF-B43D4F9394C2</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -139,15 +175,21 @@ fi</string>
 			<key>uid</key>
 			<string>EB540A71-1528-4CD8-BF49-FF90C76826DB</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
 				<string>./pinadd "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -156,15 +198,102 @@ fi</string>
 			<key>uid</key>
 			<string>EDD912EA-404B-4820-BFCB-02B5A7CAD013</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>readonly local_file='info.plist'
+readonly remote_file="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
+readonly workflow_url="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/${alfred_workflow_name}.alfredworkflow"
+readonly workflow_type='workflow'
+frequency_check='15'
+
+# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED UNLESS YOU KNOW WHAT YOU ARE DOING
+function abort {
+  echo "${1}" 1&gt;&amp;2
+  exit 1
+}
+
+function url_exists {
+  if curl --silent --location --output /dev/null --fail --range 0-0 "${1}"; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+function notification {
+  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
+
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+  else
+    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  fi
+}
+
+# Local sanity checks
+[[ ! -f "${local_file}" ]] &amp;&amp; abort "'local_file' ("${local_file}") appears to not point to an existing file."
+[[ ! "${workflow_type}" =~ ^(workflow|page)$ ]] &amp;&amp; abort "'workflow_type' ("${workflow_type}") needs to be one of 'workflow' or 'page'."
+[[ ! "${frequency_check}" =~ ^[0-9]+$ ]] &amp;&amp; abort "'frequency_check' ("${frequency_check}") appears to not be a number."
+
+# Check for updates
+if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
+  if ! url_exists "${remote_file}"; then abort "'remote_file' ("${remote_file}") appears to not be reachable."; fi # Remote sanity check
+  
+  readonly tmp_file="$(mktemp)"
+  curl --silent --location --output "${tmp_file}" "${remote_file}"
+
+  if [[ "$(diff "${local_file}" "${tmp_file}")" ]]; then
+    if [[ "${workflow_type}" == 'page' ]]; then
+      notification 'Opening download page…'
+      open "${workflow_url}"
+    else
+      if url_exists "${workflow_url}"; then
+        notification 'Downloading and installing…'
+        curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${workflow_url}"
+        open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
+      else
+        abort "'workflow_url' ("${workflow_url}") appears to not be reachable."
+      fi # url_exists
+    fi # workflow_type
+  else
+    touch "${local_file}" # Reset timer by touching local file
+  fi # diff
+fi #find</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>988412F7-52A3-4F42-BED1-3724583DED53</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
 				<string>./pinadd "{{setAsPrivate}} {query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -173,7 +302,7 @@ fi</string>
 			<key>uid</key>
 			<string>81A6DF13-548C-431D-9624-F1B2D7DBCA78</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -194,7 +323,7 @@ fi</string>
 			<key>uid</key>
 			<string>41A5A177-9A68-4BE7-870A-2F6797AC2464</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -202,7 +331,7 @@ fi</string>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>keyword</key>
-				<string>configurepinadd</string>
+				<string>:configurepinadd</string>
 				<key>subtext</key>
 				<string>(See the workflow’s “Readme” section for more details)</string>
 				<key>text</key>
@@ -215,15 +344,21 @@ fi</string>
 			<key>uid</key>
 			<string>E229E8F1-226C-4996-A83D-C181DAEFB268</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
 				<string>./pinadd "{{configureYourAccount}} {query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -232,7 +367,7 @@ fi</string>
 			<key>uid</key>
 			<string>AAB65932-12E4-45E8-940A-17B5D7EB07B3</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -259,11 +394,13 @@ fi</string>
 			<key>uid</key>
 			<string>1DE3F45E-76D0-48D6-A32E-3525D0FCD75A</string>
 			<key>version</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
@@ -276,6 +413,10 @@ source ./setTitleAndURL
 notification "Added as unread bookmark"
 
 ./pinadd .</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -284,69 +425,112 @@ notification "Added as unread bookmark"
 			<key>uid</key>
 			<string>F4113C0F-FB1F-41A5-BE53-DAB478C918FA</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Before using this workflow, you need to configure it with your Pinboard account by running “configurepinadd” followed by your api token and your preferred browser.
+	<string>Before using this workflow, you need to configure it with your Pinboard account by running `:configurepinadd` followed by your api token and your preferred browser.
 
-You can get the API token of you Pinboard account by visiting
-https://pinboard.in/settings/password
+![](https://i.imgur.com/6Wi0mXb.png)
 
-Your preferred browser may be one of
-Safari, Webkit, Chrome, ChromeCanary, Chromium, or depends
-(“depends” uses the browser you have as the frontmost window, provided it’s one of the mentioned ones).
+You can get the API token of you Pinboard account by visiting https://pinboard.in/settings/password
 
-An example configuration would be
-configurepinadd username:HSJWJK2HHSKI14QPDOIK safari</string>
+Your preferred browser may be one of Safari, Webkit, Chrome, ChromeCanary, Chromium, or depends (“depends” uses the browser you have as the frontmost window, provided it’s one of the mentioned ones).
+
+An example configuration would be: `configurepinadd username:HSJWJK2HHSKI14QPDOIK safari`
+
+When you’re all set, call `pin` followed by your tags and/or description — both are optional, and descriptions must be preceded by `// ` (two forward slashes and a space). Pick if it should be added as a regular bookmark or as a private one (this is important, as it’ll trump your default options), and you’re done.
+
+![](http://imgur.com/lqt0ZnW.png)
+
+The title of the bookmark will be the title of the page.
+ 
+You can also precede your tags with `.` (a single period), and it will add the bookmark as unread.
+
+![](http://imgur.com/79mgk9O.png)
+
+There’s also a hotkey you can setup to quickly add bookmaks as unread (without any tags or description).
+
+If adding a bookmark fails for any reason (for example, if the connection drops), you’ll get a notification and a `PinAddRetry.command` file will be added to your Desktop (if it happens multiple times, it’ll add an entry for each failed attempt). You can double-click this file at a later time to run it, and retry adding the bookmarks.</string>
 	<key>uidata</key>
 	<dict>
 		<key>147225F5-C2E2-4FE1-AACF-B43D4F9394C2</key>
 		<dict>
+			<key>xpos</key>
+			<integer>220</integer>
 			<key>ypos</key>
-			<real>10</real>
+			<integer>10</integer>
 		</dict>
 		<key>1DE3F45E-76D0-48D6-A32E-3525D0FCD75A</key>
 		<dict>
+			<key>xpos</key>
+			<integer>80</integer>
 			<key>ypos</key>
-			<real>490</real>
+			<integer>490</integer>
 		</dict>
 		<key>41A5A177-9A68-4BE7-870A-2F6797AC2464</key>
 		<dict>
+			<key>xpos</key>
+			<integer>220</integer>
 			<key>ypos</key>
-			<real>250</real>
+			<integer>250</integer>
 		</dict>
 		<key>81A6DF13-548C-431D-9624-F1B2D7DBCA78</key>
 		<dict>
+			<key>xpos</key>
+			<integer>420</integer>
 			<key>ypos</key>
-			<real>250</real>
+			<integer>250</integer>
+		</dict>
+		<key>988412F7-52A3-4F42-BED1-3724583DED53</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>610</integer>
+			<key>ypos</key>
+			<integer>190</integer>
 		</dict>
 		<key>AAB65932-12E4-45E8-940A-17B5D7EB07B3</key>
 		<dict>
+			<key>xpos</key>
+			<integer>420</integer>
 			<key>ypos</key>
-			<real>370</real>
+			<integer>370</integer>
 		</dict>
 		<key>E229E8F1-226C-4996-A83D-C181DAEFB268</key>
 		<dict>
+			<key>xpos</key>
+			<integer>220</integer>
 			<key>ypos</key>
-			<real>370</real>
+			<integer>370</integer>
 		</dict>
 		<key>EB540A71-1528-4CD8-BF49-FF90C76826DB</key>
 		<dict>
+			<key>xpos</key>
+			<integer>220</integer>
 			<key>ypos</key>
-			<real>130</real>
+			<integer>130</integer>
 		</dict>
 		<key>EDD912EA-404B-4820-BFCB-02B5A7CAD013</key>
 		<dict>
+			<key>xpos</key>
+			<integer>420</integer>
 			<key>ypos</key>
-			<real>130</real>
+			<integer>130</integer>
 		</dict>
 		<key>F4113C0F-FB1F-41A5-BE53-DAB478C918FA</key>
 		<dict>
+			<key>xpos</key>
+			<integer>420</integer>
 			<key>ypos</key>
-			<real>490</real>
+			<integer>490</integer>
 		</dict>
 	</dict>
+	<key>version</key>
+	<string>1.0.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
