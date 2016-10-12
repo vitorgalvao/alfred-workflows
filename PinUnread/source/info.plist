@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.vitorgalvao.alfred.pinunread</string>
+	<key>connections</key>
+	<dict>
+		<key>3DB86996-958C-4655-8079-9B10E65243D5</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>5A99239F-CE3C-43BC-B930-B2B2A52F8438</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>45660886-4591-4FD2-B13C-B3CEEF023E38</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>A4E409C5-FC96-4029-9DBA-413ACC34AEC0</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>489CDD9D-C887-46DA-8D02-96BEDAB6015A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>45660886-4591-4FD2-B13C-B3CEEF023E38</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>D7CD0455-C27A-4021-B033-05D88CB54327</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Copy URL to the clipboard</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>5A99239F-CE3C-43BC-B930-B2B2A52F8438</key>
+		<array/>
+		<key>D7CD0455-C27A-4021-B033-05D88CB54327</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>A4E409C5-FC96-4029-9DBA-413ACC34AEC0</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Vítor Galvão</string>
+	<key>description</key>
+	<string>Open and manage your Pinboard “toread” bookmarks</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>PinUnread</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>pun</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Getting your unread bookmarks…</string>
+				<key>script</key>
+				<string>source ./workflowHandler.sh
+
+IFS=$'\n'
+
+if [[ ! -d "$(getDataDir)" ]]; then
+cat &lt;&lt; EOF
+	&lt;?xml version='1.0'?&gt;&lt;items&gt;
+	  &lt;item uid='Configure PinAdd Warning' valid='no'&gt;
+	    &lt;title&gt;Your account is not yet configured&lt;/title&gt;
+	    &lt;subtitle&gt;run configurepinunread to set it&lt;/subtitle&gt;
+	    &lt;icon&gt;icon.png&lt;/icon&gt;
+	  &lt;/item&gt;
+	&lt;/items&gt;
+EOF
+else
+	unreaditems="$(getDataDir)/unreaditems.txt"
+	user="$(getPref user 1)"
+	secret="$(getPref secret 1)"
+
+	if [[ -z $(find "${unreaditems}" -mmin -5) ]] || [[ ! -f "${unreaditems}" ]] || [[ ! -s "${unreaditems}" ]]; then
+		curl --silent "https://feeds.pinboard.in/rss/secret:${secret}/u:${user}/toread/" | grep '&lt;title&gt;\|&lt;link&gt;' | sed '1d;2d' | perl -pe 's/^\s+|\s+$//;s/^&lt;title&gt;(.*)&lt;\/title&gt;\n/\1,/;s/^&lt;link&gt;(.*)&lt;\/link&gt;/\1/' &gt; "${unreaditems}"
+	fi
+
+	echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
+	for item in $(grep -in ".*{query}.*" "${unreaditems}"); do
+		line="$(echo ${item} | sed 's/:.*//')"
+		title="$(echo ${item} | perl -pe 's/(?:.*?):(.*),.*/\1/')"
+		url="$(echo ${item} | sed 's/.*,//')"
+		echo "&lt;item uuid='${line}' arg='${line}' valid='yes'&gt;"
+		echo "&lt;title&gt;${title}&lt;/title&gt;"
+		echo "&lt;subtitle&gt;${url}&lt;/subtitle&gt;"
+		echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
+		echo "&lt;/item&gt;"
+	done
+	echo "&lt;/items&gt;"
+fi</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Open and manage your Pinboard “toread” bookmarks</string>
+				<key>title</key>
+				<string>PinUnread</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>489CDD9D-C887-46DA-8D02-96BEDAB6015A</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>./pinunread read {query}</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>45660886-4591-4FD2-B13C-B3CEEF023E38</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>readonly local_file='info.plist'
+readonly remote_file="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
+readonly workflow_url="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/${alfred_workflow_name}.alfredworkflow"
+readonly workflow_type='workflow'
+frequency_check='15'
+
+# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED UNLESS YOU KNOW WHAT YOU ARE DOING
+function abort {
+  echo "${1}" 1&gt;&amp;2
+  exit 1
+}
+
+function url_exists {
+  if curl --silent --location --output /dev/null --fail --range 0-0 "${1}"; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+function notification {
+  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
+
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+  else
+    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  fi
+}
+
+# Local sanity checks
+[[ ! -f "${local_file}" ]] &amp;&amp; abort "'local_file' ("${local_file}") appears to not point to an existing file."
+[[ ! "${workflow_type}" =~ ^(workflow|page)$ ]] &amp;&amp; abort "'workflow_type' ("${workflow_type}") needs to be one of 'workflow' or 'page'."
+[[ ! "${frequency_check}" =~ ^[0-9]+$ ]] &amp;&amp; abort "'frequency_check' ("${frequency_check}") appears to not be a number."
+
+# Check for updates
+if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
+  if ! url_exists "${remote_file}"; then abort "'remote_file' ("${remote_file}") appears to not be reachable."; fi # Remote sanity check
+  
+  readonly tmp_file="$(mktemp)"
+  curl --silent --location --output "${tmp_file}" "${remote_file}"
+
+  if [[ "$(diff "${local_file}" "${tmp_file}")" ]]; then
+    if [[ "${workflow_type}" == 'page' ]]; then
+      notification 'Opening download page…'
+      open "${workflow_url}"
+    else
+      if url_exists "${workflow_url}"; then
+        notification 'Downloading and installing…'
+        curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${workflow_url}"
+        open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
+      else
+        abort "'workflow_url' ("${workflow_url}") appears to not be reachable."
+      fi # url_exists
+    fi # workflow_type
+  else
+    touch "${local_file}" # Reset timer by touching local file
+  fi # diff
+fi #find</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>A4E409C5-FC96-4029-9DBA-413ACC34AEC0</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>./pinunread copy {query}</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>D7CD0455-C27A-4021-B033-05D88CB54327</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>:configurepinunread</string>
+				<key>subtext</key>
+				<string>your-api-token your-preferred-action (see the “Readme” info for more details)</string>
+				<key>text</key>
+				<string>Configure PinUnread</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>3DB86996-958C-4655-8079-9B10E65243D5</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>source ./workflowHandler.sh
+
+token="$(cut -d " " -f1 &lt;(echo "{query}"))"
+action="$(cut -d " " -f2 &lt;(echo "{query}"))"
+
+user=$(echo "${token}" | sed 's/:.*//')
+secret=$(curl --silent "https://api.pinboard.in/v1/user/secret/?auth_token=${token}" | grep 'result' | sed 's/&lt;result&gt;\(.*\)&lt;\/result&gt;/\1/')
+
+setPref user "${user}" 1
+setPref token "${token}" 1
+setPref secret "${secret}" 1
+setPref action "${action}" 1</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>5A99239F-CE3C-43BC-B930-B2B2A52F8438</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>Before using this workflow, you need to configure it with your Pinboard account by running `:configurepinunread` followed by your api token and your preferred action.
+
+![](https://i.imgur.com/zjaHg9t.png)
+
+You can get the API token of you Pinboard account by visiting https://pinboard.in/settings/password.
+
+Your preferred action may be one of `delete`, `archive`, or `keep`. `delete` will remove the bookmark from your account, after you act (open or copy the link) on it; `archive` will mark the bookmark as read; `keep` will leave it untouched.
+
+An example configuration would be: `configurepinadd username:HSJWJK2HHSKI14QPDOIK delete`
+
+When you’re all set, call `pun`, and your unread bookmarks will be displayed. Press ↩ on one to open it in your default browser or ⌘+↩ to copy the link to your clipboard; the action you picked while configuring will take place in the background.
+
+![](http://imgur.com/0wfAKMD.png)
+
+You may also type something after `pun` (don’t add a space, just type), to filter the bookmarks.
+
+![](http://imgur.com/12fBicE.png)</string>
+	<key>uidata</key>
+	<dict>
+		<key>3DB86996-958C-4655-8079-9B10E65243D5</key>
+		<dict>
+			<key>xpos</key>
+			<integer>120</integer>
+			<key>ypos</key>
+			<integer>250</integer>
+		</dict>
+		<key>45660886-4591-4FD2-B13C-B3CEEF023E38</key>
+		<dict>
+			<key>xpos</key>
+			<integer>320</integer>
+			<key>ypos</key>
+			<integer>10</integer>
+		</dict>
+		<key>489CDD9D-C887-46DA-8D02-96BEDAB6015A</key>
+		<dict>
+			<key>xpos</key>
+			<integer>120</integer>
+			<key>ypos</key>
+			<integer>10</integer>
+		</dict>
+		<key>5A99239F-CE3C-43BC-B930-B2B2A52F8438</key>
+		<dict>
+			<key>xpos</key>
+			<integer>320</integer>
+			<key>ypos</key>
+			<integer>250</integer>
+		</dict>
+		<key>A4E409C5-FC96-4029-9DBA-413ACC34AEC0</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>530</integer>
+			<key>ypos</key>
+			<integer>10</integer>
+		</dict>
+		<key>D7CD0455-C27A-4021-B033-05D88CB54327</key>
+		<dict>
+			<key>xpos</key>
+			<integer>320</integer>
+			<key>ypos</key>
+			<integer>130</integer>
+		</dict>
+	</dict>
+	<key>version</key>
+	<string>1.0.0</string>
+	<key>webaddress</key>
+	<string>http://vitorgalvao.com/</string>
+</dict>
+</plist>
