@@ -129,7 +129,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>8FBC95B8-A15A-407C-8140-0C45FA2A3036</string>
+				<string>E3A6855B-21B8-4DE9-9ECE-69928C831A47</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -517,11 +517,11 @@ move_list_item "${line_number}"</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>readonly local_file='info.plist' # Local file to compare to remote_file
-readonly remote_file='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/WatchList/info.plist' # Remote file (URL) to compare to local_file
-readonly workflow_url='https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.watchlist/watchlist.alfredworkflow' # URL to directly download workflow or workflow download page
-readonly workflow_type='workflow' # Either 'workflow' if workflow_url points to direct download, or 'page' if it points to download page
-readonly frequency_check='15' # Days between update checks
+				<string>readonly local_file='info.plist'
+readonly remote_file="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
+readonly workflow_url="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/${alfred_workflow_name}.alfredworkflow"
+readonly workflow_type='workflow'
+frequency_check='15'
 
 # FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED UNLESS YOU KNOW WHAT YOU ARE DOING
 function abort {
@@ -547,14 +547,15 @@ function notification {
   fi
 }
 
-# Sanity checks
-[[ ! -f "${local_file}" ]] &amp;&amp; abort '"local_file" appears to not point to an existing file'
-if ! url_exists "${remote_file}"; then abort '"remote_file" appears to not be reachable'; fi
-[[ ! "${workflow_type}" =~ ^(workflow|page)$ ]] &amp;&amp; abort '"workflow_type" needs to be one of "workflow" or "page"'
-[[ ! "${frequency_check}" =~ ^[0-9]+$ ]] &amp;&amp; abort '"frequency_check" appears to not be a number'
+# Local sanity checks
+[[ ! -f "${local_file}" ]] &amp;&amp; abort "'local_file' ("${local_file}") appears to not point to an existing file."
+[[ ! "${workflow_type}" =~ ^(workflow|page)$ ]] &amp;&amp; abort "'workflow_type' ("${workflow_type}") needs to be one of 'workflow' or 'page'."
+[[ ! "${frequency_check}" =~ ^[0-9]+$ ]] &amp;&amp; abort "'frequency_check' ("${frequency_check}") appears to not be a number."
 
 # Check for updates
 if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
+  if ! url_exists "${remote_file}"; then abort "'remote_file' ("${remote_file}") appears to not be reachable."; fi # Remote sanity check
+  
   readonly tmp_file="$(mktemp)"
   curl --silent --location --output "${tmp_file}" "${remote_file}"
 
@@ -568,12 +569,12 @@ if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
         curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${workflow_url}"
         open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
       else
-        abort '"workflow_url" appears to not be reachable'
+        abort "'workflow_url' ("${workflow_url}") appears to not be reachable."
       fi # url_exists
     fi # workflow_type
+  else
+    touch "${local_file}" # Reset timer by touching local file
   fi # diff
-else
-  touch "${local_file}" # Reset timer by touching local file
 fi #find</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
@@ -585,7 +586,7 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>8FBC95B8-A15A-407C-8140-0C45FA2A3036</string>
+			<string>E3A6855B-21B8-4DE9-9ECE-69928C831A47</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -973,23 +974,23 @@ open "${url}"</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>View and manage a list of files and video streams, at your own pace. It was done with video in mind, but works with just about any file or directory.
+	<string>View and manage a list of files and video streams at your own pace. This workflow was built with video in mind but works with just about any file or directory.
  
-Very often we have series of videos and streams that we’d like to watch but not necessarily keep after, but keeping track of them all and which we’ve already seen (and are thus safe to get rid of), can be a chore.
+We often have series of videos and streams that we’d like to watch but not necessarily keep after, but keeping track of them all and which we’ve already seen (and are thus safe to delete), can be a chore.
  
-To use, select in the Finder the files (or directories) you wish to add to your list, and apply the file action `Add to watchlist`. Every time you do this, the new files will be appended to the list. You then have some options you can pick from, all starting with `wl`.
+Select in the Finder the files (or directories) you wish to add to your list, and apply the file action `Add to watchlist`. Every time you do this, the new files will be prepended to the list. You then have some options you can pick from, all starting with `wl`.
 
 ![](http://i.imgur.com/rN3bl4u.png)
 
-If you choose any of the options that let you pick from a list (`wlp`, `wlu`, and `wls`) and continue typing after it (don’t put a space, just continue typing), you’ll start filtering — names, file sizes, durations, and a few more — so you can quickly find the ones you want.
+If you choose any of the options that let you pick from a list (`wlp`, `wlu`, and `wls`) and continue typing after it (don’t add a space, just type), you’ll start filtering — names, file sizes, durations, and a few more — so you can quickly find the ones you want.
 
 ![](http://i.imgur.com/F3CuxuD.png)
 
-Items starting with a ≈ are streams. They also show no file size (since they aren’t taking up any) and show the link they were taken from, as opposed to a location on disk. To be able to stream video, you need to have either [mpv](http://mpv.io/) or [VLC](http://www.videolan.org/vlc/index.html).
+Items starting with a ≈ are streams. They also show no file size (since they aren’t taking up any space locally) and show the link they were taken from, as opposed to a location on disk. To be able to stream video, you need either [mpv](http://mpv.io/) or [VLC](http://www.videolan.org/vlc/index.html).
 
 ![](http://i.imgur.com/HTe0cH9.png)
 
-Sharing is particularly useful when you want to send the original link of something you watched to someone else, or to save it somewhere. It also gets it from downloaded files, if they have that metadata ([DownVid](http://www.alfredforum.com/topic/2045-downvid-%E2%80%94-download-videos-from-popular-sources/), for example, adds it to downloaded videos). Use ⌘ to open the url in the default browser, as opposed to copying to the clipboard.
+Sharing is particularly useful when you want to send the original link of something you watched to someone else, or to save it somewhere. Those are extracter from downloaded files, if they have that metadata ([DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownVid), for example, adds it to downloaded videos). Use ⌘ to open the url in the default browser, as opposed to copying to the clipboard.
 
 ![](http://i.imgur.com/pleW6Qs.png)
 
@@ -999,7 +1000,7 @@ You can also control parts of the workflow with [Alfred Remote](http://www.alfre
 
 ![](http://i.imgur.com/ylgLbGJ.png)
 
-If you use [DownVid](http://www.alfredforum.com/topic/2045-downvid-%E2%80%94-download-videos-from-popular-sources/), it has an option to add the downloaded video files directly to your watchlist.</string>
+If you use [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownVid), it has an option to add the downloaded video files directly to your watchlist.</string>
 	<key>uidata</key>
 	<dict>
 		<key>006E81EE-A542-4616-AE6B-5262EF4E59C5</key>
@@ -1107,17 +1108,6 @@ If you use [DownVid](http://www.alfredforum.com/topic/2045-downvid-%E2%80%94-dow
 			<key>ypos</key>
 			<real>1090</real>
 		</dict>
-		<key>8FBC95B8-A15A-407C-8140-0C45FA2A3036</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>note</key>
-			<string>OneUpdater</string>
-			<key>xpos</key>
-			<integer>500</integer>
-			<key>ypos</key>
-			<integer>490</integer>
-		</dict>
 		<key>A0CB4B50-6085-4C77-BA3D-435ABE469ECE</key>
 		<dict>
 			<key>xpos</key>
@@ -1167,9 +1157,20 @@ If you use [DownVid](http://www.alfredforum.com/topic/2045-downvid-%E2%80%94-dow
 			<key>ypos</key>
 			<real>370</real>
 		</dict>
+		<key>E3A6855B-21B8-4DE9-9ECE-69928C831A47</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>500</integer>
+			<key>ypos</key>
+			<integer>490</integer>
+		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.11.1</string>
+	<string>1.11.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
