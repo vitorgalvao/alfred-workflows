@@ -114,11 +114,6 @@ Do a right-click on Finder files, with the keyboard
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/RightClick) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RightClick/RightClick.alfredworkflow)
 
-### RottenMovies <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RottenMovies/source/icon.png' width='60' align='center' alt='RottenMovies icon'>
-Check movie scores from Rotten Tomatoes
-
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/RottenMovies) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RottenMovies/RottenMovies.alfredworkflow)
-
 ### RunCommand <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RunCommand/source/icon.png' width='60' align='center' alt='RunCommand icon'>
 Run shell commands without opening a terminal
 
