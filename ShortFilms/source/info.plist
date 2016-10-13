@@ -362,7 +362,7 @@ fi</string>
 
 Run `shorts` and it’ll download and show a list of the latest films. Pick one and it’ll start streaming.
 
-![](http://i.imgur.com/lSdFrwH.png)
+![](https://i.imgur.com/2y9yXFU.png)
 
 Short of the Week publishes a new short every day and building the initial list takes a few seconds, so after the initial download the list is cached for one day. If you want the list ready at all times without having to wait, run `:shortfilmslaunchd` to install (or later remove) a `launchd` service to seamlessly update the list every day at 2PM.
 
@@ -380,49 +380,49 @@ Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` 
 			<key>xpos</key>
 			<integer>340</integer>
 			<key>ypos</key>
-			<integer>160</integer>
+			<integer>140</integer>
 		</dict>
 		<key>325E0A83-2F46-4696-80F4-7D41608F65DC</key>
 		<dict>
 			<key>xpos</key>
 			<integer>130</integer>
 			<key>ypos</key>
-			<integer>40</integer>
+			<integer>20</integer>
 		</dict>
 		<key>5777145B-F30B-4A39-8BB6-AA07F81401E1</key>
 		<dict>
 			<key>xpos</key>
 			<integer>340</integer>
 			<key>ypos</key>
-			<integer>40</integer>
+			<integer>20</integer>
 		</dict>
 		<key>97081E49-C4BE-4918-A447-B006C76E98FD</key>
 		<dict>
 			<key>xpos</key>
 			<integer>340</integer>
 			<key>ypos</key>
-			<integer>310</integer>
+			<integer>290</integer>
 		</dict>
 		<key>F52ABFBA-FC4F-400F-BF1B-AAF7B723052C</key>
 		<dict>
 			<key>xpos</key>
 			<integer>130</integer>
 			<key>ypos</key>
-			<integer>440</integer>
+			<integer>420</integer>
 		</dict>
 		<key>F54CC291-7B66-4D5A-A599-BD512EC630DD</key>
 		<dict>
 			<key>xpos</key>
 			<integer>130</integer>
 			<key>ypos</key>
-			<integer>310</integer>
+			<integer>290</integer>
 		</dict>
 		<key>F622CD2F-A79C-41E3-91E5-1BF5B66F3F52</key>
 		<dict>
 			<key>xpos</key>
 			<integer>340</integer>
 			<key>ypos</key>
-			<integer>440</integer>
+			<integer>420</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
@@ -431,7 +431,7 @@ Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` 
 		<string>/usr/local/bin</string>
 	</dict>
 	<key>version</key>
-	<string>1.1.1</string>
+	<string>1.2.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

@@ -14,16 +14,28 @@ if !File.exist?(list_file) || (((Time.now - File.mtime(list_file)) / (24 * 3600)
   script_filter_items = []
 
   # grab link from items, remove "/news/" links, load info from links into array
-  site_feed.items.map(&:link).reject { |link| link.match('/news/') }.each do |link|
-    page = Nokogiri::HTML(open(link))
+  site_feed.items.map(&:link).reject { |link| link.match('/news/') }.each do |item|
+    # get details
+    page = Nokogiri::HTML(open(item))
     url = page.at('.embed-wrapper').attr('data-src')
     title = page.at('h1.title').text
+    image = 'https:' + page.at('.bar-hidden').at('img').attr('src')
     details = page.at('.details')
     genre = details.at('span').text
     author = details.css('span')[1].text.strip
     duration = details.at('time').text
 
-    script_filter_items.push(title: title, subtitle: "#{genre} / #{author} / #{duration}", arg: url)
+    # set banner image as icon
+    downloaded_image = "#{ENV['alfred_workflow_cache']}/#{File.basename(image)}"
+    unless File.exist?(downloaded_image) # do not redownload or resize old images
+      File.write(downloaded_image, open(image).read)
+      image_width = %x(sips --getProperty pixelWidth "#{downloaded_image}" | tail -1 | awk '{print $2}').to_i
+      image_height = %x(sips --getProperty pixelHeight "#{downloaded_image}" | tail -1 | awk '{print $2}').to_i
+      smaller_dimension = (image_width > image_height ? image_height : image_width).to_s
+      system('sips', '--cropToHeightWidth', smaller_dimension, smaller_dimension, downloaded_image)
+    end
+
+    script_filter_items.push(title: title, subtitle: "#{genre} / #{duration} / #{author}", icon: { path: downloaded_image }, arg: url)
   end
 
   File.write(list_file, { items: script_filter_items }.to_json)
