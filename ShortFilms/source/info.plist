@@ -431,7 +431,7 @@ Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` 
 		<string>/usr/local/bin</string>
 	</dict>
 	<key>version</key>
-	<string>1.2.0</string>
+	<string>1.2.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
