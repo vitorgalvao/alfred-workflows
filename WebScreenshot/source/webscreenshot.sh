@@ -13,9 +13,10 @@ notification() {
 }
 
 check_failure() {
-  if [[ "$?" != '0' ]]; then
+  if [[ "$?" -ne 0 ]]; then
     afplay /System/Library/Sounds/Funk.aiff &
     notification 'Screenshot not uploaded.'
+    exit 1
   fi
 }
 
@@ -51,10 +52,11 @@ copy_image() {
 upload_file() {
   local screenshot_file="${1}"
   bash "${imgur_uploader_exec}" "${screenshot_file}" 2>> "${delete_url_file}" | tr -d '\n' | pbcopy
-  echo "└ Uploaded on $(date)" >> ${delete_url_file}
 
   check_failure
   show_success
+
+  echo "└ Uploaded on $(date)" >> ${delete_url_file}
 }
 
 if [[ "${1}" == 'take_screenshot' ]]; then
