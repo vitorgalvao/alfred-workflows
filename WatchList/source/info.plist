@@ -259,9 +259,7 @@
 				<string>source ./watchlist_functions.sh
 use_list towatch
 
-if [[ ! -d "${non_volatile_prefs_dir}" ]]; then
-  mkdir "${non_volatile_prefs_dir}"
-fi
+[[ ! -d "${alfred_workflow_data}" ]] &amp;&amp; mkdir "${alfred_workflow_data}"
 
 files_to_add=$(echo "{query}" | perl -pe 's/\t/\n/g' | tail -r)
 
@@ -491,27 +489,6 @@ move_list_item "${line_number}"</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argument</key>
-				<string>1</string>
-				<key>argumenttype</key>
-				<integer>3</integer>
-				<key>triggerid</key>
-				<string>playnext</string>
-				<key>triggername</key>
-				<string>Play next</string>
-				<key>workflowonly</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.remote</string>
-			<key>uid</key>
-			<string>A9B03347-978A-4547-9F09-AC992131AEFB</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -589,6 +566,27 @@ fi #find</string>
 			<string>E3A6855B-21B8-4DE9-9ECE-69928C831A47</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>1</string>
+				<key>argumenttype</key>
+				<integer>3</integer>
+				<key>triggerid</key>
+				<string>playnext</string>
+				<key>triggername</key>
+				<string>Play next</string>
+				<key>workflowonly</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.remote</string>
+			<key>uid</key>
+			<string>A9B03347-978A-4547-9F09-AC992131AEFB</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1170,7 +1168,7 @@ If you use [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.11.2</string>
+	<string>1.11.3</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
