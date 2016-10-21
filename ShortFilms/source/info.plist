@@ -287,20 +287,29 @@ fi #find</string>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
-				<string>cat &lt;&lt; EOF
-{"items": [
-  {
-    "title": "Install ShortFilms launchd service",
-    "subtitle": "Films list will update once a day automatically",
-	"arg": "install"
-  },
-  {
-    "title": "Remove ShortFilms launchd service",
-    "subtitle": "Stop auto-updating films list",
-	"arg": "uninstall"
-  }
-]}
-EOF</string>
+				<string>plist_file="${HOME}/Library/LaunchAgents/com.vitorgalvao.launchd.alfredshortfilmsupdate.plist"
+
+if [[ -f "${plist_file}" ]]; then
+  echo '
+    {"items": [
+      {
+        "title": "Remove ShortFilms launchd service",
+        "subtitle": "Stop auto-updating films list",
+	    "arg": "uninstall"
+      }
+    ]}
+  '
+else
+  echo '
+    {"items": [
+      {
+        "title": "Install ShortFilms launchd service",
+        "subtitle": "Films list will update once a day automatically",
+        "arg": "install"
+      },
+    ]}
+  '
+fi</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -331,16 +340,24 @@ EOF</string>
 				<key>script</key>
 				<string>plist_file='com.vitorgalvao.launchd.alfredshortfilmsupdate.plist'
 launchagents_dir="${HOME}/Library/LaunchAgents"
+installed_plist_file="${launchagents_dir}/${plist_file}"
 mkdir -p "${launchagents_dir}"
 
 action="${1}"
 
 if [[ "${action}" == 'install' ]]; then
-  cp "${plist_file}" "${launchagents_dir}"
-  launchctl load -w "${launchagents_dir}/${plist_file}"
+  cp "${plist_file}" "${installed_plist_file}"
+
+  # Use ruby to calculate date difference, since it’s less prone to errors.
+  readonly renew_hour=$(ruby -e 'require "Time"
+  goal_time = Time.utc(1970,1,1,14,00,00) # Short of the Week seems to update at about 14:00 UTC.
+  puts (goal_time + Time.now.utc_offset).hour')
+  /usr/libexec/PlistBuddy -c "Set StartCalendarInterval:Hour ${renew_hour}" "${installed_plist_file}" # Change plist to use correct renew time according to current time zone
+  
+  launchctl load -w "${installed_plist_file}"
 else
-  launchctl unload -w "${launchagents_dir}/${plist_file}"
-  rm "${launchagents_dir}/${plist_file}"
+  launchctl unload -w "${installed_plist_file}"
+  rm "${installed_plist_file}"
 fi</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
@@ -364,9 +381,9 @@ Run `shorts` and it’ll download and show a list of the latest films. Pick one 
 
 ![](https://i.imgur.com/2y9yXFU.png)
 
-Short of the Week publishes a new short every day and building the initial list takes a few seconds, so after the initial download the list is cached for one day. If you want the list ready at all times without having to wait, run `:shortfilmslaunchd` to install (or later remove) a `launchd` service to seamlessly update the list every day at 2PM.
+Short of the Week publishes a new short every day and building the initial list takes a few seconds, so after the initial download the list is cached for one day. If you want the list ready at all times without having to wait, run `:shortfilmslaunchd` to install (or later remove, running the same command) a `launchd` service to seamlessly update the list every day close to the time Short of the Week updates their website.
 
-![](http://i.imgur.com/XwpXJSY.png)
+![](https://i.imgur.com/tzm3M3h.png)
 
 Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` takes precedence). For `mpv`, `youtube-dl` is a requirement; use the `youtube_dl_path` Workflow Environment Variable to set its path, if needed.</string>
 	<key>uidata</key>
@@ -431,7 +448,7 @@ Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` 
 		<string>/usr/local/bin</string>
 	</dict>
 	<key>version</key>
-	<string>1.2.1</string>
+	<string>1.3.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
