@@ -77,6 +77,10 @@
 				<integer>0</integer>
 				<key>argument</key>
 				<integer>1</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
 				<key>hotkey</key>
 				<integer>11</integer>
 				<key>hotmod</key>
@@ -261,7 +265,7 @@ All the code is in the script inside the workflow — it’s one line per substi
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.12.1</string>
+	<string>1.13.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

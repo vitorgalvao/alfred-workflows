@@ -1,8 +1,11 @@
 # read text from shell
 s = $stdin.read
 
-# remove trailing non-breaking space added automatically by forum software
+# remove trailing non-breaking space added automatically by IPBoard
 s = s.gsub / +$/, ''
+
+# bypass empty line collapsing done by IPBoard
+s = s.gsub /^$/, "\n"
 
 # horizontal rule
 s = s.gsub /^(- *|\* *){3,}$/, '[hr]'
