@@ -36,7 +36,7 @@ s = s.gsub /^>\s(.*)/, "[quote]\n\\1\n[/quote]"
 
 # code block
 ## with backticks
-s = s.gsub /```(.*?)```/m, '[code=auto:0]\1[/code]'
+s = s.gsub /```(.*?)```/m, '[code]\1[/code]'
 
 ## with spacing or tabs
 s = s.gsub /^\n(^ {4}|\t)/, "\n[code=auto:0]\n\\1" # beginning
