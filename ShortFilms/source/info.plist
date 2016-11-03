@@ -20,6 +20,16 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
+				<string>2EF753EF-6194-4420-9096-C6892565EC96</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Copy video link to clipboard.</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
 				<string>1A25374D-BC83-4437-952C-759D69E228D3</string>
 				<key>modifiers</key>
 				<integer>0</integer>
@@ -130,7 +140,7 @@ if [[ "$(mdfind kMDItemCFBundleIdentifier = io.mpv)" ]]; then
 elif [[ "$(mdfind kMDItemCFBundleIdentifier = org.videolan.vlc)" ]]; then
   video_player='vlc'
 else
-  warning 'You need either mpv or vlc, to stream a video.'
+  warning 'You need either mpv or vlc to stream the video.'
 fi
 
 open -a "${video_player}" "${1}"</string>
@@ -145,6 +155,23 @@ open -a "${video_player}" "${1}"</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>5777145B-F30B-4A39-8BB6-AA07F81401E1</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>2EF753EF-6194-4420-9096-C6892565EC96</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -377,7 +404,7 @@ fi</string>
 	<key>readme</key>
 	<string>Stream from a selection of short films, powered by [Short of the Week](https://www.shortoftheweek.com/).
 
-Run `shorts` and it’ll download and show a list of the latest films. Pick one and it’ll start streaming.
+Run `shorts` and it’ll download and show a list of the latest films. Pick one and it’ll start streaming. Alternatively, use ⌘ to copy its link to the clipboard.
 
 ![](https://i.imgur.com/2y9yXFU.png)
 
@@ -397,7 +424,14 @@ Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` 
 			<key>xpos</key>
 			<integer>340</integer>
 			<key>ypos</key>
-			<integer>140</integer>
+			<integer>280</integer>
+		</dict>
+		<key>2EF753EF-6194-4420-9096-C6892565EC96</key>
+		<dict>
+			<key>xpos</key>
+			<integer>340</integer>
+			<key>ypos</key>
+			<integer>150</integer>
 		</dict>
 		<key>325E0A83-2F46-4696-80F4-7D41608F65DC</key>
 		<dict>
@@ -418,28 +452,28 @@ Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` 
 			<key>xpos</key>
 			<integer>340</integer>
 			<key>ypos</key>
-			<integer>290</integer>
+			<integer>430</integer>
 		</dict>
 		<key>F52ABFBA-FC4F-400F-BF1B-AAF7B723052C</key>
 		<dict>
 			<key>xpos</key>
 			<integer>130</integer>
 			<key>ypos</key>
-			<integer>420</integer>
+			<integer>560</integer>
 		</dict>
 		<key>F54CC291-7B66-4D5A-A599-BD512EC630DD</key>
 		<dict>
 			<key>xpos</key>
 			<integer>130</integer>
 			<key>ypos</key>
-			<integer>290</integer>
+			<integer>430</integer>
 		</dict>
 		<key>F622CD2F-A79C-41E3-91E5-1BF5B66F3F52</key>
 		<dict>
 			<key>xpos</key>
 			<integer>340</integer>
 			<key>ypos</key>
-			<integer>420</integer>
+			<integer>560</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
@@ -448,7 +482,7 @@ Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` 
 		<string>/usr/local/bin</string>
 	</dict>
 	<key>version</key>
-	<string>1.3.0</string>
+	<string>1.4.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
