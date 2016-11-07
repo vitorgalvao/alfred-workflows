@@ -32,7 +32,7 @@ s = s.gsub /\*(\S.*?)\*/, '[i]\1[/i]'
 s = s.gsub /~~(.*)~~/, '[s]\1[/s]'
 
 # quote
-s = s.gsub /^>\s(.*)/, "[quote]\n\\1\n[/quote]"
+s = s.gsub /^>\s(.*)/, '[quote]\1[/quote]'
 
 # code block
 ## with backticks
