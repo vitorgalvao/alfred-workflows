@@ -39,9 +39,10 @@ function transfer {
 function kill_transfer {
   readonly local file_name="$(cat "${name_file}")"
 
-  # Kill upload script (to prevent notification showing success) and `curl` (to stop upload)
-  kill $(ps -A | grep 'bash uploadfile.sh upload' | awk '{print $1}')
-  kill $(ps -A | grep "curl.*${file_name}" | awk '{print $1}')
+  # Kill parent to prevent notification showing success and child to stop upload
+  parent_process="$(pgrep -f 'bash uploadfile.sh upload')"
+  oldest_child_process="$(pgrep -oP "${parent_process}")"
+  kill "${parent_process}" "${oldest_child_process}"
 
   # Play sound and show message
   afplay /System/Library/Sounds/Funk.aiff

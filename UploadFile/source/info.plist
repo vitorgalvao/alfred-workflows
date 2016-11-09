@@ -36,16 +36,6 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>407A6879-70A9-4E72-BAFF-43D3F41B7CED</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
 				<string>55E5D2C8-6F1C-416A-B7D8-C27393CF7485</string>
 				<key>modifiers</key>
 				<integer>1048576</integer>
@@ -79,29 +69,6 @@
 	<string>UploadFile</string>
 	<key>objects</key>
 	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>bash uploadfile.sh upload '{query}'</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>3444071E-B0B8-4C12-9699-210912A13E67</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -186,6 +153,29 @@ fi #find</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>bash uploadfile.sh upload '{query}'</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>3444071E-B0B8-4C12-9699-210912A13E67</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>acceptsmulti</key>
 				<false/>
 				<key>filetypes</key>
@@ -199,6 +189,29 @@ fi #find</string>
 			<string>DEA90A14-B8E3-469F-B314-4F347CF478B3</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>bash uploadfile.sh abort</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>55E5D2C8-6F1C-416A-B7D8-C27393CF7485</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -235,33 +248,64 @@ fi #find</string>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
-				<string>progress_file='/tmp/uploadfile_progress'
+				<string>queue_state="${state}"
+progress_file='/tmp/uploadfile_progress'
 name_file='/tmp/uploadfile_name'
 
 if [[ -f "${progress_file}" ]]; then
+  filename=$(cat "${name_file}")
+  progress=$(cat "${progress_file}" | perl -pe 's/.*\s//')
 
-filename=$(cat "${name_file}")
-progress=$(cat "${progress_file}" | perl -pe 's/.*\s//')
+  echo "
+    &lt;?xml version='1.0'?&gt;&lt;output&gt;
 
-cat &lt;&lt; EOF
-&lt;?xml version='1.0'?&gt;&lt;items&gt;
-  &lt;item uid='Upload progress' valid='yes'&gt;
-    &lt;title&gt;UploadFile progress&lt;/title&gt;
-    &lt;subtitle&gt;${progress} | &lt;![CDATA[${filename}]]&gt;&lt;/subtitle&gt;
-    &lt;icon&gt;icon.png&lt;/icon&gt;
-  &lt;/item&gt;
-&lt;/items&gt;
-EOF
+      &lt;rerun&gt;1&lt;/rerun&gt;
+
+      &lt;items&gt;
+        &lt;item valid='no'&gt;
+          &lt;title&gt;${alfred_workflow_name} Progress&lt;/title&gt;
+          &lt;subtitle&gt;${progress} | &lt;![CDATA[$(basename "${filename}")]]&gt;&lt;/subtitle&gt;
+          &lt;mod key='cmd' valid='yes' /&gt;
+          &lt;icon&gt;icon.png&lt;/icon&gt;
+        &lt;/item&gt;
+      &lt;/items&gt;
+    &lt;/output&gt;
+  "
 else
-cat &lt;&lt; EOF
-&lt;?xml version='1.0'?&gt;&lt;items&gt;
-  &lt;item uid='Upload progress' valid='no'&gt;
-    &lt;title&gt;UploadFile progress&lt;/title&gt;
-    &lt;subtitle&gt;There is currently no upload in progress&lt;/subtitle&gt;
-    &lt;icon&gt;icon.png&lt;/icon&gt;
-  &lt;/item&gt;
-&lt;/items&gt;
-EOF
+  if [[ -z "${queue_state}" ]]; then
+    echo "
+      &lt;?xml version='1.0'?&gt;&lt;output&gt;
+
+        &lt;rerun&gt;3&lt;/rerun&gt;
+        &lt;variables&gt;
+          &lt;variable name='state'&gt;stopped&lt;/variable&gt;
+        &lt;/variables&gt;
+
+        &lt;items&gt;
+          &lt;item valid='no'&gt;
+            &lt;title&gt;${alfred_workflow_name} Progress&lt;/title&gt;
+            &lt;subtitle&gt;Checking for uploads in queue…&lt;/subtitle&gt;
+            &lt;icon&gt;icon.png&lt;/icon&gt;
+          &lt;/item&gt;
+        &lt;/items&gt;
+      &lt;/output&gt;
+    "
+  else # ${state} == 'stopped'
+    echo "
+      &lt;?xml version='1.0'?&gt;&lt;output&gt;
+
+        &lt;rerun&gt;3&lt;/rerun&gt;
+
+        &lt;items&gt;
+          &lt;item valid='no'&gt;
+            &lt;title&gt;${alfred_workflow_name} Progress&lt;/title&gt;
+            &lt;subtitle&gt;All uploads finished!&lt;/subtitle&gt;
+            &lt;icon&gt;icon.png&lt;/icon&gt;
+          &lt;/item&gt;
+        &lt;/items&gt;
+      &lt;/output&gt;
+    "
+  fi
 fi</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
@@ -283,48 +327,6 @@ fi</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>externaltriggerid</key>
-				<string>upload_status</string>
-				<key>passinputasargument</key>
-				<false/>
-				<key>passvariables</key>
-				<false/>
-				<key>workflowbundleid</key>
-				<string>self</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.callexternaltrigger</string>
-			<key>uid</key>
-			<string>407A6879-70A9-4E72-BAFF-43D3F41B7CED</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>bash uploadfile.sh abort</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>55E5D2C8-6F1C-416A-B7D8-C27393CF7485</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
 	</array>
 	<key>readme</key>
 	<string>Upload files to [transfer.sh](https://transfer.sh/) directly from Alfred.
@@ -337,7 +339,7 @@ You can check your upload progress with `ufp`.
 
 ![](https://i.imgur.com/2WU6Quf.png)
 
-Press ↩ to refresh the upload progress, or ⌘↩ to cancel the transfer.
+It will auto-refresh the progress. Press ⌘↩ to cancel the transfer.
 
 You’ll get notifications of the various phases, with a sound when it’s complete (or canceled). The download URL will be copied to your clipboard.
 
@@ -351,19 +353,12 @@ You’ll get notifications of the various phases, with a sound when it’s compl
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
-		<key>407A6879-70A9-4E72-BAFF-43D3F41B7CED</key>
-		<dict>
-			<key>xpos</key>
-			<integer>450</integer>
-			<key>ypos</key>
-			<integer>130</integer>
-		</dict>
 		<key>55E5D2C8-6F1C-416A-B7D8-C27393CF7485</key>
 		<dict>
 			<key>xpos</key>
 			<integer>450</integer>
 			<key>ypos</key>
-			<integer>250</integer>
+			<integer>130</integer>
 		</dict>
 		<key>6EBC28E3-A781-4D79-9DE6-6B172EF01132</key>
 		<dict>
@@ -399,7 +394,7 @@ You’ll get notifications of the various phases, with a sound when it’s compl
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
