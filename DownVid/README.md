@@ -8,7 +8,7 @@ If you have [WatchList](https://github.com/vitorgalvao/alfred-workflows/tree/mas
 
 Run with the ⌘ modifier, and the full playlist the video is part of will be downloaded.
 
-To see the download progress, run `dvp`. Actioning this option will refresh its state. Actioning it with the ⌘ modifier will restart the current download (adding it to the back of the queue), while actioning with ⌃ will abort the current download.
+To see the download progress, run `dvp`. It will auto-refresh the progress. Actioning it with the ⌘ modifier will restart the current download (adding it to the back of the queue), while actioning with ⌃ will abort the current download.
 
 ![](https://i.imgur.com/Za25OhO.png)
 

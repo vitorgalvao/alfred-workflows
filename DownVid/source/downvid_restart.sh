@@ -13,4 +13,7 @@ else
   rm '/tmp/downvidprogress'
 fi
 
-kill $(ps -A | grep 'downvid.sh' | awk '{print $1}')
+# kill parent to prevent notification showing success and child to stop upload
+parent_process="$(pgrep -f 'downvid.sh')"
+child_process="$(pgrep -P "${parent_process}")"
+kill "${parent_process}" "${child_process}"
