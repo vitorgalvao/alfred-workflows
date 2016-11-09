@@ -6,6 +6,45 @@
 	<string>com.vitorgalvao.alfred.machineclean</string>
 	<key>connections</key>
 	<dict>
+		<key>5E281C93-A16E-4148-9C7B-0E4CA2276285</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>AB91F541-9078-484A-BB89-AB335E6995D2</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>7CC0213F-BC65-43B3-9675-BBA23E04881C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>36D260D9-DD1B-4AE7-953C-732219953B72</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>AB91F541-9078-484A-BB89-AB335E6995D2</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>FAD30B1C-1909-4F9C-87E9-AEEE5C427502</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>D9245730-36BC-415E-BF86-FB40B9A7A25F</key>
 		<array>
 			<dict>
@@ -18,7 +57,19 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>7CC0213F-BC65-43B3-9675-BBA23E04881C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
 		</array>
+		<key>FAD30B1C-1909-4F9C-87E9-AEEE5C427502</key>
+		<array/>
 		<key>FED5D171-D581-4C00-9172-DD195380AC73</key>
 		<array>
 			<dict>
@@ -43,27 +94,6 @@
 	<string>MachineClean</string>
 	<key>objects</key>
 	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>keyword</key>
-				<string>macclean</string>
-				<key>subtext</key>
-				<string>Type a number of seconds, or leave empty for the default (50 seconds)</string>
-				<key>text</key>
-				<string>MachineClean</string>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>FED5D171-D581-4C00-9172-DD195380AC73</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -148,6 +178,27 @@ fi #find</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>macclean</string>
+				<key>subtext</key>
+				<string>Will lock keyboard and trackpad for {var:seconds_to_lock} seconds</string>
+				<key>text</key>
+				<string>MachineClean</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>FED5D171-D581-4C00-9172-DD195380AC73</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -157,10 +208,12 @@ fi #find</string>
 	./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -message "${1}"
 }
 
-default_time='50'
+# Abort if `seconds_to_lock` is unset or not an interger
+if [[ -z "${seconds_to_lock}" ]] || [[ ! "${seconds_to_lock}" =~ ^[0-9]+$ ]]; then
+  echo 'Lock time in the Workflow Environment Variables is not a full number'
+  exit 1
+fi
 
-time='{query}'
-[[ -z "${time}" ]] &amp;&amp; time="${default_time}"
 
 # Abort if on a MacBook Air
 if [[ "$(sysctl hw.model)" == *'MacBookAir'* ]]; then
@@ -172,19 +225,10 @@ fi
 keyboard=$(kextstat | grep -i 'keyboard' | head -1 | awk '{ print $6 }')
 trackpad=$(kextstat | grep -i 'multitouch' | head -1 | awk '{ print $6 }')
 
-notification "Will lock trackpad and keyboard for ${time} seconds"
-
 osascript &lt;&lt; EOS
-  do shell script "kextunload -bundle-id ${keyboard} ; kextunload -bundle-id ${trackpad} ; sleep ${time} ; kextload -bundle-id ${keyboard} ; kextload -bundle-id ${trackpad}" with administrator privileges
+  # We have to run the 'osascript' inside the 'osascript' because otherwise times will not coincide. Running a command with 'with administrator privileges' does not stall execution of the rest of the script, meaning the subsequent commands would run before their time
 
-  # Restart BetterTouchTool, if it is running
-  if application "BetterTouchTool" is running then
-    tell application "BetterTouchTool"
-      quit
-      delay 2
-      activate
-    end tell
-  end if
+  do shell script "kextunload -bundle-id ${keyboard} ; kextunload -bundle-id ${trackpad} ; osascript -e 'tell application \"Alfred 3\" to run trigger \"show_timer\" in workflow \"com.vitorgalvao.alfred.machineclean\"' ; sleep ${seconds_to_lock} ; kextload -bundle-id ${keyboard} ; kextload -bundle-id ${trackpad}" with administrator privileges
 EOS
 
 notification 'Trackpad and keyboard unlocked'</string>
@@ -202,21 +246,162 @@ notification 'Trackpad and keyboard unlocked'</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string># Restart BetterTouchTool, if it is running
+if application "BetterTouchTool" is running then
+  tell application "BetterTouchTool"
+    quit
+    delay 2
+    activate
+  end tell
+end if</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>36D260D9-DD1B-4AE7-953C-732219953B72</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>triggerid</key>
+				<string>show_timer</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>5E281C93-A16E-4148-9C7B-0E4CA2276285</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string># Abort if `seconds_to_lock` is unset or not an interger
+if [[ -z "${seconds_to_lock}" ]] || [[ ! "${seconds_to_lock}" =~ ^[0-9]+$ ]]; then
+  echo 'Lock time in the Workflow Environment Variables is not a full number'
+  exit 1
+fi
+
+seconds_remaining=$((seconds_to_lock - timer))
+
+if [[ "${seconds_remaining}" -gt 0 ]]; then
+cat &lt;&lt; EOB
+{
+"rerun" : 1,
+
+"variables": {
+  "timer": "$((timer + 1))"
+},
+
+"items": [{
+  "title": "MachineClean",
+  "subtitle": "Unlocking in ${seconds_remaining} seconds",
+  "icon": "icon.png"
+}]}
+EOB
+fi</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>FAD30B1C-1909-4F9C-87E9-AEEE5C427502</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.hidealfred</string>
+			<key>uid</key>
+			<string>7CC0213F-BC65-43B3-9675-BBA23E04881C</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>seconds</key>
+				<string>0.7</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.delay</string>
+			<key>uid</key>
+			<string>AB91F541-9078-484A-BB89-AB335E6995D2</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
-	<string>Call `macclean` and optionally (default is 50) a number of seconds. Your keyboard and trackpad will be temporarily locked so you can clean them at will without messing what you’re doing.
+	<string>Call `macclean` and your keyboard and trackpad will be temporarily locked (for `seconds_to_lock` in the Workflow Environment Variables) so you can clean them at will without messing what you’re doing.
 
-![](http://i.imgur.com/VVYUonM.png)
+![](https://i.imgur.com/QMI8Pcm.png)
 
-The workflow will confirm how many seconds the locking will last
-![](http://i.imgur.com/V8gO3Dq.png)
-
-And send another notification when it unlocks
-![](http://i.imgur.com/lnbxzyK.png)
+The workflow will give you a timer of how many seconds are left to unlock and a notification when it’s done
+![](https://i.imgur.com/mvKuJ9l.gif)
 
 You will be asked for your password when locking since this operation requires elevated privileges (which is a good thing). Do keep in mind that if something goes wrong in the process, you may (naturally) need to forcefully restart your machine. That is very unlikely and I’ve been using this for quite some time without any issues, but you should be aware of it.</string>
 	<key>uidata</key>
 	<dict>
+		<key>36D260D9-DD1B-4AE7-953C-732219953B72</key>
+		<dict>
+			<key>note</key>
+			<string>We do this here instead of in the main `Run Script` so there’s no delay in hiding Alfred</string>
+			<key>xpos</key>
+			<integer>670</integer>
+			<key>ypos</key>
+			<integer>160</integer>
+		</dict>
+		<key>5E281C93-A16E-4148-9C7B-0E4CA2276285</key>
+		<dict>
+			<key>xpos</key>
+			<integer>90</integer>
+			<key>ypos</key>
+			<integer>160</integer>
+		</dict>
 		<key>78F747FB-BB88-4569-A5A8-63E3A97BFBEA</key>
 		<dict>
 			<key>colorindex</key>
@@ -224,16 +409,39 @@ You will be asked for your password when locking since this operation requires e
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>470</integer>
+			<integer>670</integer>
 			<key>ypos</key>
 			<integer>10</integer>
+		</dict>
+		<key>7CC0213F-BC65-43B3-9675-BBA23E04881C</key>
+		<dict>
+			<key>xpos</key>
+			<integer>570</integer>
+			<key>ypos</key>
+			<integer>190</integer>
+		</dict>
+		<key>AB91F541-9078-484A-BB89-AB335E6995D2</key>
+		<dict>
+			<key>note</key>
+			<string>To compensate for the slight delay in starting `sleep` in the top `Run Script`</string>
+			<key>xpos</key>
+			<integer>270</integer>
+			<key>ypos</key>
+			<integer>190</integer>
 		</dict>
 		<key>D9245730-36BC-415E-BF86-FB40B9A7A25F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>280</integer>
+			<integer>380</integer>
 			<key>ypos</key>
 			<integer>10</integer>
+		</dict>
+		<key>FAD30B1C-1909-4F9C-87E9-AEEE5C427502</key>
+		<dict>
+			<key>xpos</key>
+			<integer>380</integer>
+			<key>ypos</key>
+			<integer>160</integer>
 		</dict>
 		<key>FED5D171-D581-4C00-9172-DD195380AC73</key>
 		<dict>
@@ -243,8 +451,13 @@ You will be asked for your password when locking since this operation requires e
 			<integer>10</integer>
 		</dict>
 	</dict>
+	<key>variables</key>
+	<dict>
+		<key>seconds_to_lock</key>
+		<string>50</string>
+	</dict>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
