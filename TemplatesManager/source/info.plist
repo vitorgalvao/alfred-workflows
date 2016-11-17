@@ -49,6 +49,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>71BCF11F-FA85-41D7-B524-D036D212A8EA</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>74F33B68-BE23-4E47-8171-DC06AF39E9A8</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>7C41DF16-D56D-429D-97B3-BA76D522947A</key>
 		<array>
 			<dict>
@@ -132,6 +145,16 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>71BCF11F-FA85-41D7-B524-D036D212A8EA</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Paste contents of template file, instead of downloading it</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -519,6 +542,48 @@ remotePut({query})</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>autopaste</key>
+				<true/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>74F33B68-BE23-4E47-8171-DC06AF39E9A8</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>require Dir.getwd + '/tmfunctions.rb'
+
+remotePrint({query})</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>71BCF11F-FA85-41D7-B524-D036D212A8EA</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -649,9 +714,10 @@ It has a lot of options and you’ll likely use most of them, so I’ll fire thr
 + **tml** (with ⌥) — Delete your template.
 + **tme** *TemplatesManagerEdit* [Keyword] — Open the templates directory so you can add, remove, and edit them manually.
 + **rtml** *RemoteTemplatesManagerList* [Script Filter] — Show a list of your remote templates (download name and url). Type to sort with your query. Press ↩ on the selected one to download the file to your frontmost Finder window.
++ **rtml** (with ⌘) — Paste contents of template file, instead of downloading it.
 + **rtml** (with ⌥) — Remove the url from your remote templates list.
 + **rtme** *RemoteTemplatesManagerEdit* [Keyword] — Open the remote templates urls file in a text editor so you can add, remove, and edit them manually.
-+ **rtma** RemoteTemplatesManagerAdd [Keyword] — takes the URL in your clipboard and adds it to your remote templates list.</string>
++ **rtma** *RemoteTemplatesManagerAdd* [Keyword] — takes the URL in your clipboard and adds it to your remote templates list.</string>
 	<key>uidata</key>
 	<dict>
 		<key>11AFFEA0-D21E-4292-BDEE-86FFA87A2C59</key>
@@ -659,7 +725,7 @@ It has a lot of options and you’ll likely use most of them, so I’ll fire thr
 			<key>xpos</key>
 			<integer>180</integer>
 			<key>ypos</key>
-			<integer>850</integer>
+			<integer>970</integer>
 		</dict>
 		<key>1D2D56FA-BAB3-44F2-B310-21C93DB38E31</key>
 		<dict>
@@ -673,7 +739,7 @@ It has a lot of options and you’ll likely use most of them, so I’ll fire thr
 			<key>xpos</key>
 			<integer>380</integer>
 			<key>ypos</key>
-			<integer>970</integer>
+			<integer>1090</integer>
 		</dict>
 		<key>2BE0A61B-CB15-41C0-894E-9F6E8265856E</key>
 		<dict>
@@ -701,7 +767,21 @@ It has a lot of options and you’ll likely use most of them, so I’ll fire thr
 			<key>xpos</key>
 			<integer>380</integer>
 			<key>ypos</key>
-			<integer>850</integer>
+			<integer>970</integer>
+		</dict>
+		<key>71BCF11F-FA85-41D7-B524-D036D212A8EA</key>
+		<dict>
+			<key>xpos</key>
+			<integer>380</integer>
+			<key>ypos</key>
+			<integer>730</integer>
+		</dict>
+		<key>74F33B68-BE23-4E47-8171-DC06AF39E9A8</key>
+		<dict>
+			<key>xpos</key>
+			<integer>600</integer>
+			<key>ypos</key>
+			<integer>730</integer>
 		</dict>
 		<key>7C41DF16-D56D-429D-97B3-BA76D522947A</key>
 		<dict>
@@ -722,7 +802,7 @@ It has a lot of options and you’ll likely use most of them, so I’ll fire thr
 			<key>xpos</key>
 			<integer>380</integer>
 			<key>ypos</key>
-			<integer>730</integer>
+			<integer>850</integer>
 		</dict>
 		<key>A8D5EF32-7D4B-4F16-B18E-BB6C10727FF6</key>
 		<dict>
@@ -761,7 +841,7 @@ It has a lot of options and you’ll likely use most of them, so I’ll fire thr
 			<key>xpos</key>
 			<integer>180</integer>
 			<key>ypos</key>
-			<integer>970</integer>
+			<integer>1090</integer>
 		</dict>
 		<key>E5C08248-28E9-4EF7-817F-FA9B2BC335D2</key>
 		<dict>
@@ -772,7 +852,7 @@ It has a lot of options and you’ll likely use most of them, so I’ll fire thr
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

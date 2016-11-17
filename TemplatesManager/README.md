@@ -12,6 +12,7 @@ It has a lot of options and you’ll likely use most of them, so I’ll fire thr
 + **tml** (with ⌥) — Delete your template.
 + **tme** *TemplatesManagerEdit* [Keyword] — Open the templates directory so you can add, remove, and edit them manually.
 + **rtml** *RemoteTemplatesManagerList* [Script Filter] — Show a list of your remote templates (download name and url). Type to sort with your query. Press ↩ on the selected one to download the file to your frontmost Finder window.
++ **rtml** (with ⌘) — Paste contents of template file, instead of downloading it.
 + **rtml** (with ⌥) — Remove the url from your remote templates list.
 + **rtme** *RemoteTemplatesManagerEdit* [Keyword] — Open the remote templates urls file in a text editor so you can add, remove, and edit them manually.
-+ **rtma** RemoteTemplatesManagerAdd [Keyword] — takes the URL in your clipboard and adds it to your remote templates list.
++ **rtma** *RemoteTemplatesManagerAdd* [Keyword] — takes the URL in your clipboard and adds it to your remote templates list.

@@ -4,8 +4,10 @@ require 'fileutils'
 require 'net/http'
 require Dir.getwd + '/_licensed/terminal-notifier/lib/terminal-notifier.rb'
 
-LocalTemplates = Dir.getwd + '/templates/local/'
-RemoteTemplates = Dir.getwd + '/templates/remote'
+LocalTemplates = ENV['alfred_workflow_data'] + '/local/'
+RemoteTemplates = ENV['alfred_workflow_data'] + '/remote'
+FileUtils.mkdir_p(LocalTemplates) unless Dir.exist?(LocalTemplates)
+FileUtils.touch(RemoteTemplates) unless File.exist?(RemoteTemplates)
 
 def finderDir
   %x{osascript -e 'tell application "System Events"
@@ -66,7 +68,8 @@ def localDelete(localArrayPos)
 end
 
 def remoteDelete(remoteArrayPos)
-  tmpArray = remoteList.delete_at(remoteArrayPos)
+  tmpArray = remoteList
+  tmpArray.delete_at(remoteArrayPos)
 
   File.open(RemoteTemplates, 'w+') do |line|
     line.puts tmpArray
@@ -165,4 +168,9 @@ def remotePut(remoteArrayPos)
   url = remoteList[remoteArrayPos].gsub(/\n$/, '')
   fileName = File.basename(url)
   File.write(finderDir + fileName, Net::HTTP.get(URI.parse(url)))
+end
+
+def remotePrint(remoteArrayPos)
+  url = remoteList[remoteArrayPos].gsub(/\n$/, '')
+  print Net::HTTP.get(URI.parse(url))
 end
