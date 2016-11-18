@@ -4,12 +4,12 @@ require 'fileutils'
 require 'net/http'
 require Dir.getwd + '/_licensed/terminal-notifier/lib/terminal-notifier.rb'
 
-LocalTemplates = ENV['alfred_workflow_data'] + '/local/'
-RemoteTemplates = ENV['alfred_workflow_data'] + '/remote'
-FileUtils.mkdir_p(LocalTemplates) unless Dir.exist?(LocalTemplates)
-FileUtils.touch(RemoteTemplates) unless File.exist?(RemoteTemplates)
+Local_templates = ENV['alfred_workflow_data'] + '/local/'
+Remote_templates = ENV['alfred_workflow_data'] + '/remote'
+FileUtils.mkdir_p(Local_templates) unless Dir.exist?(Local_templates)
+FileUtils.touch(Remote_templates) unless File.exist?(Remote_templates)
 
-def finderDir
+def finder_dir
   %x{osascript -e 'tell application "System Events"
      if (name of first process whose frontmost is true) is "Finder" then
      tell application "Finder" to return (POSIX path of (folder of the front window as alias))
@@ -20,157 +20,151 @@ def finderDir
 end
 
 def notification(message)
-  TerminalNotifier.notify(message, :title => 'TemplatesManager')
+  TerminalNotifier.notify(message, title: 'TemplatesManager')
 end
 
-def localList
-  Dir.entries(LocalTemplates).reject{ |entry| entry =~ /^(\.{1,2}$|.DS_Store$)/ }
+def local_list
+  Dir.entries(Local_templates).reject { |entry| entry =~ /^(\.{1,2}$|.DS_Store$)/ }
 end
 
-def remoteList
-  File.readlines(RemoteTemplates)
+def remote_list
+  File.readlines(Remote_templates)
 end
 
-def localEdit
-  system('open', LocalTemplates)
+def local_edit
+  system('open', Local_templates)
 end
 
-def remoteEdit
-  system('open', '-t', RemoteTemplates)
+def remote_edit
+  system('open', '-t', Remote_templates)
 end
 
-def localAdd(path)
-  pathBasename = File.basename(path)
+def local_add(path)
+  path_basename = File.basename(path)
 
-  if localList.include?(pathBasename)
+  if local_list.include?(path_basename)
     notification('You already have a template with that name')
     abort 'A template with that name already exists'
   else
-    FileUtils.cp_r(path, LocalTemplates)
+    FileUtils.cp_r(path, Local_templates)
     notification('Added to local templates')
   end
 end
 
-def remoteAdd(url)
-  if remoteList.include?(url)
+def remote_add(url)
+  if remote_list.include?(url)
     notification('You already have a template with that name')
     abort 'A template with that name already exists'
   else
-    File.open(RemoteTemplates, 'a') do |link|
+    File.open(Remote_templates, 'a') do |link|
       link.puts url
     end
     notification('Added to remote templates')
   end
 end
 
-def localDelete(localArrayPos)
-  system(Dir.getwd + '/_licensed/trash/trash', LocalTemplates + localList[localArrayPos])
+def local_delete(local_array_pos)
+  system(Dir.getwd + '/_licensed/trash/trash', '-a', Local_templates + local_list[local_array_pos])
 end
 
-def remoteDelete(remoteArrayPos)
-  tmpArray = remoteList
-  tmpArray.delete_at(remoteArrayPos)
+def remote_delete(remote_array_pos)
+  tmp_array = remote_list
+  tmp_array.delete_at(remote_array_pos)
 
-  File.open(RemoteTemplates, 'w+') do |line|
-    line.puts tmpArray
+  File.open(Remote_templates, 'w+') do |line|
+    line.puts tmp_array
   end
 end
 
-def localInfo(searchQuery)
+def local_info
   puts "<?xml version='1.0'?><items>"
 
-  if localList.empty?
+  if local_list.empty?
     puts "<item uuid='none' arg='none' valid='no'>"
-    puts "<title>List templates (tml)</title>"
-    puts "<subtitle>You need to add some local templates, first</subtitle>"
-    puts "<icon>icon.png</icon>"
-    puts "</item>"
+    puts '<title>List templates (tml)</title>'
+    puts '<subtitle>You need to add some local templates, first</subtitle>'
+    puts '<icon>icon.png</icon>'
+    puts '</item>'
   else
-    localList.each_index do |localArrayPos|
-      templateTitle = localList[localArrayPos]
-
-      if templateTitle =~ /#{searchQuery}/
-        puts "<item uuid='#{localArrayPos}' arg='#{localArrayPos}' valid='yes'>"
-        puts "<title><![CDATA[#{templateTitle}]]></title>"
-        puts "<icon>icon.png</icon>"
-        puts "</item>"
-      end
+    local_list.each_index do |local_array_pos|
+      template_title = local_list[local_array_pos]
+      puts "<item uuid='#{local_array_pos}' arg='#{local_array_pos}' valid='yes'>"
+      puts "<title><![CDATA[#{template_title}]]></title>"
+      puts '<icon>icon.png</icon>'
+      puts '</item>'
     end
   end
 
-  puts "</items>"
+  puts '</items>'
 end
 
-def remoteInfo(searchQuery)
+def remote_info
   puts "<?xml version='1.0'?><items>"
 
-  if remoteList.empty?
+  if remote_list.empty?
     puts "<item uuid='none' arg='none' valid='no'>"
-    puts "<title>List templates (rtml)</title>"
-    puts "<subtitle>You need to add some remote templates, first</subtitle>"
-    puts "<icon>icon.png</icon>"
-    puts "</item>"
+    puts '<title>List templates (rtml)</title>'
+    puts '<subtitle>You need to add some remote templates, first</subtitle>'
+    puts '<icon>icon.png</icon>'
+    puts '</item>'
   else
-    remoteList.each_index do |remoteArrayPos|
-      templateSubtitle = remoteList[remoteArrayPos]
-      templateTitle = File.basename(templateSubtitle)
-
-      if templateTitle =~ /#{searchQuery}/
-        puts "<item uuid='#{remoteArrayPos}' arg='#{remoteArrayPos}' valid='yes'>"
-        puts "<title><![CDATA[#{templateTitle}]]></title>"
-        puts "<subtitle><![CDATA[#{templateSubtitle}]]></subtitle>"
-        puts "<icon>icon.png</icon>"
-        puts "</item>"
-      end
+    remote_list.each_index do |remote_array_pos|
+      template_subtitle = remote_list[remote_array_pos]
+      template_title = File.basename(template_subtitle)
+      puts "<item uuid='#{remote_array_pos}' arg='#{remote_array_pos}' valid='yes'>"
+      puts "<title><![CDATA[#{template_title}]]></title>"
+      puts "<subtitle><![CDATA[#{template_subtitle}]]></subtitle>"
+      puts '<icon>icon.png</icon>'
+      puts '</item>'
     end
   end
 
-  puts "</items>"
+  puts '</items>'
 end
 
 # run a _templatesmanagerscript.* in the copied directory
-def localScriptRun(location)
-  tmScript = Dir.entries(location).find{ |item| item =~ /_templatesmanagerscript\./ }
-  if tmScript
-    Dir.chdir(location)
-    system("./" + tmScript)
-  end
+def local_script_run(location)
+  tm_script = Dir.entries(location).find { |item| item =~ /_templatesmanagerscript\./ }
+
+  return unless tm_script
+  Dir.chdir(location)
+  system('./' + tm_script)
 end
 
 # Copy files and directories directly
-def localPut(localArrayPos)
-  templateTitle = localList[localArrayPos]
-  itemLocation = LocalTemplates + templateTitle
-  FileUtils.cp_r(itemLocation, finderDir)
+def local_put(local_array_pos)
+  template_title = local_list[local_array_pos]
+  item_location = Local_templates + template_title
+  FileUtils.cp_r(item_location, finder_dir)
 
   # run _templatesmanagerscript.*, if a directory was copied
-  destLocation = finderDir + templateTitle
-  localScriptRun(destLocation) if File.directory?(destLocation)
+  dest_location = finder_dir + template_title
+  local_script_run(dest_location) if File.directory?(dest_location)
 end
 
 # If source is a directory, copy what's inside of it
-def localPutFilesOnly(localArrayPos)
-  itemLocation = LocalTemplates + localList[localArrayPos]
+def local_put_files_only(local_array_pos)
+  item_location = Local_templates + local_list[local_array_pos]
 
   # if used on a file, give a warning
-  if File.file?(itemLocation)
+  if File.file?(item_location)
     notification('This option should only be used on directories')
     abort 'This option should only be used on directories'
   else
-    FileUtils.cp_r(Dir[itemLocation + '/*'], finderDir)
+    FileUtils.cp_r(Dir[item_location + '/*'], finder_dir)
 
     # run _templatesmanagerscript.*
-    localScriptRun(finderDir)
+    local_script_run(finder_dir)
   end
 end
 
-def remotePut(remoteArrayPos)
-  url = remoteList[remoteArrayPos].gsub(/\n$/, '')
-  fileName = File.basename(url)
-  File.write(finderDir + fileName, Net::HTTP.get(URI.parse(url)))
+def remote_put(remote_array_pos)
+  url = remote_list[remote_array_pos].gsub(/\n$/, '')
+  file_name = File.basename(url)
+  File.write(finder_dir + file_name, Net::HTTP.get(URI.parse(url)))
 end
 
-def remotePrint(remoteArrayPos)
-  url = remoteList[remoteArrayPos].gsub(/\n$/, '')
+def remote_print(remote_array_pos)
+  url = remote_list[remote_array_pos].gsub(/\n$/, '')
   print Net::HTTP.get(URI.parse(url))
 end
