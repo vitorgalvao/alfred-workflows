@@ -14,7 +14,7 @@ The top lines (the ones that need changing) have comments explaining what they m
 
 ```
 readonly local_file='info.plist'
-readonly remote_file='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MarkdownBulletin/info.plist'
+readonly remote_file='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MarkdownBulletin/info.plist' 
 readonly workflow_url='https://github.com/packal/repository/raw/master/com.vitorgalvao.alfred.markdownbulletin/markdownbulletin.alfredworkflow'
 readonly workflow_type='workflow'
 readonly frequency_check='15'
