@@ -1,5 +1,5 @@
 Provides both a `File Action` to run shell commands on selected files/directories and a `Keyword` to run them on the current directory. It will detect your default shell, and if it’s `bash`, `zsh`, `tcsh`, `csh`, or `fish`, it’ll load the appropriate startup files and your aliases.
-
+ 
 For the `File Action`, use Alfred to pick what you want to run a command on and choose `Run command`. Alfred’s main window will appear and you simply type the command you want.
 
 ![](http://i.imgur.com/eODgjHT.png)
