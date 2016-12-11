@@ -228,7 +228,7 @@ function notification {
 # Check for updates
 if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
   if ! url_exists "${remote_file}"; then abort "'remote_file' ("${remote_file}") appears to not be reachable."; fi # Remote sanity check
-  
+
   readonly tmp_file="$(mktemp)"
   curl --silent --location --output "${tmp_file}" "${remote_file}"
 
@@ -351,7 +351,7 @@ You can get the API token of you Pinboard account by visiting https://pinboard.i
 
 Your preferred action may be one of `delete`, `archive`, or `keep`. `delete` will remove the bookmark from your account, after you act (open or copy the link) on it; `archive` will mark the bookmark as read; `keep` will leave it untouched.
 
-An example configuration would be: `configurepinadd username:HSJWJK2HHSKI14QPDOIK delete`
+An example configuration would be: `:configurepinunread username:HSJWJK2HHSKI14QPDOIK delete`
 
 When you’re all set, call `pun`, and your unread bookmarks will be displayed. Press ↩ on one to open it in your default browser or ⌘+↩ to copy the link to your clipboard; the action you picked while configuring will take place in the background.
 
@@ -410,7 +410,7 @@ You may also type something after `pun` (don’t add a space, just type), to fil
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>1.0.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

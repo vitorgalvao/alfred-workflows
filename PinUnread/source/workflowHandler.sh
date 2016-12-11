@@ -1,7 +1,7 @@
 #!/bin/bash
 
-VPREFS="${HOME}/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/"
-NVPREFS="${HOME}/Library/Application Support/Alfred 2/Workflow Data/"
+VPREFS="${HOME}/Library/Caches/com.runningwithcrayons.Alfred-3/Workflow Data/"
+NVPREFS="${HOME}/Library/Application Support/Alfred 3/Workflow Data/"
 
 RESULTS=()
 
@@ -42,7 +42,7 @@ getXMLResults() {
 # Escapes XML special characters with their entities
 ###############################################################################
 xmlEncode() {
-  echo "$1" | sed s/"&"/"\&amp;"/ | sed s/">"/"\&gt;"/ | sed s/"<"/"\&lt;"/ | sed s/"\'"/"\&apos;"/ | sed s/"\""/"\&quot;"/
+  echo "$1" | sed 's/&/&amp;/' | sed 's/>/&gt;/' | sed 's/</&lt;/' | sed "s/\'/&apos;/" | sed 's/\"/&quot;/'
 }
 
 ###############################################################################
@@ -99,12 +99,12 @@ setPref() {
   fi
 
   local KEY_EXISTS=$(grep -c "$1=" "$PREFFILE")
-  if [ "$KEY_EXISTS" = "1" ]; then
-    local TMP=$(grep -ve "^$1" "$PREFFILE")
-    echo "$TMP" > "$PREFFILE"
+  if [ "$KEY_EXISTS" = "0" ]; then
+    echo "$1=$2" >> "$PREFFILE"
+  else
+    sed -i "" s/"$1=.*"/"$1=$2"/ "$PREFFILE"
   fi
-  echo "$1=$2" >> "$PREFFILE"
-  }
+}
 
 ###############################################################################
 # Read a value for a given key from the workflow preferences
@@ -137,8 +137,4 @@ getPref() {
 
   local VALUE=$(sed "/^\#/d" "$PREFFILE" | grep "$1"  | tail -n 1 | cut -d "=" -f2-)
   echo "$VALUE"
-}
-
-getLang() {
-  defaults read .GlobalPreferences AppleLanguages | tr -d [:space:] | cut -c2-3
 }
