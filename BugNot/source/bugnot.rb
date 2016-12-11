@@ -1,29 +1,29 @@
 #!/usr/bin/env ruby
 
-require 'open-uri'
+require 'json'
 require 'nokogiri'
+require 'open-uri'
 
-detailsFile = "/tmp/bugnot"
+query = ARGV[0]
+abort 'You need to specify a website' if query.nil?
 
-if File.exists?(detailsFile)
-  File.delete(detailsFile)
-end
+script_filter_items = []
 
-if ARGV[0].nil?
-  abort "You need to specify a website"
-end
+begin
+  page = Nokogiri::HTML(open('http://bugmenot.com/view/' + query))
+rescue OpenURI::HTTPError
+  script_filter_items.push(title: "No logins availale for “#{query}”", valid: 'no')
+else
+  login_total = page.css('article.account').count
 
-page = Nokogiri::HTML(open("http://bugmenot.com/view/" + ARGV[0]))
+  (0..(login_total - 1)).each do |account|
+    login_section = page.css('article.account')[account]
+    username = login_section.css('kbd')[0].text
+    password = login_section.css('kbd')[1].text
+    success = login_section.css('li.success_rate').attr('class').text.gsub(/\D*/, '')
 
-loginTotal = page.css('article.account').count
-
-for account in 0..loginTotal-1
-  loginSection = page.css('article.account')[account]
-  username = loginSection.css('kbd')[0].text
-  password = loginSection.css('kbd')[1].text
-  success = loginSection.css('li.success_rate').attr('class').text.gsub(/\D*/, '')
-
-  File.open(detailsFile, "a") do |f|
-    f.puts username + "////" + password + "////" + success
+    script_filter_items.push(title: username.encode(xml: :text), subtitle: password.encode(xml: :text), icon: { path: "icons/#{success}.png" }, arg: "#{username}⸗#{password}")
   end
 end
+
+puts({ items: script_filter_items }.to_json)

@@ -89,32 +89,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>username=$(echo '{query}' | awk -F '////' '{print $1}')
-password=$(echo '{query}' | awk -F '////' '{print $2}')
-
-osascript -e "tell application \"System Events\"	keystroke \"${username}\"	key code 48	keystroke \"${password}\"end tell"</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>623811E1-9EDE-4B64-8B2C-04D82D84AAA0</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>argumenttype</key>
@@ -134,34 +108,7 @@ osascript -e "tell application \"System Events\"	keystroke \"${username}\"	key
 				<key>runningsubtext</key>
 				<string>Getting logins for {query}…</string>
 				<key>script</key>
-				<string>IFS=$'\n'
-
-ruby ./bugnot.rb '{query}'
-
-detailsFile="/tmp/bugnot"
-
-if [[ -f "${detailsFile}" ]]; then
-  echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-  for line in $(cat "${detailsFile}"); do
-    username="$(echo "${line}" | awk -F '////' '{print $1}' | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"'\''})')"
-    password="$(echo "${line}" | awk -F '////' '{print $2}' | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"'\''})')"
-    success="$(echo "${line}" | awk -F '////' '{print $3}' | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"'\''})')"
-    echo "&lt;item uuid='{query}' valid='yes' arg=\"${username}////${password}\"&gt;"
-    echo "&lt;title&gt;${username}&lt;/title&gt;"
-    echo "&lt;subtitle&gt;${password}&lt;/subtitle&gt;"
-    echo "&lt;icon&gt;icons/${success}.png&lt;/icon&gt;"
-    echo "&lt;/item&gt;"
-  done
-  echo "&lt;/items&gt;"
-else
-  echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-  echo "&lt;item uuid='noResult' valid='no'&gt;"
-  echo "&lt;title&gt;No logins availale for “{query}”&lt;/title&gt;"
-  echo "&lt;subtitle&gt;&lt;/subtitle&gt;"
-  echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
-  echo "&lt;/item&gt;"
-  echo "&lt;/items&gt;"
-fi</string>
+				<string>ruby ./bugnot.rb '{query}'</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -179,6 +126,32 @@ fi</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>3D696DA5-1D90-4A2A-A3A0-550BFDAAF148</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>username=$(cut -d'⸗' -f1 &lt;&lt;&lt; '{query}')
+password=$(cut -d'⸗' -f2 &lt;&lt;&lt; '{query}')
+
+osascript -e "tell application \"System Events\"	keystroke \"${username}\"	key code 48	keystroke \"${password}\"end tell"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>623811E1-9EDE-4B64-8B2C-04D82D84AAA0</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -207,7 +180,7 @@ fi</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>echo '{query}' | awk -F '////' '{print $1}'</string>
+				<string>cut -d'⸗' -f1 &lt;&lt;&lt; '{query}'</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -230,7 +203,7 @@ fi</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>echo '{query}' | awk -F '////' '{print $2}'</string>
+				<string>cut -d'⸗' -f2 &lt;&lt;&lt; '{query}'</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -291,7 +264,7 @@ function notification {
 # Check for updates
 if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
   if ! url_exists "${remote_file}"; then abort "'remote_file' ("${remote_file}") appears to not be reachable."; fi # Remote sanity check
-  
+
   readonly tmp_file="$(mktemp)"
   curl --silent --location --output "${tmp_file}" "${remote_file}"
 
@@ -383,7 +356,7 @@ If you had the login box selected prior to calling the workflow, hit ↩ and it�
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.1</string>
+	<string>1.0.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
