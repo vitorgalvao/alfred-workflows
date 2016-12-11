@@ -1,7 +1,7 @@
 #!/bin/bash
 
-VPREFS="${HOME}/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/"
-NVPREFS="${HOME}/Library/Application Support/Alfred 2/Workflow Data/"
+VPREFS="${HOME}/Library/Caches/com.runningwithcrayons.Alfred-3/Workflow Data/"
+NVPREFS="${HOME}/Library/Application Support/Alfred 3/Workflow Data/"
 
 RESULTS=()
 

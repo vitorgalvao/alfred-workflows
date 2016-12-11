@@ -6,14 +6,14 @@ You can get the API token of you Pinboard account by visiting https://pinboard.i
 
 Your preferred browser may be one of Safari, Webkit, Chrome, ChromeCanary, Chromium, or depends (“depends” uses the browser you have as the frontmost window, provided it’s one of the mentioned ones).
 
-An example configuration would be: `configurepinadd username:HSJWJK2HHSKI14QPDOIK safari`
+An example configuration would be: `:configurepinadd username:HSJWJK2HHSKI14QPDOIK safari`
 
 When you’re all set, call `pin` followed by your tags and/or description — both are optional, and descriptions must be preceded by `// ` (two forward slashes and a space). Pick if it should be added as a regular bookmark or as a private one (this is important, as it’ll trump your default options), and you’re done.
 
 ![](http://imgur.com/lqt0ZnW.png)
 
 The title of the bookmark will be the title of the page.
-
+ 
 You can also precede your tags with `.` (a single period), and it will add the bookmark as unread.
 
 ![](http://imgur.com/79mgk9O.png)

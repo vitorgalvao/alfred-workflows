@@ -3,12 +3,12 @@
 browser="$(getPref browser 1)"
 
 # Convert browser's name to lowercase
-browser="$(echo ${browser} | tr [:upper:] [:lower:])"
+browser="$(echo ${browser} | tr '[:upper:]' '[:lower:]')"
 
 # If browser is 'depends', determine which one (if any) is the frontmost app
 if [[ ${browser} == "depends" ]]; then
 	# Get frontmost app, in lowercase
-	browser="$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true' | tr [:upper:] [:lower:])"
+	browser="$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true' | tr '[:upper:]' '[:lower:]')"
 	# Make some corrections for 'chrome' and 'chromecanary'
 	if [[ ${browser} == "google chrome" ]]; then
 		browser="chrome"

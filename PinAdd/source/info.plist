@@ -246,7 +246,7 @@ function notification {
 # Check for updates
 if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
   if ! url_exists "${remote_file}"; then abort "'remote_file' ("${remote_file}") appears to not be reachable."; fi # Remote sanity check
-  
+
   readonly tmp_file="$(mktemp)"
   curl --silent --location --output "${tmp_file}" "${remote_file}"
 
@@ -376,6 +376,10 @@ fi #find</string>
 				<integer>0</integer>
 				<key>argument</key>
 				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
 				<key>hotkey</key>
 				<integer>32</integer>
 				<key>hotmod</key>
@@ -437,7 +441,7 @@ You can get the API token of you Pinboard account by visiting https://pinboard.i
 
 Your preferred browser may be one of Safari, Webkit, Chrome, ChromeCanary, Chromium, or depends (“depends” uses the browser you have as the frontmost window, provided it’s one of the mentioned ones).
 
-An example configuration would be: `configurepinadd username:HSJWJK2HHSKI14QPDOIK safari`
+An example configuration would be: `:configurepinadd username:HSJWJK2HHSKI14QPDOIK safari`
 
 When you’re all set, call `pin` followed by your tags and/or description — both are optional, and descriptions must be preceded by `// ` (two forward slashes and a space). Pick if it should be added as a regular bookmark or as a private one (this is important, as it’ll trump your default options), and you’re done.
 
@@ -530,7 +534,7 @@ If adding a bookmark fails for any reason (for example, if the connection drops)
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>1.0.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
