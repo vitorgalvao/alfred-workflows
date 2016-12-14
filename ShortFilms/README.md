@@ -1,6 +1,6 @@
 Stream from a selection of short films, powered by [Short of the Week](https://www.shortoftheweek.com/).
 
-Run `shorts` and it’ll download and show a list of the latest films. Pick one and it’ll start streaming. Alternatively, use ⌘ to copy its link to the clipboard.
+Run `shorts` and it’ll show a list of the latest films. Pick one and it’ll start streaming. Alternatively, use ⌘ to copy the short’s link to the clipboard or ⌥ to see its synopsis.
 
 ![](https://i.imgur.com/2y9yXFU.png)
 

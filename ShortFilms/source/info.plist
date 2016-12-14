@@ -221,7 +221,7 @@ function notification {
 # Check for updates
 if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
   if ! url_exists "${remote_file}"; then abort "'remote_file' ("${remote_file}") appears to not be reachable."; fi # Remote sanity check
-  
+
   readonly tmp_file="$(mktemp)"
   curl --silent --location --output "${tmp_file}" "${remote_file}"
 
@@ -404,7 +404,7 @@ fi</string>
 	<key>readme</key>
 	<string>Stream from a selection of short films, powered by [Short of the Week](https://www.shortoftheweek.com/).
 
-Run `shorts` and it’ll download and show a list of the latest films. Pick one and it’ll start streaming. Alternatively, use ⌘ to copy its link to the clipboard.
+Run `shorts` and it’ll show a list of the latest films. Pick one and it’ll start streaming. Alternatively, use ⌘ to copy the short’s link to the clipboard or ⌥ to see its synopsis.
 
 ![](https://i.imgur.com/2y9yXFU.png)
 
@@ -482,7 +482,7 @@ Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` 
 		<string>/usr/local/bin</string>
 	</dict>
 	<key>version</key>
-	<string>1.5.0</string>
+	<string>1.6.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

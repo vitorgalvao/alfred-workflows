@@ -20,6 +20,7 @@ if !File.exist?(list_file) || (((Time.now - File.mtime(list_file)) / (24 * 3600)
     url = page.at('.embed-wrapper').attr('data-src')
     title = page.at('h1.title').text
     image = 'https:' + page.at('.bar-hidden').at('img').attr('src')
+    synopsis = page.at('.description').text.strip
     details = page.at('.details')
     genre = details.at('span').text
     author = details.css('span')[1].text.strip
@@ -35,7 +36,7 @@ if !File.exist?(list_file) || (((Time.now - File.mtime(list_file)) / (24 * 3600)
       system('sips', '--cropToHeightWidth', smaller_dimension, smaller_dimension, downloaded_image)
     end
 
-    script_filter_items.push(title: title, subtitle: "#{genre} / #{duration} / #{author}", icon: { path: downloaded_image }, quicklookurl: item, arg: url)
+    script_filter_items.push(title: title, subtitle: "#{genre} / #{duration} / #{author}", icon: { path: downloaded_image }, mods: { alt: { subtitle: synopsis } }, quicklookurl: item, arg: url)
   end
 
   File.write(list_file, { items: script_filter_items }.to_json)
