@@ -532,7 +532,7 @@ function notification {
 # Check for updates
 if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
   if ! url_exists "${remote_file}"; then abort "'remote_file' ("${remote_file}") appears to not be reachable."; fi # Remote sanity check
-  
+
   readonly tmp_file="$(mktemp)"
   curl --silent --location --output "${tmp_file}" "${remote_file}"
 
@@ -1168,7 +1168,7 @@ If you use [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.11.3</string>
+	<string>1.11.4</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

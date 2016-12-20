@@ -1,7 +1,7 @@
 View and manage a list of files and video streams at your own pace. This workflow was built with video in mind but works with just about any file or directory.
-
+ 
 We often have series of videos and streams that we’d like to watch but not necessarily keep after, but keeping track of them all and which we’ve already seen (and are thus safe to delete), can be a chore.
-
+ 
 Select in the Finder the files (or directories) you wish to add to your list, and apply the file action `Add to watchlist`. Every time you do this, the new files will be prepended to the list. You then have some options you can pick from, all starting with `wl`.
 
 ![](http://i.imgur.com/rN3bl4u.png)
