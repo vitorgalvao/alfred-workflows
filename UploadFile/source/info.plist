@@ -115,7 +115,7 @@ function notification {
 # Check for updates
 if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
   if ! url_exists "${remote_file}"; then abort "'remote_file' ("${remote_file}") appears to not be reachable."; fi # Remote sanity check
-  
+
   readonly tmp_file="$(mktemp)"
   curl --silent --location --output "${tmp_file}" "${remote_file}"
 
@@ -394,7 +394,7 @@ You’ll get notifications of the various phases, with a sound when it’s compl
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.0</string>
+	<string>1.1.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
