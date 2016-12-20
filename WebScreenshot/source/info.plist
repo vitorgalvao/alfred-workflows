@@ -128,6 +128,10 @@
 				<integer>0</integer>
 				<key>argument</key>
 				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
 				<key>hotkey</key>
 				<integer>21</integer>
 				<key>hotmod</key>
@@ -201,6 +205,10 @@
 				<integer>0</integer>
 				<key>argument</key>
 				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
 				<key>hotkey</key>
 				<integer>21</integer>
 				<key>hotmod</key>
@@ -267,7 +275,7 @@ function notification {
 # Check for updates
 if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
   if ! url_exists "${remote_file}"; then abort "'remote_file' ("${remote_file}") appears to not be reachable."; fi # Remote sanity check
-  
+
   readonly tmp_file="$(mktemp)"
   curl --silent --location --output "${tmp_file}" "${remote_file}"
 
@@ -476,7 +484,7 @@ Each of those has a counterpart. The top ones leave the images untouched, while 
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.4.1</string>
+	<string>1.4.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
