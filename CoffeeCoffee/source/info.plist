@@ -177,7 +177,7 @@ function notification {
 # Check for updates
 if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
   if ! url_exists "${remote_file}"; then abort "'remote_file' ("${remote_file}") appears to not be reachable."; fi # Remote sanity check
-  
+
   readonly tmp_file="$(mktemp)"
   curl --silent --location --output "${tmp_file}" "${remote_file}"
 
@@ -229,7 +229,7 @@ Run `coffee` again to manually turn it off
 		<key>0B01601F-72A7-4C92-8B67-197D677D2A12</key>
 		<dict>
 			<key>xpos</key>
-			<integer>480</integer>
+			<integer>330</integer>
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
@@ -240,20 +240,20 @@ Run `coffee` again to manually turn it off
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>480</integer>
+			<integer>330</integer>
 			<key>ypos</key>
 			<integer>130</integer>
 		</dict>
 		<key>94757117-A2E1-4FE7-A171-555588BE76FF</key>
 		<dict>
 			<key>xpos</key>
-			<integer>280</integer>
+			<integer>130</integer>
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.1</string>
+	<string>1.0.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
