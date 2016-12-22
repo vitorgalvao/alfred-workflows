@@ -284,7 +284,7 @@ function notification {
 # Check for updates
 if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
   if ! url_exists "${remote_file}"; then abort "'remote_file' ("${remote_file}") appears to not be reachable."; fi # Remote sanity check
-  
+
   readonly tmp_file="$(mktemp)"
   curl --silent --location --output "${tmp_file}" "${remote_file}"
 
@@ -679,7 +679,7 @@ The two Workflow Environment Variables represent the directories (relative to yo
 		<string>Downloads</string>
 	</dict>
 	<key>version</key>
-	<string>1.19.0</string>
+	<string>1.19.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
