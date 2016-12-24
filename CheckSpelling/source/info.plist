@@ -116,6 +116,10 @@
 				<integer>1</integer>
 				<key>argumenttext</key>
 				<string>spell </string>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
 				<key>hotkey</key>
 				<integer>1</integer>
 				<key>hotmod</key>
@@ -195,6 +199,10 @@ echo -n "$(curl -s "http://${lang}.service.afterthedeadline.com/checkDocument?ke
 				<integer>1</integer>
 				<key>argumenttext</key>
 				<string>en</string>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
 				<key>hotkey</key>
 				<integer>1</integer>
 				<key>hotmod</key>
@@ -261,7 +269,7 @@ function notification {
 # Check for updates
 if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
   if ! url_exists "${remote_file}"; then abort "'remote_file' ("${remote_file}") appears to not be reachable."; fi # Remote sanity check
-  
+
   readonly tmp_file="$(mktemp)"
   curl --silent --location --output "${tmp_file}" "${remote_file}"
 
@@ -305,6 +313,10 @@ fi #find</string>
 				<integer>1</integer>
 				<key>argumenttext</key>
 				<string>fr</string>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
 				<key>hotkey</key>
 				<integer>0</integer>
 				<key>hotmod</key>
@@ -332,6 +344,10 @@ fi #find</string>
 				<integer>1</integer>
 				<key>argumenttext</key>
 				<string>de</string>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
 				<key>hotkey</key>
 				<integer>0</integer>
 				<key>hotmod</key>
@@ -359,6 +375,10 @@ fi #find</string>
 				<integer>1</integer>
 				<key>argumenttext</key>
 				<string>pt</string>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
 				<key>hotkey</key>
 				<integer>1</integer>
 				<key>hotmod</key>
@@ -388,6 +408,10 @@ fi #find</string>
 				<integer>1</integer>
 				<key>argumenttext</key>
 				<string>es</string>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
 				<key>hotkey</key>
 				<integer>0</integer>
 				<key>hotmod</key>
@@ -480,7 +504,7 @@ fi #find</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>1.0.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
