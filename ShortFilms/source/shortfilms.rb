@@ -13,27 +13,27 @@ if !File.exist?(list_file) || (((Time.now - File.mtime(list_file)) / (24 * 3600)
 
   script_filter_items = []
 
-  # grab link from items, remove "/news/" links, load info from links into array
+  # Grab link from items, remove "/news/" links, load info from links into array
   site_feed.items.map(&:link).reject { |link| link.match('/news/') }.each do |item|
-    # get details
-    page = Nokogiri::HTML(open(item))
+    # Get details
+    page = Nokogiri::HTML(open(item), nil, Encoding::UTF_8.to_s) # Forced UTF-8
     url = page.at('.embed-wrapper').attr('data-src')
     title = page.at('h1.title').text
     image = 'https:' + page.at('.bar-hidden').at('img').attr('src')
     synopsis = page.at('.description').text.strip
     details = page.at('.details')
     genre = details.at('span').text
-    author = details.css('span')[1].text.strip
+    author = details.css('span')[1].text.strip.gsub(/\s+/, ' ') # `gsub` for carriage returns in the middle of strings
     duration = details.at('time').text
 
     # set banner image as icon
     downloaded_image = "#{ENV['alfred_workflow_cache']}/#{File.basename(image)}"
-    unless File.exist?(downloaded_image) # do not redownload or resize old images
+    unless File.exist?(downloaded_image) # Do not redownload or resize old images
       File.write(downloaded_image, open(image).read)
       image_width = %x(sips --getProperty pixelWidth "#{downloaded_image}" | tail -1 | awk '{print $2}').to_i
       image_height = %x(sips --getProperty pixelHeight "#{downloaded_image}" | tail -1 | awk '{print $2}').to_i
       smaller_dimension = (image_width > image_height ? image_height : image_width).to_s
-      system('sips', '--cropToHeightWidth', smaller_dimension, smaller_dimension, downloaded_image)
+      system('sips', '--cropToHeightWidth', smaller_dimension, smaller_dimension, downloaded_image, out: File::NULL)
     end
 
     script_filter_items.push(title: title, subtitle: "#{genre} / #{duration} / #{author}", icon: { path: downloaded_image }, mods: { alt: { subtitle: synopsis } }, quicklookurl: item, arg: url)
