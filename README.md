@@ -99,11 +99,6 @@ Renames a directory or file (preserving the extension)
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/RenameAction) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RenameAction/RenameAction.alfredworkflow)
 
-### RepeatRepeat <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RepeatRepeat/source/icon.png' width='60' align='center' alt='RepeatRepeat icon'>
-Proof of concept to make a script filter update itself without further user input
-
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/RepeatRepeat) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RepeatRepeat/RepeatRepeat.alfredworkflow)
-
 ### RespondQuickly <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RespondQuickly/source/icon.png' width='60' align='center' alt='RespondQuickly icon'>
 Convert selected text to a QR code
 
