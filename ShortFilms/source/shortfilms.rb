@@ -23,7 +23,7 @@ if !File.exist?(list_file) || (((Time.now - File.mtime(list_file)) / (24 * 3600)
     synopsis = page.at('.description').text.strip
     details = page.at('.details')
     genre = details.at('span').text
-    author = details.css('span')[1].text.strip.gsub(/\s+/, ' ') # `gsub` for carriage returns in the middle of strings
+    author = details.css('span')[1].text.strip.gsub(/\s+/, ' ') # `gsub` for carriage returns and extraneous spaces in the middle of strings
     duration = details.at('time').text
 
     # set banner image as icon
