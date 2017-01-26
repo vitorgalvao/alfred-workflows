@@ -259,7 +259,7 @@
 				<string>source ./watchlist_functions.sh
 use_list towatch
 
-[[ ! -d "${alfred_workflow_data}" ]] &amp;&amp; mkdir "${alfred_workflow_data}"
+[[ -d "${alfred_workflow_data}" ]] || mkdir "${alfred_workflow_data}"
 
 files_to_add=$(echo "{query}" | perl -pe 's/\t/\n/g' | tail -r)
 
@@ -1168,7 +1168,7 @@ If you use [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.11.4</string>
+	<string>1.11.5</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
