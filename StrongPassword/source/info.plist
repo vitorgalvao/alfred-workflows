@@ -194,7 +194,7 @@ EOF</string>
 
 IFS=' ' read special number &lt;&lt;&lt; '{query}'
 
-[[ -z "${number}" ]] || [[ "${number}" -gt 64 ]] &amp;&amp; number='64'
+[[ -z "${number}" || "${number}" -gt 64 ]] &amp;&amp; number='64'
 
 ruby getPassword.rb "${special}" "${number}" | pbcopy
 
@@ -257,7 +257,7 @@ I strived to keep the code very readable; inspect it at will. What this does is 
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.1</string>
+	<string>1.0.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
