@@ -209,7 +209,7 @@ fi #find</string>
 }
 
 # Abort if `seconds_to_lock` is unset or not an interger
-if [[ -z "${seconds_to_lock}" ]] || [[ ! "${seconds_to_lock}" =~ ^[0-9]+$ ]]; then
+if [[ -z "${seconds_to_lock}" || ! "${seconds_to_lock}" =~ ^[0-9]+$ ]]; then
   echo 'Lock time in the Workflow Environment Variables is not a full number'
   exit 1
 fi
@@ -310,7 +310,7 @@ end if</string>
 				<string></string>
 				<key>script</key>
 				<string># Abort if `seconds_to_lock` is unset or not an interger
-if [[ -z "${seconds_to_lock}" ]] || [[ ! "${seconds_to_lock}" =~ ^[0-9]+$ ]]; then
+if [[ -z "${seconds_to_lock}" || ! "${seconds_to_lock}" =~ ^[0-9]+$ ]]; then
   echo 'Lock time in the Workflow Environment Variables is not a full number'
   exit 1
 fi
@@ -457,7 +457,7 @@ You will be asked for your password when locking since this operation requires e
 		<string>50</string>
 	</dict>
 	<key>version</key>
-	<string>1.1.1</string>
+	<string>1.1.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
