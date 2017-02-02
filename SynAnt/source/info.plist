@@ -85,6 +85,23 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>autopaste</key>
+				<true/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>26FFC902-DE74-4699-BD9A-8E47ED317DA2</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>action</key>
 				<integer>0</integer>
 				<key>argument</key>
@@ -188,23 +205,6 @@ fi #find</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>0A0F57BF-C486-407B-A652-E9C594BA6C55</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>autopaste</key>
-				<true/>
-				<key>clipboardtext</key>
-				<string>{query}</string>
-				<key>transient</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.clipboard</string>
-			<key>uid</key>
-			<string>26FFC902-DE74-4699-BD9A-8E47ED317DA2</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -446,7 +446,7 @@ Alternatively, select a word and press the shortcut you defined to get the resul
 		<string>api_key</string>
 	</array>
 	<key>version</key>
-	<string>1.0.1</string>
+	<string>1.0.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
