@@ -84,7 +84,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>B971F4FB-F5FA-4A6D-A6C1-079D2645B8D5</string>
+				<string>FEFAAD3D-C8FF-491F-8FC9-0B5ACA7164C3</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -246,24 +246,19 @@ fi</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>readonly local_file='info.plist'
-readonly remote_file="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
+				<string>readonly remote_info_plist="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
 readonly workflow_url="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/${alfred_workflow_name}.alfredworkflow"
 readonly workflow_type='workflow'
-frequency_check='15'
+readonly frequency_check='15'
 
 # FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED UNLESS YOU KNOW WHAT YOU ARE DOING
 function abort {
-  echo "${1}" 1&gt;&amp;2
+  echo "${1}" &gt;&amp;2
   exit 1
 }
 
 function url_exists {
-  if curl --silent --location --output /dev/null --fail --range 0-0 "${1}"; then
-    return 0
-  else
-    return 1
-  fi
+  curl --silent --location --output /dev/null --fail --range 0-0 "${1}"
 }
 
 function notification {
@@ -277,18 +272,22 @@ function notification {
 }
 
 # Local sanity checks
-[[ ! -f "${local_file}" ]] &amp;&amp; abort "'local_file' ("${local_file}") appears to not point to an existing file."
-[[ ! "${workflow_type}" =~ ^(workflow|page)$ ]] &amp;&amp; abort "'workflow_type' ("${workflow_type}") needs to be one of 'workflow' or 'page'."
-[[ ! "${frequency_check}" =~ ^[0-9]+$ ]] &amp;&amp; abort "'frequency_check' ("${frequency_check}") appears to not be a number."
+readonly local_info_plist='info.plist'
+readonly local_version="$(/usr/libexec/PlistBuddy -c 'print version' "${local_info_plist}")"
+
+[[ -n "${local_version}" ]] || abort 'You need to set a workflow version in the configuration sheet.'
+[[ "${workflow_type}" =~ ^(workflow|page)$ ]] || abort "'workflow_type' (${workflow_type}) needs to be one of 'workflow' or 'page'."
+[[ "${frequency_check}" =~ ^[0-9]+$ ]] || abort "'frequency_check' (${frequency_check}) needs to be a number."
 
 # Check for updates
-if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
-  if ! url_exists "${remote_file}"; then abort "'remote_file' ("${remote_file}") appears to not be reachable."; fi # Remote sanity check
+if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
+  if ! url_exists "${remote_info_plist}"; then abort "'remote_info_plist' (${remote_info_plist}) appears to not be reachable."; fi # Remote sanity check
 
   readonly tmp_file="$(mktemp)"
-  curl --silent --location --output "${tmp_file}" "${remote_file}"
+  curl --silent --location --output "${tmp_file}" "${remote_info_plist}"
+  readonly remote_version="$(/usr/libexec/PlistBuddy -c 'print version' "${tmp_file}")"
 
-  if [[ "$(diff "${local_file}" "${tmp_file}")" ]]; then
+  if [[ "${local_version}" != "${remote_version}" ]]; then
     if [[ "${workflow_type}" == 'page' ]]; then
       notification 'Opening download page…'
       open "${workflow_url}"
@@ -298,11 +297,11 @@ if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
         curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${workflow_url}"
         open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
       else
-        abort "'workflow_url' ("${workflow_url}") appears to not be reachable."
+        abort "'workflow_url' (${workflow_url}) appears to not be reachable."
       fi # url_exists
     fi # workflow_type
   else
-    touch "${local_file}" # Reset timer by touching local file
+    touch "${local_info_plist}" # Reset timer by touching local file
   fi # diff
 fi #find</string>
 				<key>scriptargtype</key>
@@ -315,7 +314,7 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>B971F4FB-F5FA-4A6D-A6C1-079D2645B8D5</string>
+			<string>FEFAAD3D-C8FF-491F-8FC9-0B5ACA7164C3</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -617,17 +616,6 @@ The two Workflow Environment Variables represent the directories (relative to yo
 			<key>ypos</key>
 			<integer>490</integer>
 		</dict>
-		<key>B971F4FB-F5FA-4A6D-A6C1-079D2645B8D5</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>note</key>
-			<string>OneUpdater</string>
-			<key>xpos</key>
-			<integer>650</integer>
-			<key>ypos</key>
-			<integer>70</integer>
-		</dict>
 		<key>C3D0CBE7-F8E9-46FC-811D-FC53095A1262</key>
 		<dict>
 			<key>xpos</key>
@@ -670,6 +658,17 @@ The two Workflow Environment Variables represent the directories (relative to yo
 			<key>ypos</key>
 			<integer>250</integer>
 		</dict>
+		<key>FEFAAD3D-C8FF-491F-8FC9-0B5ACA7164C3</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>640</integer>
+			<key>ypos</key>
+			<integer>70</integer>
+		</dict>
 	</dict>
 	<key>variables</key>
 	<dict>
@@ -679,7 +678,7 @@ The two Workflow Environment Variables represent the directories (relative to yo
 		<string>Downloads</string>
 	</dict>
 	<key>version</key>
-	<string>1.19.1</string>
+	<string>1.19.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
