@@ -79,47 +79,19 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>osascript -e "tell application \"Alfred 3\" to search \"prepare to turn…\""</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>6246F2F3-2B38-4928-B362-2207568EB817</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>readonly local_file='info.plist'
-readonly remote_file="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
+				<string>readonly remote_info_plist="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
 readonly workflow_url="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/${alfred_workflow_name}.alfredworkflow"
 readonly workflow_type='workflow'
-frequency_check='15'
+readonly frequency_check='15'
 
 # FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED UNLESS YOU KNOW WHAT YOU ARE DOING
 function abort {
-  echo "${1}" 1&gt;&amp;2
+  echo "${1}" &gt;&amp;2
   exit 1
 }
 
 function url_exists {
-  if curl --silent --location --output /dev/null --fail --range 0-0 "${1}"; then
-    return 0
-  else
-    return 1
-  fi
+  curl --silent --location --output /dev/null --fail --range 0-0 "${1}"
 }
 
 function notification {
@@ -133,18 +105,22 @@ function notification {
 }
 
 # Local sanity checks
-[[ ! -f "${local_file}" ]] &amp;&amp; abort "'local_file' ("${local_file}") appears to not point to an existing file."
-[[ ! "${workflow_type}" =~ ^(workflow|page)$ ]] &amp;&amp; abort "'workflow_type' ("${workflow_type}") needs to be one of 'workflow' or 'page'."
-[[ ! "${frequency_check}" =~ ^[0-9]+$ ]] &amp;&amp; abort "'frequency_check' ("${frequency_check}") appears to not be a number."
+readonly local_info_plist='info.plist'
+readonly local_version="$(/usr/libexec/PlistBuddy -c 'print version' "${local_info_plist}")"
+
+[[ -n "${local_version}" ]] || abort 'You need to set a workflow version in the configuration sheet.'
+[[ "${workflow_type}" =~ ^(workflow|page)$ ]] || abort "'workflow_type' (${workflow_type}) needs to be one of 'workflow' or 'page'."
+[[ "${frequency_check}" =~ ^[0-9]+$ ]] || abort "'frequency_check' (${frequency_check}) needs to be a number."
 
 # Check for updates
-if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
-  if ! url_exists "${remote_file}"; then abort "'remote_file' ("${remote_file}") appears to not be reachable."; fi # Remote sanity check
-  
-  readonly tmp_file="$(mktemp)"
-  curl --silent --location --output "${tmp_file}" "${remote_file}"
+if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
+  if ! url_exists "${remote_info_plist}"; then abort "'remote_info_plist' (${remote_info_plist}) appears to not be reachable."; fi # Remote sanity check
 
-  if [[ "$(diff "${local_file}" "${tmp_file}")" ]]; then
+  readonly tmp_file="$(mktemp)"
+  curl --silent --location --output "${tmp_file}" "${remote_info_plist}"
+  readonly remote_version="$(/usr/libexec/PlistBuddy -c 'print version' "${tmp_file}")"
+
+  if [[ "${local_version}" != "${remote_version}" ]]; then
     if [[ "${workflow_type}" == 'page' ]]; then
       notification 'Opening download page…'
       open "${workflow_url}"
@@ -154,11 +130,11 @@ if [[ $(find "${local_file}" -mtime +"${frequency_check}") ]]; then
         curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${workflow_url}"
         open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
       else
-        abort "'workflow_url' ("${workflow_url}") appears to not be reachable."
+        abort "'workflow_url' (${workflow_url}) appears to not be reachable."
       fi # url_exists
     fi # workflow_type
   else
-    touch "${local_file}" # Reset timer by touching local file
+    touch "${local_info_plist}" # Reset timer by touching local file
   fi # diff
 fi #find</string>
 				<key>scriptargtype</key>
@@ -172,6 +148,29 @@ fi #find</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>B9F080C3-2AC2-4C1F-A365-4BA416FFFE0C</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>osascript -e "tell application \"Alfred 3\" to search \"prepare to turn…\""</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>6246F2F3-2B38-4928-B362-2207568EB817</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -429,7 +428,7 @@ TurnShoot is a game where you try to react faster than your opponent. By default
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>1.0.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
