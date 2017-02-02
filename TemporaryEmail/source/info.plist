@@ -89,7 +89,7 @@ fi
 
 front_browser=$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')
 
-if [[ "${front_browser}" == "Safari" ]] || [[ "${front_browser}" == "Webkit" ]]; then
+if [[ "${front_browser}" == "Safari" || "${front_browser}" == "Webkit" ]]; then
   osascript &lt;&lt;EOF
     tell application "${front_browser}"
       set tabIndex to index of current tab of front window
@@ -97,7 +97,7 @@ if [[ "${front_browser}" == "Safari" ]] || [[ "${front_browser}" == "Webkit" ]];
       tell front window to set current tab to tab tabIndex
     end tell
 EOF
-elif [[ "${front_browser}" == "Google Chrome" ]] || [[ "${front_browser}" == "Google Chrome Canary" ]] || [[ "${front_browser}" == "Chromium" ]]; then
+elif [[ "${front_browser}" == "Google Chrome" || "${front_browser}" == "Google Chrome Canary" || "${front_browser}" == "Chromium" ]]; then
   osascript &lt;&lt;EOF
     tell application "${front_browser}"
       set tabIndex to active tab index of front window
@@ -243,7 +243,7 @@ When you have a supported browser (Safari, Webkit, Google Chrome, Google Chrome 
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.1</string>
+	<string>1.0.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
