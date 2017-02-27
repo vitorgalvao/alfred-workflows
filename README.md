@@ -24,6 +24,11 @@ Prevent your computer from going to sleep
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/CoffeeCoffee) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/CoffeeCoffee/CoffeeCoffee.alfredworkflow)
 
+### DenteAzul <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/DenteAzul/source/icon.png' width='60' align='center' alt='CoffeeCoffee icon'>
+Toggle bluetooth and its menu bar icon
+
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/DenteAzul) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/DenteAzul/DenteAzul.alfredworkflow)
+
 ### DownVid <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/DownVid/source/icon.png' width='60' align='center' alt='DownVid icon'>
 Download videos from popular sources
 
