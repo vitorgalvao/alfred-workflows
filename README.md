@@ -1,3 +1,8 @@
+To support my continued open-source work, pick a method:
+
+[<img src='https://upload.wikimedia.org/wikipedia/commons/5/53/PayPal_2014_logo.svg' height='18' alt='Support via Paypal'>](https://www.paypal.me/vitorgalvao)&nbsp;&nbsp;
+[<img src='https://upload.wikimedia.org/wikipedia/commons/c/c5/Bitcoin_logo.svg' height='15' alt='Support via Bitcoin'>](http://vitorgalvao.com/bitcoin_tip_jar.html)
+
 # Collection of Alfred Workflows
 ### AlfredBookmarklet <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/AlfredBookmarklet/source/icon.png' width='60' align='center' alt='AlfredBookmarklet icon'>
 Use a browser bookmarklet via Alfred
@@ -176,11 +181,3 @@ Find words that contain a particular pattern
 
 #### License
 All the code in the workflows’ root directory is licensed under [The Unlicense](http://unlicense.org/UNLICENSE) (Public Domain, essentially). Applications and libraries inside a `_licensed` directory (if there is one) are not public domain, and are accompanied by their respective licenses.
-
----
-
-#### Support the author
-To support me with a donation, pick a method below.
-
-[<img src='https://upload.wikimedia.org/wikipedia/commons/5/53/PayPal_2014_logo.svg' height='18' alt='Support via Paypal'>](https://www.paypal.me/vitorgalvao)&nbsp;&nbsp;
-[<img src='https://upload.wikimedia.org/wikipedia/commons/c/c5/Bitcoin_logo.svg' height='15' alt='Support via Bitcoin'>](http://vitorgalvao.com/bitcoin_tip_jar.html)
