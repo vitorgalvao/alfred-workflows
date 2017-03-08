@@ -179,5 +179,7 @@ Find words that contain a particular pattern
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/WordsWith) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/WordsWith/WordsWith.alfredworkflow)
 
+---
+
 #### License
 All the code in the workflows’ root directory is licensed under [The Unlicense](http://unlicense.org/UNLICENSE) (Public Domain, essentially). Applications and libraries inside a `_licensed` directory (if there is one) are not public domain, and are accompanied by their respective licenses.
