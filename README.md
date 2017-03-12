@@ -49,6 +49,11 @@ Opens Chrome’s frontmost tab in an incognito window
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/IncognitoClone) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/IncognitoClone/IncognitoClone.alfredworkflow)
 
+### KeyCodes <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/KeyCodes/source/icon.png' width='60' align='center' alt='KeyCodes icon'>
+Translate keyboard keys to AppleScript key codes
+
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/KeyCodes) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/KeyCodes/KeyCodes.alfredworkflow)
+
 ### LabelColor <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/LabelColor/source/icon.png' width='60' align='center' alt='LabelColor icon'>
 Sets a label color for selected files and directories
 

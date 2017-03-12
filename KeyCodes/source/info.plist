@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.vitorgalvao.alfred.keycodes</string>
+	<key>connections</key>
+	<dict/>
+	<key>createdby</key>
+	<string>Vítor Galvão</string>
+	<key>description</key>
+	<string>Translate keyboard keys to AppleScript key codes</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>KeyCodes</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>fixedorder</key>
+				<true/>
+				<key>items</key>
+				<string>[{"title":"⎋ \/ Escape","subtitle":"53"},{"title":"⌘ \/ Command","subtitle":"55"},{"title":"⌥ \/ Option \/ Alt","subtitle":"58 (left) \/ 61 (right)"},{"title":"⌃ \/ Control","subtitle":"59 (left) \/ 62 (right)"},{"title":"⇧ \/ Shift","subtitle":"56 (left) \/ 60 (right)"},{"title":"⇪ \/ Caps Lock","subtitle":"57"},{"title":"⏎ \/ Return","subtitle":"36"},{"title":"⌤ \/ Enter","subtitle":"76"},{"title":"⇥ \/ Tab","subtitle":"48"},{"title":"␣ \/ Space","subtitle":"49"},{"title":"⌫ \/ Delete \/ Backspace","subtitle":"51"},{"title":"⌦ \/ Forward Delete","subtitle":"117"},{"title":"← \/ Left Arrow","subtitle":"123"},{"title":"→ \/ Right Arrow","subtitle":"124"},{"title":"↓ \/ Down Arrow","subtitle":"125"},{"title":"↑ \/ Up Arrow","subtitle":"126"},{"title":"⇞ \/ Page Up","subtitle":"116"},{"title":"⇟ \/ Page Down","subtitle":"121"},{"title":"⇱ \/ Home","subtitle":"115"},{"title":"⇲ \/ End","subtitle":"119"},{"title":"fn","subtitle":"63"},{"title":"F1","subtitle":"122"},{"title":"F2","subtitle":"120"},{"title":"F3","subtitle":"99"},{"title":"F4","subtitle":"118"},{"title":"F5","subtitle":"96"},{"title":"F6","subtitle":"97"},{"title":"F7","subtitle":"98"},{"title":"F8","subtitle":"100"},{"title":"F9","subtitle":"101"},{"title":"F10","subtitle":"109"},{"title":"F11","subtitle":"103"},{"title":"F12","subtitle":"111"},{"title":"F13","subtitle":"105"},{"title":"F14","subtitle":"107"},{"title":"F15","subtitle":"113"},{"title":"F16","subtitle":"106"},{"title":"F17","subtitle":"64"},{"title":"F18","subtitle":"79"},{"title":"F19","subtitle":"80"},{"title":"F20","subtitle":"90"}]</string>
+				<key>keyword</key>
+				<string>kc</string>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Translate keyboard keys to AppleScript key codes</string>
+				<key>title</key>
+				<string>KeyCodes</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.listfilter</string>
+			<key>uid</key>
+			<string>74624B78-0F5A-499C-9F61-8E0D17FE3303</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>Quick reference for when you need to `tell application "System Events" to key code` in AppleScript. Call it with `kc`.
+
+![](https://i.imgur.com/KHDOVU8.png)
+
+Type a search term to filter keys.
+
+![](https://i.imgur.com/lROgksC.png)</string>
+	<key>uidata</key>
+	<dict>
+		<key>74624B78-0F5A-499C-9F61-8E0D17FE3303</key>
+		<dict>
+			<key>xpos</key>
+			<integer>50</integer>
+			<key>ypos</key>
+			<integer>40</integer>
+		</dict>
+	</dict>
+	<key>version</key>
+	<string>1.0.0</string>
+	<key>webaddress</key>
+	<string>http://vitorgalvao.com/</string>
+</dict>
+</plist>
