@@ -157,9 +157,11 @@ fi #find</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>bash uploadfile.sh upload '{query}'</string>
+				<string>IFS=$'\t'
+
+bash uploadfile.sh upload "${@}"</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -176,7 +178,7 @@ fi #find</string>
 			<key>config</key>
 			<dict>
 				<key>acceptsmulti</key>
-				<false/>
+				<true/>
 				<key>filetypes</key>
 				<array/>
 				<key>name</key>
@@ -328,9 +330,9 @@ fi</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Upload files to [transfer.sh](https://transfer.sh/) directly from Alfred.
+	<string>Upload to [transfer.sh](https://transfer.sh/) directly from Alfred.
 
-Pick a file (or directory, which will be compressed to a `.zip`) to upload via the `Upload file` `File Action`.
+Pick paths to upload via the `Upload file` `File Action`. Directories and multiple paths will be zipped prior to upload.
 
 ![](http://i.imgur.com/3jmzNse.png)
 
@@ -393,7 +395,7 @@ You’ll get notifications of the various phases, with a sound when it’s compl
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.2</string>
+	<string>1.2.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

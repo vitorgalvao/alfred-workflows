@@ -1,6 +1,6 @@
-Upload files to [transfer.sh](https://transfer.sh/) directly from Alfred.
+Upload to [transfer.sh](https://transfer.sh/) directly from Alfred.
 
-Pick a file (or directory, which will be compressed to a `.zip`) to upload via the `Upload file` `File Action`.
+Pick paths to upload via the `Upload file` `File Action`. Directories and multiple paths will be zipped prior to upload.
 
 ![](http://i.imgur.com/3jmzNse.png)
 

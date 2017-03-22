@@ -12,19 +12,31 @@ function ascii_basename {
 }
 
 function transfer {
-  readonly local given_file="${1}"
+  local tmp_dir tmp_zip_dir given_file dir_name zip_file file_path file_name
+
+  # If acting on multiple files, frist copy them to a directory
+  if [[ "${#}" -gt 1 ]]; then
+    readonly tmp_dir_multi="$(mktemp -d)"
+    readonly tmp_zip_dir="${tmp_dir_multi}/archive"
+    mkdir "${tmp_zip_dir}"
+    cp -R "${@}" "${tmp_zip_dir}"
+    readonly given_file="${tmp_zip_dir}"
+  else
+    readonly given_file="${1}"
+  fi
 
   # Make zip if acting on a directory
   if [[ -d "${given_file}" ]]; then
-    readonly local dir_name=$(ascii_basename "${given_file}")
-    readonly local zip_file="/tmp/${dir_name}.zip"
+    readonly tmp_dir="$(mktemp -d)"
+    readonly dir_name="$(ascii_basename "${given_file}")"
+    readonly zip_file="${tmp_dir}/${dir_name}.zip"
     ditto -ck "${given_file}" "${zip_file}"
-    readonly local file_path="${zip_file}"
+    readonly file_path="${zip_file}"
   else
-    readonly local file_path="${given_file}"
+    readonly file_path="${given_file}"
   fi
 
-  readonly local file_name=$(ascii_basename "${file_path}")
+  readonly file_name=$(ascii_basename "${file_path}")
   echo -n "${file_name}" > "${name_file}"
   notification "Uploading “${file_name}”"
 
@@ -37,11 +49,13 @@ function transfer {
 }
 
 function kill_transfer {
-  readonly local file_name="$(cat "${name_file}")"
+  local file_name parent_process oldest_child_process
+
+  readonly file_name="$(cat "${name_file}")"
 
   # Kill parent to prevent notification showing success and child to stop upload
-  parent_process="$(pgrep -f 'bash uploadfile.sh upload')"
-  oldest_child_process="$(pgrep -oP "${parent_process}")"
+  readonly parent_process="$(pgrep -f 'bash uploadfile.sh upload')"
+  readonly oldest_child_process="$(pgrep -oP "${parent_process}")"
   kill "${parent_process}" "${oldest_child_process}"
 
   # Play sound and show message
@@ -50,7 +64,8 @@ function kill_transfer {
 }
 
 if [[ "${1}" == 'upload' ]]; then
-  transfer "${2}"
+  shift
+  transfer "${@}"
 elif [[ "${1}" == 'abort' ]]; then
   kill_transfer
 else
