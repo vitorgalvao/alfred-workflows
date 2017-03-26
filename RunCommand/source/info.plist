@@ -294,8 +294,8 @@
 # send exit status
 exit_status="$?"
 
-if [[ "${exit_status}" == '0' ]]; then
-  exit_status='Success'
+if [[ "${exit_status}" -eq 0 ]]; then
+  exit_sub='Success'
   exit_message='The command finished successfully.'
 else
   exit_sub="${exit_status} (exit status)"
@@ -459,7 +459,7 @@ fi #find</string>
 # send exit status
 exit_status="$?"
 
-if [[ "${exit_status}" == '0' ]]; then
+if [[ "${exit_status}" -eq 0 ]]; then
   exit_sub='Success'
   exit_message='The command finished successfully.'
 else
@@ -640,7 +640,7 @@ To get the output of the command as `Large Type`, use ⌘ when actioning it.</st
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.9.3</string>
+	<string>1.9.4</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
