@@ -42,13 +42,11 @@
 				<false/>
 			</dict>
 		</array>
-		<key>6A286F10-FD49-4463-9540-0EECBE45438D</key>
-		<array/>
-		<key>B63C53CC-588B-476D-B85C-72FC8929D9E1</key>
+		<key>67C1A19D-DDF7-450A-A615-B9C134D6975F</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>C3D0CBE7-F8E9-46FC-811D-FC53095A1262</string>
+				<string>87AAFCF7-6532-4486-8489-54674100A52C</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -57,6 +55,8 @@
 				<false/>
 			</dict>
 		</array>
+		<key>6A286F10-FD49-4463-9540-0EECBE45438D</key>
+		<array/>
 		<key>D8524846-F942-4A77-9461-8BAED974B8CF</key>
 		<array>
 			<dict>
@@ -517,35 +517,18 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>keyword</key>
-				<string>:installdownvidservices</string>
-				<key>subtext</key>
-				<string>Installs OS X Services to allow you to download from urls without having to manually call Alfred</string>
-				<key>text</key>
-				<string>Install DownVid Services</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>B63C53CC-588B-476D-B85C-72FC8929D9E1</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
-				<integer>0</integer>
+				<integer>102</integer>
 				<key>script</key>
-				<string>cp -r ./services/* "${HOME}/Library/Services/"</string>
+				<string>if [[ "${1}" == 'install' ]]; then
+  cp -r ./services/* "${HOME}/Library/Services/"
+else
+  rm -r "${HOME}/Library/Services/DownVid"*
+fi</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -554,7 +537,72 @@ fi</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>C3D0CBE7-F8E9-46FC-811D-FC53095A1262</string>
+			<string>87AAFCF7-6532-4486-8489-54674100A52C</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>:downvidservices</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>downvid_service="${HOME}/Library/Services/DownVid.workflow"
+
+if [[ -d "${downvid_service}" ]]; then
+  echo '
+    {"items": [
+      {
+        "title": "Remove Downvid Services",
+        "subtitle": "Will be removed from ~/Library/Services",
+	    "arg": "uninstall"
+      }
+    ]}
+  '
+else
+  echo '
+    {"items": [
+      {
+        "title": "Install Downvid Services",
+        "subtitle": "Will be installed in ~/Library/Services",
+        "arg": "install"
+      }
+    ]}
+  '
+fi</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>Install/remove Downvid Services</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>67C1A19D-DDF7-450A-A615-B9C134D6975F</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -574,9 +622,9 @@ To see the download progress, run `dvp`. It will auto-refresh the progress. Acti
 
 ![](https://i.imgur.com/Za25OhO.png)
  
-You can also add DownVid actions to macOS Services, by running `:installdownvidservices` (if you ever want to remove them, simply delete them from the `~/Library/Services` directory). What this means is wherever you find a URL, you’ll be able to right click it and start the download right from the context menu.
+You can also run `:downvidservices` to install (or later remove, running the same command) DownVid actions to macOS Services. What this means is wherever you find a URL, you’ll be able to right click it and start the download right from the context menu.
 
-![](https://i.imgur.com/7yheG3N.png)
+![](https://i.imgur.com/VeQWXsC.png)
 
 The two Workflow Environment Variables represent the directories (relative to your home) where videos will download to.</string>
 	<key>uidata</key>
@@ -595,6 +643,13 @@ The two Workflow Environment Variables represent the directories (relative to yo
 			<key>ypos</key>
 			<real>250</real>
 		</dict>
+		<key>67C1A19D-DDF7-450A-A615-B9C134D6975F</key>
+		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
+			<key>ypos</key>
+			<integer>490</integer>
+		</dict>
 		<key>6A286F10-FD49-4463-9540-0EECBE45438D</key>
 		<dict>
 			<key>xpos</key>
@@ -602,26 +657,19 @@ The two Workflow Environment Variables represent the directories (relative to yo
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
+		<key>87AAFCF7-6532-4486-8489-54674100A52C</key>
+		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
+			<key>ypos</key>
+			<integer>490</integer>
+		</dict>
 		<key>AE972882-C947-41D6-9934-98ED94A54F3E</key>
 		<dict>
 			<key>xpos</key>
 			<integer>500</integer>
 			<key>ypos</key>
 			<real>130</real>
-		</dict>
-		<key>B63C53CC-588B-476D-B85C-72FC8929D9E1</key>
-		<dict>
-			<key>xpos</key>
-			<integer>300</integer>
-			<key>ypos</key>
-			<integer>490</integer>
-		</dict>
-		<key>C3D0CBE7-F8E9-46FC-811D-FC53095A1262</key>
-		<dict>
-			<key>xpos</key>
-			<integer>500</integer>
-			<key>ypos</key>
-			<integer>490</integer>
 		</dict>
 		<key>C95B128B-0AD1-41F2-A2D6-42BE6FE84306</key>
 		<dict>
@@ -678,7 +726,7 @@ The two Workflow Environment Variables represent the directories (relative to yo
 		<string>Downloads</string>
 	</dict>
 	<key>version</key>
-	<string>1.19.2</string>
+	<string>1.20.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

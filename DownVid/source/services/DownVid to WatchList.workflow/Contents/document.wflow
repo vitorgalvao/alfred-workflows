@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>AMApplicationBuild</key>
-	<string>419</string>
+	<string>428</string>
 	<key>AMApplicationVersion</key>
-	<string>2.6</string>
+	<string>2.7</string>
 	<key>AMDocumentVersion</key>
 	<string>2</string>
 	<key>actions</key>
@@ -63,7 +63,7 @@
 randfile="$(mktemp -t 'downvid')"
 echo -n "$1" &gt;&gt; "${randfile}"
 
-currentquery="addToWatchList ${randfile}"
+currentquery="${randfile} watchlist_true"
 
 osascript -e "tell application \"Alfred 3\" to run trigger \"new\" in workflow \"com.vitorgalvao.alfred.downvid\" with argument \"${currentquery}\""</string>
 					<key>CheckedForUserDefaultShell</key>

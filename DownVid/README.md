@@ -12,8 +12,8 @@ To see the download progress, run `dvp`. It will auto-refresh the progress. Acti
 
 ![](https://i.imgur.com/Za25OhO.png)
  
-You can also add DownVid actions to macOS Services, by running `:installdownvidservices` (if you ever want to remove them, simply delete them from the `~/Library/Services` directory). What this means is wherever you find a URL, you’ll be able to right click it and start the download right from the context menu.
+You can also run `:downvidservices` to install (or later remove, running the same command) DownVid actions to macOS Services. What this means is wherever you find a URL, you’ll be able to right click it and start the download right from the context menu.
 
-![](https://i.imgur.com/7yheG3N.png)
+![](https://i.imgur.com/VeQWXsC.png)
 
 The two Workflow Environment Variables represent the directories (relative to your home) where videos will download to.
