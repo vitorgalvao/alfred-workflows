@@ -2,49 +2,42 @@ Run browser [bookmarklets](http://en.wikipedia.org/wiki/Bookmarklet) from Alfred
 
 #### 1
 
-For the first step, get this template workflow itself. Though this is not strictly necessary (you can build it yourself), it serves as a just starting point with most of the work already done. Proceed to open the workflow in Alfred.
+For the first step, get this template workflow itself. Though this is not strictly necessary (you can build it yourself) it serves as a starting point with most of the work already done. Proceed to open the workflow in Alfred.
 
-Then get a browser bookmarklet to convert. In this example I use [squirt](http://squirt.io/). Go to the page that allows you to install the bookmaklet, and instead of adding it to your bookmarks bar, copy its link address.
+Next, get a browser bookmarklet to convert by copying its link address.
 
-![](http://i.imgur.com/jIbbOhq.gif)
+![](https://i.imgur.com/dJ5XgkB.gif)
 
-#### 2
+#### 2 
 
-The next step may or may not be needed, depending on if the bookmarklet’s code has any double quotes (`"`) or is url encoded. In doubt, do it. Run `:cleanbookmarkletcode` to clean the code in your clipboard.
+Run `:cleanbookmarkletcode` to clean the code in your clipboard. It performs substitutions necessary to avoid problems when pasting the code in the next step.
 
-![](https://i.imgur.com/AQLlczy.png)
-
-These substitutions are necessary to avoid problems when pasting the code in the top `Run Script` node.
+![](https://i.imgur.com/oIDEVcd.png)
 
 #### 3
 
-On to pasting the code. Open the top `Run Script` node, remove the line for the browser you do not want, and paste the bookmarklet’s code in place of the `<bookmarklet_code_here>` text (leave the quotes).
+Open the top `Run Script` node and paste the code between the quotes on the first line (`bookrmarklet_code=""`).
 
-![](http://i.imgur.com/4tOY0OI.gif)
+![](https://i.imgur.com/qAMS4B3.gif)
 
 ### Extra
 
-If you’re not new to Alfred, you likely won’t need these steps, as you’ll probably know what to do.
+If you’re not new to Alfred, you likely won’t need these steps as you’ll know what to do.
 
 #### 4
 
-The template incudes both a `Keyword` and a `Hotkey` nodes to call the code. You can delete either one simply by clicking on it and pressing ⌫.
+The template includes both a `Keyword` and a `Hotkey` nodes to run the code. You can delete either one by clicking on it and pressing ⌫.
 
-![](http://i.imgur.com/aDtale9.gif)
+![](https://i.imgur.com/rwzfdsU.gif)
 
 #### 5
 
-If you choose to use the workflow via `Keyword`, do not forget to set it up with descriptions relevant to your bookmarklet.
+If you choose to use the workflow via `Keyword`, do not forget to set it up.
 
-![](http://i.imgur.com/Mdbl2Yy.gif)
+![](https://i.imgur.com/CQowmRa.gif)
 
 #### 6
 
-Lastly, edit the workflow’s details, and possibly its icon. I’ve pre-filled some of the information with my details, for completeness. Feel free to edit them, though.
+Lastly, edit the workflow’s details and its icon. For completeness it’s pre-filled with my details. Feel free to edit them.
 
-![](http://i.imgur.com/xWSuaFG.png)
-
-
-**Note on browsers:** This currently works with Safari and Chrome. Webkit, Chromium, and Google Chrome Canary use the same code, you need just change the name where appropriate (Webkit is the same as Safari, the others the same as Chrome). Other browsers generally have poor (or no) applescript support (needed for this), or require some options to be set in the browser itself.
-
-**Note on instructions:** If you find subtle differences between the gifs and the actual workflow, that just means the workflow has been updated since but not the gifs (since they’re a bit time consuming), but the process is identical. If a workflow change drastically outdates the instructions (meaning they won’t be immediately perceptible) I’ll update the corresponding gifs.
+![](https://i.imgur.com/KxIFI2A.png)
