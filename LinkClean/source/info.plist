@@ -78,8 +78,7 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string># set url
-url="$(pbpaste)"
+				<string>url="$(pbpaste)"
 
 if [[ "{query}" == "short" ]]; then
   # expand short url
@@ -88,10 +87,8 @@ if [[ "{query}" == "short" ]]; then
   [[ -n "${expanded}" ]] &amp;&amp; url="${expanded}"
 fi
 
-# remove 'm.' 'mobile.' 'touch.', 'utm' 'ref', 'ref=' from amazon
-url=$(echo "${url}" | perl -pe 's/(https?:\/\/)(m\.|mobile\.|touch\.)(.*)/\1\3/;s/([?&amp;]utm.*|[?&amp;]ref.*)//;s/(https:\/\/www.amazon\..*\/)ref=.*/\1/')
-
-echo -n "${url}"</string>
+# remove 'm.' 'mobile.' 'touch.', 'utm' 'ref', 'ref=' from amazon, anything after '&amp;' or '?' from facebook
+perl -pe 's/(https?:\/\/)(m\.|mobile\.|touch\.)(.*)/\1\3/;s/([?&amp;]utm.*|[?&amp;]ref.*)//;s/(https:\/\/www\.amazon\..*\/)ref=.*/\1/;s/(https:\/\/www\.facebook\.com\/.*\/)[?&amp;].*/\1/' &lt;&lt;&lt; "${url}" | tr -d '\n'</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -287,7 +284,7 @@ The option for shortened links will also work on long URLs. This option, however
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.3</string>
+	<string>1.0.4</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
