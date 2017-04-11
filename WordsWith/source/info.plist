@@ -105,11 +105,9 @@
 				<key>script</key>
 				<string>echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
 for word in $(grep "^{query}" /usr/share/dict/words); do
-	echo "&lt;item uid='start' arg='${word}' valid='yes'&gt;"
-	echo "&lt;title&gt;${word}&lt;/title&gt;"
-	echo "&lt;subtitle&gt;&lt;/subtitle&gt;"
-	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
-	echo "&lt;/item&gt;"
+  echo "&lt;item arg='${word}' valid='yes'&gt;"
+  echo "&lt;title&gt;${word}&lt;/title&gt;"
+  echo "&lt;/item&gt;"
 done
 echo "&lt;/items&gt;"</string>
 				<key>scriptargtype</key>
@@ -156,11 +154,9 @@ echo "&lt;/items&gt;"</string>
 				<key>script</key>
 				<string>echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
 for word in $(grep ".*{query}.*" /usr/share/dict/words); do
-	echo "&lt;item uid='anywhere' arg='${word}' valid='yes'&gt;"
-	echo "&lt;title&gt;${word}&lt;/title&gt;"
-	echo "&lt;subtitle&gt;&lt;/subtitle&gt;"
-	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
-	echo "&lt;/item&gt;"
+  echo "&lt;item arg='${word}' valid='yes'&gt;"
+  echo "&lt;title&gt;${word}&lt;/title&gt;"
+  echo "&lt;/item&gt;"
 done
 echo "&lt;/items&gt;"</string>
 				<key>scriptargtype</key>
@@ -207,11 +203,9 @@ echo "&lt;/items&gt;"</string>
 				<key>script</key>
 				<string>echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
 for word in $(grep "{query}$" /usr/share/dict/words); do
-	echo "&lt;item uid='end' arg='${word}' valid='yes'&gt;"
-	echo "&lt;title&gt;${word}&lt;/title&gt;"
-	echo "&lt;subtitle&gt;&lt;/subtitle&gt;"
-	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
-	echo "&lt;/item&gt;"
+  echo "&lt;item arg='${word}' valid='yes'&gt;"
+  echo "&lt;title&gt;${word}&lt;/title&gt;"
+  echo "&lt;/item&gt;"
 done
 echo "&lt;/items&gt;"</string>
 				<key>scriptargtype</key>
@@ -338,8 +332,8 @@ fi #find</string>
 	<key>readme</key>
 	<string>Call `ww` to get a list of options for how to search for a particular word — `wws` for words starting with the query, `wwa` for words that have it anywhere, and `wwe` for words ending in it. Add a word to search for, and it’ll filter in real time.
 
-![](http://i.imgur.com/kAsToan.png)
-![](http://i.imgur.com/qQPua4b.png)
+![](https://i.imgur.com/KXr1mJ2.png)
+![](https://i.imgur.com/E678hUt.png)
 
 Picking a word will then call Alfred with `define`, so you can see the meaning of it if you have that option enabled.</string>
 	<key>uidata</key>
@@ -385,7 +379,7 @@ Picking a word will then call Alfred with `define`, so you can see the meaning o
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.1</string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
