@@ -129,11 +129,7 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>IFS=$'\t\n'
-
-files="$(echo "$@" | perl -pe 's/\//\t/g')"
-
-dirPath="$(osascript -e 'tell application "System Events" to set frontApp to name of first process whose frontmost is true
+				<string>dirPath="$(osascript -e 'tell application "System Events" to set frontApp to name of first process whose frontmost is true
 
 if (frontApp is "Finder") then
   try
@@ -145,16 +141,17 @@ else
   return (POSIX path of (path to desktop))
 end if')"
 
-for file in ${files}; do
-  fileExtension=$(echo ${file} | sed -n 's/\(.*\)\.\(.*\)$/.\2/p')
-  fileNoExtension=$(echo ${file} | sed 's/\(.*\)\.\(.*\)$/\1/')
+IFS=$'/\n'
+for file in ${@}; do
+  fileExtension="$(sed -n 's/\(.*\)\.\(.*\)$/.\2/p' &lt;&lt;&lt; "${file}")"
+  fileNoExtension="$(sed 's/\(.*\)\.\(.*\)$/\1/' &lt;&lt;&lt; "${file}")"
 
-  if [[ -z ${fileExtension} ]]; then fileExtension=".txt"; fi
+  if [[ -z "${fileExtension}" ]]; then fileExtension=".txt"; fi
 
   fileLocation="${dirPath}${fileNoExtension}${fileExtension}"
 
   touch "${fileLocation}"
-  if [[ ${open_files} == 'yes' ]]; then open "${fileLocation}"; fi
+  if [[ "${open_files}" == 'yes' ]]; then open "${fileLocation}"; fi
 done</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
@@ -293,7 +290,7 @@ fi #find</string>
 	<key>readme</key>
 	<string>Call `nf` followed by a file name (if you don’t give it an extension, it’ll be `.txt`) to make a new file. If you type `nfo` instead the files will open after creation. If you have a Finder window as your frontmost window, the file will be created there, otherwise it will be created on your Desktop.
 
-![](http://i.imgur.com/h7QWrBg.png)</string>
+![](https://i.imgur.com/h7QWrBg.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>137E4749-7D83-426A-A8C4-AB736358775E</key>
@@ -344,7 +341,7 @@ fi #find</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.2</string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
