@@ -6,19 +6,6 @@
 	<string>com.vitorgalvao.alfred.labelcolor</string>
 	<key>connections</key>
 	<dict>
-		<key>1CDD71C9-6FA7-4886-8792-358DC4825B8C</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>3387B057-FF89-44FF-8D81-1C1CB554C09C</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>3387B057-FF89-44FF-8D81-1C1CB554C09C</key>
 		<array>
 			<dict>
@@ -45,6 +32,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>D630C27C-B886-4694-87FF-4701C20F9F67</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3387B057-FF89-44FF-8D81-1C1CB554C09C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>D9413737-68AF-44E7-8F3D-214676DFD4EF</key>
 		<array>
 			<dict>
@@ -62,7 +62,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>1CDD71C9-6FA7-4886-8792-358DC4825B8C</string>
+				<string>D630C27C-B886-4694-87FF-4701C20F9F67</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -82,29 +82,6 @@
 	<string>LabelColor</string>
 	<key>objects</key>
 	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>perl -pe 's/[\t\n]/\0/g' &lt;&lt;&lt; "${file_list}" | xargs -0 ./labelcolor {query}</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>3387B057-FF89-44FF-8D81-1C1CB554C09C</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -188,6 +165,58 @@ fi #find</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>IFS=$'\t'
+
+for file in ${file_list}; do
+  ./labelcolor {query} "${file}"
+done</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>3387B057-FF89-44FF-8D81-1C1CB554C09C</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>fixedorder</key>
+				<false/>
+				<key>items</key>
+				<string>[{"imagefile":"47218367fbe74bafc77a1d88b4ec25665d0b28cc.png","title":"None","arg":"none","subtitle":"Removes label"},{"imagefile":"543edabc69cbb4b0d171552f720abf49cb1c68bd.png","title":"Orange","arg":"orange","subtitle":"Applies the orange label"},{"imagefile":"2fe4895509bc95aea1502d619cebb187c2840be6.png","title":"Red","arg":"red","subtitle":"Applies the red label"},{"imagefile":"690f2643f116ed2e9c187bd32538cd41a264c3f1.png","title":"Yellow","arg":"yellow","subtitle":"Applies the yellow label"},{"imagefile":"e69112b68c5ae49aac0a20b148a1966b3023e25f.png","title":"Blue","arg":"blue","subtitle":"Applies the blue label"},{"imagefile":"6f50d75e73eb2f36c91b73b62ea6ef2880050015.png","title":"Purple","arg":"purple","subtitle":"Applies the purple label"},{"imagefile":"727e35472e8ae870dbc870c519f8492c5f804d8e.png","title":"Green","arg":"green","subtitle":"Applies the green label"},{"imagefile":"84cc7f091e8f5ab0ee990a22a30e076a80d7dd01.png","title":"Gray","arg":"gray","subtitle":"Applies the gray label"}]</string>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>none (removes label), orange, red, yellow, blue, purple, green, gray</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.listfilter</string>
+			<key>uid</key>
+			<string>D630C27C-B886-4694-87FF-4701C20F9F67</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>acceptsmulti</key>
 				<true/>
 				<key>filetypes</key>
@@ -201,90 +230,6 @@ fi #find</string>
 			<string>D9413737-68AF-44E7-8F3D-214676DFD4EF</string>
 			<key>version</key>
 			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>alfredfiltersresults</key>
-				<true/>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>queuedelaycustom</key>
-				<integer>1</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<false/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string>Please wait…</string>
-				<key>script</key>
-				<string>cat &lt;&lt; EOF
-&lt;?xml version='1.0'?&gt;&lt;items&gt;
-  &lt;item uid='none' arg='none' valid='yes' autocomplete=''&gt;
-    &lt;title&gt;None&lt;/title&gt;
-    &lt;subtitle&gt;Removes label&lt;/subtitle&gt;
-    &lt;icon&gt;colors/none.png&lt;/icon&gt;
-  &lt;/item&gt;
-  &lt;item uid='orange' arg='orange' valid='yes' autocomplete=''&gt;
-    &lt;title&gt;Orange&lt;/title&gt;
-    &lt;subtitle&gt;Applies the orange label&lt;/subtitle&gt;
-    &lt;icon&gt;colors/orange.png&lt;/icon&gt;
-  &lt;/item&gt;
-  &lt;item uid='red' arg='red' valid='yes' autocomplete=''&gt;
-    &lt;title&gt;Red&lt;/title&gt;
-    &lt;subtitle&gt;Applies the red label&lt;/subtitle&gt;
-    &lt;icon&gt;colors/red.png&lt;/icon&gt;
-  &lt;/item&gt;
-  &lt;item uid='yellow' arg='yellow' valid='yes' autocomplete=''&gt;
-    &lt;title&gt;Yellow&lt;/title&gt;
-    &lt;subtitle&gt;Applies the yellow label&lt;/subtitle&gt;
-    &lt;icon&gt;colors/yellow.png&lt;/icon&gt;
-  &lt;/item&gt;
-  &lt;item uid='blue' arg='blue' valid='yes' autocomplete=''&gt;
-    &lt;title&gt;Blue&lt;/title&gt;
-    &lt;subtitle&gt;Applies the blue label&lt;/subtitle&gt;
-    &lt;icon&gt;colors/blue.png&lt;/icon&gt;
-  &lt;/item&gt;
-  &lt;item uid='purple' arg='purple' valid='yes' autocomplete=''&gt;
-    &lt;title&gt;Purple&lt;/title&gt;
-    &lt;subtitle&gt;Applies the purple label&lt;/subtitle&gt;
-    &lt;icon&gt;colors/purple.png&lt;/icon&gt;
-  &lt;/item&gt;
-  &lt;item uid='green' arg='green' valid='yes' autocomplete=''&gt;
-    &lt;title&gt;Green&lt;/title&gt;
-    &lt;subtitle&gt;Applies the green label&lt;/subtitle&gt;
-    &lt;icon&gt;colors/green.png&lt;/icon&gt;
-  &lt;/item&gt;
-  &lt;item uid='gray' arg='gray' valid='yes' autocomplete=''&gt;
-    &lt;title&gt;Gray&lt;/title&gt;
-    &lt;subtitle&gt;Applies the gray label&lt;/subtitle&gt;
-    &lt;icon&gt;colors/gray.png&lt;/icon&gt;
-  &lt;/item&gt;
-&lt;/items&gt;
-EOF</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string>none (removes label), orange, red, yellow, blue, purple, green, gray</string>
-				<key>title</key>
-				<string>labelcolor</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>1CDD71C9-6FA7-4886-8792-358DC4825B8C</string>
-			<key>version</key>
-			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -337,20 +282,13 @@ EOF</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>File action to set the label color for the chosen files and/or directories.
- 
+	<string>File action to set the label color for the chosen files and directories.
+
 Use Alfred to pick what you want to apply (or remove) a label to and pick `Label` as the action, or use the keyboard shortcut. Alfred’s main window will appear and you simply select an option or type to filter the color’s name.
 
-![](http://i.imgur.com/BI9ANou.png)</string>
+![](https://i.imgur.com/hCXjmBD.png)</string>
 	<key>uidata</key>
 	<dict>
-		<key>1CDD71C9-6FA7-4886-8792-358DC4825B8C</key>
-		<dict>
-			<key>xpos</key>
-			<integer>300</integer>
-			<key>ypos</key>
-			<integer>20</integer>
-		</dict>
 		<key>3387B057-FF89-44FF-8D81-1C1CB554C09C</key>
 		<dict>
 			<key>xpos</key>
@@ -364,6 +302,13 @@ Use Alfred to pick what you want to apply (or remove) a label to and pick `Label
 			<integer>30</integer>
 			<key>ypos</key>
 			<integer>140</integer>
+		</dict>
+		<key>D630C27C-B886-4694-87FF-4701C20F9F67</key>
+		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
+			<key>ypos</key>
+			<integer>20</integer>
 		</dict>
 		<key>D9413737-68AF-44E7-8F3D-214676DFD4EF</key>
 		<dict>
@@ -392,7 +337,7 @@ Use Alfred to pick what you want to apply (or remove) a label to and pick `Label
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.2</string>
+	<string>1.2.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

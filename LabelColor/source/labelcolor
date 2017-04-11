@@ -1,47 +1,44 @@
 #!/bin/bash
 
-readonly program="$(basename "$0")"
+readonly program="$(basename "${0}")"
 
-# Instructions on how to use the script
-# Shown with when no arguments are given
-# --------------------------------------
 usage() {
-echo "usage: $program <color> <files>
+  echo "
+    usage: ${program} <color> <files>
 
-Available color options:
-none (to remove label), orange, red, yellow, blue, purple, green, gray"
+    Available color options:
+      none (removes label), orange, red, yellow, blue, purple, green, gray
+  " | sed -E 's/^ {4}//'
 }
 
-if [[ -z ${1} ]]; then
+if [[ "${1}" =~ ^(-h|--help)$ ]]; then
+  usage
+  exit 0
+fi
+
+if [[ "${#}" -lt 2 ]]; then
   usage
   exit 1
 fi
 
-# Use first argument as color
-# ---------------------------
-color_name=${1}
+readonly color_name="${1}"
 shift
 
-# Covert color name to appropriate index
-# Check if color is valid
-# --------------------------------------
-color_array=('none' 'orange' 'red' 'yellow' 'blue' 'purple' 'green' 'gray')
+# Check if color is valid and convert name to appropriate index
+readonly color_array=('none' 'orange' 'red' 'yellow' 'blue' 'purple' 'green' 'gray')
 
 for i in "${!color_array[@]}"; do
-  if [[ "${color_array[$i]}" = "${color_name}" ]]; then
-    color_index="${i}"
-  fi
+  [[ "${color_array[$i]}" == "${color_name}" ]] && color_index="${i}"
 done
 
 if [[ -z "${color_index}" ]]; then
-  echo "Please choose a valid color."
+  echo "Please pick a valid color."
   usage
   exit 1
 fi
 
 # Set the label
-# -------------
-osascript - "${color_index}" "$@" << EOF &>/dev/null
+osascript - "${color_index}" "${@}" << EOF &>/dev/null
   on run argv
     set labelIndex to (item 1 of argv as number)
     repeat with i from 2 to (count of argv)
