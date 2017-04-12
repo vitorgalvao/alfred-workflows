@@ -210,7 +210,7 @@ EOF
 else
 cat &lt;&lt; EOF
 &lt;?xml version='1.0'?&gt;&lt;items&gt;
-	&lt;item uid='Regular Download' arg='${randfile}' valid='yes'&gt;
+	&lt;item uid='Regular Download' arg='${randfile} watchlist_false' valid='yes'&gt;
 		&lt;title&gt;DownVid&lt;/title&gt;
 		&lt;subtitle&gt;Downloads the video to your Desktop&lt;/subtitle&gt;
 		&lt;icon&gt;icon.png&lt;/icon&gt;
@@ -726,7 +726,7 @@ The two Workflow Environment Variables represent the directories (relative to yo
 		<string>Downloads</string>
 	</dict>
 	<key>version</key>
-	<string>1.20.0</string>
+	<string>1.20.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

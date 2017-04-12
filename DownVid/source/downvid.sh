@@ -14,7 +14,7 @@ if [[ "$(which ffmpeg avconv)" ]]; then
 fi
 
 # parse query
-full_query="$@"
+full_query="${@}"
 link_file=$(awk '{ print $1 }' <<< "${full_query}")
 watchlist_bool=$(awk '{ gsub(".*_", "", $2); print $2 }' <<< "${full_query}")
 playlist_bool=$(awk '{ gsub(".*_", "", $3); print $3 }' <<< "${full_query}")
