@@ -6,26 +6,11 @@
 	<string>com.vitorgalvao.alfred.turnshoot</string>
 	<key>connections</key>
 	<dict>
-		<key>08291D0D-7C93-48B4-8E99-8D33D59AD159</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>6246F2F3-2B38-4928-B362-2207568EB817</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>14A33190-682D-4FE5-A1E0-8F1601CA88DF</key>
-		<array/>
-		<key>23029A6D-4474-4070-9D48-9DDC39C7D6CC</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>6246F2F3-2B38-4928-B362-2207568EB817</string>
+				<string>BBEF4D64-134A-4F5C-B440-5061F70FAF40</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -38,7 +23,17 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>6246F2F3-2B38-4928-B362-2207568EB817</string>
+				<string>B9F080C3-2AC2-4C1F-A365-4BA416FFFE0C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>BBEF4D64-134A-4F5C-B440-5061F70FAF40</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -47,11 +42,11 @@
 				<false/>
 			</dict>
 		</array>
-		<key>6246F2F3-2B38-4928-B362-2207568EB817</key>
+		<key>CD3384FA-AEC2-4C66-8F26-B732532D8A55</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>B9F080C3-2AC2-4C1F-A365-4BA416FFFE0C</string>
+				<string>14A33190-682D-4FE5-A1E0-8F1601CA88DF</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -154,35 +149,12 @@ fi #find</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>osascript -e "tell application \"Alfred 3\" to search \"prepare to turn…\""</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>6246F2F3-2B38-4928-B362-2207568EB817</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>keyword</key>
 				<string>turnshoot</string>
 				<key>subtext</key>
-				<string>Player 1 uses `q` and player 2 uses `p`</string>
+				<string>Player 1 uses `{var:key_player_one}` and player 2 uses `{var:key_player_two}`</string>
 				<key>text</key>
 				<string>TurnShoot</string>
 				<key>withspace</key>
@@ -198,41 +170,88 @@ fi #find</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>externaltriggerid</key>
+				<string>start</string>
+				<key>passinputasargument</key>
+				<false/>
+				<key>passvariables</key>
+				<false/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>BBEF4D64-134A-4F5C-B440-5061F70FAF40</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>argumenttype</key>
-				<integer>2</integer>
+				<integer>1</integer>
 				<key>escaping</key>
 				<integer>0</integer>
-				<key>keyword</key>
-				<string>prepare to turn…</string>
 				<key>queuedelaycustom</key>
-				<integer>1</integer>
+				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
 				<false/>
 				<key>queuedelaymode</key>
 				<integer>0</integer>
 				<key>queuemode</key>
-				<integer>1</integer>
+				<integer>2</integer>
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>shotsFile="/tmp/turnandshoot"
-rm "${shotsFile}"
+				<string>shots_file='/tmp/turnandshoot'
 
-randomNum="$(grep -m1 -ao '[3-6]' /dev/urandom | head -1)"
-sleep ${randomNum}
+if [[ -z '{query}' ]]; then
+  rm "${shots_file}"
+  random_num="$(grep --max-count=1 --text --only-matching '[3-6]' /dev/random)"
+  sleep "${random_num}"
+  touch "${shots_file}"
 
-touch "${shotsFile}"
+  echo '
+    &lt;?xml version="1.0"?&gt;&lt;items&gt;
+      &lt;item uuid="Shoot" valid="no"&gt;
+        &lt;title&gt;Shoot!&lt;/title&gt;
+        &lt;icon&gt;icon_alt.png&lt;/icon&gt;
+      &lt;/item&gt;
+    &lt;/items&gt;
+  '
+else
+  [[ -f "${shots_file}" ]] &amp;&amp; missed='no' || missed='yes'
 
-cat &lt;&lt; EOF
-  &lt;?xml version='1.0'?&gt;&lt;items&gt;
-    &lt;item uuid='Shoot' valid='no'&gt;
-      &lt;title&gt;Shoot!&lt;/title&gt;
-      &lt;icon&gt;iconAlt.png&lt;/icon&gt;
-    &lt;/item&gt;
-  &lt;/items&gt;
-EOF</string>
+  echo '&lt;?xml version="1.0"?&gt;&lt;items&gt;'
+  echo '&lt;item uuid="Shot" valid="yes"&gt;'
+
+  if [[ '{query}' == "${key_player_one}" ]]; then
+    if [[ "${missed}" == 'yes' ]]; then
+      echo '&lt;title&gt;Player 2 wins!&lt;/title&gt;'
+      echo '&lt;subtitle&gt;Player 1 missed…&lt;/subtitle&gt;'
+      echo '&lt;icon&gt;icon.png&lt;/icon&gt;'
+    else
+      echo '&lt;title&gt;Player 1 wins!&lt;/title&gt;'
+      echo '&lt;subtitle&gt;Player 2 was too slow…&lt;/subtitle&gt;'
+      echo '&lt;icon&gt;icon_alt.png&lt;/icon&gt;'
+    fi
+  elif [[ '{query}' == "${key_player_two}" ]]; then
+    if [[ "${missed}" == 'yes' ]]; then
+      echo '&lt;title&gt;Player 1 wins!&lt;/title&gt;'
+      echo '&lt;subtitle&gt;Player 2 missed…&lt;/subtitle&gt;'
+      echo '&lt;icon&gt;icon.png&lt;/icon&gt;'
+    else
+      echo '&lt;title&gt;Player 2 wins!&lt;/title&gt;'
+      echo '&lt;subtitle&gt;Player 1 was too slow…&lt;/subtitle&gt;'
+      echo '&lt;icon&gt;icon_alt.png&lt;/icon&gt;'
+    fi
+  fi
+
+  echo '&lt;/item&gt;&lt;/items&gt;'
+fi</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -256,162 +275,36 @@ EOF</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>alfredfiltersresults</key>
-				<false/>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>prepare to turn…q</string>
-				<key>queuedelaycustom</key>
-				<integer>1</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<false/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string>Loading…</string>
-				<key>script</key>
-				<string>shotsFile="/tmp/turnandshoot"
-[[ -f "${shotsFile}" ]] &amp;&amp; missed="no" || missed="yes"
-
-echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-echo "&lt;item uuid='Shot' valid='yes'&gt;"
-if [[ "${missed}" == "yes" ]]; then
-  echo "&lt;title&gt;Player 1 missed…&lt;/title&gt;"
-  echo "&lt;subtitle&gt;Player 2 wins&lt;/subtitle&gt;"
-else
-  echo "&lt;title&gt;Player 1 hits!&lt;/title&gt;"
-  echo "&lt;subtitle&gt;Player 1 wins&lt;/subtitle&gt;"
-fi
-echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
-echo "&lt;/item&gt;"
-echo "&lt;/items&gt;"</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string>Call “turnshoot” to start a game</string>
-				<key>title</key>
-				<string>Player 1</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<false/>
+				<key>triggerid</key>
+				<string>start</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
+			<string>alfred.workflow.trigger.external</string>
 			<key>uid</key>
-			<string>23029A6D-4474-4070-9D48-9DDC39C7D6CC</string>
+			<string>CD3384FA-AEC2-4C66-8F26-B732532D8A55</string>
 			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>alfredfiltersresults</key>
-				<false/>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>prepare to turn…p</string>
-				<key>queuedelaycustom</key>
-				<integer>1</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<false/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string>Loading…</string>
-				<key>script</key>
-				<string>shotsFile="/tmp/turnandshoot"
-[[ -f "${shotsFile}" ]] &amp;&amp; missed="no" || missed="yes"
-
-echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-echo "&lt;item uuid='Shot' valid='yes'&gt;"
-if [[ "${missed}" == "yes" ]]; then
-  echo "&lt;title&gt;Player 2 missed…&lt;/title&gt;"
-  echo "&lt;subtitle&gt;Player 1 wins&lt;/subtitle&gt;"
-else
-  echo "&lt;title&gt;Player 2 hits!&lt;/title&gt;"
-  echo "&lt;subtitle&gt;Player 2 wins&lt;/subtitle&gt;"
-fi
-echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
-echo "&lt;/item&gt;"
-echo "&lt;/items&gt;"</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string>Call “turnshoot” to start a game</string>
-				<key>title</key>
-				<string>Player 2</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>08291D0D-7C93-48B4-8E99-8D33D59AD159</string>
-			<key>version</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Following the footsteps of [PingPong](https://github.com/vitorgalvao/alfred-workflows/tree/master/PingPong), here’s now a two-player game for Alfred.
+	<string>Following the footsteps of [PingPong](https://github.com/vitorgalvao/alfred-workflows/tree/master/PingPong), here’s a two-player game for Alfred.
 
-TurnShoot is a game where you try to react faster than your opponent. By default player 1 uses `q` and player 2 uses `p`, due to the position of both keys in a typical QWERTY keyboard. If you’d like to change these, see the bottom two nodes of the workflow and change the last letter of the `Keyword` input.
+TurnShoot is a game where you try to react faster than your opponent. By default player 1 uses `q` and player 2 uses `p`, due to the position of both keys on a typical QWERTY keyboard. If you’d like to change these, do so on the `Workflow Environment Variables`.
 
-![](http://i.imgur.com/GVw3TJ2.png)
-![](http://i.imgur.com/wup1KNj.png)
-![](http://i.imgur.com/cTamcuQ.png)
-![](http://i.imgur.com/HUDYNc6.png)
-![](http://i.imgur.com/Fnzsw0h.png)</string>
+![](https://i.imgur.com/wQDrk81.gif)</string>
 	<key>uidata</key>
 	<dict>
-		<key>08291D0D-7C93-48B4-8E99-8D33D59AD159</key>
-		<dict>
-			<key>xpos</key>
-			<integer>110</integer>
-			<key>ypos</key>
-			<integer>370</integer>
-		</dict>
 		<key>14A33190-682D-4FE5-A1E0-8F1601CA88DF</key>
 		<dict>
 			<key>xpos</key>
-			<integer>110</integer>
+			<integer>190</integer>
 			<key>ypos</key>
-			<integer>130</integer>
-		</dict>
-		<key>23029A6D-4474-4070-9D48-9DDC39C7D6CC</key>
-		<dict>
-			<key>xpos</key>
-			<integer>110</integer>
-			<key>ypos</key>
-			<integer>250</integer>
+			<integer>150</integer>
 		</dict>
 		<key>4E42AF76-8549-4514-9EE1-C472298CBAC2</key>
 		<dict>
 			<key>xpos</key>
-			<integer>110</integer>
-			<key>ypos</key>
-			<integer>10</integer>
-		</dict>
-		<key>6246F2F3-2B38-4928-B362-2207568EB817</key>
-		<dict>
-			<key>xpos</key>
-			<integer>310</integer>
+			<integer>190</integer>
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
@@ -422,13 +315,34 @@ TurnShoot is a game where you try to react faster than your opponent. By default
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>390</integer>
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
+		<key>BBEF4D64-134A-4F5C-B440-5061F70FAF40</key>
+		<dict>
+			<key>xpos</key>
+			<integer>390</integer>
+			<key>ypos</key>
+			<integer>150</integer>
+		</dict>
+		<key>CD3384FA-AEC2-4C66-8F26-B732532D8A55</key>
+		<dict>
+			<key>xpos</key>
+			<integer>10</integer>
+			<key>ypos</key>
+			<integer>150</integer>
+		</dict>
+	</dict>
+	<key>variables</key>
+	<dict>
+		<key>key_player_one</key>
+		<string>q</string>
+		<key>key_player_two</key>
+		<string>p</string>
 	</dict>
 	<key>version</key>
-	<string>1.0.1</string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
