@@ -272,11 +272,11 @@ fi</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>List the contents of your `~/Downloads` directory and act on them. Call the workflow with `rdn` to sort from newest to oldest, or `rdo` to sort from oldest to the most recent.
+	<string>List the contents of your `~/Downloads` directory and act on them. Call the workflow with `rdn` to sort from newest to oldest, or `rdo` to sort from oldest to most recent.
 
-![](http://i.imgur.com/N4FshE0.png)
+![](https://i.imgur.com/UZfZwa2.png)
 
-To act on the selections, use the shortcuts you’re already used to, with Alfred. You can activate file actions, dive into directories, preview files, add them to the file buffer — whatever you want to do that is supported by Alfred.</string>
+To act on the selections, use the standard Alfred shortcuts. You can activate file actions, dive into directories, preview files, add them to the file buffer — whatever you want to do that is supported by Alfred.</string>
 	<key>uidata</key>
 	<dict>
 		<key>0816A441-49D5-4C22-A15B-FB9E77661353</key>
@@ -313,7 +313,7 @@ To act on the selections, use the shortcuts you’re already used to, with Alfre
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.2</string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
