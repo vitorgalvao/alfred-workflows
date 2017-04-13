@@ -4,6 +4,6 @@ For paper sizes, type `paper`, and you’ll see the available standards; all of 
 
 For viewport sizes, type `viewport`, and you’ll see the available devices. You can narrow them down by device name, brand, OS, and even viewport width (in case you want to find similar ones).
 
-![](https://i.imgur.com/ITaV1or.gif)
+![](https://i.imgur.com/NMjYeFl.gif)
 
 Paper sizes taken from [wikipedia](https://en.wikipedia.org/wiki/Paper_sizes) and viewport sizes from [viewportsizes.com](http://viewportsizes.com/).
