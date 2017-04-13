@@ -339,12 +339,12 @@ notification "Unfroze ${front_app}"</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Pause and resume execution of the frontmost app. Directly inspired by [Universal Pause Button](https://github.com/ryanries/UniversalPauseButton) and [they story](https://github.com/ryanries/UniversalPauseButton/blob/dc5a3d5173e153012fee850e557755e250da9105/README.md).
+	<string>Pause and resume execution of the frontmost app. Directly inspired by [Universal Pause Button](https://github.com/ryanries/UniversalPauseButton) and [their story](https://github.com/ryanries/UniversalPauseButton/blob/dc5a3d5173e153012fee850e557755e250da9105/README.md).
 
 Set keyboard shortcuts or use the keywords `freeze` and `unfreeze` to call it.
 
-![](http://i.imgur.com/W7FfE3E.png)
-![](http://i.imgur.com/JPBuH4R.png)</string>
+![](https://i.imgur.com/quGR0qY.png)
+![](https://i.imgur.com/Qmla1Ho.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>391EDE9B-08C4-4B4A-A84B-8AB481A2F7B2</key>
@@ -402,7 +402,7 @@ Set keyboard shortcuts or use the keywords `freeze` and `unfreeze` to call it.
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.1</string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
