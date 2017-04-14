@@ -209,8 +209,8 @@ fi #find</string>
 				<string>shots_file='/tmp/turnandshoot'
 
 if [[ -z '{query}' ]]; then
-  rm "${shots_file}"
-  random_num="$(grep --max-count=1 --text --only-matching '[3-6]' /dev/random)"
+  [[ -f "${shots_file}" ]] &amp;&amp; rm "${shots_file}"
+  random_num="$(jot -r 1 3.0 7.0)"
   sleep "${random_num}"
   touch "${shots_file}"
 
@@ -342,7 +342,7 @@ TurnShoot is a game where you try to react faster than your opponent. By default
 		<string>p</string>
 	</dict>
 	<key>version</key>
-	<string>1.1.0</string>
+	<string>1.1.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
