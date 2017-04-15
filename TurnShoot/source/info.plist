@@ -206,47 +206,46 @@ fi #find</string>
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>shots_file='/tmp/turnandshoot'
-
-if [[ -z '{query}' ]]; then
-  [[ -f "${shots_file}" ]] &amp;&amp; rm "${shots_file}"
+				<string>if [[ -z '{query}' ]]; then
   random_num="$(jot -r 1 3.0 7.0)"
   sleep "${random_num}"
-  touch "${shots_file}"
 
   echo '
-    &lt;?xml version="1.0"?&gt;&lt;items&gt;
-      &lt;item uuid="Shoot" valid="no"&gt;
-        &lt;title&gt;Shoot!&lt;/title&gt;
-        &lt;icon&gt;icon_alt.png&lt;/icon&gt;
-      &lt;/item&gt;
-    &lt;/items&gt;
+    &lt;?xml version="1.0"?&gt;&lt;output&gt;
+      &lt;variables&gt;
+        &lt;variable name="can_hit"&gt;true&lt;/variable&gt;
+      &lt;/variables&gt;
+
+      &lt;items&gt;
+        &lt;item valid="no"&gt;
+          &lt;title&gt;Shoot!&lt;/title&gt;
+          &lt;icon&gt;icon_alt.png&lt;/icon&gt;
+        &lt;/item&gt;
+    &lt;/items&gt;&lt;/output&gt;
   '
 else
-  [[ -f "${shots_file}" ]] &amp;&amp; missed='no' || missed='yes'
-
   echo '&lt;?xml version="1.0"?&gt;&lt;items&gt;'
   echo '&lt;item uuid="Shot" valid="yes"&gt;'
 
   if [[ '{query}' == "${key_player_one}" ]]; then
-    if [[ "${missed}" == 'yes' ]]; then
-      echo '&lt;title&gt;Player 2 wins!&lt;/title&gt;'
-      echo '&lt;subtitle&gt;Player 1 missed…&lt;/subtitle&gt;'
-      echo '&lt;icon&gt;icon.png&lt;/icon&gt;'
-    else
+    if [[ "${can_hit}" == 'true' ]]; then
       echo '&lt;title&gt;Player 1 wins!&lt;/title&gt;'
       echo '&lt;subtitle&gt;Player 2 was too slow…&lt;/subtitle&gt;'
       echo '&lt;icon&gt;icon_alt.png&lt;/icon&gt;'
+    else
+      echo '&lt;title&gt;Player 2 wins!&lt;/title&gt;'
+      echo '&lt;subtitle&gt;Player 1 missed…&lt;/subtitle&gt;'
+      echo '&lt;icon&gt;icon.png&lt;/icon&gt;'
     fi
   elif [[ '{query}' == "${key_player_two}" ]]; then
-    if [[ "${missed}" == 'yes' ]]; then
-      echo '&lt;title&gt;Player 1 wins!&lt;/title&gt;'
-      echo '&lt;subtitle&gt;Player 2 missed…&lt;/subtitle&gt;'
-      echo '&lt;icon&gt;icon.png&lt;/icon&gt;'
-    else
+    if [[ "${can_hit}" == 'true' ]]; then
       echo '&lt;title&gt;Player 2 wins!&lt;/title&gt;'
       echo '&lt;subtitle&gt;Player 1 was too slow…&lt;/subtitle&gt;'
       echo '&lt;icon&gt;icon_alt.png&lt;/icon&gt;'
+    else
+      echo '&lt;title&gt;Player 1 wins!&lt;/title&gt;'
+      echo '&lt;subtitle&gt;Player 2 missed…&lt;/subtitle&gt;'
+      echo '&lt;icon&gt;icon.png&lt;/icon&gt;'
     fi
   fi
 
@@ -342,7 +341,7 @@ TurnShoot is a game where you try to react faster than your opponent. By default
 		<string>p</string>
 	</dict>
 	<key>version</key>
-	<string>1.1.1</string>
+	<string>1.2.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
