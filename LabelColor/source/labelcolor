@@ -28,7 +28,7 @@ shift
 readonly color_array=('none' 'orange' 'red' 'yellow' 'blue' 'purple' 'green' 'gray')
 
 for i in "${!color_array[@]}"; do
-  [[ "${color_array[$i]}" == "${color_name}" ]] && color_index="${i}"
+  [[ "${color_array[$i]}" == "${color_name}" ]] && color_index="${i}" && break
 done
 
 if [[ -z "${color_index}" ]]; then
