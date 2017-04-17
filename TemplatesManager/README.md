@@ -1,6 +1,6 @@
 If you regularly need to set the same files or directory structures somewhere, say a set of prebuilt scripts and template files for certain types of regular projects, this workflow is meant to make your life easier.
 
-It can take files, directory structures, and even URLs, and set them up as templates that’ll be copied over to your frontmost Finder window. Files and directory structures will be saved with the workflow (so they sync across devices), and urls will be downloaded when requested (so you always get the latest version).
+It can take files, directory structures, and even URLs, and set them up as templates that’ll be copied over to your frontmost Finder window (if you’re using Path Finder, it will be used instead). Files and directory structures will be saved with the workflow (so they sync across devices), and urls will be downloaded when requested (so you always get the latest version).
 
 If you have a template that consists of a directory, you can place inside it an executable script with the name starting as `_templatesmanagerscript.` (the extension will be your pick), to be executed automatically after copying.
 

@@ -471,6 +471,27 @@ local_edit</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>json</key>
+				<string>{
+  "alfredworkflow" : {
+    "arg" : "{query}",
+    "config" : {
+    },
+    "variables" : {
+    }
+  }
+}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.json</string>
+			<key>uid</key>
+			<string>79D34DEF-6FCC-457D-A521-35CE0520E999</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>argumenttype</key>
@@ -701,7 +722,7 @@ remote_add(%x{'pbpaste'})</string>
 	<key>readme</key>
 	<string>If you regularly need to set the same files or directory structures somewhere, say a set of prebuilt scripts and template files for certain types of regular projects, this workflow is meant to make your life easier.
 
-It can take files, directory structures, and even URLs, and set them up as templates that’ll be copied over to your frontmost Finder window. Files and directory structures will be saved with the workflow (so they sync across devices), and urls will be downloaded when requested (so you always get the latest version).
+It can take files, directory structures, and even URLs, and set them up as templates that’ll be copied over to your frontmost Finder window (if you’re using Path Finder, it will be used instead). Files and directory structures will be saved with the workflow (so they sync across devices), and urls will be downloaded when requested (so you always get the latest version).
 
 If you have a template that consists of a directory, you can place inside it an executable script with the name starting as `_templatesmanagerscript.` (the extension will be your pick), to be executed automatically after copying.
 
@@ -782,6 +803,13 @@ It has a lot of options and you’ll likely use most of them, so I’ll fire thr
 			<key>ypos</key>
 			<integer>730</integer>
 		</dict>
+		<key>79D34DEF-6FCC-457D-A521-35CE0520E999</key>
+		<dict>
+			<key>xpos</key>
+			<integer>650</integer>
+			<key>ypos</key>
+			<integer>530</integer>
+		</dict>
 		<key>7C41DF16-D56D-429D-97B3-BA76D522947A</key>
 		<dict>
 			<key>xpos</key>
@@ -851,7 +879,7 @@ It has a lot of options and you’ll likely use most of them, so I’ll fire thr
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.2.1</string>
+	<string>1.3.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

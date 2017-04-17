@@ -11,8 +11,11 @@ FileUtils.touch(Remote_templates) unless File.exist?(Remote_templates)
 
 def finder_dir
   %x{osascript -e 'tell application "System Events"
-     if (name of first process whose frontmost is true) is "Finder" then
+     set front_app to name of first process whose frontmost is true
+     if front_app is "Finder" then
      tell application "Finder" to return (POSIX path of (folder of the front window as alias))
+     else if front_app is "Path Finder" then
+     tell application "Path Finder" to return (POSIX path of (target of front finder window))
      else
      return (POSIX path of (path to home folder))
      end if
