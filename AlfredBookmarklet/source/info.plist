@@ -10,7 +10,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>C75A1F57-4590-4C88-A924-E9BB8E239BA7</string>
+				<string>E1D561ED-20E4-4BC8-84E9-E418B0507198</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -36,7 +36,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>C75A1F57-4590-4C88-A924-E9BB8E239BA7</string>
+				<string>E1D561ED-20E4-4BC8-84E9-E418B0507198</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -60,6 +60,19 @@
 		</array>
 		<key>C75A1F57-4590-4C88-A924-E9BB8E239BA7</key>
 		<array/>
+		<key>E1D561ED-20E4-4BC8-84E9-E418B0507198</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>C75A1F57-4590-4C88-A924-E9BB8E239BA7</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
@@ -77,11 +90,9 @@
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
-				<integer>0</integer>
+				<integer>4</integer>
 				<key>script</key>
-				<string>bookmarklet_code=""
-
-// FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED UNLESS YOU KNOW WHAT YOU ARE DOING
+				<string>const bookmarklet_code="{query}"
 const frontmost_app_name = Application('System Events').applicationProcesses.where({ frontmost: true }).name()[0]
 const frontmost_app = Application(frontmost_app_name)
 
@@ -124,6 +135,21 @@ if (['Google Chrome','Google Chrome Canary','Chromium'].indexOf(frontmost_app_na
 			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
 			<string>9F564D9C-3C2A-47CE-A99D-C9A8870F43A8</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>variables</key>
+				<dict/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>E1D561ED-20E4-4BC8-84E9-E418B0507198</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -205,7 +231,7 @@ if (['Google Chrome','Google Chrome Canary','Chromium'].indexOf(frontmost_app_na
 				<string>require 'uri'
 
 original_bookmarklet = %x{ pbpaste }
-bookmarklet = URI.unescape(original_bookmarklet).sub(%r{^javascript:}, '').gsub('"', '\"')
+bookmarklet = URI.unescape(original_bookmarklet).sub(%r{^javascript:}, '')
 
 print bookmarklet</string>
 				<key>scriptargtype</key>
@@ -226,6 +252,8 @@ print bookmarklet</string>
 	<key>readme</key>
 	<string>Run browser [bookmarklets](http://en.wikipedia.org/wiki/Bookmarklet) from Alfred, without needing to having them installed in the browser itself.
 
+Note that on Safari, Safari Tehcnology Preview, and Webkit, you need to `Allow JavaScript from Apple Events` under the `Develop` menu, which you can enable under the `Advanced` tab on the browser’s preferences.
+
 #### 1
 
 For the first step, get this template workflow itself. Though this is not strictly necessary (you can build it yourself) it serves as a starting point with most of the work already done. Proceed to open the workflow in Alfred.
@@ -242,9 +270,9 @@ Run `:cleanbookmarkletcode` to clean the code in your clipboard. It performs sub
 
 #### 3
 
-Open the top `Run Script` node and paste the code between the quotes on the first line (`bookrmarklet_code=""`).
+Open the `Arg and Vars` node and paste the code.
 
-![](https://i.imgur.com/qAMS4B3.gif)
+![](https://i.imgur.com/9SPYkmM.gif)
 
 ### Extra
 
@@ -254,13 +282,13 @@ If you’re not new to Alfred, you likely won’t need these steps as you’ll k
 
 The template includes both a `Keyword` and a `Hotkey` nodes to run the code. You can delete either one by clicking on it and pressing ⌫.
 
-![](https://i.imgur.com/rwzfdsU.gif)
+![](https://i.imgur.com/PRpCHu3.gif)
 
 #### 5
 
 If you choose to use the workflow via `Keyword`, do not forget to set it up.
 
-![](https://i.imgur.com/CQowmRa.gif)
+![](https://i.imgur.com/ENFYAAe.gif)
 
 #### 6
 
@@ -272,48 +300,55 @@ Lastly, edit the workflow’s details and its icon. For completeness it’s pre-
 		<key>082A3A21-88BB-48A6-B6B7-CF89A9180213</key>
 		<dict>
 			<key>xpos</key>
-			<integer>50</integer>
+			<integer>10</integer>
 			<key>ypos</key>
 			<integer>90</integer>
 		</dict>
 		<key>9840A4F3-FFE0-43A4-A767-C05228F6A1DB</key>
 		<dict>
 			<key>xpos</key>
-			<integer>250</integer>
+			<integer>210</integer>
 			<key>ypos</key>
 			<integer>130</integer>
 		</dict>
 		<key>9F564D9C-3C2A-47CE-A99D-C9A8870F43A8</key>
 		<dict>
 			<key>xpos</key>
-			<integer>250</integer>
+			<integer>210</integer>
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
 		<key>B9634EAF-B370-4A51-ABF2-C466A4916F83</key>
 		<dict>
 			<key>xpos</key>
-			<integer>450</integer>
+			<integer>410</integer>
 			<key>ypos</key>
 			<integer>130</integer>
 		</dict>
 		<key>C75A1F57-4590-4C88-A924-E9BB8E239BA7</key>
 		<dict>
 			<key>xpos</key>
-			<integer>450</integer>
+			<integer>610</integer>
 			<key>ypos</key>
 			<integer>10</integer>
+		</dict>
+		<key>E1D561ED-20E4-4BC8-84E9-E418B0507198</key>
+		<dict>
+			<key>xpos</key>
+			<integer>450</integer>
+			<key>ypos</key>
+			<integer>40</integer>
 		</dict>
 		<key>ED7079C9-2576-40A4-8B62-CFE0E3E28C2A</key>
 		<dict>
 			<key>xpos</key>
-			<integer>650</integer>
+			<integer>610</integer>
 			<key>ypos</key>
 			<integer>130</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.0</string>
+	<string>1.2.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

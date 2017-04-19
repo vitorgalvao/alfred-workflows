@@ -1,5 +1,7 @@
 Run browser [bookmarklets](http://en.wikipedia.org/wiki/Bookmarklet) from Alfred, without needing to having them installed in the browser itself.
 
+Note that on Safari, Safari Tehcnology Preview, and Webkit, you need to `Allow JavaScript from Apple Events` under the `Develop` menu, which you can enable under the `Advanced` tab on the browser’s preferences.
+
 #### 1
 
 For the first step, get this template workflow itself. Though this is not strictly necessary (you can build it yourself) it serves as a starting point with most of the work already done. Proceed to open the workflow in Alfred.
@@ -16,9 +18,9 @@ Run `:cleanbookmarkletcode` to clean the code in your clipboard. It performs sub
 
 #### 3
 
-Open the top `Run Script` node and paste the code between the quotes on the first line (`bookrmarklet_code=""`).
+Open the `Arg and Vars` node and paste the code.
 
-![](https://i.imgur.com/qAMS4B3.gif)
+![](https://i.imgur.com/9SPYkmM.gif)
 
 ### Extra
 
@@ -28,13 +30,13 @@ If you’re not new to Alfred, you likely won’t need these steps as you’ll k
 
 The template includes both a `Keyword` and a `Hotkey` nodes to run the code. You can delete either one by clicking on it and pressing ⌫.
 
-![](https://i.imgur.com/rwzfdsU.gif)
+![](https://i.imgur.com/PRpCHu3.gif)
 
 #### 5
 
 If you choose to use the workflow via `Keyword`, do not forget to set it up.
 
-![](https://i.imgur.com/CQowmRa.gif)
+![](https://i.imgur.com/ENFYAAe.gif)
 
 #### 6
 
