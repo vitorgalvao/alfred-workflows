@@ -10,16 +10,18 @@ FileUtils.mkdir_p(Local_templates) unless Dir.exist?(Local_templates)
 FileUtils.touch(Remote_templates) unless File.exist?(Remote_templates)
 
 def finder_dir
-  %x{osascript -e 'tell application "System Events"
-     set front_app to name of first process whose frontmost is true
-     if front_app is "Finder" then
-     tell application "Finder" to return (POSIX path of (folder of the front window as alias))
-     else if front_app is "Path Finder" then
-     tell application "Path Finder" to return (POSIX path of (target of front finder window))
-     else
-     return (POSIX path of (path to home folder))
-     end if
-     end tell'}.sub(/\n$/, '/')
+  %x{osascript -l JavaScript -e '
+    frontmost_app_name = Application("System Events").applicationProcesses.where({ frontmost: true }).name()[0]
+    frontmost_app = Application(frontmost_app_name)
+
+    if (Object.is(frontmost_app_name, "Finder")) {
+      unescape(frontmost_app.finderWindows[0].target.url()).slice(7).slice(0, -1)
+    } else if (Object.is(frontmost_app_name, "Path Finder")) {
+      frontmost_app.finderWindows[0].target.posixPath()
+    } else {
+      unescape(Application("Finder").home.url()).slice(7).slice(0, -1)
+    }
+  '}.sub(/\n$/, '/')
 end
 
 def notification(message)
