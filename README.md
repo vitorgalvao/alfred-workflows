@@ -139,6 +139,11 @@ Get a strong password by leveraging multiple sources
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/StrongPassword) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/StrongPassword/StrongPassword.alfredworkflow)
 
+### SwitchAgent <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/SwitchAgent/source/icon.png' width='60' align='center' alt='SwitchAgent icon'>
+Switch the user agent for your frontmost browser
+
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/SwitchAgent) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/SwitchAgent/SwitchAgent.alfredworkflow)
+
 ### SynAnt <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/SynAnt/source/icon.png' width='60' align='center' alt='SynAnt icon'>
 Substitute words by checking against a thesaurus
 
