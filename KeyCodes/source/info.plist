@@ -63,7 +63,7 @@ Type a search term to filter keys.
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>0.0.9</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
