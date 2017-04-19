@@ -6,11 +6,11 @@
 	<string>com.vitorgalvao.alfred.pingpong</string>
 	<key>connections</key>
 	<dict>
-		<key>4935E4E5-9198-4348-9FC2-9333F65EB86C</key>
+		<key>01582C80-0788-4A66-AAAA-55E882F555D1</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>A6BFBD66-A039-416B-AD6D-3D70D55FC2F0</string>
+				<string>EF9EE662-44E3-4DCC-B78B-78D298D09741</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -19,11 +19,11 @@
 				<false/>
 			</dict>
 		</array>
-		<key>56BA617E-2DE5-4D64-8C30-D0FD4844DE6C</key>
+		<key>16DE4DAF-AD3E-4A61-A91D-9EE5379AD64A</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>A6BFBD66-A039-416B-AD6D-3D70D55FC2F0</string>
+				<string>888760AA-73CF-48C2-B2EC-D5A451EC43D5</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -32,11 +32,11 @@
 				<false/>
 			</dict>
 		</array>
-		<key>60116713-040A-484C-8D7F-869093CFE306</key>
+		<key>3872A3DE-5E6A-4DF1-B4FF-16A901B31066</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>7E29DB24-9807-4458-B2B9-6D1CDA6D0A10</string>
+				<string>A404F9EE-CB02-4B46-AE2D-D0040B9F6737</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -45,8 +45,142 @@
 				<false/>
 			</dict>
 		</array>
-		<key>A6BFBD66-A039-416B-AD6D-3D70D55FC2F0</key>
+		<key>55A5D5A9-9CF8-4690-B26F-647A8E8405B8</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>DFA03B59-0513-4DF7-AD25-D567823FDDFA</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>58DBCE64-6BAF-4F40-BF19-4497688D62E4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>8E7FDD5A-DD40-4B4F-A380-DF5052CFEC97</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>888760AA-73CF-48C2-B2EC-D5A451EC43D5</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3872A3DE-5E6A-4DF1-B4FF-16A901B31066</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>9C6FF743-1B9F-4650-BAC2-F1216BAC3E1D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>58DBCE64-6BAF-4F40-BF19-4497688D62E4</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>8E7FDD5A-DD40-4B4F-A380-DF5052CFEC97</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>EF9EE662-44E3-4DCC-B78B-78D298D09741</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>9C6FF743-1B9F-4650-BAC2-F1216BAC3E1D</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>55A5D5A9-9CF8-4690-B26F-647A8E8405B8</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>A404F9EE-CB02-4B46-AE2D-D0040B9F6737</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>BD5B04C0-C00D-4676-9940-82F070EE6D49</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>BD5B04C0-C00D-4676-9940-82F070EE6D49</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D253D8C9-5A61-4E91-B706-8F0ABE140E97</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>01582C80-0788-4A66-AAAA-55E882F555D1</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>D253D8C9-5A61-4E91-B706-8F0ABE140E97</key>
 		<array/>
+		<key>DFA03B59-0513-4DF7-AD25-D567823FDDFA</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>EF9EE662-44E3-4DCC-B78B-78D298D09741</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
@@ -58,176 +192,6 @@
 	<string>PingPong</string>
 	<key>objects</key>
 	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>alfredfiltersresults</key>
-				<false/>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>ping</string>
-				<key>queuedelaycustom</key>
-				<integer>1</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<false/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string>Please wait…</string>
-				<key>script</key>
-				<string>scoreFile="/tmp/pingpongscore"
-if [[ -f "${scoreFile}" ]]; then
-  rm "${scoreFile}"
-fi
-
-cat &lt;&lt; EOF
-  &lt;?xml version='1.0'?&gt;&lt;items&gt;
-    &lt;item uid='easy' valid='yes' arg='easy'&gt;
-      &lt;title&gt;Easy&lt;/title&gt;
-      &lt;subtitle&gt;No time limit, just play around a bit&lt;/subtitle&gt;
-      &lt;icon&gt;icon.png&lt;/icon&gt;
-    &lt;/item&gt;
-    &lt;item uid='medium' valid='yes' arg='medium'&gt;
-      &lt;title&gt;Medium&lt;/title&gt;
-      &lt;subtitle&gt;Doable, but you might reach for the shortcut keys&lt;/subtitle&gt;
-      &lt;icon&gt;icon.png&lt;/icon&gt;
-    &lt;/item&gt;
-    &lt;item uid='hard' valid='yes' arg='hard'&gt;
-      &lt;title&gt;Hard&lt;/title&gt;
-      &lt;subtitle&gt;This was supposed to be relaxing&lt;/subtitle&gt;
-      &lt;icon&gt;icon.png&lt;/icon&gt;
-    &lt;/item&gt;
-  &lt;/items&gt;
-EOF</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string>Play a round of table tennis with Alfred</string>
-				<key>title</key>
-				<string>PingPong</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>56BA617E-2DE5-4D64-8C30-D0FD4844DE6C</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>scoreFile='/tmp/pingpongscore'
-if [[ ! -f "${scoreFile}" ]]; then
-  echo -n "-1" &gt; "${scoreFile}"
-fi
-
-if [[ '{query}' == "miss" ]]; then
-  osascript -e "tell application \"Alfred 3\" to search \"scorepingpong\""
-else
-  score=$[$(cat "${scoreFile}") + 1]
-  echo "${score}" &gt; "${scoreFile}"
-
-  difficulty() {
-    sleep "${1}"
-    osascript -e "tell application \"Alfred 3\" to search \"scorepingpong\""
-  }
-
-  if [[ '{query}' == "medium" ]]; then
-    difficulty 2 &amp;
-  elif [[ '{query}' == "hard" ]]; then
-    difficulty 1 &amp;
-  fi
-
-  osascript -e "tell application \"Alfred 3\" to search \"pong {query}\""
-fi</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>A6BFBD66-A039-416B-AD6D-3D70D55FC2F0</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>alfredfiltersresults</key>
-				<false/>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>pong</string>
-				<key>queuedelaycustom</key>
-				<integer>1</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<false/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string>Please wait… Ping!</string>
-				<key>script</key>
-				<string>echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-randomNum="$(grep -m1 -ao '[1-9]' /dev/urandom | head -1)"
-for (( i = 1; i &lt;= 9; i++ )); do
-  if [[ "${i}" == "${randomNum}" ]]; then
-    smack="Pong!"
-    echo "&lt;item uuid='Smack' valid='yes' arg='{query}'&gt;"
-  else
-    smack="Miss!"
-    echo "&lt;item uuid='Smack' valid='yes' arg='miss'&gt;"
-  fi
-  echo "&lt;item uid='Smack' valid='yes' arg='miss'&gt;"
-  echo "&lt;title&gt;${smack}&lt;/title&gt;"
-  echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
-  echo "&lt;/item&gt;"
-done
-echo "&lt;/items&gt;"</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string>You need to call “ping” to start a game</string>
-				<key>title</key>
-				<string>PingPong</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>4935E4E5-9198-4348-9FC2-9333F65EB86C</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -304,7 +268,145 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>7E29DB24-9807-4458-B2B9-6D1CDA6D0A10</string>
+			<string>D253D8C9-5A61-4E91-B706-8F0ABE140E97</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>fixedorder</key>
+				<false/>
+				<key>items</key>
+				<string>[{"title":"Easy","arg":"easy","subtitle":"No time limit, just play around a bit"},{"title":"Medium","arg":"medium","subtitle":"Doable, but you might reach for the shortcut keys"},{"title":"Hard","arg":"hard","subtitle":"This was supposed to be relaxing"}]</string>
+				<key>keyword</key>
+				<string>ping</string>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Play a round of table tennis with Alfred</string>
+				<key>title</key>
+				<string>PingPong</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.listfilter</string>
+			<key>uid</key>
+			<string>BD5B04C0-C00D-4676-9940-82F070EE6D49</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>externaltriggerid</key>
+				<string>play</string>
+				<key>passinputasargument</key>
+				<false/>
+				<key>passvariables</key>
+				<true/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>EF9EE662-44E3-4DCC-B78B-78D298D09741</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>inputstring</key>
+				<string>{query}</string>
+				<key>matchcasesensitive</key>
+				<true/>
+				<key>matchmode</key>
+				<integer>0</integer>
+				<key>matchstring</key>
+				<string>new_game</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.filter</string>
+			<key>uid</key>
+			<string>3872A3DE-5E6A-4DF1-B4FF-16A901B31066</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>variables</key>
+				<dict>
+					<key>difficulty</key>
+					<string>{query}</string>
+					<key>loop</key>
+					<string>new</string>
+					<key>score</key>
+					<string>0</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>01582C80-0788-4A66-AAAA-55E882F555D1</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>variables</key>
+				<dict/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>A404F9EE-CB02-4B46-AE2D-D0040B9F6737</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>triggerid</key>
+				<string>play</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>16DE4DAF-AD3E-4A61-A91D-9EE5379AD64A</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>[[ -n "${score}" ]] &amp;&amp; bc &lt;&lt;&lt; "${score} + 1" | tr -d '\n' || echo -n '1'</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>55A5D5A9-9CF8-4690-B26F-647A8E8405B8</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -317,8 +419,6 @@ fi #find</string>
 				<integer>2</integer>
 				<key>escaping</key>
 				<integer>0</integer>
-				<key>keyword</key>
-				<string>scorepingpong</string>
 				<key>queuedelaycustom</key>
 				<integer>1</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -328,38 +428,64 @@ fi #find</string>
 				<key>queuemode</key>
 				<integer>1</integer>
 				<key>runningsubtext</key>
-				<string>Your score is…</string>
+				<string></string>
 				<key>script</key>
-				<string>scoreFile="/tmp/pingpongscore"
-score=$(cat "${scoreFile}")
+				<string>[[ "${difficulty}" == 'medium' ]] &amp;&amp; timer='2'
+[[ "${difficulty}" == 'hard' ]] &amp;&amp; timer='1'
 
-if [[ "${score}" == "0" ]]; then
-  message="Try again."
-elif [[ "${score}" == "1" ]]; then
-  message="You’ve smacked the ball once."
-elif [[ "${score}" &gt; "1" ]]; then
-  message="You’ve smacked the ball ${score} times."
+if [[ "${loop}" == 'new' ]]; then
+  random_num="$(jot -r 1 1 9)"
+
+  echo "
+    &lt;?xml version='1.0'?&gt;&lt;output&gt;
+      &lt;rerun&gt;${timer}&lt;/rerun&gt;
+      &lt;variables&gt;
+        &lt;variable name='loop'&gt;repeating&lt;/variable&gt;
+      &lt;/variables&gt;
+    &lt;items&gt;
+  "
+
+  for i in $(jot 9 1 9); do
+    if [[ "${i}" == "${random_num}" ]]; then
+      echo '&lt;item valid="yes" arg="hit"&gt;'
+      echo '&lt;title&gt;Pong!&lt;/title&gt;'
+    else
+      echo '&lt;item valid="yes" arg="miss"&gt;'
+     echo '&lt;title&gt;Miss…&lt;/title&gt;'
+    fi
+    echo '&lt;/item&gt;'
+  done
+  echo '&lt;/items&gt;&lt;/output&gt;'
 else
-  message="Call “ping” in Alfred, to start a game."
-fi
+  if [[ "${score}" -lt 1 ]]; then
+    message='You completely missed the ball.'
+  elif [[ "${score}" -eq 1 ]]; then
+    message='You’ve smacked the ball once.'
+  elif [[ "${score}" -eq 2 ]]; then
+    message='You’ve smacked the ball twice.'
+  elif [[ "${score}" -gt 2 ]]; then
+    message="You’ve smacked the ball ${score} times!"
+  else
+    message='Call “ping” in Alfred, to start a game.'
+  fi
 
-cat &lt;&lt; EOF
-  &lt;?xml version='1.0'?&gt;&lt;items&gt;
-    &lt;item uuid='Score' valid='no'&gt;
-      &lt;title&gt;PingPong score&lt;/title&gt;
-      &lt;subtitle&gt;${message}&lt;/subtitle&gt;
-      &lt;icon&gt;icon.png&lt;/icon&gt;
-    &lt;/item&gt;
-  &lt;/items&gt;
-EOF</string>
+  echo "
+    &lt;?xml version='1.0'?&gt;&lt;items&gt;
+      &lt;item valid='yes' arg='new_game'&gt;
+        &lt;title&gt;${message}&lt;/title&gt;
+        &lt;subtitle&gt;Play again?&lt;/subtitle&gt;
+      &lt;/item&gt;
+    &lt;/items&gt;
+  "
+fi</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
-				<string>Shows how many time you’ve responded</string>
+				<string></string>
 				<key>title</key>
-				<string>PingPong score</string>
+				<string></string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
@@ -368,68 +494,200 @@ EOF</string>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>60116713-040A-484C-8D7F-869093CFE306</string>
+			<string>888760AA-73CF-48C2-B2EC-D5A451EC43D5</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>variables</key>
+				<dict>
+					<key>loop</key>
+					<string>new</string>
+					<key>score</key>
+					<string>{query}</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>DFA03B59-0513-4DF7-AD25-D567823FDDFA</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>inputstring</key>
+				<string>{query}</string>
+				<key>matchcasesensitive</key>
+				<true/>
+				<key>matchmode</key>
+				<integer>0</integer>
+				<key>matchstring</key>
+				<string>hit</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.filter</string>
+			<key>uid</key>
+			<string>9C6FF743-1B9F-4650-BAC2-F1216BAC3E1D</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>variables</key>
+				<dict>
+					<key>loop</key>
+					<string>lost</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>8E7FDD5A-DD40-4B4F-A380-DF5052CFEC97</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>inputstring</key>
+				<string>{query}</string>
+				<key>matchcasesensitive</key>
+				<true/>
+				<key>matchmode</key>
+				<integer>0</integer>
+				<key>matchstring</key>
+				<string>miss</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.filter</string>
+			<key>uid</key>
+			<string>58DBCE64-6BAF-4F40-BF19-4497688D62E4</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
-	<string>Play a round of table tennis against Alfred! Well, technically it’s more like playing against /dev/urandom, but you’re doing so through Alfred.
+	<string>Play a round of table tennis against Alfred! Well, technically it’s more like playing against a pseudorandom number generator, but you’re doing so through Alfred.
 
 Call `ping`, to start a game, and hit `Pong!` to continue playing.
 
-![](http://i.imgur.com/RADofXX.png)
-![](http://i.imgur.com/y1TXFIW.png)
+![](https://i.imgur.com/e0l2j4B.png)
+![](https://i.imgur.com/Rlkf1uA.png)
 
-If you `Miss!`, the game is over and your score is shown.
+If you `Miss…`, the game is over and your score is shown.
 
-![](http://i.imgur.com/2idS1tT.png)
+![](https://i.imgur.com/NS5CHAn.png)
 
 You might also want to try [TurnShoot](https://github.com/vitorgalvao/alfred-workflows/tree/master/TurnShoot), a two-player game.</string>
 	<key>uidata</key>
 	<dict>
-		<key>4935E4E5-9198-4348-9FC2-9333F65EB86C</key>
+		<key>01582C80-0788-4A66-AAAA-55E882F555D1</key>
 		<dict>
 			<key>xpos</key>
-			<integer>100</integer>
+			<integer>840</integer>
 			<key>ypos</key>
-			<integer>130</integer>
+			<integer>180</integer>
 		</dict>
-		<key>56BA617E-2DE5-4D64-8C30-D0FD4844DE6C</key>
+		<key>16DE4DAF-AD3E-4A61-A91D-9EE5379AD64A</key>
 		<dict>
 			<key>xpos</key>
-			<integer>100</integer>
-			<key>ypos</key>
 			<integer>10</integer>
+			<key>ypos</key>
+			<integer>270</integer>
 		</dict>
-		<key>60116713-040A-484C-8D7F-869093CFE306</key>
+		<key>3872A3DE-5E6A-4DF1-B4FF-16A901B31066</key>
 		<dict>
 			<key>xpos</key>
-			<integer>100</integer>
+			<integer>420</integer>
 			<key>ypos</key>
-			<integer>250</integer>
+			<integer>180</integer>
 		</dict>
-		<key>7E29DB24-9807-4458-B2B9-6D1CDA6D0A10</key>
+		<key>55A5D5A9-9CF8-4690-B26F-647A8E8405B8</key>
+		<dict>
+			<key>xpos</key>
+			<integer>510</integer>
+			<key>ypos</key>
+			<integer>270</integer>
+		</dict>
+		<key>58DBCE64-6BAF-4F40-BF19-4497688D62E4</key>
+		<dict>
+			<key>xpos</key>
+			<integer>420</integer>
+			<key>ypos</key>
+			<integer>410</integer>
+		</dict>
+		<key>888760AA-73CF-48C2-B2EC-D5A451EC43D5</key>
+		<dict>
+			<key>xpos</key>
+			<integer>200</integer>
+			<key>ypos</key>
+			<integer>270</integer>
+		</dict>
+		<key>8E7FDD5A-DD40-4B4F-A380-DF5052CFEC97</key>
+		<dict>
+			<key>xpos</key>
+			<integer>680</integer>
+			<key>ypos</key>
+			<integer>410</integer>
+		</dict>
+		<key>9C6FF743-1B9F-4650-BAC2-F1216BAC3E1D</key>
+		<dict>
+			<key>xpos</key>
+			<integer>420</integer>
+			<key>ypos</key>
+			<integer>300</integer>
+		</dict>
+		<key>A404F9EE-CB02-4B46-AE2D-D0040B9F6737</key>
+		<dict>
+			<key>xpos</key>
+			<integer>550</integer>
+			<key>ypos</key>
+			<integer>180</integer>
+		</dict>
+		<key>BD5B04C0-C00D-4676-9940-82F070EE6D49</key>
+		<dict>
+			<key>xpos</key>
+			<integer>640</integer>
+			<key>ypos</key>
+			<integer>150</integer>
+		</dict>
+		<key>D253D8C9-5A61-4E91-B706-8F0ABE140E97</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>12</integer>
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>300</integer>
-			<key>ypos</key>
-			<integer>250</integer>
-		</dict>
-		<key>A6BFBD66-A039-416B-AD6D-3D70D55FC2F0</key>
-		<dict>
-			<key>xpos</key>
-			<integer>300</integer>
+			<integer>840</integer>
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
+		<key>DFA03B59-0513-4DF7-AD25-D567823FDDFA</key>
+		<dict>
+			<key>xpos</key>
+			<integer>670</integer>
+			<key>ypos</key>
+			<integer>300</integer>
+		</dict>
+		<key>EF9EE662-44E3-4DCC-B78B-78D298D09741</key>
+		<dict>
+			<key>xpos</key>
+			<integer>970</integer>
+			<key>ypos</key>
+			<integer>150</integer>
+		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.1</string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
