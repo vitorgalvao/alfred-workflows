@@ -36,7 +36,7 @@ s = s.gsub /^>\s(.*)/, '[quote]\1[/quote]'
 
 # code block
 ## with backticks
-s = s.gsub /```(.*?)```/m, '[code]\1[/code]'
+s = s.gsub /^\n^```(.*?)```/m, '[code]\1[/code]'
 
 ## with spacing or tabs
 s = s.gsub /^\n(^ {4}|\t)/, "\n[code=auto:0]\n\\1" # beginning
@@ -55,22 +55,22 @@ s = s.gsub /^###\s(.*?)[ #]*$/, '[size=5][b]\1[/b][/size]' # small
 
 # lists
 ## unordered
-s = s.gsub /^\n^([*+-]\s)/, "\n[list]\n\\1" # beginning
+s = s.gsub /^\n^([*+-]\s)/, "[list]\n\\1" # beginning
 s = s.gsub /\A^([*+-]\s)/, "[list]\n\\1" # if beginning of text
-s = s.gsub /^([*+-]\s.*)\n\n/, "\\1\n[/list]\n\n" # end
+s = s.gsub /^([*+-]\s.*)\n\n/, "\\1\n[/list]\n" # end
 s = s.gsub /^([*+-]\s.*)\z/, "\\1\n[/list]" # if end of text
 s = s.gsub /^[*+-]\s(.*)/, '[*]\1[/*]' # middle
 
 ## ordered
-s = s.gsub /^\n^(\d\.\s)/, "\n[list=1]\n\\1" # beginning
+s = s.gsub /^\n^(\d\.\s)/, "[list=1]\n\\1" # beginning
 s = s.gsub /\A^(\d\.\s)/, "[list=1]\n\\1" # if beginning of text
-s = s.gsub /^(\d\.\s.*)\n\n/, "\\1\n[/list]\n\n" # end
+s = s.gsub /^(\d\.\s.*)\n\n/, "\\1\n[/list]\n" # end
 s = s.gsub /^(\d\.\s.*)\z/, "\\1\n[/list]" # if end of text
 s = s.gsub /^\d\.\s(.*)/, '[*]\1[/*]' # middle
 
 # footnotes
-s = s.gsub /^(\[\^.*?\]:.*)/, "\n\\1" # spacing between references
-s = s.gsub /^\n{2}(\[\^.*?\])/, "\n" + '[hr]' + "\n\\1" # division before references
+s = s.gsub /^\n{2}(\[\^\d+\])/, "\n\n[hr]\n\\1" # division before references
+s = s.gsub /^\[\^(\d+)\]:\s*(.*)/, "\n[size=3]\\1. \\2[/size]" # style references and space them
 s = s.gsub /\[\^(.*?)\]/, '[sup]\1[/sup]' # footnotes in text
 
 print s

@@ -20,4 +20,4 @@ The conversions it supports (I can add more via request) are:
 
 Changes that span multiple lines (code blocks and lists) should be preceded and followed by empty lines (except it they’re at the beginning or end of your text, in which case the extra empty line at the top or bottom, respectively, is not needed).
 
-All the code is in the script inside the workflow — it’s one line per substitution and they’re all commented so you shouldn’t have much trouble changing anything you’d like to be handled a different way, even if you don’t understand regular expressions (you’ll mostly need to care about what’s on the right side of the commas).
+All the code is in the script inside the Workflow — it’s one line per substitution and they’re all commented so you shouldn’t have much trouble changing anything you’d like to be handled a different way, even if you don’t understand regular expressions (you’ll mostly need to care about what’s on the right side of the commas).
