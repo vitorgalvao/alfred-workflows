@@ -1,0 +1,46 @@
+#!/bin/bash
+
+readonly valid_resources=('youtube_dl') # Keep in sync with resource functions
+readonly shared_resources_id='com.vitorgalvao.alfred._sharedresources'
+readonly shared_resources_dir="$(dirname "${alfred_workflow_data}")/${shared_resources_id}"
+readonly PATH=/usr/local/bin:"${shared_resources_dir}":${PATH}
+
+function wrong_usage {
+  echo "
+    You need to give exactly one argument to this script. It can be one of:
+      $(printf "\n  %s\n" "${valid_resources[@]}")
+  " | sed -E 's/^ {4}//' >&2
+
+  exit 1
+}
+
+function ensure_resources_dir {
+  [[ -d "${shared_resources_dir}" ]] || mkdir -p "${shared_resources_dir}"
+}
+
+# Resource functions
+function youtube_dl {
+  local youtube_dl_path
+  youtube_dl_path="$(command -v 'youtube-dl')"
+
+  if [[ -n "${youtube_dl_path}" ]]; then
+    [[ "${youtube_dl_path}" == *"${shared_resources_id}"* ]] && [[ $(find "${youtube_dl_path}" -mtime +15) ]] && "${youtube_dl_path}" --update --quiet
+  else
+    ensure_resources_dir
+    youtube_dl_path="${shared_resources_dir}/youtube-dl"
+    curl --silent --location 'https://yt-dl.org/downloads/latest/youtube-dl' --output "${youtube_dl_path}"
+  fi
+
+  echo -n "${youtube_dl_path}"
+}
+
+[[ "${#}" -ne 1 ]] && wrong_usage # Require exactly one argument
+resource_to_use="${1}"
+
+# Check if argument is valid
+for i in "${!valid_resources[@]}"; do
+  [[ "${valid_resources[$i]}" == "${resource_to_use}" ]] && resource_is_valid='true' && break
+done
+[[ -z "${resource_is_valid}" ]] && wrong_usage
+
+"${resource_to_use}" # Run the function that will output the path

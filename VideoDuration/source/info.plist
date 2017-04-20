@@ -6,34 +6,11 @@
 	<string>com.vitorgalvao.alfred.videoduration</string>
 	<key>connections</key>
 	<dict>
-		<key>0A8B1E95-9DC0-48BB-B38D-20710C2F313E</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>28B55659-9FD1-44B6-AA1E-C8BA1149FC87</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>28B55659-9FD1-44B6-AA1E-C8BA1149FC87</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>83F06055-1527-429B-91A0-E17E57616D3D</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>FE464763-5DCF-4AAF-A423-DA1E3F5289D3</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -55,7 +32,7 @@
 				<false/>
 			</dict>
 		</array>
-		<key>C601AB17-0AD8-4A33-9004-D235B2261E70</key>
+		<key>A586CE7B-4D6A-45BE-83AF-3CC03CD3EC76</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -72,7 +49,7 @@
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
 	<key>description</key>
-	<string>Copies a given online video site’s url to the clipboard with it’s duration in square brackets</string>
+	<string>Output online video URLs with their duration and other details</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -85,17 +62,34 @@
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
-				<integer>102</integer>
+				<integer>32</integer>
 				<key>script</key>
-				<string>#!/bin/bash
+				<string># Require Python over 2.7.10 (comes with macOS Sierra) for youtube-dl
+readonly PATH=/usr/local/bin:${PATH}
+readonly python_version="$(python --version 2&gt;&amp;1 | cut -d' ' -f2 | tr -d '.')"
+if [[ "${python_version}" -le 2710 ]]; then
+  echo 'youtube-dl does not work on Python 2.7.10 and prior. You will need to have a more recent version in your PATH.' &gt;&amp;2
+  exit 1
+fi
 
-[[ -n "{query}" ]] &amp;&amp; url="{query}" || url="$(pbpaste)"
+readonly verbosity="${1}"
+readonly url="$(pbpaste)"
+readonly youtube_dl="$(./_sharedresources 'youtube_dl')"
 
-duration=$(python youtube-dl --get-duration "${url}" | rev | sed 's/^/s/;s/:/m/;s/:/h/' | rev | sed 's/^/[/;s/$/]/')
+readonly full_info="$("${youtube_dl}" --get-title --get-description --get-duration "${url}")"
+readonly title="$(head -1 &lt;&lt;&lt; "${full_info}")"
+readonly duration="$(tail -1 &lt;&lt;&lt; "${full_info}" | rev | sed 's/^/s/;s/:/m/;s/:/h/' | rev)"
+readonly description="$(sed '1d;$d' &lt;&lt;&lt; "${full_info}")"
 
-echo -n "${url} ${duration}"</string>
+if [[ "${verbosity}" -eq 1 ]]; then
+ echo -n "${url} (${duration})"
+elif [[ "${verbosity}" -eq 2 ]]; then
+  echo -n "${title}: ${url} (${duration})"
+else
+  echo -en "${title}: ${url} (${duration})\n\n${description}"
+fi</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -111,31 +105,29 @@ echo -n "${url} ${duration}"</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>action</key>
-				<integer>0</integer>
-				<key>argument</key>
-				<integer>1</integer>
-				<key>focusedappvariable</key>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>fixedorder</key>
 				<false/>
-				<key>focusedappvariablename</key>
+				<key>items</key>
+				<string>[{"title":"Succint","arg":"1","subtitle":"url (duration)"},{"title":"Medium","arg":"2","subtitle":"title: url (duration)"},{"title":"Verbose","arg":"3","subtitle":"title: url (duration) … description"}]</string>
+				<key>keyword</key>
+				<string>vidur</string>
+				<key>runningsubtext</key>
 				<string></string>
-				<key>hotkey</key>
-				<integer>0</integer>
-				<key>hotmod</key>
-				<integer>0</integer>
-				<key>leftcursor</key>
+				<key>subtext</key>
+				<string>Output online video URLs with their duration and other details</string>
+				<key>title</key>
+				<string>VideoDuration</string>
+				<key>withspace</key>
 				<false/>
-				<key>modsmode</key>
-				<integer>0</integer>
-				<key>relatedAppsMode</key>
-				<integer>0</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.trigger.hotkey</string>
+			<string>alfred.workflow.input.listfilter</string>
 			<key>uid</key>
-			<string>0A8B1E95-9DC0-48BB-B38D-20710C2F313E</string>
+			<string>A586CE7B-4D6A-45BE-83AF-3CC03CD3EC76</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -234,85 +226,35 @@ fi #find</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>keyword</key>
-				<string>videoduration</string>
-				<key>subtext</key>
-				<string>Will act on the URL you have on your clipboard</string>
-				<key>text</key>
-				<string>VideoDuration</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>C601AB17-0AD8-4A33-9004-D235B2261E70</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string># update youtube-dl if it's more than 15 days old
-if [[ $(find youtube-dl -mtime +15) ]]; then
-  python youtube-dl --update
-fi</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>FE464763-5DCF-4AAF-A423-DA1E3F5289D3</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
 	</array>
 	<key>readme</key>
-	<string>Select a URL and press the Hotkey, or copy a URL and call `videoduration`. The workflow will copy to your clipboard and paste to your frontmost app the url of the page together with the duration of the video in square brackets.</string>
+	<string>Output info from videos from [a plethora of video sources](https://rg3.github.io/youtube-dl/supportedsites.html), even when embedded in other pages.
+
+Copy a link to your clipboard, run `vidur` and pick your verbosity level. It’ll output the video’s link with its duration and optionally its title and description.
+
+![](https://i.imgur.com/ordEMCh.png)</string>
 	<key>uidata</key>
 	<dict>
-		<key>0A8B1E95-9DC0-48BB-B38D-20710C2F313E</key>
-		<dict>
-			<key>xpos</key>
-			<integer>40</integer>
-			<key>ypos</key>
-			<integer>10</integer>
-		</dict>
 		<key>28B55659-9FD1-44B6-AA1E-C8BA1149FC87</key>
 		<dict>
 			<key>xpos</key>
-			<integer>230</integer>
+			<integer>220</integer>
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
 		<key>83F06055-1527-429B-91A0-E17E57616D3D</key>
 		<dict>
 			<key>xpos</key>
-			<integer>420</integer>
+			<integer>410</integer>
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
-		<key>C601AB17-0AD8-4A33-9004-D235B2261E70</key>
+		<key>A586CE7B-4D6A-45BE-83AF-3CC03CD3EC76</key>
 		<dict>
 			<key>xpos</key>
-			<integer>40</integer>
+			<integer>20</integer>
 			<key>ypos</key>
-			<integer>130</integer>
+			<integer>10</integer>
 		</dict>
 		<key>CA7D62DA-BFDF-4F19-8C4F-3ACE38E08335</key>
 		<dict>
@@ -321,20 +263,13 @@ fi</string>
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>600</integer>
+			<integer>590</integer>
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
-		<key>FE464763-5DCF-4AAF-A423-DA1E3F5289D3</key>
-		<dict>
-			<key>xpos</key>
-			<integer>420</integer>
-			<key>ypos</key>
-			<integer>150</integer>
-		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.2</string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
