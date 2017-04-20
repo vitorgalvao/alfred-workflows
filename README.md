@@ -191,5 +191,14 @@ Find words that contain a particular pattern
 
 ---
 
+### Deprecated Workflows
+
+These are the Workflows that are no longer under development and won’t get more updates. Reasons for deprecation depend on the the Workflow, but they don’t tend to be deprecated without an alternative.
+
++ [RepeatRepeat](https://github.com/vitorgalvao/alfred-workflows/tree/9a70302fa31d6fba2b532bc9dd7eac75d67f6964/RepeatRepeat)
++ [RottentMovies](https://github.com/vitorgalvao/alfred-workflows/tree/2c0eca9f2336e3470b103586189ba7dd450f2b39/RottenMovies)
+
+---
+
 #### License
 All the code in the workflows’ root directory is licensed under [The Unlicense](http://unlicense.org/UNLICENSE) (Public Domain, essentially). Applications and libraries inside a `_licensed` directory (if there is one) are not public domain, and are accompanied by their respective licenses.
