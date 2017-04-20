@@ -300,24 +300,24 @@ fi #find</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Call `bn {{website_adress}}` and the workflow will fetch the available logins for that website with the corresponding success rate.
+	<string>Call `bn` with a website address and the Workflow will fetch the available logins with the corresponding success rate.
 
-If you had the login box selected prior to calling the workflow, hit ↩ and it’ll automatically type the username, hit ⇥ and type the password. If for any reason that did not work or you just want one of the details, use ⌃↩ or ⌥↩ to copy the username or password (respectively) to your clipboard.
+If you had the login box selected prior to calling the Workflow, hit ↩ and it’ll automatically type the username, hit ⇥ and type the password. If for any reason that did not work or you just want one of the details, use ⌃↩ or ⌥↩ to copy the username or password (respectively) to your clipboard.
 
-![](http://i.imgur.com/EEFN1WS.gif)</string>
+![](https://i.imgur.com/EEFN1WS.gif)</string>
 	<key>uidata</key>
 	<dict>
 		<key>102D4873-1538-4B56-839D-379DC48A163C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>360</integer>
+			<integer>250</integer>
 			<key>ypos</key>
 			<integer>250</integer>
 		</dict>
 		<key>19EFC881-C598-4139-B02E-427554517796</key>
 		<dict>
 			<key>xpos</key>
-			<integer>360</integer>
+			<integer>250</integer>
 			<key>ypos</key>
 			<integer>130</integer>
 		</dict>
@@ -328,34 +328,34 @@ If you had the login box selected prior to calling the workflow, hit ↩ and it�
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>360</integer>
+			<integer>250</integer>
 			<key>ypos</key>
 			<integer>370</integer>
 		</dict>
 		<key>3D696DA5-1D90-4A2A-A3A0-550BFDAAF148</key>
 		<dict>
 			<key>xpos</key>
-			<integer>160</integer>
+			<integer>50</integer>
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
 		<key>623811E1-9EDE-4B64-8B2C-04D82D84AAA0</key>
 		<dict>
 			<key>xpos</key>
-			<integer>360</integer>
+			<integer>250</integer>
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
 		<key>76A74D8D-DBCC-4053-87C7-3C7FEC7B5EEF</key>
 		<dict>
 			<key>xpos</key>
-			<integer>560</integer>
+			<integer>450</integer>
 			<key>ypos</key>
 			<integer>130</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.4</string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
