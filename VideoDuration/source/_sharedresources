@@ -29,6 +29,7 @@ function youtube_dl {
     ensure_resources_dir
     youtube_dl_path="${shared_resources_dir}/youtube-dl"
     curl --silent --location 'https://yt-dl.org/downloads/latest/youtube-dl' --output "${youtube_dl_path}"
+    chmod +x "${youtube_dl_path}"
   fi
 
   echo -n "${youtube_dl_path}"
