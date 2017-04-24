@@ -334,17 +334,17 @@ fi</string>
 
 Pick paths to upload via the `Upload file` `File Action`. Directories and multiple paths will be zipped prior to upload.
 
-![](http://i.imgur.com/3jmzNse.png)
+![](https://i.imgur.com/nfFAmT0.png)
 
 You can check your upload progress with `ufp`.
 
-![](https://i.imgur.com/2WU6Quf.png)
+![](https://i.imgur.com/Y9pZY2r.png)
 
 It will auto-refresh the progress. Press ⌘↩ to cancel the transfer.
 
 You’ll get notifications of the various phases, with a sound when it’s complete (or canceled). The download URL will be copied to your clipboard.
 
-![](https://i.imgur.com/PkunyPD.png)</string>
+![](https://i.imgur.com/iOxLOWb.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>3444071E-B0B8-4C12-9699-210912A13E67</key>
@@ -395,7 +395,7 @@ You’ll get notifications of the various phases, with a sound when it’s compl
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.2.0</string>
+	<string>1.3.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
