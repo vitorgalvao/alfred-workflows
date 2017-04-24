@@ -221,8 +221,8 @@ fi #find</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>tell application "Google Chrome"	set theURL to URL of active tab of front window	make new window with properties {mode:"incognito"}
-	tell active tab of front window to set URL to theURLend tell</string>
+				<string>tell application "Google Chrome"  set current_url to URL of active tab of front window  make new window with properties {mode:"incognito"}
+  tell active tab of front window to set URL to current_urlend tell</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -245,7 +245,7 @@ fi #find</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>tell application "Google Chrome"	set theURL to URL of active tab of front window	close active tab of front window	make new window with properties {mode:"incognito"}	tell active tab of front window to set URL to theURLend tell</string>
+				<string>tell application "Google Chrome"  set current_url to URL of active tab of front window  close active tab of front window  make new window with properties {mode:"incognito"}  tell active tab of front window to set URL to current_urlend tell</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -268,8 +268,7 @@ fi #find</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>tell application "Google Chrome"	set theURL to URL of active tab of front window
-end telldo shell script "open --new -a \"Google Chrome\" --args --user-data-dir=\"/tmp/incognitoclone-$RANDOM\" --no-first-run " &amp; theURL</string>
+				<string>tell application "Google Chrome" to set current_url to URL of active tab of front windowdo shell script "open --new -a \"Google Chrome\" --args --user-data-dir=\"$(mktemp -d)\" --no-first-run " &amp; current_url</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -292,9 +291,9 @@ end telldo shell script "open --new -a \"Google Chrome\" --args --user-data-di
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>tell application "Google Chrome"	set theURL to URL of active tab of front window	close active tab of front windowend tell
+				<string>tell application "Google Chrome"  set current_url to URL of active tab of front window  close active tab of front windowend tell
 
-do shell script "open --new -a \"Google Chrome\" --args --user-data-dir=\"/tmp/incognitoclone-$RANDOM\" --no-first-run " &amp; theURL</string>
+do shell script "open --new -a \"Google Chrome\" --args --user-data-dir=\"$(mktemp -d)\" --no-first-run " &amp; current_url</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -311,9 +310,9 @@ do shell script "open --new -a \"Google Chrome\" --args --user-data-dir=\"/tmp/i
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Quickly open your current Chrome tab in incognito mode or a new Chrome instance with an empty profile — the latter means it’ll act just as if you hadn’t changed a single setting, which is particularly useful when something you changed (like preventing plugins from loading) is making it difficult to use a page.
+	<string>Open your current Chrome tab in incognito mode or a new Chrome instance with an empty profile. The latter acts as if you were opening Chrome fro the first time without changing a single setting. That is particularly useful when a setting o plugin is making it difficult to use a page.
  
-Call it with `ic`, and it will open a new incognito window with your current tab. ⌘↩ will also close the tab in your current window. ⌥↩ to open the current tab in a new Chrome instance, and ⌃↩ to also close the tab in the current window.</string>
+Call it with `ic`, and it will open a new incognito window with your current tab. ⌘↩ will also close the tab in your current window. ⌥↩ opens the current tab in a new Chrome instance, and ⌃↩ also closes the tab in the current window.</string>
 	<key>uidata</key>
 	<dict>
 		<key>2E8E8F51-96F6-4B70-B320-4C03F3B2515A</key>
@@ -323,48 +322,48 @@ Call it with `ic`, and it will open a new incognito window with your current tab
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>540</integer>
+			<integer>470</integer>
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
 		<key>4F459C78-66B4-44BA-BB97-470BB0B95816</key>
 		<dict>
 			<key>xpos</key>
-			<integer>330</integer>
+			<integer>260</integer>
 			<key>ypos</key>
 			<integer>130</integer>
 		</dict>
 		<key>51478E73-B6B6-403C-B9C1-A8AD48651EAE</key>
 		<dict>
 			<key>xpos</key>
-			<integer>330</integer>
+			<integer>260</integer>
 			<key>ypos</key>
 			<integer>250</integer>
 		</dict>
 		<key>A644E54E-1092-4095-A58E-0937A8171089</key>
 		<dict>
 			<key>xpos</key>
-			<integer>330</integer>
+			<integer>260</integer>
 			<key>ypos</key>
 			<integer>370</integer>
 		</dict>
 		<key>D1C78EAD-183B-46FC-93DD-CE9D62824D4D</key>
 		<dict>
 			<key>xpos</key>
-			<integer>130</integer>
+			<integer>60</integer>
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
 		<key>F91EA669-611F-436A-89B4-0D448347CCB6</key>
 		<dict>
 			<key>xpos</key>
-			<integer>330</integer>
+			<integer>260</integer>
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.3</string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
