@@ -10,16 +10,6 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>EA822D39-F028-468E-95AB-6BB329348CDE</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
 				<string>68CC8A56-102C-4023-BE9A-596453FDDB5C</string>
 				<key>modifiers</key>
 				<integer>0</integer>
@@ -31,16 +21,6 @@
 		</array>
 		<key>1C74CAA5-F3DA-4197-81A2-DD5E64E2E04C</key>
 		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>EA822D39-F028-468E-95AB-6BB329348CDE</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
 			<dict>
 				<key>destinationuid</key>
 				<string>68CC8A56-102C-4023-BE9A-596453FDDB5C</string>
@@ -78,11 +58,37 @@
 				<false/>
 			</dict>
 		</array>
+		<key>448FD2E2-228E-4F9A-88A8-F1FC1035FAEC</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>EA822D39-F028-468E-95AB-6BB329348CDE</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>4F728955-5237-45A7-8665-A94FC85E300E</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>1B016A28-C600-4740-8FA0-87F959C452C5</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>68CC8A56-102C-4023-BE9A-596453FDDB5C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>448FD2E2-228E-4F9A-88A8-F1FC1035FAEC</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -182,7 +188,7 @@
 				<key>passinputasargument</key>
 				<false/>
 				<key>passvariables</key>
-				<false/>
+				<true/>
 				<key>workflowbundleid</key>
 				<string>self</string>
 			</dict>
@@ -192,6 +198,32 @@
 			<string>EA822D39-F028-468E-95AB-6BB329348CDE</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>files_list="$(mktemp)"
+perl -pe 's/[\t\n]/\0/g' &lt;&lt;&lt; "{query}" &gt; "${files_list}"
+
+echo "${files_list}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>68CC8A56-102C-4023-BE9A-596453FDDB5C</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -213,25 +245,20 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>echo "{query}" | perl -pe 's/[\t\n]/\0/g' &gt; '/tmp/runcommandfilelist'</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
+				<key>argument</key>
 				<string></string>
-				<key>type</key>
-				<integer>0</integer>
+				<key>variables</key>
+				<dict>
+					<key>files_list</key>
+					<string>{query}</string>
+				</dict>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
-			<string>68CC8A56-102C-4023-BE9A-596453FDDB5C</string>
+			<string>448FD2E2-228E-4F9A-88A8-F1FC1035FAEC</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -268,7 +295,7 @@
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>subtext</key>
-				<string>Use “{}” for file placeholders, if needed</string>
+				<string>Use `{}` for file placeholders if they’re not the last element</string>
 				<key>text</key>
 				<string>RunCommand</string>
 				<key>withspace</key>
@@ -289,10 +316,10 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>./runcommand runInFiles "{query}"
+				<string>./runcommand "${files_list}" "{query}"
 
 # send exit status
-exit_status="$?"
+exit_status="${?}"
 
 if [[ "${exit_status}" -eq 0 ]]; then
   exit_sub='Success'
@@ -351,7 +378,7 @@ fi
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>./runcommand runInFiles "{query}"</string>
+				<string>./runcommand "${files_list}" "{query}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -454,10 +481,10 @@ fi #find</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>./runcommand runInDir "{query}"
+				<string>./runcommand 'run_in_dir' "{query}"
 
 # send exit status
-exit_status="$?"
+exit_status="${?}"
 
 if [[ "${exit_status}" -eq 0 ]]; then
   exit_sub='Success'
@@ -511,7 +538,7 @@ fi
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>./runcommand runInDir "{query}"</string>
+				<string>./runcommand 'run_in_dir' "{query}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -532,11 +559,11 @@ fi
  
 For the `File Action`, use Alfred to pick what you want to run a command on and choose `Run command`. Alfred’s main window will appear and you simply type the command you want.
 
-![](http://i.imgur.com/eODgjHT.png)
+![](https://i.imgur.com/uFwqIxg.png)
  
 For the `Keyword`, type `.` followed by a command. A space between the period and the command is not necessary. This will run the command on the active Finder window (e.g. `.touch this_file`). You can also easily chain commands (`.cd Desktop &amp;&amp; rm that_file`).
 
-![](http://i.imgur.com/U29ZHaT.png)
+![](https://i.imgur.com/3jV7tXm.png)
 
 For commands that would benefit from the files not being at the end (like `cp` and `mv`), you can use `{}` as a placeholder for the files. So if you select some files and want to copy them to `~/Desktop/` you’d type `cp {} ~/Desktop/`.
 
@@ -546,37 +573,44 @@ To get the output of the command as `Large Type`, use ⌘ when actioning it.</st
 		<key>19CDA0AB-1F06-4A9A-B336-C04305094E51</key>
 		<dict>
 			<key>xpos</key>
-			<integer>100</integer>
+			<integer>10</integer>
 			<key>ypos</key>
-			<real>130</real>
+			<integer>130</integer>
 		</dict>
 		<key>1B016A28-C600-4740-8FA0-87F959C452C5</key>
 		<dict>
 			<key>xpos</key>
-			<integer>700</integer>
+			<integer>610</integer>
 			<key>ypos</key>
-			<real>370</real>
+			<integer>370</integer>
 		</dict>
 		<key>1C74CAA5-F3DA-4197-81A2-DD5E64E2E04C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>100</integer>
+			<integer>10</integer>
 			<key>ypos</key>
-			<real>10</real>
+			<integer>10</integer>
 		</dict>
 		<key>1F82ADA4-53CA-4378-8207-6D1AC40A0E15</key>
 		<dict>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>410</integer>
 			<key>ypos</key>
-			<real>610</real>
+			<integer>610</integer>
 		</dict>
 		<key>38368F77-4820-4A56-BE9D-8E86E4BFA929</key>
 		<dict>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>410</integer>
 			<key>ypos</key>
-			<real>490</real>
+			<integer>490</integer>
+		</dict>
+		<key>448FD2E2-228E-4F9A-88A8-F1FC1035FAEC</key>
+		<dict>
+			<key>xpos</key>
+			<integer>450</integer>
+			<key>ypos</key>
+			<integer>40</integer>
 		</dict>
 		<key>4D5F3055-03ED-46E0-BA61-166650AA30EE</key>
 		<dict>
@@ -585,62 +619,62 @@ To get the output of the command as `Large Type`, use ⌘ when actioning it.</st
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>700</integer>
+			<integer>610</integer>
 			<key>ypos</key>
 			<integer>490</integer>
 		</dict>
 		<key>4F728955-5237-45A7-8665-A94FC85E300E</key>
 		<dict>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>410</integer>
 			<key>ypos</key>
-			<real>370</real>
+			<integer>370</integer>
 		</dict>
 		<key>68CC8A56-102C-4023-BE9A-596453FDDB5C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>210</integer>
 			<key>ypos</key>
-			<real>130</real>
+			<integer>10</integer>
 		</dict>
 		<key>70D7DD2C-C248-44EB-8F75-538914807A66</key>
 		<dict>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>410</integer>
 			<key>ypos</key>
-			<real>250</real>
+			<integer>250</integer>
 		</dict>
 		<key>BC3ADE81-4A31-4D07-A1C8-11BF79A65DE9</key>
 		<dict>
 			<key>xpos</key>
-			<integer>300</integer>
+			<integer>210</integer>
 			<key>ypos</key>
-			<real>250</real>
+			<integer>250</integer>
 		</dict>
 		<key>E7E29D22-8238-4B15-A125-541CDB088237</key>
 		<dict>
 			<key>xpos</key>
-			<integer>100</integer>
+			<integer>10</integer>
 			<key>ypos</key>
-			<real>250</real>
+			<integer>250</integer>
 		</dict>
 		<key>EA822D39-F028-468E-95AB-6BB329348CDE</key>
 		<dict>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>610</integer>
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
 		<key>EFB1DBA9-4DEB-4703-8ABD-B0B63F394D35</key>
 		<dict>
 			<key>xpos</key>
-			<integer>300</integer>
+			<integer>210</integer>
 			<key>ypos</key>
-			<real>490</real>
+			<integer>490</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.9.4</string>
+	<string>1.10.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
