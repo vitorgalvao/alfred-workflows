@@ -3,7 +3,7 @@
 readonly valid_resources=('youtube_dl') # Keep in sync with resource functions
 readonly shared_resources_id='com.vitorgalvao.alfred._sharedresources'
 readonly shared_resources_dir="$(dirname "${alfred_workflow_data}")/${shared_resources_id}"
-readonly PATH=/usr/local/bin:"${shared_resources_dir}":${PATH}
+readonly PATH=/usr/local/bin:"${shared_resources_dir}":"${PATH}"
 
 function wrong_usage {
   echo "
