@@ -127,16 +127,11 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>function warning {
-  osascript -e "display dialog \"${1}\" with icon caution buttons (\"OK\") default button 1"
-  exit 1
-}
-
+				<string>youtube_dl_path="$(dirname "$(./_sharedresources 'youtube_dl')")"
 PATH="${youtube_dl_path}:$PATH"
 
 if [[ "$(mdfind kMDItemCFBundleIdentifier = io.mpv)" ]]; then
   video_player='mpv'
-  [[ ! $(which 'youtube-dl') ]] &amp;&amp; warning 'You need youtube-dl in your youtube_dl_path to be able to stream with mpv'
 elif [[ "$(mdfind kMDItemCFBundleIdentifier = org.videolan.vlc)" ]]; then
   video_player='vlc'
 else
@@ -426,7 +421,7 @@ Short of the Week publishes a new short every day and building the initial list 
 
 ![](https://i.imgur.com/ZoNMo4T.png)
 
-Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` takes precedence). For `mpv`, `youtube-dl` is a requirement; use the `youtube_dl_path` Workflow Environment Variable to set its path, if needed.</string>
+Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` takes precedence).</string>
 	<key>uidata</key>
 	<dict>
 		<key>1A25374D-BC83-4437-952C-759D69E228D3</key>
@@ -490,13 +485,8 @@ Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` 
 			<integer>560</integer>
 		</dict>
 	</dict>
-	<key>variables</key>
-	<dict>
-		<key>youtube_dl_path</key>
-		<string>/usr/local/bin</string>
-	</dict>
 	<key>version</key>
-	<string>1.8.0</string>
+	<string>1.9.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
