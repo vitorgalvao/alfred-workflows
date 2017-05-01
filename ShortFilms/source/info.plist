@@ -20,9 +20,19 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>2EF753EF-6194-4420-9096-C6892565EC96</string>
+				<string>BFA5B490-4D6E-4BAF-931F-07282EC4A4B3</string>
 				<key>modifiers</key>
 				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Download video to watch later.</string>
+				<key>vitoclose</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>2EF753EF-6194-4420-9096-C6892565EC96</string>
+				<key>modifiers</key>
+				<integer>262144</integer>
 				<key>modifiersubtext</key>
 				<string>Copy video link to clipboard.</string>
 				<key>vitoclose</key>
@@ -127,10 +137,9 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>youtube_dl_path="$(dirname "$(./_sharedresources 'youtube_dl')")"
-PATH="${youtube_dl_path}:$PATH"
-
-if [[ "$(mdfind kMDItemCFBundleIdentifier = io.mpv)" ]]; then
+				<string>if [[ "$(mdfind kMDItemCFBundleIdentifier = io.mpv)" ]]; then
+  youtube_dl_path="$(dirname "$(./_sharedresources 'youtube_dl')")"
+  PATH="${youtube_dl_path}:$PATH"
   video_player='mpv'
 elif [[ "$(mdfind kMDItemCFBundleIdentifier = org.videolan.vlc)" ]]; then
   video_player='vlc'
@@ -150,6 +159,34 @@ open -a "${video_player}" "${1}"</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>5777145B-F30B-4A39-8BB6-AA07F81401E1</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>readonly randfile="$(mktemp -t 'downvid')"
+echo -n "${1}" &gt; "${randfile}"
+
+readonly currentquery="${randfile} watchlist_true"
+
+osascript -e "tell application \"Alfred 3\" to run trigger \"new\" in workflow \"com.vitorgalvao.alfred.downvid\" with argument \"${currentquery}\""</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>BFA5B490-4D6E-4BAF-931F-07282EC4A4B3</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -413,9 +450,9 @@ fi</string>
 	<key>readme</key>
 	<string>Stream from a selection of short films, powered by [Short of the Week](https://www.shortoftheweek.com/).
 
-Run `shorts` and it’ll show a list of the latest films. Pick one and it’ll start streaming. Alternatively, use ⌘ to copy the short’s link to the clipboard or ⌥ to see its synopsis.
+Run `shorts` and it’ll show a list of the latest films. Pick one and it’ll start streaming. Alternatively, use ⌘ to download the video (requires [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownVid) and will automatically add to [WatchList](https://github.com/vitorgalvao/alfred-workflows/tree/master/WatchList) if available), ⌥ to see its synopsis, or ⌃ to copy the short’s link to the clipboard.
 
-![](https://i.imgur.com/ntamau0.gif)
+![](https://i.imgur.com/XkfGJ6z.gif)
 
 Short of the Week publishes a new short every day and building the initial list takes a few seconds, so after the initial download the list is cached for one day. If you want the list ready at all times without having to wait, run `:shortfilmslaunchd` to install (or later remove, running the same command) a `launchd` service to seamlessly update the list every day close to the time Short of the Week updates their website.
 
@@ -433,14 +470,14 @@ Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` 
 			<key>xpos</key>
 			<integer>340</integer>
 			<key>ypos</key>
-			<integer>280</integer>
+			<integer>410</integer>
 		</dict>
 		<key>2EF753EF-6194-4420-9096-C6892565EC96</key>
 		<dict>
 			<key>xpos</key>
 			<integer>340</integer>
 			<key>ypos</key>
-			<integer>150</integer>
+			<integer>280</integer>
 		</dict>
 		<key>325E0A83-2F46-4696-80F4-7D41608F65DC</key>
 		<dict>
@@ -461,32 +498,39 @@ Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` 
 			<key>xpos</key>
 			<integer>340</integer>
 			<key>ypos</key>
-			<integer>430</integer>
+			<integer>560</integer>
+		</dict>
+		<key>BFA5B490-4D6E-4BAF-931F-07282EC4A4B3</key>
+		<dict>
+			<key>xpos</key>
+			<integer>340</integer>
+			<key>ypos</key>
+			<integer>150</integer>
 		</dict>
 		<key>F52ABFBA-FC4F-400F-BF1B-AAF7B723052C</key>
 		<dict>
 			<key>xpos</key>
 			<integer>130</integer>
 			<key>ypos</key>
-			<integer>560</integer>
+			<integer>690</integer>
 		</dict>
 		<key>F54CC291-7B66-4D5A-A599-BD512EC630DD</key>
 		<dict>
 			<key>xpos</key>
 			<integer>130</integer>
 			<key>ypos</key>
-			<integer>430</integer>
+			<integer>560</integer>
 		</dict>
 		<key>F622CD2F-A79C-41E3-91E5-1BF5B66F3F52</key>
 		<dict>
 			<key>xpos</key>
 			<integer>340</integer>
 			<key>ypos</key>
-			<integer>560</integer>
+			<integer>690</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.9.3</string>
+	<string>1.10.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
