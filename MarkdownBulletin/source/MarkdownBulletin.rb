@@ -34,16 +34,8 @@ s = s.gsub /~~(.*)~~/, '[s]\1[/s]'
 # quote
 s = s.gsub /^>\s(.*)/, '[quote]\1[/quote]'
 
-# code block
-## with backticks
-s = s.gsub /^\n^```(.*?)```/m, '[code]\1[/code]'
-
-## with spacing or tabs
-s = s.gsub /^\n(^ {4}|\t)/, "\n[code=auto:0]\n\\1" # beginning
-s = s.gsub /\A(^ {4}|\t)/, "[code=auto:0]\n\\1" # if beginning of text
-s = s.gsub /^(( {4}|\t).*)\n\n/, "\\1\n[/code]\n\n" # end
-s = s.gsub /^(( {4}|\t).*)$\z/, "\\1\n[/code]" # if end of text
-s = s.gsub /(^ {4}|\t)/, '' # middle
+# code block with backticks
+s = s.gsub /(^\n|\A)```(.*?)```/m, '[code]\2[/code]'
 
 # inline code
 s = s.gsub /`(.*?)`/, '[background=#eee][font=courier,monospace]\1[/font][/background]'
@@ -55,17 +47,13 @@ s = s.gsub /^###\s(.*?)[ #]*$/, '[size=5][b]\1[/b][/size]' # small
 
 # lists
 ## unordered
-s = s.gsub /^\n^([*+-]\s)/, "[list]\n\\1" # beginning
-s = s.gsub /\A^([*+-]\s)/, "[list]\n\\1" # if beginning of text
-s = s.gsub /^([*+-]\s.*)\n\n/, "\\1\n[/list]\n" # end
-s = s.gsub /^([*+-]\s.*)\z/, "\\1\n[/list]" # if end of text
+s = s.gsub /(^\n|\A)([*+-]\s)/, "[list]\n\\2" # beginning
+s = s.gsub /^([*+-]\s.*)(\n\n|\z)/, "\\1\n[/list]\n" # end
 s = s.gsub /^[*+-]\s(.*)/, '[*]\1[/*]' # middle
 
 ## ordered
-s = s.gsub /^\n^(\d\.\s)/, "[list=1]\n\\1" # beginning
-s = s.gsub /\A^(\d\.\s)/, "[list=1]\n\\1" # if beginning of text
-s = s.gsub /^(\d\.\s.*)\n\n/, "\\1\n[/list]\n" # end
-s = s.gsub /^(\d\.\s.*)\z/, "\\1\n[/list]" # if end of text
+s = s.gsub /(^\n|\A)(\d\.\s)/, "[list=1]\n\\2" # beginning
+s = s.gsub /^(\d\.\s.*)(\n\n|\z)/, "\\1\n[/list]\n" # end
 s = s.gsub /^\d\.\s(.*)/, '[*]\1[/*]' # middle
 
 # footnotes

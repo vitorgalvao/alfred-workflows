@@ -11,7 +11,7 @@ The conversions it supports (I can add more via request) are:
 + Images → `![](link_to_image)`
 + URLs → `[description](link_to_website)`
 + Quotes → start lines with `>` and a space
-+ Code blocks → triple backticks on one line, write code, triple backticks on another line to end; or indent lines with either fours spaces or a tab
++ Code blocks → triple backticks on one line, write code, triple backticks on another line to end
 + Inline code → with a backtick at the start and another at the end, by default it’ll convert the text to a monospaced font with grey background
 + Differently sized headers → start lines with `#` or `##` or `###`, and a space. End them with any number (including none) of spaces and `#` characters
 + Unordered lists → precede items with `+` or `*` or `-`, and a space
