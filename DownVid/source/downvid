@@ -1,0 +1,92 @@
+#!/bin/bash
+
+IFS=$'\n'
+
+# Require Python over 2.7.10 (comes with macOS Sierra) for youtube-dl
+PATH=/usr/local/bin:"${PATH}"
+readonly python_version="$(python --version 2>&1 | cut -d' ' -f2 | tr -d '.')"
+if [[ "${python_version}" -le 2710 ]]; then
+  echo 'youtube-dl does not work on Python 2.7.10 and prior. You will need to have a more recent version in your PATH.' >&2
+  exit 1
+fi
+
+readonly youtube_dl="$(./_sharedresources 'youtube_dl')"
+
+# Workflow Environment Variables
+readonly wev_downdir="${HOME}/${download_dir}"
+readonly wev_watchlist_downdir="${HOME}/${watchlist_download_dir}"
+
+# Global options for downloads
+if command -v 'ffmpeg' 'avconv' &>/dev/null; then
+  # Download and embed subtitles
+  subs_options=(--all-subs --embed-subs)
+  # Force a fileformat, for consistency between gettitle and getfile
+  file_format=(--format bestvideo[ext=mp4]+bestaudio[ext=m4a]/best)
+fi
+
+# Parse query
+full_query="${1}"
+url="$(awk '{ print $1 }' <<< "${full_query}")"
+watchlist_bool="$(awk '{ gsub(".*_", "", $2); print $2 }' <<< "${full_query}")"
+playlist_bool="$(awk '{ gsub(".*_", "", $3); print $3 }' <<< "${full_query}")"
+
+# Set file naming template depending on if downloading playlist
+if [[ "${playlist_bool}" == 'true' ]]; then
+  playlist_options='--yes-playlist'
+  title_template='%(playlist)s-%(playlist_index)s-%(title)s.%(ext)s'
+else
+  playlist_options='--no-playlist'
+  title_template='%(title)s.%(ext)s'
+fi
+
+function notification {
+  ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -message "${1}"
+}
+
+function watchlist_exist? {
+  [[ -d "$(dirname "${alfred_workflow_data}")/com.vitorgalvao.alfred.watchlist" ]]
+}
+
+function gettitle {
+  # File location
+  filename="$("${youtube_dl}" --get-filename --ignore-errors "${file_format[@]}" "${playlist_options}" --output "${downdir}/${title_template}" "${url}")"
+
+  # Title
+  title="$(basename "${filename%.*}")"
+
+  # Check if url is valid
+  if [[ -z "${filename}" ]]; then
+    notification 'The url is invalid'
+    exit 1
+  else
+    notification "Downloading “${title}”"
+  fi
+}
+
+function getfile {
+  progressfile='/tmp/downvidprogress'
+
+  "${youtube_dl}" --newline "${subs_options[@]}" --ignore-errors "${file_format[@]}" "${playlist_options}" --output "${downdir}/${title_template}" "${url}" > "${progressfile}"
+
+  # Add metadata
+  xmlencodedurl="$(perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&<>"'\''})' <<< "${url}")"
+  xattr -w com.apple.metadata:kMDItemWhereFroms '<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><array><string>'"${xmlencodedurl}"'</string></array></plist>' "${filename}"
+
+  rm "${progressfile}"
+}
+
+# Download
+echo -n "${full_query}" > '/tmp/downvidcurrentquery'
+
+if [[ "${watchlist_bool}" == 'true' ]] && watchlist_exist?; then
+  downdir="${wev_watchlist_downdir}"
+  gettitle
+  getfile
+  osascript -e "tell application \"Alfred 3\" to run trigger \"add_file_to_watchlist\" in workflow \"com.vitorgalvao.alfred.watchlist\" with argument \"${filename}\""
+else
+  downdir="${wev_downdir}"
+  gettitle
+  getfile
+fi
+
+notification "Downloaded “${title}”"

@@ -92,29 +92,6 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>AE972882-C947-41D6-9934-98ED94A54F3E</string>
-				<key>modifiers</key>
-				<integer>1048576</integer>
-				<key>modifiersubtext</key>
-				<string>Download full playlist</string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>E2E18310-059A-4E62-92D0-433499DCFE0B</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>AE972882-C947-41D6-9934-98ED94A54F3E</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
 		</array>
 	</dict>
 	<key>createdby</key>
@@ -146,11 +123,11 @@
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
-				<integer>0</integer>
+				<integer>102</integer>
 				<key>script</key>
-				<string>bash downvid.sh '{query} playlist_false'</string>
+				<string>./downvid "${1}"</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -185,41 +162,32 @@
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
-				<string># Prepare random file
-randfile="$(mktemp -t 'downvid')"
-echo -n "$(pbpaste)" &gt;&gt; "${randfile}"
+				<string>require 'json'
 
-# Check if WatchList is being used, and show options accordingly
-watchlist="$(dirname "${alfred_workflow_data}")/com.vitorgalvao.alfred.watchlist/towatch"
+url = %x(pbpaste)
+script_filter_items = []
 
-if [[ -f "${watchlist}" ]]; then
-cat &lt;&lt; EOF
-&lt;?xml version='1.0'?&gt;&lt;items&gt;
-	&lt;item uid='Regular Download' arg='${randfile} watchlist_false' valid='yes'&gt;
-		&lt;title&gt;DownVid&lt;/title&gt;
-		&lt;subtitle&gt;Downloads the video to your Desktop&lt;/subtitle&gt;
-		&lt;icon&gt;icon.png&lt;/icon&gt;
-	&lt;/item&gt;
-	&lt;item uid='Download To WatchList' arg='${randfile} watchlist_true' valid='yes'&gt;
-		&lt;title&gt;DownVid + WatchList&lt;/title&gt;
-		&lt;subtitle&gt;Downloads the video to ~/Downloads and adds it to your watchlist&lt;/subtitle&gt;
-		&lt;icon&gt;icon.png&lt;/icon&gt;
-	&lt;/item&gt;
-&lt;/items&gt;
-EOF
-else
-cat &lt;&lt; EOF
-&lt;?xml version='1.0'?&gt;&lt;items&gt;
-	&lt;item uid='Regular Download' arg='${randfile} watchlist_false' valid='yes'&gt;
-		&lt;title&gt;DownVid&lt;/title&gt;
-		&lt;subtitle&gt;Downloads the video to your Desktop&lt;/subtitle&gt;
-		&lt;icon&gt;icon.png&lt;/icon&gt;
-	&lt;/item&gt;
-&lt;/items&gt;
-EOF
-fi</string>
+script_filter_items.push(
+  uid: 'Regular Download',
+  title: 'DownVid',
+  subtitle: "Downloads the video to ~/#{ENV['download_dir']}",
+  arg: "#{url} watchlist_false playlist_false",
+  mods: { cmd: { subtitle: 'Download full playlist', arg: "#{url} watchlist_false playlist_true" } }
+)
+
+if Dir.exist?(File.dirname(ENV['alfred_workflow_data']) + '/com.vitorgalvao.alfred.watchlist')
+  script_filter_items.push(
+    uid: 'Download to WatchList',
+    title: 'DownVid + WatchList',
+    subtitle: "Downloads the video to ~/#{ENV['watchlist_download_dir']} and adds it to WatchList",
+    arg: "#{url} watchlist_true playlist_false",
+    mods: { cmd: { subtitle: 'Download full playlist', arg: "#{url} watchlist_false playlist_true" } }
+  )
+end
+
+puts({ items: script_filter_items }.to_json)</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
@@ -227,7 +195,7 @@ fi</string>
 				<key>title</key>
 				<string>DownVid</string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>2</integer>
 				<key>withspace</key>
 				<false/>
 			</dict>
@@ -321,42 +289,6 @@ fi #find</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>bash downvid.sh '{query} playlist_true'</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>AE972882-C947-41D6-9934-98ED94A54F3E</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>triggerid</key>
-				<string>new_with_playlist</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>E2E18310-059A-4E62-92D0-433499DCFE0B</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>argumenttype</key>
@@ -376,67 +308,59 @@ fi #find</string>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
-				<string>queue_state="${state}"
-readonly progressfile='/tmp/downvidprogress'
+				<string>require 'json'
 
-if [[ -f "${progressfile}" ]]; then
-  filename=$(cat "${progressfile}" | grep '\[download\] Destination: ' | sed 's/\[download\] Destination: //')
-  progress=$(cat "${progressfile}" | tail -1 | sed 's/^\[download\] *//')
+progressfile = '/tmp/downvidprogress'
 
-  echo "
-    &lt;?xml version='1.0'?&gt;&lt;output&gt;
+if File.exist?(progressfile)
+  filecontents = IO.readlines(progressfile)
 
-      &lt;rerun&gt;1&lt;/rerun&gt;
+  if filecontents.grep(%r{\[download\].*%.*ETA}).any?
+    filename = File.basename(filecontents.grep(%r{\[download\] Destination: })[0].strip)
+    progress = filecontents[-1].delete('[download]').strip
 
-      &lt;items&gt;
-        &lt;item valid='no'&gt;
-          &lt;title&gt;${alfred_workflow_name} Progress&lt;/title&gt;
-          &lt;subtitle&gt;${progress} | &lt;![CDATA[$(basename "${filename}")]]&gt;&lt;/subtitle&gt;
-          &lt;mod key='ctrl' valid='yes' /&gt;
-          &lt;mod key='cmd' valid='yes' /&gt;
-          &lt;icon&gt;icon.png&lt;/icon&gt;
-        &lt;/item&gt;
-      &lt;/items&gt;
-    &lt;/output&gt;
-  "
-else
-  if [[ -z "${queue_state}" ]]; then
-    echo "
-      &lt;?xml version='1.0'?&gt;&lt;output&gt;
+    script_filter_content = {
+      rerun: 1,
+      items: [
+        title: "#{ENV['alfred_workflow_name']} Progress",
+        subtitle: "#{progress} / #{filename}",
+        valid: false,
+        mods: { ctrl: { valid: true }, cmd: { valid: true } }
+      ]
+    }
+  else
+    script_filter_content = {
+      rerun: 1,
+      items: [
+        title: "#{ENV['alfred_workflow_name']} Progress",
+        subtitle: 'Getting download info…'
+      ]
+    }
+  end
+elsif ENV['state'].nil?
+  script_filter_content = {
+    rerun: 3,
+    variables: { state: 'stopped' },
+    items: [
+      title: "#{ENV['alfred_workflow_name']} Progress",
+      subtitle: 'Checking for downloads in queue…',
+      valid: false
+    ]
+  }
+else # state == 'stopped'
+  script_filter_content = {
+    rerun: 3,
+    items: [
+      title: "#{ENV['alfred_workflow_name']} Progress",
+      subtitle: 'All downloads finished!',
+      valid: false
+    ]
+  }
+end
 
-        &lt;rerun&gt;3&lt;/rerun&gt;
-        &lt;variables&gt;
-          &lt;variable name='state'&gt;stopped&lt;/variable&gt;
-        &lt;/variables&gt;
-
-        &lt;items&gt;
-          &lt;item valid='no'&gt;
-            &lt;title&gt;${alfred_workflow_name} Progress&lt;/title&gt;
-            &lt;subtitle&gt;Checking for downloads in queue…&lt;/subtitle&gt;
-            &lt;icon&gt;icon.png&lt;/icon&gt;
-          &lt;/item&gt;
-        &lt;/items&gt;
-      &lt;/output&gt;
-    "
-  else # ${state} == 'stopped'
-    echo "
-      &lt;?xml version='1.0'?&gt;&lt;output&gt;
-
-        &lt;rerun&gt;3&lt;/rerun&gt;
-
-        &lt;items&gt;
-          &lt;item valid='no'&gt;
-            &lt;title&gt;${alfred_workflow_name} Progress&lt;/title&gt;
-            &lt;subtitle&gt;All downloads finished!&lt;/subtitle&gt;
-            &lt;icon&gt;icon.png&lt;/icon&gt;
-          &lt;/item&gt;
-        &lt;/items&gt;
-      &lt;/output&gt;
-    "
-  fi
-fi</string>
+puts(script_filter_content.to_json)</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
@@ -444,7 +368,7 @@ fi</string>
 				<key>title</key>
 				<string>DownVid Progress</string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>2</integer>
 				<key>withspace</key>
 				<false/>
 			</dict>
@@ -476,7 +400,7 @@ fi</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>bash downvid_restart.sh restart_download_true</string>
+				<string>./downvid_restart restart_download_true</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -499,9 +423,9 @@ fi</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>bash downvid_restart.sh restart_download_false</string>
+				<string>./downvid_restart restart_download_false</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -523,7 +447,7 @@ fi</string>
 				<integer>102</integer>
 				<key>script</key>
 				<string>if [[ "${1}" == 'install' ]]; then
-  cp -r ./services/* "${HOME}/Library/Services/"
+  cp -r "./services/"* "${HOME}/Library/Services/"
 else
   rm -r "${HOME}/Library/Services/DownVid"*
 fi</string>
@@ -563,29 +487,23 @@ fi</string>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
-				<string>downvid_service="${HOME}/Library/Services/DownVid.workflow"
+				<string>require 'json'
 
-if [[ -d "${downvid_service}" ]]; then
-  echo '
-    {"items": [
-      {
-        "title": "Remove Downvid Services",
-        "subtitle": "Will be removed from ~/Library/Services",
-	    "arg": "uninstall"
-      }
-    ]}
-  '
+if Dir.exist?("#{ENV['HOME']}/Library/Services/DownVid.workflow") # DownVid Service
+  script_filter_items = [
+    title: 'Remove Downvid Services',
+    subtitle: 'Will be removed from ~/Library/Services',
+    arg: 'uninstall'
+  ]
 else
-  echo '
-    {"items": [
-      {
-        "title": "Install Downvid Services",
-        "subtitle": "Will be installed in ~/Library/Services",
-        "arg": "install"
-      }
-    ]}
-  '
-fi</string>
+  script_filter_items = [
+    title: 'Install Downvid Services',
+    subtitle: 'Will be installed to ~/Library/Services',
+    arg: 'install'
+  ]
+end
+
+puts({ items: script_filter_items }.to_json)</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -595,7 +513,7 @@ fi</string>
 				<key>title</key>
 				<string>Install/remove Downvid Services</string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>2</integer>
 				<key>withspace</key>
 				<false/>
 			</dict>
@@ -608,23 +526,23 @@ fi</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Download videos from [a plethora of video sources](https://rg3.github.io/youtube-dl/supportedsites.html), even when embedded to other pages.
+	<string>Download videos from [a plethora of video sources](https://rg3.github.io/youtube-dl/supportedsites.html), even when embedded in other pages.
 
 Copy a link to your clipboard, run `dv`, and you’re done. The workflow will show you a notification when it starts downloading and another when finished.
 
 If you have [WatchList](https://github.com/vitorgalvao/alfred-workflows/tree/master/WatchList) you’ll see an option to automatically add the downloaded video to your watchlist.
 
-![](https://i.imgur.com/44IZmNI.png)
+![](https://i.imgur.com/Q33FNRw.png)
  
 Run with the ⌘ modifier, and the full playlist the video is part of will be downloaded.
 
 To see the download progress, run `dvp`. It will auto-refresh the progress. Actioning it with the ⌘ modifier will restart the current download (adding it to the back of the queue), while actioning with ⌃ will abort the current download.
 
-![](https://i.imgur.com/Za25OhO.png)
+![](https://i.imgur.com/92TfpDM.png)
  
 You can also run `:downvidservices` to install (or later remove, running the same command) DownVid actions to macOS Services. What this means is wherever you find a URL, you’ll be able to right click it and start the download right from the context menu.
 
-![](https://i.imgur.com/VeQWXsC.png)
+![](https://i.imgur.com/NWHIWcY.png)
 
 The two Workflow Environment Variables represent the directories (relative to your home) where videos will download to.</string>
 	<key>uidata</key>
@@ -664,13 +582,6 @@ The two Workflow Environment Variables represent the directories (relative to yo
 			<key>ypos</key>
 			<integer>490</integer>
 		</dict>
-		<key>AE972882-C947-41D6-9934-98ED94A54F3E</key>
-		<dict>
-			<key>xpos</key>
-			<integer>500</integer>
-			<key>ypos</key>
-			<real>130</real>
-		</dict>
 		<key>C95B128B-0AD1-41F2-A2D6-42BE6FE84306</key>
 		<dict>
 			<key>xpos</key>
@@ -690,14 +601,7 @@ The two Workflow Environment Variables represent the directories (relative to yo
 			<key>xpos</key>
 			<integer>300</integer>
 			<key>ypos</key>
-			<real>70</real>
-		</dict>
-		<key>E2E18310-059A-4E62-92D0-433499DCFE0B</key>
-		<dict>
-			<key>xpos</key>
-			<integer>100</integer>
-			<key>ypos</key>
-			<real>130</real>
+			<integer>120</integer>
 		</dict>
 		<key>E46D269F-3FF9-4B6F-ACAC-6895E0BA46CC</key>
 		<dict>
@@ -713,9 +617,9 @@ The two Workflow Environment Variables represent the directories (relative to yo
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>640</integer>
+			<integer>500</integer>
 			<key>ypos</key>
-			<integer>70</integer>
+			<integer>120</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
@@ -726,7 +630,7 @@ The two Workflow Environment Variables represent the directories (relative to yo
 		<string>Downloads</string>
 	</dict>
 	<key>version</key>
-	<string>1.20.1</string>
+	<string>1.21.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
