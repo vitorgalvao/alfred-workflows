@@ -107,19 +107,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>triggerid</key>
-				<string>new</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>D8524846-F942-4A77-9461-8BAED974B8CF</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -143,68 +130,15 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>alfredfiltersresults</key>
-				<false/>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>dv</string>
-				<key>queuedelaycustom</key>
-				<integer>1</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<false/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string>Please wait…</string>
-				<key>script</key>
-				<string>require 'json'
-
-url = %x(pbpaste)
-script_filter_items = []
-
-script_filter_items.push(
-  uid: 'Regular Download',
-  title: 'DownVid',
-  subtitle: "Downloads the video to ~/#{ENV['download_dir']}",
-  arg: "#{url} watchlist_false playlist_false",
-  mods: { cmd: { subtitle: 'Download full playlist', arg: "#{url} watchlist_false playlist_true" } }
-)
-
-if Dir.exist?(File.dirname(ENV['alfred_workflow_data']) + '/com.vitorgalvao.alfred.watchlist')
-  script_filter_items.push(
-    uid: 'Download to WatchList',
-    title: 'DownVid + WatchList',
-    subtitle: "Downloads the video to ~/#{ENV['watchlist_download_dir']} and adds it to WatchList",
-    arg: "#{url} watchlist_true playlist_false",
-    mods: { cmd: { subtitle: 'Download full playlist', arg: "#{url} watchlist_false playlist_true" } }
-  )
-end
-
-puts({ items: script_filter_items }.to_json)</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string>Download videos from popular sources (uses the URL in your clipboard)</string>
-				<key>title</key>
-				<string>DownVid</string>
-				<key>type</key>
-				<integer>2</integer>
-				<key>withspace</key>
-				<false/>
+				<key>triggerid</key>
+				<string>new</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
+			<string>alfred.workflow.trigger.external</string>
 			<key>uid</key>
-			<string>DC74421D-631A-44B1-AC86-ED7793CADE26</string>
+			<string>D8524846-F942-4A77-9461-8BAED974B8CF</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -285,6 +219,108 @@ fi #find</string>
 			<string>FEFAAD3D-C8FF-491F-8FC9-0B5ACA7164C3</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>dv</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>require 'json'
+
+url = %x(pbpaste).strip
+script_filter_items = []
+
+script_filter_items.push(
+  uid: 'Regular Download',
+  title: 'DownVid',
+  subtitle: "Downloads the video to ~/#{ENV['download_dir']}",
+  arg: "#{url} watchlist_false playlist_false",
+  mods: { cmd: { subtitle: 'Download full playlist', arg: "#{url} watchlist_false playlist_true" } }
+)
+
+if Dir.exist?(File.dirname(ENV['alfred_workflow_data']) + '/com.vitorgalvao.alfred.watchlist')
+  script_filter_items.push(
+    uid: 'Download to WatchList',
+    title: 'DownVid + WatchList',
+    subtitle: "Downloads the video to ~/#{ENV['watchlist_download_dir']} and adds it to WatchList",
+    arg: "#{url} watchlist_true playlist_false",
+    mods: { cmd: { subtitle: 'Download full playlist', arg: "#{url} watchlist_false playlist_true" } }
+  )
+end
+
+puts({ items: script_filter_items }.to_json)</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Download videos from popular sources (uses the URL in your clipboard)</string>
+				<key>title</key>
+				<string>DownVid</string>
+				<key>type</key>
+				<integer>2</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>DC74421D-631A-44B1-AC86-ED7793CADE26</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>./downvid_restart restart_download_true</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>E46D269F-3FF9-4B6F-ACAC-6895E0BA46CC</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>triggerid</key>
+				<string>download_status</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>2D801B88-7E16-4D15-884D-CF189C66910E</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -382,42 +418,6 @@ puts(script_filter_content.to_json)</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>triggerid</key>
-				<string>download_status</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>2D801B88-7E16-4D15-884D-CF189C66910E</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>./downvid_restart restart_download_true</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>E46D269F-3FF9-4B6F-ACAC-6895E0BA46CC</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -435,33 +435,6 @@ puts(script_filter_content.to_json)</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>C95B128B-0AD1-41F2-A2D6-42BE6FE84306</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>if [[ "${1}" == 'install' ]]; then
-  cp -r "./services/"* "${HOME}/Library/Services/"
-else
-  rm -r "${HOME}/Library/Services/DownVid"*
-fi</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>87AAFCF7-6532-4486-8489-54674100A52C</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -521,6 +494,33 @@ puts({ items: script_filter_items }.to_json)</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>67C1A19D-DDF7-450A-A615-B9C134D6975F</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>if [[ "${1}" == 'install' ]]; then
+  cp -r "./services/"* "${HOME}/Library/Services/"
+else
+  rm -r "${HOME}/Library/Services/DownVid"*
+fi</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>87AAFCF7-6532-4486-8489-54674100A52C</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -630,7 +630,7 @@ The two Workflow Environment Variables represent the directories (relative to yo
 		<string>Downloads</string>
 	</dict>
 	<key>version</key>
-	<string>1.21.0</string>
+	<string>1.21.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
