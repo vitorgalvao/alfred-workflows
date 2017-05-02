@@ -14,7 +14,7 @@ function ascii_basename {
 function transfer {
   local tmp_dir tmp_zip_dir given_file dir_name zip_file file_path file_name
 
-  # If acting on multiple files, frist copy them to a directory
+  # If acting on multiple files, first copy them to a directory
   if [[ "${#}" -gt 1 ]]; then
     readonly tmp_dir_multi="$(mktemp -d)"
     readonly tmp_zip_dir="${tmp_dir_multi}/archive"
@@ -49,12 +49,10 @@ function transfer {
 }
 
 function kill_transfer {
-  local file_name parent_process oldest_child_process
-
-  readonly file_name="$(cat "${name_file}")"
+  local parent_process oldest_child_process
 
   # Kill parent to prevent notification showing success and child to stop upload
-  readonly parent_process="$(pgrep -f 'bash uploadfile.sh upload')"
+  readonly parent_process="$(pgrep -f 'uploadfile upload')"
   readonly oldest_child_process="$(pgrep -oP "${parent_process}")"
   kill "${parent_process}" "${oldest_child_process}"
 

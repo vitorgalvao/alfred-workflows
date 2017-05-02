@@ -19,19 +19,6 @@
 				<false/>
 			</dict>
 		</array>
-		<key>6EBC28E3-A781-4D79-9DE6-6B172EF01132</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>A697CADF-6E4A-4C9D-8D61-A8BFCE2DACA4</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>A697CADF-6E4A-4C9D-8D61-A8BFCE2DACA4</key>
 		<array>
 			<dict>
@@ -157,9 +144,7 @@ fi #find</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>IFS=$'\t'
-
-bash uploadfile.sh upload "${@}"</string>
+				<string>./uploadfile upload "${@}"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -199,9 +184,9 @@ bash uploadfile.sh upload "${@}"</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>bash uploadfile.sh abort</string>
+				<string>./uploadfile abort</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -213,19 +198,6 @@ bash uploadfile.sh upload "${@}"</string>
 			<string>55E5D2C8-6F1C-416A-B7D8-C27393CF7485</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>triggerid</key>
-				<string>upload_status</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>6EBC28E3-A781-4D79-9DE6-6B172EF01132</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -249,65 +221,46 @@ bash uploadfile.sh upload "${@}"</string>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
-				<string>queue_state="${state}"
-progress_file='/tmp/uploadfile_progress'
-name_file='/tmp/uploadfile_name'
+				<string>require 'json'
 
-if [[ -f "${progress_file}" ]]; then
-  filename=$(cat "${name_file}")
-  progress=$(cat "${progress_file}" | perl -pe 's/.*\s//')
+progressfile = '/tmp/uploadfile_progress'
+namefile = '/tmp/uploadfile_name'
 
-  echo "
-    &lt;?xml version='1.0'?&gt;&lt;output&gt;
+if File.exist?(progressfile)
+  filename = IO.readlines(namefile)[0]
+  progress = IO.readlines(progressfile)[0].sub(%r{.*\s}, '').strip
 
-      &lt;rerun&gt;1&lt;/rerun&gt;
+  script_filter_content = {
+    rerun: 1,
+    items: [
+      title: "#{ENV['alfred_workflow_name']} Progress",
+      subtitle: "#{progress} / #{filename}",
+      valid: false,
+      mods: { cmd: { valid: true } }
+    ]
+  }
+elsif ENV['state'].nil?
+  script_filter_content = {
+    rerun: 3,
+    variables: { state: 'stopped' },
+    items: [
+      title: "#{ENV['alfred_workflow_name']} Progress",
+      subtitle: 'Checking for uploads in queue…',
+      valid: false
+    ]
+  }
+else # state == 'stopped'
+  script_filter_content = {
+    rerun: 3,
+    items: [
+      title: "#{ENV['alfred_workflow_name']} Progress",
+      subtitle: 'All uploads finished!',
+      valid: false
+    ]
+  }
+end
 
-      &lt;items&gt;
-        &lt;item valid='no'&gt;
-          &lt;title&gt;${alfred_workflow_name} Progress&lt;/title&gt;
-          &lt;subtitle&gt;${progress} | &lt;![CDATA[$(basename "${filename}")]]&gt;&lt;/subtitle&gt;
-          &lt;mod key='cmd' valid='yes' /&gt;
-          &lt;icon&gt;icon.png&lt;/icon&gt;
-        &lt;/item&gt;
-      &lt;/items&gt;
-    &lt;/output&gt;
-  "
-else
-  if [[ -z "${queue_state}" ]]; then
-    echo "
-      &lt;?xml version='1.0'?&gt;&lt;output&gt;
-
-        &lt;rerun&gt;3&lt;/rerun&gt;
-        &lt;variables&gt;
-          &lt;variable name='state'&gt;stopped&lt;/variable&gt;
-        &lt;/variables&gt;
-
-        &lt;items&gt;
-          &lt;item valid='no'&gt;
-            &lt;title&gt;${alfred_workflow_name} Progress&lt;/title&gt;
-            &lt;subtitle&gt;Checking for uploads in queue…&lt;/subtitle&gt;
-            &lt;icon&gt;icon.png&lt;/icon&gt;
-          &lt;/item&gt;
-        &lt;/items&gt;
-      &lt;/output&gt;
-    "
-  else # ${state} == 'stopped'
-    echo "
-      &lt;?xml version='1.0'?&gt;&lt;output&gt;
-
-        &lt;rerun&gt;3&lt;/rerun&gt;
-
-        &lt;items&gt;
-          &lt;item valid='no'&gt;
-            &lt;title&gt;${alfred_workflow_name} Progress&lt;/title&gt;
-            &lt;subtitle&gt;All uploads finished!&lt;/subtitle&gt;
-            &lt;icon&gt;icon.png&lt;/icon&gt;
-          &lt;/item&gt;
-        &lt;/items&gt;
-      &lt;/output&gt;
-    "
-  fi
-fi</string>
+puts(script_filter_content.to_json)</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -317,7 +270,7 @@ fi</string>
 				<key>title</key>
 				<string>UploadFile Progress</string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>2</integer>
 				<key>withspace</key>
 				<false/>
 			</dict>
@@ -361,13 +314,6 @@ You’ll get notifications of the various phases, with a sound when it’s compl
 			<key>ypos</key>
 			<integer>130</integer>
 		</dict>
-		<key>6EBC28E3-A781-4D79-9DE6-6B172EF01132</key>
-		<dict>
-			<key>xpos</key>
-			<integer>50</integer>
-			<key>ypos</key>
-			<integer>130</integer>
-		</dict>
 		<key>A697CADF-6E4A-4C9D-8D61-A8BFCE2DACA4</key>
 		<dict>
 			<key>xpos</key>
@@ -395,7 +341,7 @@ You’ll get notifications of the various phases, with a sound when it’s compl
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.3.0</string>
+	<string>1.3.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
