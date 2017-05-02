@@ -12,7 +12,7 @@ script_filter_items = []
 begin
   page = Nokogiri::HTML(open("http://bugmenot.com/view/#{query}"))
 rescue OpenURI::HTTPError
-  script_filter_items.push(title: "No logins availale for “#{query}”", valid: 'no')
+  script_filter_items.push(title: "No logins available for “#{query}”", valid: 'no')
 else
   login_total = page.css('article.account').count
 
