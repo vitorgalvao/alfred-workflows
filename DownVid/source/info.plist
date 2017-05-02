@@ -6,19 +6,6 @@
 	<string>com.vitorgalvao.alfred.downvid</string>
 	<key>connections</key>
 	<dict>
-		<key>2D801B88-7E16-4D15-884D-CF189C66910E</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>3B69F416-A08B-4618-99B6-E2AED211C9D8</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>3B69F416-A08B-4618-99B6-E2AED211C9D8</key>
 		<array>
 			<dict>
@@ -143,6 +130,72 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>dv</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>require 'json'
+
+url = %x(pbpaste).strip
+script_filter_items = []
+
+script_filter_items.push(
+  uid: 'Regular Download',
+  title: 'DownVid',
+  subtitle: "Downloads the video to ~/#{ENV['download_dir']}",
+  arg: "#{url} watchlist_false playlist_false",
+  mods: { cmd: { subtitle: 'Download full playlist', arg: "#{url} watchlist_false playlist_true" } }
+)
+
+if Dir.exist?(File.dirname(ENV['alfred_workflow_data']) + '/com.vitorgalvao.alfred.watchlist')
+  script_filter_items.push(
+    uid: 'Download to WatchList',
+    title: 'DownVid + WatchList',
+    subtitle: "Downloads the video to ~/#{ENV['watchlist_download_dir']} and adds it to WatchList",
+    arg: "#{url} watchlist_true playlist_false",
+    mods: { cmd: { subtitle: 'Download full playlist', arg: "#{url} watchlist_false playlist_true" } }
+  )
+end
+
+puts({ items: script_filter_items }.to_json)</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Download videos from popular sources (uses the URL in your clipboard)</string>
+				<key>title</key>
+				<string>DownVid</string>
+				<key>type</key>
+				<integer>2</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>DC74421D-631A-44B1-AC86-ED7793CADE26</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -223,72 +276,6 @@ fi #find</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>alfredfiltersresults</key>
-				<false/>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>dv</string>
-				<key>queuedelaycustom</key>
-				<integer>1</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<false/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string>Please wait…</string>
-				<key>script</key>
-				<string>require 'json'
-
-url = %x(pbpaste).strip
-script_filter_items = []
-
-script_filter_items.push(
-  uid: 'Regular Download',
-  title: 'DownVid',
-  subtitle: "Downloads the video to ~/#{ENV['download_dir']}",
-  arg: "#{url} watchlist_false playlist_false",
-  mods: { cmd: { subtitle: 'Download full playlist', arg: "#{url} watchlist_false playlist_true" } }
-)
-
-if Dir.exist?(File.dirname(ENV['alfred_workflow_data']) + '/com.vitorgalvao.alfred.watchlist')
-  script_filter_items.push(
-    uid: 'Download to WatchList',
-    title: 'DownVid + WatchList',
-    subtitle: "Downloads the video to ~/#{ENV['watchlist_download_dir']} and adds it to WatchList",
-    arg: "#{url} watchlist_true playlist_false",
-    mods: { cmd: { subtitle: 'Download full playlist', arg: "#{url} watchlist_false playlist_true" } }
-  )
-end
-
-puts({ items: script_filter_items }.to_json)</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string>Download videos from popular sources (uses the URL in your clipboard)</string>
-				<key>title</key>
-				<string>DownVid</string>
-				<key>type</key>
-				<integer>2</integer>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>DC74421D-631A-44B1-AC86-ED7793CADE26</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -308,19 +295,6 @@ puts({ items: script_filter_items }.to_json)</string>
 			<string>E46D269F-3FF9-4B6F-ACAC-6895E0BA46CC</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>triggerid</key>
-				<string>download_status</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>2D801B88-7E16-4D15-884D-CF189C66910E</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -547,13 +521,6 @@ You can also run `:downvidservices` to install (or later remove, running the sam
 The two Workflow Environment Variables represent the directories (relative to your home) where videos will download to.</string>
 	<key>uidata</key>
 	<dict>
-		<key>2D801B88-7E16-4D15-884D-CF189C66910E</key>
-		<dict>
-			<key>xpos</key>
-			<integer>100</integer>
-			<key>ypos</key>
-			<real>250</real>
-		</dict>
 		<key>3B69F416-A08B-4618-99B6-E2AED211C9D8</key>
 		<dict>
 			<key>xpos</key>
@@ -630,7 +597,7 @@ The two Workflow Environment Variables represent the directories (relative to yo
 		<string>Downloads</string>
 	</dict>
 	<key>version</key>
-	<string>1.21.1</string>
+	<string>1.21.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
