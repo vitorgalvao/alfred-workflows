@@ -1,5 +1,7 @@
-# read text from shell
-s = $stdin.read
+#!/usr/bin/env ruby
+
+# read text from argument
+s = ARGV[0]
 
 # remove trailing non-breaking space added automatically by IPBoard
 s = s.gsub / +$/, ''
