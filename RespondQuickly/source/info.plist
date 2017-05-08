@@ -126,6 +126,34 @@ fi #find</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>qr_image="$(mktemp).png"
+encoded_text="$(perl -MURI::Escape -wlne 'print uri_escape ($_)' &lt;&lt;&lt; "${1}" | perl -pe 's/\n/%0A/')"
+ 
+curl --location --silent --output "${qr_image}" "http://chart.apis.google.com/chart?cht=qr&amp;chs=400x400&amp;chl=${encoded_text}&amp;chld=H|0"
+
+qlmanage -p "${qr_image}"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>B5D50DD5-AB63-4406-AA30-3C731D7CD43B</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>action</key>
 				<integer>0</integer>
 				<key>argument</key>
@@ -154,38 +182,9 @@ fi #find</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>text="{query}"
-encoded_text=$(echo "${text}" | perl -MURI::Escape -wlne 'print uri_escape ($_)' | perl -pe 's/\n/%0A/')
-qr_image="/tmp/qrimage.png"
- 
-curl -Lso "${qr_image}" "http://chart.apis.google.com/chart?cht=qr&amp;chs=400x400&amp;chl=${encoded_text}&amp;chld=H|0"
-
-qlmanage -p "${qr_image}" &amp;&gt;/dev/null</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>B5D50DD5-AB63-4406-AA30-3C731D7CD43B</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
 	</array>
 	<key>readme</key>
-	<string>Select some text, press the keyboard shortcut, and it’ll convert it to a QR Code that’ll be opened via QuickLook.</string>
+	<string>Select some text, press the keyboard shortcut, and it’ll convert it to a QR Code that’ll be opened with QuickLook.</string>
 	<key>uidata</key>
 	<dict>
 		<key>7101174E-B12C-4874-A5CD-0E85329A3B8F</key>
@@ -215,7 +214,7 @@ qlmanage -p "${qr_image}" &amp;&gt;/dev/null</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.1</string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
