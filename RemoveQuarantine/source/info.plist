@@ -71,9 +71,13 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>perl -pe 's/[\t\n]/\0/g' &lt;&lt;&lt; '{query}' | xargs -0 xattr -d com.apple.quarantine</string>
+				<string>IFS=$'\t'
+
+for app in ${@}; do
+  xattr -d com.apple.quarantine "${app}"
+done</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -108,15 +112,13 @@
 				<key>runningsubtext</key>
 				<string>Getting app list…</string>
 				<key>script</key>
-				<string>#!/bin/bash
-
-app_list=()
+				<string>app_list=()
 
 for app in /Applications/*; do
   [[ $(xattr "${app}" | grep 'com.apple.quarantine') ]] &amp;&amp; app_list+=("${app}")
 done
 
-if [[ ${#app_list[@]} -eq 0 ]]; then
+if [[ "${#app_list[@]}" -eq 0 ]]; then
   echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;
     &lt;item valid='no'&gt;
     &lt;title&gt;You have no quarantined applications at the root of /Applications&lt;/title&gt;
@@ -256,13 +258,13 @@ fi #find</string>
 	<key>readme</key>
 	<string>Call `rq` and a list of your top-level apps at `/Applications` with the file quarantine attribute will be shown. Action any of them and the quarantine will be removed.
 
-![](http://i.imgur.com/q1vMCrb.png)
+![](https://i.imgur.com/q1vMCrb.png)
 
 Results are treated as files, so you can select a bunch of them at once via the File Buffer, to act on multiple apps.
 
 If the app you want to remove the attribute from is located anywhere else, you can find it and use the File Action on it for the same effect.
 
-![](http://i.imgur.com/jlZVNDN.png)
+![](https://i.imgur.com/jlZVNDN.png)
 
 Warning: quarantining is a macOS security feature, and I do not recommend you disable it completely. This workflow was built exactly so you don’t have to, and can deal with it on a case-by-case basis. This simply makes the manual process more convenient and you should remove the quarantine attribute from apps at your own risk. Find more on file quarantine on [Apple’s documentation](https://developer.apple.com/library/content/releasenotes/Carbon/RN-LaunchServices/index.html).</string>
 	<key>uidata</key>
@@ -301,7 +303,7 @@ Warning: quarantining is a macOS security feature, and I do not recommend you di
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.5</string>
+	<string>1.0.6</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
