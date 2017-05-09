@@ -1,5 +1,6 @@
+#!/usr/bin/env ruby
+
 list_file = "#{ENV['alfred_workflow_cache']}/list.json"
-Dir.mkdir(ENV['alfred_workflow_cache']) unless Dir.exist?(ENV['alfred_workflow_cache'])
 
 # Recheck films if list file does not exist or is older than a day or argument asks for it
 if !File.exist?(list_file) || (((Time.now - File.mtime(list_file)) / (24 * 3600)).to_i > 1) || ARGV[0] == 'update_list'
@@ -7,6 +8,8 @@ if !File.exist?(list_file) || (((Time.now - File.mtime(list_file)) / (24 * 3600)
   require 'json'
   require 'open-uri'
   require 'nokogiri'
+
+  Dir.mkdir(ENV['alfred_workflow_cache']) unless Dir.exist?(ENV['alfred_workflow_cache'])
 
   site_rss = 'https://www.shortoftheweek.com/feed'
   site_feed = RSS::Parser.parse(open(site_rss))

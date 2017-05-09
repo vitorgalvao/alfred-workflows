@@ -114,13 +114,13 @@
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
-				<string></string>
+				<string>shortfilms</string>
 				<key>subtext</key>
 				<string>Stream from a selection of short films</string>
 				<key>title</key>
 				<string>ShortFilms</string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>8</integer>
 				<key>withspace</key>
 				<false/>
 			</dict>
@@ -310,7 +310,7 @@ fi #find</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>ruby shortfilms.rb update_list</string>
+				<string>./shortfilms update_list</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -532,7 +532,7 @@ Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` 
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.12.0</string>
+	<string>1.12.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
