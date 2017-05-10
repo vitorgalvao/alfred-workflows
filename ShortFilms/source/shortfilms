@@ -3,7 +3,7 @@
 list_file = "#{ENV['alfred_workflow_cache']}/list.json"
 
 # Recheck films if list file does not exist or is older than a day or argument asks for it
-if !File.exist?(list_file) || (((Time.now - File.mtime(list_file)) / (24 * 3600)).to_i > 1) || ARGV[0] == 'update_list'
+if !File.exist?(list_file) || (((Time.now - File.mtime(list_file)) / (24 * 3600)).ceil > 1) || ARGV[0] == 'update_list'
   require 'rss'
   require 'json'
   require 'open-uri'
