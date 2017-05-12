@@ -171,7 +171,7 @@ tell application "System Events"
   end tell
 end tell</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -186,9 +186,9 @@ end tell</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Even though a [native solution](http://stackoverflow.com/questions/9171613/right-click-shortcut-for-mac-lion-os) exists, it suffers from a big flaw: it right-clicks the place you cursor is, not what you’re selecting. This workflow (or [gist](https://gist.github.com/vitorgalvao/6663126), if you prefer it as a Service) addresses that limitation.
+	<string>Even though a [native solution](http://stackoverflow.com/questions/9171613/right-click-shortcut-for-mac-lion-os) exists, it suffers from a big flaw: it right-clicks where you cursor is, not what you’re selecting. This workflow (or [gist](https://gist.github.com/vitorgalvao/6663126), if you prefer it as a Service) addresses that limitation.
 
-Starting with Mavericks, macOS started crippling this solution and making it less useful. Last it was checked, for it to work it needed to be issued inside a Finder window.</string>
+Starting with Mavericks, it only works inside Finder windows, not on the Desktop.</string>
 	<key>uidata</key>
 	<dict>
 		<key>2FAB5CB3-A7E7-490C-A76D-CFEE439F8072</key>
@@ -218,7 +218,7 @@ Starting with Mavericks, macOS started crippling this solution and making it les
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.2</string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
