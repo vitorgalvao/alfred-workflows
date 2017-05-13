@@ -2,14 +2,7 @@
 
 IFS=$'\n'
 
-# Require Python over 2.7.10 (comes with macOS Sierra) for youtube-dl
-PATH=/usr/local/bin:"${PATH}"
-readonly python_version="$(python --version 2>&1 | cut -d' ' -f2 | tr -d '.')"
-if [[ "${python_version}" -le 2710 ]]; then
-  echo 'youtube-dl does not work on Python 2.7.10 and prior. You will need to have a more recent version in your PATH.' >&2
-  exit 1
-fi
-
+PATH="/usr/local/bin:${PATH}"
 readonly youtube_dl="$(./_sharedresources 'youtube_dl')"
 
 # Workflow Environment Variables
