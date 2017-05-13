@@ -64,21 +64,14 @@
 				<key>escaping</key>
 				<integer>32</integer>
 				<key>script</key>
-				<string># Require Python over 2.7.10 (comes with macOS Sierra) for youtube-dl
-readonly PATH=/usr/local/bin:${PATH}
-readonly python_version="$(python --version 2&gt;&amp;1 | cut -d' ' -f2 | tr -d '.')"
-if [[ "${python_version}" -le 2710 ]]; then
-  echo 'youtube-dl does not work on Python 2.7.10 and prior. You will need to have a more recent version in your PATH.' &gt;&amp;2
-  exit 1
-fi
-
+				<string>readonly PATH=/usr/local/bin:${PATH}
+readonly youtube_dl="$(./_sharedresources 'youtube_dl')"
 readonly verbosity="${1}"
 readonly url="$(pbpaste)"
-readonly youtube_dl="$(./_sharedresources 'youtube_dl')"
 
 readonly full_info="$("${youtube_dl}" --get-title --get-description --get-duration "${url}")"
 readonly title="$(head -1 &lt;&lt;&lt; "${full_info}")"
-readonly duration="$(tail -1 &lt;&lt;&lt; "${full_info}" | rev | sed 's/^/s/;s/:/m/;s/:/h/' | rev)"
+readonly duration="$(tail -1 &lt;&lt;&lt; "${full_info}" | rev | sed 's/^/s/;s/:/m/;s/:/h/' | rev | sed 's/00s$//;s/00m$//')"
 readonly description="$(sed '1d;$d' &lt;&lt;&lt; "${full_info}")"
 
 if [[ "${verbosity}" -eq 1 ]]; then
@@ -269,7 +262,7 @@ Copy a link to your clipboard, run `vidur` and pick your verbosity level. It’l
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.5</string>
+	<string>1.1.6</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
