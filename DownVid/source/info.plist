@@ -130,6 +130,92 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>readonly remote_info_plist="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
+readonly workflow_url="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/${alfred_workflow_name}.alfredworkflow"
+readonly workflow_type='workflow'
+readonly frequency_check='15'
+
+# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED UNLESS YOU KNOW WHAT YOU ARE DOING
+function abort {
+  echo "${1}" &gt;&amp;2
+  exit 1
+}
+
+function url_exists {
+  curl --silent --location --output /dev/null --fail --range 0-0 "${1}"
+}
+
+function notification {
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/Resources/Scripts/notificator" --title "${alfred_workflow_name}" --subtitle 'A new version is availale' --message "${1}"
+    return
+  fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+}
+
+# Local sanity checks
+readonly local_info_plist='info.plist'
+readonly local_version="$(/usr/libexec/PlistBuddy -c 'print version' "${local_info_plist}")"
+
+[[ -n "${local_version}" ]] || abort 'You need to set a workflow version in the configuration sheet.'
+[[ "${workflow_type}" =~ ^(workflow|page)$ ]] || abort "'workflow_type' (${workflow_type}) needs to be one of 'workflow' or 'page'."
+[[ "${frequency_check}" =~ ^[0-9]+$ ]] || abort "'frequency_check' (${frequency_check}) needs to be a number."
+
+# Check for updates
+if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
+  if ! url_exists "${remote_info_plist}"; then abort "'remote_info_plist' (${remote_info_plist}) appears to not be reachable."; fi # Remote sanity check
+
+  readonly tmp_file="$(mktemp)"
+  curl --silent --location --output "${tmp_file}" "${remote_info_plist}"
+  readonly remote_version="$(/usr/libexec/PlistBuddy -c 'print version' "${tmp_file}")"
+
+  if [[ "${local_version}" != "${remote_version}" ]]; then
+    if [[ "${workflow_type}" == 'page' ]]; then
+      notification 'Opening download page…'
+      open "${workflow_url}"
+    else
+      if url_exists "${workflow_url}"; then
+        notification 'Downloading and installing…'
+        curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${workflow_url}"
+        open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
+      else
+        abort "'workflow_url' (${workflow_url}) appears to not be reachable."
+      fi # url_exists
+    fi # workflow_type
+  else
+    touch "${local_info_plist}" # Reset timer by touching local file
+  fi # diff
+fi #find</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>FEFAAD3D-C8FF-491F-8FC9-0B5ACA7164C3</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>argumenttype</key>
@@ -190,86 +276,6 @@ puts({ items: script_filter_items }.to_json)</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>DC74421D-631A-44B1-AC86-ED7793CADE26</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>readonly remote_info_plist="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
-readonly workflow_url="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/${alfred_workflow_name}.alfredworkflow"
-readonly workflow_type='workflow'
-readonly frequency_check='15'
-
-# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED UNLESS YOU KNOW WHAT YOU ARE DOING
-function abort {
-  echo "${1}" &gt;&amp;2
-  exit 1
-}
-
-function url_exists {
-  curl --silent --location --output /dev/null --fail --range 0-0 "${1}"
-}
-
-function notification {
-  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
-
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-  else
-    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
-  fi
-}
-
-# Local sanity checks
-readonly local_info_plist='info.plist'
-readonly local_version="$(/usr/libexec/PlistBuddy -c 'print version' "${local_info_plist}")"
-
-[[ -n "${local_version}" ]] || abort 'You need to set a workflow version in the configuration sheet.'
-[[ "${workflow_type}" =~ ^(workflow|page)$ ]] || abort "'workflow_type' (${workflow_type}) needs to be one of 'workflow' or 'page'."
-[[ "${frequency_check}" =~ ^[0-9]+$ ]] || abort "'frequency_check' (${frequency_check}) needs to be a number."
-
-# Check for updates
-if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
-  if ! url_exists "${remote_info_plist}"; then abort "'remote_info_plist' (${remote_info_plist}) appears to not be reachable."; fi # Remote sanity check
-
-  readonly tmp_file="$(mktemp)"
-  curl --silent --location --output "${tmp_file}" "${remote_info_plist}"
-  readonly remote_version="$(/usr/libexec/PlistBuddy -c 'print version' "${tmp_file}")"
-
-  if [[ "${local_version}" != "${remote_version}" ]]; then
-    if [[ "${workflow_type}" == 'page' ]]; then
-      notification 'Opening download page…'
-      open "${workflow_url}"
-    else
-      if url_exists "${workflow_url}"; then
-        notification 'Downloading and installing…'
-        curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${workflow_url}"
-        open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
-      else
-        abort "'workflow_url' (${workflow_url}) appears to not be reachable."
-      fi # url_exists
-    fi # workflow_type
-  else
-    touch "${local_info_plist}" # Reset timer by touching local file
-  fi # diff
-fi #find</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>FEFAAD3D-C8FF-491F-8FC9-0B5ACA7164C3</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -597,7 +603,7 @@ The two Workflow Environment Variables represent the directories (relative to yo
 		<string>Downloads</string>
 	</dict>
 	<key>version</key>
-	<string>1.21.4</string>
+	<string>1.21.5</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
