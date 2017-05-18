@@ -38,8 +38,8 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>readonly remote_info_plist="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
-readonly workflow_url="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/${alfred_workflow_name}.alfredworkflow"
+				<string>readonly remote_info_plist='https://someserver.tld/myworkflow/info.plist'
+readonly workflow_url='https://someserver.tld/myworkflow.alfredworkflow'
 readonly workflow_type='workflow'
 readonly frequency_check='0'
 
@@ -54,13 +54,19 @@ function url_exists {
 }
 
 function notification {
-  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
-
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-  else
-    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/Resources/Scripts/notificator" --title "${alfred_workflow_name}" --subtitle 'A new version is availale' --message "${1}"
+    return
   fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
 }
 
 # Local sanity checks
@@ -97,7 +103,7 @@ if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
   fi # diff
 fi #find</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -155,13 +161,19 @@ function url_exists {
 }
 
 function notification {
-  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
-
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-  else
-    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/Resources/Scripts/notificator" --title "${alfred_workflow_name}" --subtitle 'A new version is availale' --message "${1}"
+    return
   fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
 }
 
 # Local sanity checks
@@ -198,7 +210,7 @@ if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
   fi # diff
 fi #find</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -247,13 +259,19 @@ function url_exists {
 }
 
 function notification {
-  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
-
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-  else
-    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/Resources/Scripts/notificator" --title "${alfred_workflow_name}" --subtitle 'A new version is availale' --message "${1}"
+    return
   fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
 }
 
 # Local sanity checks
@@ -334,7 +352,7 @@ readonly frequency_check='15'
 
 `remote_info_plist` is the URL to this workflow’s up-to-date `info.plist` on a server. When checking for updates (in this case every 15 days, the number in `frequency_check`), the workflow version in that file will be compared to the one in the local workflow. If they differ, the code will continue. If `workflow_type` is set to `workflow`, `workflow_url` will be treated as the direct URL to a `.alfredworkflow`; it will be downloaded and opened. If `workflow_type` is set to `page`, `workflow_url` will be treated as a webpage and opened in the default browser.
 
-For it to work you need only update the workflow version in the configuration sheet (which should be done anyway). When any update happens, the user will be informed via a notification. It will use `terminal-notfier` if it is somewhere in the workflow’s directory, otherwise it will use a plain AppleScript-called notification.</string>
+For it to work you need only update the workflow version in the configuration sheet (which should be done anyway). When any update happens, the user will be informed via a notification. It will be delivered by one of (in order and stopping at the first it finds) [`notificator`](https://github.com/vitorgalvao/notificator), [`terminal-notifier`](https://github.com/julienXX/terminal-notifier), or plain AppleScript-called notification.</string>
 	<key>uidata</key>
 	<dict>
 		<key>710D426A-452E-4D86-83ED-909A5E7F61D7</key>
@@ -375,7 +393,7 @@ For it to work you need only update the workflow version in the configuration sh
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.2.0</string>
+	<string>1.3.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
