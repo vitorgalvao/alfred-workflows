@@ -74,6 +74,11 @@ Convert Markdown to BBCode
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/MarkdownBulletin) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MarkdownBulletin/MarkdownBulletin.alfredworkflow)
 
+### MediaThorn <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MediaThorn/source/icon.png' width='60' align='center' alt='MediaThorn icon'>
+Get ratings for different types of media
+
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/MediaThorn) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MediaThorn/MediaThorn.alfredworkflow)
+
 ### NewFile <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/NewFile/source/icon.png' width='60' align='center' alt='NewFile icon'>
 Creates a new file in the current Finder directory
 
