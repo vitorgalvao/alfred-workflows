@@ -49,7 +49,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>4D5F3055-03ED-46E0-BA61-166650AA30EE</string>
+				<string>9856516B-BE1A-4E28-A28F-7315A6E5610B</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -101,7 +101,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>4D5F3055-03ED-46E0-BA61-166650AA30EE</string>
+				<string>9856516B-BE1A-4E28-A28F-7315A6E5610B</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -329,7 +329,7 @@ else
   exit_message="The command exited with an error."
 fi
 
-./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle "${exit_sub}" -message "${exit_message}"</string>
+./Notificator.app/Contents/Resources/Scripts/notificator --title "${alfred_workflow_name}" --subtitle "${exit_sub}" --message "${exit_message}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -417,13 +417,19 @@ function url_exists {
 }
 
 function notification {
-  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
-
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-  else
-    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/Resources/Scripts/notificator" --title "${alfred_workflow_name}" --subtitle 'A new version is availale' --message "${1}"
+    return
   fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
 }
 
 # Local sanity checks
@@ -460,7 +466,7 @@ if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
   fi # diff
 fi #find</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -469,7 +475,7 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>4D5F3055-03ED-46E0-BA61-166650AA30EE</string>
+			<string>9856516B-BE1A-4E28-A28F-7315A6E5610B</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -612,17 +618,6 @@ To get the output of the command as `Large Type`, use ⌘ when actioning it.</st
 			<key>ypos</key>
 			<integer>40</integer>
 		</dict>
-		<key>4D5F3055-03ED-46E0-BA61-166650AA30EE</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>note</key>
-			<string>OneUpdater</string>
-			<key>xpos</key>
-			<integer>610</integer>
-			<key>ypos</key>
-			<integer>490</integer>
-		</dict>
 		<key>4F728955-5237-45A7-8665-A94FC85E300E</key>
 		<dict>
 			<key>xpos</key>
@@ -643,6 +638,17 @@ To get the output of the command as `Large Type`, use ⌘ when actioning it.</st
 			<integer>410</integer>
 			<key>ypos</key>
 			<integer>250</integer>
+		</dict>
+		<key>9856516B-BE1A-4E28-A28F-7315A6E5610B</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>610</integer>
+			<key>ypos</key>
+			<integer>490</integer>
 		</dict>
 		<key>BC3ADE81-4A31-4D07-A1C8-11BF79A65DE9</key>
 		<dict>
@@ -674,7 +680,7 @@ To get the output of the command as `Large Type`, use ⌘ when actioning it.</st
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.10.0</string>
+	<string>1.11.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
