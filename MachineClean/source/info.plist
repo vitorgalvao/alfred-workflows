@@ -36,7 +36,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>78F747FB-BB88-4569-A5A8-63E3A97BFBEA</string>
+				<string>9B85F648-57A2-473F-9000-89EC81950427</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -84,6 +84,76 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>macclean</string>
+				<key>subtext</key>
+				<string>Will lock keyboard for {var:seconds_to_lock} seconds</string>
+				<key>text</key>
+				<string>MachineClean</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>FED5D171-D581-4C00-9172-DD195380AC73</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>function notification {
+  ./Notificator.app/Contents/Resources/Scripts/notificator --title "${alfred_workflow_name}" --message "${1}"
+}
+
+# Abort if `seconds_to_lock` is unset or not an interger
+if [[ -z "${seconds_to_lock}" || ! "${seconds_to_lock}" =~ ^[0-9]+$ ]]; then
+  echo 'Lock time in the Workflow Environment Variables is not a full number' &gt;&amp;2
+  exit 1
+fi
+
+
+# Abort if on a MacBook Air
+if [[ "$(sysctl hw.model)" == *'MacBookAir'* ]]; then
+  notification 'This workflow does not yet work on the MacBook Air'
+  open 'https://github.com/vitorgalvao/alfred-workflows/issues/19'
+  exit 1
+fi
+
+keyboard="$(kextstat | grep -i 'keyboard' | head -1 | awk '{ print $6 }')"
+
+osascript &lt;&lt; EOS
+  # We have to run the 'osascript' inside the 'osascript' because otherwise times will not coincide. Running a command with 'with administrator privileges' does not stall execution of the rest of the script, meaning the subsequent commands would run before their time
+
+  do shell script "kextunload -bundle-id ${keyboard} ; osascript -e 'tell application \"Alfred 3\" to run trigger \"show_timer\" in workflow \"com.vitorgalvao.alfred.machineclean\"' ; sleep ${seconds_to_lock} ; kextload -bundle-id ${keyboard}" with administrator privileges
+EOS
+
+notification 'Keyboard unlocked'</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>D9245730-36BC-415E-BF86-FB40B9A7A25F</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -105,13 +175,19 @@ function url_exists {
 }
 
 function notification {
-  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
-
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-  else
-    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/Resources/Scripts/notificator" --title "${alfred_workflow_name}" --subtitle 'A new version is availale' --message "${1}"
+    return
   fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
 }
 
 # Local sanity checks
@@ -148,76 +224,6 @@ if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
   fi # diff
 fi #find</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>78F747FB-BB88-4569-A5A8-63E3A97BFBEA</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>keyword</key>
-				<string>macclean</string>
-				<key>subtext</key>
-				<string>Will lock keyboard for {var:seconds_to_lock} seconds</string>
-				<key>text</key>
-				<string>MachineClean</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>FED5D171-D581-4C00-9172-DD195380AC73</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>notification() {
-	./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -message "${1}"
-}
-
-# Abort if `seconds_to_lock` is unset or not an interger
-if [[ -z "${seconds_to_lock}" || ! "${seconds_to_lock}" =~ ^[0-9]+$ ]]; then
-  echo 'Lock time in the Workflow Environment Variables is not a full number' &gt;&amp;2
-  exit 1
-fi
-
-
-# Abort if on a MacBook Air
-if [[ "$(sysctl hw.model)" == *'MacBookAir'* ]]; then
-  notification 'This workflow does not yet work on the MacBook Air'
-  open 'https://github.com/vitorgalvao/alfred-workflows/issues/19'
-  exit 1
-fi
-
-keyboard=$(kextstat | grep -i 'keyboard' | head -1 | awk '{ print $6 }')
-
-osascript &lt;&lt; EOS
-  # We have to run the 'osascript' inside the 'osascript' because otherwise times will not coincide. Running a command with 'with administrator privileges' does not stall execution of the rest of the script, meaning the subsequent commands would run before their time
-
-  do shell script "kextunload -bundle-id ${keyboard} ; osascript -e 'tell application \"Alfred 3\" to run trigger \"show_timer\" in workflow \"com.vitorgalvao.alfred.machineclean\"' ; sleep ${seconds_to_lock} ; kextload -bundle-id ${keyboard}" with administrator privileges
-EOS
-
-notification 'Keyboard unlocked'</string>
-				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
@@ -227,7 +233,7 @@ notification 'Keyboard unlocked'</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>D9245730-36BC-415E-BF86-FB40B9A7A25F</string>
+			<string>9B85F648-57A2-473F-9000-89EC81950427</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -373,7 +379,14 @@ You will be asked for your password when locking since this operation requires e
 			<key>ypos</key>
 			<integer>160</integer>
 		</dict>
-		<key>78F747FB-BB88-4569-A5A8-63E3A97BFBEA</key>
+		<key>7CC0213F-BC65-43B3-9675-BBA23E04881C</key>
+		<dict>
+			<key>xpos</key>
+			<integer>570</integer>
+			<key>ypos</key>
+			<integer>190</integer>
+		</dict>
+		<key>9B85F648-57A2-473F-9000-89EC81950427</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>12</integer>
@@ -383,13 +396,6 @@ You will be asked for your password when locking since this operation requires e
 			<integer>670</integer>
 			<key>ypos</key>
 			<integer>10</integer>
-		</dict>
-		<key>7CC0213F-BC65-43B3-9675-BBA23E04881C</key>
-		<dict>
-			<key>xpos</key>
-			<integer>570</integer>
-			<key>ypos</key>
-			<integer>190</integer>
 		</dict>
 		<key>D9245730-36BC-415E-BF86-FB40B9A7A25F</key>
 		<dict>
@@ -419,7 +425,7 @@ You will be asked for your password when locking since this operation requires e
 		<string>30</string>
 	</dict>
 	<key>version</key>
-	<string>1.3.0</string>
+	<string>1.4.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
