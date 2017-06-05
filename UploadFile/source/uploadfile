@@ -4,7 +4,7 @@ readonly progress_file='/tmp/uploadfile_progress'
 readonly name_file='/tmp/uploadfile_name' # for `ufp` (in Alfred)
 
 function notification {
-  ./Notificator.app/Contents/Resources/Scripts/notificator --title "${alfred_workflow_name}" --message "${1}"
+  ./Notificator.app/Contents/MacOS/applet "${1}" "${alfred_workflow_name}"
 }
 
 function ascii_basename {

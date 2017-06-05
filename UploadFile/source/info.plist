@@ -10,7 +10,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>79D1F396-7D93-45F0-97C7-761F63D8EBDC</string>
+				<string>D503A9AC-59F1-4C55-816D-CAC532C04442</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -82,23 +82,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>acceptsmulti</key>
-				<true/>
-				<key>filetypes</key>
-				<array/>
-				<key>name</key>
-				<string>Upload file</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.action</string>
-			<key>uid</key>
-			<string>DEA90A14-B8E3-469F-B314-4F347CF478B3</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -122,7 +105,7 @@ function url_exists {
 function notification {
   readonly local notificator="$(find . -type d -name 'Notificator.app')"
   if [[ -n "${notificator}" ]]; then
-    "${notificator}/Contents/Resources/Scripts/notificator" --title "${alfred_workflow_name}" --subtitle 'A new version is availale' --message "${1}"
+    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
     return
   fi
 
@@ -178,9 +161,26 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>79D1F396-7D93-45F0-97C7-761F63D8EBDC</string>
+			<string>D503A9AC-59F1-4C55-816D-CAC532C04442</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsmulti</key>
+				<true/>
+				<key>filetypes</key>
+				<array/>
+				<key>name</key>
+				<string>Upload file</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>DEA90A14-B8E3-469F-B314-4F347CF478B3</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -210,6 +210,8 @@ fi #find</string>
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>escaping</key>
@@ -320,7 +322,14 @@ You’ll get notifications of the various phases, with a sound when it’s compl
 			<key>ypos</key>
 			<integer>130</integer>
 		</dict>
-		<key>79D1F396-7D93-45F0-97C7-761F63D8EBDC</key>
+		<key>A697CADF-6E4A-4C9D-8D61-A8BFCE2DACA4</key>
+		<dict>
+			<key>xpos</key>
+			<integer>250</integer>
+			<key>ypos</key>
+			<integer>130</integer>
+		</dict>
+		<key>D503A9AC-59F1-4C55-816D-CAC532C04442</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>12</integer>
@@ -331,13 +340,6 @@ You’ll get notifications of the various phases, with a sound when it’s compl
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
-		<key>A697CADF-6E4A-4C9D-8D61-A8BFCE2DACA4</key>
-		<dict>
-			<key>xpos</key>
-			<integer>250</integer>
-			<key>ypos</key>
-			<integer>130</integer>
-		</dict>
 		<key>DEA90A14-B8E3-469F-B314-4F347CF478B3</key>
 		<dict>
 			<key>xpos</key>
@@ -347,7 +349,7 @@ You’ll get notifications of the various phases, with a sound when it’s compl
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.4.0</string>
+	<string>1.5.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
