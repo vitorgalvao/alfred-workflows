@@ -2,7 +2,6 @@
 
 require 'fileutils'
 require 'net/http'
-require Dir.getwd + '/_licensed/terminal-notifier/lib/terminal-notifier.rb'
 
 Local_templates = ENV['alfred_workflow_data'] + '/local/'
 Remote_templates = ENV['alfred_workflow_data'] + '/remote'
@@ -25,7 +24,7 @@ def finder_dir
 end
 
 def notification(message)
-  TerminalNotifier.notify(message, title: 'TemplatesManager')
+  system(Dir.getwd + '/Notificator.app/Contents/MacOS/applet', message, ENV['alfred_workflow_name'])
 end
 
 def local_list

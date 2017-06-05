@@ -40,7 +40,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>C50B4A87-93CB-4E9E-9D26-76F5743E6700</string>
+				<string>6048ACD6-F959-4B10-AAEA-38615FB697FD</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -114,7 +114,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>C50B4A87-93CB-4E9E-9D26-76F5743E6700</string>
+				<string>6048ACD6-F959-4B10-AAEA-38615FB697FD</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -252,6 +252,8 @@ local_put({query})</string>
 			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -325,6 +327,31 @@ local_put_files_only({query})</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
+				<string>require Dir.getwd + '/tmfunctions.rb'
+
+local_delete({query})</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>AF82572C-ADC9-4677-8690-F846CD053071</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
 				<string>readonly remote_info_plist="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
 readonly workflow_url="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/${alfred_workflow_name}.alfredworkflow"
 readonly workflow_type='workflow'
@@ -341,13 +368,19 @@ function url_exists {
 }
 
 function notification {
-  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
-
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-  else
-    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
+    return
   fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
 }
 
 # Local sanity checks
@@ -384,7 +417,7 @@ if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
   fi # diff
 fi #find</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -393,32 +426,7 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>C50B4A87-93CB-4E9E-9D26-76F5743E6700</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>require Dir.getwd + '/tmfunctions.rb'
-
-local_delete({query})</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>2</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>AF82572C-ADC9-4677-8690-F846CD053071</string>
+			<string>6048ACD6-F959-4B10-AAEA-38615FB697FD</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -471,29 +479,35 @@ local_edit</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>json</key>
-				<string>{
-  "alfredworkflow" : {
-    "arg" : "{query}",
-    "config" : {
-    },
-    "variables" : {
-    }
-  }
-}</string>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>require Dir.getwd + '/tmfunctions.rb'
+
+remote_put({query})</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.utility.json</string>
+			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>79D34DEF-6FCC-457D-A521-35CE0520E999</string>
+			<string>4AF42D65-A49D-4255-9464-81F95707139B</string>
 			<key>version</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -531,31 +545,6 @@ remote_info</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>E5C08248-28E9-4EF7-817F-FA9B2BC335D2</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>require Dir.getwd + '/tmfunctions.rb'
-
-remote_put({query})</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>2</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>4AF42D65-A49D-4255-9464-81F95707139B</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -629,31 +618,6 @@ remote_delete({query})</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>require Dir.getwd + '/tmfunctions.rb'
-
-remote_edit</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>2</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>5D95649E-E581-4899-92D2-F6D66496B030</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>keyword</key>
@@ -682,7 +646,7 @@ remote_edit</string>
 				<key>script</key>
 				<string>require Dir.getwd + '/tmfunctions.rb'
 
-remote_add(%x{'pbpaste'})</string>
+remote_edit</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -693,7 +657,7 @@ remote_add(%x{'pbpaste'})</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>29B19388-647E-4CA9-B92F-42A7740409AF</string>
+			<string>5D95649E-E581-4899-92D2-F6D66496B030</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -717,6 +681,31 @@ remote_add(%x{'pbpaste'})</string>
 			<string>E0DD7561-3519-45F6-86D7-4BF9171E5B4C</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>require Dir.getwd + '/tmfunctions.rb'
+
+remote_add(%x{'pbpaste'})</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>29B19388-647E-4CA9-B92F-42A7740409AF</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -789,6 +778,17 @@ It has a lot of options and you’ll likely use most of them, so I’ll fire thr
 			<key>ypos</key>
 			<integer>970</integer>
 		</dict>
+		<key>6048ACD6-F959-4B10-AAEA-38615FB697FD</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>600</integer>
+			<key>ypos</key>
+			<integer>370</integer>
+		</dict>
 		<key>71BCF11F-FA85-41D7-B524-D036D212A8EA</key>
 		<dict>
 			<key>xpos</key>
@@ -802,13 +802,6 @@ It has a lot of options and you’ll likely use most of them, so I’ll fire thr
 			<integer>600</integer>
 			<key>ypos</key>
 			<integer>730</integer>
-		</dict>
-		<key>79D34DEF-6FCC-457D-A521-35CE0520E999</key>
-		<dict>
-			<key>xpos</key>
-			<integer>650</integer>
-			<key>ypos</key>
-			<integer>530</integer>
 		</dict>
 		<key>7C41DF16-D56D-429D-97B3-BA76D522947A</key>
 		<dict>
@@ -852,17 +845,6 @@ It has a lot of options and you’ll likely use most of them, so I’ll fire thr
 			<key>ypos</key>
 			<integer>130</integer>
 		</dict>
-		<key>C50B4A87-93CB-4E9E-9D26-76F5743E6700</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>note</key>
-			<string>OneUpdater</string>
-			<key>xpos</key>
-			<integer>600</integer>
-			<key>ypos</key>
-			<integer>370</integer>
-		</dict>
 		<key>E0DD7561-3519-45F6-86D7-4BF9171E5B4C</key>
 		<dict>
 			<key>xpos</key>
@@ -879,7 +861,7 @@ It has a lot of options and you’ll likely use most of them, so I’ll fire thr
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.4.0</string>
+	<string>1.5.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
