@@ -36,7 +36,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>1326AE64-E178-4ACE-838B-54A3DB88EC6B</string>
+				<string>73DB8141-C82A-4410-806E-EA01F0541D64</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -84,6 +84,27 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>macclean</string>
+				<key>subtext</key>
+				<string>Will lock keyboard for {var:seconds_to_lock} seconds</string>
+				<key>text</key>
+				<string>MachineClean</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>FED5D171-D581-4C00-9172-DD195380AC73</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -107,7 +128,7 @@ function url_exists {
 function notification {
   readonly local notificator="$(find . -type d -name 'Notificator.app')"
   if [[ -n "${notificator}" ]]; then
-    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is availale'
+    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
     return
   fi
 
@@ -163,30 +184,9 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>1326AE64-E178-4ACE-838B-54A3DB88EC6B</string>
+			<string>73DB8141-C82A-4410-806E-EA01F0541D64</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>keyword</key>
-				<string>macclean</string>
-				<key>subtext</key>
-				<string>Will lock keyboard for {var:seconds_to_lock} seconds</string>
-				<key>text</key>
-				<string>MachineClean</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>FED5D171-D581-4C00-9172-DD195380AC73</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -365,17 +365,6 @@ The workflow will give you a timer of how many seconds are left to unlock and a 
 You will be asked for your password when locking since this operation requires elevated privileges (which is a good thing). Do keep in mind that if something goes wrong in the process you may need to forcefully restart your machine. That is very unlikely and I’ve been using this for quite some time without any issues, but you should be aware of it.</string>
 	<key>uidata</key>
 	<dict>
-		<key>1326AE64-E178-4ACE-838B-54A3DB88EC6B</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>note</key>
-			<string>OneUpdater</string>
-			<key>xpos</key>
-			<integer>670</integer>
-			<key>ypos</key>
-			<integer>10</integer>
-		</dict>
 		<key>36D260D9-DD1B-4AE7-953C-732219953B72</key>
 		<dict>
 			<key>note</key>
@@ -391,6 +380,17 @@ You will be asked for your password when locking since this operation requires e
 			<integer>90</integer>
 			<key>ypos</key>
 			<integer>160</integer>
+		</dict>
+		<key>73DB8141-C82A-4410-806E-EA01F0541D64</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>670</integer>
+			<key>ypos</key>
+			<integer>10</integer>
 		</dict>
 		<key>7CC0213F-BC65-43B3-9675-BBA23E04881C</key>
 		<dict>
@@ -427,7 +427,7 @@ You will be asked for your password when locking since this operation requires e
 		<string>30</string>
 	</dict>
 	<key>version</key>
-	<string>1.5.0</string>
+	<string>1.6.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
