@@ -10,7 +10,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>2325BF48-53E3-4FA5-989F-3A0733ED92EA</string>
+				<string>45C10052-0E98-4B4A-9B23-99DF057B5FA5</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -108,6 +108,27 @@ notification "Temporary email address copied to clipboard"</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>tmpmail</string>
+				<key>subtext</key>
+				<string>Get a temporary email inbox</string>
+				<key>text</key>
+				<string>TemporaryEmail</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>9066A3FA-E9D2-44AF-BB72-A54ABBEB3A3D</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -131,7 +152,7 @@ function url_exists {
 function notification {
   readonly local notificator="$(find . -type d -name 'Notificator.app')"
   if [[ -n "${notificator}" ]]; then
-    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is availale'
+    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
     return
   fi
 
@@ -187,30 +208,9 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>2325BF48-53E3-4FA5-989F-3A0733ED92EA</string>
+			<string>45C10052-0E98-4B4A-9B23-99DF057B5FA5</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>keyword</key>
-				<string>tmpmail</string>
-				<key>subtext</key>
-				<string>Get a temporary email inbox</string>
-				<key>text</key>
-				<string>TemporaryEmail</string>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>9066A3FA-E9D2-44AF-BB72-A54ABBEB3A3D</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -228,7 +228,7 @@ When you have a supported browser (Safari, Webkit, Google Chrome, Google Chrome 
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
-		<key>2325BF48-53E3-4FA5-989F-3A0733ED92EA</key>
+		<key>45C10052-0E98-4B4A-9B23-99DF057B5FA5</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>12</integer>
@@ -248,7 +248,7 @@ When you have a supported browser (Safari, Webkit, Google Chrome, Google Chrome 
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.0</string>
+	<string>1.2.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
