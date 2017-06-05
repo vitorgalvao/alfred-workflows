@@ -36,7 +36,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>9B85F648-57A2-473F-9000-89EC81950427</string>
+				<string>1326AE64-E178-4ACE-838B-54A3DB88EC6B</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -84,76 +84,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>keyword</key>
-				<string>macclean</string>
-				<key>subtext</key>
-				<string>Will lock keyboard for {var:seconds_to_lock} seconds</string>
-				<key>text</key>
-				<string>MachineClean</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>FED5D171-D581-4C00-9172-DD195380AC73</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>function notification {
-  ./Notificator.app/Contents/Resources/Scripts/notificator --title "${alfred_workflow_name}" --message "${1}"
-}
-
-# Abort if `seconds_to_lock` is unset or not an interger
-if [[ -z "${seconds_to_lock}" || ! "${seconds_to_lock}" =~ ^[0-9]+$ ]]; then
-  echo 'Lock time in the Workflow Environment Variables is not a full number' &gt;&amp;2
-  exit 1
-fi
-
-
-# Abort if on a MacBook Air
-if [[ "$(sysctl hw.model)" == *'MacBookAir'* ]]; then
-  notification 'This workflow does not yet work on the MacBook Air'
-  open 'https://github.com/vitorgalvao/alfred-workflows/issues/19'
-  exit 1
-fi
-
-keyboard="$(kextstat | grep -i 'keyboard' | head -1 | awk '{ print $6 }')"
-
-osascript &lt;&lt; EOS
-  # We have to run the 'osascript' inside the 'osascript' because otherwise times will not coincide. Running a command with 'with administrator privileges' does not stall execution of the rest of the script, meaning the subsequent commands would run before their time
-
-  do shell script "kextunload -bundle-id ${keyboard} ; osascript -e 'tell application \"Alfred 3\" to run trigger \"show_timer\" in workflow \"com.vitorgalvao.alfred.machineclean\"' ; sleep ${seconds_to_lock} ; kextload -bundle-id ${keyboard}" with administrator privileges
-EOS
-
-notification 'Keyboard unlocked'</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>D9245730-36BC-415E-BF86-FB40B9A7A25F</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -177,7 +107,7 @@ function url_exists {
 function notification {
   readonly local notificator="$(find . -type d -name 'Notificator.app')"
   if [[ -n "${notificator}" ]]; then
-    "${notificator}/Contents/Resources/Scripts/notificator" --title "${alfred_workflow_name}" --subtitle 'A new version is availale' --message "${1}"
+    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is availale'
     return
   fi
 
@@ -233,7 +163,77 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>9B85F648-57A2-473F-9000-89EC81950427</string>
+			<string>1326AE64-E178-4ACE-838B-54A3DB88EC6B</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>macclean</string>
+				<key>subtext</key>
+				<string>Will lock keyboard for {var:seconds_to_lock} seconds</string>
+				<key>text</key>
+				<string>MachineClean</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>FED5D171-D581-4C00-9172-DD195380AC73</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>function notification {
+  ./Notificator.app/Contents/MacOS/applet "${1}" "${alfred_workflow_name}"
+}
+
+# Abort if `seconds_to_lock` is unset or not an interger
+if [[ -z "${seconds_to_lock}" || ! "${seconds_to_lock}" =~ ^[0-9]+$ ]]; then
+  echo 'Lock time in the Workflow Environment Variables is not a full number' &gt;&amp;2
+  exit 1
+fi
+
+
+# Abort if on a MacBook Air
+if [[ "$(sysctl hw.model)" == *'MacBookAir'* ]]; then
+  notification 'This workflow does not yet work on the MacBook Air'
+  open 'https://github.com/vitorgalvao/alfred-workflows/issues/19'
+  exit 1
+fi
+
+keyboard="$(kextstat | grep -i 'keyboard' | head -1 | awk '{ print $6 }')"
+
+osascript &lt;&lt; EOS
+  # We have to run the 'osascript' inside the 'osascript' because otherwise times will not coincide. Running a command with 'with administrator privileges' does not stall execution of the rest of the script, meaning the subsequent commands would run before their time
+
+  do shell script "kextunload -bundle-id ${keyboard} ; osascript -e 'tell application \"Alfred 3\" to run trigger \"show_timer\" in workflow \"com.vitorgalvao.alfred.machineclean\"' ; sleep ${seconds_to_lock} ; kextload -bundle-id ${keyboard}" with administrator privileges
+EOS
+
+notification 'Keyboard unlocked'</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>D9245730-36BC-415E-BF86-FB40B9A7A25F</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -285,6 +285,8 @@ end if</string>
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>escaping</key>
@@ -363,6 +365,17 @@ The workflow will give you a timer of how many seconds are left to unlock and a 
 You will be asked for your password when locking since this operation requires elevated privileges (which is a good thing). Do keep in mind that if something goes wrong in the process you may need to forcefully restart your machine. That is very unlikely and I’ve been using this for quite some time without any issues, but you should be aware of it.</string>
 	<key>uidata</key>
 	<dict>
+		<key>1326AE64-E178-4ACE-838B-54A3DB88EC6B</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>670</integer>
+			<key>ypos</key>
+			<integer>10</integer>
+		</dict>
 		<key>36D260D9-DD1B-4AE7-953C-732219953B72</key>
 		<dict>
 			<key>note</key>
@@ -385,17 +398,6 @@ You will be asked for your password when locking since this operation requires e
 			<integer>570</integer>
 			<key>ypos</key>
 			<integer>190</integer>
-		</dict>
-		<key>9B85F648-57A2-473F-9000-89EC81950427</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>note</key>
-			<string>OneUpdater</string>
-			<key>xpos</key>
-			<integer>670</integer>
-			<key>ypos</key>
-			<integer>10</integer>
 		</dict>
 		<key>D9245730-36BC-415E-BF86-FB40B9A7A25F</key>
 		<dict>
@@ -425,7 +427,7 @@ You will be asked for your password when locking since this operation requires e
 		<string>30</string>
 	</dict>
 	<key>version</key>
-	<string>1.4.0</string>
+	<string>1.5.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
