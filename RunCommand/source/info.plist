@@ -49,7 +49,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>9856516B-BE1A-4E28-A28F-7315A6E5610B</string>
+				<string>0B1E3603-FAEB-485E-84B5-663D878E919F</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -98,18 +98,7 @@
 			</dict>
 		</array>
 		<key>70D7DD2C-C248-44EB-8F75-538914807A66</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>9856516B-BE1A-4E28-A28F-7315A6E5610B</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
+		<array/>
 		<key>BC3ADE81-4A31-4D07-A1C8-11BF79A65DE9</key>
 		<array>
 			<dict>
@@ -329,7 +318,7 @@ else
   exit_message="The command exited with an error."
 fi
 
-./Notificator.app/Contents/Resources/Scripts/notificator --title "${alfred_workflow_name}" --subtitle "${exit_sub}" --message "${exit_message}"</string>
+./Notificator.app/Contents/MacOS/applet "${exit_message}" "${alfred_workflow_name}" "${exit_sub}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -419,7 +408,7 @@ function url_exists {
 function notification {
   readonly local notificator="$(find . -type d -name 'Notificator.app')"
   if [[ -n "${notificator}" ]]; then
-    "${notificator}/Contents/Resources/Scripts/notificator" --title "${alfred_workflow_name}" --subtitle 'A new version is availale' --message "${1}"
+    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
     return
   fi
 
@@ -475,7 +464,7 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>9856516B-BE1A-4E28-A28F-7315A6E5610B</string>
+			<string>0B1E3603-FAEB-485E-84B5-663D878E919F</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -500,7 +489,7 @@ else
   exit_message="The command exited with an error."
 fi
 
-./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "RunCommand" -subtitle "${exit_sub}" -message "${exit_message}"</string>
+./Notificator.app/Contents/MacOS/applet "${exit_message}" "${alfred_workflow_name}" "${exit_sub}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -576,6 +565,17 @@ For commands that would benefit from the files not being at the end (like `cp` a
 To get the output of the command as `Large Type`, use ⌘ when actioning it.</string>
 	<key>uidata</key>
 	<dict>
+		<key>0B1E3603-FAEB-485E-84B5-663D878E919F</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>610</integer>
+			<key>ypos</key>
+			<integer>490</integer>
+		</dict>
 		<key>19CDA0AB-1F06-4A9A-B336-C04305094E51</key>
 		<dict>
 			<key>xpos</key>
@@ -639,17 +639,6 @@ To get the output of the command as `Large Type`, use ⌘ when actioning it.</st
 			<key>ypos</key>
 			<integer>250</integer>
 		</dict>
-		<key>9856516B-BE1A-4E28-A28F-7315A6E5610B</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>note</key>
-			<string>OneUpdater</string>
-			<key>xpos</key>
-			<integer>610</integer>
-			<key>ypos</key>
-			<integer>490</integer>
-		</dict>
 		<key>BC3ADE81-4A31-4D07-A1C8-11BF79A65DE9</key>
 		<dict>
 			<key>xpos</key>
@@ -680,7 +669,7 @@ To get the output of the command as `Large Type`, use ⌘ when actioning it.</st
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.11.0</string>
+	<string>1.12.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
