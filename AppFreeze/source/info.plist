@@ -23,7 +23,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>3D5954AA-978D-4F67-9529-227E64503BC1</string>
+				<string>11993AF0-0988-4889-AB1E-5C61FB363DDC</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -75,7 +75,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>3D5954AA-978D-4F67-9529-227E64503BC1</string>
+				<string>11993AF0-0988-4889-AB1E-5C61FB363DDC</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -103,17 +103,17 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>notification() {
-  ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -message "${1}"
+				<string>function notification {
+  ./Notificator.app/Contents/MacOS/applet "${1}" "${alfred_workflow_name}"
 }
 
-front_app=$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')
+front_app="$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')"
 
 killall -STOP -c "${front_app}"
 
 notification "Froze ${front_app}"</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -200,13 +200,19 @@ function url_exists {
 }
 
 function notification {
-  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
-
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-  else
-    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
+    return
   fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
 }
 
 # Local sanity checks
@@ -243,7 +249,7 @@ if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
   fi # diff
 fi #find</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -252,7 +258,7 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>3D5954AA-978D-4F67-9529-227E64503BC1</string>
+			<string>11993AF0-0988-4889-AB1E-5C61FB363DDC</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -264,17 +270,17 @@ fi #find</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>notification() {
-  ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -message "${1}"
+				<string>function notification {
+  ./Notificator.app/Contents/MacOS/applet "${1}" "${alfred_workflow_name}"
 }
 
-front_app=$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')
+front_app="$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')"
 
 killall -CONT -c "${front_app}"
 
 notification "Unfroze ${front_app}"</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -347,14 +353,7 @@ Set keyboard shortcuts or use the keywords `freeze` and `unfreeze` to call it.
 ![](https://i.imgur.com/Qmla1Ho.png)</string>
 	<key>uidata</key>
 	<dict>
-		<key>391EDE9B-08C4-4B4A-A84B-8AB481A2F7B2</key>
-		<dict>
-			<key>xpos</key>
-			<integer>260</integer>
-			<key>ypos</key>
-			<integer>10</integer>
-		</dict>
-		<key>3D5954AA-978D-4F67-9529-227E64503BC1</key>
+		<key>11993AF0-0988-4889-AB1E-5C61FB363DDC</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>12</integer>
@@ -364,6 +363,13 @@ Set keyboard shortcuts or use the keywords `freeze` and `unfreeze` to call it.
 			<integer>650</integer>
 			<key>ypos</key>
 			<integer>70</integer>
+		</dict>
+		<key>391EDE9B-08C4-4B4A-A84B-8AB481A2F7B2</key>
+		<dict>
+			<key>xpos</key>
+			<integer>260</integer>
+			<key>ypos</key>
+			<integer>10</integer>
 		</dict>
 		<key>5DD52708-CA8D-4444-9E93-254386BF04EC</key>
 		<dict>
@@ -402,7 +408,7 @@ Set keyboard shortcuts or use the keywords `freeze` and `unfreeze` to call it.
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.0</string>
+	<string>1.2.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
