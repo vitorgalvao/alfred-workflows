@@ -8,7 +8,7 @@
 	<dict>
 		<key>0B01601F-72A7-4C92-8B67-197D677D2A12</key>
 		<array/>
-		<key>94757117-A2E1-4FE7-A171-555588BE76FF</key>
+		<key>208D10C7-CBD8-47D1-8A1F-66ED2C76BEF4</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -22,7 +22,56 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>11730DC6-11C4-4007-9372-316366B1DD81</string>
+				<string>8BFD2E03-38C3-46B3-8353-99A41F55A0BD</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>6A13300D-DEB5-4476-9E16-693114781152</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>208D10C7-CBD8-47D1-8A1F-66ED2C76BEF4</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>94757117-A2E1-4FE7-A171-555588BE76FF</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>A5523421-FAE4-48C5-BEDD-9DEF7743DDF6</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>6A13300D-DEB5-4476-9E16-693114781152</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Also prevent the display from going to sleep</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>A5523421-FAE4-48C5-BEDD-9DEF7743DDF6</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>208D10C7-CBD8-47D1-8A1F-66ED2C76BEF4</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -47,6 +96,8 @@
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -64,25 +115,52 @@
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
-				<string>if [[ $(pgrep caffeinate) ]]; then
-echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;
-  &lt;item uid='CoffeeCoffee' arg='off' valid='yes'&gt;
-    &lt;title&gt;Turn it off&lt;/title&gt;
-    &lt;subtitle&gt;Let your computer go to sleep as usual&lt;/subtitle&gt;
-    &lt;icon&gt;iconAlt.png&lt;/icon&gt;
-  &lt;/item&gt;
-&lt;/items&gt;"
+				<string>require 'json'
+
+script_filter_items = []
+
+if system('pgrep', 'caffeinate', out: File::NULL)
+  script_filter_items.push(
+    title: 'Turn it off',
+    subtitle: 'Let your computer go to sleep as usual',
+    arg: 'off',
+    icon: { path: 'icon_alt.png' }
+  )
 else
-echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;
-  &lt;item uid='CoffeeCoffee' arg='on{query}' valid='yes'&gt;
-    &lt;title&gt;Turn it on&lt;/title&gt;
-    &lt;subtitle&gt;Prevent your computer from going to sleep&lt;/subtitle&gt;
-    &lt;icon&gt;icon.png&lt;/icon&gt;
-  &lt;/item&gt;
-&lt;/items&gt;"
-fi</string>
+  given_timeout = ARGV[0]
+
+  if given_timeout.nil? || !given_timeout.match(%r{^\d}) # Any given value must start with a digit
+    script_filter_items.push(
+      title: 'Turn it on',
+      subtitle: 'Prevent your computer from going to sleep indefinitely',
+      arg: 'on'
+    )
+  else
+    # given_timout.match?(regex) is only available from ruby 2.4. Sierra comes with 2.0.
+    if %r{[\d ]s(econds)?} =~ given_timeout
+      timeout = given_timeout.to_i
+    elsif %r{[\d ]m(inutes)?} =~ given_timeout || %r{^\d+$} =~ given_timeout
+      timeout = (given_timeout.to_f * 60).to_i
+    elsif %r{[\d ]h(ours)?} =~ given_timeout
+      timeout = (given_timeout.to_f * 60 * 60).to_i
+    else
+      abort 'Invalid timeout. It need to be a number '
+    end
+
+    timeout_in_minutes = timeout / 60
+    plurality = timeout_in_minutes == 1 ? 'minute' : 'minutes'
+
+    script_filter_items.push(
+      title: 'Turn it on',
+      subtitle: "Prevent your computer from going to sleep for #{timeout_in_minutes} #{plurality}",
+      arg: timeout
+    )
+  end
+end
+
+puts({ items: script_filter_items }.to_json)</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
@@ -90,7 +168,7 @@ fi</string>
 				<key>title</key>
 				<string>CoffeeCoffee</string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>2</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -109,16 +187,22 @@ fi</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>if [[ {query} == 'off' ]]; then
-  killall caffeinate
-elif [[ {query} == 'on' ]]; then
-  caffeinate &amp;&gt; /dev/null &amp;
+				<string>timeout="${1}"
+if [[ "${prevent_display_sleep}" == 'true' ]]; then
+  display=(-d)
 else
-  time="$(($(echo {query} | sed 's/on//')*60))"
-  caffeinate -t ${time} &amp;&gt; /dev/null &amp;
+  display=()
+fi
+
+if [[ "${timeout}" == 'off' ]]; then
+  killall caffeinate
+elif [[ "${timeout}" == 'on' ]]; then
+  caffeinate "${display[@]}" &amp;&gt; /dev/null &amp;
+else
+  caffeinate "${display[@]}" -t "${timeout}" &amp;&gt; /dev/null &amp;
 fi</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -130,6 +214,32 @@ fi</string>
 			<string>0B01601F-72A7-4C92-8B67-197D677D2A12</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>{query}</string>
+				<key>variables</key>
+				<dict>
+					<key>prevent_display_sleep</key>
+					<string>false</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>A5523421-FAE4-48C5-BEDD-9DEF7743DDF6</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.junction</string>
+			<key>uid</key>
+			<string>208D10C7-CBD8-47D1-8A1F-66ED2C76BEF4</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -155,13 +265,19 @@ function url_exists {
 }
 
 function notification {
-  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
-
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-  else
-    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
+    return
   fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
 }
 
 # Local sanity checks
@@ -198,7 +314,7 @@ if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
   fi # diff
 fi #find</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -207,52 +323,95 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>11730DC6-11C4-4007-9372-316366B1DD81</string>
+			<string>8BFD2E03-38C3-46B3-8353-99A41F55A0BD</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>{query}</string>
+				<key>variables</key>
+				<dict>
+					<key>prevent_display_sleep</key>
+					<string>true</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>6A13300D-DEB5-4476-9E16-693114781152</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 	</array>
 	<key>readme</key>
 	<string>Prevent your computer from going to sleep. Uses [`caffeinate`](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/caffeinate.8.html) under the hood, so no third-party apps are required.
 
-Type `coffee` to turn it on
-![](http://i.imgur.com/ZkyC6YM.png)
+Type `coffee` to turn it on. Action it with ⌥ to also prevent display from going to sleep.
+![](https://i.imgur.com/bhnfFbj.png)
 
-If you type a space and number, after, it’ll be active only for that amount of minutes
-![](http://i.imgur.com/XlhB6iS.png)
- 
-Run `coffee` again to manually turn it off
-![](http://i.imgur.com/shJCIkY.png)</string>
+If you give it a value it’ll be active only for that amount of time. It defaults to minutes, but will also understand seconds and hours.
+![](https://i.imgur.com/shC56Ui.png)
+
+Run `coffee` again to manually turn it off.
+![](https://i.imgur.com/60LCrQN.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>0B01601F-72A7-4C92-8B67-197D677D2A12</key>
 		<dict>
 			<key>xpos</key>
-			<integer>330</integer>
+			<integer>460</integer>
 			<key>ypos</key>
-			<integer>10</integer>
+			<integer>30</integer>
 		</dict>
-		<key>11730DC6-11C4-4007-9372-316366B1DD81</key>
+		<key>208D10C7-CBD8-47D1-8A1F-66ED2C76BEF4</key>
+		<dict>
+			<key>xpos</key>
+			<integer>370</integer>
+			<key>ypos</key>
+			<integer>120</integer>
+		</dict>
+		<key>6A13300D-DEB5-4476-9E16-693114781152</key>
+		<dict>
+			<key>note</key>
+			<string>Display will not turn off</string>
+			<key>xpos</key>
+			<integer>260</integer>
+			<key>ypos</key>
+			<integer>180</integer>
+		</dict>
+		<key>8BFD2E03-38C3-46B3-8353-99A41F55A0BD</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>12</integer>
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>330</integer>
+			<integer>460</integer>
 			<key>ypos</key>
-			<integer>130</integer>
+			<integer>150</integer>
 		</dict>
 		<key>94757117-A2E1-4FE7-A171-555588BE76FF</key>
 		<dict>
 			<key>xpos</key>
-			<integer>130</integer>
+			<integer>40</integer>
 			<key>ypos</key>
-			<integer>10</integer>
+			<integer>30</integer>
+		</dict>
+		<key>A5523421-FAE4-48C5-BEDD-9DEF7743DDF6</key>
+		<dict>
+			<key>note</key>
+			<string>Display can turn off</string>
+			<key>xpos</key>
+			<integer>260</integer>
+			<key>ypos</key>
+			<integer>60</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.3</string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
