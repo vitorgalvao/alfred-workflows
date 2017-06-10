@@ -327,31 +327,6 @@ local_put_files_only({query})</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>require Dir.getwd + '/tmfunctions.rb'
-
-local_delete({query})</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>2</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>AF82572C-ADC9-4677-8690-F846CD053071</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
 				<string>readonly remote_info_plist="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
 readonly workflow_url="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/${alfred_workflow_name}.alfredworkflow"
 readonly workflow_type='workflow'
@@ -433,6 +408,31 @@ fi #find</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>require Dir.getwd + '/tmfunctions.rb'
+
+local_delete({query})</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>AF82572C-ADC9-4677-8690-F846CD053071</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>keyword</key>
@@ -473,31 +473,6 @@ local_edit</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>A8D5EF32-7D4B-4F16-B18E-BB6C10727FF6</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>require Dir.getwd + '/tmfunctions.rb'
-
-remote_put({query})</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>2</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>4AF42D65-A49D-4255-9464-81F95707139B</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -545,6 +520,31 @@ remote_info</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>E5C08248-28E9-4EF7-817F-FA9B2BC335D2</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>require Dir.getwd + '/tmfunctions.rb'
+
+remote_put({query})</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>4AF42D65-A49D-4255-9464-81F95707139B</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -618,27 +618,6 @@ remote_delete({query})</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>keyword</key>
-				<string>rtme</string>
-				<key>subtext</key>
-				<string>Open file of template urls, to manually edit them</string>
-				<key>text</key>
-				<string>Edit templates (rtme)</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>11AFFEA0-D21E-4292-BDEE-86FFA87A2C59</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -667,18 +646,18 @@ remote_edit</string>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>keyword</key>
-				<string>rtma</string>
+				<string>rtme</string>
 				<key>subtext</key>
-				<string>Takes the url in your clipboard, and adds it as a remote template</string>
+				<string>Open file of template urls, to manually edit them</string>
 				<key>text</key>
-				<string>Add template from url (rtma)</string>
+				<string>Edit templates (rtme)</string>
 				<key>withspace</key>
 				<false/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
-			<string>E0DD7561-3519-45F6-86D7-4BF9171E5B4C</string>
+			<string>11AFFEA0-D21E-4292-BDEE-86FFA87A2C59</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -707,11 +686,34 @@ remote_add(%x{'pbpaste'})</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>rtma</string>
+				<key>subtext</key>
+				<string>Takes the url in your clipboard, and adds it as a remote template</string>
+				<key>text</key>
+				<string>Add template from url (rtma)</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>E0DD7561-3519-45F6-86D7-4BF9171E5B4C</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>If you regularly need to set the same files or directory structures somewhere, say a set of prebuilt scripts and template files for certain types of regular projects, this workflow is meant to make your life easier.
 
-It can take files, directory structures, and even URLs, and set them up as templates that’ll be copied over to your frontmost Finder window (if you’re using Path Finder, it will be used instead). Files and directory structures will be saved with the workflow (so they sync across devices), and urls will be downloaded when requested (so you always get the latest version).
+It can take files, directory structures, and even URLs, and set them up as templates that’ll be copied over to your frontmost Finder window (if you’re using Path Finder, it will be used instead). Files and directory structures will be copied, and urls will be downloaded when requested (so you always get the latest version).
+
+Templates are kept in Alfred’s Workflow data directory by default, but can be saved anywhere else by setting the `custom_templates_dir` Workflow Environment Variable. Any path you set will be relative to your home directory. Use this method to easily set up syncing.
 
 If you have a template that consists of a directory, you can place inside it an executable script with the name starting as `_templatesmanagerscript.` (the extension will be your pick), to be executed automatically after copying.
 
@@ -860,8 +862,17 @@ It has a lot of options and you’ll likely use most of them, so I’ll fire thr
 			<integer>610</integer>
 		</dict>
 	</dict>
+	<key>variables</key>
+	<dict>
+		<key>custom_templates_dir</key>
+		<string>Dropbox/Libraries/TemplatesManager</string>
+	</dict>
+	<key>variablesdontexport</key>
+	<array>
+		<string>custom_templates_dir</string>
+	</array>
 	<key>version</key>
-	<string>1.5.0</string>
+	<string>1.6.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

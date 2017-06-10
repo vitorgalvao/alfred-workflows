@@ -3,8 +3,9 @@
 require 'fileutils'
 require 'net/http'
 
-Local_templates = ENV['alfred_workflow_data'] + '/local/'
-Remote_templates = ENV['alfred_workflow_data'] + '/remote'
+Templates_dir = ENV['custom_templates_dir'].empty? ? ENV['alfred_workflow_data'] : ENV['HOME'] + '/' + ENV['custom_templates_dir']
+Local_templates = Templates_dir + '/local/'
+Remote_templates = Templates_dir + '/remote'
 FileUtils.mkdir_p(Local_templates) unless Dir.exist?(Local_templates)
 FileUtils.touch(Remote_templates) unless File.exist?(Remote_templates)
 
@@ -68,7 +69,7 @@ def remote_add(url)
 end
 
 def local_delete(local_array_pos)
-  system(Dir.getwd + '/_licensed/trash/trash', '-a', Local_templates + local_list[local_array_pos])
+  FileUtils.rm_r(Local_templates + local_list[local_array_pos])
 end
 
 def remote_delete(remote_array_pos)
@@ -84,17 +85,15 @@ def local_info
   puts "<?xml version='1.0'?><items>"
 
   if local_list.empty?
-    puts "<item uuid='none' arg='none' valid='no'>"
+    puts "<item valid='no'>"
     puts '<title>List templates (tml)</title>'
     puts '<subtitle>You need to add some local templates, first</subtitle>'
-    puts '<icon>icon.png</icon>'
     puts '</item>'
   else
     local_list.each_index do |local_array_pos|
       template_title = local_list[local_array_pos]
       puts "<item uuid='#{local_array_pos}' arg='#{local_array_pos}' valid='yes'>"
       puts "<title><![CDATA[#{template_title}]]></title>"
-      puts '<icon>icon.png</icon>'
       puts '</item>'
     end
   end
@@ -106,10 +105,9 @@ def remote_info
   puts "<?xml version='1.0'?><items>"
 
   if remote_list.empty?
-    puts "<item uuid='none' arg='none' valid='no'>"
+    puts "<item valid='no'>"
     puts '<title>List templates (rtml)</title>'
     puts '<subtitle>You need to add some remote templates, first</subtitle>'
-    puts '<icon>icon.png</icon>'
     puts '</item>'
   else
     remote_list.each_index do |remote_array_pos|
