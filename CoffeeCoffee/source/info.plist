@@ -139,7 +139,7 @@ else
     # given_timout.match?(regex) is only available from ruby 2.4. Sierra comes with 2.0.
     if %r{[\d ]s(econds)?} =~ given_timeout
       timeout = given_timeout.to_i
-    elsif %r{[\d ]m(inutes)?} =~ given_timeout || %r{^\d+$} =~ given_timeout
+    elsif %r{[\d ]m(inutes)?} =~ given_timeout || %r{^[\d\.]+$} =~ given_timeout
       timeout = (given_timeout.to_f * 60).to_i
     elsif %r{[\d ]h(ours)?} =~ given_timeout
       timeout = (given_timeout.to_f * 60 * 60).to_i
@@ -350,10 +350,10 @@ fi #find</string>
 	<string>Prevent your computer from going to sleep. Uses [`caffeinate`](https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/caffeinate.8.html) under the hood, so no third-party apps are required.
 
 Type `coffee` to turn it on. Action it with ⌥ to also prevent display from going to sleep.
-![](https://i.imgur.com/bhnfFbj.png)
+![](https://i.imgur.com/eVauELH.png)
 
 If you give it a value it’ll be active only for that amount of time. It defaults to minutes, but will also understand seconds and hours.
-![](https://i.imgur.com/shC56Ui.png)
+![](https://i.imgur.com/ONW8o5M.png)
 
 Run `coffee` again to manually turn it off.
 ![](https://i.imgur.com/60LCrQN.png)</string>
@@ -411,7 +411,7 @@ Run `coffee` again to manually turn it off.
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.0</string>
+	<string>1.2.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
