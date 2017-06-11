@@ -10,7 +10,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>0A0F57BF-C486-407B-A652-E9C594BA6C55</string>
+				<string>5363CECD-38A0-428F-A9D7-F323B233C752</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -85,23 +85,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>autopaste</key>
-				<true/>
-				<key>clipboardtext</key>
-				<string>{query}</string>
-				<key>transient</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.clipboard</string>
-			<key>uid</key>
-			<string>26FFC902-DE74-4699-BD9A-8E47ED317DA2</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>action</key>
 				<integer>0</integer>
 				<key>argument</key>
@@ -131,6 +114,92 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>autopaste</key>
+				<true/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>26FFC902-DE74-4699-BD9A-8E47ED317DA2</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>syn</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>IFS=$'\n'
+
+if [[ -z "${api_key}" ]] ; then
+cat &lt;&lt; EOF
+	&lt;?xml version='1.0'?&gt;&lt;items&gt;
+	  &lt;item valid='no'&gt;
+	    &lt;title&gt;Your account is not yet configured&lt;/title&gt;
+	    &lt;subtitle&gt;You need to set the API key in the workflow’s settings&lt;/subtitle&gt;
+	  &lt;/item&gt;
+	&lt;/items&gt;
+EOF
+fi
+
+words="$(curl http://words.bighugelabs.com/api/2/${api_key}/{query}/ | grep '|syn|')"
+
+echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
+for item in $(echo "${words}"); do
+	type="$(echo "${item}" | cut -d '|' -f 1)"
+	word="$(echo "${item}" | cut -d '|' -f 3)"
+	echo "&lt;item arg='${word}' valid='yes'&gt;"
+	echo "&lt;title&gt;${word}&lt;/title&gt;"
+	echo "&lt;subtitle&gt;${type}&lt;/subtitle&gt;"
+	echo "&lt;/item&gt;"
+done
+echo "&lt;/items&gt;"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Type a word to get synonyms</string>
+				<key>title</key>
+				<string>SynAnt</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>3562E2E1-564F-445C-8C3A-1E2A36AAB395</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -152,13 +221,19 @@ function url_exists {
 }
 
 function notification {
-  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
-
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-  else
-    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
+    return
   fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
 }
 
 # Local sanity checks
@@ -195,7 +270,7 @@ if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
   fi # diff
 fi #find</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -204,76 +279,7 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>0A0F57BF-C486-407B-A652-E9C594BA6C55</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>alfredfiltersresults</key>
-				<false/>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>syn</string>
-				<key>queuedelaycustom</key>
-				<integer>1</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<false/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string>Please wait…</string>
-				<key>script</key>
-				<string>IFS=$'\n'
-
-if [[ -z "${api_key}" ]] ; then
-cat &lt;&lt; EOF
-	&lt;?xml version='1.0'?&gt;&lt;items&gt;
-	  &lt;item uid='Not configured' valid='no'&gt;
-	    &lt;title&gt;Your account is not yet configured&lt;/title&gt;
-	    &lt;subtitle&gt;You need to set the API key in the workflow’s settings&lt;/subtitle&gt;
-	    &lt;icon&gt;icon.png&lt;/icon&gt;
-	  &lt;/item&gt;
-	&lt;/items&gt;
-EOF
-fi
-
-words=$(curl http://words.bighugelabs.com/api/2/${api_key}/{query}/ | grep '|syn|')
-
-echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-for item in $(echo "${words}"); do
-	type=$(echo "${item}" | cut -d '|' -f 1)
-	word=$(echo "${item}" | cut -d '|' -f 3)
-	echo "&lt;item uuid='${word}' arg='${word}' valid='yes'&gt;"
-	echo "&lt;title&gt;${word}&lt;/title&gt;"
-	echo "&lt;subtitle&gt;${type}&lt;/subtitle&gt;"
-	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
-	echo "&lt;/item&gt;"
-done
-echo "&lt;/items&gt;"</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string>Type a word to get synonyms</string>
-				<key>title</key>
-				<string>SynAnt</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>3562E2E1-564F-445C-8C3A-1E2A36AAB395</string>
+			<string>5363CECD-38A0-428F-A9D7-F323B233C752</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -311,6 +317,8 @@ echo "&lt;/items&gt;"</string>
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>escaping</key>
@@ -333,25 +341,23 @@ echo "&lt;/items&gt;"</string>
 if [[ -z "${api_key}" ]] ; then
 cat &lt;&lt; EOF
 	&lt;?xml version='1.0'?&gt;&lt;items&gt;
-	  &lt;item uid='Not configured' valid='no'&gt;
+	  &lt;item valid='no'&gt;
 	    &lt;title&gt;Your account is not yet configured&lt;/title&gt;
 	    &lt;subtitle&gt;You need to set the API key in the workflow’s settings&lt;/subtitle&gt;
-	    &lt;icon&gt;icon.png&lt;/icon&gt;
 	  &lt;/item&gt;
 	&lt;/items&gt;
 EOF
 fi
 
-words=$(curl http://words.bighugelabs.com/api/2/${api_key}/{query}/ | grep '|ant|')
+words="$(curl http://words.bighugelabs.com/api/2/${api_key}/{query}/ | grep '|ant|')"
 
 echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
 for item in $(echo "${words}"); do
-	type=$(echo "${item}" | cut -d '|' -f 1)
-	word=$(echo "${item}" | cut -d '|' -f 3)
-	echo "&lt;item uuid='${word}' arg='${word}' valid='yes'&gt;"
+	type="$(echo "${item}" | cut -d '|' -f 1)"
+	word="$(echo "${item}" | cut -d '|' -f 3)"
+	echo "&lt;item arg='${word}' valid='yes'&gt;"
 	echo "&lt;title&gt;${word}&lt;/title&gt;"
 	echo "&lt;subtitle&gt;${type}&lt;/subtitle&gt;"
-	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
 	echo "&lt;/item&gt;"
 done
 echo "&lt;/items&gt;"</string>
@@ -383,23 +389,12 @@ To set up, [get an API key](https://words.bighugelabs.com/getkey.php) and set it
 
 You can then check for synonyms and antonyms by calling `syn` or `ant` followed by a space and the word you wish to check against.
 
-![](http://i.imgur.com/5jQLrh9.png)
-![](http://i.imgur.com/t2mUDDC.png)
+![](https://i.imgur.com/1p2T6uZ.png)
+![](https://i.imgur.com/p5CsiB8.png)
 
 Alternatively, select a word and press the shortcut you defined to get the results. Pressing ↩ on a word will paste it to the front most app, which is useful when writing a text and want to change a word in place.</string>
 	<key>uidata</key>
 	<dict>
-		<key>0A0F57BF-C486-407B-A652-E9C594BA6C55</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>note</key>
-			<string>OneUpdater</string>
-			<key>xpos</key>
-			<integer>650</integer>
-			<key>ypos</key>
-			<integer>10</integer>
-		</dict>
 		<key>26FFC902-DE74-4699-BD9A-8E47ED317DA2</key>
 		<dict>
 			<key>xpos</key>
@@ -411,6 +406,17 @@ Alternatively, select a word and press the shortcut you defined to get the resul
 		<dict>
 			<key>xpos</key>
 			<integer>250</integer>
+			<key>ypos</key>
+			<integer>10</integer>
+		</dict>
+		<key>5363CECD-38A0-428F-A9D7-F323B233C752</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>650</integer>
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
@@ -446,7 +452,7 @@ Alternatively, select a word and press the shortcut you defined to get the resul
 		<string>api_key</string>
 	</array>
 	<key>version</key>
-	<string>1.0.2</string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
