@@ -20,9 +20,12 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+		</array>
+		<key>6AA0D682-06BE-47A0-A409-38F6518F60EE</key>
+		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>AB9C1466-F326-409B-A3A5-C2D8B20457BA</string>
+				<string>2459201D-A4A1-458A-8A1B-4B7EFEFE0E9B</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -31,11 +34,11 @@
 				<false/>
 			</dict>
 		</array>
-		<key>6AA0D682-06BE-47A0-A409-38F6518F60EE</key>
+		<key>6C3A9229-C695-41E0-8A56-B39CBA762269</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>2459201D-A4A1-458A-8A1B-4B7EFEFE0E9B</string>
+				<string>78366C9D-1E5F-4A8A-A05C-4558388DCEA1</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -148,15 +151,13 @@
 				<key>escaping</key>
 				<integer>4</integer>
 				<key>script</key>
-				<string>lang=$(echo "{query}" | sed 's/^\(..\).*/\1/')
-text=$(echo "{query}" | sed 's/^..//')
+				<string>lang="$(echo "{query}" | sed 's/^\(..\).*/\1/')"
+text="$(echo "{query}" | sed 's/^..//')"
 
 id="CheckSpelling$(pwd | sed 's/.*\.//' | md5)"
 
 urlEncodedString=$(echo "${text}" | perl -MURI::Escape -wlne 'print uri_escape ($_)')
-if [[ "${urlEncodedString}" == *'%20' ]]; then
-  space=" "
-fi
+[[ "${urlEncodedString}" == *'%20' ]] &amp;&amp; space=" "
 
 echo -n "$(curl -s "http://${lang}.service.afterthedeadline.com/checkDocument?key=${id}&amp;data=${urlEncodedString}" | grep option | head -1 | sed 's/^.*&lt;option&gt;\(.*\)&lt;\/option&gt;/\1/')${space}"</string>
 				<key>scriptargtype</key>
@@ -170,6 +171,92 @@ echo -n "$(curl -s "http://${lang}.service.afterthedeadline.com/checkDocument?ke
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>2459201D-A4A1-458A-8A1B-4B7EFEFE0E9B</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>readonly remote_info_plist="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
+readonly workflow_url="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/${alfred_workflow_name}.alfredworkflow"
+readonly workflow_type='workflow'
+readonly frequency_check='15'
+
+# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED UNLESS YOU KNOW WHAT YOU ARE DOING
+function abort {
+  echo "${1}" &gt;&amp;2
+  exit 1
+}
+
+function url_exists {
+  curl --silent --location --output /dev/null --fail --range 0-0 "${1}"
+}
+
+function notification {
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
+    return
+  fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+}
+
+# Local sanity checks
+readonly local_info_plist='info.plist'
+readonly local_version="$(/usr/libexec/PlistBuddy -c 'print version' "${local_info_plist}")"
+
+[[ -n "${local_version}" ]] || abort 'You need to set a workflow version in the configuration sheet.'
+[[ "${workflow_type}" =~ ^(workflow|page)$ ]] || abort "'workflow_type' (${workflow_type}) needs to be one of 'workflow' or 'page'."
+[[ "${frequency_check}" =~ ^[0-9]+$ ]] || abort "'frequency_check' (${frequency_check}) needs to be a number."
+
+# Check for updates
+if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
+  if ! url_exists "${remote_info_plist}"; then abort "'remote_info_plist' (${remote_info_plist}) appears to not be reachable."; fi # Remote sanity check
+
+  readonly tmp_file="$(mktemp)"
+  curl --silent --location --output "${tmp_file}" "${remote_info_plist}"
+  readonly remote_version="$(/usr/libexec/PlistBuddy -c 'print version' "${tmp_file}")"
+
+  if [[ "${local_version}" != "${remote_version}" ]]; then
+    if [[ "${workflow_type}" == 'page' ]]; then
+      notification 'Opening download page…'
+      open "${workflow_url}"
+    else
+      if url_exists "${workflow_url}"; then
+        notification 'Downloading and installing…'
+        curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${workflow_url}"
+        open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
+      else
+        abort "'workflow_url' (${workflow_url}) appears to not be reachable."
+      fi # url_exists
+    fi # workflow_type
+  else
+    touch "${local_info_plist}" # Reset timer by touching local file
+  fi # diff
+fi #find</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>78366C9D-1E5F-4A8A-A05C-4558388DCEA1</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -220,86 +307,6 @@ echo -n "$(curl -s "http://${lang}.service.afterthedeadline.com/checkDocument?ke
 			<string>alfred.workflow.trigger.hotkey</string>
 			<key>uid</key>
 			<string>C09BC71E-09E7-4CFC-AB8D-4DAFDAF42E3D</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>readonly remote_info_plist="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
-readonly workflow_url="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/${alfred_workflow_name}.alfredworkflow"
-readonly workflow_type='workflow'
-readonly frequency_check='15'
-
-# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED UNLESS YOU KNOW WHAT YOU ARE DOING
-function abort {
-  echo "${1}" &gt;&amp;2
-  exit 1
-}
-
-function url_exists {
-  curl --silent --location --output /dev/null --fail --range 0-0 "${1}"
-}
-
-function notification {
-  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
-
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-  else
-    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
-  fi
-}
-
-# Local sanity checks
-readonly local_info_plist='info.plist'
-readonly local_version="$(/usr/libexec/PlistBuddy -c 'print version' "${local_info_plist}")"
-
-[[ -n "${local_version}" ]] || abort 'You need to set a workflow version in the configuration sheet.'
-[[ "${workflow_type}" =~ ^(workflow|page)$ ]] || abort "'workflow_type' (${workflow_type}) needs to be one of 'workflow' or 'page'."
-[[ "${frequency_check}" =~ ^[0-9]+$ ]] || abort "'frequency_check' (${frequency_check}) needs to be a number."
-
-# Check for updates
-if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
-  if ! url_exists "${remote_info_plist}"; then abort "'remote_info_plist' (${remote_info_plist}) appears to not be reachable."; fi # Remote sanity check
-
-  readonly tmp_file="$(mktemp)"
-  curl --silent --location --output "${tmp_file}" "${remote_info_plist}"
-  readonly remote_version="$(/usr/libexec/PlistBuddy -c 'print version' "${tmp_file}")"
-
-  if [[ "${local_version}" != "${remote_version}" ]]; then
-    if [[ "${workflow_type}" == 'page' ]]; then
-      notification 'Opening download page…'
-      open "${workflow_url}"
-    else
-      if url_exists "${workflow_url}"; then
-        notification 'Downloading and installing…'
-        curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${workflow_url}"
-        open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
-      else
-        abort "'workflow_url' (${workflow_url}) appears to not be reachable."
-      fi # url_exists
-    fi # workflow_type
-  else
-    touch "${local_info_plist}" # Reset timer by touching local file
-  fi # diff
-fi #find</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>AB9C1466-F326-409B-A3A5-C2D8B20457BA</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -415,6 +422,8 @@ fi #find</string>
 				<integer>0</integer>
 				<key>hotmod</key>
 				<integer>0</integer>
+				<key>hotstring</key>
+				<string></string>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -431,79 +440,93 @@ fi #find</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Check and correct spelling in various languages. There are six configurable keyboard shortcuts, but you’ll typically need to setup only between one and three. Select a word and press a shortcut — the first one will show you the word following Alfred’s `spell` keyword, so you’ll have a set of words to pick from for the substitution (to have it automatically switch the word in this case, you’ll need to set it up in Alfred’s preferences under `Features` → `Dictionary`). The following five will immediately replace the word with the best suggestion (using the [After the Deadline](http://afterthedeadline.com/) service). Languages are, in order, English, French, German, Portuguese, and Spanish.</string>
+	<string>Check and correct spelling in various languages. There are six configurable keyboard shortcuts, but you’ll typically need to setup only between one and three.
+
+Select a word and press a shortcut — the first one will show you the word following Alfred’s `spell` keyword, so you’ll have a set of words to pick from for the substitution (to have it automatically switch the word in this case, you’ll need to set it up in Alfred’s preferences under `Features` → `Dictionary`). The following five will immediately replace the word with the best suggestion (using the [After the Deadline](http://afterthedeadline.com/) service).</string>
 	<key>uidata</key>
 	<dict>
 		<key>13726627-0959-44C2-95D3-D3E21B7407A0</key>
 		<dict>
+			<key>note</key>
+			<string>Show with Alfred’s `spell` keyword</string>
 			<key>xpos</key>
-			<integer>100</integer>
+			<integer>30</integer>
 			<key>ypos</key>
-			<real>10</real>
+			<integer>20</integer>
 		</dict>
 		<key>2459201D-A4A1-458A-8A1B-4B7EFEFE0E9B</key>
 		<dict>
 			<key>xpos</key>
-			<integer>340</integer>
+			<integer>270</integer>
 			<key>ypos</key>
-			<integer>130</integer>
+			<integer>170</integer>
 		</dict>
 		<key>6AA0D682-06BE-47A0-A409-38F6518F60EE</key>
 		<dict>
+			<key>note</key>
+			<string>Portuguese</string>
 			<key>xpos</key>
-			<integer>100</integer>
+			<integer>30</integer>
 			<key>ypos</key>
-			<real>490</real>
+			<integer>590</integer>
 		</dict>
 		<key>6C3A9229-C695-41E0-8A56-B39CBA762269</key>
 		<dict>
 			<key>xpos</key>
-			<integer>540</integer>
+			<integer>470</integer>
 			<key>ypos</key>
-			<integer>130</integer>
+			<integer>170</integer>
 		</dict>
 		<key>6CE976F5-125E-4BD9-8C60-8CD4231457E6</key>
 		<dict>
+			<key>note</key>
+			<string>Spanish</string>
 			<key>xpos</key>
-			<integer>100</integer>
+			<integer>30</integer>
 			<key>ypos</key>
-			<real>610</real>
+			<integer>730</integer>
 		</dict>
-		<key>AB9C1466-F326-409B-A3A5-C2D8B20457BA</key>
+		<key>78366C9D-1E5F-4A8A-A05C-4558388DCEA1</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>12</integer>
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>540</integer>
+			<integer>660</integer>
 			<key>ypos</key>
-			<integer>250</integer>
+			<integer>170</integer>
 		</dict>
 		<key>C09BC71E-09E7-4CFC-AB8D-4DAFDAF42E3D</key>
 		<dict>
+			<key>note</key>
+			<string>English</string>
 			<key>xpos</key>
-			<integer>100</integer>
+			<integer>30</integer>
 			<key>ypos</key>
-			<real>130</real>
+			<integer>170</integer>
 		</dict>
 		<key>DF18634B-C405-426F-9FF1-03698897C16E</key>
 		<dict>
+			<key>note</key>
+			<string>German</string>
 			<key>xpos</key>
-			<integer>100</integer>
+			<integer>30</integer>
 			<key>ypos</key>
-			<real>370</real>
+			<integer>450</integer>
 		</dict>
 		<key>FD364D9B-5493-4964-A7FB-E9430406F04A</key>
 		<dict>
+			<key>note</key>
+			<string>French</string>
 			<key>xpos</key>
-			<integer>100</integer>
+			<integer>30</integer>
 			<key>ypos</key>
-			<real>250</real>
+			<integer>310</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.2</string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
