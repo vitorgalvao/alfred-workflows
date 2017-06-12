@@ -66,7 +66,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>2A7DF064-61D6-4D82-B1D5-C3E11096D5CE</string>
+				<string>782B2BE5-DA94-41A2-8C58-D701BB46FC5D</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -86,6 +86,32 @@
 	<string>BugNot</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>username=$(cut -d'⸗' -f1 &lt;&lt;&lt; '{query}')
+password=$(cut -d'⸗' -f2 &lt;&lt;&lt; '{query}')
+
+osascript -e "tell application \"System Events\"	keystroke \"${username}\"	key code 48	keystroke \"${password}\"end tell"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>623811E1-9EDE-4B64-8B2C-04D82D84AAA0</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -128,32 +154,6 @@
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>3D696DA5-1D90-4A2A-A3A0-550BFDAAF148</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>username=$(cut -d'⸗' -f1 &lt;&lt;&lt; '{query}')
-password=$(cut -d'⸗' -f2 &lt;&lt;&lt; '{query}')
-
-osascript -e "tell application \"System Events\"	keystroke \"${username}\"	key code 48	keystroke \"${password}\"end tell"</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>623811E1-9EDE-4B64-8B2C-04D82D84AAA0</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -244,13 +244,19 @@ function url_exists {
 }
 
 function notification {
-  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
-
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-  else
-    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
+    return
   fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
 }
 
 # Local sanity checks
@@ -287,7 +293,7 @@ if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
   fi # diff
 fi #find</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -296,7 +302,7 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>2A7DF064-61D6-4D82-B1D5-C3E11096D5CE</string>
+			<string>782B2BE5-DA94-41A2-8C58-D701BB46FC5D</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -323,17 +329,6 @@ If you had the login box selected prior to calling the Workflow, hit ↩ and it�
 			<key>ypos</key>
 			<integer>130</integer>
 		</dict>
-		<key>2A7DF064-61D6-4D82-B1D5-C3E11096D5CE</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>note</key>
-			<string>OneUpdater</string>
-			<key>xpos</key>
-			<integer>250</integer>
-			<key>ypos</key>
-			<integer>370</integer>
-		</dict>
 		<key>3D696DA5-1D90-4A2A-A3A0-550BFDAAF148</key>
 		<dict>
 			<key>xpos</key>
@@ -355,9 +350,20 @@ If you had the login box selected prior to calling the Workflow, hit ↩ and it�
 			<key>ypos</key>
 			<integer>130</integer>
 		</dict>
+		<key>782B2BE5-DA94-41A2-8C58-D701BB46FC5D</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>250</integer>
+			<key>ypos</key>
+			<integer>370</integer>
+		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.2</string>
+	<string>1.2.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
