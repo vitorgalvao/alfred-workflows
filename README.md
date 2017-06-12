@@ -44,6 +44,11 @@ Reference paper sizes and device viewport widths
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/FormatSize) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/FormatSize/FormatSize.alfredworkflow)
 
+### HackerBoard <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/HackerBoard/source/icon.png' width='60' align='center' alt='HackerBoard icon'>
+Front page news from web community sources
+
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/HackerBoard) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/HackerBoard/HackerBoard.alfredworkflow)
+
 ### IncognitoClone <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/IncognitoClone/source/icon.png' width='60' align='center' alt='IncognitoClone icon'>
 Opens Chrome’s frontmost tab in an incognito window
 
