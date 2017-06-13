@@ -36,7 +36,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>59F5BFC8-18D5-467A-942F-D0E6F9FFF08C</string>
+				<string>BFDDAA43-73BB-48F4-A58E-EC4B60B6D378</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -191,13 +191,19 @@ function url_exists {
 }
 
 function notification {
-  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
-
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-  else
-    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
+    return
   fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
 }
 
 # Local sanity checks
@@ -234,7 +240,7 @@ if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
   fi # diff
 fi #find</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -243,7 +249,7 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>59F5BFC8-18D5-467A-942F-D0E6F9FFF08C</string>
+			<string>BFDDAA43-73BB-48F4-A58E-EC4B60B6D378</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -314,7 +320,14 @@ fi #find</string>
 			<key>ypos</key>
 			<integer>70</integer>
 		</dict>
-		<key>59F5BFC8-18D5-467A-942F-D0E6F9FFF08C</key>
+		<key>9954B863-DC31-488D-8184-2568AC55AE82</key>
+		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
+			<key>ypos</key>
+			<integer>160</integer>
+		</dict>
+		<key>BFDDAA43-73BB-48F4-A58E-EC4B60B6D378</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>12</integer>
@@ -325,13 +338,6 @@ fi #find</string>
 			<key>ypos</key>
 			<integer>70</integer>
 		</dict>
-		<key>9954B863-DC31-488D-8184-2568AC55AE82</key>
-		<dict>
-			<key>xpos</key>
-			<integer>300</integer>
-			<key>ypos</key>
-			<integer>160</integer>
-		</dict>
 		<key>D03807E1-1B7E-4FBD-B4C0-877B87E2AB86</key>
 		<dict>
 			<key>xpos</key>
@@ -341,7 +347,7 @@ fi #find</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.1</string>
+	<string>1.1.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
