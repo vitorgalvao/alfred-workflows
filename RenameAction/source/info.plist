@@ -72,7 +72,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>528C7D82-4237-4162-8DC6-BAC304C442AD</string>
+				<string>130D3F3F-2318-4073-A4A3-6AED97A70266</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -209,6 +209,25 @@ EOF</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>subtext</key>
+				<string>Don’t include the file extension, as it will be preserved</string>
+				<key>text</key>
+				<string>Rename to</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>2C36AAF9-7F21-42CA-8646-ECA398B51F39</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -230,13 +249,19 @@ function url_exists {
 }
 
 function notification {
-  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
-
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-  else
-    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
+    return
   fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
 }
 
 # Local sanity checks
@@ -273,7 +298,7 @@ if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
   fi # diff
 fi #find</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -282,32 +307,15 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>528C7D82-4237-4162-8DC6-BAC304C442AD</string>
+			<string>130D3F3F-2318-4073-A4A3-6AED97A70266</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>subtext</key>
-				<string>Don’t include the file extension, as it will be preserved</string>
-				<key>text</key>
-				<string>Rename to</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>2C36AAF9-7F21-42CA-8646-ECA398B51F39</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
+				<key>count</key>
+				<integer>1</integer>
 				<key>keychar</key>
 				<string>←</string>
 				<key>keycode</key>
@@ -331,6 +339,17 @@ Use Alfred to pick what you want to rename and choose `Rename` as the action. Al
 ![](https://i.imgur.com/301Njow.png)</string>
 	<key>uidata</key>
 	<dict>
+		<key>130D3F3F-2318-4073-A4A3-6AED97A70266</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>640</integer>
+			<key>ypos</key>
+			<integer>130</integer>
+		</dict>
 		<key>2C36AAF9-7F21-42CA-8646-ECA398B51F39</key>
 		<dict>
 			<key>xpos</key>
@@ -366,17 +385,6 @@ Use Alfred to pick what you want to rename and choose `Rename` as the action. Al
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
-		<key>528C7D82-4237-4162-8DC6-BAC304C442AD</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>note</key>
-			<string>OneUpdater</string>
-			<key>xpos</key>
-			<integer>640</integer>
-			<key>ypos</key>
-			<integer>130</integer>
-		</dict>
 		<key>947A1C83-3935-488B-BBBC-A01B072DD9A0</key>
 		<dict>
 			<key>xpos</key>
@@ -393,7 +401,7 @@ Use Alfred to pick what you want to rename and choose `Rename` as the action. Al
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.0</string>
+	<string>1.1.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
