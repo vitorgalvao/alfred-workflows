@@ -10,7 +10,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>4665E5CE-B7C5-460A-9ADA-A5BC3D909BBE</string>
+				<string>0C93966D-6C96-4BEA-97DE-F248C106FB12</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -43,6 +43,36 @@
 	<string>RightClick</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>tell application "System Events" to set frontApp to name of first process whose frontmost is true
+
+tell application "System Events"
+  tell application process frontApp
+    set _selection to value of attribute "AXFocusedUIElement"
+    tell _selection to perform action "AXShowMenu"
+  end tell
+end tell</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>2FAB5CB3-A7E7-490C-A76D-CFEE439F8072</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -98,13 +128,19 @@ function url_exists {
 }
 
 function notification {
-  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
-
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-  else
-    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
+    return
   fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
 }
 
 # Local sanity checks
@@ -141,46 +177,16 @@ if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
   fi # diff
 fi #find</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>4665E5CE-B7C5-460A-9ADA-A5BC3D909BBE</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>tell application "System Events" to set frontApp to name of first process whose frontmost is true
-
-tell application "System Events"
-  tell application process frontApp
-    set _selection to value of attribute "AXFocusedUIElement"
-    tell _selection to perform action "AXShowMenu"
-  end tell
-end tell</string>
-				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>6</integer>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>2FAB5CB3-A7E7-490C-A76D-CFEE439F8072</string>
+			<string>0C93966D-6C96-4BEA-97DE-F248C106FB12</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -191,14 +197,7 @@ end tell</string>
 Starting with Mavericks, it only works inside Finder windows, not on the Desktop.</string>
 	<key>uidata</key>
 	<dict>
-		<key>2FAB5CB3-A7E7-490C-A76D-CFEE439F8072</key>
-		<dict>
-			<key>xpos</key>
-			<integer>280</integer>
-			<key>ypos</key>
-			<integer>10</integer>
-		</dict>
-		<key>4665E5CE-B7C5-460A-9ADA-A5BC3D909BBE</key>
+		<key>0C93966D-6C96-4BEA-97DE-F248C106FB12</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>12</integer>
@@ -206,6 +205,13 @@ Starting with Mavericks, it only works inside Finder windows, not on the Desktop
 			<string>OneUpdater</string>
 			<key>xpos</key>
 			<integer>480</integer>
+			<key>ypos</key>
+			<integer>10</integer>
+		</dict>
+		<key>2FAB5CB3-A7E7-490C-A76D-CFEE439F8072</key>
+		<dict>
+			<key>xpos</key>
+			<integer>280</integer>
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
@@ -218,7 +224,7 @@ Starting with Mavericks, it only works inside Finder windows, not on the Desktop
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.0</string>
+	<string>1.1.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
