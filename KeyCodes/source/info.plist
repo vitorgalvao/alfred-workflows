@@ -19,6 +19,8 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>fixedorder</key>
@@ -48,12 +50,12 @@
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>escaping</key>
 				<integer>102</integer>
-				<key>keyword</key>
-				<string>kc</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -81,13 +83,19 @@ function url_exists {
 }
 
 function notification {
-  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
-
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-  else
-    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
+    return
   fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
 }
 
 # Local sanity checks
@@ -139,7 +147,7 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>706BB3C2-96F4-403C-BA6B-CEDFAE1221B7</string>
+			<string>BAD75407-88AB-417F-93C9-1A431051FA3E</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -154,7 +162,14 @@ Type a search term to filter keys.
 ![](https://i.imgur.com/lROgksC.png)</string>
 	<key>uidata</key>
 	<dict>
-		<key>706BB3C2-96F4-403C-BA6B-CEDFAE1221B7</key>
+		<key>74624B78-0F5A-499C-9F61-8E0D17FE3303</key>
+		<dict>
+			<key>xpos</key>
+			<integer>40</integer>
+			<key>ypos</key>
+			<integer>30</integer>
+		</dict>
+		<key>BAD75407-88AB-417F-93C9-1A431051FA3E</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>12</integer>
@@ -165,16 +180,9 @@ Type a search term to filter keys.
 			<key>ypos</key>
 			<integer>150</integer>
 		</dict>
-		<key>74624B78-0F5A-499C-9F61-8E0D17FE3303</key>
-		<dict>
-			<key>xpos</key>
-			<integer>40</integer>
-			<key>ypos</key>
-			<integer>30</integer>
-		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>1.0.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
