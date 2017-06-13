@@ -20,7 +20,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>78CB27CF-AE8B-4F20-B6B6-30A6202DD0D9</string>
+				<string>5886CCED-FB1D-4BDF-8137-5A64FE643078</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -148,13 +148,19 @@ function url_exists {
 }
 
 function notification {
-  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
-
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-  else
-    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
+    return
   fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
 }
 
 # Local sanity checks
@@ -191,7 +197,7 @@ if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
   fi # diff
 fi #find</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -200,7 +206,7 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>78CB27CF-AE8B-4F20-B6B6-30A6202DD0D9</string>
+			<string>5886CCED-FB1D-4BDF-8137-5A64FE643078</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -231,7 +237,7 @@ Changes that span multiple lines (code blocks and lists) should be preceded and 
 All the code is in the script inside the Workflow — it’s one line per substitution and they’re all commented so you shouldn’t have much trouble changing anything you’d like to be handled a different way, even if you don’t understand regular expressions (you’ll mostly need to care about what’s on the right side of the commas).</string>
 	<key>uidata</key>
 	<dict>
-		<key>78CB27CF-AE8B-4F20-B6B6-30A6202DD0D9</key>
+		<key>5886CCED-FB1D-4BDF-8137-5A64FE643078</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>12</integer>
@@ -265,7 +271,7 @@ All the code is in the script inside the Workflow — it’s one line per substi
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.17.0</string>
+	<string>1.17.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
