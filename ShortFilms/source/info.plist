@@ -40,7 +40,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>1A25374D-BC83-4437-952C-759D69E228D3</string>
+				<string>F5FD6323-96E1-41A8-817E-E2391373262A</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -93,6 +93,8 @@
 			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -232,13 +234,19 @@ function url_exists {
 }
 
 function notification {
-  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
-
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-  else
-    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
+    return
   fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
 }
 
 # Local sanity checks
@@ -275,7 +283,7 @@ if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
   fi # diff
 fi #find</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -284,7 +292,7 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>1A25374D-BC83-4437-952C-759D69E228D3</string>
+			<string>F5FD6323-96E1-41A8-817E-E2391373262A</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -329,6 +337,8 @@ fi #find</string>
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>escaping</key>
@@ -462,17 +472,6 @@ Short of the Week publishes a new short every day and building the initial list 
 Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` takes precedence).</string>
 	<key>uidata</key>
 	<dict>
-		<key>1A25374D-BC83-4437-952C-759D69E228D3</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>note</key>
-			<string>OneUpdater</string>
-			<key>xpos</key>
-			<integer>340</integer>
-			<key>ypos</key>
-			<integer>410</integer>
-		</dict>
 		<key>2EF753EF-6194-4420-9096-C6892565EC96</key>
 		<dict>
 			<key>xpos</key>
@@ -522,6 +521,17 @@ Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` 
 			<key>ypos</key>
 			<integer>560</integer>
 		</dict>
+		<key>F5FD6323-96E1-41A8-817E-E2391373262A</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>340</integer>
+			<key>ypos</key>
+			<integer>410</integer>
+		</dict>
 		<key>F622CD2F-A79C-41E3-91E5-1BF5B66F3F52</key>
 		<dict>
 			<key>xpos</key>
@@ -531,7 +541,7 @@ Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` 
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.12.4</string>
+	<string>1.12.5</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
