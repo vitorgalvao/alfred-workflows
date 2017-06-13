@@ -20,7 +20,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>01A5684E-EDA0-4001-8088-4E6DB47C97B2</string>
+				<string>48EF776B-4BA6-46F0-A8E3-352D98A24170</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -43,7 +43,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>01A5684E-EDA0-4001-8088-4E6DB47C97B2</string>
+				<string>48EF776B-4BA6-46F0-A8E3-352D98A24170</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -95,6 +95,8 @@ done</string>
 			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>escaping</key>
@@ -158,6 +160,25 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>acceptsmulti</key>
+				<true/>
+				<key>filetypes</key>
+				<array>
+					<string>com.apple.application-bundle</string>
+				</array>
+				<key>name</key>
+				<string>Remove quarantine</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>B7C223E0-57D2-4067-AF52-F5160C420029</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -179,13 +200,19 @@ function url_exists {
 }
 
 function notification {
-  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
-
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-  else
-    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
+    return
   fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
 }
 
 # Local sanity checks
@@ -222,7 +249,7 @@ if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
   fi # diff
 fi #find</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -231,28 +258,9 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>01A5684E-EDA0-4001-8088-4E6DB47C97B2</string>
+			<string>48EF776B-4BA6-46F0-A8E3-352D98A24170</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>acceptsmulti</key>
-				<true/>
-				<key>filetypes</key>
-				<array>
-					<string>com.apple.application-bundle</string>
-				</array>
-				<key>name</key>
-				<string>Remove quarantine</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.action</string>
-			<key>uid</key>
-			<string>B7C223E0-57D2-4067-AF52-F5160C420029</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -269,41 +277,41 @@ If the app you want to remove the attribute from is located anywhere else, you c
 Warning: quarantining is a macOS security feature, and I do not recommend you disable it completely. This workflow was built exactly so you don’t have to, and can deal with it on a case-by-case basis. This simply makes the manual process more convenient and you should remove the quarantine attribute from apps at your own risk. Find more on file quarantine on [Apple’s documentation](https://developer.apple.com/library/content/releasenotes/Carbon/RN-LaunchServices/index.html).</string>
 	<key>uidata</key>
 	<dict>
-		<key>01A5684E-EDA0-4001-8088-4E6DB47C97B2</key>
+		<key>48EF776B-4BA6-46F0-A8E3-352D98A24170</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>12</integer>
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>430</integer>
+			<integer>300</integer>
 			<key>ypos</key>
-			<integer>160</integer>
+			<integer>170</integer>
 		</dict>
 		<key>57E5FCE3-A396-4994-B57D-D2645AFE5445</key>
 		<dict>
 			<key>xpos</key>
-			<integer>430</integer>
+			<integer>300</integer>
 			<key>ypos</key>
-			<integer>30</integer>
+			<integer>40</integer>
 		</dict>
 		<key>8A0A36B3-0A1C-4F9B-B056-1CAC58E3266F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>190</integer>
+			<integer>60</integer>
 			<key>ypos</key>
-			<integer>30</integer>
+			<integer>40</integer>
 		</dict>
 		<key>B7C223E0-57D2-4067-AF52-F5160C420029</key>
 		<dict>
 			<key>xpos</key>
-			<integer>190</integer>
+			<integer>60</integer>
 			<key>ypos</key>
-			<integer>160</integer>
+			<integer>170</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.6</string>
+	<string>1.0.7</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
