@@ -147,7 +147,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>D253D8C9-5A61-4E91-B706-8F0ABE140E97</string>
+				<string>B4D4F5D9-8BAB-4493-80C5-73BF11D8F042</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -166,8 +166,6 @@
 				<false/>
 			</dict>
 		</array>
-		<key>D253D8C9-5A61-4E91-B706-8F0ABE140E97</key>
-		<array/>
 		<key>DFA03B59-0513-4DF7-AD25-D567823FDDFA</key>
 		<array>
 			<dict>
@@ -216,13 +214,19 @@ function url_exists {
 }
 
 function notification {
-  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
-
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-  else
-    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
+    return
   fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
 }
 
 # Local sanity checks
@@ -259,7 +263,7 @@ if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
   fi # diff
 fi #find</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -268,13 +272,15 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>D253D8C9-5A61-4E91-B706-8F0ABE140E97</string>
+			<string>B4D4F5D9-8BAB-4493-80C5-73BF11D8F042</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>fixedorder</key>
@@ -415,6 +421,8 @@ fi #find</string>
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>escaping</key>
@@ -653,14 +661,7 @@ You might also want to try [TurnShoot](https://github.com/vitorgalvao/alfred-wor
 			<key>ypos</key>
 			<integer>180</integer>
 		</dict>
-		<key>BD5B04C0-C00D-4676-9940-82F070EE6D49</key>
-		<dict>
-			<key>xpos</key>
-			<integer>640</integer>
-			<key>ypos</key>
-			<integer>150</integer>
-		</dict>
-		<key>D253D8C9-5A61-4E91-B706-8F0ABE140E97</key>
+		<key>B4D4F5D9-8BAB-4493-80C5-73BF11D8F042</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>12</integer>
@@ -670,6 +671,13 @@ You might also want to try [TurnShoot](https://github.com/vitorgalvao/alfred-wor
 			<integer>840</integer>
 			<key>ypos</key>
 			<integer>10</integer>
+		</dict>
+		<key>BD5B04C0-C00D-4676-9940-82F070EE6D49</key>
+		<dict>
+			<key>xpos</key>
+			<integer>640</integer>
+			<key>ypos</key>
+			<integer>150</integer>
 		</dict>
 		<key>DFA03B59-0513-4DF7-AD25-D567823FDDFA</key>
 		<dict>
@@ -687,7 +695,7 @@ You might also want to try [TurnShoot](https://github.com/vitorgalvao/alfred-wor
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.0</string>
+	<string>1.1.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
