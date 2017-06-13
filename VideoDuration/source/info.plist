@@ -19,11 +19,24 @@
 				<false/>
 			</dict>
 		</array>
+		<key>2F9C5DCB-8351-4E59-820D-BAF2B7200E0B</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>28B55659-9FD1-44B6-AA1E-C8BA1149FC87</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>83F06055-1527-429B-91A0-E17E57616D3D</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>CA7D62DA-BFDF-4F19-8C4F-3ACE38E08335</string>
+				<string>78EADC1A-884E-4BDD-87A6-1B0ED1230852</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -37,6 +50,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>28B55659-9FD1-44B6-AA1E-C8BA1149FC87</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>D98BBAD4-D6BE-4B42-A790-29432284D04B</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2F9C5DCB-8351-4E59-820D-BAF2B7200E0B</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -74,9 +100,9 @@ readonly title="$(head -1 &lt;&lt;&lt; "${full_info}")"
 readonly duration="$(tail -1 &lt;&lt;&lt; "${full_info}" | rev | sed 's/^/s/;s/:/m/;s/:/h/' | rev | sed 's/00s$//;s/00m$//')"
 readonly description="$(sed '1d;$d' &lt;&lt;&lt; "${full_info}")"
 
-if [[ "${verbosity}" -eq 1 ]]; then
+if [[ "${verbosity}" == 'succint' ]]; then
  echo -n "${url} (${duration})"
-elif [[ "${verbosity}" -eq 2 ]]; then
+elif [[ "${verbosity}" == 'medium' ]]; then
   echo -n "${title}: ${url} (${duration})"
 else
   echo -en "${title}: ${url} (${duration})\n\n${description}"
@@ -98,12 +124,14 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>fixedorder</key>
 				<false/>
 				<key>items</key>
-				<string>[{"title":"Succint","arg":"1","subtitle":"url (duration)"},{"title":"Medium","arg":"2","subtitle":"title: url (duration)"},{"title":"Verbose","arg":"3","subtitle":"title: url (duration) … description"}]</string>
+				<string>[{"title":"Succint","arg":"succint","subtitle":"url (duration)"},{"title":"Medium","arg":"medium","subtitle":"title: url (duration)"},{"title":"Verbose","arg":"verbose","subtitle":"title: url (duration) … description"}]</string>
 				<key>keyword</key>
 				<string>vidur</string>
 				<key>runningsubtext</key>
@@ -121,6 +149,23 @@ fi</string>
 			<string>A586CE7B-4D6A-45BE-83AF-3CC03CD3EC76</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<true/>
+				<key>clipboardtext</key>
+				<string></string>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>83F06055-1527-429B-91A0-E17E57616D3D</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -146,13 +191,19 @@ function url_exists {
 }
 
 function notification {
-  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
-
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-  else
-    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
+    return
   fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
 }
 
 # Local sanity checks
@@ -189,7 +240,7 @@ if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
   fi # diff
 fi #find</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -198,26 +249,41 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>CA7D62DA-BFDF-4F19-8C4F-3ACE38E08335</string>
+			<string>78EADC1A-884E-4BDD-87A6-1B0ED1230852</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>autopaste</key>
-				<true/>
-				<key>clipboardtext</key>
-				<string></string>
-				<key>transient</key>
+				<key>focusedappvariable</key>
 				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>keyword</key>
+				<string>vidur</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.clipboard</string>
+			<string>alfred.workflow.trigger.snippet</string>
 			<key>uid</key>
-			<string>83F06055-1527-429B-91A0-E17E57616D3D</string>
+			<string>D98BBAD4-D6BE-4B42-A790-29432284D04B</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>medium</string>
+				<key>variables</key>
+				<dict/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>2F9C5DCB-8351-4E59-820D-BAF2B7200E0B</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -231,14 +297,34 @@ Copy a link to your clipboard, run `vidur` and pick your verbosity level. It’l
 		<key>28B55659-9FD1-44B6-AA1E-C8BA1149FC87</key>
 		<dict>
 			<key>xpos</key>
-			<integer>220</integer>
+			<integer>290</integer>
+			<key>ypos</key>
+			<integer>10</integer>
+		</dict>
+		<key>2F9C5DCB-8351-4E59-820D-BAF2B7200E0B</key>
+		<dict>
+			<key>note</key>
+			<string>Verbosity level</string>
+			<key>xpos</key>
+			<integer>190</integer>
+			<key>ypos</key>
+			<integer>170</integer>
+		</dict>
+		<key>78EADC1A-884E-4BDD-87A6-1B0ED1230852</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>660</integer>
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
 		<key>83F06055-1527-429B-91A0-E17E57616D3D</key>
 		<dict>
 			<key>xpos</key>
-			<integer>410</integer>
+			<integer>480</integer>
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
@@ -249,20 +335,16 @@ Copy a link to your clipboard, run `vidur` and pick your verbosity level. It’l
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
-		<key>CA7D62DA-BFDF-4F19-8C4F-3ACE38E08335</key>
+		<key>D98BBAD4-D6BE-4B42-A790-29432284D04B</key>
 		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>note</key>
-			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>590</integer>
+			<integer>20</integer>
 			<key>ypos</key>
-			<integer>10</integer>
+			<integer>140</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.6</string>
+	<string>1.2.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
