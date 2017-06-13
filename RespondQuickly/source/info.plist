@@ -23,7 +23,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>7101174E-B12C-4874-A5CD-0E85329A3B8F</string>
+				<string>8CB9A286-0D57-4AF9-8AD3-AFB73F8E2693</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -49,6 +49,34 @@
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>qr_image="$(mktemp).png"
+encoded_text="$(perl -MURI::Escape -wlne 'print uri_escape ($_)' &lt;&lt;&lt; "${1}" | perl -pe 's/\n/%0A/')"
+ 
+curl --location --silent --output "${qr_image}" "http://chart.apis.google.com/chart?cht=qr&amp;chs=400x400&amp;chl=${encoded_text}&amp;chld=H|0"
+
+qlmanage -p "${qr_image}"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>B5D50DD5-AB63-4406-AA30-3C731D7CD43B</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
 				<string>readonly remote_info_plist="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
@@ -67,13 +95,19 @@ function url_exists {
 }
 
 function notification {
-  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
-
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-  else
-    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
+    return
   fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
 }
 
 # Local sanity checks
@@ -110,34 +144,6 @@ if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
   fi # diff
 fi #find</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>7101174E-B12C-4874-A5CD-0E85329A3B8F</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>qr_image="$(mktemp).png"
-encoded_text="$(perl -MURI::Escape -wlne 'print uri_escape ($_)' &lt;&lt;&lt; "${1}" | perl -pe 's/\n/%0A/')"
- 
-curl --location --silent --output "${qr_image}" "http://chart.apis.google.com/chart?cht=qr&amp;chs=400x400&amp;chl=${encoded_text}&amp;chld=H|0"
-
-qlmanage -p "${qr_image}"</string>
-				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
@@ -147,7 +153,7 @@ qlmanage -p "${qr_image}"</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>B5D50DD5-AB63-4406-AA30-3C731D7CD43B</string>
+			<string>8CB9A286-0D57-4AF9-8AD3-AFB73F8E2693</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -187,7 +193,7 @@ qlmanage -p "${qr_image}"</string>
 	<string>Select some text, press the keyboard shortcut, and it’ll convert it to a QR Code that’ll be opened with QuickLook.</string>
 	<key>uidata</key>
 	<dict>
-		<key>7101174E-B12C-4874-A5CD-0E85329A3B8F</key>
+		<key>8CB9A286-0D57-4AF9-8AD3-AFB73F8E2693</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>12</integer>
@@ -214,7 +220,7 @@ qlmanage -p "${qr_image}"</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.0</string>
+	<string>1.1.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
