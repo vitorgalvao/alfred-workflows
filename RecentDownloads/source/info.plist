@@ -20,7 +20,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>0816A441-49D5-4C22-A15B-FB9E77661353</string>
+				<string>98D0B5C7-39EF-41AD-9025-6E1822E57BAE</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -43,7 +43,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>0816A441-49D5-4C22-A15B-FB9E77661353</string>
+				<string>98D0B5C7-39EF-41AD-9025-6E1822E57BAE</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -83,6 +83,8 @@
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -158,13 +160,19 @@ function url_exists {
 }
 
 function notification {
-  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
-
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-  else
-    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
+    return
   fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
 }
 
 # Local sanity checks
@@ -201,7 +209,7 @@ if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
   fi # diff
 fi #find</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -210,7 +218,7 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>0816A441-49D5-4C22-A15B-FB9E77661353</string>
+			<string>98D0B5C7-39EF-41AD-9025-6E1822E57BAE</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -219,6 +227,8 @@ fi #find</string>
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -279,7 +289,14 @@ fi</string>
 To act on the selections, use the standard Alfred shortcuts. You can activate file actions, dive into directories, preview files, add them to the file buffer — whatever you want to do that is supported by Alfred.</string>
 	<key>uidata</key>
 	<dict>
-		<key>0816A441-49D5-4C22-A15B-FB9E77661353</key>
+		<key>6EFF2E1A-ED35-4BAC-8EB4-A272C1F8A508</key>
+		<dict>
+			<key>xpos</key>
+			<integer>140</integer>
+			<key>ypos</key>
+			<integer>130</integer>
+		</dict>
+		<key>98D0B5C7-39EF-41AD-9025-6E1822E57BAE</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>12</integer>
@@ -287,13 +304,6 @@ To act on the selections, use the standard Alfred shortcuts. You can activate fi
 			<string>OneUpdater</string>
 			<key>xpos</key>
 			<integer>340</integer>
-			<key>ypos</key>
-			<integer>130</integer>
-		</dict>
-		<key>6EFF2E1A-ED35-4BAC-8EB4-A272C1F8A508</key>
-		<dict>
-			<key>xpos</key>
-			<integer>140</integer>
 			<key>ypos</key>
 			<integer>130</integer>
 		</dict>
@@ -313,7 +323,7 @@ To act on the selections, use the standard Alfred shortcuts. You can activate fi
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.0</string>
+	<string>1.1.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
