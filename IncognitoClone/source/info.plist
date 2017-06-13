@@ -10,7 +10,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>2E8E8F51-96F6-4B70-B320-4C03F3B2515A</string>
+				<string>E55931A9-AE1B-4D92-92C2-E387DD102210</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -23,7 +23,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>2E8E8F51-96F6-4B70-B320-4C03F3B2515A</string>
+				<string>E55931A9-AE1B-4D92-92C2-E387DD102210</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -36,7 +36,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>2E8E8F51-96F6-4B70-B320-4C03F3B2515A</string>
+				<string>E55931A9-AE1B-4D92-92C2-E387DD102210</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -92,7 +92,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>2E8E8F51-96F6-4B70-B320-4C03F3B2515A</string>
+				<string>E55931A9-AE1B-4D92-92C2-E387DD102210</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -136,13 +136,19 @@ function url_exists {
 }
 
 function notification {
-  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
-
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-  else
-    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
+    return
   fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
 }
 
 # Local sanity checks
@@ -179,7 +185,7 @@ if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
   fi # diff
 fi #find</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -188,7 +194,7 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>2E8E8F51-96F6-4B70-B320-4C03F3B2515A</string>
+			<string>E55931A9-AE1B-4D92-92C2-E387DD102210</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -315,17 +321,6 @@ do shell script "open --new -a \"Google Chrome\" --args --user-data-dir=\"$(mkte
 Call it with `ic`, and it will open a new incognito window with your current tab. ⌘↩ will also close the tab in your current window. ⌥↩ opens the current tab in a new Chrome instance, and ⌃↩ also closes the tab in the current window.</string>
 	<key>uidata</key>
 	<dict>
-		<key>2E8E8F51-96F6-4B70-B320-4C03F3B2515A</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>note</key>
-			<string>OneUpdater</string>
-			<key>xpos</key>
-			<integer>470</integer>
-			<key>ypos</key>
-			<integer>10</integer>
-		</dict>
 		<key>4F459C78-66B4-44BA-BB97-470BB0B95816</key>
 		<dict>
 			<key>xpos</key>
@@ -354,6 +349,17 @@ Call it with `ic`, and it will open a new incognito window with your current tab
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
+		<key>E55931A9-AE1B-4D92-92C2-E387DD102210</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>470</integer>
+			<key>ypos</key>
+			<integer>10</integer>
+		</dict>
 		<key>F91EA669-611F-436A-89B4-0D448347CCB6</key>
 		<dict>
 			<key>xpos</key>
@@ -363,7 +369,7 @@ Call it with `ic`, and it will open a new incognito window with your current tab
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.0</string>
+	<string>1.1.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
