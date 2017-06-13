@@ -21,6 +21,8 @@
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -78,6 +80,8 @@ echo "&lt;/items&gt;"</string>
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -135,6 +139,8 @@ echo "&lt;/items&gt;"</string>
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -192,6 +198,8 @@ echo "&lt;/items&gt;"</string>
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -249,6 +257,8 @@ echo "&lt;/items&gt;"</string>
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -306,6 +316,8 @@ echo "&lt;/items&gt;"</string>
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -368,6 +380,8 @@ echo "&lt;/items&gt;"</string>
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>escaping</key>
@@ -401,13 +415,19 @@ function url_exists {
 }
 
 function notification {
-  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
-
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-  else
-    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
+    return
   fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
 }
 
 # Local sanity checks
@@ -459,7 +479,7 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>0CBEE649-4351-42AB-9198-B4227B5A13F3</string>
+			<string>E09C0879-1DAF-48C7-A9C5-28ACE0F0429F</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -476,17 +496,6 @@ For viewport sizes, type `viewport`, and you’ll see the available devices. You
 Paper sizes taken from [wikipedia](https://en.wikipedia.org/wiki/Paper_sizes) and viewport sizes from [viewportsizes.com](http://viewportsizes.com/).</string>
 	<key>uidata</key>
 	<dict>
-		<key>0CBEE649-4351-42AB-9198-B4227B5A13F3</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>note</key>
-			<string>OneUpdater</string>
-			<key>xpos</key>
-			<integer>450</integer>
-			<key>ypos</key>
-			<integer>610</integer>
-		</dict>
 		<key>18F65376-7567-4DB6-AE98-CA42FD18DB64</key>
 		<dict>
 			<key>xpos</key>
@@ -522,6 +531,17 @@ Paper sizes taken from [wikipedia](https://en.wikipedia.org/wiki/Paper_sizes) an
 			<key>ypos</key>
 			<real>130</real>
 		</dict>
+		<key>E09C0879-1DAF-48C7-A9C5-28ACE0F0429F</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>450</integer>
+			<key>ypos</key>
+			<integer>610</integer>
+		</dict>
 		<key>F25005BB-AA14-480E-B744-0131E97DFED3</key>
 		<dict>
 			<key>xpos</key>
@@ -531,7 +551,7 @@ Paper sizes taken from [wikipedia](https://en.wikipedia.org/wiki/Paper_sizes) an
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.5.0</string>
+	<string>1.5.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
