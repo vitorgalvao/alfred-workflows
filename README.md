@@ -94,6 +94,11 @@ Update workflows with a single node
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/OneUpdater) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/OneUpdater/OneUpdater.alfredworkflow)
 
+### OpenActions <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/OpenActions/source/icon.png' width='60' align='center' alt='OpenActions icon'>
+Granular control over opening apps
+
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/OpenActions) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/OpenActions/OpenActions.alfredworkflow)
+
 ### PinAdd <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/PinAdd/source/icon.png' width='60' align='center' alt='PinAdd icon'>
 Takes arguments as tags and adds your browser’s frontmost tab as a pinboard bookmark
 

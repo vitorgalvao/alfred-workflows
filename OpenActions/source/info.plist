@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.vitorgalvao.alfred.openactions</string>
+	<key>connections</key>
+	<dict>
+		<key>06B3E494-F403-4AE8-810A-6A9945BAEBF9</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>0F8C277A-6DF1-49F2-A41C-89FB33C9D164</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>F8FA58CE-0C9B-4C3A-A244-B4E70D6AF646</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>6C884F74-7EB2-4642-9B80-E124A97D8223</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Vítor Galvão</string>
+	<key>description</key>
+	<string>Granular control over opening apps</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>OpenActions</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>open -n "${1}"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>6C884F74-7EB2-4642-9B80-E124A97D8223</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsmulti</key>
+				<false/>
+				<key>filetypes</key>
+				<array>
+					<string>com.apple.application-bundle</string>
+				</array>
+				<key>name</key>
+				<string>Open new instance</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>F8FA58CE-0C9B-4C3A-A244-B4E70D6AF646</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsmulti</key>
+				<false/>
+				<key>filetypes</key>
+				<array>
+					<string>com.apple.application-bundle</string>
+				</array>
+				<key>name</key>
+				<string>Open in the background</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>06B3E494-F403-4AE8-810A-6A9945BAEBF9</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>open -g "${1}"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>0F8C277A-6DF1-49F2-A41C-89FB33C9D164</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>The [`open`](https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man1/open.1.html) command gives us extra control when opening apps, such as making new instances or relegating to the background.
+
+This Workflow emulates those options with `File Action`s.
+
+![](https://i.imgur.com/0zJ59j4.png)</string>
+	<key>uidata</key>
+	<dict>
+		<key>06B3E494-F403-4AE8-810A-6A9945BAEBF9</key>
+		<dict>
+			<key>xpos</key>
+			<integer>20</integer>
+			<key>ypos</key>
+			<integer>130</integer>
+		</dict>
+		<key>0F8C277A-6DF1-49F2-A41C-89FB33C9D164</key>
+		<dict>
+			<key>xpos</key>
+			<integer>260</integer>
+			<key>ypos</key>
+			<integer>130</integer>
+		</dict>
+		<key>6C884F74-7EB2-4642-9B80-E124A97D8223</key>
+		<dict>
+			<key>xpos</key>
+			<integer>260</integer>
+			<key>ypos</key>
+			<integer>10</integer>
+		</dict>
+		<key>F8FA58CE-0C9B-4C3A-A244-B4E70D6AF646</key>
+		<dict>
+			<key>xpos</key>
+			<integer>20</integer>
+			<key>ypos</key>
+			<integer>10</integer>
+		</dict>
+	</dict>
+	<key>version</key>
+	<string>1.0.0</string>
+	<key>webaddress</key>
+	<string>http://vitorgalvao.com/</string>
+</dict>
+</plist>
