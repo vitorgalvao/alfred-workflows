@@ -206,6 +206,14 @@ Find words that contain a particular pattern
 
 ---
 
+### Workflow helpers
+
+These are small helpers to help build Workflows or enhance existing ones. They are described in detail in [their directory](https://github.com/vitorgalvao/alfred-workflows/tree/master/_helpers).
+
++ `packal_placeholder.plist`
+
+---
+
 ### Deprecated Workflows
 
 These are the Workflows that are no longer under development and won’t get more updates. Reasons for deprecation depend on the the Workflow, but they don’t tend to be deprecated without an alternative.
