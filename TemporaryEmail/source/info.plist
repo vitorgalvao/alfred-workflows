@@ -72,6 +72,66 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>function notification {
+  ./Notificator.app/Contents/MacOS/applet "${1}" "${alfred_workflow_name}"
+}
+
+if [[ -n "${1}" ]]; then
+  email_name="${1//[^[:alnum:]]}"
+  email="${email_name}@teleosaurs.xyz"
+  url="https://teleosaurs.xyz/inbox/${email_name}"
+else
+  email="$(curl --silent 'https://fakena.me/fake-name/' | grep 'https://teleosaurs.xyz/inbox/' | sed -E 's/.*&gt;(.*@teleosaurs.xyz).*/\1/' | tr -d '\n')"
+  url=$(echo -n "${email}" | sed -E 's|(.*)@.*|http://teleosaurs.xyz/inbox/\1|')
+fi
+
+front_browser="$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')"
+
+if [[ "${front_browser}" == 'Safari' || "${front_browser}" == 'Safari Technology Preview' || "${front_browser}" == 'Webkit' ]]; then
+  osascript &lt;&lt;EOF
+    tell application "${front_browser}"
+      set tabIndex to index of current tab of front window
+      open location "${url}"
+      tell front window to set current tab to tab tabIndex
+    end tell
+EOF
+elif [[ "${front_browser}" == 'Google Chrome' || "${front_browser}" == 'Google Chrome Canary' || "${front_browser}" == 'Chromium' ]]; then
+  osascript &lt;&lt;EOF
+    tell application "${front_browser}"
+      set tabIndex to active tab index of front window
+      open location "${url}"
+      set active tab index of front window to tabIndex
+    end tell
+EOF
+else
+  notification 'You need a supported browser as your frontmost app'
+  exit 1
+fi
+
+pbcopy &lt;&lt;&lt; "${email}"
+notification 'Temporary email address copied to clipboard'</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>1BFF14FC-DF72-4BC9-807B-3D38432CF08D</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>keyword</key>
@@ -188,82 +248,20 @@ fi #find</string>
   ./Notificator.app/Contents/MacOS/applet "${1}" "${alfred_workflow_name}"
 }
 
-email_name="${1}"
-
-if [[ -n "${email_name}" ]]; then
-  email="$(sed 's| ||g' &lt;&lt;&lt; "${email_name}")@teleosaurs.xyz"
-  url="https://teleosaurs.xyz/inbox/${email_name}"
-else
-  email="$(curl --silent 'https://fakena.me/fake-name/' | grep 'https://teleosaurs.xyz/inbox/' | sed -E 's/.*&gt;(.*@teleosaurs.xyz).*/\1/' | tr -d '\n')"
-  url=$(echo -n "${email}" | sed -E 's|(.*)@.*|http://teleosaurs.xyz/inbox/\1|')
-fi
-
-front_browser="$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')"
-
-if [[ "${front_browser}" == 'Safari' || "${front_browser}" == 'Safari Technology Preview' || "${front_browser}" == 'Webkit' ]]; then
-  osascript &lt;&lt;EOF
-    tell application "${front_browser}"
-      set tabIndex to index of current tab of front window
-      open location "${url}"
-      tell front window to set current tab to tab tabIndex
-    end tell
-EOF
-elif [[ "${front_browser}" == 'Google Chrome' || "${front_browser}" == 'Google Chrome Canary' || "${front_browser}" == 'Chromium' ]]; then
-  osascript &lt;&lt;EOF
-    tell application "${front_browser}"
-      set tabIndex to active tab index of front window
-      open location "${url}"
-      set active tab index of front window to tabIndex
-    end tell
-EOF
-else
-  notification 'You need a supported browser as your frontmost app'
-  exit 1
-fi
-
-pbcopy &lt;&lt;&lt; "${email}"
-notification 'Temporary email address copied to clipboard'</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>1BFF14FC-DF72-4BC9-807B-3D38432CF08D</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>function notification {
-  ./Notificator.app/Contents/MacOS/applet "${1}" "${alfred_workflow_name}"
-}
-
 if [[ -z "${forwarding_email}" ]]; then
   notification 'You need to setup a forwarding email in the Workflow Environment Variables.'
   exit 1
 fi
 
-email_name="${1}"
-
-if [[ -n "${email_name}" ]]; then
-  escaped_email_name="$(sed 's| ||g' &lt;&lt;&lt; "${email_name}" | perl -MURI::Escape -ne 'print uri_escape ($_)')"
+if [[ -n "${1}" ]]; then
+  email_name="${1//[^[:alnum:]]}"
 else
-  escaped_email_name="$(openssl rand -base64 12 | tr -d '/=+')"
+  email_name="$(openssl rand -base64 12 | tr -d '/=+')"
 fi
 
+email="${email_name}@forward.cat"
 escaped_forwarding_email="$(perl -MURI::Escape -ne 'print uri_escape ($_)' &lt;&lt;&lt; "${forwarding_email}" | sed 's/%0A$//')"
-curl --silent "https://forward.cat/add?proxy=${escaped_email_name}&amp;email=${escaped_forwarding_email}"
+curl --output /dev/null --silent "https://forward.cat/add?proxy=${email_name}&amp;email=${escaped_forwarding_email}"
 
 pbcopy &lt;&lt;&lt; "${email}"
 notification "Temporary email address copied to clipboard. You’ll need to confirm it."</string>
@@ -364,7 +362,7 @@ With any of the options, giving it an argument will try to use that specific nam
 		<string>forwarding_email</string>
 	</array>
 	<key>version</key>
-	<string>1.3.0</string>
+	<string>1.4.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
