@@ -6,6 +6,19 @@
 	<string>com.vitorgalvao.alfred.webscreenshot</string>
 	<key>connections</key>
 	<dict>
+		<key>10E94380-B13E-4C23-A3F3-33DADDD06579</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>9B4397FF-71AA-4746-B00C-E9D7580A6F55</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>181BA7A8-03C0-48A9-AC97-CA21785D1FC1</key>
 		<array>
 			<dict>
@@ -23,7 +36,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>FFB2B088-FAAC-4EF6-BEA5-A2D7DB08BD17</string>
+				<string>34361D11-6517-4260-B8F6-C0B3067467EB</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -36,7 +49,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>FFB2B088-FAAC-4EF6-BEA5-A2D7DB08BD17</string>
+				<string>34361D11-6517-4260-B8F6-C0B3067467EB</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -75,7 +88,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>FFB2B088-FAAC-4EF6-BEA5-A2D7DB08BD17</string>
+				<string>34361D11-6517-4260-B8F6-C0B3067467EB</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -101,7 +114,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>FFB2B088-FAAC-4EF6-BEA5-A2D7DB08BD17</string>
+				<string>34361D11-6517-4260-B8F6-C0B3067467EB</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -121,6 +134,29 @@
 	<string>WebScreenshot</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>./webscreenshot take_screenshot no_resample</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>6F290C99-0052-46BF-BB61-CDDB316DEBB1</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -160,32 +196,9 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>bash ./webscreenshot.sh take_screenshot no_resample</string>
+				<string>./webscreenshot take_screenshot resample</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>6F290C99-0052-46BF-BB61-CDDB316DEBB1</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>bash ./webscreenshot.sh take_screenshot resample</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -253,13 +266,19 @@ function url_exists {
 }
 
 function notification {
-  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
-
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-  else
-    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
+    return
   fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
 }
 
 # Local sanity checks
@@ -296,7 +315,7 @@ if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
   fi # diff
 fi #find</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -305,7 +324,7 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>FFB2B088-FAAC-4EF6-BEA5-A2D7DB08BD17</string>
+			<string>34361D11-6517-4260-B8F6-C0B3067467EB</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -317,9 +336,9 @@ fi #find</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>bash ./webscreenshot.sh upload_image "{query}" no_resample</string>
+				<string>./webscreenshot upload_image "${1}" no_resample</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -363,9 +382,9 @@ fi #find</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>bash ./webscreenshot.sh upload_image "{query}" resample</string>
+				<string>./webscreenshot upload_image "${1}" resample</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -401,25 +420,128 @@ fi #find</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>recentscreenshots</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>require 'json'
+
+url_list = "#{ENV['alfred_workflow_cache']}/urls.txt"
+
+unless File.exist?(url_list)
+  puts({items: [{ title: 'No URLs to list', valid: false }] }.to_json)
+  abort
+end
+
+script_filter_items = []
+
+file_contents = File.open(url_list).read
+file_contents.each_line.with_index do |line, index|
+  screenshot_url = line.split('|')[0].strip
+  screenshot_del = line.split('|')[1].strip
+  screenshot_name = File.basename(screenshot_url)
+
+  script_filter_items.push(title: "#{index + 1} / #{screenshot_name}", subtitle: '↩ to view, ⌘↩ to delete', mods: { cmd: { arg: screenshot_del } }, arg: screenshot_url)
+end
+
+puts({ items: script_filter_items }.to_json)
+</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>View screenshots or delete them</string>
+				<key>title</key>
+				<string>Recently uploaded screenshots</string>
+				<key>type</key>
+				<integer>2</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>10E94380-B13E-4C23-A3F3-33DADDD06579</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>{query}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>9B4397FF-71AA-4746-B00C-E9D7580A6F55</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>Take screenshots with a keyboard shortcut and upload them directly to [imgur](https://imgur.com/). Will produce both a sound and a visual notification when done, and copy the resulting direct link to your clipboard.
 
-A link to delete the image will also be produced and saved to `/tmp/webscreenshot_latest_upload_delete_url.txt`.
+![](https://i.imgur.com/7JWgy5f.png)
 
-![](https://i.imgur.com/XSewwo5.png)
+You may also upload an image (or pdf — imgur also supports it as an upload but converts it to png) by picking the `Upload Screenshot` `File Action`.
 
-You may also upload an image (or pdf, since imgur also supports it as an upload, but converts it to png) by picking the `Upload Screenshot` `File Action`.
+Each of those has a counterpart. The top ones leave the images untouched, while the bottom ones resample them before uploading. This is useful if you have a retina screen, as your images will otherwise appear twice the size when viewed on a browser.
 
-Each of those has a counterpart. The top ones leave the images untouched, while the bottom ones resample them before uploading. This is useful if you have a retina screen, as your images will otherwise appear twice the size when viewed on a browser.</string>
+`recentscreenshots` will enumerate recently taken screenshots, ordered from the last. You can then open them in the browser to view (↩) or delete (⌘↩).</string>
 	<key>uidata</key>
 	<dict>
+		<key>10E94380-B13E-4C23-A3F3-33DADDD06579</key>
+		<dict>
+			<key>xpos</key>
+			<integer>70</integer>
+			<key>ypos</key>
+			<integer>490</integer>
+		</dict>
 		<key>181BA7A8-03C0-48A9-AC97-CA21785D1FC1</key>
 		<dict>
 			<key>xpos</key>
 			<integer>70</integer>
 			<key>ypos</key>
 			<integer>250</integer>
+		</dict>
+		<key>34361D11-6517-4260-B8F6-C0B3067467EB</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>520</integer>
+			<key>ypos</key>
+			<integer>190</integer>
 		</dict>
 		<key>34364BEB-EC4B-46DA-8E66-C5DB73334206</key>
 		<dict>
@@ -441,6 +563,13 @@ Each of those has a counterpart. The top ones leave the images untouched, while 
 			<integer>70</integer>
 			<key>ypos</key>
 			<integer>130</integer>
+		</dict>
+		<key>9B4397FF-71AA-4746-B00C-E9D7580A6F55</key>
+		<dict>
+			<key>xpos</key>
+			<integer>310</integer>
+			<key>ypos</key>
+			<integer>490</integer>
 		</dict>
 		<key>C27FD00F-55A5-4455-90A8-D7CC8DF84E7F</key>
 		<dict>
@@ -470,20 +599,9 @@ Each of those has a counterpart. The top ones leave the images untouched, while 
 			<key>ypos</key>
 			<integer>370</integer>
 		</dict>
-		<key>FFB2B088-FAAC-4EF6-BEA5-A2D7DB08BD17</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>note</key>
-			<string>OneUpdater</string>
-			<key>xpos</key>
-			<integer>520</integer>
-			<key>ypos</key>
-			<integer>190</integer>
-		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.4.3</string>
+	<string>1.5.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
