@@ -362,7 +362,7 @@ With any of the options, giving it an argument will try to use that specific nam
 		<string>forwarding_email</string>
 	</array>
 	<key>version</key>
-	<string>1.4.0</string>
+	<string>1.4.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
