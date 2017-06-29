@@ -84,27 +84,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>keyword</key>
-				<string>macclean</string>
-				<key>subtext</key>
-				<string>Will lock keyboard for {var:seconds_to_lock} seconds</string>
-				<key>text</key>
-				<string>MachineClean</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>FED5D171-D581-4C00-9172-DD195380AC73</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -187,6 +166,27 @@ fi #find</string>
 			<string>73DB8141-C82A-4410-806E-EA01F0541D64</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>macclean</string>
+				<key>subtext</key>
+				<string>Will lock keyboard for {var:seconds_to_lock} seconds</string>
+				<key>text</key>
+				<string>MachineClean</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>FED5D171-D581-4C00-9172-DD195380AC73</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -427,7 +427,7 @@ You will be asked for your password when locking since this operation requires e
 		<string>30</string>
 	</dict>
 	<key>version</key>
-	<string>1.6.0</string>
+	<string>1.6.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
