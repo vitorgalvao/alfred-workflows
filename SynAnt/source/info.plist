@@ -23,7 +23,40 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
+				<string>E9F118FC-4049-4A0C-B0B4-9DFAAD8F5AA5</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Synonyms for this word</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>55ECFD0B-81BA-4D8A-9C58-61C05F3BB52E</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Antonyms for this word</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
 				<string>26FFC902-DE74-4699-BD9A-8E47ED317DA2</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>3E7EF124-9F03-4CE3-AEBC-A8F24D19097E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3562E2E1-564F-445C-8C3A-1E2A36AAB395</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -36,7 +69,40 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
+				<string>E9F118FC-4049-4A0C-B0B4-9DFAAD8F5AA5</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Synonyms for this word</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>55ECFD0B-81BA-4D8A-9C58-61C05F3BB52E</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Antonyms for this word</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
 				<string>26FFC902-DE74-4699-BD9A-8E47ED317DA2</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>B6273EB9-A204-47C0-BCB6-45A2FE1D7AE8</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>8C7B8385-B11B-4294-89BB-986FD67891EC</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -114,19 +180,21 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>autopaste</key>
+				<key>externaltriggerid</key>
+				<string>synonym</string>
+				<key>passinputasargument</key>
 				<true/>
-				<key>clipboardtext</key>
-				<string>{query}</string>
-				<key>transient</key>
-				<false/>
+				<key>passvariables</key>
+				<true/>
+				<key>workflowbundleid</key>
+				<string>self</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.clipboard</string>
+			<string>alfred.workflow.output.callexternaltrigger</string>
 			<key>uid</key>
-			<string>26FFC902-DE74-4699-BD9A-8E47ED317DA2</string>
+			<string>E9F118FC-4049-4A0C-B0B4-9DFAAD8F5AA5</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -194,6 +262,153 @@ echo "&lt;/items&gt;"</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>3562E2E1-564F-445C-8C3A-1E2A36AAB395</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>1</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>F6C39A78-AA32-4134-9D14-928C4A71F40D</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>externaltriggerid</key>
+				<string>antonym</string>
+				<key>passinputasargument</key>
+				<true/>
+				<key>passvariables</key>
+				<true/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>55ECFD0B-81BA-4D8A-9C58-61C05F3BB52E</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>ant</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>IFS=$'\n'
+
+if [[ -z "${api_key}" ]] ; then
+cat &lt;&lt; EOF
+	&lt;?xml version='1.0'?&gt;&lt;items&gt;
+	  &lt;item valid='no'&gt;
+	    &lt;title&gt;Your account is not yet configured&lt;/title&gt;
+	    &lt;subtitle&gt;You need to set the API key in the workflow’s settings&lt;/subtitle&gt;
+	  &lt;/item&gt;
+	&lt;/items&gt;
+EOF
+fi
+
+words="$(curl http://words.bighugelabs.com/api/2/${api_key}/{query}/ | grep '|ant|')"
+
+echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
+for item in $(echo "${words}"); do
+	type="$(echo "${item}" | cut -d '|' -f 1)"
+	word="$(echo "${item}" | cut -d '|' -f 3)"
+	echo "&lt;item arg='${word}' valid='yes'&gt;"
+	echo "&lt;title&gt;${word}&lt;/title&gt;"
+	echo "&lt;subtitle&gt;${type}&lt;/subtitle&gt;"
+	echo "&lt;/item&gt;"
+done
+echo "&lt;/items&gt;"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Type a word to get antonyms</string>
+				<key>title</key>
+				<string>SynAnt</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>8C7B8385-B11B-4294-89BB-986FD67891EC</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>triggerid</key>
+				<string>synonym</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>3E7EF124-9F03-4CE3-AEBC-A8F24D19097E</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<true/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>26FFC902-DE74-4699-BD9A-8E47ED317DA2</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -286,100 +501,15 @@ fi #find</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>action</key>
-				<integer>0</integer>
-				<key>argument</key>
-				<integer>1</integer>
-				<key>focusedappvariable</key>
-				<false/>
-				<key>focusedappvariablename</key>
-				<string></string>
-				<key>hotkey</key>
-				<integer>0</integer>
-				<key>hotmod</key>
-				<integer>0</integer>
-				<key>leftcursor</key>
-				<false/>
-				<key>modsmode</key>
-				<integer>0</integer>
-				<key>relatedAppsMode</key>
-				<integer>0</integer>
+				<key>triggerid</key>
+				<string>antonym</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.trigger.hotkey</string>
+			<string>alfred.workflow.trigger.external</string>
 			<key>uid</key>
-			<string>F6C39A78-AA32-4134-9D14-928C4A71F40D</string>
+			<string>B6273EB9-A204-47C0-BCB6-45A2FE1D7AE8</string>
 			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>alfredfiltersresults</key>
-				<false/>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>ant</string>
-				<key>queuedelaycustom</key>
-				<integer>1</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<false/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string>Please wait…</string>
-				<key>script</key>
-				<string>IFS=$'\n'
-
-if [[ -z "${api_key}" ]] ; then
-cat &lt;&lt; EOF
-	&lt;?xml version='1.0'?&gt;&lt;items&gt;
-	  &lt;item valid='no'&gt;
-	    &lt;title&gt;Your account is not yet configured&lt;/title&gt;
-	    &lt;subtitle&gt;You need to set the API key in the workflow’s settings&lt;/subtitle&gt;
-	  &lt;/item&gt;
-	&lt;/items&gt;
-EOF
-fi
-
-words="$(curl http://words.bighugelabs.com/api/2/${api_key}/{query}/ | grep '|ant|')"
-
-echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-for item in $(echo "${words}"); do
-	type="$(echo "${item}" | cut -d '|' -f 1)"
-	word="$(echo "${item}" | cut -d '|' -f 3)"
-	echo "&lt;item arg='${word}' valid='yes'&gt;"
-	echo "&lt;title&gt;${word}&lt;/title&gt;"
-	echo "&lt;subtitle&gt;${type}&lt;/subtitle&gt;"
-	echo "&lt;/item&gt;"
-done
-echo "&lt;/items&gt;"</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string>Type a word to get antonyms</string>
-				<key>title</key>
-				<string>SynAnt</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>8C7B8385-B11B-4294-89BB-986FD67891EC</string>
-			<key>version</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -392,15 +522,17 @@ You can then check for synonyms and antonyms by calling `syn` or `ant` followed 
 ![](https://i.imgur.com/1p2T6uZ.png)
 ![](https://i.imgur.com/p5CsiB8.png)
 
-Alternatively, select a word and press the shortcut you defined to get the results. Pressing ↩ on a word will paste it to the front most app, which is useful when writing a text and want to change a word in place.</string>
+Alternatively, select a word and press the shortcut you defined to get the results. Pressing ↩ on a word will paste it to the front most app, which is useful when writing a text and want to change a word in place.
+
+If you want to use one of the results to refine your query, press ⌘↩ (synonyms for the word) or ⌥↩ (antonyms for the word).</string>
 	<key>uidata</key>
 	<dict>
 		<key>26FFC902-DE74-4699-BD9A-8E47ED317DA2</key>
 		<dict>
 			<key>xpos</key>
-			<integer>460</integer>
+			<integer>520</integer>
 			<key>ypos</key>
-			<integer>10</integer>
+			<integer>250</integer>
 		</dict>
 		<key>3562E2E1-564F-445C-8C3A-1E2A36AAB395</key>
 		<dict>
@@ -409,6 +541,13 @@ Alternatively, select a word and press the shortcut you defined to get the resul
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
+		<key>3E7EF124-9F03-4CE3-AEBC-A8F24D19097E</key>
+		<dict>
+			<key>xpos</key>
+			<integer>50</integer>
+			<key>ypos</key>
+			<integer>250</integer>
+		</dict>
 		<key>5363CECD-38A0-428F-A9D7-F323B233C752</key>
 		<dict>
 			<key>colorindex</key>
@@ -416,9 +555,16 @@ Alternatively, select a word and press the shortcut you defined to get the resul
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>650</integer>
+			<integer>710</integer>
 			<key>ypos</key>
-			<integer>10</integer>
+			<integer>250</integer>
+		</dict>
+		<key>55ECFD0B-81BA-4D8A-9C58-61C05F3BB52E</key>
+		<dict>
+			<key>xpos</key>
+			<integer>520</integer>
+			<key>ypos</key>
+			<integer>130</integer>
 		</dict>
 		<key>8C7B8385-B11B-4294-89BB-986FD67891EC</key>
 		<dict>
@@ -427,10 +573,24 @@ Alternatively, select a word and press the shortcut you defined to get the resul
 			<key>ypos</key>
 			<integer>130</integer>
 		</dict>
+		<key>B6273EB9-A204-47C0-BCB6-45A2FE1D7AE8</key>
+		<dict>
+			<key>xpos</key>
+			<integer>50</integer>
+			<key>ypos</key>
+			<integer>370</integer>
+		</dict>
 		<key>E774F2C5-99EF-41A4-900D-F99BE0521498</key>
 		<dict>
 			<key>xpos</key>
 			<integer>50</integer>
+			<key>ypos</key>
+			<integer>10</integer>
+		</dict>
+		<key>E9F118FC-4049-4A0C-B0B4-9DFAAD8F5AA5</key>
+		<dict>
+			<key>xpos</key>
+			<integer>520</integer>
 			<key>ypos</key>
 			<integer>10</integer>
 		</dict>
@@ -452,7 +612,7 @@ Alternatively, select a word and press the shortcut you defined to get the resul
 		<string>api_key</string>
 	</array>
 	<key>version</key>
-	<string>1.1.0</string>
+	<string>1.2.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
