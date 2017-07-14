@@ -129,7 +129,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>E3A6855B-21B8-4DE9-9ECE-69928C831A47</string>
+				<string>6C7A1D7B-A177-44D8-BE8B-332B8D9F7DAB</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -337,8 +337,8 @@ if [[ ! -d "${non_volatile_prefs_dir}" ]]; then
 fi
 
 item_location="$(pbpaste)"
-item_title=$(youtube-dl --no-playlist --get-title "${item_location}")
-item_duration=$(youtube-dl --no-playlist --get-duration "${item_location}" | rev | sed 's/^/s/;s/:/ nm/;s/:/ h/' | rev)
+item_title=$("${youtube_dl}" --no-playlist --get-title "${item_location}")
+item_duration=$("${youtube_dl}" --no-playlist --get-duration "${item_location}" | rev | sed 's/^/s/;s/:/ nm/;s/:/ h/' | rev)
 
 if [[ -n "${item_title}" ]]; then
   # fix for websites that need various video parts, causing title and duration to repeat
@@ -357,12 +357,7 @@ else
   exit 1
 fi
 
-touch "${watched}"
-
-# update youtube-dl if it's more than 15 days old
-if [[ $(find youtube-dl -mtime +15) ]]; then
-  python youtube-dl --update
-fi</string>
+touch "${watched}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -382,6 +377,8 @@ fi</string>
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -510,13 +507,19 @@ function url_exists {
 }
 
 function notification {
-  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
-
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-  else
-    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
+    return
   fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
 }
 
 # Local sanity checks
@@ -553,7 +556,7 @@ if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
   fi # diff
 fi #find</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -562,7 +565,7 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>E3A6855B-21B8-4DE9-9ECE-69928C831A47</string>
+			<string>6C7A1D7B-A177-44D8-BE8B-332B8D9F7DAB</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -623,6 +626,8 @@ notification "Marked ${item_title} as unwatched"</string>
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -832,6 +837,8 @@ notification "Watched files were moved to the trash"</string>
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -977,25 +984,25 @@ We often have series of videos and streams that we’d like to watch but not nec
  
 Select in the Finder the files (or directories) you wish to add to your list, and apply the file action `Add to watchlist`. Every time you do this, the new files will be prepended to the list. You then have some options you can pick from, all starting with `wl`.
 
-![](http://i.imgur.com/rN3bl4u.png)
+![](https://i.imgur.com/Bp0Rsuq.png)
 
 If you choose any of the options that let you pick from a list (`wlp`, `wlu`, and `wls`) and continue typing after it (don’t add a space, just type), you’ll start filtering — names, file sizes, durations, and a few more — so you can quickly find the ones you want.
 
-![](http://i.imgur.com/F3CuxuD.png)
+![](https://i.imgur.com/vuWA4wI.png)
 
 Items starting with a ≈ are streams. They also show no file size (since they aren’t taking up any space locally) and show the link they were taken from, as opposed to a location on disk. To be able to stream video, you need either [mpv](http://mpv.io/) or [VLC](http://www.videolan.org/vlc/index.html).
 
-![](http://i.imgur.com/HTe0cH9.png)
+![](http://i.imgur.com/AxMR4QQ.png)
 
 Sharing is particularly useful when you want to send the original link of something you watched to someone else, or to save it somewhere. Those are extracter from downloaded files, if they have that metadata ([DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownVid), for example, adds it to downloaded videos). Use ⌘ to open the url in the default browser, as opposed to copying to the clipboard.
 
-![](http://i.imgur.com/pleW6Qs.png)
+![](https://i.imgur.com/i0WC2i3.png)
 
 `swl` will add the url in your clipboard as a stream.
 
-You can also control parts of the workflow with [Alfred Remote](http://www.alfredapp.com/remote/).
+You can also control parts of the workflow with [Alfred Remote](https://www.alfredapp.com/remote/).
 
-![](http://i.imgur.com/ylgLbGJ.png)
+![](https://i.imgur.com/vc2oPDB.png)
 
 If you use [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownVid), it has an option to add the downloaded video files directly to your watchlist.</string>
 	<key>uidata</key>
@@ -1012,7 +1019,7 @@ If you use [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master
 			<key>xpos</key>
 			<integer>500</integer>
 			<key>ypos</key>
-			<real>850</real>
+			<integer>870</integer>
 		</dict>
 		<key>10E44EB4-6139-4E72-AD84-137F581D67A1</key>
 		<dict>
@@ -1026,7 +1033,7 @@ If you use [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master
 			<key>xpos</key>
 			<integer>500</integer>
 			<key>ypos</key>
-			<real>610</real>
+			<integer>630</integer>
 		</dict>
 		<key>2A1A7853-05AD-43B6-AFF0-55104517AB51</key>
 		<dict>
@@ -1040,7 +1047,7 @@ If you use [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master
 			<key>xpos</key>
 			<integer>100</integer>
 			<key>ypos</key>
-			<real>1450</real>
+			<integer>1470</integer>
 		</dict>
 		<key>2C22F42C-C25C-4D4C-AB42-C31CE9234895</key>
 		<dict>
@@ -1054,14 +1061,14 @@ If you use [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master
 			<key>xpos</key>
 			<integer>300</integer>
 			<key>ypos</key>
-			<real>1330</real>
+			<integer>1350</integer>
 		</dict>
 		<key>3FB08D9D-FA61-4076-A99A-E8B45A21CC8D</key>
 		<dict>
 			<key>xpos</key>
 			<integer>500</integer>
 			<key>ypos</key>
-			<real>1330</real>
+			<integer>1350</integer>
 		</dict>
 		<key>475F7D72-F65B-4E51-99C1-65C581528087</key>
 		<dict>
@@ -1075,21 +1082,32 @@ If you use [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master
 			<key>xpos</key>
 			<integer>300</integer>
 			<key>ypos</key>
-			<real>850</real>
+			<integer>870</integer>
 		</dict>
 		<key>52C95301-2DF9-4A14-86FA-7917CFC49D39</key>
 		<dict>
 			<key>xpos</key>
 			<integer>300</integer>
 			<key>ypos</key>
-			<real>610</real>
+			<integer>630</integer>
+		</dict>
+		<key>6C7A1D7B-A177-44D8-BE8B-332B8D9F7DAB</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>500</integer>
+			<key>ypos</key>
+			<integer>490</integer>
 		</dict>
 		<key>7EE6AEBF-1246-428C-B2E9-C9F5BBCB5EF4</key>
 		<dict>
 			<key>xpos</key>
 			<integer>500</integer>
 			<key>ypos</key>
-			<real>1450</real>
+			<integer>1470</integer>
 		</dict>
 		<key>7F8D7B1C-9061-4414-98C2-FEEB13C9314B</key>
 		<dict>
@@ -1103,14 +1121,14 @@ If you use [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master
 			<key>xpos</key>
 			<integer>100</integer>
 			<key>ypos</key>
-			<real>1090</real>
+			<integer>1110</integer>
 		</dict>
 		<key>A0CB4B50-6085-4C77-BA3D-435ABE469ECE</key>
 		<dict>
 			<key>xpos</key>
 			<integer>100</integer>
 			<key>ypos</key>
-			<real>1210</real>
+			<integer>1230</integer>
 		</dict>
 		<key>A9B03347-978A-4547-9F09-AC992131AEFB</key>
 		<dict>
@@ -1131,21 +1149,21 @@ If you use [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master
 			<key>xpos</key>
 			<integer>500</integer>
 			<key>ypos</key>
-			<real>970</real>
+			<integer>990</integer>
 		</dict>
 		<key>C8A7E5CB-00A9-4A5B-9AD4-2D31987E06CE</key>
 		<dict>
 			<key>xpos</key>
 			<integer>300</integer>
 			<key>ypos</key>
-			<real>970</real>
+			<integer>990</integer>
 		</dict>
 		<key>D6023D14-C151-44A0-BC02-08938DB9D46E</key>
 		<dict>
 			<key>xpos</key>
 			<integer>100</integer>
 			<key>ypos</key>
-			<real>730</real>
+			<integer>750</integer>
 		</dict>
 		<key>DE394F89-C4B4-497C-B6E8-5715050AC3CE</key>
 		<dict>
@@ -1154,20 +1172,9 @@ If you use [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master
 			<key>ypos</key>
 			<real>370</real>
 		</dict>
-		<key>E3A6855B-21B8-4DE9-9ECE-69928C831A47</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>note</key>
-			<string>OneUpdater</string>
-			<key>xpos</key>
-			<integer>500</integer>
-			<key>ypos</key>
-			<integer>490</integer>
-		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.11.6</string>
+	<string>1.12.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

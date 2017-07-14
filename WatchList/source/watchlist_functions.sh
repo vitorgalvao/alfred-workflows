@@ -1,5 +1,6 @@
 export LANG=en_GB.UTF-8 # deal with special characters
-PATH=$(pwd):$PATH # to load youtube-dl
+PATH="/usr/local/bin:${PATH}"
+readonly youtube_dl="$(./_sharedresources 'youtube_dl')"
 IFS=$'\n'
 
 # global variables
@@ -7,16 +8,16 @@ readonly towatch="${alfred_workflow_data}/towatch"
 readonly watched="${alfred_workflow_data}/watched"
 
 # functions
-notification() {
-  ./_licensed/terminal-notifier/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -message "${1}"
+function notification {
+  ./Notificator.app/Contents/MacOS/applet "${1}" "${alfred_workflow_name}"
 }
 
-wrong_item_type() {
+function wrong_item_type {
   echo "Something went wrong. Item type is invalid (${1})."
   exit 1
 }
 
-prepend() {
+function prepend {
   local line_to_prepend file_to_prepend_to tmp_prepend_file
 
   line_to_prepend="${1}"
@@ -27,7 +28,7 @@ prepend() {
   mv "${tmp_prepend_file}" "${file_to_prepend_to}"
 }
 
-use_list() {
+function use_list {
   chosen_list="${1}"
 
   if [[ "${chosen_list}" == 'towatch' ]]; then
@@ -45,14 +46,14 @@ use_list() {
   fi
 }
 
-load_item() {
+function load_item {
   line_number="${1}"
 
   list_item=$(sed -n "${line_number}p" "${list}")
   IFS='⸗' read item_type item_title item_location item_size item_duration <<< "${list_item}"
 }
 
-what_video_player() {
+function what_video_player {
   if [[ "$(mdfind kMDItemCFBundleIdentifier = io.mpv)" ]]; then
     video_player='mpv'
   elif [[ "$(mdfind kMDItemCFBundleIdentifier = org.videolan.vlc)" ]]; then
@@ -63,11 +64,11 @@ what_video_player() {
   fi
 }
 
-play_file() {
+function play_file {
   item_location="${1}"
 
   if [[ "${item_type}" == 'file' ]]; then
-    open "${item_location}"
+    open  "${item_location}"
   elif [[ "${item_type}" == stream ]]; then
     what_video_player
     open -a "${video_player}" "${item_location}"
@@ -76,7 +77,7 @@ play_file() {
   fi
 }
 
-get_item_origin_url() {
+function get_item_origin_url {
   item_type="${1}"
   item_location="${2}"
 
@@ -89,7 +90,7 @@ get_item_origin_url() {
   fi
 }
 
-move_list_item() {
+function move_list_item {
   line_number="${1}"
 
   if [[ "${chosen_list}" == 'towatch' ]]; then
@@ -108,7 +109,7 @@ move_list_item() {
   prepend "${list_item}" "${destiny_list}"
 }
 
-watch_script_filter() {
+function watch_script_filter {
   search="${1}"
 
   echo "<?xml version='1.0'?><items>"

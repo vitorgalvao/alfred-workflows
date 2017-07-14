@@ -2,8 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>backgroundcolor</key>
+	<array>
+		<real>0.46512132883071899</real>
+		<real>0.60948336124420166</real>
+		<real>0.053128901869058609</real>
+	</array>
 	<key>iconid</key>
-	<string>19E95D82-7062-4178-85DF-6E75A894E7DD</string>
+	<string>AB54D715-41D1-4AA5-8322-4CC2AF3C4411</string>
 	<key>iconisuserspecified</key>
 	<false/>
 	<key>items</key>
@@ -19,11 +25,11 @@
 			<key>actionuid</key>
 			<string>remote.alfred.runworkflow</string>
 			<key>buttoniconid</key>
-			<string>9785F303-7FF1-43C6-A7CC-627BE6392F89</string>
+			<string>87CEAD12-E184-45A3-8C96-2D2394C193F3</string>
 			<key>buttonlabel</key>
 			<string>Play next</string>
 			<key>itemuid</key>
-			<string>492BB659-BB20-4797-A447-C868A9299EB0</string>
+			<string>9258ADB9-6129-44E8-8FBA-9DEE16882167</string>
 		</dict>
 		<dict>
 			<key>actionconfig</key>
@@ -36,11 +42,11 @@
 			<key>actionuid</key>
 			<string>remote.alfred.runscript</string>
 			<key>buttoniconid</key>
-			<string>4423CACA-02D2-4085-B2E6-2640383E7519</string>
+			<string>AFD175E9-899E-422A-A1E5-9D4B6A5F94AB</string>
 			<key>buttonlabel</key>
 			<string>↓</string>
 			<key>itemuid</key>
-			<string>7A1F65AB-8338-4725-B78F-885D58B39884</string>
+			<string>C83B9EA2-295A-4C34-BAF6-C2A92C20FDEB</string>
 		</dict>
 		<dict>
 			<key>actionconfig</key>
@@ -48,16 +54,16 @@
 				<key>script</key>
 				<string>tell application "System Events" to key code 126</string>
 				<key>type</key>
-				<integer>6</integer>
+				<integer>0</integer>
 			</dict>
 			<key>actionuid</key>
 			<string>remote.alfred.runscript</string>
 			<key>buttoniconid</key>
-			<string>D62A54B9-F1A5-4BB7-AFB2-C2A872570A72</string>
+			<string>E69246F0-C31D-46AB-A40E-027229E536B9</string>
 			<key>buttonlabel</key>
 			<string>↑</string>
 			<key>itemuid</key>
-			<string>43876D95-6974-4743-967D-7E292A21242B</string>
+			<string>C34BB42B-94BE-47BD-872A-12E9F1A42434</string>
 		</dict>
 		<dict>
 			<key>actionconfig</key>
@@ -65,16 +71,16 @@
 				<key>script</key>
 				<string>tell application "System Events" to key code 36</string>
 				<key>type</key>
-				<integer>6</integer>
+				<integer>0</integer>
 			</dict>
 			<key>actionuid</key>
 			<string>remote.alfred.runscript</string>
 			<key>buttoniconid</key>
-			<string>D0D390CB-F33F-4E4F-AF96-69FD286DAFA1</string>
+			<string>1004AA10-5F76-437E-A79B-F244CE7FCCE8</string>
 			<key>buttonlabel</key>
 			<string>↩</string>
 			<key>itemuid</key>
-			<string>7977388B-B613-4746-970B-8EED7FF081BA</string>
+			<string>C23CF0F1-3C71-434F-AE6E-CC02D66AB523</string>
 		</dict>
 		<dict/>
 		<dict>
@@ -88,11 +94,11 @@
 			<key>actionuid</key>
 			<string>remote.alfred.runworkflow</string>
 			<key>buttoniconid</key>
-			<string>47504A89-7547-4E41-A0C3-85F8E6775430</string>
+			<string>A743183F-C435-40E2-87CF-75788431EF62</string>
 			<key>buttonlabel</key>
 			<string>Show list</string>
 			<key>itemuid</key>
-			<string>15FCA656-56F1-40BA-AE76-2D3FE0E97B57</string>
+			<string>6355AEA9-C5A7-4ECD-8A14-A0631AEBD182</string>
 		</dict>
 		<dict/>
 		<dict/>
@@ -111,11 +117,11 @@
 			<key>actionuid</key>
 			<string>remote.alfred.runworkflow</string>
 			<key>buttoniconid</key>
-			<string>C5FA045B-B27C-42B8-BC68-E0A4F06A7951</string>
+			<string>153B022B-9C03-412F-BE2F-F5715216D3C3</string>
 			<key>buttonlabel</key>
 			<string>Unwatch last</string>
 			<key>itemuid</key>
-			<string>92983D32-214E-4D57-806A-FEE0B9E03023</string>
+			<string>99740615-C254-4261-BC4B-E0A612DAF300</string>
 		</dict>
 		<dict>
 			<key>actionconfig</key>
@@ -128,11 +134,11 @@
 			<key>actionuid</key>
 			<string>remote.alfred.runworkflow</string>
 			<key>buttoniconid</key>
-			<string>11785ABA-1C32-4BA5-A13E-48040F045B3F</string>
+			<string>3E1E7303-C288-400F-B4CF-B609474F8FC0</string>
 			<key>buttonlabel</key>
 			<string>Share last</string>
 			<key>itemuid</key>
-			<string>3512A010-1D48-482F-A8C2-5441C6FF3652</string>
+			<string>8FD5AF04-E79B-4F3B-B32E-59DA95C8597A</string>
 		</dict>
 		<dict/>
 		<dict>
@@ -146,11 +152,11 @@
 			<key>actionuid</key>
 			<string>remote.alfred.runworkflow</string>
 			<key>buttoniconid</key>
-			<string>EF5E6784-D4BA-49BB-863E-C92707EA740E</string>
+			<string>4F69D927-DFAB-4259-8CE5-779D48B4C70A</string>
 			<key>buttonlabel</key>
 			<string>Delete watched</string>
 			<key>itemuid</key>
-			<string>1691CB3A-AF11-43C7-8E60-E6A21CCFB959</string>
+			<string>18CF21C3-E00B-42E7-8A8B-351C2C6A12B5</string>
 		</dict>
 	</array>
 	<key>subtitle</key>

@@ -1,0 +1,145 @@
+#!/bin/bash
+
+readonly valid_resources=('youtube_dl' 'ffmpeg' 'mediainfo') # Keep in sync with resource functions
+readonly shared_resources_id='com.vitorgalvao.alfred._sharedresources'
+readonly shared_resources_dir="$(dirname "${alfred_workflow_data}")/${shared_resources_id}"
+readonly PATH=/usr/local/bin:"${shared_resources_dir}":"${PATH}"
+
+function wrong_usage {
+  echo "
+    You need to give exactly one argument to this script. It can be one of:
+      $(printf "\n  %s\n" "${valid_resources[@]}")
+  " | sed -E 's/^ {4}//' >&2
+
+  exit 1
+}
+
+function curl_error {
+  echo 'Could not download resource.' >&2
+  exit 1
+}
+
+function ensure_resources_dir {
+  [[ -d "${shared_resources_dir}" ]] || mkdir -p "${shared_resources_dir}"
+}
+
+function mount_dmg {
+  local dmg_path plist dicts mount_pointt
+
+  readonly dmg_path="${1}"
+  readonly plist="$(mktemp)" # We need to make the plist into a file PlistBuddy will read it
+
+  hdiutil mount -plist -nobrowse -readonly -mountrandom /tmp "${dmg_path}" > "${plist}"
+
+  readonly dicts="$(/usr/libexec/PlistBuddy -c 'print system-entities' "${plist}" | grep --count 'Dict')"
+  for i in $(seq 0 "$(bc <<< "${dicts} - 1")") ; do
+    mount_point="$(/usr/libexec/PlistBuddy -c "print system-entities:${i}:mount-point" "${plist}" 2>&1)"
+    if grep --quiet --invert-match 'Does Not Exist' <<< "${mount_point}"; then
+      break
+    fi
+  done
+
+  echo -n "${mount_point}"
+}
+
+function unmount_dmg {
+  hdiutil unmount "${1}" > /dev/null
+}
+
+# Resource functions
+function youtube_dl_getter {
+  local youtube_dl_path
+  youtube_dl_path="$(command -v 'youtube-dl')"
+
+  if [[ -n "${youtube_dl_path}" ]]; then
+    [[ "${youtube_dl_path}" == *"${shared_resources_id}"* ]] && [[ $(find "${youtube_dl_path}" -mtime +15) ]] && "${youtube_dl_path}" --update --quiet
+  else
+    ensure_resources_dir
+    youtube_dl_path="${shared_resources_dir}/youtube-dl"
+    if curl --silent --location 'https://yt-dl.org/downloads/latest/youtube-dl' --output "${youtube_dl_path}"; then
+      chmod +x "${youtube_dl_path}"
+    else
+      curl_error
+    fi
+  fi
+
+  echo -n "${youtube_dl_path}"
+}
+
+function ffmpeg_getter {
+  local ffmpeg_path
+  ffmpeg_path="$(command -v 'ffmpeg')"
+
+  function get_ffmpeg {
+    local install_type download_page file_name dmg dmg_mount_point
+
+    ffmpeg_path="${shared_resources_dir}/ffmpeg"
+    readonly install_type="${1}"
+    readonly download_page='https://evermeet.cx/pub/ffmpeg/'
+    readonly file_name="$(curl --silent "${download_page}" | grep '.dmg' | head -1 | sed -E 's/.*<a href="(.*)".*/\1/')"
+    readonly dmg="$(mktemp)"
+
+    if curl --silent --output "${dmg}" "${download_page}${file_name}"; then
+      readonly dmg_mount_point="$(mount_dmg "${dmg}")"
+      cp "${dmg_mount_point}/ffmpeg" "${ffmpeg_path}"
+      unmount_dmg "${dmg_mount_point}"
+    else
+      [[ "${install_type}" == 'install' ]] && curl_error
+    fi
+  }
+
+  if [[ -n "${ffmpeg_path}" ]]; then
+    [[ "${ffmpeg_path}" == *"${shared_resources_id}"* ]] && [[ $(find "${ffmpeg_path}" -mtime +90) ]] && get_ffmpeg 'upgrade'
+  else
+    ensure_resources_dir
+    get_ffmpeg 'install'
+  fi
+
+  echo -n "${ffmpeg_path}"
+}
+
+function mediainfo_getter {
+  local mediainfo_path
+  mediainfo_path="$(command -v 'mediainfo')"
+
+  function get_mediainfo {
+    local install_type file_name dmg pkg_extract dmg_mount_point
+
+    mediainfo_path="${shared_resources_dir}/mediainfo"
+    readonly install_type="${1}"
+    readonly file_name="$(curl --silent 'https://mediaarea.net/en/MediaInfo/Download/Mac_OS' | grep 'CLI.*.dmg' | head -1 | sed -E 's/.*<a href="(.*)".*/\1/')"
+    readonly dmg="$(mktemp)"
+    readonly pkg_extract="$(mktemp -d)"
+
+    if curl --silent --output "${dmg}" "https:${file_name}"; then
+      readonly dmg_mount_point="$(mount_dmg "${dmg}")"
+      cd "${pkg_extract}"
+      xar -xf "${dmg_mount_point}/mediainfo.pkg"
+      gunzip --decompress --stdout 'Payload' | cpio -i 2> /dev/null
+      cp './usr/local/bin/mediainfo' "${mediainfo_path}"
+      unmount_dmg "${dmg_mount_point}"
+    else
+      [[ "${install_type}" == 'install' ]] && curl_error
+    fi
+  }
+
+  if [[ -n "${mediainfo_path}" ]]; then
+    [[ "${mediainfo_path}" == *"${shared_resources_id}"* ]] && [[ $(find "${mediainfo_path}" -mtime +90) ]] && get_mediainfo 'upgrade'
+  else
+    ensure_resources_dir
+    get_mediainfo 'install'
+  fi
+
+  echo -n "${mediainfo_path}"
+}
+
+[[ "${#}" -ne 1 ]] && wrong_usage # Require exactly one argument
+resource_to_use="${1}"
+
+# Check if argument is valid
+for i in "${!valid_resources[@]}"; do
+  [[ "${valid_resources[$i]}" == "${resource_to_use}" ]] && resource_is_valid='true' && break
+done
+[[ -z "${resource_is_valid}" ]] && wrong_usage
+
+"${resource_to_use}_getter" # Run the function that will output the path. '_getter' is required as otherwise the function will detect itself when running 'command'
