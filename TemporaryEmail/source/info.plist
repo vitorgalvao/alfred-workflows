@@ -83,12 +83,12 @@
 
 if [[ -n "${1}" ]]; then
   email_name="${1//[^[:alnum:]]}"
-  email="${email_name}@teleosaurs.xyz"
-  url="https://teleosaurs.xyz/inbox/${email_name}"
 else
-  email="$(curl --silent 'https://fakena.me/fake-name/' | grep 'https://teleosaurs.xyz/inbox/' | sed -E 's/.*&gt;(.*@teleosaurs.xyz).*/\1/' | tr -d '\n')"
-  url=$(echo -n "${email}" | sed -E 's|(.*)@.*|http://teleosaurs.xyz/inbox/\1|')
+  email_name="$(openssl rand -base64 12 | tr -d '/=+')"
 fi
+
+email="${email_name}@teleosaurs.xyz"
+url="https://teleosaurs.xyz/inbox/${email_name}"
 
 front_browser="$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')"
 
@@ -362,7 +362,7 @@ With any of the options, giving it an argument will try to use that specific nam
 		<string>forwarding_email</string>
 	</array>
 	<key>version</key>
-	<string>1.4.1</string>
+	<string>1.5.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
