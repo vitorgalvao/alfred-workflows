@@ -46,4 +46,4 @@ if !File.exist?(list_file) || (((Time.now - File.mtime(list_file)) / (24 * 3600)
 end
 
 # Output list
-puts File.open(list_file, &:read).to_s
+puts File.read(list_file)
