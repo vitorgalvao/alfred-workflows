@@ -109,11 +109,6 @@ Play a round of table tennis with Alfred
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/PingPong) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/PingPong/PingPong.alfredworkflow)
 
-### PinUnread <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/PinUnread/source/icon.png' width='60' align='center' alt='PinUnread icon'>
-Open and manage your Pinboard “toread” bookmarks
-
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/PinUnread) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/PinUnread/PinUnread.alfredworkflow)
-
 ### RecentDownloads <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RecentDownloads/source/icon.png' width='60' align='center' alt='RecentDownloads icon'>
 List and act on the contents of your ~/Downloads directory
 
