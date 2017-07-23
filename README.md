@@ -104,11 +104,6 @@ Granular control over opening apps
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/OpenActions) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/OpenActions/OpenActions.alfredworkflow)
 
-### PinAdd <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/PinAdd/source/icon.png' width='60' align='center' alt='PinAdd icon'>
-Takes arguments as tags and adds your browser’s frontmost tab as a pinboard bookmark
-
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/PinAdd) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/PinAdd/PinAdd.alfredworkflow)
-
 ### PingPong <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/PingPong/source/icon.png' width='60' align='center' alt='PingPong icon'>
 Play a round of table tennis with Alfred
 
