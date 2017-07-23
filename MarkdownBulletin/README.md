@@ -13,7 +13,7 @@ The conversions it supports (I can add more via request) are:
 + Quotes → start lines with `>` and a space
 + Code blocks → triple backticks on one line, write code, triple backticks on another line to end
 + Inline code → with a backtick at the start and another at the end, by default it’ll convert the text to a monospaced font with grey background
-+ Differently sized headers → start lines with `#` or `##` or `###`, and a space. End them with any number (including none) of spaces and `#` characters
++ Differently sized headers → start lines with `#` or `##` or `###` or `####`, and a space. End them with any number (including none) of spaces and `#` characters
 + Unordered lists → precede items with `+` or `*` or `-`, and a space
 + Ordered lists → precede items with a number, a period, and a space
 + Footnotes → `[^1]` (where `1` is any number) anywhere in your text, and again at the end as `[^1]:` with the footnote’s text
