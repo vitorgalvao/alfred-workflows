@@ -19,8 +19,6 @@
 				<false/>
 			</dict>
 		</array>
-		<key>0EC175A9-10F7-4342-96A5-9DE155222E73</key>
-		<array/>
 		<key>2B67AFF0-0412-4E9B-88CE-ADF345434F52</key>
 		<array>
 			<dict>
@@ -143,18 +141,7 @@
 			</dict>
 		</array>
 		<key>955157E7-B3A9-4312-8A9E-F5AEE7D2CB6A</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>06DF291B-32C4-425D-A58F-0A1E2678206E</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
+		<array/>
 		<key>A0E45AB0-74B7-4C7E-8A56-B6B4E0D84722</key>
 		<array>
 			<dict>
@@ -190,16 +177,6 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>0EC175A9-10F7-4342-96A5-9DE155222E73</string>
-				<key>modifiers</key>
-				<integer>8388608</integer>
-				<key>modifiersubtext</key>
-				<string>Kill PinPlus GUI</string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
 		</array>
 		<key>AC4A2ACA-CEFF-4C48-9B37-A39B17B934C4</key>
 		<array>
@@ -219,19 +196,6 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>A0E45AB0-74B7-4C7E-8A56-B6B4E0D84722</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>E56B7970-752D-4EF2-9F85-FECA54EF4CC9</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>955157E7-B3A9-4312-8A9E-F5AEE7D2CB6A</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -277,7 +241,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>E56B7970-752D-4EF2-9F85-FECA54EF4CC9</string>
+				<string>955157E7-B3A9-4312-8A9E-F5AEE7D2CB6A</string>
 				<key>modifiers</key>
 				<integer>131072</integer>
 				<key>modifiersubtext</key>
@@ -350,29 +314,6 @@ open_gui</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>7801D860-3678-41BF-8A9F-B294A3AA31CD</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>pkill pinplus</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>0EC175A9-10F7-4342-96A5-9DE155222E73</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -515,25 +456,6 @@ add_unread</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>browser</key>
-				<string></string>
-				<key>spaces</key>
-				<string></string>
-				<key>url</key>
-				<string>{query}</string>
-				<key>utf8</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.openurl</string>
-			<key>uid</key>
-			<string>A0E45AB0-74B7-4C7E-8A56-B6B4E0D84722</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>argumenttrimmode</key>
@@ -581,6 +503,50 @@ show_bookmarks(All_bookmarks_json)</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>{query}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>A0E45AB0-74B7-4C7E-8A56-B6B4E0D84722</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/pinplus.rb"
+
+action_unread(ENV['unread_action'], ARGV[0])</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>0428362E-5C9C-4EB0-B5B2-470ABC9845E7</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>argumenttrimmode</key>
@@ -622,31 +588,6 @@ show_bookmarks(Unread_bookmarks_json)</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>FA9C9F80-EFDB-4A12-AA7A-DC5D0F76E557</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>require "#{Dir.pwd}/pinplus.rb"
-
-action_unread(ENV['unread_action'], ARGV[0])</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>2</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>0428362E-5C9C-4EB0-B5B2-470ABC9845E7</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -756,24 +697,6 @@ echo "${1}" # To pass the URL to be acted upon, if unread bookmark</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argument</key>
-				<string>{query}</string>
-				<key>variables</key>
-				<dict>
-					<key>is_unread</key>
-					<string>true</string>
-				</dict>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>E56B7970-752D-4EF2-9F85-FECA54EF4CC9</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>autopaste</key>
 				<false/>
 				<key>clipboardtext</key>
@@ -856,17 +779,15 @@ fetch_bookmarks(true)</string>
 	<key>readme</key>
 	<string>Add to and view your Pinboard bookmarks.
 
-`pa` calls a [specialised GUI](https://github.com/vitorgalvao/pinplus) (will be downloaded and installed automatically if you don’t already have it) to add bookmarks, with all features of the website.
+`pa` opens Pinboard’s “add bookmark” page in your frontmost browser. You can submit bookmarks with ↩ or dismiss the window with ⎋.
 
-![](http://i.imgur.com/WGfVEAm.png)
-
-You can submit bookmarks with ↩ or dismiss the GUI with ⎋. In the unlikely event the GUI ever freezes, call `pa` with `fn` to force quit it. This failsafe was added since the GUI does not require the Dock.
+![](https://i.imgur.com/2RUKdcA.png)
 
 Configure the `Hotkey Trigger` to add your current browser tab as an unread bookmark.
 
 `pin` and `pun` are similar. The former shows all your bookmarks (type to filter), while the latter shows only the unread ones.
 
-![](http://i.imgur.com/hrxtJ54.png)
+![](https://i.imgur.com/hrxtJ54.png)
 
 In each case:
 
@@ -881,7 +802,7 @@ Unread bookmarks suffer an extra event when acted upon, depending on the `unread
 
 Bookmarks are auto-updated in accordance to the requirements of the Pinboard API. `:pinplusforceupdate` will force an update, but should be avoided.
 
-![](http://i.imgur.com/Lr0iNij.png)</string>
+![](https://i.imgur.com/Lr0iNij.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>0428362E-5C9C-4EB0-B5B2-470ABC9845E7</key>
@@ -891,44 +812,35 @@ Bookmarks are auto-updated in accordance to the requirements of the Pinboard API
 			<key>xpos</key>
 			<integer>770</integer>
 			<key>ypos</key>
-			<integer>610</integer>
+			<integer>470</integer>
 		</dict>
 		<key>06DF291B-32C4-425D-A58F-0A1E2678206E</key>
 		<dict>
 			<key>xpos</key>
 			<integer>680</integer>
 			<key>ypos</key>
-			<integer>640</integer>
+			<integer>500</integer>
 		</dict>
 		<key>0DF168C1-F23D-42AE-937F-D625877ED05D</key>
 		<dict>
 			<key>xpos</key>
 			<integer>240</integer>
 			<key>ypos</key>
-			<integer>1240</integer>
-		</dict>
-		<key>0EC175A9-10F7-4342-96A5-9DE155222E73</key>
-		<dict>
-			<key>note</key>
-			<string>Kill PinPlus GUI, in case it gets stuck</string>
-			<key>xpos</key>
-			<integer>240</integer>
-			<key>ypos</key>
-			<integer>170</integer>
+			<integer>1100</integer>
 		</dict>
 		<key>2B67AFF0-0412-4E9B-88CE-ADF345434F52</key>
 		<dict>
 			<key>xpos</key>
 			<integer>20</integer>
 			<key>ypos</key>
-			<integer>480</integer>
+			<integer>340</integer>
 		</dict>
 		<key>312A5A83-445F-49A9-91E3-5E65184C33B9</key>
 		<dict>
 			<key>xpos</key>
 			<integer>20</integer>
 			<key>ypos</key>
-			<integer>320</integer>
+			<integer>180</integer>
 		</dict>
 		<key>348262A6-0298-49B4-A582-AF48C527E471</key>
 		<dict>
@@ -937,28 +849,28 @@ Bookmarks are auto-updated in accordance to the requirements of the Pinboard API
 			<key>xpos</key>
 			<integer>240</integer>
 			<key>ypos</key>
-			<integer>320</integer>
+			<integer>180</integer>
 		</dict>
 		<key>4FB6B196-D4A2-431D-B33C-E1DFB0A5A57F</key>
 		<dict>
 			<key>xpos</key>
 			<integer>20</integer>
 			<key>ypos</key>
-			<integer>1240</integer>
+			<integer>1100</integer>
 		</dict>
 		<key>51173530-985F-468F-90DC-B37CC651F01A</key>
 		<dict>
 			<key>xpos</key>
 			<integer>450</integer>
 			<key>ypos</key>
-			<integer>1110</integer>
+			<integer>970</integer>
 		</dict>
 		<key>65AAB448-3013-42AB-A59B-A886A23A7B3C</key>
 		<dict>
 			<key>xpos</key>
 			<integer>360</integer>
 			<key>ypos</key>
-			<integer>800</integer>
+			<integer>660</integer>
 		</dict>
 		<key>7801D860-3678-41BF-8A9F-B294A3AA31CD</key>
 		<dict>
@@ -976,7 +888,7 @@ Bookmarks are auto-updated in accordance to the requirements of the Pinboard API
 			<key>xpos</key>
 			<integer>450</integer>
 			<key>ypos</key>
-			<integer>940</integer>
+			<integer>800</integer>
 		</dict>
 		<key>9A055C32-C5CF-4D41-B7F2-366BC26FCE51</key>
 		<dict>
@@ -987,14 +899,14 @@ Bookmarks are auto-updated in accordance to the requirements of the Pinboard API
 			<key>xpos</key>
 			<integer>770</integer>
 			<key>ypos</key>
-			<integer>170</integer>
+			<integer>20</integer>
 		</dict>
 		<key>A0E45AB0-74B7-4C7E-8A56-B6B4E0D84722</key>
 		<dict>
 			<key>xpos</key>
 			<integer>450</integer>
 			<key>ypos</key>
-			<integer>480</integer>
+			<integer>340</integer>
 		</dict>
 		<key>A47E38E8-87FB-42B7-A966-4CFC5B0798FF</key>
 		<dict>
@@ -1008,21 +920,14 @@ Bookmarks are auto-updated in accordance to the requirements of the Pinboard API
 			<key>xpos</key>
 			<integer>360</integer>
 			<key>ypos</key>
-			<integer>1140</integer>
+			<integer>1000</integer>
 		</dict>
 		<key>BBA7D5B8-BDF1-4669-B928-461708E18DDF</key>
 		<dict>
 			<key>xpos</key>
 			<integer>360</integer>
 			<key>ypos</key>
-			<integer>640</integer>
-		</dict>
-		<key>E56B7970-752D-4EF2-9F85-FECA54EF4CC9</key>
-		<dict>
-			<key>xpos</key>
-			<integer>360</integer>
-			<key>ypos</key>
-			<integer>970</integer>
+			<integer>500</integer>
 		</dict>
 		<key>F3FE5E70-3869-4937-9ECB-ADAED3106B1F</key>
 		<dict>
@@ -1031,20 +936,18 @@ Bookmarks are auto-updated in accordance to the requirements of the Pinboard API
 			<key>xpos</key>
 			<integer>450</integer>
 			<key>ypos</key>
-			<integer>770</integer>
+			<integer>630</integer>
 		</dict>
 		<key>FA9C9F80-EFDB-4A12-AA7A-DC5D0F76E557</key>
 		<dict>
 			<key>xpos</key>
 			<integer>20</integer>
 			<key>ypos</key>
-			<integer>610</integer>
+			<integer>470</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
 	<dict>
-		<key>pinplus_app</key>
-		<string>/Applications/PinPlus.app</string>
 		<key>unread_action</key>
 		<string>delete</string>
 	</dict>
@@ -1053,7 +956,7 @@ Bookmarks are auto-updated in accordance to the requirements of the Pinboard API
 		<string>unread_action</string>
 	</array>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

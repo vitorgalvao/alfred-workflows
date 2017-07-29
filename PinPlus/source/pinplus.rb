@@ -31,11 +31,11 @@ def save_pinboard_token
     app.includeStandardAdditions = true
 
     const response = app.displayDialog('Your Pinboard API Token:', {
-        defaultAnswer: 'Get it on https://pinboard.in/settings/password',
-        withTitle: 'Pinboard API Token Missing',
-        withIcon: Path('#{__dir__}/icon.png'),
-        buttons: ['Cancel', 'OK'],
-        defaultButton: 'OK'
+      defaultAnswer: 'Get it on https://pinboard.in/settings/password',
+      withTitle: 'Pinboard API Token Missing',
+      withIcon: Path('#{__dir__}/icon.png'),
+      buttons: ['Cancel', 'OK'],
+      defaultButton: 'OK'
     })
 
     response.textReturned
@@ -63,21 +63,8 @@ def grab_url_title
   [url, title]
 end
 
-def ensure_gui_exists
-  return if Dir.exist?(ENV['pinplus_app'])
-
-  notification 'PinPlus GUI not present. Downloading…'
-
-  tmpfile = Tempfile.new.path
-  IO.copy_stream(open('https://github.com/vitorgalvao/pinplus/releases/download/1.0.0/PinPlus.zip'), tmpfile)
-
-  system('ditto', '-xk', tmpfile, File.dirname(ENV['pinplus_app']))
-end
-
 def open_gui
-  url, title = grab_url_title
-  ensure_gui_exists
-  system("#{ENV['pinplus_app']}/Contents/MacOS/PinPlus", url, title)
+  %x("#{__dir__}"/run_bookmarklet)
 end
 
 def add_unread
