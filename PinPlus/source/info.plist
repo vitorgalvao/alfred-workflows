@@ -732,6 +732,27 @@ echo "${1}" # To pass the URL to be acted upon, if unread bookmark</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>:pinplusforceupdate</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Force update of Pinboard bookmarks</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>4FB6B196-D4A2-431D-B33C-E1DFB0A5A57F</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -753,27 +774,6 @@ fetch_bookmarks(true)</string>
 			<string>0DF168C1-F23D-42AE-937F-D625877ED05D</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>keyword</key>
-				<string>:pinplusforceupdate</string>
-				<key>subtext</key>
-				<string></string>
-				<key>text</key>
-				<string>Force update of Pinboard bookmarks</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>4FB6B196-D4A2-431D-B33C-E1DFB0A5A57F</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -956,7 +956,7 @@ Bookmarks are auto-updated in accordance to the requirements of the Pinboard API
 		<string>unread_action</string>
 	</array>
 	<key>version</key>
-	<string>1.1.0</string>
+	<string>1.1.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

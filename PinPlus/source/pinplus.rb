@@ -64,7 +64,7 @@ def grab_url_title
 end
 
 def open_gui
-  %x("#{__dir__}"/run_bookmarklet)
+  system("#{__dir__}/run_bookmarklet")
 end
 
 def add_unread
