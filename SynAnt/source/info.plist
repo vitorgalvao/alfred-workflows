@@ -235,6 +235,15 @@ fi
 
 words="$(curl http://words.bighugelabs.com/api/2/${api_key}/{query}/ | grep '|syn|')"
 
+if [[ -z "${words}" ]]; then
+cat &lt;&lt; EOF
+	&lt;?xml version='1.0'?&gt;&lt;items&gt;
+	  &lt;item valid='no'&gt;
+	    &lt;title&gt;No synonyms found for “{query}”&lt;/title&gt;
+	  &lt;/item&gt;
+	&lt;/items&gt;
+EOF
+else
 echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
 for item in $(echo "${words}"); do
 	type="$(echo "${item}" | cut -d '|' -f 1)"
@@ -244,7 +253,8 @@ for item in $(echo "${words}"); do
 	echo "&lt;subtitle&gt;${type}&lt;/subtitle&gt;"
 	echo "&lt;/item&gt;"
 done
-echo "&lt;/items&gt;"</string>
+echo "&lt;/items&gt;"
+fi</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -297,25 +307,6 @@ echo "&lt;/items&gt;"</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>externaltriggerid</key>
-				<string>antonym</string>
-				<key>passinputasargument</key>
-				<true/>
-				<key>passvariables</key>
-				<true/>
-				<key>workflowbundleid</key>
-				<string>self</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.callexternaltrigger</string>
-			<key>uid</key>
-			<string>55ECFD0B-81BA-4D8A-9C58-61C05F3BB52E</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>argumenttrimmode</key>
@@ -352,6 +343,15 @@ fi
 
 words="$(curl http://words.bighugelabs.com/api/2/${api_key}/{query}/ | grep '|ant|')"
 
+if [[ -z "${words}" ]]; then
+cat &lt;&lt; EOF
+	&lt;?xml version='1.0'?&gt;&lt;items&gt;
+	  &lt;item valid='no'&gt;
+	    &lt;title&gt;No antonyms found for “{query}”&lt;/title&gt;
+	  &lt;/item&gt;
+	&lt;/items&gt;
+EOF
+else
 echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
 for item in $(echo "${words}"); do
 	type="$(echo "${item}" | cut -d '|' -f 1)"
@@ -361,7 +361,8 @@ for item in $(echo "${words}"); do
 	echo "&lt;subtitle&gt;${type}&lt;/subtitle&gt;"
 	echo "&lt;/item&gt;"
 done
-echo "&lt;/items&gt;"</string>
+echo "&lt;/items&gt;"
+fi</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -381,6 +382,25 @@ echo "&lt;/items&gt;"</string>
 			<string>8C7B8385-B11B-4294-89BB-986FD67891EC</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>externaltriggerid</key>
+				<string>antonym</string>
+				<key>passinputasargument</key>
+				<true/>
+				<key>passvariables</key>
+				<true/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>55ECFD0B-81BA-4D8A-9C58-61C05F3BB52E</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -612,7 +632,7 @@ If you want to use one of the results to refine your query, press ⌘↩ (synony
 		<string>api_key</string>
 	</array>
 	<key>version</key>
-	<string>1.2.0</string>
+	<string>1.3.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
