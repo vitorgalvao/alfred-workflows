@@ -47,15 +47,22 @@
 
 files=$(find "${HOME}/Library" -not -path "${HOME}/Library/Application Support/Dash/*" -not -path "${HOME}/Library/Caches/Metadata/Safari/History/*" -not -path "${HOME}/Library/Mobile Documents/*" -iname '*{query}*')
 
-echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-for file in ${files}; do
-  echo "&lt;item arg='${file}' type='file'&gt;"
-  echo "&lt;title&gt;$(basename ${file})&lt;/title&gt;"
-  echo "&lt;subtitle&gt;${file}&lt;/subtitle&gt;"
-  echo "&lt;icon type='fileicon'&gt;${file}&lt;/icon&gt;"
-  echo "&lt;/item&gt;"
-done
-echo "&lt;/items&gt;"
+if [[ -z "${files}" ]]; then
+  echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;
+    &lt;item valid='no'&gt;
+      &lt;title&gt;No matches for “{query}”&lt;/title&gt;
+    &lt;/item&gt;
+  &lt;/items&gt;"
+else
+  echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
+  for file in ${files}; do
+    echo "&lt;item arg='${file}' type='file'&gt;
+      &lt;title&gt;$(basename ${file})&lt;/title&gt;
+      &lt;subtitle&gt;${file}&lt;/subtitle&gt;
+      &lt;icon type='fileicon'&gt;${file}&lt;/icon&gt;
+    &lt;/item&gt;"
+  done
+  echo "&lt;/items&gt;"
 fi</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
@@ -214,7 +221,7 @@ The goal of the Workflow is that you select what you recognise as setting you wa
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
