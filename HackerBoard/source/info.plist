@@ -576,7 +576,7 @@ Lists are updated automatically and cached. To force the lists to update, run `:
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.1</string>
+	<string>1.0.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
