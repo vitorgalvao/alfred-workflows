@@ -24,3 +24,7 @@ Unread bookmarks suffer an extra event when acted upon, depending on the `unread
 Bookmarks are auto-updated in accordance to the requirements of the Pinboard API. `:pinplusforceupdate` will force an update, but should be avoided.
 
 ![](https://i.imgur.com/Lr0iNij.png)
+
+If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`.
+
+![](https://i.imgur.com/XOHDq0q.png)

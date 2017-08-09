@@ -204,6 +204,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>F19E7C66-0D3E-4ADE-A607-590AD4B34BFA</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>23352050-CC5C-4680-8243-005771354087</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>F3FE5E70-3869-4937-9ECB-ADAED3106B1F</key>
 		<array>
 			<dict>
@@ -271,52 +284,6 @@
 	<string>PinPlus</string>
 	<key>objects</key>
 	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>keyword</key>
-				<string>pa</string>
-				<key>subtext</key>
-				<string>Call a GUI to add a bookmark</string>
-				<key>text</key>
-				<string>Add a bookmark</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>A47E38E8-87FB-42B7-A966-4CFC5B0798FF</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>require "#{Dir.pwd}/pinplus.rb"
-
-open_gui</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>2</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>7801D860-3678-41BF-8A9F-B294A3AA31CD</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -400,6 +367,52 @@ fi #find</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>pa</string>
+				<key>subtext</key>
+				<string>Call a GUI to add a bookmark</string>
+				<key>text</key>
+				<string>Add a bookmark</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>A47E38E8-87FB-42B7-A966-4CFC5B0798FF</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/pinplus.rb"
+
+open_gui</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>7801D860-3678-41BF-8A9F-B294A3AA31CD</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -456,6 +469,25 @@ add_unread</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>{query}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>A0E45AB0-74B7-4C7E-8A56-B6B4E0D84722</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>argumenttrimmode</key>
@@ -503,50 +535,6 @@ show_bookmarks(All_bookmarks_json)</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>browser</key>
-				<string></string>
-				<key>spaces</key>
-				<string></string>
-				<key>url</key>
-				<string>{query}</string>
-				<key>utf8</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.openurl</string>
-			<key>uid</key>
-			<string>A0E45AB0-74B7-4C7E-8A56-B6B4E0D84722</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>require "#{Dir.pwd}/pinplus.rb"
-
-action_unread(ENV['unread_action'], ARGV[0])</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>2</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>0428362E-5C9C-4EB0-B5B2-470ABC9845E7</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>argumenttrimmode</key>
@@ -588,6 +576,31 @@ show_bookmarks(Unread_bookmarks_json)</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>FA9C9F80-EFDB-4A12-AA7A-DC5D0F76E557</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/pinplus.rb"
+
+action_unread(ENV['unread_action'], ARGV[0])</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>0428362E-5C9C-4EB0-B5B2-470ABC9845E7</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -732,6 +745,31 @@ echo "${1}" # To pass the URL to be acted upon, if unread bookmark</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/pinplus.rb"
+
+fetch_bookmarks(true)</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>0DF168C1-F23D-42AE-937F-D625877ED05D</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>keyword</key>
@@ -753,6 +791,27 @@ echo "${1}" # To pass the URL to be acted upon, if unread bookmark</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>:pinplusresetapitoken</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Reset your Pinboard API token</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>F19E7C66-0D3E-4ADE-A607-590AD4B34BFA</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -760,7 +819,7 @@ echo "${1}" # To pass the URL to be acted upon, if unread bookmark</string>
 				<key>script</key>
 				<string>require "#{Dir.pwd}/pinplus.rb"
 
-fetch_bookmarks(true)</string>
+reset_pinboard_token</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -771,7 +830,7 @@ fetch_bookmarks(true)</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>0DF168C1-F23D-42AE-937F-D625877ED05D</string>
+			<string>23352050-CC5C-4680-8243-005771354087</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -802,7 +861,11 @@ Unread bookmarks suffer an extra event when acted upon, depending on the `unread
 
 Bookmarks are auto-updated in accordance to the requirements of the Pinboard API. `:pinplusforceupdate` will force an update, but should be avoided.
 
-![](https://i.imgur.com/Lr0iNij.png)</string>
+![](https://i.imgur.com/Lr0iNij.png)
+
+If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`.
+
+![](https://i.imgur.com/XOHDq0q.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>0428362E-5C9C-4EB0-B5B2-470ABC9845E7</key>
@@ -827,6 +890,13 @@ Bookmarks are auto-updated in accordance to the requirements of the Pinboard API
 			<integer>240</integer>
 			<key>ypos</key>
 			<integer>1100</integer>
+		</dict>
+		<key>23352050-CC5C-4680-8243-005771354087</key>
+		<dict>
+			<key>xpos</key>
+			<integer>240</integer>
+			<key>ypos</key>
+			<integer>1230</integer>
 		</dict>
 		<key>2B67AFF0-0412-4E9B-88CE-ADF345434F52</key>
 		<dict>
@@ -929,6 +999,13 @@ Bookmarks are auto-updated in accordance to the requirements of the Pinboard API
 			<key>ypos</key>
 			<integer>500</integer>
 		</dict>
+		<key>F19E7C66-0D3E-4ADE-A607-590AD4B34BFA</key>
+		<dict>
+			<key>xpos</key>
+			<integer>20</integer>
+			<key>ypos</key>
+			<integer>1230</integer>
+		</dict>
 		<key>F3FE5E70-3869-4937-9ECB-ADAED3106B1F</key>
 		<dict>
 			<key>note</key>
@@ -956,7 +1033,7 @@ Bookmarks are auto-updated in accordance to the requirements of the Pinboard API
 		<string>unread_action</string>
 	</array>
 	<key>version</key>
-	<string>1.1.1</string>
+	<string>1.1.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

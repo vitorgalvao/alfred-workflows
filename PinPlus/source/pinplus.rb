@@ -1,5 +1,5 @@
 require 'cgi'
-require 'FileUtils'
+require 'fileutils'
 require 'json'
 require 'open-uri'
 
@@ -44,7 +44,7 @@ def save_pinboard_token
   error('Cannot continue without a Pinboard token.') if pinboard_token.empty?
 
   system('security', 'add-generic-password', '-a', ENV['USER'], '-s', 'pinboard_api_token', '-w', pinboard_token)
-  error 'Seem either the API token is incorrect or Pinboard’s servers are down.' unless open("https://api.pinboard.in/v1/user/api_token/?auth_token=#{pinboard_token}").nil?
+  error 'Seem either the API token is incorrect or Pinboard’s servers are down.' if open("https://api.pinboard.in/v1/user/api_token/?auth_token=#{pinboard_token}").nil?
 
   grab_pinboard_token
 end
@@ -52,6 +52,11 @@ end
 def grab_pinboard_token
   pinboard_token = %x(security find-generic-password -a "${USER}" -s pinboard_api_token -w).strip
   pinboard_token.empty? ? save_pinboard_token : pinboard_token
+end
+
+def reset_pinboard_token
+  system('security', 'delete-generic-password', '-a', ENV['USER'], '-s', 'pinboard_api_token')
+  save_pinboard_token
 end
 
 def grab_url_title
@@ -91,7 +96,7 @@ end
 def unsynced_with_website?
   FileUtils.mkdir_p(ENV['alfred_workflow_data']) unless Dir.exist?(ENV['alfred_workflow_data'])
 
-  last_access_local = File.read(Last_access_file)
+  last_access_local = File.exist?(Last_access_file) ? File.read(Last_access_file) : 'File does not yet exist'
   last_access_remote = JSON.load(open("https://api.pinboard.in/v1/posts/update?auth_token=#{grab_pinboard_token}&format=json"))['update_time']
 
   if last_access_local == last_access_remote
