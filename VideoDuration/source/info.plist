@@ -90,12 +90,11 @@
 				<key>escaping</key>
 				<integer>32</integer>
 				<key>script</key>
-				<string>readonly PATH=/usr/local/bin:${PATH}
-readonly youtube_dl="$(./_sharedresources 'youtube_dl')"
+				<string>readonly PATH="$(./_sharedresources 'youtubedl')"
 readonly verbosity="${1}"
 readonly url="$(pbpaste)"
 
-readonly full_info="$("${youtube_dl}" --get-title --get-description --get-duration "${url}")"
+readonly full_info="$(youtube-dl --get-title --get-description --get-duration "${url}")"
 readonly title="$(head -1 &lt;&lt;&lt; "${full_info}")"
 readonly duration="$(tail -1 &lt;&lt;&lt; "${full_info}" | rev | sed 's/^/s/;s/:/m/;s/:/h/' | rev | sed 's/00s$//;s/00m$//')"
 readonly description="$(sed '1d;$d' &lt;&lt;&lt; "${full_info}")"
@@ -344,7 +343,7 @@ Copy a link to your clipboard, run `vidur` and pick your verbosity level. It’l
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.2.1</string>
+	<string>1.2.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
