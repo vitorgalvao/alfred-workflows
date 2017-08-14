@@ -142,8 +142,7 @@
 				<integer>102</integer>
 				<key>script</key>
 				<string>if [[ "$(mdfind kMDItemCFBundleIdentifier = io.mpv)" ]]; then
-  youtube_dl_path="$(dirname "$(./_sharedresources 'youtube_dl')")"
-  PATH="${youtube_dl_path}:$PATH"
+  PATH="$(./_sharedresources 'youtubedl')"
   video_player='mpv'
 elif [[ "$(mdfind kMDItemCFBundleIdentifier = org.videolan.vlc)" ]]; then
   video_player='vlc'
@@ -541,7 +540,7 @@ Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` 
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.12.6</string>
+	<string>1.12.7</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
