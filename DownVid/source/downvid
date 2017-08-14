@@ -2,8 +2,7 @@
 
 IFS=$'\n'
 
-PATH="/usr/local/bin:${PATH}"
-readonly youtube_dl="$(./_sharedresources 'youtube_dl')"
+PATH="$(./_sharedresources 'youtubedl')"
 
 # Workflow Environment Variables
 readonly wev_downdir="${HOME}/${download_dir}"
@@ -42,7 +41,7 @@ function watchlist_exist? {
 
 function gettitle {
   # File location
-  filename="$("${youtube_dl}" --get-filename --ignore-errors "${file_format[@]}" "${playlist_options}" --output "${downdir}/${title_template}" "${url}")"
+  filename="$(youtube-dl --get-filename --ignore-errors "${file_format[@]}" "${playlist_options}" --output "${downdir}/${title_template}" "${url}")"
 
   # Title
   title="$(basename "${filename%.*}")"
@@ -59,7 +58,7 @@ function gettitle {
 function getfile {
   progressfile='/tmp/downvidprogress'
 
-  "${youtube_dl}" --newline "${subs_options[@]}" --ignore-errors "${file_format[@]}" "${playlist_options}" --output "${downdir}/${title_template}" "${url}" > "${progressfile}"
+  youtube-dl --newline "${subs_options[@]}" --ignore-errors "${file_format[@]}" "${playlist_options}" --output "${downdir}/${title_template}" "${url}" > "${progressfile}"
 
   # Add metadata
   xmlencodedurl="$(perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&<>"'\''})' <<< "${url}")"
