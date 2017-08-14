@@ -1,14 +1,15 @@
 #!/bin/bash
 
-readonly valid_resources=('youtube_dl' 'ffmpeg' 'mediainfo') # Keep in sync with resource functions
+readonly valid_resources=('cpulimit' 'ffmpeg' 'mediainfo' 'youtubedl') # Keep in sync with resource functions
 readonly shared_resources_id='com.vitorgalvao.alfred._sharedresources'
+[[ -z "${alfred_workflow_data}" ]] && alfred_workflow_data="$(mktemp -d)/Workflow Data/fake_workflow" # To prevent commands reliant on this variable from breaking when testing outside a Workflow
 readonly shared_resources_dir="$(dirname "${alfred_workflow_data}")/${shared_resources_id}"
 readonly PATH=/usr/local/bin:"${shared_resources_dir}":"${PATH}"
 
 function wrong_usage {
   echo "
-    You need to give exactly one argument to this script. It can be one of:
-      $(printf "\n  %s\n" "${valid_resources[@]}")
+    Could not recognise argument. It needs to be one or more of:
+      $(printf "\n  %s" "${valid_resources[@]}")
   " | sed -E 's/^ {4}//' >&2
 
   exit 1
@@ -24,10 +25,10 @@ function ensure_resources_dir {
 }
 
 function mount_dmg {
-  local dmg_path plist dicts mount_pointt
+  local dmg_path plist dicts mount_point
 
   readonly dmg_path="${1}"
-  readonly plist="$(mktemp)" # We need to make the plist into a file PlistBuddy will read it
+  readonly plist="$(mktemp)" # We need to make the plist into a file so PlistBuddy will read it
 
   hdiutil mount -plist -nobrowse -readonly -mountrandom /tmp "${dmg_path}" > "${plist}"
 
@@ -47,23 +48,26 @@ function unmount_dmg {
 }
 
 # Resource functions
-function youtube_dl_getter {
-  local youtube_dl_path
-  youtube_dl_path="$(command -v 'youtube-dl')"
+function cpulimit_getter {
+  local cpulimit_path
+  cpulimit_path="$(command -v 'cpulimit')"
 
-  if [[ -n "${youtube_dl_path}" ]]; then
-    [[ "${youtube_dl_path}" == *"${shared_resources_id}"* ]] && [[ $(find "${youtube_dl_path}" -mtime +15) ]] && "${youtube_dl_path}" --update --quiet
-  else
+  if [[ -z "${cpulimit_path}" ]]; then
+    local tar_extract cpulimit_version
+
+    cpulimit_path="${shared_resources_dir}/cpulimit"
+    readonly cpulimit_version='0.2'
+    readonly tar_extract="$(mktemp -d)"
+
     ensure_resources_dir
-    youtube_dl_path="${shared_resources_dir}/youtube-dl"
-    if curl --silent --location 'https://yt-dl.org/downloads/latest/youtube-dl' --output "${youtube_dl_path}"; then
-      chmod +x "${youtube_dl_path}"
+
+    if curl --silent "https://homebrew.bintray.com/bottles/cpulimit-${cpulimit_version}.sierra.bottle.tar.gz" | tar xC "${tar_extract}"; then
+      mv "${tar_extract}/cpulimit/${cpulimit_version}/bin/cpulimit" "${cpulimit_path}"
+      chmod +x "${cpulimit_path}"
     else
       curl_error
     fi
   fi
-
-  echo -n "${youtube_dl_path}"
 }
 
 function ffmpeg_getter {
@@ -94,8 +98,6 @@ function ffmpeg_getter {
     ensure_resources_dir
     get_ffmpeg 'install'
   fi
-
-  echo -n "${ffmpeg_path}"
 }
 
 function mediainfo_getter {
@@ -113,11 +115,12 @@ function mediainfo_getter {
 
     if curl --silent --output "${dmg}" "https:${file_name}"; then
       readonly dmg_mount_point="$(mount_dmg "${dmg}")"
-      cd "${pkg_extract}"
+      cd "${pkg_extract}" || exit 1
       xar -xf "${dmg_mount_point}/mediainfo.pkg"
       gunzip --decompress --stdout 'Payload' | cpio -i 2> /dev/null
       cp './usr/local/bin/mediainfo' "${mediainfo_path}"
       unmount_dmg "${dmg_mount_point}"
+      cd - > /dev/null
     else
       [[ "${install_type}" == 'install' ]] && curl_error
     fi
@@ -129,17 +132,37 @@ function mediainfo_getter {
     ensure_resources_dir
     get_mediainfo 'install'
   fi
-
-  echo -n "${mediainfo_path}"
 }
 
-[[ "${#}" -ne 1 ]] && wrong_usage # Require exactly one argument
-resource_to_use="${1}"
+function youtubedl_getter {
+  local youtubedl_path
+  youtubedl_path="$(command -v 'youtube-dl')"
 
-# Check if argument is valid
-for i in "${!valid_resources[@]}"; do
-  [[ "${valid_resources[$i]}" == "${resource_to_use}" ]] && resource_is_valid='true' && break
+  if [[ -n "${youtubedl_path}" ]]; then
+    [[ "${youtubedl_path}" == *"${shared_resources_id}"* ]] && [[ $(find "${youtubedl_path}" -mtime +15) ]] && "${youtubedl_path}" --update --quiet
+  else
+    ensure_resources_dir
+    youtubedl_path="${shared_resources_dir}/youtube-dl"
+    if curl --silent --location 'https://yt-dl.org/downloads/latest/youtube-dl' --output "${youtubedl_path}"; then
+      chmod +x "${youtubedl_path}"
+    else
+      curl_error
+    fi
+  fi
+}
+
+resources_to_use=(${@})
+
+# Check if arguments are valid
+for rtu_index in "${!resources_to_use[@]}"; do
+  for vr_index in "${!valid_resources[@]}"; do
+    [[ "${resources_to_use[${rtu_index}]}" == "${valid_resources[${vr_index}]}" ]] && resource_is_valid='true' && break
+  done
+  [[ -n "${resource_is_valid}" ]] || wrong_usage
+  unset resource_is_valid
 done
-[[ -z "${resource_is_valid}" ]] && wrong_usage
 
-"${resource_to_use}_getter" # Run the function that will output the path. '_getter' is required as otherwise the function will detect itself when running 'command'
+for resource in "${resources_to_use[@]}"; do
+  "${resource}_getter" # Run the function to get the tool. '_getter' is required as otherwise the function will detect itself when running 'command'
+done
+echo -n "${PATH}"

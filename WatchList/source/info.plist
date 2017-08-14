@@ -264,7 +264,7 @@ use_list towatch
 files_to_add=$(echo "{query}" | perl -pe 's/\t/\n/g' | tail -r)
 
 for file in ${files_to_add}; do
-  item_duration="$(./_licensed/mediainfo/mediainfo --Output='Video;%Duration/String2%' ${file})"
+  item_duration="$(mediainfo --Output='Video;%Duration/String2%' ${file})"
   item_size="$(du -h ${file} | perl -pe 's/^\s*(.*)\t.*/\1/')"
   item_title="$(basename ${file%.*})"
 
@@ -337,8 +337,8 @@ if [[ ! -d "${non_volatile_prefs_dir}" ]]; then
 fi
 
 item_location="$(pbpaste)"
-item_title=$("${youtube_dl}" --no-playlist --get-title "${item_location}")
-item_duration=$("${youtube_dl}" --no-playlist --get-duration "${item_location}" | rev | sed 's/^/s/;s/:/ nm/;s/:/ h/' | rev)
+item_title=$(youtube-dl --no-playlist --get-title "${item_location}")
+item_duration=$(youtube-dl --no-playlist --get-duration "${item_location}" | rev | sed 's/^/s/;s/:/ nm/;s/:/ h/' | rev)
 
 if [[ -n "${item_title}" ]]; then
   # fix for websites that need various video parts, causing title and duration to repeat
@@ -1174,7 +1174,7 @@ If you use [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.12.0</string>
+	<string>1.12.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

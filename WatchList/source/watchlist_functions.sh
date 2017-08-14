@@ -1,6 +1,5 @@
 export LANG=en_GB.UTF-8 # deal with special characters
-PATH="/usr/local/bin:${PATH}"
-readonly youtube_dl="$(./_sharedresources 'youtube_dl')"
+PATH="$(./_sharedresources 'mediainfo' 'youtubedl')"
 IFS=$'\n'
 
 # global variables
@@ -145,6 +144,7 @@ function watch_script_filter {
     echo "<item uuid='${line_number}' arg='${line_number}' valid='${valid}'>"
     echo "<title><![CDATA[${item_title}]]></title>"
     echo "${subtitle_item}"
+    echo "<quicklookurl>${item_location}</quicklookurl>"
     echo "<icon>icon.png</icon>"
     echo "</item>"
   done
