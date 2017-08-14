@@ -1,6 +1,6 @@
 #!/bin/bash
 
-readonly valid_resources=('youtube_dl' 'ffmpeg' 'mediainfo') # Keep in sync with resource functions
+readonly valid_resources=('youtube_dl' 'ffmpeg' 'mediainfo' 'cpulimit') # Keep in sync with resource functions
 readonly shared_resources_id='com.vitorgalvao.alfred._sharedresources'
 readonly shared_resources_dir="$(dirname "${alfred_workflow_data}")/${shared_resources_id}"
 readonly PATH=/usr/local/bin:"${shared_resources_dir}":"${PATH}"
@@ -131,6 +131,30 @@ function mediainfo_getter {
   fi
 
   echo -n "${mediainfo_path}"
+}
+
+function cpulimit_getter {
+  local cpulimit_path
+  cpulimit_path="$(command -v 'cpulimit')"
+
+  if [[ -z "${cpulimit_path}" ]]; then
+    local tar_extract cpulimit_version
+
+    cpulimit_path="${shared_resources_dir}/cpulimit"
+    readonly cpulimit_version='0.2'
+    readonly tar_extract="$(mktemp -d)"
+
+    ensure_resources_dir
+
+    if curl --silent "https://homebrew.bintray.com/bottles/cpulimit-${cpulimit_version}.sierra.bottle.tar.gz" | tar xC "${tar_extract}"; then
+      mv "${tar_extract}/cpulimit/${cpulimit_version}/bin/cpulimit" "${cpu_limit_path}"
+      chmod +x "${cpulimit_path}"
+    else
+      curl_error
+    fi
+  fi
+
+  echo -n "${cpulimit_path}"
 }
 
 [[ "${#}" -ne 1 ]] && wrong_usage # Require exactly one argument
