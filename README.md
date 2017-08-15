@@ -114,6 +114,11 @@ Interact with your Pinboard bookmarks
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/PinPlus) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/PinPlus/PinPlus.alfredworkflow)
 
+### ProcessControl <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/ProcessControl/source/icon.png' width='60' align='center' alt='ProcessControl icon'>
+Deal with misbehaving processes
+
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/ProcessControl) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/ProcessControl/ProcessControl.alfredworkflow)
+
 ### RecentDownloads <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RecentDownloads/source/icon.png' width='60' align='center' alt='RecentDownloads icon'>
 List and act on the contents of your ~/Downloads directory
 
