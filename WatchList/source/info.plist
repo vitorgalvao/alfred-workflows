@@ -422,7 +422,7 @@ fi</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
-				<false/>
+				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
@@ -671,7 +671,7 @@ fi</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
-				<false/>
+				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
@@ -780,7 +780,7 @@ open -t "${towatch}" "${watched}"</string>
 				<string>source ./watchlist_functions.sh
 use_list watched
 
-cat "${list}" | cut -d'⸗' -f3 | perl -pe 's/\n/\0/' | xargs -0 ./_licensed/trash/trash
+cat "${list}" | cut -d'⸗' -f3 | perl -pe 's/\n/\0/' | xargs -0 trash
 cat /dev/null &gt; "${list}"
 
 notification "Watched files were moved to the trash"</string>
@@ -882,7 +882,7 @@ fi</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
-				<false/>
+				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
@@ -986,7 +986,7 @@ Select in the Finder the files (or directories) you wish to add to your list, an
 
 ![](https://i.imgur.com/Bp0Rsuq.png)
 
-If you choose any of the options that let you pick from a list (`wlp`, `wlu`, and `wls`) and continue typing after it (don’t add a space, just type), you’ll start filtering — names, file sizes, durations, and a few more — so you can quickly find the ones you want.
+If you choose any of the options that let you pick from a list (`wlp`, `wlu`, and `wls`) and continue typing after it, you’ll start filtering — names, file sizes, durations, and a few more — so you can quickly find the ones you want.
 
 ![](https://i.imgur.com/vuWA4wI.png)
 
@@ -1174,7 +1174,7 @@ If you use [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.12.2</string>
+	<string>1.12.3</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

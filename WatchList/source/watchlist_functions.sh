@@ -1,5 +1,5 @@
 export LANG=en_GB.UTF-8 # deal with special characters
-PATH="$(./_sharedresources 'mediainfo' 'youtubedl')"
+PATH="$(./_sharedresources 'mediainfo' 'trash' 'youtubedl')"
 IFS=$'\n'
 
 # global variables

@@ -6,7 +6,7 @@ Select in the Finder the files (or directories) you wish to add to your list, an
 
 ![](https://i.imgur.com/Bp0Rsuq.png)
 
-If you choose any of the options that let you pick from a list (`wlp`, `wlu`, and `wls`) and continue typing after it (don’t add a space, just type), you’ll start filtering — names, file sizes, durations, and a few more — so you can quickly find the ones you want.
+If you choose any of the options that let you pick from a list (`wlp`, `wlu`, and `wls`) and continue typing after it, you’ll start filtering — names, file sizes, durations, and a few more — so you can quickly find the ones you want.
 
 ![](https://i.imgur.com/vuWA4wI.png)
 
