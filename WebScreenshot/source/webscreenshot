@@ -85,6 +85,7 @@ function upload_file {
   local screenshot_del="$(tail -1 <<< "${upload_response}" | sed 's/Delete page: //')"
 
   register_links "${screenshot_url}" "${screenshot_del}"
+  pbcopy <<< "${screenshot_url}"
 }
 
 if [[ "${1}" == 'take_screenshot' ]]; then

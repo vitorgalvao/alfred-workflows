@@ -137,29 +137,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>./webscreenshot take_screenshot no_resample</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>6F290C99-0052-46BF-BB61-CDDB316DEBB1</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>action</key>
 				<integer>0</integer>
 				<key>argument</key>
@@ -185,6 +162,29 @@
 			<string>alfred.workflow.trigger.hotkey</string>
 			<key>uid</key>
 			<string>E29003AD-6B07-4A51-B8E5-814A5F3F7270</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>./webscreenshot take_screenshot no_resample</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>6F290C99-0052-46BF-BB61-CDDB316DEBB1</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -461,7 +461,7 @@ file_contents.each_line.with_index do |line, index|
   screenshot_del = line.split('|')[1].strip
   screenshot_name = File.basename(screenshot_url)
 
-  script_filter_items.push(title: "#{index + 1} / #{screenshot_name}", subtitle: '↩ to view, ⌘↩ to delete', mods: { cmd: { arg: screenshot_del } }, arg: screenshot_url)
+  script_filter_items.push(title: "#{index + 1} / #{screenshot_name}", subtitle: '↩ to open in web browser, ⌘↩ to delete, ⇧ to view in quicklook', mods: { cmd: { arg: screenshot_del } }, arg: screenshot_url)
 end
 
 puts({ items: script_filter_items }.to_json)
@@ -601,7 +601,7 @@ Each of those has a counterpart. The top ones leave the images untouched, while 
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.5.0</string>
+	<string>1.5.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
