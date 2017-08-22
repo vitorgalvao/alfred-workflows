@@ -144,7 +144,7 @@ function watch_script_filter {
     echo "<item uuid='${line_number}' arg='${line_number}' valid='${valid}'>"
     echo "<title><![CDATA[${item_title}]]></title>"
     echo "${subtitle_item}"
-    echo "<quicklookurl>${item_location}</quicklookurl>"
+    echo "<quicklookurl><![CDATA[${item_location}]]></quicklookurl>"
     echo "<icon>icon.png</icon>"
     echo "</item>"
   done
