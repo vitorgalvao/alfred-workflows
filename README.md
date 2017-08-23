@@ -75,7 +75,7 @@ Removes extraneous information from URLs
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/LinkClean) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/LinkClean/LinkClean.alfredworkflow)
 
 ### MachineClean <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MachineClean/source/icon.png' width='60' align='center' alt='MachineClean icon'>
-Lock your keyboard and trackpad temporarily, so you can clean them
+Lock your keyboard temporarily, so you can clean it
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/MachineClean) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MachineClean/MachineClean.alfredworkflow)
 

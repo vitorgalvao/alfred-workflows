@@ -74,7 +74,7 @@
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
 	<key>description</key>
-	<string>Lock your keyboard temporarily, so you can clean them</string>
+	<string>Lock your keyboard temporarily, so you can clean it</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -427,7 +427,7 @@ You will be asked for your password when locking since this operation requires e
 		<string>30</string>
 	</dict>
 	<key>version</key>
-	<string>1.6.1</string>
+	<string>1.6.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
