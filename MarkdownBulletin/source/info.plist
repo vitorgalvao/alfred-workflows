@@ -271,7 +271,7 @@ All the code is in the script inside the Workflow — it’s one line per substi
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.19.0</string>
+	<string>1.19.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
