@@ -23,19 +23,6 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>488D830D-8971-4DE1-91AC-166C6109A1B5</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>2E64AFDF-D743-40D1-9628-3EBB90CB167E</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
 				<string>2C36AAF9-7F21-42CA-8646-ECA398B51F39</string>
 				<key>modifiers</key>
 				<integer>0</integer>
@@ -95,97 +82,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>externaltriggerid</key>
-				<string>rename</string>
-				<key>passinputasargument</key>
-				<true/>
-				<key>passvariables</key>
-				<true/>
-				<key>workflowbundleid</key>
-				<string>self</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.callexternaltrigger</string>
-			<key>uid</key>
-			<string>488D830D-8971-4DE1-91AC-166C6109A1B5</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>acceptsmulti</key>
-				<false/>
-				<key>filetypes</key>
-				<array/>
-				<key>name</key>
-				<string>Rename</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.action</string>
-			<key>uid</key>
-			<string>4B30C050-DEC1-4375-8B11-20FA04A89596</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>file="${1}"
-file_name="$(basename "${file}")"
-file_dir="$(dirname "${file}")"
-file_extension="$([[ "${file_name}" = *.* ]] &amp;&amp; echo ".${file_name##*.}" || echo '')"
-file_no_extension="${file_name%.*}"
-
-cat &lt;&lt; EOF
-{
-  "alfredworkflow" : {
-    "arg" : "${file_no_extension}",
-    "variables" : {
-      "original_file_path": "${file}",
-      "original_file_name": "${file_name}",
-      "original_file_dir": "${file_dir}",
-      "original_file_name_extension": "${file_extension}",
-      "original_file_name_no_extension": "${file_no_extension}"
-    }
-  }
-}
-EOF</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>2D996A5F-76DB-4596-BAC7-C918B0EFD902</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>triggerid</key>
-				<string>rename</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>2E64AFDF-D743-40D1-9628-3EBB90CB167E</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -205,25 +101,6 @@ EOF</string>
 			<string>D6AD9678-C017-40CD-BD91-5E4102C39AD3</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>subtext</key>
-				<string>Don’t include the file extension, as it will be preserved</string>
-				<key>text</key>
-				<string>Rename to</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>2C36AAF9-7F21-42CA-8646-ECA398B51F39</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -314,6 +191,84 @@ fi #find</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>subtext</key>
+				<string>Don’t include the file extension, as it will be preserved</string>
+				<key>text</key>
+				<string>Rename to</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>2C36AAF9-7F21-42CA-8646-ECA398B51F39</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsmulti</key>
+				<false/>
+				<key>filetypes</key>
+				<array/>
+				<key>name</key>
+				<string>Rename</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>4B30C050-DEC1-4375-8B11-20FA04A89596</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>file="${1}"
+file_name="$(basename "${file}")"
+file_dir="$(dirname "${file}")"
+file_extension="$([[ "${file_name}" = *.* ]] &amp;&amp; echo ".${file_name##*.}" || echo '')"
+file_no_extension="${file_name%.*}"
+
+cat &lt;&lt; EOF
+{
+  "alfredworkflow" : {
+    "arg" : "${file_no_extension}",
+    "variables" : {
+      "original_file_path": "${file}",
+      "original_file_name": "${file_name}",
+      "original_file_dir": "${file_dir}",
+      "original_file_name_extension": "${file_extension}",
+      "original_file_name_no_extension": "${file_no_extension}"
+    }
+  }
+}
+EOF</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>2D996A5F-76DB-4596-BAC7-C918B0EFD902</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>count</key>
 				<integer>1</integer>
 				<key>keychar</key>
@@ -346,62 +301,48 @@ Use Alfred to pick what you want to rename and choose `Rename` as the action. Al
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>640</integer>
+			<integer>810</integer>
 			<key>ypos</key>
-			<integer>130</integer>
+			<integer>20</integer>
 		</dict>
 		<key>2C36AAF9-7F21-42CA-8646-ECA398B51F39</key>
 		<dict>
 			<key>xpos</key>
-			<integer>250</integer>
+			<integer>420</integer>
 			<key>ypos</key>
-			<integer>130</integer>
+			<integer>20</integer>
 		</dict>
 		<key>2D996A5F-76DB-4596-BAC7-C918B0EFD902</key>
 		<dict>
 			<key>xpos</key>
-			<integer>450</integer>
+			<integer>220</integer>
 			<key>ypos</key>
-			<integer>10</integer>
-		</dict>
-		<key>2E64AFDF-D743-40D1-9628-3EBB90CB167E</key>
-		<dict>
-			<key>xpos</key>
-			<integer>50</integer>
-			<key>ypos</key>
-			<integer>130</integer>
-		</dict>
-		<key>488D830D-8971-4DE1-91AC-166C6109A1B5</key>
-		<dict>
-			<key>xpos</key>
-			<integer>640</integer>
-			<key>ypos</key>
-			<integer>10</integer>
+			<integer>20</integer>
 		</dict>
 		<key>4B30C050-DEC1-4375-8B11-20FA04A89596</key>
 		<dict>
 			<key>xpos</key>
-			<integer>50</integer>
+			<integer>20</integer>
 			<key>ypos</key>
-			<integer>10</integer>
+			<integer>20</integer>
 		</dict>
 		<key>947A1C83-3935-488B-BBBC-A01B072DD9A0</key>
 		<dict>
 			<key>xpos</key>
-			<integer>250</integer>
+			<integer>420</integer>
 			<key>ypos</key>
-			<integer>250</integer>
+			<integer>140</integer>
 		</dict>
 		<key>D6AD9678-C017-40CD-BD91-5E4102C39AD3</key>
 		<dict>
 			<key>xpos</key>
-			<integer>450</integer>
+			<integer>620</integer>
 			<key>ypos</key>
-			<integer>130</integer>
+			<integer>20</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.1</string>
+	<string>1.1.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
