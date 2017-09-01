@@ -64,6 +64,11 @@ function getfile {
   xmlencodedurl="$(perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&<>"'\''})' <<< "${url}")"
   xattr -w com.apple.metadata:kMDItemWhereFroms '<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><array><string>'"${xmlencodedurl}"'</string></array></plist>' "${filename}"
 
+  # xattr seems to return before the action is complete, not giving enough time for the file to have the attribute before sending to WatchList, so only continue after the attribute is present
+  until xattr "${filename}" | grep --quiet 'com.apple.metadata:kMDItemWhereFroms'; do
+    sleep 1
+  done
+
   rm "${progressfile}"
 }
 
