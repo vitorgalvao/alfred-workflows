@@ -25,7 +25,7 @@ def finder_dir
 end
 
 def notification(message)
-  system(Dir.getwd + '/Notificator.app/Contents/MacOS/applet', message, ENV['alfred_workflow_name'])
+  system("#{__dir__}/Notificator.app/Contents/Resources/Scripts/notificator", '--message', message, '--title', ENV['alfred_workflow_name'])
 end
 
 def local_list
