@@ -104,7 +104,7 @@
 				<integer>102</integer>
 				<key>script</key>
 				<string>function notification {
-  ./Notificator.app/Contents/MacOS/applet "${1}" "${alfred_workflow_name}"
+  ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
 }
 
 front_app="$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')"
@@ -173,7 +173,7 @@ function url_exists {
 function notification {
   readonly local notificator="$(find . -type d -name 'Notificator.app')"
   if [[ -n "${notificator}" ]]; then
-    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
+    "${notificator}/Contents/Resources/Scripts/notificator" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
     return
   fi
 
@@ -271,7 +271,7 @@ fi #find</string>
 				<integer>0</integer>
 				<key>script</key>
 				<string>function notification {
-  ./Notificator.app/Contents/MacOS/applet "${1}" "${alfred_workflow_name}"
+  ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
 }
 
 front_app="$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')"
@@ -408,7 +408,7 @@ Set keyboard shortcuts or use the keywords `freeze` and `unfreeze` to call it.
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.2.2</string>
+	<string>1.2.3</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
