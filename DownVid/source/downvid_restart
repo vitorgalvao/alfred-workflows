@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function notification {
-  ./Notificator.app/Contents/MacOS/applet "${1}" "${alfred_workflow_name}"
+  ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
 }
 
 if [[ "${1}" == 'restart_download_true' ]]; then

@@ -32,7 +32,7 @@ else
 fi
 
 function notification {
-  ./Notificator.app/Contents/MacOS/applet "${1}" "${alfred_workflow_name}"
+  ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
 }
 
 function watchlist_exist? {
