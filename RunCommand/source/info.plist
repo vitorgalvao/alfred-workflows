@@ -318,7 +318,7 @@ else
   exit_message="The command exited with an error."
 fi
 
-./Notificator.app/Contents/MacOS/applet "${exit_message}" "${alfred_workflow_name}" "${exit_sub}"</string>
+./Notificator.app/Contents/Resources/Scripts/notificator --message "${exit_message}" --title "${alfred_workflow_name}" --subtitle "${exit_sub}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -408,7 +408,7 @@ function url_exists {
 function notification {
   readonly local notificator="$(find . -type d -name 'Notificator.app')"
   if [[ -n "${notificator}" ]]; then
-    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
+    "${notificator}/Contents/Resources/Scripts/notificator" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
     return
   fi
 
@@ -489,7 +489,7 @@ else
   exit_message="The command exited with an error."
 fi
 
-./Notificator.app/Contents/MacOS/applet "${exit_message}" "${alfred_workflow_name}" "${exit_sub}"</string>
+./Notificator.app/Contents/Resources/Scripts/notificator --message "${exit_message}" --title "${alfred_workflow_name}" --subtitle "${exit_sub}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -669,7 +669,7 @@ To get the output of the command as `Large Type`, use ⌘ when actioning it.</st
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.12.1</string>
+	<string>1.12.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
