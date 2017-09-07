@@ -615,7 +615,7 @@ The two Workflow Environment Variables represent the directories (relative to yo
 		<string>Downloads</string>
 	</dict>
 	<key>version</key>
-	<string>1.21.11</string>
+	<string>1.21.12</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
