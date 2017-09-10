@@ -603,7 +603,7 @@ Each of those has a counterpart. The top ones leave the images untouched, while 
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.5.3</string>
+	<string>1.5.4</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
