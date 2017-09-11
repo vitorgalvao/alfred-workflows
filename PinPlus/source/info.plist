@@ -308,13 +308,19 @@ function url_exists {
 }
 
 function notification {
-  local readonly terminal_notifier="$(find . -name terminal-notifier.app)"
-
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}"/Contents/MacOS/terminal-notifier -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
-  else
-    osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/Resources/Scripts/notificator" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
+    return
   fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
 }
 
 # Local sanity checks
@@ -490,6 +496,8 @@ add_unread</string>
 			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>2</integer>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -537,6 +545,8 @@ show_bookmarks(All_bookmarks_json)</string>
 			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>2</integer>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -1033,7 +1043,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 		<string>unread_action</string>
 	</array>
 	<key>version</key>
-	<string>1.1.2</string>
+	<string>1.1.3</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

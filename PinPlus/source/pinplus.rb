@@ -8,7 +8,7 @@ All_bookmarks_json = "#{ENV['alfred_workflow_data']}/all_bookmarks.json".freeze
 Unread_bookmarks_json = "#{ENV['alfred_workflow_data']}/unread_bookmarks.json".freeze
 
 def notification(message)
-  system("#{__dir__}/Notificator.app/Contents/MacOS/applet", message, ENV['alfred_workflow_name'])
+  system("#{__dir__}/Notificator.app/Contents/Resources/Scripts/notificator", '--message', message, '--title', ENV['alfred_workflow_name'])
 end
 
 def success_sound
@@ -165,9 +165,12 @@ def write_bookmarks(bookmarks, bookmarks_file)
   json = []
 
   bookmarks.each do |bookmark|
+    split_href = bookmark['href'].split('/').reject { |a| a.start_with?('http') || a.empty? }.join(' ').sub('www.', '')
+
     json.push(
       title: bookmark['description'],
       subtitle: bookmark['href'],
+      match: "#{bookmark['description']} #{split_href} #{bookmark['extended']} #{bookmark['tags']}",
       mods: {
         fn: { subtitle: bookmark['extended'] },
         ctrl: { subtitle: bookmark['tags'] }
