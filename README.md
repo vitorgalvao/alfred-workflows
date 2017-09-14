@@ -14,6 +14,11 @@ Pauses and resumes execution of the frontmost app
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/AppFreeze) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/AppFreeze/AppFreeze.alfredworkflow)
 
+### AppVersion <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/AppVersion/source/icon.png' width='60' align='center' alt='AppVersion icon'>
+Show version number of installed apps
+
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/AppVersion) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/AppVersion/AppVersion.alfredworkflow)
+
 ### BugNot <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/BugNot/source/icon.png' width='60' align='center' alt='BugNot icon'>
 Get logins from bugmenot
 
