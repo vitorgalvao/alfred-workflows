@@ -1,6 +1,6 @@
 Call `rq` and a list of your top-level apps at `/Applications` with the file quarantine attribute will be shown. Action any of them and the quarantine will be removed.
 
-![](https://i.imgur.com/q1vMCrb.png)
+![](https://i.imgur.com/6LRPSeI.png)
 
 Results are treated as files, so you can select a bunch of them at once via the File Buffer, to act on multiple apps.
 

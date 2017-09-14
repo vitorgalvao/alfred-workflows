@@ -95,10 +95,12 @@ done</string>
 			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
-				<integer>2</integer>
+				<integer>1</integer>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
@@ -112,7 +114,7 @@ done</string>
 				<key>queuemode</key>
 				<integer>1</integer>
 				<key>runningsubtext</key>
-				<string>Getting app list…</string>
+				<string>Finding quaratined apps in /Applications…</string>
 				<key>script</key>
 				<string>app_list=()
 
@@ -148,7 +150,7 @@ fi</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
-				<false/>
+				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
@@ -266,7 +268,7 @@ fi #find</string>
 	<key>readme</key>
 	<string>Call `rq` and a list of your top-level apps at `/Applications` with the file quarantine attribute will be shown. Action any of them and the quarantine will be removed.
 
-![](https://i.imgur.com/q1vMCrb.png)
+![](https://i.imgur.com/6LRPSeI.png)
 
 Results are treated as files, so you can select a bunch of them at once via the File Buffer, to act on multiple apps.
 
@@ -311,7 +313,7 @@ Warning: quarantining is a macOS security feature, and I do not recommend you di
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.7</string>
+	<string>1.0.8</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
