@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.vitorgalvao.alfred.cardsearch</string>
+	<key>connections</key>
+	<dict>
+		<key>2848A56F-1A95-4B70-916A-821B9E221D5C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>39601CD0-D41D-4445-A22D-F4841AA1ED9E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>820CAA0D-91F1-435C-B062-EEB64D6A5762</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2848A56F-1A95-4B70-916A-821B9E221D5C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Vítor Galvão</string>
+	<key>description</key>
+	<string>Search for trading card game cards</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>CardSearch</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>readonly remote_info_plist="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
+readonly workflow_url="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/${alfred_workflow_name}.alfredworkflow"
+readonly workflow_type='workflow'
+readonly frequency_check='15'
+
+# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED UNLESS YOU KNOW WHAT YOU ARE DOING
+function abort {
+  echo "${1}" &gt;&amp;2
+  exit 1
+}
+
+function url_exists {
+  curl --silent --location --output /dev/null --fail --range 0-0 "${1}"
+}
+
+function notification {
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/Resources/Scripts/notificator" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
+    return
+  fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+}
+
+# Local sanity checks
+readonly local_info_plist='info.plist'
+readonly local_version="$(/usr/libexec/PlistBuddy -c 'print version' "${local_info_plist}")"
+
+[[ -n "${local_version}" ]] || abort 'You need to set a workflow version in the configuration sheet.'
+[[ "${workflow_type}" =~ ^(workflow|page)$ ]] || abort "'workflow_type' (${workflow_type}) needs to be one of 'workflow' or 'page'."
+[[ "${frequency_check}" =~ ^[0-9]+$ ]] || abort "'frequency_check' (${frequency_check}) needs to be a number."
+
+# Check for updates
+if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
+  if ! url_exists "${remote_info_plist}"; then abort "'remote_info_plist' (${remote_info_plist}) appears to not be reachable."; fi # Remote sanity check
+
+  readonly tmp_file="$(mktemp)"
+  curl --silent --location --output "${tmp_file}" "${remote_info_plist}"
+  readonly remote_version="$(/usr/libexec/PlistBuddy -c 'print version' "${tmp_file}")"
+
+  if [[ "${local_version}" != "${remote_version}" ]]; then
+    if [[ "${workflow_type}" == 'page' ]]; then
+      notification 'Opening download page…'
+      open "${workflow_url}"
+    else
+      if url_exists "${workflow_url}"; then
+        notification 'Downloading and installing…'
+        curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${workflow_url}"
+        open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
+      else
+        abort "'workflow_url' (${workflow_url}) appears to not be reachable."
+      fi # url_exists
+    fi # workflow_type
+  else
+    touch "${local_info_plist}" # Reset timer by touching local file
+  fi # diff
+fi #find</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>39601CD0-D41D-4445-A22D-F4841AA1ED9E</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>mtg</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>1</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Searching matching card names…</string>
+				<key>script</key>
+				<string>require 'cgi'
+require 'json'
+require 'open-uri'
+
+deckbrew_url = 'https://api.deckbrew.com/mtg/cards?name='
+gatherer_img = 'http://gatherer.wizards.com/Handlers/Image.ashx?type=card&amp;multiverseid='
+gatherer_url = 'http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid='
+
+search_query = ARGV[0]
+escaped_query = CGI.escape(search_query)
+search_url = "#{deckbrew_url}#{escaped_query}"
+
+results = JSON.load(open(search_url))
+
+if results.empty?
+  puts({ items: [title: "No cards found with “#{search_query}”"] }.to_json)
+  exit 0
+end
+
+script_filter_items = []
+
+results.each do |result|
+  name = result['name']
+
+  types = result['types'] || []
+  subtypes = result['subtypes'] || [] 
+  joined_types = (types + subtypes).join(' ')
+
+  converted_mana_cost = result['cmc']
+  mana_cost = result['cost'].delete('{}')
+
+  text = result['text']
+
+  editions = result['editions'].map { |edition| "#{edition['set']} #{edition['rarity']}" }.join(', ')
+  multiverse_id = result['editions'][0]['multiverse_id']
+
+  power = result['power']
+  toughness = result['toughness']
+  pt = power.nil? ? '' : " 𐄁 #{power}/#{toughness}"
+
+  script_filter_items.push(title: name, autocomplete: name, subtitle: "#{mana_cost} (#{converted_mana_cost}) 𐄁 #{joined_types}#{pt} 𐄁 #{editions}", quicklookurl: "#{gatherer_img}#{multiverse_id}", arg: "#{gatherer_url}#{multiverse_id}")
+end
+
+puts({ items: script_filter_items }.to_json)</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Search for trading card game cards</string>
+				<key>title</key>
+				<string>CardSearch</string>
+				<key>type</key>
+				<integer>2</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>820CAA0D-91F1-435C-B062-EEB64D6A5762</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>{query}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>2848A56F-1A95-4B70-916A-821B9E221D5C</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>Search for Magic: The Gathering cards by name with `mtg` followed by your search string. Press ⇧ or ⌘Y for a quicklook preview of the card, or ↩ to open it on the [Gatherer card database](http://gatherer.wizards.com/).
+
+![](https://i.imgur.com/KC43CeL.png)</string>
+	<key>uidata</key>
+	<dict>
+		<key>2848A56F-1A95-4B70-916A-821B9E221D5C</key>
+		<dict>
+			<key>xpos</key>
+			<integer>210</integer>
+			<key>ypos</key>
+			<integer>20</integer>
+		</dict>
+		<key>39601CD0-D41D-4445-A22D-F4841AA1ED9E</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>390</integer>
+			<key>ypos</key>
+			<integer>20</integer>
+		</dict>
+		<key>820CAA0D-91F1-435C-B062-EEB64D6A5762</key>
+		<dict>
+			<key>xpos</key>
+			<integer>30</integer>
+			<key>ypos</key>
+			<integer>20</integer>
+		</dict>
+	</dict>
+	<key>version</key>
+	<string>1.0.0</string>
+	<key>webaddress</key>
+	<string>https://vitorgalvao.com/</string>
+</dict>
+</plist>
