@@ -429,7 +429,7 @@ You will be asked for your password when locking since this operation requires e
 		<string>30</string>
 	</dict>
 	<key>version</key>
-	<string>1.6.3</string>
+	<string>1.6.4</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
