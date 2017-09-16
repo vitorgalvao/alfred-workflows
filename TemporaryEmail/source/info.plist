@@ -239,27 +239,6 @@ fi #find</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>keyword</key>
-				<string>tmpmail</string>
-				<key>subtext</key>
-				<string>Disposable forwarding email</string>
-				<key>text</key>
-				<string>Forwarding email</string>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>1C06D0AC-A717-44C6-A0ED-955E5AC4BBED</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -299,6 +278,27 @@ notification "Temporary email address copied to clipboard. You’ll need to conf
 			<string>49CFE1AC-EDB4-4A08-B326-089208B64670</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>tmpmail</string>
+				<key>subtext</key>
+				<string>Disposable forwarding email</string>
+				<key>text</key>
+				<string>Forwarding email</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>1C06D0AC-A717-44C6-A0ED-955E5AC4BBED</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -362,7 +362,7 @@ With any of the options, giving it an argument will try to use that specific nam
 		<string>forwarding_email</string>
 	</array>
 	<key>version</key>
-	<string>1.5.1</string>
+	<string>1.5.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
