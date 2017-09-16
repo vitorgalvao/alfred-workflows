@@ -9,10 +9,6 @@ readonly program="$(basename "${0}")"
 readonly applet="$(dirname "$(dirname "$(dirname "${0}")")")/MacOS/applet"
 readonly app="$(dirname "$(dirname "$(dirname "${applet}")")")"
 
-readonly rsrc="$(dirname "$(dirname "${0}")")/applet.rsrc"
-readonly rsrc_md5='bb347efb37a44961d1c636022db65182'
-readonly rsrc_base64='AAABAAAAASQAAAAkAAAARgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABpAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAQAAAAEkAAAAJAAAAEYHAAAAIQAAAAAcAEYAAXNjc3oAAAASc3BzaAAAAB4AAP//AAAAAAEAAAAAAP//AAAAHgIAAAA='
-
 function syntax_error {
   echo "${program}: ${1}\nTry \`${program} --help\` for more information." >&2
   exit 1
@@ -67,6 +63,6 @@ if [[ -z "${notificator_message}" ]]; then
   exit 1
 fi
 
-[[ "$(md5 -q "${rsrc}")" != "${rsrc_md5}" ]] && base64 --decode <<< "${rsrc_base64}" > "${rsrc}" # If the rsrc file changed for any reason, we might get the startup screen (asks to Run or Quit the script). This reverts it to a version that does not do that
-touch "${app}" # For some reason, if we do not do this the first time notifications will never fire
+touch "${app}" # Notifications will never fire if we do not do this the first time, for some reason
+osascript -l JavaScript -e 'ObjC.import("Cocoa"); while ($.NSEvent.modifierFlags & $.NSControlKeyMask) { delay(0.2) }' # Prevent script from continuing while ctrl is pressed, otherwise we get the "Press Run to run this script, or Quit to quit." message
 "${applet}" "${notificator_message}" "${notificator_title}" "${notificator_subtitle}" "${notificator_sound}"
