@@ -6,6 +6,32 @@
 	<string>com.vitorgalvao.alfred.cardsearch</string>
 	<key>connections</key>
 	<dict>
+		<key>0A0E99D1-B148-47E0-BD14-7F233173BF37</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>CA02F6D7-6258-4676-B230-C11E9D0E023E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>1AC1AD97-F4A1-4559-A916-9EE3455CBAE5</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>CA02F6D7-6258-4676-B230-C11E9D0E023E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>2848A56F-1A95-4B70-916A-821B9E221D5C</key>
 		<array>
 			<dict>
@@ -20,6 +46,52 @@
 			</dict>
 		</array>
 		<key>820CAA0D-91F1-435C-B062-EEB64D6A5762</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>FC9A7F1E-2AFF-4329-A471-096385302BDB</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>0A0E99D1-B148-47E0-BD14-7F233173BF37</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Paste as markdown link</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>1AC1AD97-F4A1-4559-A916-9EE3455CBAE5</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Paste name and URL</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>CA02F6D7-6258-4676-B230-C11E9D0E023E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>39601CD0-D41D-4445-A22D-F4841AA1ED9E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>FC9A7F1E-2AFF-4329-A471-096385302BDB</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -132,6 +204,25 @@ fi #find</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>{query}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>2848A56F-1A95-4B70-916A-821B9E221D5C</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -195,7 +286,7 @@ results.each do |result|
   toughness = result['toughness']
   pt = power.nil? ? '' : " 𐄁 #{power}/#{toughness}"
 
-  script_filter_items.push(title: name, autocomplete: name, subtitle: "#{mana_cost} (#{converted_mana_cost}) 𐄁 #{joined_types}#{pt} 𐄁 #{editions}", quicklookurl: "#{gatherer_img}#{multiverse_id}", arg: "#{gatherer_url}#{multiverse_id}")
+  script_filter_items.push(title: name, autocomplete: name, subtitle: "#{mana_cost} (#{converted_mana_cost}) 𐄁 #{joined_types}#{pt} 𐄁 #{editions}", quicklookurl: "#{gatherer_img}#{multiverse_id}", arg: "#{name}|#{gatherer_url}#{multiverse_id}")
 end
 
 puts({ items: script_filter_items }.to_json)</string>
@@ -222,33 +313,98 @@ puts({ items: script_filter_items }.to_json)</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>browser</key>
+				<key>matchmode</key>
+				<integer>1</integer>
+				<key>matchstring</key>
+				<string>.*\|</string>
+				<key>replacestring</key>
 				<string></string>
-				<key>spaces</key>
-				<string></string>
-				<key>url</key>
-				<string>{query}</string>
-				<key>utf8</key>
-				<true/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.openurl</string>
+			<string>alfred.workflow.utility.replace</string>
 			<key>uid</key>
-			<string>2848A56F-1A95-4B70-916A-821B9E221D5C</string>
+			<string>FC9A7F1E-2AFF-4329-A471-096385302BDB</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<true/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>CA02F6D7-6258-4676-B230-C11E9D0E023E</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>matchmode</key>
+				<integer>1</integer>
+				<key>matchstring</key>
+				<string>(.*)\|(.*)</string>
+				<key>replacestring</key>
+				<string>[$1]($2)</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.replace</string>
+			<key>uid</key>
+			<string>0A0E99D1-B148-47E0-BD14-7F233173BF37</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>matchmode</key>
+				<integer>1</integer>
+				<key>matchstring</key>
+				<string>(.*)\|(.*)</string>
+				<key>replacestring</key>
+				<string>$1: $2</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.replace</string>
+			<key>uid</key>
+			<string>1AC1AD97-F4A1-4559-A916-9EE3455CBAE5</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Search for Magic: The Gathering cards by name with `mtg` followed by your search string. Press ⇧ or ⌘Y for a quicklook preview of the card, or ↩ to open it on the [Gatherer card database](http://gatherer.wizards.com/).
+	<string>Search for Magic: The Gathering cards by name with `mtg` followed by your search string.
 
-![](https://i.imgur.com/KC43CeL.png)</string>
+![](https://i.imgur.com/KC43CeL.png)
+
+⇧ or ⌘Y gives a quicklook preview of the card. ↩ opens it on the [Gatherer card database](http://gatherer.wizards.com/); ⌘↩ pastes as a markdown link; ⌥↩ pastes the name and URL separeted by a colon.</string>
 	<key>uidata</key>
 	<dict>
+		<key>0A0E99D1-B148-47E0-BD14-7F233173BF37</key>
+		<dict>
+			<key>xpos</key>
+			<integer>250</integer>
+			<key>ypos</key>
+			<integer>180</integer>
+		</dict>
+		<key>1AC1AD97-F4A1-4559-A916-9EE3455CBAE5</key>
+		<dict>
+			<key>xpos</key>
+			<integer>250</integer>
+			<key>ypos</key>
+			<integer>270</integer>
+		</dict>
 		<key>2848A56F-1A95-4B70-916A-821B9E221D5C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>210</integer>
+			<integer>330</integer>
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
@@ -259,7 +415,7 @@ puts({ items: script_filter_items }.to_json)</string>
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>390</integer>
+			<integer>510</integer>
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
@@ -270,9 +426,23 @@ puts({ items: script_filter_items }.to_json)</string>
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
+		<key>CA02F6D7-6258-4676-B230-C11E9D0E023E</key>
+		<dict>
+			<key>xpos</key>
+			<integer>330</integer>
+			<key>ypos</key>
+			<integer>150</integer>
+		</dict>
+		<key>FC9A7F1E-2AFF-4329-A471-096385302BDB</key>
+		<dict>
+			<key>xpos</key>
+			<integer>250</integer>
+			<key>ypos</key>
+			<integer>50</integer>
+		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
