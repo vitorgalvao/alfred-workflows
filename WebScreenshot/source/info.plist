@@ -18,6 +18,16 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>BCA1E2BC-3E6C-446A-A7D3-270B1CAC1D76</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
 		</array>
 		<key>181BA7A8-03C0-48A9-AC97-CA21785D1FC1</key>
 		<array>
@@ -463,7 +473,15 @@ file_contents.each_line.with_index do |line, index|
   screenshot_del = line.split('|')[1].strip
   screenshot_name = File.basename(screenshot_url)
 
-  script_filter_items.push(title: "#{index + 1} / #{screenshot_name}", subtitle: '↩ to open in web browser, ⌘↩ to delete, ⇧ to view in quicklook', mods: { cmd: { arg: screenshot_del } }, arg: screenshot_url)
+  script_filter_items.push(
+    title: "#{index + 1} / #{screenshot_name}",
+    subtitle: '↩ to open in web browser, ⌘↩ to delete, ⌥↩ to copy, ⇧ to view in quicklook',
+    mods: {
+        cmd: { subtitle: 'Open screenshot deletion page', arg: screenshot_del },
+        alt: { subtitle: 'Copy screenshot link' }
+    },
+    arg: screenshot_url
+  )
 end
 
 puts({ items: script_filter_items }.to_json)
@@ -507,6 +525,23 @@ puts({ items: script_filter_items }.to_json)
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>BCA1E2BC-3E6C-446A-A7D3-270B1CAC1D76</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>Take screenshots with a keyboard shortcut and upload them directly to [imgur](https://imgur.com/). Will produce both a sound and a visual notification when done, and copy the resulting direct link to your clipboard.
@@ -517,7 +552,7 @@ You may also upload an image (or pdf — imgur also supports it as an upload but
 
 Each of those has a counterpart. The top ones leave the images untouched, while the bottom ones resample them before uploading. This is useful if you have a retina screen, as your images will otherwise appear twice the size when viewed on a browser.
 
-`recentscreenshots` will enumerate recently taken screenshots, ordered from the last. You can then open them in the browser to view (↩) or delete (⌘↩).</string>
+`recentscreenshots` will enumerate recently taken screenshots, ordered from the last. You can then open them in the browser to view (↩), delete (⌘↩), copy (⌥↩), or preview (⇧).</string>
 	<key>uidata</key>
 	<dict>
 		<key>10E94380-B13E-4C23-A3F3-33DADDD06579</key>
@@ -573,6 +608,13 @@ Each of those has a counterpart. The top ones leave the images untouched, while 
 			<key>ypos</key>
 			<integer>490</integer>
 		</dict>
+		<key>BCA1E2BC-3E6C-446A-A7D3-270B1CAC1D76</key>
+		<dict>
+			<key>xpos</key>
+			<integer>310</integer>
+			<key>ypos</key>
+			<integer>610</integer>
+		</dict>
 		<key>C27FD00F-55A5-4455-90A8-D7CC8DF84E7F</key>
 		<dict>
 			<key>xpos</key>
@@ -603,7 +645,7 @@ Each of those has a counterpart. The top ones leave the images untouched, while 
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.5.6</string>
+	<string>1.5.7</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
