@@ -280,7 +280,7 @@ results.each do |result|
   text = result['text']
 
   editions = result['editions'].map { |edition| "#{edition['set']} #{edition['rarity']}" }.join(', ')
-  multiverse_id = result['editions'][0]['multiverse_id']
+  multiverse_id = result['editions'].map { |edition| edition['multiverse_id'] }.reject { |id| id.zero? }.first
 
   power = result['power']
   toughness = result['toughness']
@@ -442,7 +442,7 @@ puts({ items: script_filter_items }.to_json)</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.0</string>
+	<string>1.1.1</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
