@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.vitorgalvao.alfred.markdownbulletin</string>
+	<key>connections</key>
+	<dict>
+		<key>79F45392-6A63-457B-BB92-47A1EC02C4E4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>AA7497F3-9EA5-418D-BD27-F98645BB8A3C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>AA7497F3-9EA5-418D-BD27-F98645BB8A3C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>DE96DCA0-525D-490B-BBFD-27BDB606A892</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Vítor Galvão</string>
+	<key>description</key>
+	<string>Convert Markdown to BBCode</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>MarkdownBulletin</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<true/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>DE96DCA0-525D-490B-BBFD-27BDB606A892</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>1</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>leftcursor</key>
+				<true/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>79F45392-6A63-457B-BB92-47A1EC02C4E4</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>./markdownbulletin "${1}"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>AA7497F3-9EA5-418D-BD27-F98645BB8A3C</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>This Workflow has been deprecated by [MarkdownTransform](https://github.com/vitorgalvao/alfred-workflows/tree/master/MarkdownTransform). It’s available in this form, without an auto-updater, for those who want the older version.
+
+Markdown to BBCode syntax conversion.
+
+The conversions it supports (I can add more via request) are:
+
++ Bold → `**example**`
++ Italic → `*example*`
++ Bold and italic → `***example***`
++ Horizontal rule → `---` or `- - -` or `***` or `* * *` with as many `-` or `*` as you’d like, as long as they’re at least three
++ Strike through → `~~example~~`
++ Images that send to an external URL → `[![](link_to_image)](link_to_website)`
++ Images → `![](link_to_image)`
++ URLs → `[description](link_to_website)`
++ Quotes → start lines with `&gt;` and a space
++ Code blocks → triple backticks on one line, write code, triple backticks on another line to end
++ Inline code → with a backtick at the start and another at the end, by default it’ll convert the text to a monospaced font with grey background
++ Differently sized headers → start lines with `#` or `##` or `###` or `####`, and a space. End them with any number (including none) of spaces and `#` characters
++ Unordered lists → precede items with `+` or `*` or `-`, and a space
++ Ordered lists → precede items with a number, a period, and a space
++ Footnotes → `[^1]` (where `1` is any number) anywhere in your text, and again at the end as `[^1]:` with the footnote’s text
+
+Changes that span multiple lines (code blocks and lists) should be preceded and followed by empty lines (except it they’re at the beginning or end of your text, in which case the extra empty line at the top or bottom, respectively, is not needed).
+
+All the code is in the script inside the Workflow — it’s one line per substitution and they’re all commented so you shouldn’t have much trouble changing anything you’d like to be handled a different way, even if you don’t understand regular expressions (you’ll mostly need to care about what’s on the right side of the commas).</string>
+	<key>uidata</key>
+	<dict>
+		<key>79F45392-6A63-457B-BB92-47A1EC02C4E4</key>
+		<dict>
+			<key>xpos</key>
+			<integer>60</integer>
+			<key>ypos</key>
+			<integer>10</integer>
+		</dict>
+		<key>AA7497F3-9EA5-418D-BD27-F98645BB8A3C</key>
+		<dict>
+			<key>xpos</key>
+			<integer>310</integer>
+			<key>ypos</key>
+			<integer>10</integer>
+		</dict>
+		<key>DE96DCA0-525D-490B-BBFD-27BDB606A892</key>
+		<dict>
+			<key>xpos</key>
+			<integer>550</integer>
+			<key>ypos</key>
+			<integer>10</integer>
+		</dict>
+	</dict>
+	<key>version</key>
+	<string>1.19.2</string>
+	<key>webaddress</key>
+	<string>http://vitorgalvao.com/</string>
+</dict>
+</plist>

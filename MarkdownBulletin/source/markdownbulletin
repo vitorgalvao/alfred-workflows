@@ -1,0 +1,78 @@
+#!/usr/bin/env ruby
+
+# read text from argument
+s = ARGV[0]
+
+# save grab code blocks
+code_blocks = []
+
+s.scan(/(^\n|\A)```(.*?)```/m).each do |match|
+  code_blocks.push(match.join('').strip)
+end
+
+s = s.gsub /(^\n|\A)```(.*?)```/m, '[code]//// CODE BLOCK ////[/code]'
+
+# remove trailing non-breaking space added automatically by IPBoard
+s = s.gsub / +$/, ''
+
+# bypass empty line collapsing done by IPBoard
+s = s.gsub /^$/, "\n"
+
+# horizontal rule
+s = s.gsub /^(- *|\* *){3,}$/, '[hr]'
+
+# image that sends to url
+s = s.gsub /\[!\[[^\]]*\]\((\S*)\)\]\((\S*)\)/, '[url=\2][img=\1][/url]'
+
+# image
+s = s.gsub /!\[[^\]]*\]\((\S*)\)/, '[img=\1]'
+
+# url
+s = s.gsub /\[([^\]]*)\]\((\S*)\)/, '[url=\2]\1[/url]'
+
+# bold and italic
+s = s.gsub /\*\*\*(\S.*?)\*\*\*/, '[b][i]\1[/i][/b]'
+
+# bold
+s = s.gsub /\*\*(\S.*?)\*\*/, '[b]\1[/b]'
+
+# italic
+s = s.gsub /\*(\S.*?)\*/, '[i]\1[/i]'
+
+# strike through
+s = s.gsub /~~(.*)~~/, '[s]\1[/s]'
+
+# quote
+s = s.gsub /^>\s(.*)/, '[quote]\1[/quote]'
+
+# inline code
+s = s.gsub /`(.*?)`/, '[background=#eee][font=courier,monospace]\1[/font][/background]'
+
+# headers
+s = s.gsub /^#\s(.*?)[ #]*$/, '[size=7][b]\1[/b][/size]' # big
+s = s.gsub /^##\s(.*?)[ #]*$/, '[size=6][b]\1[/b][/size]' # medium
+s = s.gsub /^###\s(.*?)[ #]*$/, '[size=5][b]\1[/b][/size]' # small
+s = s.gsub /^####\s(.*?)[ #]*$/, '[size=4][b]\1[/b][/size]' # smallest
+
+# lists
+## unordered
+s = s.gsub /(^\n|\A)([*+-]\s)/, "[list]\n\\2" # beginning
+s = s.gsub /^([*+-]\s.*)(\n\n|\z)/, "\\1\n[/list]\n" # end
+s = s.gsub /^[*+-]\s(.*)/, '[*]\1[/*]' # middle
+
+## ordered
+s = s.gsub /(^\n|\A)(\d\.\s)/, "[list=1]\n\\2" # beginning
+s = s.gsub /^(\d\.\s.*)(\n\n|\z)/, "\\1\n[/list]\n" # end
+s = s.gsub /^\d\.\s(.*)/, '[*]\1[/*]' # middle
+
+# footnotes
+s = s.gsub /^\n{2}(\[\^\d+\])/, "\n\n[hr]\n\\1" # division before references
+s = s.gsub /^\[\^(\d+)\]:\s*(.*)/, "\n[size=3]\\1. \\2[/size]" # style references and space them
+s = s.gsub /\[\^(.*?)\]/, '[sup]\1[/sup]' # footnotes in text
+
+# restore code blocks
+code_blocks.each do |code_block|
+  s = s.sub '//// CODE BLOCK ////', code_block
+end
+
+print s
