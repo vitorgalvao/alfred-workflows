@@ -89,10 +89,10 @@ Search for trading card game cards
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/CardSearch) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/CardSearch/CardSearch.alfredworkflow)
 
-### MarkdownBulletin <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MarkdownBulletin/source/icon.png' width='60' align='center' alt='MarkdownBulletin icon'>
-Convert Markdown to BBCode
+### MarkdownTransform <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MarkdownTransform/source/icon.png' width='60' align='center' alt='MarkdownTransform icon'>
+Convert Markdown to other formats
 
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/MarkdownBulletin) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MarkdownBulletin/MarkdownBulletin.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/MarkdownTransform) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MarkdownTransform/MarkdownTransform.alfredworkflow)
 
 ### MediaThorn <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MediaThorn/source/icon.png' width='60' align='center' alt='MediaThorn icon'>
 Get ratings for different types of media

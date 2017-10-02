@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift "#{__dir__}/_licensed/Redcarpet/gems/redcarpet-3.4.0/lib"
+require 'redcarpet'
+require 'shellwords'
+
+rich_text_style = '
+  <style>
+    body { font-family: sans-serif; font-size: 14px; }
+    code { background-color:#eee; font-family:courier, monospace; }
+    p    { margin: 0; }
+  </style>
+'
+
+markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, strikethrough: true)
+
+text = markdown.render(ARGV[0])
+text = text.gsub(/<img[^>]*>/, '') # Strip images
+text = rich_text_style + text
+
+system("textutil -inputencoding utf8 -convert rtf -stdin -stdout -format html <<< #{text.shellescape} | pbcopy")
