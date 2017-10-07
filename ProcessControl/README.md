@@ -11,4 +11,4 @@ On each process:
 
 ↩ gives more granularity over the options.
 
-![](https://i.imgur.com/CrOp8hi.png)
+![](https://i.imgur.com/ADFGEVj.png)
