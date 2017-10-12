@@ -158,12 +158,13 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>readonly remote_info_plist="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
+				<string># THESE VARIABLES MUST BE SET. SEE THE ONEUPDATER README FOR AN EXPLANATION OF EACH.
+readonly remote_info_plist="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
 readonly workflow_url="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/${alfred_workflow_name}.alfredworkflow"
-readonly workflow_type='workflow'
+readonly download_type='direct'
 readonly frequency_check='4'
 
-# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED UNLESS YOU KNOW WHAT YOU ARE DOING
+# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED!
 function abort {
   echo "${1}" &gt;&amp;2
   exit 1
@@ -176,7 +177,7 @@ function url_exists {
 function notification {
   readonly local notificator="$(find . -type d -name 'Notificator.app')"
   if [[ -n "${notificator}" ]]; then
-    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
+    "${notificator}/Contents/Resources/Scripts/notificator" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
     return
   fi
 
@@ -194,7 +195,7 @@ readonly local_info_plist='info.plist'
 readonly local_version="$(/usr/libexec/PlistBuddy -c 'print version' "${local_info_plist}")"
 
 [[ -n "${local_version}" ]] || abort 'You need to set a workflow version in the configuration sheet.'
-[[ "${workflow_type}" =~ ^(workflow|page)$ ]] || abort "'workflow_type' (${workflow_type}) needs to be one of 'workflow' or 'page'."
+[[ "${download_type}" =~ ^(direct|page|github_release)$ ]] || abort "'download_type' (${download_type}) needs to be one of 'direct', 'page', or 'github_release'."
 [[ "${frequency_check}" =~ ^[0-9]+$ ]] || abort "'frequency_check' (${frequency_check}) needs to be a number."
 
 # Check for updates
@@ -205,23 +206,27 @@ if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
   curl --silent --location --output "${tmp_file}" "${remote_info_plist}"
   readonly remote_version="$(/usr/libexec/PlistBuddy -c 'print version' "${tmp_file}")"
 
-  if [[ "${local_version}" != "${remote_version}" ]]; then
-    if [[ "${workflow_type}" == 'page' ]]; then
-      notification 'Opening download page…'
-      open "${workflow_url}"
-    else
-      if url_exists "${workflow_url}"; then
-        notification 'Downloading and installing…'
-        curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${workflow_url}"
-        open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
-      else
-        abort "'workflow_url' (${workflow_url}) appears to not be reachable."
-      fi # url_exists
-    fi # workflow_type
-  else
+  if [[ "${local_version}" == "${remote_version}" ]]; then
     touch "${local_info_plist}" # Reset timer by touching local file
-  fi # diff
-fi #find</string>
+    exit 0
+  fi
+
+  if [[ "${download_type}" == 'page' ]]; then
+    notification 'Opening download page…'
+    open "${workflow_url}"
+    exit 0
+  fi
+
+  download_url="$([[ "${download_type}" == 'github_release' ]] &amp;&amp; curl --silent "https://api.github.com/repos/${workflow_url}/releases/latest" | grep 'browser_download_url' | head -1 | sed -E 's/.*browser_download_url": "(.*)"/\1/' || echo "${workflow_url}")"
+
+  if url_exists "${download_url}"; then
+    notification 'Downloading and installing…'
+    curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${download_url}"
+    open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
+  else
+    abort "'workflow_url' (${download_url}) appears to not be reachable."
+  fi
+fi</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -471,7 +476,7 @@ Depending on your installed [Ruby](https://www.ruby-lang.org/en/) version (in `/
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.20.0</string>
+	<string>1.20.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
