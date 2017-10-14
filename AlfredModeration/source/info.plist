@@ -1,0 +1,788 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.vitorgalvao.alfred.alfredmoderation</string>
+	<key>connections</key>
+	<dict>
+		<key>1F09A594-F411-4725-830A-71244A83D9CE</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D37B7551-A789-4C56-80E4-5C59045AA4CC</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>27BCDB31-C251-4748-B175-28E6DF936F82</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1F09A594-F411-4725-830A-71244A83D9CE</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>30757622-3110-4C5D-B2EE-93FDE24319B7</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>27BCDB31-C251-4748-B175-28E6DF936F82</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>96E3F57B-84FC-47A2-854C-1CA6BE2DEFFB</string>
+				<key>modifiers</key>
+				<integer>262144</integer>
+				<key>modifiersubtext</key>
+				<string>Paste link</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>F3CF4890-31EA-4464-88FC-9CF740CF7D12</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Paste as BBCode link</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>3B1E29D7-F71A-4220-BDC4-2F1B23B40C57</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Paste as Markdown link</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>32A6A9C1-9296-4D1A-86D5-B3F772AB8C2B</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D4FB16AE-3D79-4F93-8F9E-864F063A4A94</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>3B1E29D7-F71A-4220-BDC4-2F1B23B40C57</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D4FB16AE-3D79-4F93-8F9E-864F063A4A94</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>70429CFB-16A1-411E-8A11-D158490DC2D6</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>32A6A9C1-9296-4D1A-86D5-B3F772AB8C2B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>87EE2158-29F0-4E4E-B089-E4C36A64C27B</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>30757622-3110-4C5D-B2EE-93FDE24319B7</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>96E3F57B-84FC-47A2-854C-1CA6BE2DEFFB</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D4FB16AE-3D79-4F93-8F9E-864F063A4A94</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>A8EDF76B-C093-4FF9-B71C-F4B303811F28</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>87EE2158-29F0-4E4E-B089-E4C36A64C27B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>B870803F-D88C-49EA-AB49-B4CCD5233C49</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>9819254D-A0C1-4B46-8159-9499660603CB</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>BA5717F0-41F9-4D75-9EB5-D589AA04C27C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>FB80EA4C-BD8D-4A10-A2D5-3274E6323F13</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>A8EDF76B-C093-4FF9-B71C-F4B303811F28</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>D4FB16AE-3D79-4F93-8F9E-864F063A4A94</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D37B7551-A789-4C56-80E4-5C59045AA4CC</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>F3CF4890-31EA-4464-88FC-9CF740CF7D12</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D4FB16AE-3D79-4F93-8F9E-864F063A4A94</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>FB80EA4C-BD8D-4A10-A2D5-3274E6323F13</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>70429CFB-16A1-411E-8A11-D158490DC2D6</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Vítor Galvão</string>
+	<key>description</key>
+	<string>Tools to help moderate the Alfred forums</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>AlfredModeration</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>fixedorder</key>
+				<false/>
+				<key>items</key>
+				<string>[{"title":"Troubleshooting","arg":"troubleshooting","subtitle":"Link to troubleshooting help"},{"title":"Snippets","arg":"snippets","subtitle":"Common help messages"}]</string>
+				<key>keyword</key>
+				<string>modd</string>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>subtext</key>
+				<string>What type of help are you providing?</string>
+				<key>title</key>
+				<string>AlfredModeration</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.listfilter</string>
+			<key>uid</key>
+			<string>BA5717F0-41F9-4D75-9EB5-D589AA04C27C</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<true/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>D4FB16AE-3D79-4F93-8F9E-864F063A4A94</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string># THESE VARIABLES MUST BE SET. SEE THE ONEUPDATER README FOR AN EXPLANATION OF EACH.
+readonly remote_info_plist="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
+readonly workflow_url="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/${alfred_workflow_name}.alfredworkflow"
+readonly download_type='direct'
+readonly frequency_check='4'
+
+# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED!
+function abort {
+  echo "${1}" &gt;&amp;2
+  exit 1
+}
+
+function url_exists {
+  curl --silent --location --output /dev/null --fail --range 0-0 "${1}"
+}
+
+function notification {
+  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/Resources/Scripts/notificator" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
+    return
+  fi
+
+  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+}
+
+# Local sanity checks
+readonly local_info_plist='info.plist'
+readonly local_version="$(/usr/libexec/PlistBuddy -c 'print version' "${local_info_plist}")"
+
+[[ -n "${local_version}" ]] || abort 'You need to set a workflow version in the configuration sheet.'
+[[ "${download_type}" =~ ^(direct|page|github_release)$ ]] || abort "'download_type' (${download_type}) needs to be one of 'direct', 'page', or 'github_release'."
+[[ "${frequency_check}" =~ ^[0-9]+$ ]] || abort "'frequency_check' (${frequency_check}) needs to be a number."
+
+# Check for updates
+if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
+  if ! url_exists "${remote_info_plist}"; then abort "'remote_info_plist' (${remote_info_plist}) appears to not be reachable."; fi # Remote sanity check
+
+  readonly tmp_file="$(mktemp)"
+  curl --silent --location --output "${tmp_file}" "${remote_info_plist}"
+  readonly remote_version="$(/usr/libexec/PlistBuddy -c 'print version' "${tmp_file}")"
+
+  if [[ "${local_version}" == "${remote_version}" ]]; then
+    touch "${local_info_plist}" # Reset timer by touching local file
+    exit 0
+  fi
+
+  if [[ "${download_type}" == 'page' ]]; then
+    notification 'Opening download page…'
+    open "${workflow_url}"
+    exit 0
+  fi
+
+  download_url="$([[ "${download_type}" == 'github_release' ]] &amp;&amp; curl --silent "https://api.github.com/repos/${workflow_url}/releases/latest" | grep 'browser_download_url' | head -1 | sed -E 's/.*browser_download_url": "(.*)"/\1/' || echo "${workflow_url}")"
+
+  if url_exists "${download_url}"; then
+    notification 'Downloading and installing…'
+    curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${download_url}"
+    open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
+  else
+    abort "'workflow_url' (${download_url}) appears to not be reachable."
+  fi
+fi</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>D37B7551-A789-4C56-80E4-5C59045AA4CC</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>fixedorder</key>
+				<false/>
+				<key>items</key>
+				<string>[{"title":"Using the debugger","arg":"Open the [debugger](http:\/\/support.alfredapp.com\/workflows:debugger), set the log output to “All Information”, and post the output.","subtitle":"How to get debugger output"},{"title":"Upload Workflow","arg":"We can’t properly help you without access to your Workflow.\n\n\nDebugging can already be hard with access to the code, and you’re asking us to guess yours from a description. There are multiple places where you code or Workflow setup may be going wrong. Without looking at it we’re shooting in the dark, which is a waste of time for everyone involved (including you).\n\n\nRead the [url=https:\/\/www.alfredforum.com\/topic\/10224-reporting-problems-with-workflows\/]Reporting Problems with Workflows[\/url] topic, as it gives a nice overview on how to build an effective report.","subtitle":"Upload your Workflow so we can help"},{"title":"Reporting bugs","arg":"When making a request or a bug report pertaining to a specific workflow, please [b]do not open a new thread to discuss your issue[\/b].\n\n\nMaking a new thread, while it seems like it’ll give your problem visibility, will only fragment the discussion and make it less likely the author and users of the workflow (the people that can actually help) will see it.\n\n\nPlease read the [url=https:\/\/www.alfredforum.com\/topic\/10224-reporting-problems-with-workflows\/]Reporting Problems with Workflows[\/url] topic, as it gives a nice overview on how to make a report with a better chance of being addressed.","subtitle":"Don’t open a new thread to report Workflow bugs"}]</string>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Common help messages</string>
+				<key>title</key>
+				<string>AlfredModeration Snippets</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.listfilter</string>
+			<key>uid</key>
+			<string>32A6A9C1-9296-4D1A-86D5-B3F772AB8C2B</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>variables</key>
+				<dict/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>70429CFB-16A1-411E-8A11-D158490DC2D6</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>inputstring</key>
+				<string>{query}</string>
+				<key>matchcasesensitive</key>
+				<true/>
+				<key>matchmode</key>
+				<integer>0</integer>
+				<key>matchstring</key>
+				<string>snippets</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.filter</string>
+			<key>uid</key>
+			<string>FB80EA4C-BD8D-4A10-A2D5-3274E6323F13</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>require 'json'
+
+troubleshooting_file = ENV['alfred_workflow_cache'] + '/troubleshooting.json'
+system(Dir.pwd + '/help_jsons_update') unless File.exist?(troubleshooting_file)
+
+puts File.read(troubleshooting_file)</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Link to Alfred’s troubleshooting pages</string>
+				<key>title</key>
+				<string>Troubleshooting</string>
+				<key>type</key>
+				<integer>2</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>30757622-3110-4C5D-B2EE-93FDE24319B7</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>{query}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>1F09A594-F411-4725-830A-71244A83D9CE</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>variables</key>
+				<dict/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>87EE2158-29F0-4E4E-B089-E4C36A64C27B</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>inputstring</key>
+				<string>{query}</string>
+				<key>matchcasesensitive</key>
+				<true/>
+				<key>matchmode</key>
+				<integer>0</integer>
+				<key>matchstring</key>
+				<string>troubleshooting</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.filter</string>
+			<key>uid</key>
+			<string>A8EDF76B-C093-4FF9-B71C-F4B303811F28</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>matchmode</key>
+				<integer>1</integer>
+				<key>matchstring</key>
+				<string>.*,</string>
+				<key>replacestring</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.replace</string>
+			<key>uid</key>
+			<string>27BCDB31-C251-4748-B175-28E6DF936F82</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>matchmode</key>
+				<integer>1</integer>
+				<key>matchstring</key>
+				<string>.*,</string>
+				<key>replacestring</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.replace</string>
+			<key>uid</key>
+			<string>96E3F57B-84FC-47A2-854C-1CA6BE2DEFFB</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>matchmode</key>
+				<integer>1</integer>
+				<key>matchstring</key>
+				<string>(.*),(.*)</string>
+				<key>replacestring</key>
+				<string>[url=$2]$1[/ur]</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.replace</string>
+			<key>uid</key>
+			<string>F3CF4890-31EA-4464-88FC-9CF740CF7D12</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>matchmode</key>
+				<integer>1</integer>
+				<key>matchstring</key>
+				<string>(.*),(.*)</string>
+				<key>replacestring</key>
+				<string>[$1]($2)</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.replace</string>
+			<key>uid</key>
+			<string>3B1E29D7-F71A-4220-BDC4-2F1B23B40C57</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>:alfredmoderationforceupdate</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Force update of help JSONs</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>B870803F-D88C-49EA-AB49-B4CCD5233C49</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string></string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string>help_jsons_update</string>
+				<key>type</key>
+				<integer>8</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>9819254D-A0C1-4B46-8159-9499660603CB</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>A set of tools to help moderate the [Alfred forums](https://www.alfredforum.com/).
+
+Call `mod` to show a list of help categories. Each one will have items related to a particular subject, such as linking to specific documentation pages or posting common help snippets.
+
+![](https://i.imgur.com/9Ex84ly.png)
+
+`:alfredmoderationforceupdate` will force an update on the categories that rely on parsing the official documentation.</string>
+	<key>uidata</key>
+	<dict>
+		<key>1F09A594-F411-4725-830A-71244A83D9CE</key>
+		<dict>
+			<key>xpos</key>
+			<integer>870</integer>
+			<key>ypos</key>
+			<integer>150</integer>
+		</dict>
+		<key>27BCDB31-C251-4748-B175-28E6DF936F82</key>
+		<dict>
+			<key>xpos</key>
+			<integer>620</integer>
+			<key>ypos</key>
+			<integer>180</integer>
+		</dict>
+		<key>30757622-3110-4C5D-B2EE-93FDE24319B7</key>
+		<dict>
+			<key>xpos</key>
+			<integer>380</integer>
+			<key>ypos</key>
+			<integer>150</integer>
+		</dict>
+		<key>32A6A9C1-9296-4D1A-86D5-B3F772AB8C2B</key>
+		<dict>
+			<key>xpos</key>
+			<integer>380</integer>
+			<key>ypos</key>
+			<integer>20</integer>
+		</dict>
+		<key>3B1E29D7-F71A-4220-BDC4-2F1B23B40C57</key>
+		<dict>
+			<key>xpos</key>
+			<integer>620</integer>
+			<key>ypos</key>
+			<integer>570</integer>
+		</dict>
+		<key>70429CFB-16A1-411E-8A11-D158490DC2D6</key>
+		<dict>
+			<key>xpos</key>
+			<integer>290</integer>
+			<key>ypos</key>
+			<integer>50</integer>
+		</dict>
+		<key>87EE2158-29F0-4E4E-B089-E4C36A64C27B</key>
+		<dict>
+			<key>xpos</key>
+			<integer>290</integer>
+			<key>ypos</key>
+			<integer>180</integer>
+		</dict>
+		<key>96E3F57B-84FC-47A2-854C-1CA6BE2DEFFB</key>
+		<dict>
+			<key>xpos</key>
+			<integer>620</integer>
+			<key>ypos</key>
+			<integer>310</integer>
+		</dict>
+		<key>9819254D-A0C1-4B46-8159-9499660603CB</key>
+		<dict>
+			<key>xpos</key>
+			<integer>230</integer>
+			<key>ypos</key>
+			<integer>670</integer>
+		</dict>
+		<key>A8EDF76B-C093-4FF9-B71C-F4B303811F28</key>
+		<dict>
+			<key>xpos</key>
+			<integer>210</integer>
+			<key>ypos</key>
+			<integer>180</integer>
+		</dict>
+		<key>B870803F-D88C-49EA-AB49-B4CCD5233C49</key>
+		<dict>
+			<key>xpos</key>
+			<integer>30</integer>
+			<key>ypos</key>
+			<integer>670</integer>
+		</dict>
+		<key>BA5717F0-41F9-4D75-9EB5-D589AA04C27C</key>
+		<dict>
+			<key>xpos</key>
+			<integer>30</integer>
+			<key>ypos</key>
+			<integer>20</integer>
+		</dict>
+		<key>D37B7551-A789-4C56-80E4-5C59045AA4CC</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>1070</integer>
+			<key>ypos</key>
+			<integer>20</integer>
+		</dict>
+		<key>D4FB16AE-3D79-4F93-8F9E-864F063A4A94</key>
+		<dict>
+			<key>xpos</key>
+			<integer>870</integer>
+			<key>ypos</key>
+			<integer>20</integer>
+		</dict>
+		<key>F3CF4890-31EA-4464-88FC-9CF740CF7D12</key>
+		<dict>
+			<key>xpos</key>
+			<integer>620</integer>
+			<key>ypos</key>
+			<integer>440</integer>
+		</dict>
+		<key>FB80EA4C-BD8D-4A10-A2D5-3274E6323F13</key>
+		<dict>
+			<key>xpos</key>
+			<integer>210</integer>
+			<key>ypos</key>
+			<integer>50</integer>
+		</dict>
+	</dict>
+	<key>version</key>
+	<string>1.0.0</string>
+	<key>webaddress</key>
+	<string>https://vitorgalvao.com/</string>
+</dict>
+</plist>

@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+require 'json'
+require 'nokogiri'
+require 'open-uri'
+
+FileUtils.mkdir_p(ENV['alfred_workflow_cache']) unless Dir.exist?(ENV['alfred_workflow_cache'])
+troubleshooting_file = ENV['alfred_workflow_cache'] + '/troubleshooting.json'
+
+alfred_base_url = 'https://www.alfredapp.com'
+page = Nokogiri::HTML(open(alfred_base_url + '/help/troubleshooting/')).at('article#helparticle')
+
+page.search('h1').remove
+page.search('p').remove
+
+script_filter_items = []
+
+page.css('h2').each_with_index do |header, index|
+  section_title = header.text
+  section_items = page.css('ul')[index].css('li')
+
+  section_items.each do |item|
+    item_title = item.text
+    item_url = alfred_base_url + item.at('a').attr('href')
+
+    script_filter_items.push(title: item_title, subtitle: section_title, match: item_title, arg: item_title + ',' + item_url)
+  end
+end
+
+File.write(troubleshooting_file, { items: script_filter_items }.to_json)

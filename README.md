@@ -9,6 +9,11 @@ Use a browser bookmarklet via Alfred
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/AlfredBookmarklet) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/AlfredBookmarklet/AlfredBookmarklet.alfredworkflow)
 
+### AlfredModeration <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/AlfredModeration/source/icon.png' width='60' align='center' alt='AlfredModeration icon'>
+Tools to help moderate the Alfred forums
+
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/AlfredModeration) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/AlfredModeration/AlfredModeration.alfredworkflow)
+
 ### AppFreeze <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/AppFreeze/source/icon.png' width='60' align='center' alt='AppFreeze icon'>
 Pauses and resumes execution of the frontmost app
 
