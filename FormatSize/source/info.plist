@@ -20,7 +20,9 @@
 			<key>config</key>
 			<dict>
 				<key>alfredfiltersresults</key>
-				<false/>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -42,18 +44,18 @@
 				<key>script</key>
 				<string>IFS=$'\n'
 
-file="sizes/iso.csv"
+file='sizes/iso.csv'
 
 echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-for media in $(grep -i "^{query}" "${file}"); do
-	name="$(echo ${media} | sed 's/^\(.*\),\(.*\),\(.*\)$/\1/')"
-	size="$(echo ${media} | sed 's/^\(.*\),\(.*\),\(.*\)$/\2 mm  |  \3 in/')"
-	echo "&lt;item uid='${name}' valid='no' autocomplete='${name}'&gt;"
+while read media; do
+	name="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\1/' &lt;&lt;&lt; "${media}")"
+	size="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\2 mm  |  \3 in/' &lt;&lt;&lt; "${media}")"
+	echo "&lt;item valid='no' autocomplete='${name}'&gt;"
 	echo "&lt;title&gt;${name}&lt;/title&gt;"
 	echo "&lt;subtitle&gt;${size}&lt;/subtitle&gt;"
 	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
 	echo "&lt;/item&gt;"
-done
+done &lt; "${file}"
 echo "&lt;/items&gt;"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
@@ -79,7 +81,9 @@ echo "&lt;/items&gt;"</string>
 			<key>config</key>
 			<dict>
 				<key>alfredfiltersresults</key>
-				<false/>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -101,18 +105,18 @@ echo "&lt;/items&gt;"</string>
 				<key>script</key>
 				<string>IFS=$'\n'
 
-file="sizes/na.csv"
+file='sizes/na.csv'
 
 echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-for media in $(grep -i "^{query}" "${file}"); do
-	name="$(echo ${media} | sed 's/^\(.*\),\(.*\),\(.*\)$/\1/')"
-	size="$(echo ${media} | sed 's/^\(.*\),\(.*\),\(.*\)$/\2 mm  |  \3 in/')"
-	echo "&lt;item uid='${name}' valid='no' autocomplete='${name}'&gt;"
+while read media; do
+	name="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\1/' &lt;&lt;&lt; "${media}")"
+	size="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\2 mm  |  \3 in/' &lt;&lt;&lt; "${media}")"
+	echo "&lt;item valid='no' autocomplete='${name}'&gt;"
 	echo "&lt;title&gt;${name}&lt;/title&gt;"
 	echo "&lt;subtitle&gt;${size}&lt;/subtitle&gt;"
 	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
 	echo "&lt;/item&gt;"
-done
+done &lt; "${file}"
 echo "&lt;/items&gt;"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
@@ -138,7 +142,9 @@ echo "&lt;/items&gt;"</string>
 			<key>config</key>
 			<dict>
 				<key>alfredfiltersresults</key>
-				<false/>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -160,18 +166,18 @@ echo "&lt;/items&gt;"</string>
 				<key>script</key>
 				<string>IFS=$'\n'
 
-file="sizes/jis.csv"
+file='sizes/jis.csv'
 
 echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-for media in $(grep -i "^{query}" "${file}"); do
-	name="$(echo ${media} | sed 's/^\(.*\),\(.*\),\(.*\)$/\1/')"
-	size="$(echo ${media} | sed 's/^\(.*\),\(.*\),\(.*\)$/\2 mm  |  \3 in/')"
-	echo "&lt;item uid='${name}' valid='no' autocomplete='${name}'&gt;"
+while read media; do
+	name="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\1/' &lt;&lt;&lt; "${media}")"
+	size="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\2 mm  |  \3 in/' &lt;&lt;&lt; "${media}")"
+	echo "&lt;item valid='no' autocomplete='${name}'&gt;"
 	echo "&lt;title&gt;${name}&lt;/title&gt;"
 	echo "&lt;subtitle&gt;${size}&lt;/subtitle&gt;"
 	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
 	echo "&lt;/item&gt;"
-done
+done &lt; "${file}"
 echo "&lt;/items&gt;"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
@@ -197,7 +203,9 @@ echo "&lt;/items&gt;"</string>
 			<key>config</key>
 			<dict>
 				<key>alfredfiltersresults</key>
-				<false/>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -219,18 +227,18 @@ echo "&lt;/items&gt;"</string>
 				<key>script</key>
 				<string>IFS=$'\n'
 
-file="sizes/ansi.csv"
+file='sizes/ansi.csv'
 
 echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-for media in $(grep -i "^{query}" "${file}"); do
-	name="$(echo ${media} | sed 's/^\(.*\),\(.*\),\(.*\)$/\1/')"
-	size="$(echo ${media} | sed 's/^\(.*\),\(.*\),\(.*\)$/\2 mm  |  \3 in/')"
-	echo "&lt;item uid='${name}' valid='no' autocomplete='${name}'&gt;"
+while read media; do
+	name="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\1/' &lt;&lt;&lt; "${media}")"
+	size="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\2 mm  |  \3 in/' &lt;&lt;&lt; "${media}")"
+	echo "&lt;item valid='no' autocomplete='${name}'&gt;"
 	echo "&lt;title&gt;${name}&lt;/title&gt;"
 	echo "&lt;subtitle&gt;${size}&lt;/subtitle&gt;"
 	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
 	echo "&lt;/item&gt;"
-done
+done &lt; "${file}"
 echo "&lt;/items&gt;"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
@@ -256,7 +264,9 @@ echo "&lt;/items&gt;"</string>
 			<key>config</key>
 			<dict>
 				<key>alfredfiltersresults</key>
-				<false/>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -278,18 +288,18 @@ echo "&lt;/items&gt;"</string>
 				<key>script</key>
 				<string>IFS=$'\n'
 
-file="sizes/arch.csv"
+file='sizes/arch.csv'
 
 echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-for media in $(grep -i "^{query}" "${file}"); do
-	name="$(echo ${media} | sed 's/^\(.*\),\(.*\),\(.*\)$/\1/')"
-	size="$(echo ${media} | sed 's/^\(.*\),\(.*\),\(.*\)$/\2 mm  |  \3 in/')"
-	echo "&lt;item uid='${name}' valid='no' autocomplete='${name}'&gt;"
+while read media; do
+	name="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\1/' &lt;&lt;&lt; "${media}")"
+	size="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\2 mm  |  \3 in/' &lt;&lt;&lt; "${media}")"
+	echo "&lt;item valid='no' autocomplete='${name}'&gt;"
 	echo "&lt;title&gt;${name}&lt;/title&gt;"
 	echo "&lt;subtitle&gt;${size}&lt;/subtitle&gt;"
 	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
 	echo "&lt;/item&gt;"
-done
+done &lt; "${file}"
 echo "&lt;/items&gt;"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
@@ -315,7 +325,9 @@ echo "&lt;/items&gt;"</string>
 			<key>config</key>
 			<dict>
 				<key>alfredfiltersresults</key>
-				<false/>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -337,7 +349,7 @@ echo "&lt;/items&gt;"</string>
 				<key>script</key>
 				<string>IFS=$'\n'
 
-file="sizes/viewport.csv"
+file='sizes/viewport.csv'
 
 # update viewport.csv it's more than 30 days old
 if [[ $(find "${file}" -mtime +30) ]]; then
@@ -345,15 +357,15 @@ if [[ $(find "${file}" -mtime +30) ]]; then
 fi
 
 echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-for media in $(grep -i ".*{query}.*" "${file}"); do
-	name="$(echo ${media} | sed 's/^\(.*\),\(.*\),\(.*\),\(.*\)$/\1 · \2/')"
-	size="$(echo ${media} | sed 's/^\(.*\),\(.*\),\(.*\),\(.*\)$/\3 x \4 (Portrait width x Landscape width)/')"
-	echo "&lt;item uid='${name}' valid='no' autocomplete='${name}'&gt;"
+while read media; do
+	name="$(sed 's/^\(.*\),\(.*\),\(.*\),\(.*\)$/\1 · \2/' &lt;&lt;&lt; "${media}")"
+	size="$(sed 's/^\(.*\),\(.*\),\(.*\),\(.*\)$/\3 x \4 (Portrait width x Landscape width)/' &lt;&lt;&lt; "${media}")"
+	echo "&lt;item valid='no' autocomplete='$(sed 's/ ·.*//' &lt;&lt;&lt; "${name}")'&gt;"
 	echo "&lt;title&gt;${name}&lt;/title&gt;"
 	echo "&lt;subtitle&gt;${size}&lt;/subtitle&gt;"
 	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
 	echo "&lt;/item&gt;"
-done
+done &lt; "${file}"
 echo "&lt;/items&gt;"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
@@ -380,6 +392,8 @@ echo "&lt;/items&gt;"</string>
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -399,12 +413,13 @@ echo "&lt;/items&gt;"</string>
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>readonly remote_info_plist="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
+				<string># THESE VARIABLES MUST BE SET. SEE THE ONEUPDATER README FOR AN EXPLANATION OF EACH.
+readonly remote_info_plist="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
 readonly workflow_url="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/${alfred_workflow_name}.alfredworkflow"
-readonly workflow_type='workflow'
-readonly frequency_check='15'
+readonly download_type='direct'
+readonly frequency_check='4'
 
-# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED UNLESS YOU KNOW WHAT YOU ARE DOING
+# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED!
 function abort {
   echo "${1}" &gt;&amp;2
   exit 1
@@ -417,7 +432,7 @@ function url_exists {
 function notification {
   readonly local notificator="$(find . -type d -name 'Notificator.app')"
   if [[ -n "${notificator}" ]]; then
-    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
+    "${notificator}/Contents/Resources/Scripts/notificator" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
     return
   fi
 
@@ -435,7 +450,7 @@ readonly local_info_plist='info.plist'
 readonly local_version="$(/usr/libexec/PlistBuddy -c 'print version' "${local_info_plist}")"
 
 [[ -n "${local_version}" ]] || abort 'You need to set a workflow version in the configuration sheet.'
-[[ "${workflow_type}" =~ ^(workflow|page)$ ]] || abort "'workflow_type' (${workflow_type}) needs to be one of 'workflow' or 'page'."
+[[ "${download_type}" =~ ^(direct|page|github_release)$ ]] || abort "'download_type' (${download_type}) needs to be one of 'direct', 'page', or 'github_release'."
 [[ "${frequency_check}" =~ ^[0-9]+$ ]] || abort "'frequency_check' (${frequency_check}) needs to be a number."
 
 # Check for updates
@@ -446,23 +461,27 @@ if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
   curl --silent --location --output "${tmp_file}" "${remote_info_plist}"
   readonly remote_version="$(/usr/libexec/PlistBuddy -c 'print version' "${tmp_file}")"
 
-  if [[ "${local_version}" != "${remote_version}" ]]; then
-    if [[ "${workflow_type}" == 'page' ]]; then
-      notification 'Opening download page…'
-      open "${workflow_url}"
-    else
-      if url_exists "${workflow_url}"; then
-        notification 'Downloading and installing…'
-        curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${workflow_url}"
-        open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
-      else
-        abort "'workflow_url' (${workflow_url}) appears to not be reachable."
-      fi # url_exists
-    fi # workflow_type
-  else
+  if [[ "${local_version}" == "${remote_version}" ]]; then
     touch "${local_info_plist}" # Reset timer by touching local file
-  fi # diff
-fi #find</string>
+    exit 0
+  fi
+
+  if [[ "${download_type}" == 'page' ]]; then
+    notification 'Opening download page…'
+    open "${workflow_url}"
+    exit 0
+  fi
+
+  download_url="$([[ "${download_type}" == 'github_release' ]] &amp;&amp; curl --silent "https://api.github.com/repos/${workflow_url}/releases/latest" | grep 'browser_download_url' | head -1 | sed -E 's/.*browser_download_url": "(.*)"/\1/' || echo "${workflow_url}")"
+
+  if url_exists "${download_url}"; then
+    notification 'Downloading and installing…'
+    curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${download_url}"
+    open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
+  else
+    abort "'workflow_url' (${download_url}) appears to not be reachable."
+  fi
+fi</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -551,7 +570,7 @@ Paper sizes taken from [wikipedia](https://en.wikipedia.org/wiki/Paper_sizes) an
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.5.1</string>
+	<string>1.5.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
