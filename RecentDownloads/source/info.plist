@@ -128,7 +128,7 @@ echo "&lt;/items&gt;"</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
-				<false/>
+				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
@@ -278,7 +278,7 @@ echo "&lt;/items&gt;"</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
-				<false/>
+				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
@@ -299,9 +299,9 @@ To act on the selections, use the standard Alfred shortcuts. You can activate fi
 		<key>6EFF2E1A-ED35-4BAC-8EB4-A272C1F8A508</key>
 		<dict>
 			<key>xpos</key>
-			<integer>140</integer>
+			<integer>30</integer>
 			<key>ypos</key>
-			<integer>130</integer>
+			<integer>140</integer>
 		</dict>
 		<key>98D0B5C7-39EF-41AD-9025-6E1822E57BAE</key>
 		<dict>
@@ -310,27 +310,27 @@ To act on the selections, use the standard Alfred shortcuts. You can activate fi
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>340</integer>
+			<integer>230</integer>
 			<key>ypos</key>
-			<integer>130</integer>
+			<integer>140</integer>
 		</dict>
 		<key>A10F711E-4562-4988-8205-77E555679788</key>
 		<dict>
 			<key>xpos</key>
-			<integer>140</integer>
+			<integer>30</integer>
 			<key>ypos</key>
-			<integer>10</integer>
+			<integer>20</integer>
 		</dict>
 		<key>F525988E-4ED1-4E45-8CAD-25BAF510025C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>340</integer>
+			<integer>230</integer>
 			<key>ypos</key>
-			<integer>10</integer>
+			<integer>20</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.2</string>
+	<string>1.1.3</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
