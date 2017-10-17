@@ -251,7 +251,7 @@
 				<key>items</key>
 				<string>[{"title":"Troubleshooting","arg":"troubleshooting","subtitle":"Link to troubleshooting help"},{"title":"Snippets","arg":"snippets","subtitle":"Common help messages"}]</string>
 				<key>keyword</key>
-				<string>modd</string>
+				<string>mod</string>
 				<key>runningsubtext</key>
 				<string></string>
 				<key>subtext</key>
@@ -781,7 +781,7 @@ Call `mod` to show a list of help categories. Each one will have items related t
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>1.0.1</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
