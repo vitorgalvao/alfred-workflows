@@ -71,7 +71,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>2C748675-308E-4E51-A233-395C383A559B</string>
+				<string>B1F76879-4318-4A04-B58F-150347E9CC29</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -135,12 +135,13 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>readonly remote_info_plist="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
+				<string># THESE VARIABLES MUST BE SET. SEE THE ONEUPDATER README FOR AN EXPLANATION OF EACH.
+readonly remote_info_plist="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
 readonly workflow_url="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/${alfred_workflow_name}.alfredworkflow"
-readonly workflow_type='workflow'
-readonly frequency_check='15'
+readonly download_type='direct'
+readonly frequency_check='4'
 
-# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED UNLESS YOU KNOW WHAT YOU ARE DOING
+# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED!
 function abort {
   echo "${1}" &gt;&amp;2
   exit 1
@@ -171,7 +172,7 @@ readonly local_info_plist='info.plist'
 readonly local_version="$(/usr/libexec/PlistBuddy -c 'print version' "${local_info_plist}")"
 
 [[ -n "${local_version}" ]] || abort 'You need to set a workflow version in the configuration sheet.'
-[[ "${workflow_type}" =~ ^(workflow|page)$ ]] || abort "'workflow_type' (${workflow_type}) needs to be one of 'workflow' or 'page'."
+[[ "${download_type}" =~ ^(direct|page|github_release)$ ]] || abort "'download_type' (${download_type}) needs to be one of 'direct', 'page', or 'github_release'."
 [[ "${frequency_check}" =~ ^[0-9]+$ ]] || abort "'frequency_check' (${frequency_check}) needs to be a number."
 
 # Check for updates
@@ -182,23 +183,27 @@ if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
   curl --silent --location --output "${tmp_file}" "${remote_info_plist}"
   readonly remote_version="$(/usr/libexec/PlistBuddy -c 'print version' "${tmp_file}")"
 
-  if [[ "${local_version}" != "${remote_version}" ]]; then
-    if [[ "${workflow_type}" == 'page' ]]; then
-      notification 'Opening download page…'
-      open "${workflow_url}"
-    else
-      if url_exists "${workflow_url}"; then
-        notification 'Downloading and installing…'
-        curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${workflow_url}"
-        open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
-      else
-        abort "'workflow_url' (${workflow_url}) appears to not be reachable."
-      fi # url_exists
-    fi # workflow_type
-  else
+  if [[ "${local_version}" == "${remote_version}" ]]; then
     touch "${local_info_plist}" # Reset timer by touching local file
-  fi # diff
-fi #find</string>
+    exit 0
+  fi
+
+  if [[ "${download_type}" == 'page' ]]; then
+    notification 'Opening download page…'
+    open "${workflow_url}"
+    exit 0
+  fi
+
+  download_url="$([[ "${download_type}" == 'github_release' ]] &amp;&amp; curl --silent "https://api.github.com/repos/${workflow_url}/releases/latest" | grep 'browser_download_url' | head -1 | sed -E 's/.*browser_download_url": "(.*)"/\1/' || echo "${workflow_url}")"
+
+  if url_exists "${download_url}"; then
+    notification 'Downloading and installing…'
+    curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${download_url}"
+    open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
+  else
+    abort "'workflow_url' (${download_url}) appears to not be reachable."
+  fi
+fi</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -209,7 +214,7 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>2C748675-308E-4E51-A233-395C383A559B</string>
+			<string>B1F76879-4318-4A04-B58F-150347E9CC29</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -245,7 +250,7 @@ url = %x(pbpaste).strip
 script_filter_items = []
 
 script_filter_items.push(
-  uid: 'Regular Download',
+  uuid: 'Regular Download',
   title: 'DownVid',
   subtitle: "Downloads the video to ~/#{ENV['download_dir']}",
   arg: "#{url} watchlist_false playlist_false",
@@ -539,17 +544,6 @@ You can also run `:downvidservices` to install (or later remove, running the sam
 The two Workflow Environment Variables represent the directories (relative to your home) where videos will download to.</string>
 	<key>uidata</key>
 	<dict>
-		<key>2C748675-308E-4E51-A233-395C383A559B</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>note</key>
-			<string>OneUpdater</string>
-			<key>xpos</key>
-			<integer>500</integer>
-			<key>ypos</key>
-			<integer>120</integer>
-		</dict>
 		<key>3B69F416-A08B-4618-99B6-E2AED211C9D8</key>
 		<dict>
 			<key>xpos</key>
@@ -577,6 +571,17 @@ The two Workflow Environment Variables represent the directories (relative to yo
 			<integer>500</integer>
 			<key>ypos</key>
 			<integer>490</integer>
+		</dict>
+		<key>B1F76879-4318-4A04-B58F-150347E9CC29</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>500</integer>
+			<key>ypos</key>
+			<integer>120</integer>
 		</dict>
 		<key>C95B128B-0AD1-41F2-A2D6-42BE6FE84306</key>
 		<dict>
@@ -615,7 +620,7 @@ The two Workflow Environment Variables represent the directories (relative to yo
 		<string>Downloads</string>
 	</dict>
 	<key>version</key>
-	<string>1.21.14</string>
+	<string>1.21.15</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
