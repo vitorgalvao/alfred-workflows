@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+require 'cgi'
+require 'json'
+require 'nokogiri'
+require 'open-uri'
+
+search_query = ARGV[0]
+escaped_query = CGI.escape(search_query)
+alfred_base_url = 'https://www.alfredapp.com'
+search_base_url = alfred_base_url + '/search/?p=help&q='
+search_url = search_base_url + escaped_query
+
+page = Nokogiri::HTML(open(search_url)).at('section#searchresults')
+results = page.css('div.searchresult')
+
+if results.empty?
+  puts({ items: [title: "No results found for “#{search_query}”"] }.to_json)
+  exit 0
+end
+
+script_filter_items = []
+
+results.each do |result|
+  title = result.at('h2').text
+  subtitle = result.at('p').text
+  url = alfred_base_url + result.at('a').attr('href')
+
+  script_filter_items.push(title: title, subtitle: subtitle, arg: title + ',' + url)
+end
+
+puts({ items: script_filter_items }.to_json)

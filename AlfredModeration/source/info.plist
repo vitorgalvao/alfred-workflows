@@ -140,6 +140,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>A6646F32-28BC-457E-B716-5A7549884AC1</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>BCEB296D-6789-4795-A96C-220A08539152</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>A8EDF76B-C093-4FF9-B71C-F4B303811F28</key>
 		<array>
 			<dict>
@@ -188,6 +201,29 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>A6646F32-28BC-457E-B716-5A7549884AC1</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>BCEB296D-6789-4795-A96C-220A08539152</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D95A3F83-E31C-48B7-B2F3-8768B0DB7CB5</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
 		</array>
 		<key>D4FB16AE-3D79-4F93-8F9E-864F063A4A94</key>
 		<array>
@@ -198,6 +234,49 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>D95A3F83-E31C-48B7-B2F3-8768B0DB7CB5</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>27BCDB31-C251-4748-B175-28E6DF936F82</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>96E3F57B-84FC-47A2-854C-1CA6BE2DEFFB</string>
+				<key>modifiers</key>
+				<integer>262144</integer>
+				<key>modifiersubtext</key>
+				<string>Paste link</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>F3CF4890-31EA-4464-88FC-9CF740CF7D12</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Paste as BBCode link</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>3B1E29D7-F71A-4220-BDC4-2F1B23B40C57</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Paste as Markdown link</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -249,7 +328,7 @@
 				<key>fixedorder</key>
 				<false/>
 				<key>items</key>
-				<string>[{"title":"Troubleshooting","arg":"troubleshooting","subtitle":"Link to troubleshooting help"},{"title":"Snippets","arg":"snippets","subtitle":"Common help messages"}]</string>
+				<string>[{"title":"Troubleshooting","arg":"troubleshooting","subtitle":"Link to troubleshooting help"},{"title":"Snippets","arg":"snippets","subtitle":"Common help messages"},{"title":"Documentation","arg":"documentation","subtitle":"Link to documentation help"}]</string>
 				<key>keyword</key>
 				<string>mod</string>
 				<key>runningsubtext</key>
@@ -386,7 +465,7 @@ fi</string>
 				<key>fixedorder</key>
 				<false/>
 				<key>items</key>
-				<string>[{"title":"Using the debugger","arg":"Open the [debugger](http:\/\/support.alfredapp.com\/workflows:debugger), set the log output to “All Information”, and post the output.","subtitle":"How to get debugger output"},{"title":"Upload Workflow","arg":"We can’t properly help you without access to your Workflow.\n\n\nDebugging can already be hard with access to the code, and you’re asking us to guess yours from a description. There are multiple places where you code or Workflow setup may be going wrong. Without looking at it we’re shooting in the dark, which is a waste of time for everyone involved (including you).\n\n\nRead the [url=https:\/\/www.alfredforum.com\/topic\/10224-reporting-problems-with-workflows\/]Reporting Problems with Workflows[\/url] topic, as it gives a nice overview on how to build an effective report.","subtitle":"Upload your Workflow so we can help"},{"title":"Reporting bugs","arg":"When making a request or a bug report pertaining to a specific workflow, please [b]do not open a new thread to discuss your issue[\/b].\n\n\nMaking a new thread, while it seems like it’ll give your problem visibility, will only fragment the discussion and make it less likely the author and users of the workflow (the people that can actually help) will see it.\n\n\nPlease read the [url=https:\/\/www.alfredforum.com\/topic\/10224-reporting-problems-with-workflows\/]Reporting Problems with Workflows[\/url] topic, as it gives a nice overview on how to make a report with a better chance of being addressed.","subtitle":"Don’t open a new thread to report Workflow bugs"}]</string>
+				<string>[{"title":"Using the debugger","arg":"Open the [debugger](http:\/\/support.alfredapp.com\/workflows:debugger), set the log output to “All Information”, and post the output.","subtitle":"How to get debugger output"},{"title":"Upload Workflow","arg":"We can’t properly help you without access to your Workflow.\n\n\nDebugging can already be hard with access to the code, and you’re asking us to guess yours from a description. There are multiple places where you code or Workflow setup may be going wrong. Without looking at it we’re shooting in the dark, which is a waste of time for everyone involved (including you).\n\n\nRead the [url=https:\/\/www.alfredforum.com\/topic\/10224-reporting-problems-with-workflows\/]Reporting Problems with Workflows[\/url] topic, as it gives a nice overview on how to build an effective report.","subtitle":"Upload your Workflow so we can help"},{"title":"Reporting bugs","arg":"When making a request or a bug report pertaining to a specific workflow, please [b]do not open a new thread to discuss your issue[\/b].\n\n\nMaking a new thread, while it seems like it’ll give your problem visibility, will only fragment the discussion and make it less likely the author and users of the workflow (the people that can actually help) will see it.\n\n\nPlease read the [url=https:\/\/www.alfredforum.com\/topic\/10224-reporting-problems-with-workflows\/]Reporting Problems with Workflows[\/url] topic, as it gives a nice overview on how to make a report with a better chance of being addressed.","subtitle":"Don’t open a new thread to report Workflow bugs"},{"title":"Not Alfred related","arg":"This problem isn’t Alfred-related. It should be asked about somewhere else more general. Try [url=https:\/\/apple.stackexchange.com\/]Ask Different[\/url].","subtitle":"Suggest the problem be asked about on Ask Different"}]</string>
 				<key>runningsubtext</key>
 				<string></string>
 				<key>subtext</key>
@@ -560,6 +639,51 @@ puts File.read(troubleshooting_file)</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>1</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>./search_documentation "${1}"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string>search_documentation</string>
+				<key>subtext</key>
+				<string>Link to Alfred’s documentation pages</string>
+				<key>title</key>
+				<string>Search documentation</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>D95A3F83-E31C-48B7-B2F3-8768B0DB7CB5</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>matchmode</key>
 				<integer>1</integer>
 				<key>matchstring</key>
@@ -571,6 +695,40 @@ puts File.read(troubleshooting_file)</string>
 			<string>alfred.workflow.utility.replace</string>
 			<key>uid</key>
 			<string>96E3F57B-84FC-47A2-854C-1CA6BE2DEFFB</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>inputstring</key>
+				<string>{query}</string>
+				<key>matchcasesensitive</key>
+				<true/>
+				<key>matchmode</key>
+				<integer>0</integer>
+				<key>matchstring</key>
+				<string>documentation</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.filter</string>
+			<key>uid</key>
+			<string>A6646F32-28BC-457E-B716-5A7549884AC1</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>variables</key>
+				<dict/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>BCEB296D-6789-4795-A96C-220A08539152</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -673,7 +831,7 @@ Call `mod` to show a list of help categories. Each one will have items related t
 		<key>27BCDB31-C251-4748-B175-28E6DF936F82</key>
 		<dict>
 			<key>xpos</key>
-			<integer>620</integer>
+			<integer>660</integer>
 			<key>ypos</key>
 			<integer>180</integer>
 		</dict>
@@ -694,7 +852,7 @@ Call `mod` to show a list of help categories. Each one will have items related t
 		<key>3B1E29D7-F71A-4220-BDC4-2F1B23B40C57</key>
 		<dict>
 			<key>xpos</key>
-			<integer>620</integer>
+			<integer>660</integer>
 			<key>ypos</key>
 			<integer>570</integer>
 		</dict>
@@ -715,7 +873,7 @@ Call `mod` to show a list of help categories. Each one will have items related t
 		<key>96E3F57B-84FC-47A2-854C-1CA6BE2DEFFB</key>
 		<dict>
 			<key>xpos</key>
-			<integer>620</integer>
+			<integer>660</integer>
 			<key>ypos</key>
 			<integer>310</integer>
 		</dict>
@@ -725,6 +883,13 @@ Call `mod` to show a list of help categories. Each one will have items related t
 			<integer>230</integer>
 			<key>ypos</key>
 			<integer>670</integer>
+		</dict>
+		<key>A6646F32-28BC-457E-B716-5A7549884AC1</key>
+		<dict>
+			<key>xpos</key>
+			<integer>210</integer>
+			<key>ypos</key>
+			<integer>310</integer>
 		</dict>
 		<key>A8EDF76B-C093-4FF9-B71C-F4B303811F28</key>
 		<dict>
@@ -747,6 +912,13 @@ Call `mod` to show a list of help categories. Each one will have items related t
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
+		<key>BCEB296D-6789-4795-A96C-220A08539152</key>
+		<dict>
+			<key>xpos</key>
+			<integer>290</integer>
+			<key>ypos</key>
+			<integer>310</integer>
+		</dict>
 		<key>D37B7551-A789-4C56-80E4-5C59045AA4CC</key>
 		<dict>
 			<key>colorindex</key>
@@ -765,10 +937,17 @@ Call `mod` to show a list of help categories. Each one will have items related t
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
+		<key>D95A3F83-E31C-48B7-B2F3-8768B0DB7CB5</key>
+		<dict>
+			<key>xpos</key>
+			<integer>380</integer>
+			<key>ypos</key>
+			<integer>280</integer>
+		</dict>
 		<key>F3CF4890-31EA-4464-88FC-9CF740CF7D12</key>
 		<dict>
 			<key>xpos</key>
-			<integer>620</integer>
+			<integer>660</integer>
 			<key>ypos</key>
 			<integer>440</integer>
 		</dict>
@@ -781,7 +960,7 @@ Call `mod` to show a list of help categories. Each one will have items related t
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.1</string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
