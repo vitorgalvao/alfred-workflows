@@ -328,6 +328,33 @@
 				<key>fixedorder</key>
 				<false/>
 				<key>items</key>
+				<string>[{"title":"Using the debugger","arg":"Open the [debugger](http:\/\/support.alfredapp.com\/workflows:debugger), set the log output to “All Information”, and post the output.","subtitle":"How to get debugger output"},{"title":"Upload Workflow","arg":"We can’t properly help you without access to your Workflow.\n\n\nDebugging can already be hard with access to the code, and you’re asking us to guess yours from a description. There are multiple places where you code or Workflow setup may be going wrong. Without looking at it we’re shooting in the dark, which is a waste of time for everyone involved (including you).\n\n\nRead the [url=https:\/\/www.alfredforum.com\/topic\/10224-reporting-problems-with-workflows\/]Reporting Problems with Workflows[\/url] topic, as it gives a nice overview on how to build an effective report.","subtitle":"Upload your Workflow so we can help"},{"title":"Reporting bugs","arg":"When making a request or a bug report pertaining to a specific workflow, please [b]do not open a new thread to discuss your issue[\/b].\n\n\nMaking a new thread, while it seems like it’ll give your problem visibility, will only fragment the discussion and make it less likely the author and users of the workflow (the people that can actually help) will see it.\n\n\nPlease read the [url=https:\/\/www.alfredforum.com\/topic\/10224-reporting-problems-with-workflows\/]Reporting Problems with Workflows[\/url] topic, as it gives a nice overview on how to make a report with a better chance of being addressed.","subtitle":"Don’t open a new thread to report Workflow bugs"},{"title":"Not Alfred related","arg":"This problem isn’t Alfred-related. It should be asked about somewhere else more general. Try [url=https:\/\/apple.stackexchange.com\/]Ask Different[\/url].","subtitle":"Suggest the problem be asked about on Ask Different"}]</string>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Common help messages</string>
+				<key>title</key>
+				<string>AlfredModeration Snippets</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.listfilter</string>
+			<key>uid</key>
+			<string>32A6A9C1-9296-4D1A-86D5-B3F772AB8C2B</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>fixedorder</key>
+				<false/>
+				<key>items</key>
 				<string>[{"title":"Troubleshooting","arg":"troubleshooting","subtitle":"Link to troubleshooting help"},{"title":"Snippets","arg":"snippets","subtitle":"Common help messages"},{"title":"Documentation","arg":"documentation","subtitle":"Link to documentation help"}]</string>
 				<key>keyword</key>
 				<string>mod</string>
@@ -454,33 +481,6 @@ fi</string>
 			<string>D37B7551-A789-4C56-80E4-5C59045AA4CC</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>fixedorder</key>
-				<false/>
-				<key>items</key>
-				<string>[{"title":"Using the debugger","arg":"Open the [debugger](http:\/\/support.alfredapp.com\/workflows:debugger), set the log output to “All Information”, and post the output.","subtitle":"How to get debugger output"},{"title":"Upload Workflow","arg":"We can’t properly help you without access to your Workflow.\n\n\nDebugging can already be hard with access to the code, and you’re asking us to guess yours from a description. There are multiple places where you code or Workflow setup may be going wrong. Without looking at it we’re shooting in the dark, which is a waste of time for everyone involved (including you).\n\n\nRead the [url=https:\/\/www.alfredforum.com\/topic\/10224-reporting-problems-with-workflows\/]Reporting Problems with Workflows[\/url] topic, as it gives a nice overview on how to build an effective report.","subtitle":"Upload your Workflow so we can help"},{"title":"Reporting bugs","arg":"When making a request or a bug report pertaining to a specific workflow, please [b]do not open a new thread to discuss your issue[\/b].\n\n\nMaking a new thread, while it seems like it’ll give your problem visibility, will only fragment the discussion and make it less likely the author and users of the workflow (the people that can actually help) will see it.\n\n\nPlease read the [url=https:\/\/www.alfredforum.com\/topic\/10224-reporting-problems-with-workflows\/]Reporting Problems with Workflows[\/url] topic, as it gives a nice overview on how to make a report with a better chance of being addressed.","subtitle":"Don’t open a new thread to report Workflow bugs"},{"title":"Not Alfred related","arg":"This problem isn’t Alfred-related. It should be asked about somewhere else more general. Try [url=https:\/\/apple.stackexchange.com\/]Ask Different[\/url].","subtitle":"Suggest the problem be asked about on Ask Different"}]</string>
-				<key>runningsubtext</key>
-				<string></string>
-				<key>subtext</key>
-				<string>Common help messages</string>
-				<key>title</key>
-				<string>AlfredModeration Snippets</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.listfilter</string>
-			<key>uid</key>
-			<string>32A6A9C1-9296-4D1A-86D5-B3F772AB8C2B</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -960,7 +960,7 @@ Call `mod` to show a list of help categories. Each one will have items related t
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.0</string>
+	<string>1.1.1</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>

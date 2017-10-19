@@ -24,7 +24,7 @@ page.css('h2').each_with_index do |header, index|
     item_title = item.text
     item_url = alfred_base_url + item.at('a').attr('href')
 
-    script_filter_items.push(title: item_title, subtitle: section_title, match: item_title, arg: item_title + ',' + item_url)
+    script_filter_items.push(title: item_title, subtitle: section_title, match: item_title, arg: item_title + ',' + item_url, quicklookurl: item_url)
   end
 end
 
