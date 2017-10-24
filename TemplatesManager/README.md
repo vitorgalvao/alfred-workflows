@@ -9,11 +9,11 @@ If you have a template that consists of a directory, you can place inside it an 
 It has a lot of options and you’ll likely use most of them, so I’ll fire through them succinctly:
 
 + `Add to TemplatesManager` [File Action] — Add a file or directory to your local templates.
-+ `tml` (TemplatesManagerList) [Script Filter] — Show a list of your local templates. Type to sort with your query. Press ↩ to copy the selected one to your frontmost Finder window.
++ `tml` (TemplatesManagerList) [Script Filter] — Show a list of your local templates. Type to sort with your query. Press ↵ to copy the selected one to your frontmost Finder window.
     + `tml` (with ⌘) — If the selected template is a directory, instead of copying the directory itself, copy what’s inside it.
     + `tml` (with ⌥) — Delete your template.
 + `tme` (TemplatesManagerEdit) [Keyword] — Open the templates directory so you can add, remove, and edit them manually.
-+ `rtml` (RemoteTemplatesManagerList) [Script Filter] — Show a list of your remote templates (download name and url). Type to sort with your query. Press ↩ on the selected one to download the file to your frontmost Finder window.
++ `rtml` (RemoteTemplatesManagerList) [Script Filter] — Show a list of your remote templates (download name and url). Type to sort with your query. Press ↵ on the selected one to download the file to your frontmost Finder window.
     + `rtml` (with ⌘) — Paste contents of template file, instead of downloading it.
     + `rtml` (with ⌥) — Remove the url from your remote templates list.
 + `rtme` (RemoteTemplatesManagerEdit) [Keyword] — Open the remote templates urls file in a text editor so you can add, remove, and edit them manually.
