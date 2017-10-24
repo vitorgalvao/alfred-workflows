@@ -1,6 +1,6 @@
 Add to and view your Pinboard bookmarks.
 
-`pa` opens Pinboard’s “add bookmark” page in your frontmost browser. You can submit bookmarks with ↩ or dismiss the window with ⎋.
+`pa` opens Pinboard’s “add bookmark” page in your frontmost browser. You can submit bookmarks with ↵ or dismiss the window with ⎋.
 
 ![](https://i.imgur.com/2RUKdcA.png)
 
@@ -12,10 +12,10 @@ Configure the `Hotkey Trigger` to add your current browser tab as an unread book
 
 In each case:
 
-+ ↩ opens the bookmark in your default web browser.
-+ ⇧↩ opens the bookmark in Pinboard’s website, so you can edit it at will.
-+ ⌥↩ copies the bookmark’s URL to your clipboard.
-+ ⌘↩ downloads the video on the page, if any. It requires [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownVid) and will automatically add to [WatchList](https://github.com/vitorgalvao/alfred-workflows/tree/master/WatchList) if available)
++ ↵ opens the bookmark in your default web browser.
++ ⇧↵ opens the bookmark in Pinboard’s website, so you can edit it at will.
++ ⌥↵ copies the bookmark’s URL to your clipboard.
++ ⌘↵ downloads the video on the page, if any. It requires [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownVid) and will automatically add to [WatchList](https://github.com/vitorgalvao/alfred-workflows/tree/master/WatchList) if available)
 + `fn` shows the bookmark’s description.
 + ⌃ shows the bookmark’s tags.
 
