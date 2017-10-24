@@ -64,5 +64,5 @@ if [[ -z "${notificator_message}" ]]; then
 fi
 
 touch "${app}" # Notifications will never fire if we do not do this the first time, for some reason
-osascript -l JavaScript -e 'ObjC.import("Cocoa"); while ($.NSEvent.modifierFlags & $.NSControlKeyMask) { delay(0.2) }' # Prevent script from continuing while ctrl is pressed, otherwise we get the "Press Run to run this script, or Quit to quit." message
+osascript -l JavaScript -e 'ObjC.import("Cocoa"); while ($.NSEvent.modifierFlags & $.NSControlKeyMask) { false }' # Prevent script from continuing while ctrl is pressed, otherwise we get the "Press Run to run this script, or Quit to quit." message
 "${applet}" "${notificator_message}" "${notificator_title}" "${notificator_subtitle}" "${notificator_sound}"
