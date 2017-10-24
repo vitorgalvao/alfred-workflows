@@ -352,7 +352,7 @@ fi</string>
 
 Easiest way to use it is to copy one of its `OneUpdater` nodes (the pink ones, with the note) to another workflow.
 
-If the workflow actions anything (you press ↩ at some point during usage), copy the top node (`Run Script`). Connect it to the most used action and double click to edit it. Fill the top variables with the correct values and you’re done.
+If the workflow actions anything (you press ↵ at some point during usage), copy the top node (`Run Script`). Connect it to the most used action and double click to edit it. Fill the top variables with the correct values and you’re done.
 
 ![Setting up OneUpdater with Run Script](https://i.imgur.com/87AqLvI.gif)
 
