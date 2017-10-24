@@ -10,4 +10,4 @@ For the `Keyword`, type `.` followed by a command. A space between the period an
 
 For commands that would benefit from the files not being at the end (like `cp` and `mv`), you can use `{}` as a placeholder for the files. So if you select some files and want to copy them to `~/Desktop/` you’d type `cp {} ~/Desktop/`.
 
-To get the output of a command as `Large Type`, actioning it with ⌘↩ instead of ↩.
+To get the output of a command as `Large Type`, actioning it with ⌘↵ instead of ↵.
