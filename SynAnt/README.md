@@ -7,6 +7,6 @@ You can then check for synonyms and antonyms by calling `syn` or `ant` followed 
 ![](https://i.imgur.com/1p2T6uZ.png)
 ![](https://i.imgur.com/p5CsiB8.png)
 
-Alternatively, select a word and press the shortcut you defined to get the results. Pressing ↩ on a word will paste it to the front most app, which is useful when writing a text and want to change a word in place.
+Alternatively, select a word and press the shortcut you defined to get the results. Pressing ↵ on a word will paste it to the front most app, which is useful when writing a text and want to change a word in place.
 
-If you want to use one of the results to refine your query, press ⌘↩ (synonyms for the word) or ⌥↩ (antonyms for the word).
+If you want to use one of the results to refine your query, press ⌘↵ (synonyms for the word) or ⌥↵ (antonyms for the word).
