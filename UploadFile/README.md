@@ -8,7 +8,7 @@ You can check your upload progress with `ufp`.
 
 ![](https://i.imgur.com/Y9pZY2r.png)
 
-It will auto-refresh the progress. Press ⌘↩ to cancel the transfer.
+It will auto-refresh the progress. Press ⌘↵ to cancel the transfer.
 
 You’ll get notifications of the various phases, with a sound when it’s complete (or canceled). The download URL will be copied to your clipboard.
 
