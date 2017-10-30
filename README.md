@@ -29,6 +29,11 @@ Get logins from bugmenot
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/BugNot) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/BugNot/BugNot.alfredworkflow)
 
+### CalmNotifications <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/CalmNotifications/source/icon.png' width='60' align='center' alt='CalmNotifications icon'>
+Toggle Do Not Disturb
+
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/CalmNotifications) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/CalmNotifications/CalmNotifications.alfredworkflow)
+
 ### CheckSpelling <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/CheckSpelling/source/icon.png' width='60' align='center' alt='CheckSpelling icon'>
 Spelling correction in various languages
 
