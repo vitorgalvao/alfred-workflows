@@ -6,11 +6,11 @@
 	<string>com.vitorgalvao.alfred.watchlist</string>
 	<key>connections</key>
 	<dict>
-		<key>006E81EE-A542-4616-AE6B-5262EF4E59C5</key>
+		<key>2D2C4B1F-AD23-4F61-A7B2-2122216F9F0F</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>2A1A7853-05AD-43B6-AFF0-55104517AB51</string>
+				<string>E8F9509C-843D-40C8-B5F1-6B8FC692A18C</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -19,13 +19,11 @@
 				<false/>
 			</dict>
 		</array>
-		<key>0DDE2F4F-9DE8-4C40-BB85-ED0DF8C613EE</key>
-		<array/>
-		<key>10E44EB4-6139-4E72-AD84-137F581D67A1</key>
+		<key>3B8DC012-8D13-4919-8EB0-AC42C883527E</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>7F8D7B1C-9061-4414-98C2-FEEB13C9314B</string>
+				<string>082FCE19-5B3C-454B-80ED-839DD28766F3</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -34,13 +32,11 @@
 				<false/>
 			</dict>
 		</array>
-		<key>20803797-C5B6-42F9-9F31-1425E194C1C3</key>
-		<array/>
-		<key>2BD98040-76A3-48BE-8E0F-68D1F1F9C7E6</key>
+		<key>63FBFF0E-05C5-47D2-9951-CB86E114264B</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>7EE6AEBF-1246-428C-B2E9-C9F5BBCB5EF4</string>
+				<string>082FCE19-5B3C-454B-80ED-839DD28766F3</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -49,13 +45,76 @@
 				<false/>
 			</dict>
 		</array>
-		<key>2C22F42C-C25C-4D4C-AB42-C31CE9234895</key>
-		<array/>
-		<key>3B6BF175-810F-4D1C-9E89-0F8BE1BCA98D</key>
+		<key>68BC0595-725B-4DDD-B33F-01C3DE55A709</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>3FB08D9D-FA61-4076-A99A-E8B45A21CC8D</string>
+				<string>7D39E405-629C-4741-BBA3-D87CFC3D419A</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>98D586EA-8DD5-4EAE-8A4A-3A06AC84E9DC</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>88990516-33AA-49DC-8096-95883FB6BE51</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>A22F833D-4556-4FEE-8A77-EE6A6A2FE8FE</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>6DBE8BF2-3AA2-46A3-A028-739C1E71A985</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>AFB3D5CC-1B83-4675-91D8-770B0B2B7576</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>88990516-33AA-49DC-8096-95883FB6BE51</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>D75377F6-6B47-4683-B400-224620A75802</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>9537F6F1-6608-4671-BE03-A3DCD23A06DF</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>E75EF64B-CE9C-4789-8FCC-8095D43D1FEA</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>C92FF9E0-CBC7-4421-9B75-4B8C557EB4DD</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -65,22 +124,30 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>7EE6AEBF-1246-428C-B2E9-C9F5BBCB5EF4</string>
+				<string>DA8908F6-F112-4087-86D4-1B9671DD766C</string>
 				<key>modifiers</key>
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
-				<string>Open URL in default browser</string>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>824AADC5-ECD6-4B9A-B01B-901EE6EC2552</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string></string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
 		</array>
-		<key>3FB08D9D-FA61-4076-A99A-E8B45A21CC8D</key>
-		<array/>
-		<key>475F7D72-F65B-4E51-99C1-65C581528087</key>
+		<key>E8F9509C-843D-40C8-B5F1-6B8FC692A18C</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>2C22F42C-C25C-4D4C-AB42-C31CE9234895</string>
+				<string>AFB3D5CC-1B83-4675-91D8-770B0B2B7576</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -88,12 +155,32 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>98D586EA-8DD5-4EAE-8A4A-3A06AC84E9DC</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Do not mark as watched</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>D27FE458-78D9-4C16-BF89-7E489D839F6D</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
 		</array>
-		<key>4B343886-E096-4B4A-B04A-AC6574D6FB41</key>
+		<key>FA9B96C8-46F8-4275-A082-2D7CFB7B7867</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>0DDE2F4F-9DE8-4C40-BB85-ED0DF8C613EE</string>
+				<string>D75377F6-6B47-4683-B400-224620A75802</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -102,129 +189,11 @@
 				<false/>
 			</dict>
 		</array>
-		<key>52C95301-2DF9-4A14-86FA-7917CFC49D39</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>20803797-C5B6-42F9-9F31-1425E194C1C3</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>7F8D7B1C-9061-4414-98C2-FEEB13C9314B</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>DE394F89-C4B4-497C-B6E8-5715050AC3CE</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>6C7A1D7B-A177-44D8-BE8B-332B8D9F7DAB</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>87E67178-1A36-458D-9883-D7A839F8E020</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>B81E79EC-8587-4704-B6ED-6B72BD007014</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>A0CB4B50-6085-4C77-BA3D-435ABE469ECE</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>B81E79EC-8587-4704-B6ED-6B72BD007014</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>A9B03347-978A-4547-9F09-AC992131AEFB</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>DE394F89-C4B4-497C-B6E8-5715050AC3CE</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>AA3CF56F-3E4D-4EB5-8019-B9E517648566</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>2C22F42C-C25C-4D4C-AB42-C31CE9234895</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>B81E79EC-8587-4704-B6ED-6B72BD007014</key>
-		<array/>
-		<key>C8A7E5CB-00A9-4A5B-9AD4-2D31987E06CE</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>B81E79EC-8587-4704-B6ED-6B72BD007014</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>D6023D14-C151-44A0-BC02-08938DB9D46E</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>20803797-C5B6-42F9-9F31-1425E194C1C3</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>DE394F89-C4B4-497C-B6E8-5715050AC3CE</key>
-		<array/>
 	</dict>
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
 	<key>description</key>
-	<string>Watch and manage local videos and streams</string>
+	<string>Play and manage local audiovisual content and streams</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -237,14 +206,17 @@
 				<key>acceptsmulti</key>
 				<true/>
 				<key>filetypes</key>
-				<array/>
+				<array>
+					<string>+public.audiovisual-content</string>
+					<string>public.folder</string>
+				</array>
 				<key>name</key>
 				<string>Add to watchlist</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.trigger.action</string>
 			<key>uid</key>
-			<string>AA3CF56F-3E4D-4EB5-8019-B9E517648566</string>
+			<string>3B8DC012-8D13-4919-8EB0-AC42C883527E</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -256,34 +228,22 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>source ./watchlist_functions.sh
-use_list towatch
+				<string>require "#{Dir.pwd}/watchlist_functions.rb"
 
-[[ -d "${alfred_workflow_data}" ]] || mkdir "${alfred_workflow_data}"
-
-files_to_add=$(echo "{query}" | perl -pe 's/\t/\n/g' | tail -r)
-
-for file in ${files_to_add}; do
-  item_duration="$(mediainfo --Output='Video;%Duration/String2%' ${file})"
-  item_size="$(du -h ${file} | perl -pe 's/^\s*(.*)\t.*/\1/')"
-  item_title="$(basename ${file%.*})"
-
-  new_item="file⸗${item_title}⸗${file}⸗${item_size}⸗${item_duration}"
-  prepend "${new_item}" "${list}"
-done
-
-touch "${watched}"</string>
+ARGV.each do |path|
+  add_local_to_watchlist(path)
+end</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>2</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>2C22F42C-C25C-4D4C-AB42-C31CE9234895</string>
+			<string>082FCE19-5B3C-454B-80ED-839DD28766F3</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -296,7 +256,7 @@ touch "${watched}"</string>
 			<key>type</key>
 			<string>alfred.workflow.trigger.external</string>
 			<key>uid</key>
-			<string>475F7D72-F65B-4E51-99C1-65C581528087</string>
+			<string>63FBFF0E-05C5-47D2-9951-CB86E114264B</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -310,14 +270,14 @@ touch "${watched}"</string>
 				<key>subtext</key>
 				<string>Adds url to play video from stream</string>
 				<key>text</key>
-				<string>Stream add (swl)</string>
+				<string>Add stream (swl)</string>
 				<key>withspace</key>
 				<false/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
-			<string>006E81EE-A542-4616-AE6B-5262EF4E59C5</string>
+			<string>A22F833D-4556-4FEE-8A77-EE6A6A2FE8FE</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -329,66 +289,56 @@ touch "${watched}"</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>source ./watchlist_functions.sh
-use_list towatch
+				<string>require "#{Dir.pwd}/watchlist_functions.rb"
 
-if [[ ! -d "${non_volatile_prefs_dir}" ]]; then
-  mkdir "${non_volatile_prefs_dir}"
-fi
-
-item_location="$(pbpaste)"
-item_title=$(youtube-dl --no-playlist --get-title "${item_location}")
-item_duration=$(youtube-dl --no-playlist --get-duration "${item_location}" | rev | sed 's/^/s/;s/:/ nm/;s/:/ h/' | rev)
-
-if [[ -n "${item_title}" ]]; then
-  # fix for websites that need various video parts, causing title and duration to repeat
-  total_parts=$(wc -l &lt;&lt;&lt; "${item_title}" | perl -pe 's/\s*//')
-  if [[ "${total_parts}" &gt; 1 ]]; then
-    remaining_parts="$((total_parts - 1))"
-    item_title=$(head -1 &lt;&lt;&lt; "${item_title}" | sed "s/$/ (and ${remaining_parts} more)/")
-    item_duration=$(head -1 &lt;&lt;&lt; "${item_duration}")
-  fi
-
-  new_item="stream⸗${item_title}⸗${item_location}⸗n/a (stream)⸗${item_duration}"
-  prepend "${new_item}" "${list}"
-  notification "Added ${item_title} as stream"
-else
-  notification 'Could not add that link as a stream'
-  exit 1
-fi
-
-touch "${watched}"</string>
+clipboard = %x(pbpaste).strip
+add_url_to_watchlist(clipboard)</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>2</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>2A1A7853-05AD-43B6-AFF0-55104517AB51</string>
+			<string>6DBE8BF2-3AA2-46A3-A028-739C1E71A985</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>triggerid</key>
+				<string>sort_order</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>2D2C4B1F-AD23-4F61-A7B2-2122216F9F0F</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
-				<false/>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
-				<integer>0</integer>
+				<integer>102</integer>
 				<key>keyword</key>
 				<string>wlp</string>
 				<key>queuedelaycustom</key>
-				<integer>1</integer>
+				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
-				<false/>
+				<true/>
 				<key>queuedelaymode</key>
 				<integer>0</integer>
 				<key>queuemode</key>
@@ -396,38 +346,26 @@ touch "${watched}"</string>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
-				<string>source ./watchlist_functions.sh
-search_query='{query}'
+				<string>require "#{Dir.pwd}/watchlist_functions.rb"
 
-if [[ -z $(cat ${towatch}) ]]; then
-  echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-  echo "&lt;item uuid='none' arg='none' valid='no'&gt;"
-  echo "&lt;title&gt;Play (wlp)&lt;/title&gt;"
-  echo "&lt;subtitle&gt;You have no files to watch&lt;/subtitle&gt;"
-  echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
-  echo "&lt;/item&gt;"
-  echo "&lt;/items&gt;"
-else
-  use_list towatch
-  watch_script_filter "${search_query}"
-fi</string>
+display_towatch(ENV['sort_order'])</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
-				<string>Pick a file to play</string>
+				<string>Pick an item to play</string>
 				<key>title</key>
 				<string>Play (wlp)</string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>2</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>7F8D7B1C-9061-4414-98C2-FEEB13C9314B</string>
+			<string>E8F9509C-843D-40C8-B5F1-6B8FC692A18C</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -437,51 +375,24 @@ fi</string>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
-				<integer>0</integer>
+				<integer>102</integer>
 				<key>script</key>
-				<string>source ./watchlist_functions.sh
-use_list towatch
-line_number='{query}'
+				<string>require "#{Dir.pwd}/watchlist_functions.rb"
 
-load_item "${line_number}"
-
-play_file "${item_location}"
-
-move_list_item "${line_number}"</string>
+play(ARGV[0])</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>2</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>DE394F89-C4B4-497C-B6E8-5715050AC3CE</string>
+			<string>AFB3D5CC-1B83-4675-91D8-770B0B2B7576</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string></string>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>triggerid</key>
-				<string>showlist</string>
-				<key>triggername</key>
-				<string>Show list</string>
-				<key>workflowonly</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.remote</string>
-			<key>uid</key>
-			<string>10E44EB4-6139-4E72-AD84-137F581D67A1</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -491,12 +402,13 @@ move_list_item "${line_number}"</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>readonly remote_info_plist="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
+				<string># THESE VARIABLES MUST BE SET. SEE THE ONEUPDATER README FOR AN EXPLANATION OF EACH.
+readonly remote_info_plist="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
 readonly workflow_url="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/${alfred_workflow_name}.alfredworkflow"
-readonly workflow_type='workflow'
-readonly frequency_check='15'
+readonly download_type='direct'
+readonly frequency_check='4'
 
-# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED UNLESS YOU KNOW WHAT YOU ARE DOING
+# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED!
 function abort {
   echo "${1}" &gt;&amp;2
   exit 1
@@ -509,7 +421,7 @@ function url_exists {
 function notification {
   readonly local notificator="$(find . -type d -name 'Notificator.app')"
   if [[ -n "${notificator}" ]]; then
-    "${notificator}/Contents/MacOS/applet" "${1}" "${alfred_workflow_name}" 'A new version is available'
+    "${notificator}/Contents/Resources/Scripts/notificator" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
     return
   fi
 
@@ -527,7 +439,7 @@ readonly local_info_plist='info.plist'
 readonly local_version="$(/usr/libexec/PlistBuddy -c 'print version' "${local_info_plist}")"
 
 [[ -n "${local_version}" ]] || abort 'You need to set a workflow version in the configuration sheet.'
-[[ "${workflow_type}" =~ ^(workflow|page)$ ]] || abort "'workflow_type' (${workflow_type}) needs to be one of 'workflow' or 'page'."
+[[ "${download_type}" =~ ^(direct|page|github_release)$ ]] || abort "'download_type' (${download_type}) needs to be one of 'direct', 'page', or 'github_release'."
 [[ "${frequency_check}" =~ ^[0-9]+$ ]] || abort "'frequency_check' (${frequency_check}) needs to be a number."
 
 # Check for updates
@@ -538,23 +450,27 @@ if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
   curl --silent --location --output "${tmp_file}" "${remote_info_plist}"
   readonly remote_version="$(/usr/libexec/PlistBuddy -c 'print version' "${tmp_file}")"
 
-  if [[ "${local_version}" != "${remote_version}" ]]; then
-    if [[ "${workflow_type}" == 'page' ]]; then
-      notification 'Opening download page…'
-      open "${workflow_url}"
-    else
-      if url_exists "${workflow_url}"; then
-        notification 'Downloading and installing…'
-        curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${workflow_url}"
-        open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
-      else
-        abort "'workflow_url' (${workflow_url}) appears to not be reachable."
-      fi # url_exists
-    fi # workflow_type
-  else
+  if [[ "${local_version}" == "${remote_version}" ]]; then
     touch "${local_info_plist}" # Reset timer by touching local file
-  fi # diff
-fi #find</string>
+    exit 0
+  fi
+
+  if [[ "${download_type}" == 'page' ]]; then
+    notification 'Opening download page…'
+    open "${workflow_url}"
+    exit 0
+  fi
+
+  download_url="$([[ "${download_type}" == 'github_release' ]] &amp;&amp; curl --silent "https://api.github.com/repos/${workflow_url}/releases/latest" | grep 'browser_download_url' | head -1 | sed -E 's/.*browser_download_url": "(.*)"/\1/' || echo "${workflow_url}")"
+
+  if url_exists "${download_url}"; then
+    notification 'Downloading and installing…'
+    curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${download_url}"
+    open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
+  else
+    abort "'workflow_url' (${download_url}) appears to not be reachable."
+  fi
+fi</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -565,28 +481,123 @@ fi #find</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>6C7A1D7B-A177-44D8-BE8B-332B8D9F7DAB</string>
+			<string>88990516-33AA-49DC-8096-95883FB6BE51</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argument</key>
-				<string>1</string>
-				<key>argumenttype</key>
-				<integer>3</integer>
-				<key>triggerid</key>
-				<string>playnext</string>
-				<key>triggername</key>
-				<string>Play next</string>
-				<key>workflowonly</key>
+				<key>concurrently</key>
 				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/watchlist_functions.rb"
+
+play(ARGV[0], false)</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.trigger.remote</string>
+			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>A9B03347-978A-4547-9F09-AC992131AEFB</string>
+			<string>98D586EA-8DD5-4EAE-8A4A-3A06AC84E9DC</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/watchlist_functions.rb"
+
+update_series(ARGV[0])</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>D27FE458-78D9-4C16-BF89-7E489D839F6D</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>fixedorder</key>
+				<false/>
+				<key>items</key>
+				<string>[{"title":"Shortest first","arg":"duration_ascending","subtitle":"From shortest duration to longest"},{"title":"Longest first","arg":"duration_descending","subtitle":"From longest duration to shortest"},{"title":"Smallest first","arg":"size_ascending","subtitle":"From smallest file size to biggest"},{"title":"Biggest first","arg":"size_descending","subtitle":"From biggest file size to smallest"}]</string>
+				<key>keyword</key>
+				<string>wls</string>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Sort by duration or file size</string>
+				<key>title</key>
+				<string>Pick a sort order and play (wls)</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.listfilter</string>
+			<key>uid</key>
+			<string>FA9B96C8-46F8-4275-A082-2D7CFB7B7867</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>externaltriggerid</key>
+				<string>sort_order</string>
+				<key>passinputasargument</key>
+				<false/>
+				<key>passvariables</key>
+				<true/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>9537F6F1-6608-4671-BE03-A3DCD23A06DF</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>variables</key>
+				<dict>
+					<key>sort_order</key>
+					<string>{query}</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>D75377F6-6B47-4683-B400-224620A75802</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -596,110 +607,24 @@ fi #find</string>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
-				<integer>0</integer>
+				<integer>102</integer>
 				<key>script</key>
-				<string>source ./watchlist_functions.sh
-use_list watched
-line_number='{query}'
+				<string>require "#{Dir.pwd}/watchlist_functions.rb"
 
-load_item "${line_number}"
-
-move_list_item "${line_number}"
-
-notification "Marked ${item_title} as unwatched"</string>
+edit_towatch</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>2</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>20803797-C5B6-42F9-9F31-1425E194C1C3</string>
+			<string>7D39E405-629C-4741-BBA3-D87CFC3D419A</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>alfredfiltersresults</key>
-				<false/>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>wlu</string>
-				<key>queuedelaycustom</key>
-				<integer>1</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<false/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string>Please wait…</string>
-				<key>script</key>
-				<string>source ./watchlist_functions.sh
-search_query='{query}'
-
-if [[ -z $(cat ${watched}) ]]; then
-  echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-  echo "&lt;item uuid='none' arg='none' valid='no'&gt;"
-  echo "&lt;title&gt;Play (wlu)&lt;/title&gt;"
-  echo "&lt;subtitle&gt;You have no unwatched files&lt;/subtitle&gt;"
-  echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
-  echo "&lt;/item&gt;"
-  echo "&lt;/items&gt;"
-else
-  use_list watched
-  watch_script_filter "${search_query}"
-fi</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string>Pick a file to mark as unwatched</string>
-				<key>title</key>
-				<string>Unwatch (wlu)</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>52C95301-2DF9-4A14-86FA-7917CFC49D39</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string>1</string>
-				<key>argumenttype</key>
-				<integer>3</integer>
-				<key>triggerid</key>
-				<string>unwatchlast</string>
-				<key>triggername</key>
-				<string>Unwatch last</string>
-				<key>workflowonly</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.remote</string>
-			<key>uid</key>
-			<string>D6023D14-C151-44A0-BC02-08938DB9D46E</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -709,7 +634,7 @@ fi</string>
 				<key>keyword</key>
 				<string>wle</string>
 				<key>subtext</key>
-				<string>Open the lists in your default text editor, for manual editing</string>
+				<string>Reorder and rename watchlist items</string>
 				<key>text</key>
 				<string>Edit (wle)</string>
 				<key>withspace</key>
@@ -718,7 +643,7 @@ fi</string>
 			<key>type</key>
 			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
-			<string>4B343886-E096-4B4A-B04A-AC6574D6FB41</string>
+			<string>68BC0595-725B-4DDD-B33F-01C3DE55A709</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -728,127 +653,44 @@ fi</string>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
-				<integer>0</integer>
+				<integer>102</integer>
 				<key>script</key>
-				<string>source ./watchlist_functions.sh
+				<string>require "#{Dir.pwd}/watchlist_functions.rb"
 
-touch "${towatch}" "${watched}"
-open -t "${towatch}" "${watched}"</string>
+mark_unwatched(ARGV[0])</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>0DDE2F4F-9DE8-4C40-BB85-ED0DF8C613EE</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
 				<integer>2</integer>
-				<key>keyword</key>
-				<string>wld</string>
-				<key>subtext</key>
-				<string>Move your watched files to the trash</string>
-				<key>text</key>
-				<string>Delete (wld)</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>C8A7E5CB-00A9-4A5B-9AD4-2D31987E06CE</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>source ./watchlist_functions.sh
-use_list watched
-
-cat "${list}" | cut -d'⸗' -f3 | perl -pe 's/\n/\0/' | xargs -0 trash
-cat /dev/null &gt; "${list}"
-
-notification "Watched files were moved to the trash"</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>B81E79EC-8587-4704-B6ED-6B72BD007014</string>
+			<string>C92FF9E0-CBC7-4421-9B75-4B8C557EB4DD</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string></string>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>triggerid</key>
-				<string>deletewatched</string>
-				<key>triggername</key>
-				<string>Delete watched</string>
-				<key>workflowonly</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.remote</string>
-			<key>uid</key>
-			<string>87E67178-1A36-458D-9883-D7A839F8E020</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>triggerid</key>
-				<string>delete_watched_files_from_watchlist</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>A0CB4B50-6085-4C77-BA3D-435ABE469ECE</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
-				<integer>0</integer>
+				<integer>102</integer>
 				<key>keyword</key>
-				<string>wls</string>
+				<string>wlu</string>
 				<key>queuedelaycustom</key>
-				<integer>1</integer>
+				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
-				<false/>
+				<true/>
 				<key>queuedelaymode</key>
 				<integer>0</integer>
 				<key>queuemode</key>
@@ -856,326 +698,282 @@ notification "Watched files were moved to the trash"</string>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
-				<string>source ./watchlist_functions.sh
-search_query='{query}'
+				<string>require "#{Dir.pwd}/watchlist_functions.rb"
 
-if [[ -z $(cat ${watched}) ]]; then
-  echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-  echo "&lt;item uuid='none' arg='none' valid='no'&gt;"
-  echo "&lt;title&gt;Share (wls)&lt;/title&gt;"
-  echo "&lt;subtitle&gt;You need to use this with watched files&lt;/subtitle&gt;"
-  echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
-  echo "&lt;/item&gt;"
-  echo "&lt;/items&gt;"
-else
-  use_list share
-  watch_script_filter "${search_query}"
-fi</string>
+display_watched</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
-				<string>Get URL from where item is from</string>
+				<string>Pick an item to mark as unwatched</string>
 				<key>title</key>
-				<string>Share (wls)</string>
+				<string>Mark unwatched (wlu)</string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>2</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>3B6BF175-810F-4D1C-9E89-0F8BE1BCA98D</string>
+			<string>E75EF64B-CE9C-4789-8FCC-8095D43D1FEA</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>source ./watchlist_functions.sh
-use_list share
-line_number='{query}'
-
-load_item "${line_number}"
-
-url=$(get_item_origin_url "${item_type}" "${item_location}")
-
-echo -n "${url}" | pbcopy
-
-notification "Copied link to clipboard"</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
+				<key>browser</key>
 				<string></string>
-				<key>type</key>
-				<integer>0</integer>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>{query}</string>
+				<key>utf8</key>
+				<true/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.action.openurl</string>
 			<key>uid</key>
-			<string>3FB08D9D-FA61-4076-A99A-E8B45A21CC8D</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string>1</string>
-				<key>argumenttype</key>
-				<integer>3</integer>
-				<key>triggerid</key>
-				<string>sharelast</string>
-				<key>triggername</key>
-				<string>Share last</string>
-				<key>workflowonly</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.remote</string>
-			<key>uid</key>
-			<string>2BD98040-76A3-48BE-8E0F-68D1F1F9C7E6</string>
+			<string>DA8908F6-F112-4087-86D4-1B9671DD766C</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
+				<key>autopaste</key>
+				<true/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>transient</key>
 				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>source ./watchlist_functions.sh
-use_list share
-line_number='{query}'
-
-load_item "${line_number}"
-
-url=$(get_item_origin_url "${item_type}" "${item_location}")
-
-open "${url}"</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.output.clipboard</string>
 			<key>uid</key>
-			<string>7EE6AEBF-1246-428C-B2E9-C9F5BBCB5EF4</string>
+			<string>824AADC5-ECD6-4B9A-B01B-901EE6EC2552</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>View and manage a list of files and video streams at your own pace. This workflow was built with video in mind but works with just about any file or directory.
+	<string>Keep a list of audiovisual content to watch and listen to.
  
-We often have series of videos and streams that we’d like to watch but not necessarily keep after, but keeping track of them all and which we’ve already seen (and are thus safe to delete), can be a chore.
+We often have series of videos and streams that we’d like to watch but not necessarily keep after, but tracking which we’ve already seen (and are thus safe to delete) can be a chore.
  
-Select in the Finder the files (or directories) you wish to add to your list, and apply the file action `Add to watchlist`. Every time you do this, the new files will be prepended to the list. You then have some options you can pick from, all starting with `wl`.
+Select in the Finder the files or directories you wish to add to your list and apply the file action `Add to watchlist`. Every time you do this the new items will be prepended or appended to the list (depending on the `add_item_order` Workflow Environment Variable). Alternatively, call `swl` to add the URL in your clipboard as a stream.
 
-![](https://i.imgur.com/Bp0Rsuq.png)
+You then have some options you can pick from, all starting with `wl`.
 
-If you choose any of the options that let you pick from a list (`wlp`, `wlu`, and `wls`) and continue typing after it, you’ll start filtering — names, file sizes, durations, and a few more — so you can quickly find the ones you want.
+![](https://i.imgur.com/jOKRSwY.png)
 
-![](https://i.imgur.com/vuWA4wI.png)
+`wlp` shows the list of items you can play. A reference to each subtitle section can be found at the end.
 
-Items starting with a ≈ are streams. They also show no file size (since they aren’t taking up any space locally) and show the link they were taken from, as opposed to a location on disk. To be able to stream video, you need either [mpv](http://mpv.io/) or [VLC](http://www.videolan.org/vlc/index.html).
+![](https://i.imgur.com/anCe2I8.png)
 
-![](http://i.imgur.com/AxMR4QQ.png)
+`wls` calls `wlp` under the hood, but lets you first select a sort order based on duration or size.
 
-Sharing is particularly useful when you want to send the original link of something you watched to someone else, or to save it somewhere. Those are extracter from downloaded files, if they have that metadata ([DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownVid), for example, adds it to downloaded videos). Use ⌘ to open the url in the default browser, as opposed to copying to the clipboard.
+![](https://i.imgur.com/q8UDKn4.png)
 
-![](https://i.imgur.com/i0WC2i3.png)
+In both cases, ↵ plays the selection. Add ⌘ to play without marking as watched or ⌥ to rescan a directory (useful if you made manual changes to it).
 
-`swl` will add the url in your clipboard as a stream.
+Items starting with `≈` are streams. They show no file size (since they aren’t taking up any space locally) and present the link they were taken from as opposed to a location on disk. To be able to stream video and audio you need either [mpv](http://mpv.io/) or [VLC](http://www.videolan.org/vlc/index.html).
 
-You can also control parts of the workflow with [Alfred Remote](https://www.alfredapp.com/remote/).
+`wlu` marks an item as unwatched. Note that in the case of files it does not recover them from the trash, as there is no reliable way to do so on macOS — that step you need to do yourself. If the item has a URL origin (you’ll see it in the subtitle) add ⌘ to open the URL in your default browser or ⌥ to copy it to the clipboard.
 
-![](https://i.imgur.com/vc2oPDB.png)
+![](https://i.imgur.com/XK0W6Wj.png)
 
-If you use [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownVid), it has an option to add the downloaded video files directly to your watchlist.</string>
+`wle` allows you to reorder, rename, and remove items from the list.
+
+Finally, if you use [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownVid) it has an option to add the downloaded video files directly to your watchlist.
+
+#### Subtitle reference:
+
+There are three types of items: `files`, `series`, and `streams`. `stream`s can be further categorised into single item or playlist. Each result has its name as the top title. The subtitle confers more detailed information and follow this template (`~` means it never shows):
+
+```
+≈ (4) 𐄁 22m 32s 𐄁 691M 𐄁 /Some/Path
+```
+
++ ≈. Indicates item is a `stream`.
+    + `file`: ~
+    + `series`: ~
+    + `stream`: Always present.
++ (4). Number of elements.
+    + `file`: ~
+    + `series`: Remaining audiovisual files in directory.
+    + `stream`: Single item: ~. Playlist: All elements.
++ 22m 32s. Running time.
+    + `file`: Running time of file.
+    + `series`: Running time of first audiovisual file in directory.
+    + `stream`: Combined running time of all elements.
++ 691M. Size.
+    + `file`: Size of file.
+    + `series`: Size of first audiovisual file in directory.
+    + `stream`: ~
++ /Some/Path. Path.
+    + `file`: Path of file.
+    + `series`: Path of directory.
+    + `stream`: URL.</string>
 	<key>uidata</key>
 	<dict>
-		<key>006E81EE-A542-4616-AE6B-5262EF4E59C5</key>
+		<key>082FCE19-5B3C-454B-80ED-839DD28766F3</key>
 		<dict>
 			<key>xpos</key>
-			<integer>300</integer>
+			<integer>520</integer>
 			<key>ypos</key>
-			<real>250</real>
+			<integer>20</integer>
 		</dict>
-		<key>0DDE2F4F-9DE8-4C40-BB85-ED0DF8C613EE</key>
+		<key>2D2C4B1F-AD23-4F61-A7B2-2122216F9F0F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>40</integer>
 			<key>ypos</key>
-			<integer>870</integer>
+			<integer>380</integer>
 		</dict>
-		<key>10E44EB4-6139-4E72-AD84-137F581D67A1</key>
+		<key>3B8DC012-8D13-4919-8EB0-AC42C883527E</key>
 		<dict>
 			<key>xpos</key>
-			<integer>100</integer>
+			<integer>40</integer>
 			<key>ypos</key>
-			<real>370</real>
+			<integer>20</integer>
 		</dict>
-		<key>20803797-C5B6-42F9-9F31-1425E194C1C3</key>
+		<key>63FBFF0E-05C5-47D2-9951-CB86E114264B</key>
 		<dict>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>40</integer>
 			<key>ypos</key>
-			<integer>630</integer>
+			<integer>140</integer>
 		</dict>
-		<key>2A1A7853-05AD-43B6-AFF0-55104517AB51</key>
+		<key>68BC0595-725B-4DDD-B33F-01C3DE55A709</key>
 		<dict>
 			<key>xpos</key>
-			<integer>500</integer>
-			<key>ypos</key>
 			<integer>250</integer>
+			<key>ypos</key>
+			<integer>860</integer>
 		</dict>
-		<key>2BD98040-76A3-48BE-8E0F-68D1F1F9C7E6</key>
+		<key>6DBE8BF2-3AA2-46A3-A028-739C1E71A985</key>
 		<dict>
 			<key>xpos</key>
-			<integer>100</integer>
+			<integer>520</integer>
 			<key>ypos</key>
-			<integer>1470</integer>
+			<integer>260</integer>
 		</dict>
-		<key>2C22F42C-C25C-4D4C-AB42-C31CE9234895</key>
+		<key>7D39E405-629C-4741-BBA3-D87CFC3D419A</key>
 		<dict>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>520</integer>
 			<key>ypos</key>
-			<real>10</real>
+			<integer>860</integer>
 		</dict>
-		<key>3B6BF175-810F-4D1C-9E89-0F8BE1BCA98D</key>
+		<key>824AADC5-ECD6-4B9A-B01B-901EE6EC2552</key>
 		<dict>
 			<key>xpos</key>
-			<integer>300</integer>
+			<integer>520</integer>
 			<key>ypos</key>
-			<integer>1350</integer>
+			<integer>1220</integer>
 		</dict>
-		<key>3FB08D9D-FA61-4076-A99A-E8B45A21CC8D</key>
-		<dict>
-			<key>xpos</key>
-			<integer>500</integer>
-			<key>ypos</key>
-			<integer>1350</integer>
-		</dict>
-		<key>475F7D72-F65B-4E51-99C1-65C581528087</key>
-		<dict>
-			<key>xpos</key>
-			<integer>100</integer>
-			<key>ypos</key>
-			<real>130</real>
-		</dict>
-		<key>4B343886-E096-4B4A-B04A-AC6574D6FB41</key>
-		<dict>
-			<key>xpos</key>
-			<integer>300</integer>
-			<key>ypos</key>
-			<integer>870</integer>
-		</dict>
-		<key>52C95301-2DF9-4A14-86FA-7917CFC49D39</key>
-		<dict>
-			<key>xpos</key>
-			<integer>300</integer>
-			<key>ypos</key>
-			<integer>630</integer>
-		</dict>
-		<key>6C7A1D7B-A177-44D8-BE8B-332B8D9F7DAB</key>
+		<key>88990516-33AA-49DC-8096-95883FB6BE51</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>12</integer>
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
+			<integer>770</integer>
+			<key>ypos</key>
+			<integer>380</integer>
+		</dict>
+		<key>9537F6F1-6608-4671-BE03-A3DCD23A06DF</key>
+		<dict>
+			<key>xpos</key>
+			<integer>520</integer>
+			<key>ypos</key>
+			<integer>740</integer>
+		</dict>
+		<key>98D586EA-8DD5-4EAE-8A4A-3A06AC84E9DC</key>
+		<dict>
+			<key>xpos</key>
+			<integer>520</integer>
+			<key>ypos</key>
 			<integer>500</integer>
-			<key>ypos</key>
-			<integer>490</integer>
 		</dict>
-		<key>7EE6AEBF-1246-428C-B2E9-C9F5BBCB5EF4</key>
+		<key>A22F833D-4556-4FEE-8A77-EE6A6A2FE8FE</key>
 		<dict>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>250</integer>
 			<key>ypos</key>
-			<integer>1470</integer>
+			<integer>260</integer>
 		</dict>
-		<key>7F8D7B1C-9061-4414-98C2-FEEB13C9314B</key>
+		<key>AFB3D5CC-1B83-4675-91D8-770B0B2B7576</key>
 		<dict>
 			<key>xpos</key>
-			<integer>300</integer>
+			<integer>520</integer>
 			<key>ypos</key>
-			<real>370</real>
+			<integer>380</integer>
 		</dict>
-		<key>87E67178-1A36-458D-9883-D7A839F8E020</key>
+		<key>C92FF9E0-CBC7-4421-9B75-4B8C557EB4DD</key>
 		<dict>
 			<key>xpos</key>
-			<integer>100</integer>
+			<integer>520</integer>
 			<key>ypos</key>
-			<integer>1110</integer>
+			<integer>980</integer>
 		</dict>
-		<key>A0CB4B50-6085-4C77-BA3D-435ABE469ECE</key>
+		<key>D27FE458-78D9-4C16-BF89-7E489D839F6D</key>
 		<dict>
 			<key>xpos</key>
-			<integer>100</integer>
+			<integer>520</integer>
 			<key>ypos</key>
-			<integer>1230</integer>
+			<integer>620</integer>
 		</dict>
-		<key>A9B03347-978A-4547-9F09-AC992131AEFB</key>
+		<key>D75377F6-6B47-4683-B400-224620A75802</key>
 		<dict>
 			<key>xpos</key>
-			<integer>100</integer>
+			<integer>430</integer>
 			<key>ypos</key>
-			<real>490</real>
+			<integer>770</integer>
 		</dict>
-		<key>AA3CF56F-3E4D-4EB5-8019-B9E517648566</key>
+		<key>DA8908F6-F112-4087-86D4-1B9671DD766C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>100</integer>
+			<integer>520</integer>
 			<key>ypos</key>
-			<real>10</real>
+			<integer>1100</integer>
 		</dict>
-		<key>B81E79EC-8587-4704-B6ED-6B72BD007014</key>
+		<key>E75EF64B-CE9C-4789-8FCC-8095D43D1FEA</key>
 		<dict>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>250</integer>
 			<key>ypos</key>
-			<integer>990</integer>
+			<integer>980</integer>
 		</dict>
-		<key>C8A7E5CB-00A9-4A5B-9AD4-2D31987E06CE</key>
+		<key>E8F9509C-843D-40C8-B5F1-6B8FC692A18C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>300</integer>
+			<integer>250</integer>
 			<key>ypos</key>
-			<integer>990</integer>
+			<integer>380</integer>
 		</dict>
-		<key>D6023D14-C151-44A0-BC02-08938DB9D46E</key>
+		<key>FA9B96C8-46F8-4275-A082-2D7CFB7B7867</key>
 		<dict>
 			<key>xpos</key>
-			<integer>100</integer>
+			<integer>250</integer>
 			<key>ypos</key>
-			<integer>750</integer>
-		</dict>
-		<key>DE394F89-C4B4-497C-B6E8-5715050AC3CE</key>
-		<dict>
-			<key>xpos</key>
-			<integer>500</integer>
-			<key>ypos</key>
-			<real>370</real>
+			<integer>740</integer>
 		</dict>
 	</dict>
+	<key>variables</key>
+	<dict>
+		<key>added_item_order</key>
+		<string>prepend</string>
+		<key>maximum_watched</key>
+		<string>9</string>
+	</dict>
 	<key>version</key>
-	<string>1.12.4</string>
+	<string>1.14.0</string>
 	<key>webaddress</key>
-	<string>http://vitorgalvao.com/</string>
+	<string>https://vitorgalvao.com/</string>
 </dict>
 </plist>

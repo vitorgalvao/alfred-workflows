@@ -215,7 +215,7 @@ Outputs the url of a video on a supported website with its duration in square br
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/VideoDuration) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/VideoDuration/VideoDuration.alfredworkflow)
 
 ### WatchList <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/WatchList/source/icon.png' width='60' align='center' alt='WatchList icon'>
-Watch and manage local videos and streams
+Play and manage local audiovisual content and streams
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/WatchList) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/WatchList/WatchList.alfredworkflow)
 

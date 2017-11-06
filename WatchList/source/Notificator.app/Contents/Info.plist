@@ -18,8 +18,6 @@
 	<string>Notificator</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
-	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>aplt</string>
 	<key>LSMinimumSystemVersionByArchitecture</key>
@@ -31,24 +29,5 @@
 	<true/>
 	<key>LSUIElement</key>
 	<string>1</string>
-	<key>WindowState</key>
-	<dict>
-		<key>bundleDividerCollapsed</key>
-		<true/>
-		<key>bundlePositionOfDivider</key>
-		<real>0.0</real>
-		<key>dividerCollapsed</key>
-		<false/>
-		<key>eventLogLevel</key>
-		<integer>2</integer>
-		<key>name</key>
-		<string>ScriptWindowState</string>
-		<key>positionOfDivider</key>
-		<real>421</real>
-		<key>savedFrame</key>
-		<string>66 191 700 672 0 0 1440 878 </string>
-		<key>selectedTab</key>
-		<string>description</string>
-	</dict>
 </dict>
 </plist>

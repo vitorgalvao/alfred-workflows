@@ -1,27 +1,58 @@
-View and manage a list of files and video streams at your own pace. This workflow was built with video in mind but works with just about any file or directory.
+Keep a list of audiovisual content to watch and listen to.
  
-We often have series of videos and streams that we’d like to watch but not necessarily keep after, but keeping track of them all and which we’ve already seen (and are thus safe to delete), can be a chore.
+We often have series of videos and streams that we’d like to watch but not necessarily keep after, but tracking which we’ve already seen (and are thus safe to delete) can be a chore.
  
-Select in the Finder the files (or directories) you wish to add to your list, and apply the file action `Add to watchlist`. Every time you do this, the new files will be prepended to the list. You then have some options you can pick from, all starting with `wl`.
+Select in the Finder the files or directories you wish to add to your list and apply the file action `Add to watchlist`. Every time you do this the new items will be prepended or appended to the list (depending on the `add_item_order` Workflow Environment Variable). Alternatively, call `swl` to add the URL in your clipboard as a stream.
 
-![](https://i.imgur.com/Bp0Rsuq.png)
+You then have some options you can pick from, all starting with `wl`.
 
-If you choose any of the options that let you pick from a list (`wlp`, `wlu`, and `wls`) and continue typing after it, you’ll start filtering — names, file sizes, durations, and a few more — so you can quickly find the ones you want.
+![](https://i.imgur.com/jOKRSwY.png)
 
-![](https://i.imgur.com/vuWA4wI.png)
+`wlp` shows the list of items you can play. A reference to each subtitle section can be found at the end.
 
-Items starting with a ≈ are streams. They also show no file size (since they aren’t taking up any space locally) and show the link they were taken from, as opposed to a location on disk. To be able to stream video, you need either [mpv](http://mpv.io/) or [VLC](http://www.videolan.org/vlc/index.html).
+![](https://i.imgur.com/anCe2I8.png)
 
-![](http://i.imgur.com/AxMR4QQ.png)
+`wls` calls `wlp` under the hood, but lets you first select a sort order based on duration or size.
 
-Sharing is particularly useful when you want to send the original link of something you watched to someone else, or to save it somewhere. Those are extracter from downloaded files, if they have that metadata ([DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownVid), for example, adds it to downloaded videos). Use ⌘ to open the url in the default browser, as opposed to copying to the clipboard.
+![](https://i.imgur.com/q8UDKn4.png)
 
-![](https://i.imgur.com/i0WC2i3.png)
+In both cases, ↵ plays the selection. Add ⌘ to play without marking as watched or ⌥ to rescan a directory (useful if you made manual changes to it).
 
-`swl` will add the url in your clipboard as a stream.
+Items starting with `≈` are streams. They show no file size (since they aren’t taking up any space locally) and present the link they were taken from as opposed to a location on disk. To be able to stream video and audio you need either [mpv](http://mpv.io/) or [VLC](http://www.videolan.org/vlc/index.html).
 
-You can also control parts of the workflow with [Alfred Remote](https://www.alfredapp.com/remote/).
+`wlu` marks an item as unwatched. Note that in the case of files it does not recover them from the trash, as there is no reliable way to do so on macOS — that step you need to do yourself. If the item has a URL origin (you’ll see it in the subtitle) add ⌘ to open the URL in your default browser or ⌥ to copy it to the clipboard.
 
-![](https://i.imgur.com/vc2oPDB.png)
+![](https://i.imgur.com/XK0W6Wj.png)
 
-If you use [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownVid), it has an option to add the downloaded video files directly to your watchlist.
+`wle` allows you to reorder, rename, and remove items from the list.
+
+Finally, if you use [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownVid) it has an option to add the downloaded video files directly to your watchlist.
+
+#### Subtitle reference:
+
+There are three types of items: `files`, `series`, and `streams`. `stream`s can be further categorised into single item or playlist. Each result has its name as the top title. The subtitle confers more detailed information and follow this template (`~` means it never shows):
+
+```
+≈ (4) 𐄁 22m 32s 𐄁 691M 𐄁 /Some/Path
+```
+
++ ≈. Indicates item is a `stream`.
+    + `file`: ~
+    + `series`: ~
+    + `stream`: Always present.
++ (4). Number of elements.
+    + `file`: ~
+    + `series`: Remaining audiovisual files in directory.
+    + `stream`: Single item: ~. Playlist: All elements.
++ 22m 32s. Running time.
+    + `file`: Running time of file.
+    + `series`: Running time of first audiovisual file in directory.
+    + `stream`: Combined running time of all elements.
++ 691M. Size.
+    + `file`: Size of file.
+    + `series`: Size of first audiovisual file in directory.
+    + `stream`: ~
++ /Some/Path. Path.
+    + `file`: Path of file.
+    + `series`: Path of directory.
+    + `stream`: URL.
