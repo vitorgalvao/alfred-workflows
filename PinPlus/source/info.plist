@@ -1040,6 +1040,8 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 	</dict>
 	<key>variables</key>
 	<dict>
+		<key>minutes_between_checks</key>
+		<string>10</string>
 		<key>unread_action</key>
 		<string>delete</string>
 	</dict>
@@ -1048,7 +1050,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 		<string>unread_action</string>
 	</array>
 	<key>version</key>
-	<string>1.1.5</string>
+	<string>1.2.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

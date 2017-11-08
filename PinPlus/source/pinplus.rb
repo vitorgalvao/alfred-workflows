@@ -134,7 +134,10 @@ end
 
 def old_local_copy?
   return true unless File.exist?(Last_access_file)
-  return false if ((Time.now - File.mtime(Last_access_file)) / 60).to_i < 10 # If Last_access_file was modified over 10 minutes ago
+
+  cache_minutes = ENV['minutes_between_checks'].to_i > 10 ? ENV['minutes_between_checks'].to_i : 10 # Default to keeping the cache for 10 minutes
+  return false if ((Time.now - File.mtime(Last_access_file)) / 60).to_i < cache_minutes
+
   return true
 end
 
