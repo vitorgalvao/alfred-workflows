@@ -357,7 +357,7 @@
 				<key>items</key>
 				<string>[{"title":"Troubleshooting","arg":"troubleshooting","subtitle":"Link to troubleshooting help"},{"title":"Snippets","arg":"snippets","subtitle":"Common help messages"},{"title":"Documentation","arg":"documentation","subtitle":"Link to documentation help"}]</string>
 				<key>keyword</key>
-				<string>mod</string>
+				<string>moda</string>
 				<key>runningsubtext</key>
 				<string></string>
 				<key>subtext</key>
@@ -740,7 +740,7 @@ puts File.read(troubleshooting_file)</string>
 				<key>matchstring</key>
 				<string>(.*),(.*)</string>
 				<key>replacestring</key>
-				<string>[url=$2]$1[/ur]</string>
+				<string>[url=$2]$1[/url]</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.utility.replace</string>
@@ -960,7 +960,7 @@ Call `mod` to show a list of help categories. Each one will have items related t
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.1</string>
+	<string>1.1.2</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
