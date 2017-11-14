@@ -10,7 +10,14 @@ Watched_list = "#{ENV['alfred_workflow_data']}/watched.yaml".freeze
 
 def add_local_to_watchlist(path)
   ensure_data_files
-  File.file?(path) ? add_file_to_watchlist(path) : add_dir_to_watchlist(path)
+
+  if File.file?(path)
+    add_file_to_watchlist(path)
+  elsif File.directory?(path)
+    add_dir_to_watchlist(path)
+  else
+    error('Not a valid path.')
+  end
 end
 
 def add_file_to_watchlist(file_path)
