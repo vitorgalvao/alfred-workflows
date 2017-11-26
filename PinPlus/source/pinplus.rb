@@ -2,13 +2,14 @@ require 'cgi'
 require 'fileutils'
 require 'json'
 require 'open-uri'
+require 'shellwords'
 
 Last_access_file = "#{ENV['alfred_workflow_data']}/last_access_file.txt".freeze
 All_bookmarks_json = "#{ENV['alfred_workflow_data']}/all_bookmarks.json".freeze
 Unread_bookmarks_json = "#{ENV['alfred_workflow_data']}/unread_bookmarks.json".freeze
 
 def notification(message)
-  system("#{__dir__}/Notificator.app/Contents/Resources/Scripts/notificator", '--message', message, '--title', ENV['alfred_workflow_name'])
+  system("#{__dir__.shellescape}/Notificator.app/Contents/Resources/Scripts/notificator", '--message', message, '--title', ENV['alfred_workflow_name'])
 end
 
 def success_sound
@@ -69,7 +70,7 @@ def grab_url_title
 end
 
 def open_gui
-  system("#{__dir__}/run_bookmarklet")
+  system("#{__dir__.shellescape}/run_bookmarklet")
 end
 
 def add_unread
