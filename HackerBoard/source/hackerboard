@@ -12,7 +12,7 @@ if ARGV[0] == 'pinboard'
 
     script_filter_items = []
 
-    JSON.load(open('https://feeds.pinboard.in/json/popular/')).each do |item|
+    JSON.parse(open('https://feeds.pinboard.in/json/popular/').read).each do |item|
       script_filter_items.push(title: item['d'], subtitle: item['u'], arg: item['u'])
     end
 
