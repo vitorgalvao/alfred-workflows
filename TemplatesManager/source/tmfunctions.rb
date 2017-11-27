@@ -129,8 +129,10 @@ def local_script_run(location)
   tm_script = Dir.entries(location).find { |item| item =~ /_templatesmanagerscript\./ }
 
   return unless tm_script
+
+  require 'shellwords'
   Dir.chdir(location)
-  system('./' + tm_script)
+  system("#{__dir__}/#{tm_script}".shellescape)
 end
 
 # Copy files and directories directly
