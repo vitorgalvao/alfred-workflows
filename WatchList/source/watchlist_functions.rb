@@ -258,12 +258,12 @@ def play(id, send_to_watched = true)
 
   case item['type']
   when 'file'
-    system('open', '-W', item['path'])
+    return unless play_item('file', item['path'])
     return if send_to_watched == false
     trash(item['path'])
     mark_watched(id)
   when 'stream'
-    system('open', '-Wa', which_video_player, item['url'])
+    return unless play_item('stream', item['url'])
     mark_watched(id) if send_to_watched == true
   when 'series'
     if !File.exist?(item['path']) && send_to_watched == true
@@ -274,7 +274,7 @@ def play(id, send_to_watched = true)
     audiovisual_files = find_audiovisual_files(item['path'])
     first_file = audiovisual_files.first
 
-    system('open', '-W', first_file)
+    return unless play_item('file', first_file)
     return if send_to_watched == false
 
     # If there are no more audiovisual files in the directory in addition to the one we just watched, trash the whole directory, else trash just the watched file
@@ -334,11 +334,22 @@ def edit_towatch
   File.write(Towatch_list, target_hash.to_yaml)
 end
 
-def which_video_player
-  return 'mpv' unless Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier', '=', 'io.mpv').first.empty?
-  return 'vlc' unless Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier', '=', 'org.videolan.vlc').first.empty?
+# By checking for and running the CLI of certain players instead of the app bundle, we get access to the exit status. That way, in the 'play' method, even if the file were to be marked as watched we do not do it unless it was a success.
+# This means we can configure our video player to not exit successfully on certain conditions and have greater granularity with WatchList.
+def play_item(type, path)
+  video_player = lambda {
+    mpv_cli = Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier', '=', 'io.mpv').first.strip + '/Contents/MacOS/mpv'
+    return mpv_cli if File.executable?(mpv_cli)
 
-  error('You need either mpv or vlc, to stream a video.')
+    vlc_cli = Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier', '=', 'org.videolan.vlc').first.strip + '/Contents/MacOS/VLC'
+    return vlc_cli if File.executable?(vlc_cli)
+
+    return 'other'
+  }.call
+
+  error('You need either mpv or vlc, to stream a video.') if video_player == 'other' && type == 'stream'
+
+  video_player == 'other' ? system('open', '-W', path) : Open3.capture2(video_player, path)[1].success?
 end
 
 def random_hex

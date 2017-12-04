@@ -781,6 +781,8 @@ In both cases, ↵ plays the selection. Add ⌘ to play without marking as watch
 
 Items starting with `≈` are streams. They show no file size (since they aren’t taking up any space locally) and present the link they were taken from as opposed to a location on disk. To be able to stream video and audio you need either [mpv](http://mpv.io/) or [VLC](http://www.videolan.org/vlc/index.html).
 
+An item will not be marked as watched if we can access the player’s CLI and it exits with a failure exit code.
+
 `wlu` marks an item as unwatched. Note that in the case of files it does not recover them from the trash, as there is no reliable way to do so on macOS — that step you need to do yourself. If the item has a URL origin (you’ll see it in the subtitle) add ⌘ to open the URL in your default browser or ⌥ to copy it to the clipboard.
 
 ![](https://i.imgur.com/XK0W6Wj.png)
@@ -972,7 +974,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 		<string>9</string>
 	</dict>
 	<key>version</key>
-	<string>1.14.1</string>
+	<string>1.15.0</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
