@@ -6,7 +6,20 @@
 	<string>com.vitorgalvao.alfred.recentdownloads</string>
 	<key>connections</key>
 	<dict>
-		<key>6EFF2E1A-ED35-4BAC-8EB4-A272C1F8A508</key>
+		<key>04F0C2C5-E539-4961-B943-7937EC802CE8</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1E47C82D-C9C1-4961-9DC8-13EB6858EF20</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>1E47C82D-C9C1-4961-9DC8-13EB6858EF20</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -29,11 +42,11 @@
 				<false/>
 			</dict>
 		</array>
-		<key>A10F711E-4562-4988-8205-77E555679788</key>
+		<key>6EFF2E1A-ED35-4BAC-8EB4-A272C1F8A508</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>F525988E-4ED1-4E45-8CAD-25BAF510025C</string>
+				<string>1E47C82D-C9C1-4961-9DC8-13EB6858EF20</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -41,9 +54,25 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+		</array>
+		<key>A10F711E-4562-4988-8205-77E555679788</key>
+		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>98D0B5C7-39EF-41AD-9025-6E1822E57BAE</string>
+				<string>1E47C82D-C9C1-4961-9DC8-13EB6858EF20</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>B59973FE-3ECE-4615-A90C-038C46F54693</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1E47C82D-C9C1-4961-9DC8-13EB6858EF20</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -63,21 +92,6 @@
 	<string>RecentDownloads</string>
 	<key>objects</key>
 	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>openwith</key>
-				<string></string>
-				<key>sourcefile</key>
-				<string></string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.openfile</string>
-			<key>uid</key>
-			<string>F525988E-4ED1-4E45-8CAD-25BAF510025C</string>
-			<key>version</key>
-			<integer>3</integer>
-		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -104,25 +118,13 @@
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
-				<string>IFS=$'\n'
-
-files=$(ls -dtc ${HOME}/Downloads/* | grep --ignore-case ".*{query}.*" | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"'\''})')
-
-echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-for file in ${files}; do
-  echo "&lt;item uuid='file' arg='${file}' type='file'&gt;"
-  echo "&lt;title&gt;$(basename ${file})&lt;/title&gt;"
-  echo "&lt;subtitle&gt;${file}&lt;/subtitle&gt;"
-  echo "&lt;icon type='fileicon'&gt;${file}&lt;/icon&gt;"
-  echo "&lt;/item&gt;"
-done
-echo "&lt;/items&gt;"</string>
+				<string>./recentdownloads 'modified_reverse' "${1}"</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
-				<string>Newest first</string>
+				<string>From most recently modified</string>
 				<key>title</key>
 				<string>RecentDownloads</string>
 				<key>type</key>
@@ -136,6 +138,29 @@ echo "&lt;/items&gt;"</string>
 			<string>A10F711E-4562-4988-8205-77E555679788</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>openwith</key>
+				<string></string>
+				<key>sourcefile</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openfile</string>
+			<key>uid</key>
+			<string>F525988E-4ED1-4E45-8CAD-25BAF510025C</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.junction</string>
+			<key>uid</key>
+			<string>1E47C82D-C9C1-4961-9DC8-13EB6858EF20</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -254,25 +279,13 @@ fi</string>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
-				<string>IFS=$'\n'
-
-files=$(ls -drtc ${HOME}/Downloads/* | grep --ignore-case ".*{query}.*" | perl -MHTML::Entities -CS -pe'$_ = encode_entities($_, q{&amp;&lt;&gt;"'\''})')
-
-echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-for file in ${files}; do
-  echo "&lt;item uuid='file' arg='${file}' type='file'&gt;"
-  echo "&lt;title&gt;$(basename ${file})&lt;/title&gt;"
-  echo "&lt;subtitle&gt;${file}&lt;/subtitle&gt;"
-  echo "&lt;icon type='fileicon'&gt;${file}&lt;/icon&gt;"
-  echo "&lt;/item&gt;"
-done
-echo "&lt;/items&gt;"</string>
+				<string>./recentdownloads 'modified' "${1}"</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
-				<string>Oldest first</string>
+				<string>From least recently modified</string>
 				<key>title</key>
 				<string>RecentDownloads</string>
 				<key>type</key>
@@ -287,15 +300,123 @@ echo "&lt;/items&gt;"</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>rda</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>./recentdownloads 'added_reverse' "${1}"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>From most recently added</string>
+				<key>title</key>
+				<string>RecentDownloads</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>04F0C2C5-E539-4961-B943-7937EC802CE8</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>rdz</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>./recentdownloads 'added' "${1}"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>From least recently added</string>
+				<key>title</key>
+				<string>RecentDownloads</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>B59973FE-3ECE-4615-A90C-038C46F54693</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 	</array>
 	<key>readme</key>
-	<string>List the contents of your `~/Downloads` directory and act on them. Call the workflow with `rdn` to sort from newest to oldest, or `rdo` to sort from oldest to most recent.
+	<string>List the contents of your `~/Downloads` directory and act on them. Call the workflow with `rdn` to sort from the most recently modified, `rdo` for the reverse; `rda` to sort from the most recently added, `rdz` for the reverse.
 
-![](https://i.imgur.com/UZfZwa2.png)
+![](https://i.imgur.com/2kGDKPa.png)
 
 To act on the selections, use the standard Alfred shortcuts. You can activate file actions, dive into directories, preview files, add them to the file buffer — whatever you want to do that is supported by Alfred.</string>
 	<key>uidata</key>
 	<dict>
+		<key>04F0C2C5-E539-4961-B943-7937EC802CE8</key>
+		<dict>
+			<key>xpos</key>
+			<integer>30</integer>
+			<key>ypos</key>
+			<integer>260</integer>
+		</dict>
+		<key>1E47C82D-C9C1-4961-9DC8-13EB6858EF20</key>
+		<dict>
+			<key>xpos</key>
+			<integer>240</integer>
+			<key>ypos</key>
+			<integer>50</integer>
+		</dict>
 		<key>6EFF2E1A-ED35-4BAC-8EB4-A272C1F8A508</key>
 		<dict>
 			<key>xpos</key>
@@ -310,7 +431,7 @@ To act on the selections, use the standard Alfred shortcuts. You can activate fi
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>230</integer>
+			<integer>370</integer>
 			<key>ypos</key>
 			<integer>140</integer>
 		</dict>
@@ -321,16 +442,23 @@ To act on the selections, use the standard Alfred shortcuts. You can activate fi
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
+		<key>B59973FE-3ECE-4615-A90C-038C46F54693</key>
+		<dict>
+			<key>xpos</key>
+			<integer>30</integer>
+			<key>ypos</key>
+			<integer>380</integer>
+		</dict>
 		<key>F525988E-4ED1-4E45-8CAD-25BAF510025C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>230</integer>
+			<integer>370</integer>
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.3</string>
+	<string>1.2.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
