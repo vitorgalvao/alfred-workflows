@@ -21,6 +21,7 @@ elsif order =~ /added.*/
     require 'open3'
     entries_by_added = Open3.capture2('mdls', '-name', 'kMDItemFSName', '-name', 'kMDItemDateAdded', '-raw', *all_entries).first.split("\0").each_slice(2).sort.map { |a| "#{ENV['HOME']}/Downloads/#{a[1]}" }
 
+    Dir.mkdir(ENV['alfred_workflow_cache']) unless Dir.exist?(ENV['alfred_workflow_cache'])
     File.write(entries_cache_file, entries_by_added.join("\n"))
     File.write(entries_check_file, File.mtime("#{ENV['HOME']}/Downloads"))
   end
