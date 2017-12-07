@@ -9,7 +9,7 @@ abort 'You need to specify an order type.' if ARGV[0].empty?
 all_entries = Dir.glob("#{ENV['HOME']}/Downloads/*")
 
 if order =~ /modified.*/
-  entries = all_entries
+  entries = all_entries.sort_by(&File.method(:mtime))
 elsif order =~ /added.*/
   entries_cache_file = "#{ENV['alfred_workflow_cache']}/added_cache.txt"
   entries_check_file = "#{ENV['alfred_workflow_cache']}/added_check.txt"
