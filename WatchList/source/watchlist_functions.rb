@@ -337,6 +337,8 @@ end
 # By checking for and running the CLI of certain players instead of the app bundle, we get access to the exit status. That way, in the 'play' method, even if the file were to be marked as watched we do not do it unless it was a success.
 # This means we can configure our video player to not exit successfully on certain conditions and have greater granularity with WatchList.
 def play_item(type, path)
+  return true if type != 'stream' && !File.exist?(path) # If non-stream item does not exist, exit successfully so it can still be marked as watched
+
   video_player = lambda {
     mpv_cli = Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier', '=', 'io.mpv').first.strip + '/Contents/MacOS/mpv'
     return mpv_cli if File.executable?(mpv_cli)
