@@ -133,9 +133,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>PATH="/usr/local/bin:${PATH}"
-
-./bbcode "${1}"</string>
+				<string>./bbcode "${1}"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -330,9 +328,7 @@ fi</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>PATH="/usr/local/bin:${PATH}"
-
-./rtf "${1}"</string>
+				<string>./rtf "${1}"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -398,12 +394,7 @@ Supported in conversion to BBCode:
 * Headers
 * Unordered lists
 * Ordered lists
-* Footnotes
-
-Depending on your installed [Ruby](https://www.ruby-lang.org/en/) version (in `/usr/local/bin` or `/usr/bin`), this Workflow may not work on your machine. In that case, you can:
-
-* Install a more recent ruby version.
-* Use the previous version of this Workflow, [MarkdownBulletin](https://github.com/vitorgalvao/alfred-workflows/tree/95a1241cbf4c27e1f324108b70df5371f36ed622/MarkdownBulletin).</string>
+* Footnotes</string>
 	<key>uidata</key>
 	<dict>
 		<key>26ABF3CB-05C2-473B-9F45-80692E12737E</key>
@@ -476,7 +467,7 @@ Depending on your installed [Ruby](https://www.ruby-lang.org/en/) version (in `/
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.20.1</string>
+	<string>1.20.3</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
