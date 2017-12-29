@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift "#{__dir__}/_licensed/Redcarpet/gems/redcarpet-3.4.0/lib"
+require 'redcarpet'
+
+markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, strikethrough: true, superscript: true, fenced_code_blocks: true, autolink: true, footnotes: true, highlight: true, tables: true)
+
+print markdown.render(ARGV[0])

@@ -97,6 +97,32 @@
 				<false/>
 			</dict>
 		</array>
+		<key>EEC8812F-CE3E-4CD3-9F4B-57FA84567866</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>F0BB2D14-B8CC-4058-AF29-BF702A7EE7D7</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>F0BB2D14-B8CC-4058-AF29-BF702A7EE7D7</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>DE96DCA0-525D-490B-BBFD-27BDB606A892</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
@@ -273,6 +299,60 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>1</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>4</integer>
+				<key>hotmod</key>
+				<integer>1835008</integer>
+				<key>hotstring</key>
+				<string>H</string>
+				<key>leftcursor</key>
+				<true/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>EEC8812F-CE3E-4CD3-9F4B-57FA84567866</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>./html "${1}"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>F0BB2D14-B8CC-4058-AF29-BF702A7EE7D7</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>count</key>
 				<integer>1</integer>
 				<key>keychar</key>
@@ -367,6 +447,7 @@ fi</string>
 	<string>Each Hotkey Trigger in the workflow corresponds to a different type of Markdown conversion:
 
 * Markdown → BBCode
+* Markdown → HTML
 * Markdown → RTF
 
 Supported in conversion to RTF:
@@ -394,7 +475,28 @@ Supported in conversion to BBCode:
 * Headers
 * Unordered lists
 * Ordered lists
-* Footnotes</string>
+* Footnotes
+* Superscript
+
+Supported in conversion to HTML:
+
+* Italic
+* Bold
+* Italic and Bold
+* Horizontal rule
+* Strikethrough
+* Images
+* Links
+* Quotes
+* Inline code
+* Code blocks
+* Headers
+* Unordered lists
+* Ordered lists
+* Footnotes
+* Superscript
+* Tables
+* Highlights</string>
 	<key>uidata</key>
 	<dict>
 		<key>26ABF3CB-05C2-473B-9F45-80692E12737E</key>
@@ -404,14 +506,14 @@ Supported in conversion to BBCode:
 			<key>xpos</key>
 			<integer>30</integer>
 			<key>ypos</key>
-			<integer>190</integer>
+			<integer>340</integer>
 		</dict>
 		<key>3C4CB8EB-F2FC-418A-8028-4BDE381AA34F</key>
 		<dict>
 			<key>xpos</key>
 			<integer>200</integer>
 			<key>ypos</key>
-			<integer>190</integer>
+			<integer>340</integer>
 		</dict>
 		<key>5886CCED-FB1D-4BDF-8137-5A64FE643078</key>
 		<dict>
@@ -431,7 +533,7 @@ Supported in conversion to BBCode:
 			<key>xpos</key>
 			<integer>540</integer>
 			<key>ypos</key>
-			<integer>190</integer>
+			<integer>340</integer>
 		</dict>
 		<key>79F45392-6A63-457B-BB92-47A1EC02C4E4</key>
 		<dict>
@@ -456,7 +558,7 @@ Supported in conversion to BBCode:
 			<key>xpos</key>
 			<integer>370</integer>
 			<key>ypos</key>
-			<integer>190</integer>
+			<integer>340</integer>
 		</dict>
 		<key>DE96DCA0-525D-490B-BBFD-27BDB606A892</key>
 		<dict>
@@ -465,9 +567,25 @@ Supported in conversion to BBCode:
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
+		<key>EEC8812F-CE3E-4CD3-9F4B-57FA84567866</key>
+		<dict>
+			<key>note</key>
+			<string>Convert Markdown to HTML</string>
+			<key>xpos</key>
+			<integer>30</integer>
+			<key>ypos</key>
+			<integer>180</integer>
+		</dict>
+		<key>F0BB2D14-B8CC-4058-AF29-BF702A7EE7D7</key>
+		<dict>
+			<key>xpos</key>
+			<integer>200</integer>
+			<key>ypos</key>
+			<integer>180</integer>
+		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.20.3</string>
+	<string>1.21.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
