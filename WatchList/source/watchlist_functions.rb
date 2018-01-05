@@ -339,11 +339,12 @@ end
 def play_item(type, path)
   return true if type != 'stream' && !File.exist?(path) # If non-stream item does not exist, exit successfully so it can still be marked as watched
 
+  # The 'split' together with 'last' serves to try to pick the last installed version, in case more than one is found (multiple versions in Homebrew Cellar, for example)
   video_player = lambda {
-    mpv_cli = Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier', '=', 'io.mpv').first.strip + '/Contents/MacOS/mpv'
+    mpv_cli = Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier', '=', 'io.mpv').first.strip.split("\n").last + '/Contents/MacOS/mpv'
     return mpv_cli if File.executable?(mpv_cli)
 
-    vlc_cli = Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier', '=', 'org.videolan.vlc').first.strip + '/Contents/MacOS/VLC'
+    vlc_cli = Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier', '=', 'org.videolan.vlc').first.strip.split("\n").last + '/Contents/MacOS/VLC'
     return vlc_cli if File.executable?(vlc_cli)
 
     return 'other'
