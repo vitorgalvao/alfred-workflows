@@ -12,7 +12,7 @@ rich_text_style = '
   </style>
 '
 
-markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, strikethrough: true)
+markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, strikethrough: true, superscript: true)
 
 text = markdown.render(ARGV[0])
 text = text.gsub(/<img[^>]*>/, '') # Strip images

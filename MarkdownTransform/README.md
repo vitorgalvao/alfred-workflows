@@ -13,6 +13,7 @@ Supported in conversion to RTF:
 * Links
 * Unordered lists
 * Ordered lists
+* Superscript
 
 Supported in conversion to BBCode:
 
