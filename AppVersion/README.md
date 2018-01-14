@@ -1,4 +1,4 @@
-Call `av` and a list of your top-level apps at `/Applications` with their version numbers will be shown. Action any of them and the version number will be copied to the clipboard.
+Call `av` and a list of your top-level apps at `/Applications` and `/Applications/Utilities` will be shown with their version numbers. Action any of them and the version number will be copied to the clipboard.
 
 ![](https://i.imgur.com/w6N7Qkr.png)
 

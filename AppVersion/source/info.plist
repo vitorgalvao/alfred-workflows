@@ -108,7 +108,9 @@
 				<string>require 'json'
 require 'open3'
 
-apps = Dir.glob('/Applications/*').select { |e| e.end_with?('.app') }
+apps = Dir.glob('/Applications/*')
+          .concat(Dir.glob('/Applications/Utilities/*'))
+          .select { |e| e.end_with?('.app') }
 
 script_filter_items = []
 
@@ -251,6 +253,38 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>acceptsmulti</key>
+				<false/>
+				<key>filetypes</key>
+				<array>
+					<string>com.apple.application-bundle</string>
+				</array>
+				<key>name</key>
+				<string>App version</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>778BD714-0E96-4EA4-A4FD-751D05C92D2D</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>largetypetext</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.largetype</string>
+			<key>uid</key>
+			<string>79EAF480-9E98-4ED6-A0BC-7162FC442749</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -271,41 +305,9 @@ fi</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>largetypetext</key>
-				<string>{query}</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.largetype</string>
-			<key>uid</key>
-			<string>79EAF480-9E98-4ED6-A0BC-7162FC442749</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>acceptsmulti</key>
-				<false/>
-				<key>filetypes</key>
-				<array>
-					<string>com.apple.application-bundle</string>
-				</array>
-				<key>name</key>
-				<string>App version</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.action</string>
-			<key>uid</key>
-			<string>778BD714-0E96-4EA4-A4FD-751D05C92D2D</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
 	</array>
 	<key>readme</key>
-	<string>Call `av` and a list of your top-level apps at `/Applications` with their version numbers will be shown. Action any of them and the version number will be copied to the clipboard.
+	<string>Call `av` and a list of your top-level apps at `/Applications` and `/Applications/Utilities` will be shown with their version numbers. Action any of them and the version number will be copied to the clipboard.
 
 ![](https://i.imgur.com/w6N7Qkr.png)
 
@@ -362,7 +364,7 @@ If the app you want to check the version of is located anywhere else, you can fi
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.1</string>
+	<string>1.0.2</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
