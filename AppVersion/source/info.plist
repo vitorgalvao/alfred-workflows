@@ -107,10 +107,13 @@
 				<key>script</key>
 				<string>require 'json'
 require 'open3'
+require 'pathname'
 
-apps = Dir.glob('/Applications/*')
-          .concat(Dir.glob('/Applications/Utilities/*'))
-          .select { |e| e.end_with?('.app') }
+apps = Pathname('/Applications').children
+         .concat(Pathname('/Applications/Utilities').children)
+         .map(&amp;:to_path)
+         .sort_by { |p| File.basename(p).downcase }
+         .select { |e| e.end_with?('.app') }
 
 script_filter_items = []
 
@@ -364,7 +367,7 @@ If the app you want to check the version of is located anywhere else, you can fi
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.2</string>
+	<string>1.0.3</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
