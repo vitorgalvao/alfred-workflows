@@ -196,7 +196,7 @@
 				<key>queuemode</key>
 				<integer>1</integer>
 				<key>runningsubtext</key>
-				<string></string>
+				<string>Getting news…</string>
 				<key>script</key>
 				<string>./hackerboard hackernews</string>
 				<key>scriptargtype</key>
@@ -402,7 +402,7 @@ fi</string>
 				<key>queuemode</key>
 				<integer>1</integer>
 				<key>runningsubtext</key>
-				<string></string>
+				<string>Getting news…</string>
 				<key>script</key>
 				<string>./hackerboard pinboard</string>
 				<key>scriptargtype</key>
@@ -585,7 +585,7 @@ Lists are updated automatically and cached. To force the lists to update, run `:
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.4</string>
+	<string>1.0.5</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
