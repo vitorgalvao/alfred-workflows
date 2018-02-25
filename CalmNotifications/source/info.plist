@@ -120,11 +120,11 @@ puts({ items: script_filter_items }.to_json)</string>
 				<string>action="${1}"
 
 if [[ "${action}" == 'on' ]]; then
-  defaults -currentHost write ~/Library/Preferences/ByHost/com.apple.notificationcenterui doNotDisturb -boolean true
-  defaults -currentHost write ~/Library/Preferences/ByHost/com.apple.notificationcenterui doNotDisturbDate -date "$(date -u +'%Y-%m-%d %H:%M:%S +0000')"
+  defaults -currentHost write "${HOME}/Library/Preferences/ByHost/com.apple.notificationcenterui" doNotDisturb -boolean true
+  defaults -currentHost write "${HOME}/Library/Preferences/ByHost/com.apple.notificationcenterui" doNotDisturbDate -date "$(date -u +'%Y-%m-%d %H:%M:%S +0000')"
   killall NotificationCenter
 else
-  defaults -currentHost write ~/Library/Preferences/ByHost/com.apple.notificationcenterui doNotDisturb -boolean false
+  defaults -currentHost write "${HOME}/Library/Preferences/ByHost/com.apple.notificationcenterui" doNotDisturb -boolean false
   killall NotificationCenter
 fi</string>
 				<key>scriptargtype</key>
