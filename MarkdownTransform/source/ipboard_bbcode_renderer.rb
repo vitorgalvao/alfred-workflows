@@ -44,7 +44,7 @@ class IPBoardBBCodeRender < Redcarpet::Render::Base
   end
 
   def list_item(text, list_type)
-    '[*] ' + text
+    '[*]' + text.strip
   end
 
   def header(text, level)
@@ -100,10 +100,10 @@ class IPBoardBBCodeRender < Redcarpet::Render::Base
   def surround(text, tag, extra_attr = nil)
     extra_attr = '=' + extra_attr if extra_attr
     params = {
-               tag: tag,
-               text: text,
-               extra_attr: extra_attr || ''
-             }
+      tag: tag,
+      text: text,
+      extra_attr: extra_attr || ''
+    }
 
     format('[%<tag>s%<extra_attr>s]%<text>s[/%<tag>s]', params)
   end
