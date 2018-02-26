@@ -219,7 +219,7 @@ if [[ "$(sysctl hw.model)" == *'MacBookAir'* ]]; then
   exit 1
 fi
 
-keyboard="$(kextstat | grep -i 'keyboard' | head -1 | awk '{ print $6 }')"
+keyboard="$(kextstat | grep --ignore-case 'keyboard' | head -1 | awk '{ print $6 }')"
 
 osascript &lt;&lt; EOS
   # We have to run the 'osascript' inside the 'osascript' because otherwise times will not coincide. Running a command with 'with administrator privileges' does not stall execution of the rest of the script, meaning the subsequent commands would run before their time
@@ -434,7 +434,7 @@ You will be asked for your password when locking since this operation requires e
 		<string>30</string>
 	</dict>
 	<key>version</key>
-	<string>1.6.5</string>
+	<string>1.6.6</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
