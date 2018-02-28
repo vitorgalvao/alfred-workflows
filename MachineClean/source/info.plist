@@ -211,15 +211,14 @@ if [[ -z "${seconds_to_lock}" || ! "${seconds_to_lock}" =~ ^[0-9]+$ ]]; then
   exit 1
 fi
 
+keyboard="$(kextstat | grep --ignore-case 'keyboard' | head -1 | awk '{ print $6 }')"
 
-# Abort if on a MacBook Air
-if [[ "$(sysctl hw.model)" == *'MacBookAir'* ]]; then
-  notification 'This workflow does not yet work on the MacBook Air'
+# Abort if on unsupported keyboard
+if [[ "${keyboard}" == *'AppleHIDKeyboard'* ]]; then
+  notification 'This Workflow will not work on your type of keyboard'
   open 'https://github.com/vitorgalvao/alfred-workflows/issues/19'
   exit 1
 fi
-
-keyboard="$(kextstat | grep --ignore-case 'keyboard' | head -1 | awk '{ print $6 }')"
 
 osascript &lt;&lt; EOS
   # We have to run the 'osascript' inside the 'osascript' because otherwise times will not coincide. Running a command with 'with administrator privileges' does not stall execution of the rest of the script, meaning the subsequent commands would run before their time
@@ -377,16 +376,16 @@ You will be asked for your password when locking since this operation requires e
 			<key>note</key>
 			<string>We do this here instead of in the main `Run Script` so there’s no delay in hiding Alfred</string>
 			<key>xpos</key>
-			<integer>670</integer>
+			<integer>610</integer>
 			<key>ypos</key>
-			<integer>160</integer>
+			<integer>170</integer>
 		</dict>
 		<key>5E281C93-A16E-4148-9C7B-0E4CA2276285</key>
 		<dict>
 			<key>xpos</key>
-			<integer>90</integer>
+			<integer>30</integer>
 			<key>ypos</key>
-			<integer>160</integer>
+			<integer>170</integer>
 		</dict>
 		<key>73DB8141-C82A-4410-806E-EA01F0541D64</key>
 		<dict>
@@ -395,37 +394,37 @@ You will be asked for your password when locking since this operation requires e
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>670</integer>
+			<integer>610</integer>
 			<key>ypos</key>
-			<integer>10</integer>
+			<integer>20</integer>
 		</dict>
 		<key>7CC0213F-BC65-43B3-9675-BBA23E04881C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>570</integer>
+			<integer>510</integer>
 			<key>ypos</key>
-			<integer>190</integer>
+			<integer>200</integer>
 		</dict>
 		<key>D9245730-36BC-415E-BF86-FB40B9A7A25F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>380</integer>
+			<integer>320</integer>
 			<key>ypos</key>
-			<integer>10</integer>
+			<integer>20</integer>
 		</dict>
 		<key>FAD30B1C-1909-4F9C-87E9-AEEE5C427502</key>
 		<dict>
 			<key>xpos</key>
-			<integer>380</integer>
+			<integer>320</integer>
 			<key>ypos</key>
-			<integer>160</integer>
+			<integer>170</integer>
 		</dict>
 		<key>FED5D171-D581-4C00-9172-DD195380AC73</key>
 		<dict>
 			<key>xpos</key>
-			<integer>90</integer>
+			<integer>30</integer>
 			<key>ypos</key>
-			<integer>10</integer>
+			<integer>20</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
@@ -434,7 +433,7 @@ You will be asked for your password when locking since this operation requires e
 		<string>30</string>
 	</dict>
 	<key>version</key>
-	<string>1.6.6</string>
+	<string>1.6.7</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
