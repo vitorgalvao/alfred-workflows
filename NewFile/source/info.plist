@@ -228,6 +228,12 @@ if (frontApp is "Finder") then
   on error
     return (POSIX path of (path to desktop))
   end try
+else if (frontApp is "Path Finder") then
+  try
+    tell application "Path Finder" to return (POSIX path of the target of the front finder window &amp; "/")
+  on error
+    return (POSIX path of (path to desktop))
+  end try
 else
   return (POSIX path of (path to desktop))
 end if')"
