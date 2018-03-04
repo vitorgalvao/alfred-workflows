@@ -30,7 +30,7 @@ function transfer {
     readonly tmp_dir="$(mktemp -d)"
     readonly dir_name="$(ascii_basename "${given_file}")"
     readonly zip_file="${tmp_dir}/${dir_name}.zip"
-    ditto -ck "${given_file}" "${zip_file}"
+    DITTONORSRC=1 ditto -ck "${given_file}" "${zip_file}"
     readonly file_path="${zip_file}"
   else
     readonly file_path="${given_file}"
