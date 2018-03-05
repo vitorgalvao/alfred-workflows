@@ -220,31 +220,28 @@ fi</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>dirPath="$(osascript -e 'tell application "System Events" to set frontApp to name of first process whose frontmost is true
+				<string>dir_path="$(osascript -l JavaScript -e '
+  const frontmost_app_name = Application("System Events").applicationProcesses.where({ frontmost: true }).name()[0]
 
-try
-  if (frontApp is "Finder") then
-    tell application "Finder" to return (POSIX path of (folder of the front window as alias))
-  else if (frontApp is "Path Finder") then
-    tell application "Path Finder" to return (POSIX path of the target of the front finder window &amp; "/")
-  else
-    return (POSIX path of (path to desktop))
-  end if
-on error
-  return (POSIX path of (path to desktop))
-end try')"
+  if (["Finder", "Path Finder"].indexOf(frontmost_app_name) &gt; -1) {
+    unescape(Application(frontmost_app_name).finderWindows[0].target.url()).slice(7).slice(0, -1)
+  } else {
+    unescape(Application("Finder").home.url()).slice(7).slice(0, -1)
+  }
+')"
 
 IFS=$'/\n'
+
 for file in ${@}; do
-  fileExtension="$(sed -n 's/\(.*\)\.\(.*\)$/.\2/p' &lt;&lt;&lt; "${file}")"
-  fileNoExtension="$(sed 's/\(.*\)\.\(.*\)$/\1/' &lt;&lt;&lt; "${file}")"
+  file_extension="$(sed -n 's/\(.*\)\.\(.*\)$/.\2/p' &lt;&lt;&lt; "${file}")"
+  file_no_extension="$(sed 's/\(.*\)\.\(.*\)$/\1/' &lt;&lt;&lt; "${file}")"
 
-  if [[ -z "${fileExtension}" ]]; then fileExtension=".txt"; fi
+  [[ -z "${file_extension}" ]] &amp;&amp; file_extension=".txt"
 
-  fileLocation="${dirPath}${fileNoExtension}${fileExtension}"
+  file_location="${dir_path}/${file_no_extension}${file_extension}"
 
-  touch "${fileLocation}"
-  if [[ "${open_files}" == 'yes' ]]; then open "${fileLocation}"; fi
+  touch "${file_location}"
+  if [[ "${open_files}" == 'yes' ]]; then open "${file_location}"; fi
 done</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
@@ -354,7 +351,7 @@ done</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.4</string>
+	<string>1.2.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
