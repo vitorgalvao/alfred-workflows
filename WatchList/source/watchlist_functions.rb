@@ -98,11 +98,14 @@ def update_series(id)
   size_machine = Open3.capture2('du', first_file).first.to_i
   size_human = Open3.capture2('du', '-h', first_file).first.slice(/[^\t]*/).strip
 
+  size_duration_ratio = size_machine / duration_machine
+
   list_hash[id]['count'] = count
   list_hash[id]['duration']['machine'] = duration_machine
   list_hash[id]['duration']['human'] = duration_human
   list_hash[id]['size']['machine'] = size_machine
   list_hash[id]['size']['human'] = size_human
+  list_hash[id]['ratio'] = size_duration_ratio
 
   File.write(Towatch_list, list_hash.to_yaml)
 end
