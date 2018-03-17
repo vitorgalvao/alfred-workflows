@@ -12,9 +12,9 @@ You then have some options you can pick from, all starting with `wl`.
 
 ![](https://i.imgur.com/anCe2I8.png)
 
-`wls` calls `wlp` under the hood, but lets you first select a sort order based on duration or size.
+`wls` calls `wlp` under the hood, but lets you first select a sort order.
 
-![](https://i.imgur.com/q8UDKn4.png)
+![](https://i.imgur.com/SymAbSa.png)
 
 In both cases, ↵ plays the selection. Add ⌘ to play without marking as watched or ⌥ to rescan a directory (useful if you made manual changes to it).
 
@@ -32,7 +32,7 @@ Finally, if you use [DownVid](https://github.com/vitorgalvao/alfred-workflows/tr
 
 #### Subtitle reference:
 
-There are three types of items: `files`, `series`, and `streams`. `stream`s can be further categorised into single item or playlist. Each result has its name as the top title. The subtitle confers more detailed information and follow this template (`~` means it never shows):
+There are three types of items: `files`, `series`, and `streams`. `stream`s can be further categorised into single item or playlist. Each result has its name as the top title. The subtitle confers more detailed information and follows this template (`~` means it never shows):
 
 ```
 ≈ (4) 𐄁 22m 32s 𐄁 691M 𐄁 /Some/Path

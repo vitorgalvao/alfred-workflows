@@ -29,6 +29,8 @@ def add_file_to_watchlist(file_path)
   size_machine = Open3.capture2('du', file_path).first.to_i
   size_human = Open3.capture2('du', '-h', file_path).first.slice(/[^\t]*/).strip
 
+  size_duration_ratio = size_machine / duration_machine
+
   url = Open3.capture2('mdls', '-raw', '-name', 'kMDItemWhereFroms', file_path).first.split("\n")[1].strip.delete('"') rescue nil
 
   hash = {
@@ -45,7 +47,8 @@ def add_file_to_watchlist(file_path)
       'size' => {
         'machine' => size_machine,
         'human' => size_human
-      }
+      },
+      'ratio' => size_duration_ratio
     }
   }
 
@@ -72,7 +75,8 @@ def add_dir_to_watchlist(dir_path)
       'size' => {
         'machine' => nil,
         'human' => 'calculating size…'
-      }
+      },
+      'ratio' => nil
     }
   }
 
@@ -127,7 +131,8 @@ def add_url_to_watchlist(url)
       'size' => {
         'machine' => nil,
         'human' => nil
-      }
+      },
+      'ratio' => nil
     }
   }
 
@@ -154,6 +159,8 @@ def display_towatch(sort = nil)
         list_hash.sort_by { |_id, content| content['size']['machine'] || Float::INFINITY }
       when 'size_descending'
         list_hash.sort_by { |_id, content| content['size']['machine'] || -Float::INFINITY }.reverse
+      when 'best_ratio'
+        list_hash.sort_by { |_id, content| content['ratio'] || -Float::INFINITY }.reverse
       else
         list_hash
       end
