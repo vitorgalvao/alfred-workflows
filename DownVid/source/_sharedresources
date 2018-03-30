@@ -1,6 +1,6 @@
 #!/bin/bash
 
-readonly valid_resources=('cpulimit' 'ffmpeg' 'mediainfo' 'youtubedl') # Keep in sync with resource functions
+readonly valid_resources=('cpulimit' 'ffmpeg' 'mediainfo' 'trash' 'youtubedl') # Keep in sync with resource functions
 readonly shared_resources_id='com.vitorgalvao.alfred._sharedresources'
 [[ -z "${alfred_workflow_data}" ]] && alfred_workflow_data="$(mktemp -d)/Workflow Data/fake_workflow" # To prevent commands reliant on this variable from breaking when testing outside a Workflow
 readonly shared_resources_dir="$(dirname "${alfred_workflow_data}")/${shared_resources_id}"
@@ -75,10 +75,9 @@ function ffmpeg_getter {
   ffmpeg_path="$(command -v 'ffmpeg')"
 
   function get_ffmpeg {
-    local install_type download_page file_name dmg dmg_mount_point
+    local download_page file_name dmg dmg_mount_point
 
     ffmpeg_path="${shared_resources_dir}/ffmpeg"
-    readonly install_type="${1}"
     readonly download_page='https://evermeet.cx/pub/ffmpeg/'
     readonly file_name="$(curl --silent "${download_page}" | grep '.dmg' | head -1 | sed -E 's/.*<a href="(.*)".*/\1/')"
     readonly dmg="$(mktemp)"
@@ -88,15 +87,15 @@ function ffmpeg_getter {
       cp "${dmg_mount_point}/ffmpeg" "${ffmpeg_path}"
       unmount_dmg "${dmg_mount_point}"
     else
-      [[ "${install_type}" == 'install' ]] && curl_error
+      curl_error
     fi
   }
 
   if [[ -n "${ffmpeg_path}" ]]; then
-    [[ "${ffmpeg_path}" == *"${shared_resources_id}"* ]] && [[ $(find "${ffmpeg_path}" -mtime +90) ]] && get_ffmpeg 'upgrade'
+    [[ "${ffmpeg_path}" == *"${shared_resources_id}"* ]] && [[ $(find "${ffmpeg_path}" -mtime +90) ]] && get_ffmpeg
   else
     ensure_resources_dir
-    get_ffmpeg 'install'
+    get_ffmpeg
   fi
 }
 
@@ -105,10 +104,9 @@ function mediainfo_getter {
   mediainfo_path="$(command -v 'mediainfo')"
 
   function get_mediainfo {
-    local install_type file_name dmg pkg_extract dmg_mount_point
+    local file_name dmg pkg_extract dmg_mount_point
 
     mediainfo_path="${shared_resources_dir}/mediainfo"
-    readonly install_type="${1}"
     readonly file_name="$(curl --silent 'https://mediaarea.net/en/MediaInfo/Download/Mac_OS' | grep 'CLI.*.dmg' | head -1 | sed -E 's/.*<a href="(.*)".*/\1/')"
     readonly dmg="$(mktemp)"
     readonly pkg_extract="$(mktemp -d)"
@@ -120,17 +118,39 @@ function mediainfo_getter {
       gunzip --decompress --stdout 'Payload' | cpio -i 2> /dev/null
       cp './usr/local/bin/mediainfo' "${mediainfo_path}"
       unmount_dmg "${dmg_mount_point}"
-      cd - > /dev/null
+      cd - > /dev/null || exit 1
     else
-      [[ "${install_type}" == 'install' ]] && curl_error
+      curl_error
     fi
   }
 
   if [[ -n "${mediainfo_path}" ]]; then
-    [[ "${mediainfo_path}" == *"${shared_resources_id}"* ]] && [[ $(find "${mediainfo_path}" -mtime +90) ]] && get_mediainfo 'upgrade'
+    [[ "${mediainfo_path}" == *"${shared_resources_id}"* ]] && [[ $(find "${mediainfo_path}" -mtime +90) ]] && get_mediainfo
   else
     ensure_resources_dir
-    get_mediainfo 'install'
+    get_mediainfo
+  fi
+}
+
+function trash_getter {
+  local trash_path
+  trash_path="$(command -v 'trash')"
+
+  if [[ -z "${trash_path}" ]]; then
+    local tar_extract trash_version
+
+    trash_path="${shared_resources_dir}/trash"
+    readonly trash_version='0.8.5'
+    readonly tar_extract="$(mktemp -d)"
+
+    ensure_resources_dir
+
+    if curl --silent "https://homebrew.bintray.com/bottles/trash-${trash_version}.sierra.bottle.tar.gz" | tar xC "${tar_extract}"; then
+      mv "${tar_extract}/trash/${trash_version}/bin/trash" "${trash_path}"
+      chmod +x "${trash_path}"
+    else
+      curl_error
+    fi
   fi
 }
 
