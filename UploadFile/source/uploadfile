@@ -12,12 +12,11 @@ function ascii_basename {
 }
 
 function transfer {
-  local tmp_dir tmp_zip_dir given_file dir_name zip_file file_path file_name
+  local tmp_zip_dir given_file tmp_dir dir_name zip_file file_path file_name
 
   # If acting on multiple files, first copy them to a directory
   if [[ "${#}" -gt 1 ]]; then
-    readonly tmp_dir_multi="$(mktemp -d)"
-    readonly tmp_zip_dir="${tmp_dir_multi}/archive"
+    readonly tmp_zip_dir="$(mktemp -d)/archive"
     mkdir "${tmp_zip_dir}"
     cp -R "${@}" "${tmp_zip_dir}"
     readonly given_file="${tmp_zip_dir}"

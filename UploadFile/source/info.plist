@@ -356,7 +356,7 @@ You’ll get notifications of the various phases, with a sound when it’s compl
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.5.5</string>
+	<string>1.5.6</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
