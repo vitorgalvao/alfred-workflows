@@ -8,8 +8,8 @@ Last_access_file = "#{ENV['alfred_workflow_data']}/last_access_file.txt".freeze
 All_bookmarks_json = "#{ENV['alfred_workflow_data']}/all_bookmarks.json".freeze
 Unread_bookmarks_json = "#{ENV['alfred_workflow_data']}/unread_bookmarks.json".freeze
 
-def notification(message)
-  system("#{__dir__}/Notificator.app/Contents/Resources/Scripts/notificator", '--message', message, '--title', ENV['alfred_workflow_name'])
+def notification(message, title = ENV['alfred_workflow_name'])
+  system("#{__dir__}/Notificator.app/Contents/Resources/Scripts/notificator", '--message', message, '--title', title)
 end
 
 def success_sound
@@ -76,6 +76,7 @@ end
 def add_unread
   url, title = grab_url_title
   success_sound
+  notification(url, title)
 
   url_encoded = CGI.escape(url)
   title_encoded = CGI.escape(title)
