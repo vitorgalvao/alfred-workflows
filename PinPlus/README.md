@@ -2,7 +2,11 @@ Add to and view your Pinboard bookmarks.
 
 `pa` opens Pinboard’s “add bookmark” page in your frontmost browser. You can submit bookmarks with ↵ or dismiss the window with ⎋.
 
-![](https://i.imgur.com/2RUKdcA.png)
+![](https://i.imgur.com/g6wAO6U.png)
+
+If you have the [PinPlus app](https://github.com/vitorgalvao/pinplus) installed, that opens instead.
+
+![](https://i.imgur.com/0SVjnKs.png)
 
 Configure the `Hotkey Trigger` to add your current browser tab as an unread bookmark.
 

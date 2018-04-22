@@ -70,7 +70,8 @@ def grab_url_title
 end
 
 def open_gui
-  system("#{__dir__.shellescape}/run_bookmarklet")
+  pinplus_app_path = %x(mdfind kMDItemCFBundleIdentifier = com.vitorgalvao.pinplus).strip
+  pinplus_app_path.empty? ? system("#{__dir__.shellescape}/run_bookmarklet") : system("#{pinplus_app_path}/Contents/MacOS/PinPlus")
 end
 
 def add_unread
