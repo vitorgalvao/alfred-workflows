@@ -264,6 +264,7 @@ def display_watched
 end
 
 def play(id, send_to_watched = true)
+  send_to_top(id) if ENV['top_on_play'] == 'true'
   item = YAML.load_file(Towatch_list)[id]
 
   case item['type']
@@ -423,8 +424,12 @@ def switch_list(id, origin_list, target_list)
   ensure_data_files
 
   id_hash = { id => YAML.load_file(origin_list)[id] }
-  prepend_to_list(id_hash, target_list)
   delete_from_list(id, origin_list)
+  prepend_to_list(id_hash, target_list)
+end
+
+def send_to_top(id)
+  switch_list(id, Towatch_list, Towatch_list)
 end
 
 def ensure_data_files

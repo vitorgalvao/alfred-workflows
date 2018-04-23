@@ -18,11 +18,13 @@ You then have some options you can pick from, all starting with `wl`.
 
 In both cases, ↵ plays the selection. Add ⌘ to play without marking as watched or ⌥ to rescan a directory (useful if you made manual changes to it).
 
+If the `top_on_play` Workflow Environment Variable is set to `true`, the item will be moved to the top of the list before starting playback.
+
 Items starting with `≈` are streams. They show no file size (since they aren’t taking up any space locally) and present the link they were taken from as opposed to a location on disk. To be able to stream video and audio you need either [mpv](http://mpv.io/) or [VLC](http://www.videolan.org/vlc/index.html).
 
 An item will not be marked as watched if we can access the player’s CLI and it exits with a failure exit code.
 
-`wlu` marks an item as unwatched. Note that in the case of files it does not recover them from the trash, as there is no reliable way to do so on macOS — that step you need to do yourself. If the item has a URL origin (you’ll see it in the subtitle) add ⌘ to open the URL in your default browser or ⌥ to copy it to the clipboard.
+`wlu` shows the list of watched items. The limit of recent items in this list is controlled by the `maximum_watched` Workflow Environment Variable. Action an item to mark it as unwatched. Note that in the case of files it does not recover them from the trash, as there is no reliable way to do so on macOS — that step you need to do yourself. If the item has a URL origin (you’ll see it in the subtitle) add ⌘ to open the URL in your default browser or ⌥ to copy it to the clipboard.
 
 ![](https://i.imgur.com/XK0W6Wj.png)
 
