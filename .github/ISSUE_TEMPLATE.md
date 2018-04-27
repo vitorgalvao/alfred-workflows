@@ -1,6 +1,12 @@
-Please do not forget to include:
+<!-- If filling a bug report, please fill every field -->
 
-* What Workflow the issue is about:
-* The Workflow’s version:
-* Alfred’s version:
-* macOS’ version:
+* Workflow name:
+* Workflow version:
+* Alfred version:
+* macOS version:
+* Command that failed:
+* Debugger output:
+
+```
+Open the [debugger](http://support.alfredapp.com/workflows:debugger), set the log output to “All Information”, and post the output here, replacing this text but keeping the backticks.
+```
