@@ -223,10 +223,12 @@ fi</string>
 				<string>dir_path="$(osascript -l JavaScript -e '
   const frontmost_app_name = Application("System Events").applicationProcesses.where({ frontmost: true }).name()[0]
 
-  if (["Finder", "Path Finder"].indexOf(frontmost_app_name) &gt; -1) {
-    unescape(Application(frontmost_app_name).finderWindows[0].target.url()).slice(7).slice(0, -1)
+  if (frontmost_app_name === "Finder") {
+    unescape(Application("Finder").insertionLocation().url()).slice(7).slice(0, -1)
+  } else if(frontmost_app_name === "Path Finder") {
+    unescape(Application("Path Finder").finderWindows[0].target.url()).slice(7).slice(0, -1)
   } else {
-    unescape(Application("Finder").home.url()).slice(7).slice(0, -1)
+    unescape(Application("Finder").desktop.url()).slice(7).slice(0, -1)
   }
 ')"
 
@@ -351,7 +353,7 @@ done</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.2.1</string>
+	<string>1.2.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
