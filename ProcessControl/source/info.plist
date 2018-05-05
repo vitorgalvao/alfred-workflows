@@ -439,42 +439,42 @@ valid_bool = ARGV[0].to_i &gt; 0 ? true : false
 
 kill_exec = "kill -#{ARGV[0]} #{ENV['pid']}"
 cpu_limit_exec = "cpulimit --include-children --limit #{ARGV[0]} --pid #{ENV['pid']}"
-cpu_limit_kill_exec = "killall cpulimit"
+cpu_limit_kill_exec = "pkill -f cpulimit.*#{ENV['pid']}"
 renice_exec = "renice -n #{ARGV[0]} -p #{ENV['pid']}"
 unfreeze_exec = "kill -CONT #{ENV['pid']}"
 
 script_filter_items = []
 
 script_filter_items.push(
-  uid: 'kill',
+  uuid: 'kill',
   title: "Kill with signal #{ARGV[0]}",
   subtitle: kill_exec,
   valid: valid_bool,
   arg: kill_exec
 )
 script_filter_items.push(
-  uid: 'cpulimit',
+  uuid: 'cpulimit',
   title: "Limit CPU usage to #{ARGV[0]}%",
   subtitle: cpu_limit_exec,
   valid: valid_bool,
   arg: cpu_limit_exec
 )
 script_filter_items.push(
-  uid: 'cpulimit_kill',
+  uuid: 'cpulimit_kill',
   title: "Stop limiting CPU",
   subtitle: cpu_limit_kill_exec,
   valid: true,
   arg: cpu_limit_kill_exec
 )
 script_filter_items.push(
-  uid: 'renice',
+  uuid: 'renice',
   title: "Lower priority by #{ARGV[0]}",
   subtitle: renice_exec,
   valid: valid_bool,
   arg: renice_exec
 )
 script_filter_items.push(
-  uid: 'unfreeze',
+  uuid: 'unfreeze',
   title: "Unfreeze process",
   subtitle: unfreeze_exec,
   valid: true,
@@ -618,7 +618,7 @@ On each process:
 
 ↵ gives more granularity over the options.
 
-![](https://i.imgur.com/ADFGEVj.png)</string>
+![](https://i.imgur.com/smw1ihH.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>00F3664D-7E92-49FC-BFC5-47D316937CA7</key>
@@ -713,7 +713,7 @@ On each process:
 		<string>3</string>
 	</dict>
 	<key>version</key>
-	<string>1.0.3</string>
+	<string>1.0.4</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
