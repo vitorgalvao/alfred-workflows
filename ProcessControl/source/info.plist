@@ -446,35 +446,35 @@ unfreeze_exec = "kill -CONT #{ENV['pid']}"
 script_filter_items = []
 
 script_filter_items.push(
-  uuid: 'kill',
+  uid: 'kill',
   title: "Kill with signal #{ARGV[0]}",
   subtitle: kill_exec,
   valid: valid_bool,
   arg: kill_exec
 )
 script_filter_items.push(
-  uuid: 'cpulimit',
+  uid: 'cpulimit',
   title: "Limit CPU usage to #{ARGV[0]}%",
   subtitle: cpu_limit_exec,
   valid: valid_bool,
   arg: cpu_limit_exec
 )
 script_filter_items.push(
-  uuid: 'cpulimit_kill',
+  uid: 'cpulimit_kill',
   title: "Stop limiting CPU",
   subtitle: cpu_limit_kill_exec,
   valid: true,
   arg: cpu_limit_kill_exec
 )
 script_filter_items.push(
-  uuid: 'renice',
+  uid: 'renice',
   title: "Lower priority by #{ARGV[0]}",
   subtitle: renice_exec,
   valid: valid_bool,
   arg: renice_exec
 )
 script_filter_items.push(
-  uuid: 'unfreeze',
+  uid: 'unfreeze',
   title: "Unfreeze process",
   subtitle: unfreeze_exec,
   valid: true,
@@ -713,7 +713,7 @@ On each process:
 		<string>3</string>
 	</dict>
 	<key>version</key>
-	<string>1.0.4</string>
+	<string>1.0.5</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
