@@ -76,7 +76,7 @@ function register_links {
 
 function upload_file {
   local screenshot_file="${1}"
-  local upload_response="$(bash "${imgur_uploader_exec}" "${screenshot_file}" 2>&1)"
+  local upload_response="$(bash "${imgur_uploader_exec}" "${screenshot_file}" 2>&1)" # This will already copy the URL to the clipboard
 
   [[ "${upload_response}" == 'Upload failed' ]] && failure
   success
@@ -85,7 +85,6 @@ function upload_file {
   local screenshot_del="$(tail -1 <<< "${upload_response}" | sed 's/Delete page: //')"
 
   register_links "${screenshot_url}" "${screenshot_del}"
-  tr -d '\n' <<< "${screenshot_url}" | pbcopy
 }
 
 if [[ "${1}" == 'take_screenshot' ]]; then
