@@ -458,7 +458,7 @@ To act on the selections, use the standard Alfred shortcuts. You can activate fi
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.2.2</string>
+	<string>1.2.3</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

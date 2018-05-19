@@ -7,6 +7,7 @@ query = ARGV[1]
 abort 'You need to specify an order type.' if ARGV[0].empty?
 
 all_entries = Dir.glob("#{ENV['HOME']}/Downloads/*")
+script_filter_items = []
 
 if order =~ /modified.*/
   entries = all_entries.sort_by(&File.method(:mtime))
@@ -34,7 +35,9 @@ end
 entries.reverse! if order =~ /.+_reverse/
 filtered_entries = entries.select { |e| e.match(/#{query}/i) }
 
-script_filter_items = []
-filtered_entries.each { |entry| script_filter_items.push(type: 'file', title: File.basename(entry, File.extname(entry)), subtitle: entry, icon: { path: entry, type: 'fileicon' }, arg: entry) }
+filtered_entries.each do |entry|
+  name = File.directory?(entry) ? File.basename(entry) : File.basename(entry, File.extname(entry))
+  script_filter_items.push(type: 'file', title: name, subtitle: entry, icon: { path: entry, type: 'fileicon' }, arg: entry)
+end
 
 puts({ items: script_filter_items }.to_json)
