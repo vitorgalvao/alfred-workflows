@@ -170,6 +170,11 @@ Run shell commands without opening a terminal
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/RunCommand) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RunCommand/RunCommand.alfredworkflow)
 
+### SandwichTimer <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/SandwichTimer/source/icon.png' width='60' align='center' alt='SandwichTimer icon'>
+Run pomodoros and other timers
+
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/SandwichTimer) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/SandwichTimer/SandwichTimer.alfredworkflow)
+
 ### ShortFilms <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/ShortFilms/source/icon.png' width='60' align='center' alt='ShortFilms icon'>
 Stream from a selection of short films
 
