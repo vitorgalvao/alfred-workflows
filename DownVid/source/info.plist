@@ -381,7 +381,7 @@ else # state == 'stopped'
     rerun: 3,
     items: [
       title: "#{ENV['alfred_workflow_name']} Progress",
-      subtitle: 'All downloads finished!',
+      subtitle: 'No downloads in progress.',
       valid: false
     ]
   }
@@ -620,7 +620,7 @@ The two Workflow Environment Variables represent the directories (relative to yo
 		<string>Downloads</string>
 	</dict>
 	<key>version</key>
-	<string>1.21.17</string>
+	<string>1.21.18</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
