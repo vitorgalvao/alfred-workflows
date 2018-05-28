@@ -351,7 +351,7 @@
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
-				<integer>2</integer>
+				<integer>1</integer>
 				<key>fixedorder</key>
 				<false/>
 				<key>items</key>
@@ -365,7 +365,7 @@
 				<key>title</key>
 				<string>AlfredModeration</string>
 				<key>withspace</key>
-				<false/>
+				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.listfilter</string>
@@ -961,7 +961,7 @@ Call `mod` to show a list of help categories. Each one will have items related t
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.4</string>
+	<string>1.1.5</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
