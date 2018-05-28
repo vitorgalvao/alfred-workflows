@@ -20,7 +20,7 @@ In both cases, ↵ plays the selection. Add ⌘ to play without marking as watch
 
 If the `top_on_play` Workflow Environment Variable is set to `true`, the item will be moved to the top of the list before starting playback.
 
-Items starting with `≈` are streams. They show no file size (since they aren’t taking up any space locally) and present the link they were taken from as opposed to a location on disk. To be able to stream video and audio you need either [mpv](http://mpv.io/) or [VLC](http://www.videolan.org/vlc/index.html).
+Items starting with `≈` are streams. They show no file size (since they aren’t taking up any space locally) and present the link they were taken from as opposed to a location on disk. To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.io/iina/), or [VLC](http://www.videolan.org/vlc/index.html).
 
 An item will not be marked as watched if we can access the player’s CLI and it exits with a failure exit code.
 

@@ -355,13 +355,16 @@ def play_item(type, path)
     mpv_cli = Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier', '=', 'io.mpv').first.strip.split("\n").last + '/Contents/MacOS/mpv'
     return mpv_cli if File.executable?(mpv_cli)
 
+    iina_cli = Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier', '=', 'com.colliderli.iina').first.strip.split("\n").last + '/Contents/MacOS/IINA'
+    return iina_cli if File.executable?(iina_cli)
+
     vlc_cli = Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier', '=', 'org.videolan.vlc').first.strip.split("\n").last + '/Contents/MacOS/VLC'
     return vlc_cli if File.executable?(vlc_cli)
 
     return 'other'
   }.call
 
-  error('You need either mpv or vlc, to stream a video.') if video_player == 'other' && type == 'stream'
+  error('To play a stream you need mpv, iina, or vlc.') if video_player == 'other' && type == 'stream'
 
   video_player == 'other' ? system('open', '-W', path) : Open3.capture2(video_player, path)[1].success?
 end
