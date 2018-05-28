@@ -8,4 +8,4 @@ Short of the Week publishes a new short every day and building the initial list 
 
 ![](https://i.imgur.com/ZoNMo4T.png)
 
-Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` takes precedence).
+Streaming is done with `mpv`, `iina`, or `vlc` (in that order), depending on what you have.

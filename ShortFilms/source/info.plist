@@ -146,13 +146,15 @@
 				<string>if [[ "$(mdfind kMDItemCFBundleIdentifier = io.mpv)" ]]; then
   PATH="$(./_sharedresources 'youtubedl')"
   video_player='mpv'
+elif [[ "$(mdfind kMDItemCFBundleIdentifier = com.colliderli.iina)" ]]; then
+  video_player='iina'
 elif [[ "$(mdfind kMDItemCFBundleIdentifier = org.videolan.vlc)" ]]; then
   video_player='vlc'
 else
-  warning 'You need either mpv or vlc to stream the video.'
+  warning 'You need mpv, iina, or vlc to stream the video.'
 fi
 
-open -a "${video_player}" "${1}"</string>
+open -a "${video_player}" --args "${1}"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -477,7 +479,7 @@ Short of the Week publishes a new short every day and building the initial list 
 
 ![](https://i.imgur.com/ZoNMo4T.png)
 
-Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` takes precedence).</string>
+Streaming is done with `mpv`, `iina`, or `vlc` (in that order), depending on what you have.</string>
 	<key>uidata</key>
 	<dict>
 		<key>2EF753EF-6194-4420-9096-C6892565EC96</key>
@@ -549,7 +551,7 @@ Streaming is done with either `mpv` or `vlc`, depending on what you have (`mpv` 
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.12.9</string>
+	<string>1.13.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
