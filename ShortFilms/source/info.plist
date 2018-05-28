@@ -151,7 +151,7 @@ elif [[ "$(mdfind kMDItemCFBundleIdentifier = com.colliderli.iina)" ]]; then
 elif [[ "$(mdfind kMDItemCFBundleIdentifier = org.videolan.vlc)" ]]; then
   video_player='vlc'
 else
-  warning 'You need mpv, iina, or vlc to stream the video.'
+  warning 'To play a stream you need mpv, iina, or vlc.'
 fi
 
 open -a "${video_player}" --args "${1}"</string>
@@ -479,7 +479,7 @@ Short of the Week publishes a new short every day and building the initial list 
 
 ![](https://i.imgur.com/ZoNMo4T.png)
 
-Streaming is done with `mpv`, `iina`, or `vlc` (in that order), depending on what you have.</string>
+To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.io/iina/), or [VLC](http://www.videolan.org/vlc/index.html).</string>
 	<key>uidata</key>
 	<dict>
 		<key>2EF753EF-6194-4420-9096-C6892565EC96</key>
@@ -551,7 +551,7 @@ Streaming is done with `mpv`, `iina`, or `vlc` (in that order), depending on wha
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.13.0</string>
+	<string>1.13.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

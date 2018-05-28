@@ -8,4 +8,4 @@ Short of the Week publishes a new short every day and building the initial list 
 
 ![](https://i.imgur.com/ZoNMo4T.png)
 
-Streaming is done with `mpv`, `iina`, or `vlc` (in that order), depending on what you have.
+To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.io/iina/), or [VLC](http://www.videolan.org/vlc/index.html).
