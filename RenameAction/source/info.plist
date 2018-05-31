@@ -211,8 +211,14 @@ fi</string>
 				<string>file="${1}"
 file_name="$(basename "${file}")"
 file_dir="$(dirname "${file}")"
-file_extension="$([[ "${file_name}" = *.* ]] &amp;&amp; echo ".${file_name##*.}" || echo '')"
-file_no_extension="${file_name%.*}"
+file_no_extension="$([[ -f "${file}" ]] &amp;&amp; echo "${file_name%.*}" || echo "${file_name}")"
+file_extension="$(
+  if [[ -f "${file}" ]]; then
+    [[ "${file_name}" = *.* ]] &amp;&amp; echo ".${file_name##*.}" || echo ''
+  else
+    echo ''
+  fi
+)"
 
 cat &lt;&lt; EOF
 {
@@ -354,7 +360,7 @@ Use Alfred to pick what you want to rename and choose `Rename` as the action. Al
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.3</string>
+	<string>1.1.4</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
