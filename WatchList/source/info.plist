@@ -971,14 +971,18 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 	<key>variables</key>
 	<dict>
 		<key>added_item_order</key>
-		<string>prepend</string>
+		<string>append</string>
 		<key>maximum_watched</key>
 		<string>9</string>
 		<key>top_on_play</key>
 		<string>true</string>
 	</dict>
+	<key>variablesdontexport</key>
+	<array>
+		<string>added_item_order</string>
+	</array>
 	<key>version</key>
-	<string>1.18.0</string>
+	<string>1.18.1</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>

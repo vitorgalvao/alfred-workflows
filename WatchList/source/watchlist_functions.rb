@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+90#!/usr/bin/env ruby
 
 require 'json'
 require 'open3'
@@ -412,7 +412,7 @@ end
 
 def append_to_list(input_hash, list)
   list_hash = YAML.load_file(list) || {}
-  target_yaml = list_hash.store(input_hash.keys.first, input_hash.values.first).to_yaml
+  target_yaml = list_hash.merge(input_hash).to_yaml
   File.write(list, target_yaml)
 end
 
