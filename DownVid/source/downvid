@@ -2,30 +2,33 @@
 
 IFS=$'\n'
 
-PATH="$(./_sharedresources 'youtubedl')"
+PATH="$(./_sharedresources 'ffmpeg' 'youtubedl')"
 
 # Workflow Environment Variables
 readonly wev_downdir="${HOME}/${download_dir}"
 readonly wev_watchlist_downdir="${HOME}/${watchlist_download_dir}"
 
-# Global options for downloads
-if command -v 'ffmpeg' 'avconv' &>/dev/null; then
-  # Download and embed subtitles
-  subs_options=(--all-subs --embed-subs)
-  # Force a fileformat, for consistency between gettitle and getfile
-  file_format=(--format bestvideo[ext=mp4]+bestaudio[ext=m4a]/best)
-fi
-
 # Parse query
 full_query="${1}"
 url="$(awk '{ print $1 }' <<< "${full_query}")"
-watchlist_bool="$(awk '{ gsub(".*_", "", $2); print $2 }' <<< "${full_query}")"
-playlist_bool="$(awk '{ gsub(".*_", "", $3); print $3 }' <<< "${full_query}")"
+media_type="$(awk '{ print $2 }' <<< "${full_query}")"
+watchlist_bool="$(awk '{ gsub(".*_", "", $3); print $3 }' <<< "${full_query}")"
+playlist_bool="$(awk '{ gsub(".*_", "", $4); print $4 }' <<< "${full_query}")"
+
+# Global options for downloads
+# File format is forced for consistency between gettitle and getfile
+if [[ "${media_type}" == 'video' ]]; then
+  subs_options=(--all-subs --embed-subs)
+  file_format=(--format bestvideo[ext=mp4]+bestaudio[ext=m4a]/best)
+else
+  subs_options=()
+  file_format=(--extract-audio --audio-quality 0 --audio-format "${audio_format:-best}")
+fi
 
 # Set file naming template depending on if downloading playlist
 if [[ "${playlist_bool}" == 'true' ]]; then
   playlist_options='--yes-playlist'
-  title_template='%(playlist)s-%(playlist_index)s-%(title)s.%(ext)s'
+  title_template='%(playlist)s/%(playlist_index)s-%(title)s.%(ext)s'
 else
   playlist_options='--no-playlist'
   title_template='%(title)s.%(ext)s'
@@ -41,7 +44,11 @@ function watchlist_exist? {
 
 function gettitle {
   # File location
-  filename="$(youtube-dl --get-filename --ignore-errors "${file_format[@]}" "${playlist_options}" --output "${downdir}/${title_template}" "${url}")"
+  if [[ "${playlist_bool}" == 'true' ]]; then
+    filename="$(dirname "$(youtube-dl --get-filename --ignore-errors "${file_format[@]}" "${playlist_options}" --output "${downdir}/${title_template}" "${url}" | head -1)")"
+  else
+    filename="$(youtube-dl --get-filename --ignore-errors "${file_format[@]}" "${playlist_options}" --output "${downdir}/${title_template}" "${url}")"
+  fi
 
   # Title
   title="$(basename "${filename%.*}")"

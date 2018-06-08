@@ -43,7 +43,18 @@
 			</dict>
 		</array>
 		<key>6A286F10-FD49-4463-9540-0EECBE45438D</key>
-		<array/>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>B1F76879-4318-4A04-B58F-150347E9CC29</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>D8524846-F942-4A77-9461-8BAED974B8CF</key>
 		<array>
 			<dict>
@@ -69,64 +80,18 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>B1F76879-4318-4A04-B58F-150347E9CC29</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
 		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
 	<key>description</key>
-	<string>Download videos from popular sources</string>
+	<string>Download media from popular sources</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
 	<string>DownVid</string>
 	<key>objects</key>
 	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>./downvid "${1}"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>6A286F10-FD49-4463-9540-0EECBE45438D</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>triggerid</key>
-				<string>new</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>D8524846-F942-4A77-9461-8BAED974B8CF</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -221,6 +186,42 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>./downvid "${1}"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>6A286F10-FD49-4463-9540-0EECBE45438D</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>triggerid</key>
+				<string>new</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>D8524846-F942-4A77-9461-8BAED974B8CF</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -251,20 +252,29 @@ script_filter_items = []
 
 if Dir.exist?(File.dirname(ENV['alfred_workflow_data']) + '/com.vitorgalvao.alfred.watchlist')
   script_filter_items.push(
-    uid: 'DownVid + WatchList',
-    title: 'DownVid + WatchList',
+    uid: 'dvw',
+    title: 'Download Video to WatchList',
     subtitle: "Downloads the video to ~/#{ENV['watchlist_download_dir']} and adds it to WatchList",
-    arg: "#{url} watchlist_true playlist_false",
-    mods: { cmd: { subtitle: 'Download full playlist', arg: "#{url} watchlist_false playlist_true" } }
+    arg: "#{url} video watchlist_true playlist_false",
+    mods: { cmd: { subtitle: 'Download full playlist', arg: "#{url} video watchlist_true playlist_true" } }
   )
 end
 
 script_filter_items.push(
-  uid: 'Downvid',
-  title: 'DownVid',
-  subtitle: "Downloads the video to ~/#{ENV['download_dir']}",
-  arg: "#{url} watchlist_false playlist_false",
-  mods: { cmd: { subtitle: 'Download full playlist', arg: "#{url} watchlist_false playlist_true" } }
+  {
+    uid: 'dv',
+    title: 'Download Video',
+    subtitle: "Downloads the video to ~/#{ENV['download_dir']}",
+    arg: "#{url} video watchlist_false playlist_false",
+    mods: { cmd: { subtitle: 'Download full playlist', arg: "#{url} video watchlist_false playlist_true" } }
+  },
+  {
+    uid: 'da',
+    title: 'Download Audio',
+    subtitle: "Downloads the audio to ~/#{ENV['download_dir']}",
+    arg: "#{url} audio watchlist_false playlist_false",
+    mods: { cmd: { subtitle: 'Download full playlist', arg: "#{url} audio watchlist_false playlist_true" } }
+  }
 )
 
 puts({ items: script_filter_items }.to_json)</string>
@@ -461,13 +471,13 @@ puts(script_filter_content.to_json)</string>
 
 if Dir.exist?("#{ENV['HOME']}/Library/Services/DownVid.workflow") # DownVid Service
   script_filter_items = [
-    title: 'Remove Downvid Services',
+    title: 'Remove DownVid Services',
     subtitle: 'Will be removed from ~/Library/Services',
     arg: 'uninstall'
   ]
 else
   script_filter_items = [
-    title: 'Install Downvid Services',
+    title: 'Install DownVid Services',
     subtitle: 'Will be installed to ~/Library/Services',
     arg: 'install'
   ]
@@ -481,7 +491,7 @@ puts({ items: script_filter_items }.to_json)</string>
 				<key>subtext</key>
 				<string></string>
 				<key>title</key>
-				<string>Install/remove Downvid Services</string>
+				<string>Install/remove DownVid Services</string>
 				<key>type</key>
 				<integer>2</integer>
 				<key>withspace</key>
@@ -523,15 +533,15 @@ fi</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Download videos from [a plethora of video sources](https://rg3.github.io/youtube-dl/supportedsites.html), even when embedded in other pages.
+	<string>Download media from [a plethora of sources](https://rg3.github.io/youtube-dl/supportedsites.html), even when embedded in other pages.
 
 Copy a link to your clipboard, run `dv`, and you’re done. The workflow will show you a notification when it starts downloading and another when finished.
 
 If you have [WatchList](https://github.com/vitorgalvao/alfred-workflows/tree/master/WatchList) you’ll see an option to automatically add the downloaded video to your watchlist.
 
-![](https://i.imgur.com/Q33FNRw.png)
+![](https://i.imgur.com/8W1gKXv.png)
  
-Run with the ⌘ modifier, and the full playlist the video is part of will be downloaded.
+Run any option with the ⌘ modifier, and the full playlist will be downloaded.
 
 To see the download progress, run `dvp`. It will auto-refresh the progress. Actioning it with the ⌘ modifier will restart the current download (adding it to the back of the queue), while actioning with ⌃ will abort the current download.
 
@@ -539,7 +549,7 @@ To see the download progress, run `dvp`. It will auto-refresh the progress. Acti
  
 You can also run `:downvidservices` to install (or later remove, running the same command) DownVid actions to macOS Services. What this means is wherever you find a URL, you’ll be able to right click it and start the download right from the context menu.
 
-![](https://i.imgur.com/NWHIWcY.png)
+![](https://i.imgur.com/rOxAzRk.png)
 
 The two Workflow Environment Variables represent the directories (relative to your home) where videos will download to.</string>
 	<key>uidata</key>
@@ -547,30 +557,30 @@ The two Workflow Environment Variables represent the directories (relative to yo
 		<key>3B69F416-A08B-4618-99B6-E2AED211C9D8</key>
 		<dict>
 			<key>xpos</key>
-			<integer>300</integer>
+			<integer>230</integer>
 			<key>ypos</key>
-			<real>250</real>
+			<integer>260</integer>
 		</dict>
 		<key>67C1A19D-DDF7-450A-A615-B9C134D6975F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>300</integer>
+			<integer>230</integer>
 			<key>ypos</key>
-			<integer>490</integer>
+			<integer>500</integer>
 		</dict>
 		<key>6A286F10-FD49-4463-9540-0EECBE45438D</key>
 		<dict>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>430</integer>
 			<key>ypos</key>
-			<real>10</real>
+			<integer>20</integer>
 		</dict>
 		<key>87AAFCF7-6532-4486-8489-54674100A52C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>430</integer>
 			<key>ypos</key>
-			<integer>490</integer>
+			<integer>500</integer>
 		</dict>
 		<key>B1F76879-4318-4A04-B58F-150347E9CC29</key>
 		<dict>
@@ -579,48 +589,50 @@ The two Workflow Environment Variables represent the directories (relative to yo
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>610</integer>
 			<key>ypos</key>
-			<integer>120</integer>
+			<integer>20</integer>
 		</dict>
 		<key>C95B128B-0AD1-41F2-A2D6-42BE6FE84306</key>
 		<dict>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>430</integer>
 			<key>ypos</key>
-			<integer>370</integer>
+			<integer>380</integer>
 		</dict>
 		<key>D8524846-F942-4A77-9461-8BAED974B8CF</key>
 		<dict>
 			<key>xpos</key>
-			<integer>100</integer>
+			<integer>30</integer>
 			<key>ypos</key>
-			<real>10</real>
+			<integer>20</integer>
 		</dict>
 		<key>DC74421D-631A-44B1-AC86-ED7793CADE26</key>
 		<dict>
 			<key>xpos</key>
-			<integer>300</integer>
+			<integer>230</integer>
 			<key>ypos</key>
-			<integer>120</integer>
+			<integer>130</integer>
 		</dict>
 		<key>E46D269F-3FF9-4B6F-ACAC-6895E0BA46CC</key>
 		<dict>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>430</integer>
 			<key>ypos</key>
-			<integer>250</integer>
+			<integer>260</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
 	<dict>
+		<key>audio_format</key>
+		<string>best</string>
 		<key>download_dir</key>
 		<string>Desktop</string>
 		<key>watchlist_download_dir</key>
 		<string>Downloads</string>
 	</dict>
 	<key>version</key>
-	<string>1.21.18</string>
+	<string>1.22.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
