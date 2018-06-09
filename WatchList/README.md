@@ -2,7 +2,7 @@ Keep a list of audiovisual content to watch and listen to.
  
 We often have series of videos and streams that we’d like to watch but not necessarily keep after, but tracking which we’ve already seen (and are thus safe to delete) can be a chore.
  
-Select in the Finder the files or directories you wish to add to your list and apply the file action `Add to watchlist`. Every time you do this the new items will be prepended or appended to the list (depending on the `add_item_order` Workflow Environment Variable). Alternatively, call `swl` to add the URL in your clipboard as a stream.
+Select in the Finder the files or directories you wish to add to your list and apply the file action `Add to watchlist`. Every time you do this the new items will be prepended or appended to the list (depending on the `add_item_order` Workflow Environment Variable). Alternatively, call `swl` to add the URL in your clipboard as a stream (add ⌘ for the full playlist).
 
 You then have some options you can pick from, all starting with `wl`.
 

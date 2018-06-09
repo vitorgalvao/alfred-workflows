@@ -83,6 +83,16 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>1F983BA2-CA1B-4B29-A065-3DFFB531DD92</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Add full playlist to play from stream</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
 		</array>
 		<key>AFB3D5CC-1B83-4675-91D8-770B0B2B7576</key>
 		<array>
@@ -268,7 +278,7 @@ end</string>
 				<key>keyword</key>
 				<string>swl</string>
 				<key>subtext</key>
-				<string>Adds url to play video from stream</string>
+				<string>Adds url to play media from stream</string>
 				<key>text</key>
 				<string>Add stream (swl)</string>
 				<key>withspace</key>
@@ -304,6 +314,32 @@ add_url_to_watchlist(clipboard)</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>6DBE8BF2-3AA2-46A3-A028-739C1E71A985</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/watchlist_functions.rb"
+
+clipboard = %x(pbpaste).strip
+add_url_to_watchlist(clipboard, true)</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>1F983BA2-CA1B-4B29-A065-3DFFB531DD92</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -763,7 +799,7 @@ display_watched</string>
  
 We often have series of videos and streams that we’d like to watch but not necessarily keep after, but tracking which we’ve already seen (and are thus safe to delete) can be a chore.
  
-Select in the Finder the files or directories you wish to add to your list and apply the file action `Add to watchlist`. Every time you do this the new items will be prepended or appended to the list (depending on the `add_item_order` Workflow Environment Variable). Alternatively, call `swl` to add the URL in your clipboard as a stream.
+Select in the Finder the files or directories you wish to add to your list and apply the file action `Add to watchlist`. Every time you do this the new items will be prepended or appended to the list (depending on the `add_item_order` Workflow Environment Variable). Alternatively, call `swl` to add the URL in your clipboard as a stream (add ⌘ for the full playlist).
 
 You then have some options you can pick from, all starting with `wl`.
 
@@ -830,12 +866,19 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
+		<key>1F983BA2-CA1B-4B29-A065-3DFFB531DD92</key>
+		<dict>
+			<key>xpos</key>
+			<integer>520</integer>
+			<key>ypos</key>
+			<integer>380</integer>
+		</dict>
 		<key>2D2C4B1F-AD23-4F61-A7B2-2122216F9F0F</key>
 		<dict>
 			<key>xpos</key>
 			<integer>40</integer>
 			<key>ypos</key>
-			<integer>380</integer>
+			<integer>500</integer>
 		</dict>
 		<key>3B8DC012-8D13-4919-8EB0-AC42C883527E</key>
 		<dict>
@@ -856,7 +899,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>xpos</key>
 			<integer>250</integer>
 			<key>ypos</key>
-			<integer>860</integer>
+			<integer>980</integer>
 		</dict>
 		<key>6DBE8BF2-3AA2-46A3-A028-739C1E71A985</key>
 		<dict>
@@ -870,14 +913,14 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>860</integer>
+			<integer>980</integer>
 		</dict>
 		<key>824AADC5-ECD6-4B9A-B01B-901EE6EC2552</key>
 		<dict>
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>1220</integer>
+			<integer>1340</integer>
 		</dict>
 		<key>88990516-33AA-49DC-8096-95883FB6BE51</key>
 		<dict>
@@ -888,21 +931,21 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>xpos</key>
 			<integer>770</integer>
 			<key>ypos</key>
-			<integer>380</integer>
+			<integer>500</integer>
 		</dict>
 		<key>9537F6F1-6608-4671-BE03-A3DCD23A06DF</key>
 		<dict>
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>740</integer>
+			<integer>860</integer>
 		</dict>
 		<key>98D586EA-8DD5-4EAE-8A4A-3A06AC84E9DC</key>
 		<dict>
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>500</integer>
+			<integer>620</integer>
 		</dict>
 		<key>A22F833D-4556-4FEE-8A77-EE6A6A2FE8FE</key>
 		<dict>
@@ -916,62 +959,62 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>380</integer>
+			<integer>500</integer>
 		</dict>
 		<key>C92FF9E0-CBC7-4421-9B75-4B8C557EB4DD</key>
 		<dict>
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>980</integer>
+			<integer>1100</integer>
 		</dict>
 		<key>D27FE458-78D9-4C16-BF89-7E489D839F6D</key>
 		<dict>
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>620</integer>
+			<integer>740</integer>
 		</dict>
 		<key>D75377F6-6B47-4683-B400-224620A75802</key>
 		<dict>
 			<key>xpos</key>
 			<integer>430</integer>
 			<key>ypos</key>
-			<integer>770</integer>
+			<integer>890</integer>
 		</dict>
 		<key>DA8908F6-F112-4087-86D4-1B9671DD766C</key>
 		<dict>
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>1100</integer>
+			<integer>1220</integer>
 		</dict>
 		<key>E75EF64B-CE9C-4789-8FCC-8095D43D1FEA</key>
 		<dict>
 			<key>xpos</key>
 			<integer>250</integer>
 			<key>ypos</key>
-			<integer>980</integer>
+			<integer>1100</integer>
 		</dict>
 		<key>E8F9509C-843D-40C8-B5F1-6B8FC692A18C</key>
 		<dict>
 			<key>xpos</key>
 			<integer>250</integer>
 			<key>ypos</key>
-			<integer>380</integer>
+			<integer>500</integer>
 		</dict>
 		<key>FA9B96C8-46F8-4275-A082-2D7CFB7B7867</key>
 		<dict>
 			<key>xpos</key>
 			<integer>250</integer>
 			<key>ypos</key>
-			<integer>740</integer>
+			<integer>860</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
 	<dict>
 		<key>added_item_order</key>
-		<string>append</string>
+		<string>prepend</string>
 		<key>maximum_watched</key>
 		<string>9</string>
 		<key>top_on_play</key>
@@ -982,7 +1025,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 		<string>added_item_order</string>
 	</array>
 	<key>version</key>
-	<string>1.18.1</string>
+	<string>1.18.2</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>

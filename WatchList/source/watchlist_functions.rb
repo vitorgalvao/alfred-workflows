@@ -1,4 +1,4 @@
-90#!/usr/bin/env ruby
+#!/usr/bin/env ruby
 
 require 'json'
 require 'open3'
@@ -110,11 +110,15 @@ def update_series(id)
   File.write(Towatch_list, list_hash.to_yaml)
 end
 
-def add_url_to_watchlist(url)
-  name = Open3.capture2('youtube-dl', '--no-playlist', '--get-title', url).first.split("\n").first
-  error "Could not add url as stream: #{url}." if name.empty?
+def add_url_to_watchlist(url, playlist = false)
+  playlist_flag = playlist ? '--yes-playlist' : '--no-playlist'
 
-  durations = Open3.capture2('youtube-dl', '--get-duration', url).first.split("\n")
+  all_names = Open3.capture2('youtube-dl', '--get-title', playlist_flag, url).first.split("\n")
+  error "Could not add url as stream: #{url}." if all_names.empty?
+  # If playlist, get the playlist name instead of the the name of the first item
+  name = all_names.count > 1 ? Open3.capture2('youtube-dl', '--yes-playlist', '--get-filename', '--output', '%(playlist)s', url).first.split("\n").first : all_names[0]
+
+  durations = Open3.capture2('youtube-dl', '--get-duration', playlist_flag, url).first.split("\n")
   count = durations.count > 1 ? durations.count : nil
 
   duration_machine = durations.map { |d| colons_to_seconds(d) }.inject(0, :+)
