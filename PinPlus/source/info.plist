@@ -204,6 +204,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>D6663B13-40B4-4E96-BC66-4AB752C0CAF3</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>16CA0D08-3EB2-4A69-8EA3-7F2A2FAA2A5C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>F19E7C66-0D3E-4ADE-A607-590AD4B34BFA</key>
 		<array>
 			<dict>
@@ -664,7 +677,7 @@ action_unread(ENV['unread_action'], ARGV[0])</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>if ! osascript -e "tell application \"Alfred 3\" to run trigger \"new\" in workflow \"com.vitorgalvao.alfred.downvid\" with argument \"${1} watchlist_true playlist_false\""; then
+				<string>if ! osascript -e "tell application \"Alfred 3\" to run trigger \"new\" in workflow \"com.vitorgalvao.alfred.downvid\" with argument \"${1} video watchlist_true playlist_false\""; then
   if osascript -e "display dialog \"The DownVid Workflow is required to download videos.\" with title \"DownVid is missing\" with icon POSIX file \"${PWD}/icon.png\" buttons { \"Cancel\", \"Download DownVid\" } default button \"Download DownVid\""; then
     open 'https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/DownVid/DownVid.alfredworkflow'
   fi
@@ -849,6 +862,54 @@ reset_pinboard_token</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>readonly repo='vitorgalvao/pinplus'
+readonly dest='/Applications'
+readonly url="$(curl --silent "https://api.github.com/repos/${repo}/releases/latest" | grep 'browser_download_url' | head -1 | sed -E 's/.*browser_download_url": "(.*)"/\1/')"
+
+curl --silent --location "${url}" | ditto -xk - "${dest}"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>16CA0D08-3EB2-4A69-8EA3-7F2A2FAA2A5C</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>:pinplusupdateapp</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Get the latest version of the PinPlus app</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>D6663B13-40B4-4E96-BC66-4AB752C0CAF3</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>Add to and view your Pinboard bookmarks.
@@ -909,6 +970,13 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<integer>240</integer>
 			<key>ypos</key>
 			<integer>1100</integer>
+		</dict>
+		<key>16CA0D08-3EB2-4A69-8EA3-7F2A2FAA2A5C</key>
+		<dict>
+			<key>xpos</key>
+			<integer>240</integer>
+			<key>ypos</key>
+			<integer>1360</integer>
 		</dict>
 		<key>23352050-CC5C-4680-8243-005771354087</key>
 		<dict>
@@ -1018,6 +1086,13 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<key>ypos</key>
 			<integer>500</integer>
 		</dict>
+		<key>D6663B13-40B4-4E96-BC66-4AB752C0CAF3</key>
+		<dict>
+			<key>xpos</key>
+			<integer>20</integer>
+			<key>ypos</key>
+			<integer>1360</integer>
+		</dict>
 		<key>F19E7C66-0D3E-4ADE-A607-590AD4B34BFA</key>
 		<dict>
 			<key>xpos</key>
@@ -1054,7 +1129,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 		<string>unread_action</string>
 	</array>
 	<key>version</key>
-	<string>1.3.0</string>
+	<string>1.3.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
