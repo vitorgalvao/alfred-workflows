@@ -6,6 +6,19 @@
 	<string>com.vitorgalvao.alfred.watchlist</string>
 	<key>connections</key>
 	<dict>
+		<key>09F5391A-DADA-41B4-B65A-68CD9256EDC9</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>082FCE19-5B3C-454B-80ED-839DD28766F3</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>2D2C4B1F-AD23-4F61-A7B2-2122216F9F0F</key>
 		<array>
 			<dict>
@@ -23,7 +36,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>082FCE19-5B3C-454B-80ED-839DD28766F3</string>
+				<string>09F5391A-DADA-41B4-B65A-68CD9256EDC9</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -241,7 +254,12 @@
 				<string>require "#{Dir.pwd}/watchlist_functions.rb"
 
 ARGV.each do |path|
-  add_local_to_watchlist(path)
+  if ENV['manual_add'] == 'true' &amp;&amp; !ENV['move_on_manual_add'].nil? &amp;&amp; !ENV['move_on_manual_add'].empty?
+    new_path = move_to_dir(path, File.join(ENV['HOME'], ENV['move_on_manual_add']))
+    add_local_to_watchlist(new_path)
+  else
+    add_local_to_watchlist(path)
+  end
 end</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
@@ -256,6 +274,24 @@ end</string>
 			<string>082FCE19-5B3C-454B-80ED-839DD28766F3</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>{query}</string>
+				<key>variables</key>
+				<dict>
+					<key>manual_add</key>
+					<string>true</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>09F5391A-DADA-41B4-B65A-68CD9256EDC9</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -640,6 +676,27 @@ update_series(ARGV[0])</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>wle</string>
+				<key>subtext</key>
+				<string>Reorder and rename watchlist items</string>
+				<key>text</key>
+				<string>Edit (wle)</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>68BC0595-725B-4DDD-B33F-01C3DE55A709</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -661,27 +718,6 @@ edit_towatch</string>
 			<string>7D39E405-629C-4741-BBA3-D87CFC3D419A</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>keyword</key>
-				<string>wle</string>
-				<key>subtext</key>
-				<string>Reorder and rename watchlist items</string>
-				<key>text</key>
-				<string>Edit (wle)</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>68BC0595-725B-4DDD-B33F-01C3DE55A709</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -799,7 +835,7 @@ display_watched</string>
  
 We often have series of videos and streams that we’d like to watch but not necessarily keep after, but tracking which we’ve already seen (and are thus safe to delete) can be a chore.
  
-Select in the Finder the files or directories you wish to add to your list and apply the file action `Add to watchlist`. Every time you do this the new items will be prepended or appended to the list (depending on the `add_item_order` Workflow Environment Variable). Alternatively, call `swl` to add the URL in your clipboard as a stream (add ⌘ for the full playlist).
+Select in the Finder the files or directories you wish to add to your list and apply the file action `Add to watchlist`. If the `move_on_manual_add` Workflow Environment Variable is set, the items will be moved to that directory (relative to your home). Items will be prepended or appended to the list, depending on the `add_item_order` Workflow Environment Variable. Alternatively, call `swl` to add the URL in your clipboard as a stream (add ⌘ for the full playlist).
 
 You then have some options you can pick from, all starting with `wl`.
 
@@ -865,6 +901,13 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<integer>520</integer>
 			<key>ypos</key>
 			<integer>20</integer>
+		</dict>
+		<key>09F5391A-DADA-41B4-B65A-68CD9256EDC9</key>
+		<dict>
+			<key>xpos</key>
+			<integer>290</integer>
+			<key>ypos</key>
+			<integer>50</integer>
 		</dict>
 		<key>1F983BA2-CA1B-4B29-A065-3DFFB531DD92</key>
 		<dict>
@@ -1014,18 +1057,21 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 	<key>variables</key>
 	<dict>
 		<key>added_item_order</key>
-		<string>prepend</string>
+		<string>append</string>
 		<key>maximum_watched</key>
 		<string>9</string>
+		<key>move_on_manual_add</key>
+		<string>Movies</string>
 		<key>top_on_play</key>
 		<string>true</string>
 	</dict>
 	<key>variablesdontexport</key>
 	<array>
+		<string>move_on_manual_add</string>
 		<string>added_item_order</string>
 	</array>
 	<key>version</key>
-	<string>1.18.2</string>
+	<string>1.18.3</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>

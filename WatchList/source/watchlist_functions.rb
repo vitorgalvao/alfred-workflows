@@ -8,6 +8,16 @@ ENV['PATH'] = Open3.capture2('./_sharedresources', 'mediainfo', 'trash', 'youtub
 Towatch_list = "#{ENV['alfred_workflow_data']}/towatch.yaml".freeze
 Watched_list = "#{ENV['alfred_workflow_data']}/watched.yaml".freeze
 
+def move_to_dir(path, target_dir)
+  path_name = File.basename(path)
+  target_path = File.join(target_dir, path_name)
+
+  error('Can’t move because a target with the same name already exists') if File.exist?(target_path)
+
+  File.rename(path, target_path)
+  target_path # Return value to it can be passed to add function
+end
+
 def add_local_to_watchlist(path)
   ensure_data_files
 
