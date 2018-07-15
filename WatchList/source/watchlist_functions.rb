@@ -460,7 +460,7 @@ def ensure_data_files
 end
 
 def trash(path)
-  system('trash', path)
+  system('trash', '-F', path)
 end
 
 def notification(message, sound = '')
