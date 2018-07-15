@@ -140,7 +140,7 @@ function trash_getter {
     local tar_extract trash_version
 
     trash_path="${shared_resources_dir}/trash"
-    readonly trash_version='0.8.5'
+    readonly trash_version='0.9.2'
     readonly tar_extract="$(mktemp -d)"
 
     ensure_resources_dir
