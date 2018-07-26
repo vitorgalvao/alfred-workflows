@@ -4,7 +4,7 @@ Add to and view your Pinboard bookmarks.
 
 ![](https://i.imgur.com/g6wAO6U.png)
 
-If you have the [PinPlus app](https://github.com/vitorgalvao/pinplus) installed, that opens instead.
+If you have the [PinPlus app](https://github.com/vitorgalvao/pinplus) installed (get it with `:pinplusupdateapp`), that opens instead.
 
 ![](https://i.imgur.com/0SVjnKs.png)
 
@@ -24,6 +24,10 @@ In each case:
 + ⌃ shows the bookmark’s tags.
 
 Unread bookmarks suffer an extra event when acted upon, depending on the `unread_action` Workflow Environment Variable. `archive` will mark the bookmark as read and `delete` will remove it from your account. Any other value (including none) will leave it untouched.
+
+`:pinpluslaunchd` will install (or later remove, running the same command) a `launchd` service to seamlessly fetch bookmarks every hour.
+
+![](https://i.imgur.com/onOFCVY.png)
 
 Bookmarks are auto-updated in accordance to the requirements of the Pinboard API. `:pinplusforceupdate` will force an update, but should be avoided.
 

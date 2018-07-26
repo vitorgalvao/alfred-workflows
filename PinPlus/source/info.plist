@@ -127,6 +127,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>71E82EE1-88EE-483E-A952-AC7AB8F4EDDF</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>A5E2E99E-54FF-47D3-BCCE-603E4E2D5424</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>7801D860-3678-41BF-8A9F-B294A3AA31CD</key>
 		<array>
 			<dict>
@@ -209,6 +222,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>16CA0D08-3EB2-4A69-8EA3-7F2A2FAA2A5C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>EF339515-CFD8-47BF-B208-FF9DCA32A2C1</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E3D8770A-3517-4F4F-854A-7E88C2FA4E37</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -910,6 +936,157 @@ curl --silent --location "${url}" | ditto -xk - "${dest}"</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>plist_file='com.vitorgalvao.launchd.pinplusfetch.plist'
+launchagents_dir="${HOME}/Library/LaunchAgents"
+installed_plist_file="${launchagents_dir}/${plist_file}"
+[[ -d "${launchagents_dir}" ]] || mkdir -p "${launchagents_dir}"
+
+action="${1}"
+
+function install_agent {
+  cp "${plist_file}" "${installed_plist_file}"
+  launchctl load -w "${installed_plist_file}"
+}
+
+function uninstall_agent {
+  launchctl unload -w "${installed_plist_file}"
+  rm "${installed_plist_file}"
+}
+
+if [[ "${action}" == 'install' ]]; then
+  install_agent
+else
+  uninstall_agent
+fi</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>A5E2E99E-54FF-47D3-BCCE-603E4E2D5424</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>:pinpluslaunchd</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>plist_file="${HOME}/Library/LaunchAgents/com.vitorgalvao.launchd.pinplusfetch.plist"
+
+if [[ -f "${plist_file}" ]]; then
+  echo '
+    {"items": [
+      {
+        "title": "Remove PinPlus launchd service",
+        "subtitle": "Stop auto fetching every hour",
+	    "arg": "uninstall"
+      }
+    ]}
+  '
+else
+  echo '
+    {"items": [
+      {
+        "title": "Install Pinplus launchd service",
+        "subtitle": "Bookmarks will be fetched every hour",
+        "arg": "install"
+      },
+    ]}
+  '
+fi</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>Install/remove Pinplus launchd service</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>71E82EE1-88EE-483E-A952-AC7AB8F4EDDF</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/pinplus.rb"
+
+fetch_bookmarks</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>E3D8770A-3517-4F4F-854A-7E88C2FA4E37</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>triggerid</key>
+				<string>fetch_bookmarks</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>EF339515-CFD8-47BF-B208-FF9DCA32A2C1</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>Add to and view your Pinboard bookmarks.
@@ -918,7 +1095,7 @@ curl --silent --location "${url}" | ditto -xk - "${dest}"</string>
 
 ![](https://i.imgur.com/g6wAO6U.png)
 
-If you have the [PinPlus app](https://github.com/vitorgalvao/pinplus) installed, that opens instead.
+If you have the [PinPlus app](https://github.com/vitorgalvao/pinplus) installed (get it with `:pinplusupdateapp`), that opens instead.
 
 ![](https://i.imgur.com/0SVjnKs.png)
 
@@ -938,6 +1115,10 @@ In each case:
 + ⌃ shows the bookmark’s tags.
 
 Unread bookmarks suffer an extra event when acted upon, depending on the `unread_action` Workflow Environment Variable. `archive` will mark the bookmark as read and `delete` will remove it from your account. Any other value (including none) will leave it untouched.
+
+`:pinpluslaunchd` will install (or later remove, running the same command) a `launchd` service to seamlessly fetch bookmarks every hour.
+
+![](https://i.imgur.com/onOFCVY.png)
 
 Bookmarks are auto-updated in accordance to the requirements of the Pinboard API. `:pinplusforceupdate` will force an update, but should be avoided.
 
@@ -1029,6 +1210,13 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<key>ypos</key>
 			<integer>660</integer>
 		</dict>
+		<key>71E82EE1-88EE-483E-A952-AC7AB8F4EDDF</key>
+		<dict>
+			<key>xpos</key>
+			<integer>20</integer>
+			<key>ypos</key>
+			<integer>1490</integer>
+		</dict>
 		<key>7801D860-3678-41BF-8A9F-B294A3AA31CD</key>
 		<dict>
 			<key>note</key>
@@ -1072,6 +1260,13 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
+		<key>A5E2E99E-54FF-47D3-BCCE-603E4E2D5424</key>
+		<dict>
+			<key>xpos</key>
+			<integer>240</integer>
+			<key>ypos</key>
+			<integer>1490</integer>
+		</dict>
 		<key>AC4A2ACA-CEFF-4C48-9B37-A39B17B934C4</key>
 		<dict>
 			<key>xpos</key>
@@ -1092,6 +1287,20 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<integer>20</integer>
 			<key>ypos</key>
 			<integer>1360</integer>
+		</dict>
+		<key>E3D8770A-3517-4F4F-854A-7E88C2FA4E37</key>
+		<dict>
+			<key>xpos</key>
+			<integer>240</integer>
+			<key>ypos</key>
+			<integer>1620</integer>
+		</dict>
+		<key>EF339515-CFD8-47BF-B208-FF9DCA32A2C1</key>
+		<dict>
+			<key>xpos</key>
+			<integer>20</integer>
+			<key>ypos</key>
+			<integer>1620</integer>
 		</dict>
 		<key>F19E7C66-0D3E-4ADE-A607-590AD4B34BFA</key>
 		<dict>
@@ -1129,7 +1338,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 		<string>unread_action</string>
 	</array>
 	<key>version</key>
-	<string>1.3.1</string>
+	<string>1.4.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
