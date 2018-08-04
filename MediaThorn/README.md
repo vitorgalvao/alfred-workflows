@@ -1,6 +1,3 @@
-Get ratings from [metacritic](http://www.metacritic.com/) for different types of media. Supports movies (`movie`), games (`game`), TV shows (`tv`), and music albums (`album`).
+Get [metacritic](http://www.metacritic.com/) ratings for different types of media.
 
-![](https://i.imgur.com/EEapN5a.png)
-![](https://i.imgur.com/eZ4om2r.png)
-![](https://i.imgur.com/YEY9ST1.png)
-![](https://i.imgur.com/vP6FNZU.png)
+![](https://i.imgur.com/8dI8s6Z.png)

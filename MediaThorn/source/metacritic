@@ -10,11 +10,10 @@ def no_results(query)
   exit 0
 end
 
-media_type = ARGV[0]
-search_query = ARGV[1..-1].join(' ')
+search_query = ARGV[0]
 escaped_query = CGI.escape(search_query)
 base_url = 'http://www.metacritic.com'
-site_url = "#{base_url}/search/#{media_type}/#{escaped_query}/results"
+site_url = "#{base_url}/search/all/#{escaped_query}/results"
 
 results = Nokogiri::HTML(open(site_url, 'User-Agent' => 'chrome')).at('ul.search_results')
 no_results(search_query) if results.nil?
@@ -25,82 +24,13 @@ results.css('li.result').each do |result|
   next if result.at('span.metascore_w').nil?
   info = result.at('.basic_stats')
   synopsis = result.at('p.deck.basic_stat').text.strip
+  score = info.at('span.metascore_w').text
+  score_type = info.at('span.metascore_w').attr('class').match(%r{(positive|mixed|negative)}).to_s
+  title = info.at('h3.product_title > a').text.strip
+  subtitle = info.at('p').text.gsub(%r{\s{2,}}, ' ').strip
+  link = base_url + info.at('h3.product_title > a').attr('href')
 
-  ##### MOVIE #####
-  if media_type == 'movie'
-    # Main info
-    score = info.at('span.metascore_w').text
-    score_type = info.at('span.metascore_w').attr('class').match(%r{(positive|mixed|negative)}).to_s
-    title = info.at('h3.product_title > a').text
-    link = base_url + info.at('h3.product_title > a').attr('href')
-
-    # Secondary info
-    release_date_data = info.at('.release_date > .data')
-    cast_data = info.at('.cast > .data')
-    genre_data = info.at('.genre > .data')
-    runtime_data = info.at('.runtime > .data')
-
-    release_date = release_date_data.nil? ? 'Unknown release date' : release_date_data.text.split.join(' ')
-    cast = cast_data.nil? ? 'Unknown cast' : cast_data.text.split.join(' ')
-    genre = genre_data.nil? ? 'Unknown data' : genre_data.text.split.join(' ')
-    runtime = runtime_data.nil? ? 'Unknown runtime' : runtime_data.text
-
-    script_filter_items.push(title: title, subtitle: "#{score} / #{runtime} / #{genre} / #{release_date} / #{cast}", icon: { path: "#{score_type}.png" }, mods: { alt: { subtitle: synopsis } }, quicklookurl: link, arg: link)
-
-  ##### GAME #####
-  elsif media_type == 'game'
-    # Main info
-    platform = result.at('.platform').text
-    score = info.at('span.metascore_w').text
-    score_type = info.at('span.metascore_w').attr('class').match(%r{(positive|mixed|negative)}).to_s
-    title = info.at('h3.product_title > a').text
-    link = base_url + info.at('h3.product_title > a').attr('href')
-
-    # Secondary info
-    release_date_data = info.at('.release_date > .data')
-    rating_data = info.at('.maturity_rating > .data')
-    publisher_data = info.at('.publisher > .data')
-
-    release_date = release_date_data.nil? ? 'Unknown release date' : release_date_data.text.split.join(' ')
-    rating = rating_data.nil? ? 'Unknown cast' : rating_data.text.split.join(' ')
-    publisher = publisher_data.nil? ? 'Unknown data' : publisher_data.text.split.join(' ')
-
-    script_filter_items.push(title: title, subtitle: "#{score} / #{platform} / #{publisher} / #{release_date} / #{rating}", icon: { path: "#{score_type}.png" }, mods: { alt: { subtitle: synopsis } }, quicklookurl: link, arg: link)
-
-  ##### TV #####
-  elsif media_type == 'tv'
-    # Main info
-    score = info.at('span.metascore_w').text
-    score_type = info.at('span.metascore_w').attr('class').match(%r{(positive|mixed|negative)}).to_s
-    title = info.at('h3.product_title > a').text
-    link = base_url + info.at('h3.product_title > a').attr('href')
-
-    # Secondary info
-    release_date_data = info.at('.release_date > .data')
-    cast_data = info.css('li.stat')[1]
-    genre_data = info.at('.genre > .data')
-
-    release_date = release_date_data.nil? ? 'Unknown release date' : release_date_data.text.split.join(' ')
-    cast = cast_data.nil? ? 'Unknown cast' : cast_data.text.sub('Starring:', '').split.join(' ')
-    genre = genre_data.nil? ? 'Unknown data' : genre_data.text.split.join(' ')
-
-    script_filter_items.push(title: title, subtitle: "#{score} / #{genre} / #{release_date} / #{cast}", icon: { path: "#{score_type}.png" }, mods: { alt: { subtitle: synopsis } }, quicklookurl: link, arg: link)
-
-  ##### ALBUM #####
-  elsif media_type == 'album'
-    # Main info
-    score = info.at('span.metascore_w').text
-    score_type = info.at('span.metascore_w').attr('class').match(%r{(positive|mixed|negative)}).to_s
-    title = info.at('h3.product_title > a').text
-    link = base_url + info.at('h3.product_title > a').attr('href')
-
-    # Secondary info
-    release_date_data = info.at('.release_date > .data')
-
-    release_date = release_date_data.nil? ? 'Unknown release date' : release_date_data.text.split.join(' ')
-
-    script_filter_items.push(title: title, subtitle: "#{score} / #{release_date}", icon: { path: "#{score_type}.png" }, mods: { alt: { subtitle: synopsis } }, quicklookurl: link, arg: link)
-  end
+  script_filter_items.push(title: title, subtitle: "#{score} / #{subtitle}", icon: { path: "#{score_type}.png" }, mods: { alt: { subtitle: synopsis } }, quicklookurl: link, arg: link)
 end
 
 no_results(search_query) if script_filter_items.empty?
