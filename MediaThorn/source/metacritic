@@ -23,7 +23,7 @@ script_filter_items = []
 results.css('li.result').each do |result|
   next if result.at('span.metascore_w').nil?
   info = result.at('.basic_stats')
-  synopsis = result.at('p.deck.basic_stat').text.strip
+  synopsis = result.at('p.deck.basic_stat').text.strip rescue 'No synopsis available.'
   score = info.at('span.metascore_w').text
   score_type = info.at('span.metascore_w').attr('class').match(%r{(positive|mixed|negative)}).to_s
   title = info.at('h3.product_title > a').text.strip
