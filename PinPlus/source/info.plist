@@ -6,6 +6,19 @@
 	<string>com.vitorgalvao.alfred.pinplus</string>
 	<key>connections</key>
 	<dict>
+		<key>03D48D68-93A6-49C2-B1BD-B8BF3DDE698F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>955157E7-B3A9-4312-8A9E-F5AEE7D2CB6A</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>06DF291B-32C4-425D-A58F-0A1E2678206E</key>
 		<array>
 			<dict>
@@ -43,7 +56,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>955157E7-B3A9-4312-8A9E-F5AEE7D2CB6A</string>
+				<string>03D48D68-93A6-49C2-B1BD-B8BF3DDE698F</string>
 				<key>modifiers</key>
 				<integer>131072</integer>
 				<key>modifiersubtext</key>
@@ -293,7 +306,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>955157E7-B3A9-4312-8A9E-F5AEE7D2CB6A</string>
+				<string>03D48D68-93A6-49C2-B1BD-B8BF3DDE698F</string>
 				<key>modifiers</key>
 				<integer>131072</integer>
 				<key>modifiersubtext</key>
@@ -750,7 +763,7 @@ echo "${1}" # To pass the URL to be acted upon, if unread bookmark</string>
 				<key>spaces</key>
 				<string></string>
 				<key>url</key>
-				<string>https://pinboard.in/search/u:vitorgalvao?query={query}</string>
+				<string>{query}</string>
 				<key>utf8</key>
 				<true/>
 			</dict>
@@ -760,6 +773,31 @@ echo "${1}" # To pass the URL to be acted upon, if unread bookmark</string>
 			<string>955157E7-B3A9-4312-8A9E-F5AEE7D2CB6A</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/pinplus.rb"
+
+search_in_website(ARGV[0])</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>03D48D68-93A6-49C2-B1BD-B8BF3DDE698F</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1129,6 +1167,15 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 ![](https://i.imgur.com/XOHDq0q.png)</string>
 	<key>uidata</key>
 	<dict>
+		<key>03D48D68-93A6-49C2-B1BD-B8BF3DDE698F</key>
+		<dict>
+			<key>note</key>
+			<string>Get URL to search user’s account</string>
+			<key>xpos</key>
+			<integer>450</integer>
+			<key>ypos</key>
+			<integer>800</integer>
+		</dict>
 		<key>0428362E-5C9C-4EB0-B5B2-470ABC9845E7</key>
 		<dict>
 			<key>note</key>
@@ -1231,7 +1278,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<key>note</key>
 			<string>Open bookmark on Pinboard’s site</string>
 			<key>xpos</key>
-			<integer>450</integer>
+			<integer>660</integer>
 			<key>ypos</key>
 			<integer>800</integer>
 		</dict>
@@ -1338,7 +1385,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 		<string>unread_action</string>
 	</array>
 	<key>version</key>
-	<string>1.4.0</string>
+	<string>1.4.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

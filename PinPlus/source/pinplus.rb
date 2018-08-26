@@ -188,3 +188,8 @@ def write_bookmarks(bookmarks, bookmarks_file)
 
   File.write(bookmarks_file, { items: json }.to_json)
 end
+
+def search_in_website(url)
+  username = grab_pinboard_token.sub(/:.*/, '')
+  print "https://pinboard.in/search/u:#{username}?query=#{url}".strip
+end
