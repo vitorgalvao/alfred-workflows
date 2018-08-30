@@ -145,6 +145,11 @@ List and act on the contents of your ~/Downloads directory
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/RecentDownloads) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RecentDownloads/RecentDownloads.alfredworkflow)
 
+### RecommendationNation <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RecommendationNation/source/icon.png' width='60' align='center' alt='RecommendationNation icon'>
+Keep a contextual list of recommendations
+
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/RecommendationNation) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RecommendationNation/RecommendationNation.alfredworkflow)
+
 ### RemoveQuarantine <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RemoveQuarantine/source/icon.png' width='60' align='center' alt='RemoveQuarantine icon'>
 Remove the quarantine attribute from your apps
 
