@@ -224,7 +224,8 @@ fi</string>
   const frontmost_app_name = Application("System Events").applicationProcesses.where({ frontmost: true }).name()[0]
 
   if (frontmost_app_name === "Finder") {
-    unescape(Application("Finder").insertionLocation().url()).slice(7).slice(0, -1)
+    //unescape(Application("Finder").insertionLocation().url()).slice(7).slice(0, -1)
+Application("Finder").insertionLocation().url().slice(7).slice(0, -1)
   } else if(frontmost_app_name === "Path Finder") {
     unescape(Application("Path Finder").finderWindows[0].target.url()).slice(7).slice(0, -1)
   } else {
@@ -235,8 +236,8 @@ fi</string>
 IFS=$'/\n'
 
 for file in ${@}; do
-  file_extension="$(sed -n 's/\(.*\)\.\(.*\)$/.\2/p' &lt;&lt;&lt; "${file}")"
-  file_no_extension="$(sed 's/\(.*\)\.\(.*\)$/\1/' &lt;&lt;&lt; "${file}")"
+  file_extension="$([[ "${file}" == *.* ]] &amp;&amp; echo ".${file##*.}" || echo '')"
+  file_no_extension="${file%.*}"
 
   [[ -z "${file_extension}" ]] &amp;&amp; file_extension=".txt"
 
@@ -353,7 +354,7 @@ done</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.2.2</string>
+	<string>1.2.3</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
