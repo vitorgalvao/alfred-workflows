@@ -427,7 +427,7 @@ fi</string>
 			<key>config</key>
 			<dict>
 				<key>count</key>
-				<integer>1</integer>
+				<integer>2</integer>
 				<key>keychar</key>
 				<string>⌫</string>
 				<key>keycode</key>
@@ -586,7 +586,7 @@ Supported in conversion to HTML:
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.23.0</string>
+	<string>1.23.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
