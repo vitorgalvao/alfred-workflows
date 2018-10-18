@@ -159,7 +159,7 @@ id="CheckSpelling$(pwd | sed 's/.*\.//' | md5)"
 urlEncodedString=$(echo "${text}" | perl -MURI::Escape -wlne 'print uri_escape ($_)')
 [[ "${urlEncodedString}" == *'%20' ]] &amp;&amp; space=" "
 
-echo -n "$(curl -s "http://${lang}.service.afterthedeadline.com/checkDocument?key=${id}&amp;data=${urlEncodedString}" | grep option | head -1 | sed 's/^.*&lt;option&gt;\(.*\)&lt;\/option&gt;/\1/')${space}"</string>
+echo -n "$(curl -s "https://${lang}.service.afterthedeadline.com/checkDocument?key=${id}&amp;data=${urlEncodedString}" | grep option | head -1 | sed 's/^.*&lt;option&gt;\(.*\)&lt;\/option&gt;/\1/')${space}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
