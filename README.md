@@ -35,6 +35,11 @@ Toggle Do Not Disturb
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/CalmNotifications) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/CalmNotifications/CalmNotifications.alfredworkflow)
 
+### CardSearch <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/CardSearch/source/icon.png' width='60' align='center' alt='CardSearch icon'>
+Search for trading card game cards
+
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/CardSearch) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/CardSearch/CardSearch.alfredworkflow)
+
 ### CheckSpelling <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/CheckSpelling/source/icon.png' width='60' align='center' alt='CheckSpelling icon'>
 Spelling correction in various languages
 
@@ -94,11 +99,6 @@ Removes extraneous information from URLs
 Lock your keyboard temporarily, so you can clean it
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/MachineClean) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MachineClean/MachineClean.alfredworkflow)
-
-### CardSearch <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/CardSearch/source/icon.png' width='60' align='center' alt='CardSearch icon'>
-Search for trading card game cards
-
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/CardSearch) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/CardSearch/CardSearch.alfredworkflow)
 
 ### MarkdownTransform <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MarkdownTransform/source/icon.png' width='60' align='center' alt='MarkdownTransform icon'>
 Convert Markdown to other formats
