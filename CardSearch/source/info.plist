@@ -231,7 +231,7 @@ fi</string>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
-				<integer>0</integer>
+				<integer>2</integer>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -241,70 +241,27 @@ fi</string>
 				<key>keyword</key>
 				<string>mtg</string>
 				<key>queuedelaycustom</key>
-				<integer>3</integer>
+				<integer>5</integer>
 				<key>queuedelayimmediatelyinitially</key>
 				<false/>
 				<key>queuedelaymode</key>
-				<integer>1</integer>
+				<integer>2</integer>
 				<key>queuemode</key>
-				<integer>1</integer>
+				<integer>2</integer>
 				<key>runningsubtext</key>
-				<string>Searching matching card names…</string>
+				<string>Querying for cards…</string>
 				<key>script</key>
-				<string>require 'cgi'
-require 'json'
-require 'open-uri'
-
-deckbrew_url = 'https://api.deckbrew.com/mtg/cards?name='
-gatherer_img = 'http://gatherer.wizards.com/Handlers/Image.ashx?type=card&amp;multiverseid='
-gatherer_url = 'http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid='
-
-search_query = ARGV[0]
-escaped_query = CGI.escape(search_query)
-search_url = "#{deckbrew_url}#{escaped_query}"
-
-results = JSON.parse(open(search_url).read)
-
-if results.empty?
-  puts({ items: [title: "No cards found with “#{search_query}”"] }.to_json)
-  exit 0
-end
-
-script_filter_items = []
-
-results.each do |result|
-  name = result['name']
-
-  types = result['types'] || []
-  subtypes = result['subtypes'] || [] 
-  joined_types = (types + subtypes).join(' ')
-
-  converted_mana_cost = result['cmc']
-  mana_cost = result['cost'].delete('{}')
-
-  text = result['text']
-
-  editions = result['editions'].map { |edition| "#{edition['set']} #{edition['rarity']}" }.join(', ')
-  multiverse_id = result['editions'].map { |edition| edition['multiverse_id'] }.reject { |id| id.zero? }.first
-
-  power = result['power']
-  toughness = result['toughness']
-  pt = power.nil? ? '' : " 𐄁 #{power}/#{toughness}"
-
-  script_filter_items.push(title: name, autocomplete: name, subtitle: "#{mana_cost} (#{converted_mana_cost}) 𐄁 #{joined_types}#{pt} 𐄁 #{editions}", quicklookurl: "#{gatherer_img}#{multiverse_id}", arg: "#{name}|#{gatherer_url}#{multiverse_id}")
-end
-
-puts({ items: script_filter_items }.to_json)</string>
+				<string>./mtg "${1}"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
-				<string>Search for trading card game cards</string>
+				<string>Type to search for cards. Accepts non-english names.</string>
 				<key>title</key>
-				<string>CardSearch</string>
+				<string>Magic: The Gathering Search</string>
 				<key>type</key>
-				<integer>2</integer>
+				<integer>0</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -387,9 +344,9 @@ puts({ items: script_filter_items }.to_json)</string>
 	<key>readme</key>
 	<string>Search for Magic: The Gathering cards by name with `mtg` followed by your search string.
 
-![](https://i.imgur.com/KC43CeL.png)
+![](https://i.imgur.com/SpnVV87.png)
 
-⇧ or ⌘Y gives a quicklook preview of the card. ↵ opens it on the [Gatherer card database](http://gatherer.wizards.com/); ⌘↵ pastes as a markdown link; ⌥↵ pastes the name and URL separeted by a colon.</string>
+⇧ or ⌘Y gives a quicklook preview of the card. ↵ opens it on the [Scryfall card database](https://scryfall.com/); ⌘↵ pastes as a markdown link; ⌥↵ pastes the name and URL separeted by a colon.</string>
 	<key>uidata</key>
 	<dict>
 		<key>0A0E99D1-B148-47E0-BD14-7F233173BF37</key>
@@ -447,7 +404,7 @@ puts({ items: script_filter_items }.to_json)</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.3</string>
+	<string>1.2.0</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
