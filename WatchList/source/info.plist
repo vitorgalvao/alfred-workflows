@@ -6,19 +6,6 @@
 	<string>com.vitorgalvao.alfred.watchlist</string>
 	<key>connections</key>
 	<dict>
-		<key>09F5391A-DADA-41B4-B65A-68CD9256EDC9</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>082FCE19-5B3C-454B-80ED-839DD28766F3</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>2D2C4B1F-AD23-4F61-A7B2-2122216F9F0F</key>
 		<array>
 			<dict>
@@ -36,7 +23,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>09F5391A-DADA-41B4-B65A-68CD9256EDC9</string>
+				<string>082FCE19-5B3C-454B-80ED-839DD28766F3</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -253,9 +240,11 @@
 				<key>script</key>
 				<string>require "#{Dir.pwd}/watchlist_functions.rb"
 
-ARGV.each do |path|
-  if ENV['manual_add'] == 'true' &amp;&amp; !ENV['move_on_manual_add'].nil? &amp;&amp; !ENV['move_on_manual_add'].empty?
-    new_path = move_to_dir(path, File.join(ENV['HOME'], ENV['move_on_manual_add']))
+paths = ENV['added_item_order'] == 'append' ? ARGV.join.split("\t").sort : ARGV.join.split("\t").sort.reverse
+
+paths.each do |path|
+  if !ENV['move_on_add'].nil? &amp;&amp; !ENV['move_on_add'].empty?
+    new_path = move_to_dir(path, File.join(ENV['HOME'], ENV['move_on_add']))
     add_local_to_watchlist(new_path)
   else
     add_local_to_watchlist(path)
@@ -274,24 +263,6 @@ end</string>
 			<string>082FCE19-5B3C-454B-80ED-839DD28766F3</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string>{query}</string>
-				<key>variables</key>
-				<dict>
-					<key>manual_add</key>
-					<string>true</string>
-				</dict>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>09F5391A-DADA-41B4-B65A-68CD9256EDC9</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -902,13 +873,6 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
-		<key>09F5391A-DADA-41B4-B65A-68CD9256EDC9</key>
-		<dict>
-			<key>xpos</key>
-			<integer>290</integer>
-			<key>ypos</key>
-			<integer>50</integer>
-		</dict>
 		<key>1F983BA2-CA1B-4B29-A065-3DFFB531DD92</key>
 		<dict>
 			<key>xpos</key>
@@ -1060,18 +1024,18 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 		<string>append</string>
 		<key>maximum_watched</key>
 		<string>9</string>
-		<key>move_on_manual_add</key>
+		<key>move_on_add</key>
 		<string>Movies</string>
 		<key>top_on_play</key>
 		<string>true</string>
 	</dict>
 	<key>variablesdontexport</key>
 	<array>
-		<string>move_on_manual_add</string>
+		<string>move_on_add</string>
 		<string>added_item_order</string>
 	</array>
 	<key>version</key>
-	<string>1.18.4</string>
+	<string>1.18.5</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
