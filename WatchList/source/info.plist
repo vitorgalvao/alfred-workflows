@@ -240,7 +240,7 @@
 				<key>script</key>
 				<string>require "#{Dir.pwd}/watchlist_functions.rb"
 
-paths = ENV['added_item_order'] == 'append' ? ARGV.join.split("\t").sort : ARGV.join.split("\t").sort.reverse
+paths = ENV['added_item_order'] == 'append' ? ARGV.sort : ARGV.sort.reverse
 
 paths.each do |path|
   if !ENV['move_on_add'].nil? &amp;&amp; !ENV['move_on_add'].empty?
@@ -1035,7 +1035,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 		<string>added_item_order</string>
 	</array>
 	<key>version</key>
-	<string>1.18.5</string>
+	<string>1.18.6</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
