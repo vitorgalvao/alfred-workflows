@@ -141,7 +141,7 @@ Deal with misbehaving processes
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/ProcessControl) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/ProcessControl/ProcessControl.alfredworkflow)
 
 ### RecentDownloads <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RecentDownloads/source/icon.png' width='60' align='center' alt='RecentDownloads icon'>
-List and act on the contents of your ~/Downloads directory
+List and act on the contents of a directory
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/RecentDownloads) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RecentDownloads/RecentDownloads.alfredworkflow)
 

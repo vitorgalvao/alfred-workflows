@@ -85,7 +85,7 @@
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
 	<key>description</key>
-	<string>List and act on the contents of your ~/Downloads directory</string>
+	<string>List and act on the contents of your a directory</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -396,11 +396,13 @@ fi</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>List the contents of your `~/Downloads` directory and act on them. Call the workflow with `rdn` to sort from the most recently modified, `rdo` for the reverse; `rda` to sort from the most recently added, `rdz` for the reverse.
+	<string>List the contents of a directory and act on them. Call the workflow with `rdn` to sort from the most recently modified, `rdo` for the reverse; `rda` to sort from the most recently added, `rdz` for the reverse.
 
 ![](https://i.imgur.com/2kGDKPa.png)
 
-To act on the selections, use the standard Alfred shortcuts. You can activate file actions, dive into directories, preview files, add them to the file buffer — whatever you want to do that is supported by Alfred.</string>
+To act on the selections, use the standard Alfred shortcuts. You can activate file actions, dive into directories, preview files, add them to the file buffer — whatever you want to do that is supported by Alfred.
+
+By default the Workflow looks in `~/Downloads`. Change the value in the `downloads_dir` Workflow Environment Variable to use a different path, relative to your home directory.</string>
 	<key>uidata</key>
 	<dict>
 		<key>04F0C2C5-E539-4961-B943-7937EC802CE8</key>
@@ -457,8 +459,13 @@ To act on the selections, use the standard Alfred shortcuts. You can activate fi
 			<integer>20</integer>
 		</dict>
 	</dict>
+	<key>variables</key>
+	<dict>
+		<key>downloads_dir</key>
+		<string>Downloads</string>
+	</dict>
 	<key>version</key>
-	<string>1.2.3</string>
+	<string>1.3.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

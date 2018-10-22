@@ -6,7 +6,8 @@ order = ARGV[0] # modified, modified_reverse, added, added_reverse
 query = ARGV[1]
 abort 'You need to specify an order type.' if ARGV[0].empty?
 
-all_entries = Dir.glob("#{ENV['HOME']}/Downloads/*")
+downloads_dir = ENV['downloads_dir'].nil? || ENV['downloads_dir'].empty? ? "#{ENV['HOME']}/Downloads" : "#{ENV['HOME']}/#{ENV['downloads_dir']}"
+all_entries = Dir.glob("#{downloads_dir}/*")
 script_filter_items = []
 
 if order =~ /modified.*/
@@ -16,15 +17,15 @@ elsif order =~ /added.*/
   entries_check_file = "#{ENV['alfred_workflow_cache']}/added_check.txt"
 
   entries_check_old = File.read(entries_check_file) rescue ''
-  entries_check_new = File.mtime("#{ENV['HOME']}/Downloads")
+  entries_check_new = File.mtime(downloads_dir)
 
   if entries_check_old != entries_check_new
     require 'open3'
-    entries_by_added = Open3.capture2('mdls', '-name', 'kMDItemFSName', '-name', 'kMDItemDateAdded', '-raw', *all_entries).first.split("\0").each_slice(2).sort.map { |a| "#{ENV['HOME']}/Downloads/#{a[1]}" }
+    entries_by_added = Open3.capture2('mdls', '-name', 'kMDItemFSName', '-name', 'kMDItemDateAdded', '-raw', *all_entries).first.split("\0").each_slice(2).sort.map { |a| "#{downloads_dir}/#{a[1]}" }
 
     Dir.mkdir(ENV['alfred_workflow_cache']) unless Dir.exist?(ENV['alfred_workflow_cache'])
     File.write(entries_cache_file, entries_by_added.join("\n"))
-    File.write(entries_check_file, File.mtime("#{ENV['HOME']}/Downloads"))
+    File.write(entries_check_file, File.mtime(downloads_dir))
   end
 
   entries = File.read(entries_cache_file).split("\n")
