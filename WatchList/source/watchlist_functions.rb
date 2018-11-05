@@ -12,9 +12,14 @@ def move_to_dir(path, target_dir)
   path_name = File.basename(path)
   target_path = File.join(target_dir, path_name)
 
-  error('Can’t move because a target with the same name already exists') if File.exist?(target_path)
+  if File.dirname(path) == target_dir
+    puts 'Path is already at target directory'
+  elsif File.exist?(target_path)
+    error('Can’t move because another target with the same name already exists')
+  else
+    File.rename(path, target_path)
+  end
 
-  File.rename(path, target_path)
   target_path # Return value to it can be passed to add function
 end
 

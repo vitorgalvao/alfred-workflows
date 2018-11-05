@@ -1035,7 +1035,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 		<string>added_item_order</string>
 	</array>
 	<key>version</key>
-	<string>1.18.6</string>
+	<string>1.18.7</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
