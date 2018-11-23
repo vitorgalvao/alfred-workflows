@@ -11,9 +11,19 @@ function ascii_basename {
   basename "${1}" | sed -e 's/[^a-zA-Z0-9._-]/-/g'
 }
 
-function transfer {
-  local tmp_zip_dir given_file tmp_dir dir_name zip_file file_path file_name
+function string_in_array {
+  local string="${1}"
 
+  for value in "${@:2}"; do
+    [[ "${string}" == "${value}" ]] && return 0
+  done
+  return 1
+}
+
+function transfer {
+  local tmp_zip_dir given_file tmp_dir dir_name zip_file file_path file_name hosts default_host upload_host
+
+  # Consolidate files bit
   # If acting on multiple files, first copy them to a directory
   if [[ "${#}" -gt 1 ]]; then
     readonly tmp_zip_dir="$(mktemp -d)/archive"
@@ -35,12 +45,25 @@ function transfer {
     readonly file_path="${given_file}"
   fi
 
+  # Uploading bit
   readonly file_name=$(ascii_basename "${file_path}")
   echo -n "${file_name}" > "${name_file}"
   notification "Uploading “${file_name}”"
 
-  # Upload and copy url to clipboard
-  curl --globoff --progress-bar --upload-file "${file_path}" "https://transfer.sh/${file_name}" 2> "${progress_file}" | tr -d '\n' | pbcopy
+  readonly hosts=('transfer.sh' 'bayfiles.com' 'anonfile.com' 'megaupload.nz' 'forumfiles.com')
+  readonly default_host="${hosts[1]}"
+
+  if [[ -n "${upload_file_to}" ]] && string_in_array "${upload_file_to}" "${hosts[@]}"; then
+    upload_host="${upload_file_to}"
+  else
+    upload_host="${default_host}"
+  fi
+
+  if [[ "${upload_host}" == 'transfer.sh' ]]; then
+    curl --globoff --progress-bar --upload-file "${file_path}" "https://transfer.sh/${file_name}" 2> "${progress_file}" | tr -d '\n' | pbcopy
+  else
+    curl --globoff --progress-bar --form "file=@${file_path}" "https://${upload_host}/api/upload" 2> "${progress_file}" | ruby -e 'require "json"; data = JSON.parse(gets); abort "There was an error uploading" if data["status"] == false; puts data["data"]["file"]["url"]["full"]' | tr -d '\n' | pbcopy
+  fi
 
   # Play sound and show message
   afplay /System/Library/Sounds/Ping.aiff
