@@ -66,7 +66,7 @@ Download videos from popular sources
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownVid) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/DownVid/DownVid.alfredworkflow)
 
 ### FormatSize <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/FormatSize/source/icon.png' width='60' align='center' alt='FormatSize icon'>
-Reference paper sizes and device viewport widths
+Reference paper sizes and device resolutions
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/FormatSize) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/FormatSize/FormatSize.alfredworkflow)
 

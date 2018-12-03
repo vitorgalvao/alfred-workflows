@@ -9,7 +9,7 @@
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
 	<key>description</key>
-	<string>Reference paper sizes and device viewport widths</string>
+	<string>Reference paper sizes and device resolutions</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -48,13 +48,13 @@ file='sizes/iso.csv'
 
 echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
 while read media; do
-	name="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\1/' &lt;&lt;&lt; "${media}")"
-	size="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\2 mm  |  \3 in/' &lt;&lt;&lt; "${media}")"
-	echo "&lt;item valid='no' autocomplete='${name}'&gt;"
-	echo "&lt;title&gt;${name}&lt;/title&gt;"
-	echo "&lt;subtitle&gt;${size}&lt;/subtitle&gt;"
-	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
-	echo "&lt;/item&gt;"
+  name="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\1/' &lt;&lt;&lt; "${media}")"
+  size="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\2 mm  |  \3 in/' &lt;&lt;&lt; "${media}")"
+  echo "&lt;item valid='no' autocomplete='${name}'&gt;"
+  echo "&lt;title&gt;${name}&lt;/title&gt;"
+  echo "&lt;subtitle&gt;${size}&lt;/subtitle&gt;"
+  echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
+  echo "&lt;/item&gt;"
 done &lt; "${file}"
 echo "&lt;/items&gt;"</string>
 				<key>scriptargtype</key>
@@ -109,13 +109,13 @@ file='sizes/na.csv'
 
 echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
 while read media; do
-	name="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\1/' &lt;&lt;&lt; "${media}")"
-	size="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\2 mm  |  \3 in/' &lt;&lt;&lt; "${media}")"
-	echo "&lt;item valid='no' autocomplete='${name}'&gt;"
-	echo "&lt;title&gt;${name}&lt;/title&gt;"
-	echo "&lt;subtitle&gt;${size}&lt;/subtitle&gt;"
-	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
-	echo "&lt;/item&gt;"
+  name="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\1/' &lt;&lt;&lt; "${media}")"
+  size="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\2 mm  |  \3 in/' &lt;&lt;&lt; "${media}")"
+  echo "&lt;item valid='no' autocomplete='${name}'&gt;"
+  echo "&lt;title&gt;${name}&lt;/title&gt;"
+  echo "&lt;subtitle&gt;${size}&lt;/subtitle&gt;"
+  echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
+  echo "&lt;/item&gt;"
 done &lt; "${file}"
 echo "&lt;/items&gt;"</string>
 				<key>scriptargtype</key>
@@ -170,13 +170,13 @@ file='sizes/jis.csv'
 
 echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
 while read media; do
-	name="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\1/' &lt;&lt;&lt; "${media}")"
-	size="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\2 mm  |  \3 in/' &lt;&lt;&lt; "${media}")"
-	echo "&lt;item valid='no' autocomplete='${name}'&gt;"
-	echo "&lt;title&gt;${name}&lt;/title&gt;"
-	echo "&lt;subtitle&gt;${size}&lt;/subtitle&gt;"
-	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
-	echo "&lt;/item&gt;"
+  name="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\1/' &lt;&lt;&lt; "${media}")"
+  size="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\2 mm  |  \3 in/' &lt;&lt;&lt; "${media}")"
+  echo "&lt;item valid='no' autocomplete='${name}'&gt;"
+  echo "&lt;title&gt;${name}&lt;/title&gt;"
+  echo "&lt;subtitle&gt;${size}&lt;/subtitle&gt;"
+  echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
+  echo "&lt;/item&gt;"
 done &lt; "${file}"
 echo "&lt;/items&gt;"</string>
 				<key>scriptargtype</key>
@@ -231,13 +231,13 @@ file='sizes/ansi.csv'
 
 echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
 while read media; do
-	name="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\1/' &lt;&lt;&lt; "${media}")"
-	size="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\2 mm  |  \3 in/' &lt;&lt;&lt; "${media}")"
-	echo "&lt;item valid='no' autocomplete='${name}'&gt;"
-	echo "&lt;title&gt;${name}&lt;/title&gt;"
-	echo "&lt;subtitle&gt;${size}&lt;/subtitle&gt;"
-	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
-	echo "&lt;/item&gt;"
+  name="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\1/' &lt;&lt;&lt; "${media}")"
+  size="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\2 mm  |  \3 in/' &lt;&lt;&lt; "${media}")"
+  echo "&lt;item valid='no' autocomplete='${name}'&gt;"
+  echo "&lt;title&gt;${name}&lt;/title&gt;"
+  echo "&lt;subtitle&gt;${size}&lt;/subtitle&gt;"
+  echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
+  echo "&lt;/item&gt;"
 done &lt; "${file}"
 echo "&lt;/items&gt;"</string>
 				<key>scriptargtype</key>
@@ -292,13 +292,13 @@ file='sizes/arch.csv'
 
 echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
 while read media; do
-	name="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\1/' &lt;&lt;&lt; "${media}")"
-	size="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\2 mm  |  \3 in/' &lt;&lt;&lt; "${media}")"
-	echo "&lt;item valid='no' autocomplete='${name}'&gt;"
-	echo "&lt;title&gt;${name}&lt;/title&gt;"
-	echo "&lt;subtitle&gt;${size}&lt;/subtitle&gt;"
-	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
-	echo "&lt;/item&gt;"
+  name="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\1/' &lt;&lt;&lt; "${media}")"
+  size="$(sed 's/^\(.*\),\(.*\),\(.*\)$/\2 mm  |  \3 in/' &lt;&lt;&lt; "${media}")"
+  echo "&lt;item valid='no' autocomplete='${name}'&gt;"
+  echo "&lt;title&gt;${name}&lt;/title&gt;"
+  echo "&lt;subtitle&gt;${size}&lt;/subtitle&gt;"
+  echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
+  echo "&lt;/item&gt;"
 done &lt; "${file}"
 echo "&lt;/items&gt;"</string>
 				<key>scriptargtype</key>
@@ -327,7 +327,7 @@ echo "&lt;/items&gt;"</string>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
-				<integer>0</integer>
+				<integer>2</integer>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -335,7 +335,7 @@ echo "&lt;/items&gt;"</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>keyword</key>
-				<string>viewport</string>
+				<string>resolution</string>
 				<key>queuedelaycustom</key>
 				<integer>1</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -349,32 +349,21 @@ echo "&lt;/items&gt;"</string>
 				<key>script</key>
 				<string>IFS=$'\n'
 
-file='sizes/viewport.csv'
+file='sizes/resolution.json'
 
-# update viewport.csv it's more than 30 days old
 if [[ $(find "${file}" -mtime +30) ]]; then
-  curl "http://viewportsizes.com/devices.csv" | cut -d , -f1-2 -f4-5 | tail +2 &gt; "${file}"
+  ./get_device_resolutions &gt; "${file}"
 fi
 
-echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;"
-while read media; do
-	name="$(sed 's/^\(.*\),\(.*\),\(.*\),\(.*\)$/\1 · \2/' &lt;&lt;&lt; "${media}")"
-	size="$(sed 's/^\(.*\),\(.*\),\(.*\),\(.*\)$/\3 x \4 (Portrait width x Landscape width)/' &lt;&lt;&lt; "${media}")"
-	echo "&lt;item valid='no' autocomplete='$(sed 's/ ·.*//' &lt;&lt;&lt; "${name}")'&gt;"
-	echo "&lt;title&gt;${name}&lt;/title&gt;"
-	echo "&lt;subtitle&gt;${size}&lt;/subtitle&gt;"
-	echo "&lt;icon&gt;icon.png&lt;/icon&gt;"
-	echo "&lt;/item&gt;"
-done &lt; "${file}"
-echo "&lt;/items&gt;"</string>
+cat "${file}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
-				<string>Search by device name, brand, OS, or viewport width</string>
+				<string>Search by device name or size</string>
 				<key>title</key>
-				<string>Viewport sizes for various mobile devices</string>
+				<string>Resolution sizes for various mobile devices</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
@@ -401,7 +390,7 @@ echo "&lt;/items&gt;"</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>viewport</string>
+				<string>res</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -504,15 +493,15 @@ fi</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Quick reference for different standard paper formats and viewport sizes of different devices.
+	<string>Quick reference for different standard paper formats and resolution sizes of different devices.
 
 For paper sizes, type `paper`, and you’ll see the available standards; all of them have different shortcuts which you can narrow down by starting to type the name of the format you want (so typing `paperiso b3` will only show you the B3 size of the ISO 126 standard).
 
-For viewport sizes, type `viewport`, and you’ll see the available devices. You can narrow them down by device name, brand, OS, and even viewport width (in case you want to find similar ones).
+For device resolutions, type `resolution`, and you’ll see the available devices. You can narrow them down by name.
 
-![](https://i.imgur.com/NMjYeFl.gif)
+![](https://i.imgur.com/tLf0Zeo.gif)
 
-Paper sizes taken from [wikipedia](https://en.wikipedia.org/wiki/Paper_sizes) and viewport sizes from [viewportsizes.com](http://viewportsizes.com/).</string>
+Paper sizes taken from [wikipedia](https://en.wikipedia.org/wiki/Paper_sizes) and resolution sizes from [dpi.lv](http://dpi.lv/).</string>
 	<key>uidata</key>
 	<dict>
 		<key>18F65376-7567-4DB6-AE98-CA42FD18DB64</key>
@@ -570,7 +559,7 @@ Paper sizes taken from [wikipedia](https://en.wikipedia.org/wiki/Paper_sizes) an
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.5.2</string>
+	<string>1.6.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

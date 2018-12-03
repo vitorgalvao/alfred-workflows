@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require 'json'
+require 'open-uri'
+
+devices = JSON.parse(URI.parse('https://raw.githubusercontent.com/LeaVerou/dpi/gh-pages/devices.json').read)['device']
+
+script_filter_items = []
+
+devices.each do |device|
+  script_filter_items.push(
+    title: device['name'],
+    subtitle: device['w'].to_s + ' x ' + device['h'].to_s
+  )
+end
+
+puts({ items: script_filter_items }.to_json)
