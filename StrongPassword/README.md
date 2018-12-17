@@ -1,4 +1,4 @@
-Get strong passwords by combining up to three sources — https://www.grc.com/passwords.htm (unless you choose to have a password without special characters), http://www.random.org/passwords/, and `ruby` itself. There’s at the end a technical explanation on how it works.
+Get strong passwords by combining up to three sources — [https://www.grc.com/passwords.htm](https://www.grc.com/passwords.htm) (unless you choose to have a password without special characters), http://www.random.org/passwords/, and `ruby` itself. There’s at the end a technical explanation on how it works.
  
 Call `sp` and the workflow will get a (default and maximum of) 64 characters random password, and copy it to your clipboard.
 
