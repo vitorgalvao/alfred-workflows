@@ -1,0 +1,42 @@
+#!/bin/bash
+
+readonly media="${1}"
+
+function app_exists? {
+  readonly local app="${1}"
+
+  if ! osascript -e "exists application \"${app}\""; then
+    echo "
+      Cannot find '${app}'.
+
+      Make sure it is:
+        1. Set in the Workflow Environment Variables.
+        2. Has the name *exactly* as it appears in the menu bar.
+    " | sed -E 's/^ {6}//' >&2
+    exit 1
+  fi
+}
+
+if [[ "${media}" == 'audio' ]]; then
+  app_exists? "${audio_recorder}"
+
+  if [[ "${audio_recorder}" == 'QuickTime Player' ]]; then
+    osascript -e 'tell application "QuickTime Player" to start (new audio recording)'
+  fi
+fi
+
+if [[ "${media}" == 'screen' ]]; then
+  app_exists? "${screen_recorder}"
+
+  if [[ "${screen_recorder}" == 'QuickTime Player' ]]; then
+    osascript -e 'tell application "QuickTime Player" to start (new screen recording)'
+  fi
+fi
+
+if [[ "${media}" == 'webcam' ]]; then
+  app_exists? "${webcam_recorder}"
+
+  if [[ "${webcam_recorder}" == 'QuickTime Player' ]]; then
+    osascript -e 'tell application "QuickTime Player" to start (new movie recording)'
+  fi
+fi

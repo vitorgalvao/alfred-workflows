@@ -185,6 +185,11 @@ Stream from a selection of short films
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/ShortFilms) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/ShortFilms/ShortFilms.alfredworkflow)
 
+### StartRecording <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/StartRecording/source/icon.png' width='60' align='center' alt='StartRecording icon'>
+Shortcuts for recording from your computer
+
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/StartRecording) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/StartRecording/StartRecording.alfredworkflow)
+
 ### StrongPassword <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/StrongPassword/source/icon.png' width='60' align='center' alt='StrongPassword icon'>
 Get a strong password by leveraging multiple sources
 
