@@ -79,7 +79,7 @@ function ffmpeg_getter {
 
     ffmpeg_path="${shared_resources_dir}/ffmpeg"
     readonly download_page='https://evermeet.cx/pub/ffmpeg/'
-    readonly file_name="$(curl --silent "${download_page}" | grep '.dmg' | head -1 | sed -E 's/.*<a href="(.*)".*/\1/')"
+    readonly file_name="$(curl --silent "${download_page}" | grep '.dmg' | grep --invert-match '.sig' | head -1 | sed -E 's/.*<a href="(.*)".*/\1/')"
     readonly dmg="$(mktemp)"
 
     if curl --silent --output "${dmg}" "${download_page}${file_name}"; then
