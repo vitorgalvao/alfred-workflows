@@ -2,7 +2,7 @@ Keep a list of audiovisual content to watch and listen to.
  
 We often have series of videos and streams that we’d like to watch but not necessarily keep after, but tracking which we’ve already seen (and are thus safe to delete) can be a chore.
  
-Select in the Finder the files or directories you wish to add to your list and apply the file action `Add to watchlist`. If the `move_on_manual_add` Workflow Environment Variable is set, the items will be moved to that directory (relative to your home). Items will be prepended or appended to the list, depending on the `add_item_order` Workflow Environment Variable. Alternatively, call `swl` to add the URL in your clipboard as a stream (add ⌘ for the full playlist).
+Select in the Finder the files or directories you wish to add to your list and apply the file action `Add to watchlist`. If the `move_on_add` Workflow Environment Variable is set, the items will be moved to that directory (relative to your home). Items will be prepended or appended to the list, depending on the `add_item_order` Workflow Environment Variable. Alternatively, call `swl` to add the URL in your clipboard as a stream (add ⌘ for the full playlist).
 
 You then have some options you can pick from, all starting with `wl`.
 
@@ -29,6 +29,8 @@ An item will not be marked as watched if we can access the player’s CLI and it
 ![](https://i.imgur.com/XK0W6Wj.png)
 
 `wle` allows you to reorder, rename, and remove items from the list.
+
+If you want to keep your lists synced between machines, use the `lists_dir` Workflow Environment Variable to pick a custom save location relative to your home directory.
 
 Finally, if you use [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownVid) it has an option to add the downloaded video files directly to your watchlist.
 

@@ -5,8 +5,10 @@ require 'open3'
 require 'yaml'
 
 ENV['PATH'] = Open3.capture2('./_sharedresources', 'mediainfo', 'trash', 'youtubedl').first
-Towatch_list = "#{ENV['alfred_workflow_data']}/towatch.yaml".freeze
-Watched_list = "#{ENV['alfred_workflow_data']}/watched.yaml".freeze
+
+Lists_dir = ENV['lists_dir'].nil? || ENV['lists_dir'].empty? ? ENV['alfred_workflow_data'] : "#{ENV['HOME']}/#{ENV['lists_dir']}"
+Towatch_list = "#{Lists_dir}/towatch.yaml".freeze
+Watched_list = "#{Lists_dir}/watched.yaml".freeze
 
 def move_to_dir(path, target_dir)
   path_name = File.basename(path)
