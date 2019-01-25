@@ -340,7 +340,7 @@ timer "${1}"</string>
 				<key>subtext</key>
 				<string>Timer for {query} minutes</string>
 				<key>text</key>
-				<string>Star a timer</string>
+				<string>Start a timer</string>
 				<key>withspace</key>
 				<true/>
 			</dict>
