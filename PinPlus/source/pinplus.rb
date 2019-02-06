@@ -44,19 +44,19 @@ def save_pinboard_token
 
   error('Cannot continue without a Pinboard token.') if pinboard_token.empty?
 
-  system('security', 'add-generic-password', '-a', ENV['USER'], '-s', 'pinboard_api_token', '-w', pinboard_token)
+  system('security', 'add-generic-password', '-a', pinboard_token.split(':').first, '-s', 'Pinboard API Token', '-w', pinboard_token)
   error 'Seem either the API token is incorrect or Pinboard’s servers are down.' if open("https://api.pinboard.in/v1/user/api_token/?auth_token=#{pinboard_token}").nil?
 
   grab_pinboard_token
 end
 
 def grab_pinboard_token
-  pinboard_token = %x(security find-generic-password -a "${USER}" -s pinboard_api_token -w).strip
+  pinboard_token = %x(security find-generic-password -s 'Pinboard API Token' -w).strip
   pinboard_token.empty? ? save_pinboard_token : pinboard_token
 end
 
 def reset_pinboard_token
-  system('security', 'delete-generic-password', '-a', ENV['USER'], '-s', 'pinboard_api_token')
+  system('security', 'delete-generic-password', '-s', 'Pinboard API Token')
   save_pinboard_token
 end
 
