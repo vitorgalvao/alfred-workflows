@@ -934,11 +934,41 @@ reset_pinboard_token</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>readonly repo='vitorgalvao/pinplus'
-readonly dest='/Applications'
-readonly url="$(curl --silent "https://api.github.com/repos/${repo}/releases/latest" | grep 'browser_download_url' | head -1 | sed -E 's/.*browser_download_url": "(.*)"/\1/')"
+				<string>function notification {
+  ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
+}
 
-curl --silent --location "${url}" | ditto -xk - "${dest}"</string>
+function get_detail {
+  local detail repo
+
+  repo="${1}"
+  detail="${2}"
+
+  curl --silent "https://api.github.com/repos/${repo}/releases/latest" | grep "${detail}" | head -1 | awk '{print $2}' | tr -d \",
+}
+
+readonly app_repo='vitorgalvao/pinplus'
+readonly app_name='PinPlus'
+readonly dest_dir='/Applications'
+readonly app_dest="${dest_dir}/${app_name}.app"
+
+readonly upstream_version="$(get_detail "${app_repo}" 'tag_name')"
+readonly local_version="$(mdls -name kMDItemVersion -raw "${app_dest}")"
+
+notification "Checking for ${app_name} updates…"
+
+if [[ "${upstream_version}" == "${local_version}" ]]; then
+  notification "${app_name} app is already at latest version"
+  exit 0
+fi
+
+readonly url="$(get_detail "${app_repo}" 'browser_download_url')"
+
+if curl --silent --location "${url}" | ditto -xk - "${dest_dir}"; then
+  notification "Updated ${app_name} app to ${upstream_version}"
+else
+  notification "Failed to update ${app_name} app"
+fi</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -1385,7 +1415,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 		<string>unread_action</string>
 	</array>
 	<key>version</key>
-	<string>1.4.1</string>
+	<string>1.5.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
