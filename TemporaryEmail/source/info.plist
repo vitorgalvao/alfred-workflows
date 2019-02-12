@@ -19,32 +19,6 @@
 				<false/>
 			</dict>
 		</array>
-		<key>1C06D0AC-A717-44C6-A0ED-955E5AC4BBED</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>49CFE1AC-EDB4-4A08-B326-089208B64670</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>49CFE1AC-EDB4-4A08-B326-089208B64670</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>45C10052-0E98-4B4A-9B23-99DF057B5FA5</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>9066A3FA-E9D2-44AF-BB72-A54ABBEB3A3D</key>
 		<array>
 			<dict>
@@ -100,7 +74,7 @@ if [[ "${front_browser}" == 'Safari' || "${front_browser}" == 'Safari Technology
       tell front window to set current tab to tab tabIndex
     end tell
 EOF
-elif [[ "${front_browser}" == 'Google Chrome' || "${front_browser}" == 'Google Chrome Canary' || "${front_browser}" == 'Chromium' ]]; then
+elif [[ "${front_browser}" == 'Google Chrome' || "${front_browser}" == 'Google Chrome Canary' || "${front_browser}" == 'Chromium' || "${front_browser}" == 'Opera' || "${front_browser}" == 'Vivaldi' ]]; then
   osascript &lt;&lt;EOF
     tell application "${front_browser}"
       set tabIndex to active tab index of front window
@@ -139,7 +113,7 @@ notification 'Temporary email address copied to clipboard'</string>
 				<key>subtext</key>
 				<string>Instant disposable email</string>
 				<key>text</key>
-				<string>Quick email</string>
+				<string>TemporaryEmail</string>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -241,80 +215,15 @@ fi</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>keyword</key>
-				<string>tmpmail</string>
-				<key>subtext</key>
-				<string>Disposable forwarding email</string>
-				<key>text</key>
-				<string>Forwarding email</string>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>1C06D0AC-A717-44C6-A0ED-955E5AC4BBED</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>function notification {
-  ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
-}
-
-if [[ -z "${forwarding_email}" ]]; then
-  notification 'You need to setup a forwarding email in the Workflow Environment Variables.'
-  exit 1
-fi
-
-if [[ -n "${1}" ]]; then
-  email_name="${1//[^[:alnum:]]}"
-else
-  email_name="$(openssl rand -base64 12 | tr -d '/=+')"
-fi
-
-email="${email_name}@forward.cat"
-escaped_forwarding_email="$(perl -MURI::Escape -ne 'print uri_escape ($_)' &lt;&lt;&lt; "${forwarding_email}" | sed 's/%0A$//')"
-curl --output /dev/null --silent "https://forward.cat/add?proxy=${email_name}&amp;email=${escaped_forwarding_email}"
-
-pbcopy &lt;&lt;&lt; "${email}"
-notification "Temporary email address copied to clipboard. You’ll need to confirm it."</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>49CFE1AC-EDB4-4A08-B326-089208B64670</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
 	</array>
 	<key>readme</key>
-	<string>Create temporary email inboxes via [Teleosaurs Mail](http://teleosaurs.xyz/) or [Forward Cat](https://forward.cat/). Call any option with `tmpmail`.
+	<string>Create temporary email inboxes via [Teleosaurs Mail](http://teleosaurs.xyz/).
 
-![](https://i.imgur.com/FBIwY2m.png)
+Call `tmpmail` to make a temporary email address and open a background tab with the corresponding inbox. The address will be copied to your clipboard.
 
-+ **Quick email**: Create a temporary email address and open a background tab with the corresponding inbox. The address will be copied to your clipboard. Supported browsers: Safari; Safari Technology Preview; Webkit; Google Chrome; Google Chrome Canary; Chromium.
-+ **Forwarding email**: Create a temporary email address that forwards to your real one. This requires you set up `forwarding_email`. The address will be copied to your clipboard.
+![](https://i.imgur.com/HpF0tRM.png)
 
-With any of the options, giving it an argument will try to use that specific name, while leavng it blank will create a random address.</string>
+Giving an argument will try to use that specific name, while leaving it blank will create a random address.</string>
 	<key>uidata</key>
 	<dict>
 		<key>1BFF14FC-DF72-4BC9-807B-3D38432CF08D</key>
@@ -323,13 +232,6 @@ With any of the options, giving it an argument will try to use that specific nam
 			<integer>240</integer>
 			<key>ypos</key>
 			<integer>20</integer>
-		</dict>
-		<key>1C06D0AC-A717-44C6-A0ED-955E5AC4BBED</key>
-		<dict>
-			<key>xpos</key>
-			<integer>30</integer>
-			<key>ypos</key>
-			<integer>150</integer>
 		</dict>
 		<key>45C10052-0E98-4B4A-9B23-99DF057B5FA5</key>
 		<dict>
@@ -342,13 +244,6 @@ With any of the options, giving it an argument will try to use that specific nam
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
-		<key>49CFE1AC-EDB4-4A08-B326-089208B64670</key>
-		<dict>
-			<key>xpos</key>
-			<integer>240</integer>
-			<key>ypos</key>
-			<integer>150</integer>
-		</dict>
 		<key>9066A3FA-E9D2-44AF-BB72-A54ABBEB3A3D</key>
 		<dict>
 			<key>xpos</key>
@@ -357,17 +252,8 @@ With any of the options, giving it an argument will try to use that specific nam
 			<integer>20</integer>
 		</dict>
 	</dict>
-	<key>variables</key>
-	<dict>
-		<key>forwarding_email</key>
-		<string>vendomoveis2010@gmail.com</string>
-	</dict>
-	<key>variablesdontexport</key>
-	<array>
-		<string>forwarding_email</string>
-	</array>
 	<key>version</key>
-	<string>1.5.3</string>
+	<string>1.6.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
