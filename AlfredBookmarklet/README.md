@@ -1,6 +1,6 @@
 Run browser [bookmarklets](http://en.wikipedia.org/wiki/Bookmarklet) from Alfred, without needing to having them installed in the browser itself.
 
-Note that on Safari, Safari Tehcnology Preview, and Webkit, you need to `Allow JavaScript from Apple Events` under the `Develop` menu, which you can enable under the `Advanced` tab on the browser’s preferences.
+Note that you may need to `Allow JavaScript from Apple Events` in your Browser.
 
 #### 1
 
