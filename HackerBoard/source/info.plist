@@ -6,19 +6,6 @@
 	<string>com.vitorgalvao.alfred.hackerboard</string>
 	<key>connections</key>
 	<dict>
-		<key>08D488BD-CEAA-4A4F-8BFE-A5A40D5CB7D9</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>50B4021B-BEB3-47B4-AE36-70254E107434</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>246A2126-9C2B-44FE-A0D2-3DCB7242106A</key>
 		<array>
 			<dict>
@@ -60,7 +47,7 @@
 		</array>
 		<key>66C135C9-4618-4419-85DF-78138B91ADEF</key>
 		<array/>
-		<key>7AB215AD-EA1E-47F1-863F-4406E85CAD4C</key>
+		<key>81D415C5-CA65-4F79-9F94-BC4161B14D81</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -70,51 +57,15 @@
 				<key>modifiersubtext</key>
 				<string></string>
 				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>81D415C5-CA65-4F79-9F94-BC4161B14D81</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>08D488BD-CEAA-4A4F-8BFE-A5A40D5CB7D9</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
 				<true/>
 			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>7AB215AD-EA1E-47F1-863F-4406E85CAD4C</string>
-				<key>modifiers</key>
-				<integer>524288</integer>
-				<key>modifiersubtext</key>
-				<string>Open comments thread.</string>
-				<key>vitoclose</key>
-				<true/>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>E100CB00-150A-4215-9589-679C34C6F4A1</string>
-				<key>modifiers</key>
-				<integer>262144</integer>
-				<key>modifiersubtext</key>
-				<string>Copy link to clipboard.</string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>E100CB00-150A-4215-9589-679C34C6F4A1</key>
-		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>66C135C9-4618-4419-85DF-78138B91ADEF</string>
 				<key>modifiers</key>
-				<integer>0</integer>
+				<integer>262144</integer>
 				<key>modifiersubtext</key>
-				<string></string>
+				<string>Copy link to clipboard.</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -129,7 +80,7 @@
 				<key>modifiersubtext</key>
 				<string></string>
 				<key>vitoclose</key>
-				<true/>
+				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -313,74 +264,6 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>matchmode</key>
-				<integer>1</integer>
-				<key>matchstring</key>
-				<string>\|.*</string>
-				<key>replacestring</key>
-				<string></string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.replace</string>
-			<key>uid</key>
-			<string>08D488BD-CEAA-4A4F-8BFE-A5A40D5CB7D9</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>matchmode</key>
-				<integer>1</integer>
-				<key>matchstring</key>
-				<string>.*\|</string>
-				<key>replacestring</key>
-				<string></string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.replace</string>
-			<key>uid</key>
-			<string>7AB215AD-EA1E-47F1-863F-4406E85CAD4C</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>autopaste</key>
-				<false/>
-				<key>clipboardtext</key>
-				<string>{query}</string>
-				<key>transient</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.clipboard</string>
-			<key>uid</key>
-			<string>66C135C9-4618-4419-85DF-78138B91ADEF</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>matchmode</key>
-				<integer>1</integer>
-				<key>matchstring</key>
-				<string>\|.*</string>
-				<key>replacestring</key>
-				<string></string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.replace</string>
-			<key>uid</key>
-			<string>E100CB00-150A-4215-9589-679C34C6F4A1</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -428,12 +311,33 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>66C135C9-4618-4419-85DF-78138B91ADEF</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>./hackerboard pinboard update_list</string>
+				<string>lists=('pinboard' 'hackernews')
+
+for list in "${lists[@]}"; do
+  ./hackerboard "${list}" update_list
+done</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -489,42 +393,33 @@ fi</string>
 ![](https://i.imgur.com/yfvchcQ.png)
 ![](https://i.imgur.com/jVSxhmA.png)
 
-Action any link to open it in the background in your default web browser. Action it with ⌃ to copy it to the clipboard. If listing Hacker News links, actioning with ⌥ will open the comments thread.
+Action any link to open it in the background in your default web browser. Action it with ⌃ to copy it to the clipboard. If listing Hacker News links, actioning with ⌥ will open the comments thread (set the `hn_main` Workflow Environment Variable to `comments` to invert this behaviour).
 
 Lists are updated automatically and cached. To force the lists to update, run `:hackerboardforceupdatelists`.
 
 ![](https://i.imgur.com/BJbKPJe.png)</string>
 	<key>uidata</key>
 	<dict>
-		<key>08D488BD-CEAA-4A4F-8BFE-A5A40D5CB7D9</key>
-		<dict>
-			<key>note</key>
-			<string>Article URL</string>
-			<key>xpos</key>
-			<integer>270</integer>
-			<key>ypos</key>
-			<integer>50</integer>
-		</dict>
 		<key>246A2126-9C2B-44FE-A0D2-3DCB7242106A</key>
 		<dict>
 			<key>xpos</key>
 			<integer>30</integer>
 			<key>ypos</key>
-			<integer>420</integer>
+			<integer>260</integer>
 		</dict>
 		<key>405A5631-368D-42C7-A0F6-6E38B36037E3</key>
 		<dict>
 			<key>xpos</key>
 			<integer>30</integer>
 			<key>ypos</key>
-			<integer>540</integer>
+			<integer>380</integer>
 		</dict>
 		<key>4C07ED7A-B1EE-43C3-A0F1-E51524840687</key>
 		<dict>
 			<key>xpos</key>
 			<integer>410</integer>
 			<key>ypos</key>
-			<integer>420</integer>
+			<integer>260</integer>
 		</dict>
 		<key>50B4021B-BEB3-47B4-AE36-70254E107434</key>
 		<dict>
@@ -538,16 +433,7 @@ Lists are updated automatically and cached. To force the lists to update, run `:
 			<key>xpos</key>
 			<integer>410</integer>
 			<key>ypos</key>
-			<integer>180</integer>
-		</dict>
-		<key>7AB215AD-EA1E-47F1-863F-4406E85CAD4C</key>
-		<dict>
-			<key>note</key>
-			<string>Comments URL</string>
-			<key>xpos</key>
-			<integer>270</integer>
-			<key>ypos</key>
-			<integer>130</integer>
+			<integer>140</integer>
 		</dict>
 		<key>81D415C5-CA65-4F79-9F94-BC4161B14D81</key>
 		<dict>
@@ -567,25 +453,25 @@ Lists are updated automatically and cached. To force the lists to update, run `:
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
-		<key>E100CB00-150A-4215-9589-679C34C6F4A1</key>
-		<dict>
-			<key>note</key>
-			<string>Article URL</string>
-			<key>xpos</key>
-			<integer>270</integer>
-			<key>ypos</key>
-			<integer>210</integer>
-		</dict>
 		<key>F6323018-6935-42CC-BD9A-089C72327136</key>
 		<dict>
 			<key>xpos</key>
 			<integer>30</integer>
 			<key>ypos</key>
-			<integer>300</integer>
+			<integer>140</integer>
 		</dict>
 	</dict>
+	<key>variables</key>
+	<dict>
+		<key>hn_main</key>
+		<string>comments</string>
+	</dict>
+	<key>variablesdontexport</key>
+	<array>
+		<string>hn_main</string>
+	</array>
 	<key>version</key>
-	<string>1.0.5</string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

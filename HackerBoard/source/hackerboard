@@ -12,7 +12,7 @@ if ARGV[0] == 'pinboard'
 
     script_filter_items = []
 
-    JSON.parse(open('https://feeds.pinboard.in/json/popular/').read).each do |item|
+    JSON.parse(URI.parse('https://feeds.pinboard.in/json/popular/').read).each do |item|
       script_filter_items.push(title: item['d'], subtitle: item['u'], arg: item['u'])
     end
 
@@ -31,10 +31,24 @@ elsif ARGV[0] == 'hackernews'
 
     script_filter_items = []
 
-    # AFTER HIGH SIERRA IS RELEASED, DELETE THIS LINE AND USE THE COMMENTED ONE. HAD TO BE DONE TEMPORARILY DUE TO SSL CONNECT ERROR WITH RUBY VERSION IN SIERRA
-    RSS::Parser.parse(%x(curl --silent 'https://news.ycombinator.com/rss')).items.each do |item|
-    # RSS::Parser.parse(open('https://news.ycombinator.com/rss')).items.each do |item|
-      script_filter_items.push(title: item.title, subtitle: item.link, arg: "#{item.link}|#{item.comments}")
+    RSS::Parser.parse(URI.parse('https://news.ycombinator.com/rss').open).items.each do |item|
+      if ENV['hn_main'] == 'comments'
+        main_link = item.comments
+        secondary_link = item.link
+        alt_message = 'Open linked website.'
+      else
+        main_link = item.link
+        secondary_link = item.comments
+        alt_message = 'Open comments thread.'
+      end
+
+      script_filter_items.push(
+        title: item.title, subtitle: item.link, arg: main_link,
+        mods: {
+          alt: { title: item.title, subtitle: alt_message, arg: secondary_link },
+          ctrl: { title: item.title, arg: item.link }
+        }
+      )
     end
 
     File.write(list_file, { items: script_filter_items }.to_json)
