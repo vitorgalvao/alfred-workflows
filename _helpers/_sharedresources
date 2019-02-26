@@ -4,7 +4,8 @@ readonly valid_resources=('cpulimit' 'ffmpeg' 'mediainfo' 'trash' 'youtubedl') #
 readonly shared_resources_id='com.vitorgalvao.alfred._sharedresources'
 [[ -z "${alfred_workflow_data}" ]] && alfred_workflow_data="$(mktemp -d)/Workflow Data/fake_workflow" # To prevent commands reliant on this variable from breaking when testing outside a Workflow
 readonly shared_resources_dir="$(dirname "${alfred_workflow_data}")/${shared_resources_id}"
-readonly PATH=/usr/local/bin:"${shared_resources_dir}":"${PATH}"
+readonly shared_resources_bin="${shared_resources_dir}/bin"
+readonly PATH=/usr/local/bin:"${shared_resources_bin}":"${PATH}"
 
 function wrong_usage {
   echo "
@@ -21,7 +22,7 @@ function curl_error {
 }
 
 function ensure_resources_dir {
-  [[ -d "${shared_resources_dir}" ]] || mkdir -p "${shared_resources_dir}"
+  [[ -d "${shared_resources_bin}" ]] || mkdir -p "${shared_resources_bin}"
 }
 
 function mount_dmg {
@@ -55,7 +56,7 @@ function cpulimit_getter {
   if [[ -z "${cpulimit_path}" ]]; then
     local tar_extract cpulimit_version
 
-    cpulimit_path="${shared_resources_dir}/cpulimit"
+    cpulimit_path="${shared_resources_bin}/cpulimit"
     readonly cpulimit_version='0.2'
     readonly tar_extract="$(mktemp -d)"
 
@@ -77,7 +78,7 @@ function ffmpeg_getter {
   function get_ffmpeg {
     local download_page file_name dmg dmg_mount_point
 
-    ffmpeg_path="${shared_resources_dir}/ffmpeg"
+    ffmpeg_path="${shared_resources_bin}/ffmpeg"
     readonly download_page='https://evermeet.cx/pub/ffmpeg/'
     readonly file_name="$(curl --silent "${download_page}" | grep '.dmg' | grep --invert-match '.sig' | head -1 | sed -E 's/.*<a href="(.*)".*/\1/')"
     readonly dmg="$(mktemp)"
@@ -106,7 +107,7 @@ function mediainfo_getter {
   function get_mediainfo {
     local file_name dmg pkg_extract dmg_mount_point
 
-    mediainfo_path="${shared_resources_dir}/mediainfo"
+    mediainfo_path="${shared_resources_bin}/mediainfo"
     readonly file_name="$(curl --silent 'https://mediaarea.net/en/MediaInfo/Download/Mac_OS' | grep 'CLI.*.dmg' | head -1 | sed -E 's/.*<a href="(.*)".*/\1/')"
     readonly dmg="$(mktemp)"
     readonly pkg_extract="$(mktemp -d)"
@@ -139,7 +140,7 @@ function trash_getter {
   if [[ -z "${trash_path}" ]]; then
     local tar_extract trash_version
 
-    trash_path="${shared_resources_dir}/trash"
+    trash_path="${shared_resources_bin}/trash"
     readonly trash_version='0.9.2'
     readonly tar_extract="$(mktemp -d)"
 
@@ -162,7 +163,7 @@ function youtubedl_getter {
     [[ "${youtubedl_path}" == *"${shared_resources_id}"* ]] && [[ $(find "${youtubedl_path}" -mtime +15) ]] && "${youtubedl_path}" --update --quiet
   else
     ensure_resources_dir
-    youtubedl_path="${shared_resources_dir}/youtube-dl"
+    youtubedl_path="${shared_resources_bin}/youtube-dl"
     if curl --silent --location 'https://yt-dl.org/downloads/latest/youtube-dl' --output "${youtubedl_path}"; then
       chmod +x "${youtubedl_path}"
     else
@@ -185,4 +186,5 @@ done
 for resource in "${resources_to_use[@]}"; do
   "${resource}_getter" # Run the function to get the tool. '_getter' is required as otherwise the function will detect itself when running 'command'
 done
+
 echo -n "${PATH}"
