@@ -12,7 +12,7 @@ end
 
 search_query = ARGV[0]
 escaped_query = CGI.escape(search_query)
-base_url = 'http://www.metacritic.com'
+base_url = 'https://www.metacritic.com'
 site_url = "#{base_url}/search/all/#{escaped_query}/results"
 
 results = Nokogiri::HTML(open(site_url, 'User-Agent' => 'chrome')).at('ul.search_results')
