@@ -25,7 +25,7 @@ matching_cards['data'].each do |card|
     autocomplete: card['name'],
     subtitle: "#{card['mana_cost']} (#{card['cmc'].to_i}) 𐄁 #{card['type_line']}#{pt} 𐄁 #{card['rarity']}#{rulings}",
     quicklookurl: image,
-    arg: card['scryfall_uri'].sub('?utm_source=api', '')
+    arg: card['name'] + '|' + card['scryfall_uri'].sub('?utm_source=api', '')
   )
 end
 
