@@ -296,6 +296,7 @@ def play(id, send_to_watched = true)
     mark_watched(id)
   when 'stream'
     return unless play_item('stream', item['url'])
+    system('/usr/bin/afplay', '/System/Library/Sounds/Purr.aiff')
     mark_watched(id) if send_to_watched == true
   when 'series'
     if !File.exist?(item['path']) && send_to_watched == true
