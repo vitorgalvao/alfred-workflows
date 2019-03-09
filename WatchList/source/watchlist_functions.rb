@@ -375,7 +375,7 @@ def play_item(type, path)
   # The 'split' together with 'last' serves to try to pick the last installed version, in case more than one is found (multiple versions in Homebrew Cellar, for example)
   video_player = lambda {
     mpv_cli = Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier', '=', 'io.mpv').first.strip.split("\n").last + '/Contents/MacOS/mpv'
-    return mpv_cli if File.executable?(mpv_cli)
+    return [mpv_cli, '--quiet'] if File.executable?(mpv_cli)
 
     iina_cli = Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier', '=', 'com.colliderli.iina').first.strip.split("\n").last + '/Contents/MacOS/IINA'
     return iina_cli if File.executable?(iina_cli)
@@ -388,7 +388,7 @@ def play_item(type, path)
 
   error('To play a stream you need mpv, iina, or vlc.') if video_player == 'other' && type == 'stream'
 
-  video_player == 'other' ? system('open', '-W', path) : Open3.capture2(video_player, path)[1].success?
+  video_player == 'other' ? system('open', '-W', path) : Open3.capture2(*video_player, path)[1].success?
 end
 
 def random_hex
