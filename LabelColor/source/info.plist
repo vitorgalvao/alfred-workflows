@@ -85,45 +85,18 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>fixedorder</key>
-				<false/>
-				<key>items</key>
-				<string>[{"imagefile":"47218367fbe74bafc77a1d88b4ec25665d0b28cc.png","title":"None","arg":"none","subtitle":"Removes label"},{"imagefile":"543edabc69cbb4b0d171552f720abf49cb1c68bd.png","title":"Orange","arg":"orange","subtitle":"Applies the orange label"},{"imagefile":"2fe4895509bc95aea1502d619cebb187c2840be6.png","title":"Red","arg":"red","subtitle":"Applies the red label"},{"imagefile":"690f2643f116ed2e9c187bd32538cd41a264c3f1.png","title":"Yellow","arg":"yellow","subtitle":"Applies the yellow label"},{"imagefile":"e69112b68c5ae49aac0a20b148a1966b3023e25f.png","title":"Blue","arg":"blue","subtitle":"Applies the blue label"},{"imagefile":"6f50d75e73eb2f36c91b73b62ea6ef2880050015.png","title":"Purple","arg":"purple","subtitle":"Applies the purple label"},{"imagefile":"727e35472e8ae870dbc870c519f8492c5f804d8e.png","title":"Green","arg":"green","subtitle":"Applies the green label"},{"imagefile":"84cc7f091e8f5ab0ee990a22a30e076a80d7dd01.png","title":"Gray","arg":"gray","subtitle":"Applies the gray label"}]</string>
-				<key>runningsubtext</key>
-				<string></string>
-				<key>subtext</key>
-				<string></string>
-				<key>title</key>
-				<string>none (removes label), orange, red, yellow, blue, purple, green, gray</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.listfilter</string>
-			<key>uid</key>
-			<string>D630C27C-B886-4694-87FF-4701C20F9F67</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>IFS=$'\t'
+				<string>IFS=$'\t' read -ra files &lt;&lt;&lt; "${file_list}"
 
-for file in ${file_list}; do
-  ./labelcolor {query} "${file}"
+for file in "${files[@]}"; do
+  ./labelcolor "${1}" "${file}"
 done</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -226,6 +199,33 @@ fi</string>
 			<string>0A32E04B-A567-475D-9824-E9D404C3773B</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>fixedorder</key>
+				<false/>
+				<key>items</key>
+				<string>[{"imagefile":"47218367fbe74bafc77a1d88b4ec25665d0b28cc.png","title":"None","arg":"none","subtitle":"Removes label"},{"imagefile":"543edabc69cbb4b0d171552f720abf49cb1c68bd.png","title":"Orange","arg":"orange","subtitle":"Applies the orange label"},{"imagefile":"2fe4895509bc95aea1502d619cebb187c2840be6.png","title":"Red","arg":"red","subtitle":"Applies the red label"},{"imagefile":"690f2643f116ed2e9c187bd32538cd41a264c3f1.png","title":"Yellow","arg":"yellow","subtitle":"Applies the yellow label"},{"imagefile":"e69112b68c5ae49aac0a20b148a1966b3023e25f.png","title":"Blue","arg":"blue","subtitle":"Applies the blue label"},{"imagefile":"6f50d75e73eb2f36c91b73b62ea6ef2880050015.png","title":"Purple","arg":"purple","subtitle":"Applies the purple label"},{"imagefile":"727e35472e8ae870dbc870c519f8492c5f804d8e.png","title":"Green","arg":"green","subtitle":"Applies the green label"},{"imagefile":"84cc7f091e8f5ab0ee990a22a30e076a80d7dd01.png","title":"Gray","arg":"gray","subtitle":"Applies the gray label"}]</string>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>none (removes label), orange, red, yellow, blue, purple, green, gray</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.listfilter</string>
+			<key>uid</key>
+			<string>D630C27C-B886-4694-87FF-4701C20F9F67</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -350,7 +350,7 @@ Use Alfred to pick what you want to apply (or remove) a label to and pick `Label
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.2.4</string>
+	<string>1.2.5</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
