@@ -329,9 +329,7 @@ def mark_watched(id)
   list_hash = YAML.load_file(Watched_list)
   return unless list_hash.count > maximum_watched
 
-  # UNCOMMENT AFTER HIGH SIERRA AND DELETE THE UNCOMMENTED LINE
-  # File.write(Watched_list, list_hash.first(maximum_watched).to_h.to_yaml)
-  File.write(Watched_list, Hash[list_hash.first(maximum_watched)].to_yaml)
+  File.write(Watched_list, list_hash.first(maximum_watched).to_h.to_yaml)
 end
 
 def mark_unwatched(id)
