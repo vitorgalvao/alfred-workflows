@@ -7,7 +7,7 @@ order = ARGV[0] # modified, modified_reverse, added, added_reverse
 abort 'You need to specify an order type.' if ARGV[0].empty?
 
 downloads_dir = ENV['downloads_dir'].nil? || ENV['downloads_dir'].empty? ? "#{ENV['HOME']}/Downloads" : File.expand_path(ENV['downloads_dir'])
-all_entries = Pathname(downloads_dir).children.map(&:to_path)
+all_entries = Pathname(downloads_dir).children.map(&:to_path).reject { |p| File.basename(p).start_with?('.') }
 script_filter_items = []
 
 if order =~ /modified.*/
