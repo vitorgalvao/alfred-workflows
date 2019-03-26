@@ -58,6 +58,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>84C51977-8426-491F-A9D4-A6DF7E8F0C8C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>6DBE8BF2-3AA2-46A3-A028-739C1E71A985</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>98D586EA-8DD5-4EAE-8A4A-3A06AC84E9DC</key>
 		<array>
 			<dict>
@@ -75,7 +88,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>6DBE8BF2-3AA2-46A3-A028-739C1E71A985</string>
+				<string>84C51977-8426-491F-A9D4-A6DF7E8F0C8C</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -85,7 +98,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>1F983BA2-CA1B-4B29-A065-3DFFB531DD92</string>
+				<string>E4752307-AF7E-4E47-80F9-1BB75C5CCFCB</string>
 				<key>modifiers</key>
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
@@ -112,6 +125,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>9537F6F1-6608-4671-BE03-A3DCD23A06DF</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>E4752307-AF7E-4E47-80F9-1BB75C5CCFCB</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1F983BA2-CA1B-4B29-A065-3DFFB531DD92</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -308,8 +334,7 @@ end</string>
 				<key>script</key>
 				<string>require "#{Dir.pwd}/watchlist_functions.rb"
 
-clipboard = %x(pbpaste).strip
-add_url_to_watchlist(clipboard)</string>
+add_url_to_watchlist(ARGV[0].strip)</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -327,6 +352,21 @@ add_url_to_watchlist(clipboard)</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argument</key>
+				<string>{clipboard}</string>
+				<key>variables</key>
+				<dict/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>84C51977-8426-491F-A9D4-A6DF7E8F0C8C</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -335,7 +375,7 @@ add_url_to_watchlist(clipboard)</string>
 				<string>require "#{Dir.pwd}/watchlist_functions.rb"
 
 clipboard = %x(pbpaste).strip
-add_url_to_watchlist(clipboard, true)</string>
+add_url_to_watchlist(ARGV[0].strip, true)</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -349,6 +389,21 @@ add_url_to_watchlist(clipboard, true)</string>
 			<string>1F983BA2-CA1B-4B29-A065-3DFFB531DD92</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>{clipboard}</string>
+				<key>variables</key>
+				<dict/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>E4752307-AF7E-4E47-80F9-1BB75C5CCFCB</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -931,6 +986,13 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>ypos</key>
 			<integer>1340</integer>
 		</dict>
+		<key>84C51977-8426-491F-A9D4-A6DF7E8F0C8C</key>
+		<dict>
+			<key>xpos</key>
+			<integer>430</integer>
+			<key>ypos</key>
+			<integer>290</integer>
+		</dict>
 		<key>88990516-33AA-49DC-8096-95883FB6BE51</key>
 		<dict>
 			<key>colorindex</key>
@@ -998,6 +1060,13 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>ypos</key>
 			<integer>1220</integer>
 		</dict>
+		<key>E4752307-AF7E-4E47-80F9-1BB75C5CCFCB</key>
+		<dict>
+			<key>xpos</key>
+			<integer>430</integer>
+			<key>ypos</key>
+			<integer>410</integer>
+		</dict>
 		<key>E75EF64B-CE9C-4789-8FCC-8095D43D1FEA</key>
 		<dict>
 			<key>xpos</key>
@@ -1040,7 +1109,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 		<string>added_item_order</string>
 	</array>
 	<key>version</key>
-	<string>1.19.3</string>
+	<string>1.19.4</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
