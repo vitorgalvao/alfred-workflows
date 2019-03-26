@@ -402,7 +402,7 @@ fi</string>
 
 To act on the selections, use the standard Alfred shortcuts. You can activate file actions, dive into directories, preview files, add them to the file buffer — whatever you want to do that is supported by Alfred.
 
-By default the Workflow looks in `~/Downloads`. Change the value in the `downloads_dir` Workflow Environment Variable to use a different path, relative to your home directory.</string>
+By default the Workflow looks in `~/Downloads`. Change the value in the `downloads_dir` Workflow Environment Variable to use a different path.</string>
 	<key>uidata</key>
 	<dict>
 		<key>04F0C2C5-E539-4961-B943-7937EC802CE8</key>
@@ -462,10 +462,10 @@ By default the Workflow looks in `~/Downloads`. Change the value in the `downloa
 	<key>variables</key>
 	<dict>
 		<key>downloads_dir</key>
-		<string>Downloads</string>
+		<string>~/Downloads</string>
 	</dict>
 	<key>version</key>
-	<string>1.3.0</string>
+	<string>1.4.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
