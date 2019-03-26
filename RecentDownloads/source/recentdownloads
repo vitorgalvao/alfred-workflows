@@ -1,13 +1,13 @@
 #!/usr/bin/env ruby
 
 require 'json'
+require 'pathname'
 
 order = ARGV[0] # modified, modified_reverse, added, added_reverse
-query = ARGV[1]
 abort 'You need to specify an order type.' if ARGV[0].empty?
 
 downloads_dir = ENV['downloads_dir'].nil? || ENV['downloads_dir'].empty? ? "#{ENV['HOME']}/Downloads" : File.expand_path(ENV['downloads_dir'])
-all_entries = Dir.glob("#{downloads_dir}/*")
+all_entries = Pathname(downloads_dir).children.map(&:to_path)
 script_filter_items = []
 
 if order =~ /modified.*/
@@ -17,7 +17,7 @@ elsif order =~ /added.*/
   entries_check_file = "#{ENV['alfred_workflow_cache']}/added_check.txt"
 
   entries_check_old = File.read(entries_check_file) rescue ''
-  entries_check_new = File.mtime(downloads_dir)
+  entries_check_new = File.mtime(downloads_dir).to_s
 
   if entries_check_old != entries_check_new
     require 'open3'
@@ -25,7 +25,7 @@ elsif order =~ /added.*/
 
     Dir.mkdir(ENV['alfred_workflow_cache']) unless Dir.exist?(ENV['alfred_workflow_cache'])
     File.write(entries_cache_file, entries_by_added.join("\n"))
-    File.write(entries_check_file, File.mtime(downloads_dir))
+    File.write(entries_check_file, entries_check_new)
   end
 
   entries = File.read(entries_cache_file).split("\n")
@@ -34,9 +34,8 @@ else
 end
 
 entries.reverse! if order =~ /.+_reverse/
-filtered_entries = entries.select { |e| e.match(/#{query}/i) }
 
-filtered_entries.each do |entry|
+entries.each do |entry|
   name = File.directory?(entry) ? File.basename(entry) : File.basename(entry, File.extname(entry))
   script_filter_items.push(type: 'file', title: name, subtitle: entry, icon: { path: entry, type: 'fileicon' }, arg: entry)
 end
