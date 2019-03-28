@@ -45,6 +45,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>6788796D-C572-4591-B1C1-119307C1C25E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>03564AD6-B6E9-4DA5-B5FD-BE6897EC368B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>820CAA0D-91F1-435C-B062-EEB64D6A5762</key>
 		<array>
 			<dict>
@@ -229,7 +242,7 @@ fi</string>
 			<key>config</key>
 			<dict>
 				<key>alfredfiltersresults</key>
-				<false/>
+				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>2</integer>
 				<key>argumenttrimmode</key>
@@ -249,17 +262,24 @@ fi</string>
 				<key>queuemode</key>
 				<integer>2</integer>
 				<key>runningsubtext</key>
-				<string>Querying for cards…</string>
+				<string>Grabbing card list…</string>
 				<key>script</key>
-				<string>./mtg "${1}"</string>
+				<string>cards_json="${alfred_workflow_cache}/all_cards.json"
+
+# Update lists if older than thirty days or they do not yet exist
+if [[ -n "$(find "${cards_json}" -mtime 30)" || ! -f "${cards_json}" ]]; then
+  ./build_cards_json
+fi
+
+cat "${cards_json}"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
-				<string>Type to search for cards. Accepts non-english names.</string>
+				<string>Type to search for cards.</string>
 				<key>title</key>
-				<string>Magic: The Gathering Search</string>
+				<string>Magic: The Gathering Card Search</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
@@ -340,15 +360,78 @@ fi</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>function notification {
+  ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}" --sound "${2}"
+}
+
+if ./build_cards_json; then
+  notification 'Updated card database' 'Glass'
+else
+  notification 'Error rebuilding card database' 'Funk'
+fi</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>03564AD6-B6E9-4DA5-B5FD-BE6897EC368B</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>:mtgrebuild</string>
+				<key>subtext</key>
+				<string>Should take a few seconds. Will warn when done.</string>
+				<key>text</key>
+				<string>(Re)build Magic: The Gathering Cards JSON</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>6788796D-C572-4591-B1C1-119307C1C25E</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>Search for Magic: The Gathering cards by name with `mtg` followed by your search string.
 
-![](https://i.imgur.com/SpnVV87.png)
+![](https://i.imgur.com/8emieMU.png)
 
-⇧ or ⌘Y gives a quicklook preview of the card. ↵ opens it on the [Scryfall card database](https://scryfall.com/); ⌘↵ pastes as a markdown link; ⌥↵ pastes the name and URL separeted by a colon.</string>
+↵ opens the card on the [Scryfall card database](https://scryfall.com/); ⌘↵ pastes the name and URL as a markdown link; ⌥↵ pastes them separeted by a colon. ⇧ or ⌘Y gives a quicklook preview of the card, with the `mtg_image_size` Workflow Environment Variable controlling the size (from biggest to smallest: png, large, normal, small).
+
+`:mtgrebuild` updates the card database.
+
+![](https://i.imgur.com/0VMpnsH.png)</string>
 	<key>uidata</key>
 	<dict>
+		<key>03564AD6-B6E9-4DA5-B5FD-BE6897EC368B</key>
+		<dict>
+			<key>xpos</key>
+			<integer>330</integer>
+			<key>ypos</key>
+			<integer>340</integer>
+		</dict>
 		<key>0A0E99D1-B148-47E0-BD14-7F233173BF37</key>
 		<dict>
 			<key>xpos</key>
@@ -381,6 +464,13 @@ fi</string>
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
+		<key>6788796D-C572-4591-B1C1-119307C1C25E</key>
+		<dict>
+			<key>xpos</key>
+			<integer>30</integer>
+			<key>ypos</key>
+			<integer>340</integer>
+		</dict>
 		<key>820CAA0D-91F1-435C-B062-EEB64D6A5762</key>
 		<dict>
 			<key>xpos</key>
@@ -403,8 +493,13 @@ fi</string>
 			<integer>50</integer>
 		</dict>
 	</dict>
+	<key>variables</key>
+	<dict>
+		<key>mtg_image_size</key>
+		<string>normal</string>
+	</dict>
 	<key>version</key>
-	<string>1.2.2</string>
+	<string>1.3.0</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>

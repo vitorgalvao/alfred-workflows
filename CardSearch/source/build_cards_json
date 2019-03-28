@@ -1,0 +1,57 @@
+#!/usr/bin/env ruby
+
+require 'json'
+require 'open-uri'
+
+cards_json = File.join(ENV['alfred_workflow_cache'], 'all_cards.json')
+Dir.mkdir(ENV['alfred_workflow_cache']) unless Dir.exist?(ENV['alfred_workflow_cache'])
+
+all_cards_info = JSON.parse(URI('https://archive.scryfall.com/json/scryfall-oracle-cards.json').read)
+
+script_filter_items = []
+
+all_cards_info.each do |card_info|
+  next if card_info['layout'] =~ /(token|double_faced_token)/
+
+  if card_info['layout'] == 'transform'
+    card = card_info['card_faces'][0] # If card is doube-faced, use info of first face
+    card['scryfall_uri'] = card_info['scryfall_uri']
+  else
+    card = card_info
+  end
+
+  list =
+    if card['mana_cost'].empty? && card['type_line'] =~ /.*Land.*/
+      'Lands'
+    elsif card['colors'].empty?
+      'Colorless'
+    elsif card['colors'].length > 1
+      'Multi'
+    elsif card['colors'].first == 'W'
+      'White'
+    elsif card['colors'].first == 'U'
+      'Blue'
+    elsif card['colors'].first == 'B'
+      'Black'
+    elsif card['colors'].first == 'R'
+      'Red'
+    elsif card['colors'].first == 'G'
+      'Green'
+    end
+
+  pt = card['power'].nil? ? '' : " 𐄁 #{card['power']}/#{card['toughness']}"
+  rulings = card['oracle_text'].nil? ? '' : " 𐄁 #{card['oracle_text'].gsub("\n", '. ')}"
+  image_size = ENV['mtg_image_size'] =~ /(png|large|normal|small)/ ? ENV['mtg_image_size'] : 'png'
+  image = card['image_uris'][image_size]
+
+  script_filter_items.push(
+    title: card['name'],
+    autocomplete: card['name'],
+    subtitle: "#{card['mana_cost']} (#{card['cmc'].to_i}) 𐄁 #{card['type_line']}#{pt} 𐄁 #{card['rarity']}#{rulings}",
+    quicklookurl: image,
+    icon: { path: 'mtg_symbols/' + list + '.png' },
+    arg: card['name'] + '|' + card['scryfall_uri'].sub('?utm_source=api', '')
+  )
+end
+
+File.write(cards_json, { items: script_filter_items }.to_json)
