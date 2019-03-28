@@ -536,6 +536,8 @@ puts({ items: script_filter_items }.to_json)</string>
 			<integer>1</integer>
 		</dict>
 		<dict>
+			<key>config</key>
+			<dict/>
 			<key>type</key>
 			<string>alfred.workflow.utility.junction</string>
 			<key>uid</key>
@@ -713,7 +715,7 @@ On each process:
 		<string>3</string>
 	</dict>
 	<key>version</key>
-	<string>1.0.7</string>
+	<string>1.0.8</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
