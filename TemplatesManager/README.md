@@ -2,7 +2,7 @@ If you regularly need to set the same files or directory structures somewhere, s
 
 It can take files, directory structures, and even URLs, and set them up as templates that’ll be copied over to your frontmost Finder window (if you’re using Path Finder, it will be used instead). Files and directory structures will be copied, and urls will be downloaded when requested (so you always get the latest version).
 
-Templates are kept in Alfred’s Workflow data directory by default, but can be saved anywhere else by setting the `custom_templates_dir` Workflow Environment Variable. Use this method to easily set up syncing.
+If you want to keep your templates synced between machines, use the `lists_dir` Workflow Environment Variable to pick a custom save location.
 
 If you have a template that consists of a directory, you can place inside it an executable script with the name starting as `_templatesmanagerscript.` (the extension will be your pick), to be executed automatically after copying.
 
