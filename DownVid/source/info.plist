@@ -250,7 +250,7 @@ fi</string>
 url = %x(pbpaste).strip
 script_filter_items = []
 
-if Dir.exist?(File.dirname(ENV['alfred_workflow_data']) + '/com.vitorgalvao.alfred.watchlist')
+if Dir.exist?(File.dirname(ENV['alfred_workflow_cache']) + '/com.vitorgalvao.alfred.watchlist')
   script_filter_items.push(
     uid: 'dvw',
     title: 'Download Video to WatchList',
@@ -632,7 +632,7 @@ The Workflow Environment Variables represent the directories where videos will d
 		<string>~/Downloads</string>
 	</dict>
 	<key>version</key>
-	<string>1.22.5</string>
+	<string>1.22.6</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
