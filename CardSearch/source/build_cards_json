@@ -40,7 +40,7 @@ all_cards_info.each do |card_info|
     end
 
   pt = card['power'].nil? ? '' : " 𐄁 #{card['power']}/#{card['toughness']}"
-  rulings = card['oracle_text'].nil? ? '' : " 𐄁 #{card['oracle_text'].gsub("\n", '. ')}"
+  rulings = card['oracle_text'].nil? || card['oracle_text'].empty? ? '' : " 𐄁 #{card['oracle_text'].gsub("\n", '. ')}"
   image_size = ENV['mtg_image_size'] =~ /(png|large|normal|small)/ ? ENV['mtg_image_size'] : 'png'
   image = card['image_uris'][image_size]
 
