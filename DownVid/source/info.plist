@@ -254,7 +254,7 @@ if Dir.exist?(File.dirname(ENV['alfred_workflow_data']) + '/com.vitorgalvao.alfr
   script_filter_items.push(
     uid: 'dvw',
     title: 'Download Video to WatchList',
-    subtitle: "Downloads the video to ~/#{ENV['watchlist_download_dir']} and adds it to WatchList",
+    subtitle: "Downloads the video to #{ENV['watchlist_download_dir']} and adds it to WatchList",
     arg: "#{url} video watchlist_true playlist_false",
     mods: { cmd: { subtitle: 'Download full playlist', arg: "#{url} video watchlist_true playlist_true" } }
   )
@@ -264,14 +264,14 @@ script_filter_items.push(
   {
     uid: 'dv',
     title: 'Download Video',
-    subtitle: "Downloads the video to ~/#{ENV['download_dir']}",
+    subtitle: "Downloads the video to #{ENV['download_dir']}",
     arg: "#{url} video watchlist_false playlist_false",
     mods: { cmd: { subtitle: 'Download full playlist', arg: "#{url} video watchlist_false playlist_true" } }
   },
   {
     uid: 'da',
     title: 'Download Audio',
-    subtitle: "Downloads the audio to ~/#{ENV['download_dir']}",
+    subtitle: "Downloads the audio to #{ENV['download_dir']}",
     arg: "#{url} audio watchlist_false playlist_false",
     mods: { cmd: { subtitle: 'Download full playlist', arg: "#{url} audio watchlist_false playlist_true" } }
   }
@@ -551,7 +551,7 @@ You can also run `:downvidservices` to install (or later remove, running the sam
 
 ![](https://i.imgur.com/rOxAzRk.png)
 
-The Workflow Environment Variables represent the directories (relative to your home) where videos will download to, as well as the audio format to save when that option is picked.</string>
+The Workflow Environment Variables represent the directories where videos will download to, as well as the audio format to save when that option is picked.</string>
 	<key>uidata</key>
 	<dict>
 		<key>3B69F416-A08B-4618-99B6-E2AED211C9D8</key>
@@ -627,12 +627,12 @@ The Workflow Environment Variables represent the directories (relative to your h
 		<key>audio_format</key>
 		<string>best</string>
 		<key>download_dir</key>
-		<string>Desktop</string>
+		<string>~/Desktop</string>
 		<key>watchlist_download_dir</key>
-		<string>Downloads</string>
+		<string>~/Downloads</string>
 	</dict>
 	<key>version</key>
-	<string>1.22.4</string>
+	<string>1.22.5</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

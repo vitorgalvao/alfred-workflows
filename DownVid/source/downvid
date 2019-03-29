@@ -5,8 +5,8 @@ IFS=$'\n'
 PATH="$(./_sharedresources 'ffmpeg' 'youtubedl')"
 
 # Workflow Environment Variables
-readonly wev_downdir="${HOME}/${download_dir}"
-readonly wev_watchlist_downdir="${HOME}/${watchlist_download_dir}"
+readonly wev_downdir="$(sed 's/^~/${HOME}/' <<< "${download_dir}")"
+readonly wev_watchlist_downdir="$(sed 's/^~/${HOME}/' <<< "${watchlist_download_dir}")"
 
 # Parse query
 full_query="${1}"

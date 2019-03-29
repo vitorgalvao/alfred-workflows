@@ -16,4 +16,4 @@ You can also run `:downvidservices` to install (or later remove, running the sam
 
 ![](https://i.imgur.com/rOxAzRk.png)
 
-The Workflow Environment Variables represent the directories (relative to your home) where videos will download to, as well as the audio format to save when that option is picked.
+The Workflow Environment Variables represent the directories where videos will download to, as well as the audio format to save when that option is picked.
