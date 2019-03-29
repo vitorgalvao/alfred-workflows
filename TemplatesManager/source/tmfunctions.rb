@@ -3,7 +3,7 @@
 require 'fileutils'
 require 'net/http'
 
-Templates_dir = ENV['custom_templates_dir'].empty? ? ENV['alfred_workflow_data'] : File.expand_path(ENV['custom_templates_dir'])
+Templates_dir = ENV['custom_templates_dir'].nil? || ENV['custom_templates_dir'].empty? ? ENV['alfred_workflow_data'] : File.expand_path(ENV['custom_templates_dir'])
 Local_templates = Templates_dir + '/local/'
 Remote_templates = Templates_dir + '/remote'
 FileUtils.mkdir_p(Local_templates) unless Dir.exist?(Local_templates)
