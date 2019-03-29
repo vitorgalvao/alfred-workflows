@@ -6,7 +6,7 @@ require 'yaml'
 
 ENV['PATH'] = Open3.capture2('./_sharedresources', 'mediainfo', 'trash', 'youtubedl').first
 
-Lists_dir = ENV['lists_dir'].nil? || ENV['lists_dir'].empty? ? ENV['alfred_workflow_data'] : "#{ENV['HOME']}/#{ENV['lists_dir']}"
+Lists_dir = ENV['lists_dir'].nil? || ENV['lists_dir'].empty? ? ENV['alfred_workflow_data'] : File.expand_path(ENV['lists_dir'])
 Towatch_list = "#{Lists_dir}/towatch.yaml".freeze
 Watched_list = "#{Lists_dir}/watched.yaml".freeze
 

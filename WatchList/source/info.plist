@@ -889,7 +889,7 @@ An item will not be marked as watched if we can access the player’s CLI and it
 
 `wle` allows you to reorder, rename, and remove items from the list.
 
-If you want to keep your lists synced between machines, use the `lists_dir` Workflow Environment Variable to pick a custom save location relative to your home directory.
+To keep your lists synced between machines, use the `lists_dir` Workflow Environment Variable to pick a custom save location.
 
 Finally, if you use [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownVid) it has an option to add the downloaded video files directly to your watchlist.
 
@@ -1094,7 +1094,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 		<key>added_item_order</key>
 		<string>append</string>
 		<key>lists_dir</key>
-		<string>Dropbox/Libraries/AlfredWorkflowsData/WatchList</string>
+		<string>~/Dropbox/Libraries/AlfredWorkflowsData/WatchList</string>
 		<key>maximum_watched</key>
 		<string>9</string>
 		<key>move_on_add</key>
@@ -1109,7 +1109,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 		<string>added_item_order</string>
 	</array>
 	<key>version</key>
-	<string>1.19.5</string>
+	<string>1.19.6</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
