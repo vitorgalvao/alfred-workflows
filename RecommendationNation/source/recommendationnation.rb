@@ -1,7 +1,7 @@
 require 'csv'
 require 'json'
 
-Recommendations_Dir = ENV['recs_dir'].nil? || ENV['recs_dir'].empty? ? ENV['alfred_workflow_data'] : File.join(ENV['HOME'], ENV['recs_dir'])
+Recommendations_Dir = ENV['recs_dir'].nil? || ENV['recs_dir'].empty? ? ENV['alfred_workflow_data'] : File.expand_path(ENV['recs_dir'])
 Recommendations_File = File.join(Recommendations_Dir, 'recommendations.csv')
 
 Sites = {

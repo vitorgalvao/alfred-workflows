@@ -1121,7 +1121,7 @@ Several other options are available. ⌘↵ opens on a relevant site and deletes
 
 Your picks will modify the Workflow itself and be accessible via Workflow Environment Variables, meaning you’re not limited to the included choices. If there’s a website you believe I should add, do let me know.
 
-If you want to keep your list synced between machines, use the `recs_dir` Workflow Environment Variable to pick a custom save location relative to your home directory.</string>
+If you want to keep your list synced between machines, use the `recs_dir` Workflow Environment Variable to pick a custom save location.</string>
 	<key>uidata</key>
 	<dict>
 		<key>04AD2E9D-6BDB-4879-9E10-262543D5A318</key>
@@ -1320,15 +1320,19 @@ If you want to keep your list synced between machines, use the `recs_dir` Workfl
 	</dict>
 	<key>variables</key>
 	<dict>
+		<key>film_site</key>
+		<string>letterboxd</string>
 		<key>recs_dir</key>
-		<string></string>
+		<string>~/Dropbox/Libraries/AlfredWorkflowsData/RecommendationNation</string>
+		<key>television_site</key>
+		<string>tvtime</string>
 	</dict>
 	<key>variablesdontexport</key>
 	<array>
 		<string>recs_dir</string>
 	</array>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>1.0.1</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
