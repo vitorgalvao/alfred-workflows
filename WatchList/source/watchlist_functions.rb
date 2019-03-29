@@ -458,8 +458,8 @@ end
 def ensure_data_files
   require 'fileutils'
 
-  Dir.mkdir(ENV['alfred_workflow_data']) unless Dir.exist?(ENV['alfred_workflow_data'])
-  Dir.mkdir(ENV['alfred_workflow_cache']) unless Dir.exist?(ENV['alfred_workflow_cache'])
+  Dir.mkdir(List_dir) unless Dir.exist?(File.expand_path(Lists_dir))
+  Dir.mkdir(ENV['alfred_workflow_cache']) unless Dir.exist?(ENV['alfred_workflow_cache']) # For Downvid
 
   FileUtils.touch(Towatch_list) unless File.exist?(Towatch_list)
   FileUtils.touch(Watched_list) unless File.exist?(Watched_list)
