@@ -38,10 +38,6 @@ function notification {
   ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
 }
 
-function watchlist_exist? {
-  [[ -d "$(dirname "${alfred_workflow_data}")/com.vitorgalvao.alfred.watchlist" ]]
-}
-
 function gettitle {
   # File location
   if [[ "${playlist_bool}" == 'true' ]]; then
@@ -82,7 +78,7 @@ function getfile {
 # Download
 echo -n "${full_query}" > '/tmp/downvidcurrentquery'
 
-if [[ "${watchlist_bool}" == 'true' ]] && watchlist_exist?; then
+if [[ "${watchlist_bool}" == 'true' ]]; then
   downdir="${wev_watchlist_downdir}"
   gettitle
   getfile

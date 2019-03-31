@@ -632,7 +632,7 @@ The Workflow Environment Variables represent the directories where videos will d
 		<string>~/Downloads</string>
 	</dict>
 	<key>version</key>
-	<string>1.22.6</string>
+	<string>1.22.7</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
