@@ -417,7 +417,7 @@ end
 
 def find_audiovisual_files(dir_path)
   escaped_path = dir_path.gsub(/([\*\?\[\]{}\\])/, '\\\\\1')
-  Dir.glob("#{escaped_path}/**/*").sort.select { |e| audiovisual_file?(e) }
+  Dir.glob("#{escaped_path}/**/*").map(&:downcase).sort.select { |e| audiovisual_file?(e) }
 end
 
 def add_to_list(hash, list)
