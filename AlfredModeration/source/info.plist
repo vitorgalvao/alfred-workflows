@@ -544,7 +544,7 @@ fi</string>
 require 'shellwords'
 
 troubleshooting_file = ENV['alfred_workflow_cache'] + '/troubleshooting.json'
-system(__dir__.shellescape + '/help_jsons_update') unless File.exist?(troubleshooting_file)
+system(Dir.pwd.shellescape + '/help_jsons_update') unless File.exist?(troubleshooting_file)
 
 puts File.read(troubleshooting_file)</string>
 				<key>scriptargtype</key>
@@ -961,7 +961,7 @@ Call `mod` to show a list of help categories. Each one will have items related t
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.6</string>
+	<string>1.1.7</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
