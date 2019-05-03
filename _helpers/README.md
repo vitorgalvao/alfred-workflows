@@ -14,5 +14,5 @@ This scripts saves from the duplication of always having to bundle the same tool
   * If we do, it checks if it was previously installed by this script or not.
     * If yes, check how long since its last update. If longer than a defined period, update it.
     * If not, leave it alone.
-  * If we do not (have the tool installed), download it to `~/Library/Application Support/Alfred 3/Workflow Data/com.vitorgalvao.alfred._sharedresources`.
+  * If we do not (have the tool installed), download it to `~/Library/Application Support/Alfred/Workflow Data/com.vitorgalvao.alfred._sharedresources`.
 * A `PATH` which includes all tools is output. Use it to set the `PATH` in your Workflow.
