@@ -10,28 +10,32 @@ downloads_dir = ENV['downloads_dir'].nil? || ENV['downloads_dir'].empty? ? "#{EN
 all_entries = Pathname(downloads_dir).children.map(&:to_path).reject { |p| File.basename(p).start_with?('.') }
 script_filter_items = []
 
-if order =~ /modified.*/
-  entries = all_entries.sort_by(&File.method(:mtime))
-elsif order =~ /added.*/
-  entries_cache_file = "#{ENV['alfred_workflow_cache']}/added_cache.txt"
-  entries_check_file = "#{ENV['alfred_workflow_cache']}/added_check.txt"
+entries =
+  if order =~ /modified.*/
+    all_entries.sort_by(&File.method(:mtime))
+  elsif order =~ /added.*/
+    entries_cache_file = "#{ENV['alfred_workflow_cache']}/added_cache.txt"
 
-  entries_check_old = File.read(entries_check_file) rescue ''
-  entries_check_new = File.mtime(downloads_dir).to_s
+    entries_date_old = File.mtime(entries_cache_file).to_i rescue 0
+    entries_date_new = File.mtime(downloads_dir).to_i
 
-  if entries_check_old != entries_check_new
-    require 'open3'
-    entries_by_added = Open3.capture2('mdls', '-name', 'kMDItemFSName', '-name', 'kMDItemDateAdded', '-raw', *all_entries).first.split("\0").each_slice(2).sort.map { |a| "#{downloads_dir}/#{a[1]}" }
+    if entries_date_old != entries_date_new
+      require 'open3'
+      entries_by_added = Open3.capture2('mdls', '-name', 'kMDItemFSName', '-name', 'kMDItemDateAdded', '-raw', *all_entries).first.split("\0").each_slice(2).sort.map { |a| "#{downloads_dir}/#{a[1]}" }
 
-    Dir.mkdir(ENV['alfred_workflow_cache']) unless Dir.exist?(ENV['alfred_workflow_cache'])
-    File.write(entries_cache_file, entries_by_added.join("\n"))
-    File.write(entries_check_file, entries_check_new)
+      if entries_by_added.none? { |entry| File.basename(entry) == '(null)' } # Prevent saving a cache file when there are incomplete files (downloads in progress)
+        Dir.mkdir(ENV['alfred_workflow_cache']) unless Dir.exist?(ENV['alfred_workflow_cache'])
+        File.write(entries_cache_file, entries_by_added.join("\n"))
+        File.utime(entries_date_new, entries_date_new, entries_cache_file)
+      end
+
+      entries_by_added
+    else
+      File.read(entries_cache_file).split("\n")
+    end
+  else
+    abort 'Unrecognised order type.'
   end
-
-  entries = File.read(entries_cache_file).split("\n")
-else
-  abort 'Unrecognised order type.'
-end
 
 entries.reverse! if order =~ /.+_reverse/
 
