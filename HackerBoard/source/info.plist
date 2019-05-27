@@ -464,14 +464,14 @@ Lists are updated automatically and cached. To force the lists to update, run `:
 	<key>variables</key>
 	<dict>
 		<key>hn_main</key>
-		<string>comments</string>
+		<string></string>
 	</dict>
 	<key>variablesdontexport</key>
 	<array>
 		<string>hn_main</string>
 	</array>
 	<key>version</key>
-	<string>1.1.0</string>
+	<string>1.1.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
