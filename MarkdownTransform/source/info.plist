@@ -140,9 +140,9 @@
 				<key>autopaste</key>
 				<true/>
 				<key>clipboardtext</key>
-				<string>{query}</string>
+				<string>{clipboard}</string>
 				<key>transient</key>
-				<false/>
+				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.output.clipboard</string>
@@ -159,7 +159,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>./bbcode "${1}"</string>
+				<string>./bbcode "${1}" | pbcopy</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -277,11 +277,9 @@ fi</string>
 				<key>focusedappvariablename</key>
 				<string></string>
 				<key>hotkey</key>
-				<integer>11</integer>
+				<integer>0</integer>
 				<key>hotmod</key>
-				<integer>1835008</integer>
-				<key>hotstring</key>
-				<string>B</string>
+				<integer>0</integer>
 				<key>leftcursor</key>
 				<true/>
 				<key>modsmode</key>
@@ -308,11 +306,9 @@ fi</string>
 				<key>focusedappvariablename</key>
 				<string></string>
 				<key>hotkey</key>
-				<integer>4</integer>
+				<integer>0</integer>
 				<key>hotmod</key>
-				<integer>1835008</integer>
-				<key>hotstring</key>
-				<string>H</string>
+				<integer>0</integer>
 				<key>leftcursor</key>
 				<true/>
 				<key>modsmode</key>
@@ -381,11 +377,9 @@ fi</string>
 				<key>focusedappvariablename</key>
 				<string></string>
 				<key>hotkey</key>
-				<integer>15</integer>
+				<integer>0</integer>
 				<key>hotmod</key>
-				<integer>1835008</integer>
-				<key>hotstring</key>
-				<string>R</string>
+				<integer>0</integer>
 				<key>leftcursor</key>
 				<true/>
 				<key>modsmode</key>
@@ -563,6 +557,8 @@ Supported in conversion to HTML:
 		</dict>
 		<key>DE96DCA0-525D-490B-BBFD-27BDB606A892</key>
 		<dict>
+			<key>note</key>
+			<string>We copied the result from the previous node and paste from the clipboard here because otherwise Alfred would reinterpret its Dynamic Placeholders if they appeared in the text</string>
 			<key>xpos</key>
 			<integer>370</integer>
 			<key>ypos</key>
@@ -586,7 +582,7 @@ Supported in conversion to HTML:
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.23.1</string>
+	<string>1.23.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
