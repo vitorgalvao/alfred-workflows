@@ -555,6 +555,8 @@ add_unread</string>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>2</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -595,7 +597,7 @@ show_bookmarks(All_bookmarks_json)</string>
 			<key>uid</key>
 			<string>2B67AFF0-0412-4E9B-88CE-ADF345434F52</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -604,6 +606,8 @@ show_bookmarks(All_bookmarks_json)</string>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>2</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -644,7 +648,7 @@ show_bookmarks(Unread_bookmarks_json)</string>
 			<key>uid</key>
 			<string>FA9C9F80-EFDB-4A12-AA7A-DC5D0F76E557</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -716,7 +720,7 @@ action_unread(ENV['unread_action'], ARGV[0])</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>if ! osascript -e "tell application \"Alfred 3\" to run trigger \"new\" in workflow \"com.vitorgalvao.alfred.downvid\" with argument \"${1} video watchlist_true playlist_false\""; then
+				<string>if ! osascript -e "tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"new\" in workflow \"com.vitorgalvao.alfred.downvid\" with argument \"${1} video watchlist_true playlist_false\""; then
   if osascript -e "display dialog \"The DownVid Workflow is required to download videos.\" with title \"DownVid is missing\" with icon POSIX file \"${PWD}/icon.png\" buttons { \"Cancel\", \"Download DownVid\" } default button \"Download DownVid\""; then
     open 'https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/DownVid/DownVid.alfredworkflow'
   fi
@@ -814,7 +818,7 @@ search_in_website(ARGV[0])</string>
 			<key>uid</key>
 			<string>51173530-985F-468F-90DC-B37CC651F01A</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1054,6 +1058,8 @@ fi</string>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -1114,7 +1120,7 @@ fi</string>
 			<key>uid</key>
 			<string>71E82EE1-88EE-483E-A952-AC7AB8F4EDDF</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1414,7 +1420,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 		<string>unread_action</string>
 	</array>
 	<key>version</key>
-	<string>1.5.3</string>
+	<string>1.5.4</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
