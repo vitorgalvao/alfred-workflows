@@ -223,7 +223,7 @@ fi
 osascript &lt;&lt; EOS
   # We have to run the 'osascript' inside the 'osascript' because otherwise times will not coincide. Running a command with 'with administrator privileges' does not stall execution of the rest of the script, meaning the subsequent commands would run before their time
 
-  do shell script "kextunload -bundle-id ${keyboard} ; osascript -e 'tell application \"Alfred 3\" to run trigger \"show_timer\" in workflow \"com.vitorgalvao.alfred.machineclean\"' ; sleep ${seconds_to_lock} ; kextload -bundle-id ${keyboard}" with administrator privileges
+  do shell script "kextunload -bundle-id ${keyboard} ; osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"show_timer\" in workflow \"com.vitorgalvao.alfred.machineclean\"' ; sleep ${seconds_to_lock} ; kextload -bundle-id ${keyboard}" with administrator privileges
 EOS
 
 notification 'Keyboard unlocked'</string>
@@ -291,6 +291,8 @@ end if</string>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -349,7 +351,7 @@ EOB</string>
 			<key>uid</key>
 			<string>FAD30B1C-1909-4F9C-87E9-AEEE5C427502</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>type</key>
@@ -433,7 +435,7 @@ You will be asked for your password when locking since this operation requires e
 		<string>30</string>
 	</dict>
 	<key>version</key>
-	<string>1.6.7</string>
+	<string>1.6.8</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
