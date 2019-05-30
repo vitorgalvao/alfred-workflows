@@ -226,6 +226,8 @@ fi</string>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -296,7 +298,7 @@ puts({ items: script_filter_items }.to_json)</string>
 			<key>uid</key>
 			<string>DC74421D-631A-44B1-AC86-ED7793CADE26</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -328,6 +330,8 @@ puts({ items: script_filter_items }.to_json)</string>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -416,7 +420,7 @@ puts(script_filter_content.to_json)</string>
 			<key>uid</key>
 			<string>3B69F416-A08B-4618-99B6-E2AED211C9D8</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -448,6 +452,8 @@ puts(script_filter_content.to_json)</string>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -502,7 +508,7 @@ puts({ items: script_filter_items }.to_json)</string>
 			<key>uid</key>
 			<string>67C1A19D-DDF7-450A-A615-B9C134D6975F</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -631,8 +637,10 @@ The Workflow Environment Variables represent the directories where videos will d
 		<key>watchlist_download_dir</key>
 		<string>~/Downloads</string>
 	</dict>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
-	<string>1.22.7</string>
+	<string>1.22.9</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

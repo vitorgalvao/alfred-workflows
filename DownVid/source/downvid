@@ -82,7 +82,7 @@ if [[ "${watchlist_bool}" == 'true' ]]; then
   downdir="${wev_watchlist_downdir}"
   gettitle
   getfile
-  osascript -e "tell application \"Alfred 3\" to run trigger \"add_file_to_watchlist\" in workflow \"com.vitorgalvao.alfred.watchlist\" with argument \"${filename}\""
+  osascript -e "tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"add_file_to_watchlist\" in workflow \"com.vitorgalvao.alfred.watchlist\" with argument \"${filename}\""
 else
   downdir="${wev_downdir}"
   gettitle
