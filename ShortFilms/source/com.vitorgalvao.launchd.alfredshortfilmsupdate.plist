@@ -8,7 +8,7 @@
 	<array>
 		<string>sh</string>
 		<string>-c</string>
-		<string>osascript -e 'tell application &quot;Alfred 3&quot; to run trigger &quot;build_list&quot; in workflow &quot;com.vitorgalvao.alfred.shortfilms&quot;'</string>
+		<string>osascript -e 'tell application id &quot;com.runningwithcrayons.Alfred&quot; to run trigger &quot;build_list&quot; in workflow &quot;com.vitorgalvao.alfred.shortfilms&quot;'</string>
 	</array>
 	<key>StartCalendarInterval</key>
 	<dict>

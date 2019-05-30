@@ -95,6 +95,8 @@
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -133,7 +135,7 @@
 			<key>uid</key>
 			<string>325E0A83-2F46-4696-80F4-7D41608F65DC</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -177,7 +179,7 @@ open -a "${video_player}" --args "${1}"</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>if ! osascript -e "tell application \"Alfred 3\" to run trigger \"new\" in workflow \"com.vitorgalvao.alfred.downvid\" with argument \"${1} video watchlist_true playlist_false\""; then
+				<string>if ! osascript -e "tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"new\" in workflow \"com.vitorgalvao.alfred.downvid\" with argument \"${1} video watchlist_true playlist_false\""; then
   if osascript -e "display dialog \"The DownVid Workflow is required to download videos.\" with title \"DownVid is missing\" with icon POSIX file \"${PWD}/icon.png\" buttons { \"Cancel\", \"Download DownVid\" } default button \"Download DownVid\""; then
     open 'https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/DownVid/DownVid.alfredworkflow'
   fi
@@ -211,7 +213,7 @@ fi</string>
 			<key>uid</key>
 			<string>2EF753EF-6194-4420-9096-C6892565EC96</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -347,6 +349,8 @@ fi</string>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -412,7 +416,7 @@ fi</string>
 			<key>uid</key>
 			<string>F52ABFBA-FC4F-400F-BF1B-AAF7B723052C</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -550,8 +554,10 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 			<integer>690</integer>
 		</dict>
 	</dict>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
-	<string>1.13.6</string>
+	<string>1.13.7</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
