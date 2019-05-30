@@ -1,21 +1,23 @@
 #!/usr/bin/ruby
 
 require_relative "#{__dir__}/ensure_redcarpet.rb"
-require 'shellwords'
+require 'open3'
 
 rich_text_style = '
   <style>
-    body { font-family: sans-serif; font-size: 14px; }
-    code { background-color: #eee; font-family: courier, monospace; }
+    body { font-family: sans-serif }
+    code { background-color: #eee; font-family: monospace; }
     p    { margin: 0; }
   </style>
 '
 
 markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, strikethrough: true, superscript: true)
 
-text = markdown.render(ARGV[0])
-text = text.gsub(/<img[^>]*>/, '') # Strip images
-text = text.gsub('</p>', '</p><br>') # Enforce line breaks after paragraphs
-text = rich_text_style + text
+text =
+  rich_text_style +
+  markdown
+  .render(ARGV[0])
+  .gsub(/<img[^>]*>/, '') # Strip images
+  .gsub('</p>', '</p><br>') # Enforce line breaks after paragraphs
 
-system("textutil -inputencoding utf8 -convert rtf -stdin -stdout -format html <<< #{text.shellescape} | pbcopy")
+print Open3.capture2('textutil', '-inputencoding', 'utf8', '-convert', 'rtf', '-stdin', '-stdout', '-format', 'html', stdin_data: text).first.sub('{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c93333\c93333\c93333;}', '')

@@ -5,7 +5,6 @@ require_relative "#{__dir__}/ipboard_bbcode_renderer.rb"
 
 markdown = Redcarpet::Markdown.new(IPBoardBBCodeRender, underline: true, superscript: true, strikethrough: true, autolink: true, fenced_code_blocks: true, footnotes: true)
 
-text = markdown.render(ARGV[0])
-text = text.gsub(/^$/, "\n") # Bypass empty line collapsing done by IPBoard
-
-print text
+print markdown
+  .render(ARGV[0])
+  .gsub(/^$/, "\n") # Bypass empty line collapsing done by IPBoard

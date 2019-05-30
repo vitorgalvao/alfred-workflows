@@ -149,7 +149,7 @@
 			<key>uid</key>
 			<string>DE96DCA0-525D-490B-BBFD-27BDB606A892</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -277,9 +277,11 @@ fi</string>
 				<key>focusedappvariablename</key>
 				<string></string>
 				<key>hotkey</key>
-				<integer>0</integer>
+				<integer>11</integer>
 				<key>hotmod</key>
-				<integer>0</integer>
+				<integer>1835008</integer>
+				<key>hotstring</key>
+				<string>B</string>
 				<key>leftcursor</key>
 				<true/>
 				<key>modsmode</key>
@@ -331,7 +333,7 @@ fi</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>./html "${1}"</string>
+				<string>./html "${1}" | pbcopy</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -377,9 +379,11 @@ fi</string>
 				<key>focusedappvariablename</key>
 				<string></string>
 				<key>hotkey</key>
-				<integer>0</integer>
+				<integer>15</integer>
 				<key>hotmod</key>
-				<integer>0</integer>
+				<integer>1835008</integer>
+				<key>hotstring</key>
+				<string>R</string>
 				<key>leftcursor</key>
 				<true/>
 				<key>modsmode</key>
@@ -402,7 +406,7 @@ fi</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>./rtf "${1}"</string>
+				<string>./rtf "${1}" | pbcopy</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -582,7 +586,7 @@ Supported in conversion to HTML:
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.23.2</string>
+	<string>1.23.3</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
