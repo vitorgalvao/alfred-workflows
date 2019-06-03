@@ -245,6 +245,8 @@ fi</string>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>2</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -264,14 +266,14 @@ fi</string>
 				<key>runningsubtext</key>
 				<string>Grabbing card list…</string>
 				<key>script</key>
-				<string>cards_json="${alfred_workflow_cache}/all_cards.json"
+				<string>export mtg_cards_json="${alfred_workflow_cache}/all_mtg_cards.json"
 
 # Update lists if older than thirty days or they do not yet exist
-if [[ ! -f "${cards_json}" || -n "$(find "${cards_json}" -mtime 30)" ]]; then
-  ./build_cards_json
+if [[ ! -f "${mtg_cards_json}" || -n "$(find "${mtg_cards_json}" -mtime 30)" ]]; then
+  ./build_mtg_cards_json
 fi
 
-cat "${cards_json}"</string>
+cat "${mtg_cards_json}"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -290,7 +292,7 @@ cat "${cards_json}"</string>
 			<key>uid</key>
 			<string>820CAA0D-91F1-435C-B062-EEB64D6A5762</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -299,6 +301,10 @@ cat "${cards_json}"</string>
 				<integer>1</integer>
 				<key>matchstring</key>
 				<string>.*\|</string>
+				<key>regexcaseinsensitive</key>
+				<false/>
+				<key>regexmultiline</key>
+				<false/>
 				<key>replacestring</key>
 				<string></string>
 			</dict>
@@ -307,7 +313,7 @@ cat "${cards_json}"</string>
 			<key>uid</key>
 			<string>FC9A7F1E-2AFF-4329-A471-096385302BDB</string>
 			<key>version</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -324,6 +330,27 @@ cat "${cards_json}"</string>
 			<key>uid</key>
 			<string>CA02F6D7-6258-4676-B230-C11E9D0E023E</string>
 			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>matchmode</key>
+				<integer>1</integer>
+				<key>matchstring</key>
+				<string>(.*)\|(.*)</string>
+				<key>regexcaseinsensitive</key>
+				<false/>
+				<key>regexmultiline</key>
+				<false/>
+				<key>replacestring</key>
+				<string>[$1]($2)</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.replace</string>
+			<key>uid</key>
+			<string>0A0E99D1-B148-47E0-BD14-7F233173BF37</string>
+			<key>version</key>
 			<integer>2</integer>
 		</dict>
 		<dict>
@@ -333,23 +360,10 @@ cat "${cards_json}"</string>
 				<integer>1</integer>
 				<key>matchstring</key>
 				<string>(.*)\|(.*)</string>
-				<key>replacestring</key>
-				<string>[$1]($2)</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.replace</string>
-			<key>uid</key>
-			<string>0A0E99D1-B148-47E0-BD14-7F233173BF37</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>matchmode</key>
-				<integer>1</integer>
-				<key>matchstring</key>
-				<string>(.*)\|(.*)</string>
+				<key>regexcaseinsensitive</key>
+				<false/>
+				<key>regexmultiline</key>
+				<false/>
 				<key>replacestring</key>
 				<string>$1: $2</string>
 			</dict>
@@ -358,7 +372,7 @@ cat "${cards_json}"</string>
 			<key>uid</key>
 			<string>1AC1AD97-F4A1-4559-A916-9EE3455CBAE5</string>
 			<key>version</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -371,6 +385,8 @@ cat "${cards_json}"</string>
 				<string>function notification {
   ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}" --sound "${2}"
 }
+
+export mtg_cards_json="${alfred_workflow_cache}/all_mtg_cards.json"
 
 if ./build_cards_json; then
   notification 'Updated card database' 'Glass'
@@ -499,7 +515,7 @@ fi</string>
 		<string>normal</string>
 	</dict>
 	<key>version</key>
-	<string>1.3.2</string>
+	<string>1.3.3</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
