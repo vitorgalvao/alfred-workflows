@@ -1,12 +1,11 @@
-current directory: /Users/vitor/Dropbox/Libraries/Alfred.alfredpreferences/workflows/MarkdownTransform.com.vitorgalvao.alfred.markdowntransform/_licensed/Redcarpet/gems/redcarpet-3.4.0/ext/redcarpet
-/System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/bin/ruby -r ./siteconf20190528-6372-1hw2g71.rb extconf.rb
-Ignoring childprocess-1.0.1 because its extensions are not built.  Try: gem pristine childprocess --version 1.0.1
+current directory: /Users/super7/Dropbox/Alfred/Preferences/Alfred.alfredpreferences/workflows/user.workflow.988F3B73-05DD-40E6-BF88-BFF0A7A17D5C/_licensed/Redcarpet/gems/redcarpet-3.4.0/ext/redcarpet
+/System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/bin/ruby -r ./siteconf20190606-94601-19fb53l.rb extconf.rb
 creating Makefile
 
-current directory: /Users/vitor/Dropbox/Libraries/Alfred.alfredpreferences/workflows/MarkdownTransform.com.vitorgalvao.alfred.markdowntransform/_licensed/Redcarpet/gems/redcarpet-3.4.0/ext/redcarpet
+current directory: /Users/super7/Dropbox/Alfred/Preferences/Alfred.alfredpreferences/workflows/user.workflow.988F3B73-05DD-40E6-BF88-BFF0A7A17D5C/_licensed/Redcarpet/gems/redcarpet-3.4.0/ext/redcarpet
 make "DESTDIR=" clean
 
-current directory: /Users/vitor/Dropbox/Libraries/Alfred.alfredpreferences/workflows/MarkdownTransform.com.vitorgalvao.alfred.markdowntransform/_licensed/Redcarpet/gems/redcarpet-3.4.0/ext/redcarpet
+current directory: /Users/super7/Dropbox/Alfred/Preferences/Alfred.alfredpreferences/workflows/user.workflow.988F3B73-05DD-40E6-BF88-BFF0A7A17D5C/_licensed/Redcarpet/gems/redcarpet-3.4.0/ext/redcarpet
 make "DESTDIR="
 compiling autolink.c
 compiling buffer.c
@@ -34,6 +33,6 @@ compiling rc_render.c
 compiling stack.c
 linking shared-object redcarpet.bundle
 
-current directory: /Users/vitor/Dropbox/Libraries/Alfred.alfredpreferences/workflows/MarkdownTransform.com.vitorgalvao.alfred.markdowntransform/_licensed/Redcarpet/gems/redcarpet-3.4.0/ext/redcarpet
+current directory: /Users/super7/Dropbox/Alfred/Preferences/Alfred.alfredpreferences/workflows/user.workflow.988F3B73-05DD-40E6-BF88-BFF0A7A17D5C/_licensed/Redcarpet/gems/redcarpet-3.4.0/ext/redcarpet
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 redcarpet.bundle ./.gem.20190528-6372-1ws0hn2
+/usr/bin/install -c -m 0755 redcarpet.bundle ./.gem.20190606-94601-ol5agt

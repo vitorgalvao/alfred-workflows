@@ -3,21 +3,43 @@
 require_relative "#{__dir__}/ensure_redcarpet.rb"
 require 'open3'
 
-rich_text_style = '
+class CustomRender < Redcarpet::Render::HTML
+  include Rouge::Plugins::Redcarpet
+end
+def rouge_markdown(text)
+  github_styles = Rouge::Themes::Github.render(scope: '.highlight')
+  rich_text_style = "
   <style>
-    body { font-family: sans-serif }
-    code { background-color: #eee; font-family: monospace; }
-    p    { margin: 0; }
+  body { font-family: sans-serif }
+  code { font-family: monospace; }
+  p    { margin: 0; }
+  #{github_styles}
   </style>
-'
+  "
+  render_options = {
+      filter_html: true,
+      hard_wrap: true,
+      link_attributes: { rel: 'nofollow' }
+  }
+  renderer = CustomRender.new(render_options)
+  extensions = {
+    autolink: true,
+    fenced_code_blocks: true,
+    lax_spacing: true,
+    no_intra_emphasis: true,
+    strikethrough: true,
+    superscript: true,
+    tables: true
+  }
+  markdown = Redcarpet::Markdown.new(renderer, extensions)
 
-markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, strikethrough: true, superscript: true)
-
-text =
+  text =
   rich_text_style +
   markdown
   .render(ARGV[0])
   .gsub(/<img[^>]*>/, '') # Strip images
   .gsub('</p>', '</p><br>') # Enforce line breaks after paragraphs
-
-print Open3.capture2('textutil', '-inputencoding', 'utf8', '-convert', 'rtf', '-stdin', '-stdout', '-format', 'html', stdin_data: text).first.sub('{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c93333\c93333\c93333;}', '')
+  .gsub('</code></pre></div>', '</code></pre></div><br>') # Enforce line breaks after code blocks
+end
+text = rouge_markdown(ARGV[0])
+print Open3.capture2('textutil', '-inputencoding', 'utf8', '-convert', 'rtf', '-stdin', '-stdout', '-format', 'html', stdin_data: text).first()
