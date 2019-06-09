@@ -19,7 +19,20 @@
 				<false/>
 			</dict>
 		</array>
-		<key>C8699051-989A-4F37-91A3-86386D0D9356</key>
+		<key>6DC6A16C-DD83-4EBC-B2E0-625FB1BCF1AD</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>92F90D27-0051-41F8-B6C1-7CED843FB32F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>75C921E4-2503-460C-A531-3D3F4EC85976</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -32,17 +45,121 @@
 				<false/>
 			</dict>
 		</array>
+		<key>92F90D27-0051-41F8-B6C1-7CED843FB32F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>38192AA8-F21D-467B-91B2-9BC1000C3106</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
 	<key>description</key>
-	<string>Toggle bluetooth and its menu bar icon</string>
+	<string>Toggle bluetooth and paired device connectivity</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
 	<string>DenteAzul</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>btt</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Gathering bluetooth status…</string>
+				<key>script</key>
+				<string>require 'json'
+require 'open3'
+
+ENV['PATH'] = Open3.capture2('./_sharedresources', 'blueutil').first
+
+script_filter_items = []
+
+if Open3.capture2('blueutil', '--power').first.to_i.zero?
+  current_state = 'Off'
+  toggle_state = 'on'
+  icon = 'icon_alt.png'
+else
+  current_state = 'On'
+  toggle_state = 'off'
+  icon = 'icon.png'
+end
+
+script_filter_items.push(title: "Bluetooth is #{current_state}", subtitle: "Action to turn it #{toggle_state}", arg: toggle_state, icon: { path: icon })
+
+puts({ items: script_filter_items }.to_json)</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>When turning bluetooth on, make it visible in the menu bar</string>
+				<key>title</key>
+				<string>Toggle Bluetooth and Menu Bar Visibility</string>
+				<key>type</key>
+				<integer>2</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>75C921E4-2503-460C-A531-3D3F4EC85976</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>on switchBluetooth(setState)	tell application "System Preferences"		reveal pane id "com.apple.preferences.Bluetooth"		tell application "System Events" to tell process "System Preferences"			set boxToggle to checkbox "Show Bluetooth in menu bar" of window "Bluetooth"						if setState is "on" then				click button "Turn Bluetooth On" of window "Bluetooth"				tell boxToggle to if not (its value as boolean) then click boxToggle			else				click button "Turn Bluetooth Off" of window "Bluetooth"				tell boxToggle to if (its value as boolean) then click boxToggle			end if		end tell	end tell	tell application "System Preferences" to quitend switchBluetoothswitchBluetooth("{query}")</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>4DAC0280-12D9-4F87-BE88-28416F84BA04</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -137,54 +254,114 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>keyword</key>
-				<string>bt</string>
-				<key>subtext</key>
-				<string>Give a number to toggle for that number of minutes</string>
-				<key>text</key>
-				<string>Toggle Bluetooh</string>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>C8699051-989A-4F37-91A3-86386D0D9356</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
-				<integer>68</integer>
+				<integer>102</integer>
 				<key>script</key>
-				<string>on toggleBluetooth()	tell application "System Preferences"		reveal pane id "com.apple.preferences.Bluetooth"		tell application "System Events" to tell process "System Preferences"			try				click button "Turn Bluetooth On" of window "Bluetooth"			on error				click button "Turn Bluetooth Off" of window "Bluetooth"			end try			click checkbox "Show Bluetooth in menu bar" of window "Bluetooth"		end tell		tell application "System Preferences" to quit	end tellend toggleBluetoothset timer to ("{query}" * 60)if timer &gt; 0 then	toggleBluetooth()	delay timer	toggleBluetooth()else	toggleBluetooth()end if</string>
+				<string>PATH="$(./_sharedresources 'blueutil')"
+
+status="$(cut -d',' -f1 &lt;&lt;&lt; "${1}")"
+id="$(cut -d',' -f2 &lt;&lt;&lt; "${1}")"
+
+[[ "${status}" == 'true' ]] &amp;&amp; blueutil --disconnect "${id}" || blueutil --connect "${id}"</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>6</integer>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>4DAC0280-12D9-4F87-BE88-28416F84BA04</string>
+			<string>92F90D27-0051-41F8-B6C1-7CED843FB32F</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>btd</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Gathering devices info…</string>
+				<key>script</key>
+				<string>require 'json'
+require 'open3'
+
+ENV['PATH'] = Open3.capture2('./_sharedresources', 'blueutil').first
+
+script_filter_items = []
+
+Open3.capture2('blueutil', '--paired').first.split("\n").each do |device_info|
+  info = device_info.sub(/\([^)]*\)/, '').split(',')
+  id = info[0].sub('address: ', '').strip
+  device_connected = info[1].sub(/ \(.*/, '').strip == 'connected' ? true : false
+  device_name = info[4].sub(/name: "(.*)"/, '\1').strip
+
+  state = device_connected ? 'Connected' : 'Not Connected'
+  name = device_name.empty? ? id : device_name
+  icon = device_connected ? 'icon.png' : 'icon_alt.png'
+
+  script_filter_items.push(title: name, subtitle: state, arg: "#{device_connected},#{id}", icon: { path: icon })
+end
+
+if script_filter_items.empty?
+  puts({ items: [title: 'No paired devices found'] }.to_json)
+  exit 0
+end
+
+puts({ items: script_filter_items }.to_json)</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Selected one to toggle connection status</string>
+				<key>title</key>
+				<string>Show Paired Bluetooth Devices</string>
+				<key>type</key>
+				<integer>2</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>6DC6A16C-DD83-4EBC-B2E0-625FB1BCF1AD</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
 	</array>
 	<key>readme</key>
-	<string>Type `bt` to toggle bluetooth and its menu bar icon.
+	<string>Use `btt` to view and toggle bluetooth status and its menu bar visibility.
 
-![](https://i.imgur.com/UgmpRDS.png)
+![](https://i.imgur.com/OpFJQiL.png)
 
-Optionally give it a number to toggle, wait that number of minutes, and toggle back.</string>
+`btd` will show your paired devices. Action them to toggle their connection status
+
+![](https://i.imgur.com/haUTkz2.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>38192AA8-F21D-467B-91B2-9BC1000C3106</key>
@@ -194,27 +371,45 @@ Optionally give it a number to toggle, wait that number of minutes, and toggle b
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>475</integer>
 			<key>ypos</key>
-			<integer>50</integer>
+			<integer>25</integer>
 		</dict>
 		<key>4DAC0280-12D9-4F87-BE88-28416F84BA04</key>
 		<dict>
 			<key>xpos</key>
-			<integer>290</integer>
+			<integer>265</integer>
 			<key>ypos</key>
-			<integer>50</integer>
+			<integer>25</integer>
 		</dict>
-		<key>C8699051-989A-4F37-91A3-86386D0D9356</key>
+		<key>6DC6A16C-DD83-4EBC-B2E0-625FB1BCF1AD</key>
+		<dict>
+			<key>note</key>
+			<string>Show Paired Bluetooth Devices</string>
+			<key>xpos</key>
+			<integer>35</integer>
+			<key>ypos</key>
+			<integer>185</integer>
+		</dict>
+		<key>75C921E4-2503-460C-A531-3D3F4EC85976</key>
+		<dict>
+			<key>note</key>
+			<string>Toggle Bluetooh and Menu Bar Visibility</string>
+			<key>xpos</key>
+			<integer>35</integer>
+			<key>ypos</key>
+			<integer>25</integer>
+		</dict>
+		<key>92F90D27-0051-41F8-B6C1-7CED843FB32F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>60</integer>
+			<integer>265</integer>
 			<key>ypos</key>
-			<integer>50</integer>
+			<integer>185</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.2</string>
+	<string>1.1.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

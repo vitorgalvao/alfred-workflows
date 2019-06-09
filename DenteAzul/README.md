@@ -1,5 +1,7 @@
-Type `bt` to toggle bluetooth and its menu bar icon.
+Use `btt` to view and toggle bluetooth status and its menu bar visibility.
 
-![](https://i.imgur.com/UgmpRDS.png)
+![](https://i.imgur.com/OpFJQiL.png)
 
-Optionally give it a number to toggle, wait that number of minutes, and toggle back.
+`btd` will show your paired devices. Action them to toggle their connection status
+
+![](https://i.imgur.com/haUTkz2.png)
