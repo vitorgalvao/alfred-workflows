@@ -425,6 +425,8 @@ add_url_to_watchlist(ARGV[0].strip, true)</string>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -465,7 +467,7 @@ display_towatch(ENV['sort_order'])</string>
 			<key>uid</key>
 			<string>E8F9509C-843D-40C8-B5F1-6B8FC692A18C</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -777,6 +779,8 @@ mark_unwatched(ARGV[0])</string>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -817,7 +821,7 @@ display_watched</string>
 			<key>uid</key>
 			<string>E75EF64B-CE9C-4789-8FCC-8095D43D1FEA</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -853,7 +857,7 @@ display_watched</string>
 			<key>uid</key>
 			<string>824AADC5-ECD6-4B9A-B01B-901EE6EC2552</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -1109,7 +1113,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 		<string>added_item_order</string>
 	</array>
 	<key>version</key>
-	<string>1.19.9</string>
+	<string>1.19.10</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
