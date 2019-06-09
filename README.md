@@ -55,7 +55,7 @@ Find settings and preferences to delete
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/DeleteConfig) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/DeleteConfig/DeleteConfig.alfredworkflow)
 
 ### DenteAzul <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/DenteAzul/source/icon.png' width='60' align='center' alt='DenteAzul icon'>
-Toggle bluetooth and its menu bar icon
+Toggle bluetooth and paired device connectivity
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/DenteAzul) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/DenteAzul/DenteAzul.alfredworkflow)
 
