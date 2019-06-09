@@ -640,7 +640,7 @@ The Workflow Environment Variables represent the directories where videos will d
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>1.22.9</string>
+	<string>1.22.10</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
