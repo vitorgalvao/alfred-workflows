@@ -199,18 +199,27 @@ def display_towatch(sort = nil)
           "#{item_count}#{details['duration']['human']} 𐄁 #{details['size']['human']} 𐄁 #{details['path']}"
         end
 
+      common_structure = {
+        title: details['name'],
+        subtitle: subtitle_info,
+        arg: id
+      }
+
       if details['type'] == 'series'
         script_filter_items.push(
-          title: details['name'],
-          subtitle: subtitle_info,
-          arg: id,
+          **common_structure,
           mods: { alt: { subtitle: 'Rescan series' } }
         )
-      else
+      elsif details['type'] == 'file'
         script_filter_items.push(
-          title: details['name'],
-          subtitle: subtitle_info,
-          arg: id,
+          **common_structure,
+          quicklookurl: details['path'],
+          mods: { alt: { subtitle: 'Rescan is only available for series', valid: false } }
+        )
+      else # Stream
+        script_filter_items.push(
+          **common_structure,
+          quicklookurl: details['url'],
           mods: { alt: { subtitle: 'Rescan is only available for series', valid: false } }
         )
       end
