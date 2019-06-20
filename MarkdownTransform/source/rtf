@@ -5,8 +5,8 @@ require 'open3'
 
 rich_text_style = '
   <style>
-    body { font-family: sans-serif }
-    code { background-color: #eee; font-family: monospace; }
+    body { font-family: sans-serif; font-size: 14; }
+    code { font-family: monospace; }
     p    { margin: 0; }
   </style>
 '
@@ -20,4 +20,9 @@ text =
   .gsub(/<img[^>]*>/, '') # Strip images
   .gsub('</p>', '</p><br>') # Enforce line breaks after paragraphs
 
-print Open3.capture2('textutil', '-inputencoding', 'utf8', '-convert', 'rtf', '-stdin', '-stdout', '-format', 'html', stdin_data: text).first.sub('{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c93333\c93333\c93333;}', '')
+rtf_text = Open3.capture2('textutil', '-inputencoding', 'utf8', '-convert', 'rtf', '-stdin', '-stdout', '-format', 'html', stdin_data: text).first
+
+rtf_text_lines = rtf_text.split("\n")
+rtf_text_lines.slice!(3..4)
+
+print rtf_text_lines.join("\n")
