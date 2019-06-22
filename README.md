@@ -124,6 +124,11 @@ Granular control over opening apps
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/OpenActions) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/OpenActions/OpenActions.alfredworkflow)
 
+### PlayAddress <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/PlayAddress/source/icon.png' width='60' align='center' alt='PlayAddress icon'>
+Play the URL in the frontmost browser or clipboard
+
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/PlayAddress) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/PlayAddress/PlayAddress.alfredworkflow)
+
 ### PingPong <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/PingPong/source/icon.png' width='60' align='center' alt='PingPong icon'>
 Play a round of table tennis with Alfred
 
