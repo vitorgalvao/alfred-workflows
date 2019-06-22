@@ -475,7 +475,7 @@ fi</string>
 	<key>readme</key>
 	<string>Stream from a selection of short films, powered by [Short of the Week](https://www.shortoftheweek.com/).
 
-Run `shorts` and it’ll show a list of the latest films. Pick one and it’ll start streaming. Alternatively, use ⌘ to download the video (requires [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownVid) and will automatically add to [WatchList](https://github.com/vitorgalvao/alfred-workflows/tree/master/WatchList) if available), ⌥ to see its synopsis, or ⌃ to copy the short’s link to the clipboard.
+Run `shorts` and it’ll show a list of the latest films. Pick one and it’ll start streaming. Alternatively, use ⌘ to download the video (requires [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownVid); adds to [WatchList](https://github.com/vitorgalvao/alfred-workflows/tree/master/WatchList) if available), ⌥ to see its synopsis, or ⌃ to copy the short’s link to the clipboard.
 
 ![](https://i.imgur.com/XkfGJ6z.gif)
 
@@ -554,10 +554,8 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 			<integer>690</integer>
 		</dict>
 	</dict>
-	<key>variablesdontexport</key>
-	<array/>
 	<key>version</key>
-	<string>1.13.8</string>
+	<string>1.13.9</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
