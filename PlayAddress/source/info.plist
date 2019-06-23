@@ -227,7 +227,7 @@ if (close_browser &amp;&amp; browser &amp;&amp; $.system('/usr/local/bin/youtube
   if (['Google Chrome', 'Google Chrome Canary', 'Chromium', 'Vivaldi'].indexOf(browser) &gt; -1) {
     Application(browser).windows[0].activeTab.close()
   } else if (['Safari', 'Safari Technology Preview', 'Webkit'].indexOf(browser) &gt; -1) {
-    Application(browser).documents[0].close()
+    Application(browser).windows[0].currentTab().close()
   }
 }</string>
 				<key>scriptargtype</key>
@@ -450,10 +450,8 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 		<key>close_tab</key>
 		<string>true</string>
 	</dict>
-	<key>variablesdontexport</key>
-	<array/>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>1.0.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
