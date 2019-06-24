@@ -225,9 +225,21 @@ close_browser = ($.getenv('close_tab') === 'true') ? true : false
 
 if (close_browser &amp;&amp; browser &amp;&amp; $.system('/usr/local/bin/youtube-dl --simulate --quiet ' + url) === 0) {
   if (['Google Chrome', 'Google Chrome Canary', 'Chromium', 'Vivaldi'].indexOf(browser) &gt; -1) {
-    Application(browser).windows[0].activeTab.close()
+    Application(browser).windows[0].tabs().forEach(tab =&gt; { if (tab.url() === url) tab.close() })
   } else if (['Safari', 'Safari Technology Preview', 'Webkit'].indexOf(browser) &gt; -1) {
-    Application(browser).windows[0].currentTab().close()
+    let current_tab_index = 0
+    let last_tab_index = Application('Safari').windows[0].tabs.length - 1
+
+    while (current_tab_index &lt;= last_tab_index) {
+      let tab = Application('Safari').windows[0].tabs[current_tab_index]
+
+      if (tab.url() === url) {
+        tab.close()
+        last_tab_index--
+      } else {
+        current_tab_index++
+      }
+    }
   }
 }</string>
 				<key>scriptargtype</key>
@@ -387,7 +399,7 @@ open -a "${video_player}" --args "${url}"</string>
 
 Pick one of them and the URL will play. ⌘↵ downloads the video (requires [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownVid); adds to [WatchList](https://github.com/vitorgalvao/alfred-workflows/tree/master/WatchList) if available).
 
-If you set the `close_tab` Workflow Environment Variable to `true`, the browser tab will close if the URL is supported.
+If the `close_tab` Workflow Environment Variable is `true` and the URL is supported, the browser tabs with the matching URL will close.
 
 To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.io/iina/), or [VLC](http://www.videolan.org/vlc/index.html).</string>
 	<key>uidata</key>
@@ -451,7 +463,7 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 		<string>true</string>
 	</dict>
 	<key>version</key>
-	<string>1.0.1</string>
+	<string>1.0.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
