@@ -80,7 +80,7 @@
 				<key>modifiersubtext</key>
 				<string></string>
 				<key>vitoclose</key>
-				<false/>
+				<true/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -130,6 +130,8 @@
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -168,7 +170,7 @@
 			<key>uid</key>
 			<string>81D415C5-CA65-4F79-9F94-BC4161B14D81</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -268,6 +270,8 @@ fi</string>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -306,7 +310,7 @@ fi</string>
 			<key>uid</key>
 			<string>F6323018-6935-42CC-BD9A-089C72327136</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -323,7 +327,7 @@ fi</string>
 			<key>uid</key>
 			<string>66C135C9-4618-4419-85DF-78138B91ADEF</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -464,14 +468,14 @@ Lists are updated automatically and cached. To force the lists to update, run `:
 	<key>variables</key>
 	<dict>
 		<key>hn_main</key>
-		<string></string>
+		<string>comments</string>
 	</dict>
 	<key>variablesdontexport</key>
 	<array>
 		<string>hn_main</string>
 	</array>
 	<key>version</key>
-	<string>1.1.1</string>
+	<string>1.1.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
