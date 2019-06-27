@@ -1,0 +1,61 @@
+#!/usr/bin/env ruby
+
+if ARGV[0] == 'pinboard'
+  list_file = "#{ENV['alfred_workflow_cache']}/pinboard_list.json"
+
+  # Recheck if list file does not exist or is older than four hours or argument asks for it
+  if !File.exist?(list_file) || (((Time.now - File.mtime(list_file)) / (4 * 3600)).ceil > 1) || ARGV[1] == 'update_list'
+    require 'json'
+    require 'open-uri'
+
+    Dir.mkdir(ENV['alfred_workflow_cache']) unless Dir.exist?(ENV['alfred_workflow_cache'])
+
+    script_filter_items = []
+
+    JSON.parse(URI.parse('https://feeds.pinboard.in/json/popular/').read).each do |item|
+      script_filter_items.push(title: item['d'], subtitle: item['u'], arg: item['u'])
+    end
+
+    File.write(list_file, { items: script_filter_items }.to_json)
+  end
+elsif ARGV[0] == 'hackernews'
+  list_file = "#{ENV['alfred_workflow_cache']}/hackernews_list.json"
+
+  # Recheck if list file does not exist or is older than four hours or argument asks for it
+  if !File.exist?(list_file) || (((Time.now - File.mtime(list_file)) / (4 * 3600)).ceil > 1) || ARGV[1] == 'update_list'
+    require 'json'
+    require 'open-uri'
+    require 'rss'
+
+    Dir.mkdir(ENV['alfred_workflow_cache']) unless Dir.exist?(ENV['alfred_workflow_cache'])
+
+    script_filter_items = []
+
+    RSS::Parser.parse(URI.parse('https://news.ycombinator.com/rss').open).items.each do |item|
+      if ENV['hn_main'] == 'comments'
+        main_link = item.comments
+        secondary_link = item.link
+        alt_message = 'Open linked website.'
+      else
+        main_link = item.link
+        secondary_link = item.comments
+        alt_message = 'Open comments thread.'
+      end
+
+      script_filter_items.push(
+        title: item.title, subtitle: item.link, arg: main_link,
+        mods: {
+          alt: { title: item.title, subtitle: alt_message, arg: secondary_link },
+          ctrl: { title: item.title, arg: item.link }
+        }
+      )
+    end
+
+    File.write(list_file, { items: script_filter_items }.to_json)
+  end
+else
+  abort 'Unrecognised option.'
+end
+
+# Output list
+puts File.open(list_file, &:read).to_s
