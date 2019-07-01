@@ -144,7 +144,14 @@ if (['Google Chrome', 'Google Chrome Canary', 'Chromium', 'Vivaldi'].indexOf(fro
 
 // Get details from clipboard
 frontmost_app.includeStandardAdditions = true
-clipboard = frontmost_app.theClipboard()
+
+clipboard = (() =&gt; {
+  try {
+    return frontmost_app.theClipboard()
+  } catch(error) {
+    console.log('Ignoring clipboard contents due to error ' + error.errorNumber + '.')
+  }
+})()
 
 if (RegExp('^https?://').test(clipboard)) {
   title = 'Play clipboard URL'
@@ -463,7 +470,7 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 		<string>true</string>
 	</dict>
 	<key>version</key>
-	<string>1.0.3</string>
+	<string>1.0.4</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
