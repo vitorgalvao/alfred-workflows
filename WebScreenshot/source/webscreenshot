@@ -1,25 +1,22 @@
 #!/bin/bash
 
-set -e # Abort on any failure.
-
-imgur_uploader_exec='./imgur'
-
-tmp_name="$(mktemp -t 'webscreenshot')"
-url_list="${alfred_workflow_cache}/urls.txt"
+readonly url_list="${alfred_workflow_cache}/urls.txt"
 
 function notification {
   ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
 }
 
 function failure {
+  local message="${1}"
+
   afplay /System/Library/Sounds/Funk.aiff &
-  notification 'Screenshot not uploaded.'
+  notification "${message}"
   exit 1
 }
 
 function success {
   afplay /System/Library/Sounds/Ping.aiff &
-  notification 'Link copied to clipboard.'
+  notification 'Link copied to clipboard'
 }
 
 function prepend {
@@ -39,21 +36,11 @@ function prepend {
 }
 
 function take_screenshot {
-  local screenshot_file="${tmp_name}.png"
-  if screencapture -i "${screenshot_file}"; then
-    echo "${screenshot_file}"
-  else
-    failure
-  fi
-}
+  local screenshot_file="$(mktemp).png"
 
-function copy_image {
-  local file_name="${1}"
-  local file_extension="$([[ "${file_name}" = *.* ]] && echo ".${file_name##*.}" || echo '')"
-  local screenshot_file="${tmp_name}.${file_extension}"
-  cp "${file_name}" "${screenshot_file}"
+  screencapture -i "${screenshot_file}"
 
-  echo "${screenshot_file}"
+  [[ -s "${screenshot_file}" ]] && upload_file "${screenshot_file}" || failure 'Did not take screenshot'
 }
 
 function register_links {
@@ -68,9 +55,9 @@ function register_links {
 
 function upload_file {
   local screenshot_file="${1}"
-  local upload_response="$(bash "${imgur_uploader_exec}" "${screenshot_file}" 2>&1)" # This will already copy the URL to the clipboard
+  local upload_response="$(./imgur "${screenshot_file}" 2>&1)" # This will already copy the URL to the clipboard
 
-  [[ "${upload_response}" == 'Upload failed' ]] && failure
+  [[ "${upload_response}" == 'Upload failed' ]] && failure 'Upload failed'
   success
 
   local screenshot_url="$(head -1 <<< "${upload_response}")"
@@ -78,11 +65,3 @@ function upload_file {
 
   register_links "${screenshot_url}" "${screenshot_del}"
 }
-
-if [[ "${1}" == 'take_screenshot' ]]; then
-  screenshot_file=$(take_screenshot)
-elif [[ "${1}" == 'upload_image' ]]; then
-  screenshot_file="$(copy_image "${2}")"
-fi
-
-upload_file "${screenshot_file}"

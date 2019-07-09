@@ -157,7 +157,9 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>./webscreenshot take_screenshot</string>
+				<string>source './webscreenshot'
+
+take_screenshot</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -171,52 +173,6 @@
 			<string>6F290C99-0052-46BF-BB61-CDDB316DEBB1</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>./webscreenshot upload_image "${1}"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>CD71AE4A-3C50-4C2E-9E08-A7C4D90A6E13</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>acceptsmulti</key>
-				<false/>
-				<key>filetypes</key>
-				<array>
-					<string>com.adobe.pdf</string>
-					<string>com.compuserve.gif</string>
-					<string>public.jpeg</string>
-					<string>public.png</string>
-					<string>public.tiff</string>
-				</array>
-				<key>name</key>
-				<string>Upload screenshot</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.action</string>
-			<key>uid</key>
-			<string>181BA7A8-03C0-48A9-AC97-CA21785D1FC1</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -317,11 +273,9 @@ fi</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>readonly image="$(mktemp).png"
+				<string>source './webscreenshot'
 
-if _licensed/pngpaste/pngpaste "${image}"; then
-  ./webscreenshot upload_image "${image}"
-fi</string>
+upload_file "${1}"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -332,9 +286,32 @@ fi</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>73BF8CD8-5A95-4C98-B92B-BE206512C72F</string>
+			<string>CD71AE4A-3C50-4C2E-9E08-A7C4D90A6E13</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsmulti</key>
+				<false/>
+				<key>filetypes</key>
+				<array>
+					<string>com.adobe.pdf</string>
+					<string>com.compuserve.gif</string>
+					<string>public.jpeg</string>
+					<string>public.png</string>
+					<string>public.tiff</string>
+				</array>
+				<key>name</key>
+				<string>Upload screenshot</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>181BA7A8-03C0-48A9-AC97-CA21785D1FC1</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -356,6 +333,32 @@ fi</string>
 			<string>3BFC06FB-2FCB-47AB-B54D-FFDABEDAF5FD</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>source './webscreenshot'
+readonly image="$(mktemp).png"
+
+_licensed/pngpaste/pngpaste "${image}" &amp;&amp; upload_file "${image}" || failure 'No image data in clipboard'</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>73BF8CD8-5A95-4C98-B92B-BE206512C72F</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -560,7 +563,7 @@ You may also upload an image (or pdf — imgur supports it as an upload but conv
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.6.0</string>
+	<string>1.6.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
