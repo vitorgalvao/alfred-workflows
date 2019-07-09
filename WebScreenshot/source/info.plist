@@ -42,11 +42,11 @@
 				<false/>
 			</dict>
 		</array>
-		<key>34364BEB-EC4B-46DA-8E66-C5DB73334206</key>
+		<key>3BFC06FB-2FCB-47AB-B54D-FFDABEDAF5FD</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>34361D11-6517-4260-B8F6-C0B3067467EB</string>
+				<string>73BF8CD8-5A95-4C98-B92B-BE206512C72F</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -68,24 +68,11 @@
 				<false/>
 			</dict>
 		</array>
-		<key>7514A737-EA6D-4E6E-8F98-A4A5F4511C0A</key>
+		<key>73BF8CD8-5A95-4C98-B92B-BE206512C72F</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>34364BEB-EC4B-46DA-8E66-C5DB73334206</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>C27FD00F-55A5-4455-90A8-D7CC8DF84E7F</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>FD6A97DA-43C8-408F-987F-349E9A6ABE52</string>
+				<string>34361D11-6517-4260-B8F6-C0B3067467EB</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -112,19 +99,6 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>6F290C99-0052-46BF-BB61-CDDB316DEBB1</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>FD6A97DA-43C8-408F-987F-349E9A6ABE52</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>34361D11-6517-4260-B8F6-C0B3067467EB</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -183,7 +157,7 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>./webscreenshot take_screenshot no_resample</string>
+				<string>./webscreenshot take_screenshot</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -204,9 +178,9 @@
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
-				<integer>0</integer>
+				<integer>102</integer>
 				<key>script</key>
-				<string>./webscreenshot take_screenshot resample</string>
+				<string>./webscreenshot upload_image "${1}"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -217,40 +191,32 @@
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>34364BEB-EC4B-46DA-8E66-C5DB73334206</string>
+			<string>CD71AE4A-3C50-4C2E-9E08-A7C4D90A6E13</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>action</key>
-				<integer>0</integer>
-				<key>argument</key>
-				<integer>0</integer>
-				<key>focusedappvariable</key>
+				<key>acceptsmulti</key>
 				<false/>
-				<key>focusedappvariablename</key>
-				<string></string>
-				<key>hotkey</key>
-				<integer>21</integer>
-				<key>hotmod</key>
-				<integer>1703936</integer>
-				<key>hotstring</key>
-				<string>4</string>
-				<key>leftcursor</key>
-				<false/>
-				<key>modsmode</key>
-				<integer>0</integer>
-				<key>relatedAppsMode</key>
-				<integer>0</integer>
+				<key>filetypes</key>
+				<array>
+					<string>com.adobe.pdf</string>
+					<string>com.compuserve.gif</string>
+					<string>public.jpeg</string>
+					<string>public.png</string>
+					<string>public.tiff</string>
+				</array>
+				<key>name</key>
+				<string>Upload screenshot</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.trigger.hotkey</string>
+			<string>alfred.workflow.trigger.action</string>
 			<key>uid</key>
-			<string>7514A737-EA6D-4E6E-8F98-A4A5F4511C0A</string>
+			<string>181BA7A8-03C0-48A9-AC97-CA21785D1FC1</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -351,7 +317,11 @@ fi</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>./webscreenshot upload_image "${1}" no_resample</string>
+				<string>readonly image="$(mktemp).png"
+
+if _licensed/pngpaste/pngpaste "${image}"; then
+  ./webscreenshot upload_image "${image}"
+fi</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -362,76 +332,28 @@ fi</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>CD71AE4A-3C50-4C2E-9E08-A7C4D90A6E13</string>
+			<string>73BF8CD8-5A95-4C98-B92B-BE206512C72F</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>acceptsmulti</key>
-				<false/>
-				<key>filetypes</key>
-				<array>
-					<string>com.adobe.pdf</string>
-					<string>com.compuserve.gif</string>
-					<string>public.jpeg</string>
-					<string>public.png</string>
-					<string>public.tiff</string>
-				</array>
-				<key>name</key>
-				<string>Upload screenshot</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.action</string>
-			<key>uid</key>
-			<string>181BA7A8-03C0-48A9-AC97-CA21785D1FC1</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>./webscreenshot upload_image "${1}" resample</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>uploadscreenshotclipboard</string>
+				<key>subtext</key>
 				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>FD6A97DA-43C8-408F-987F-349E9A6ABE52</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>acceptsmulti</key>
+				<key>text</key>
+				<string>Upload screenshot from clipboard</string>
+				<key>withspace</key>
 				<false/>
-				<key>filetypes</key>
-				<array>
-					<string>com.adobe.pdf</string>
-					<string>com.compuserve.gif</string>
-					<string>public.jpeg</string>
-					<string>public.png</string>
-					<string>public.tiff</string>
-				</array>
-				<key>name</key>
-				<string>Upload screenshot (resample)</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.trigger.action</string>
+			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
-			<string>C27FD00F-55A5-4455-90A8-D7CC8DF84E7F</string>
+			<string>3BFC06FB-2FCB-47AB-B54D-FFDABEDAF5FD</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -442,6 +364,8 @@ fi</string>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -509,7 +433,7 @@ puts({ items: script_filter_items }.to_json)
 			<key>uid</key>
 			<string>10E94380-B13E-4C23-A3F3-33DADDD06579</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -545,17 +469,17 @@ puts({ items: script_filter_items }.to_json)
 			<key>uid</key>
 			<string>BCA1E2BC-3E6C-446A-A7D3-270B1CAC1D76</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 	</array>
 	<key>readme</key>
 	<string>Take screenshots with a keyboard shortcut and upload them directly to [imgur](https://imgur.com/). Will produce both a sound and a visual notification when done, and copy the resulting direct link to your clipboard.
 
-![](https://i.imgur.com/7JWgy5f.png)
+![](https://i.imgur.com/yNGbOlw.png)
 
-You may also upload an image (or pdf — imgur also supports it as an upload but converts it to png) by picking the `Upload Screenshot` `File Action`.
+You may also upload an image (or pdf — imgur supports it as an upload but converts to png) by picking the `Upload Screenshot` `File Action`.
 
-Each of those has a counterpart. The top ones leave the images untouched, while the bottom ones resample them before uploading. This is useful if you have a retina screen, as your images will otherwise appear twice the size when viewed on a browser.
+`uploadscreenshotclipboard` will upload the image in your clipboard.
 
 `recentscreenshots` will enumerate recently taken screenshots, ordered from the last. You can then open them in the browser to view (↵), delete (⌘↵), copy (⌥↵), or preview (⇧).</string>
 	<key>uidata</key>
@@ -563,16 +487,16 @@ Each of those has a counterpart. The top ones leave the images untouched, while 
 		<key>10E94380-B13E-4C23-A3F3-33DADDD06579</key>
 		<dict>
 			<key>xpos</key>
-			<integer>70</integer>
+			<integer>35</integer>
 			<key>ypos</key>
-			<integer>490</integer>
+			<integer>400</integer>
 		</dict>
 		<key>181BA7A8-03C0-48A9-AC97-CA21785D1FC1</key>
 		<dict>
 			<key>xpos</key>
-			<integer>70</integer>
+			<integer>35</integer>
 			<key>ypos</key>
-			<integer>250</integer>
+			<integer>150</integer>
 		</dict>
 		<key>34361D11-6517-4260-B8F6-C0B3067467EB</key>
 		<dict>
@@ -581,76 +505,62 @@ Each of those has a counterpart. The top ones leave the images untouched, while 
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>520</integer>
+			<integer>485</integer>
 			<key>ypos</key>
-			<integer>190</integer>
+			<integer>150</integer>
 		</dict>
-		<key>34364BEB-EC4B-46DA-8E66-C5DB73334206</key>
+		<key>3BFC06FB-2FCB-47AB-B54D-FFDABEDAF5FD</key>
 		<dict>
 			<key>xpos</key>
-			<integer>310</integer>
+			<integer>35</integer>
 			<key>ypos</key>
-			<integer>130</integer>
+			<integer>275</integer>
 		</dict>
 		<key>6F290C99-0052-46BF-BB61-CDDB316DEBB1</key>
 		<dict>
 			<key>xpos</key>
-			<integer>310</integer>
+			<integer>275</integer>
 			<key>ypos</key>
-			<integer>10</integer>
+			<integer>25</integer>
 		</dict>
-		<key>7514A737-EA6D-4E6E-8F98-A4A5F4511C0A</key>
+		<key>73BF8CD8-5A95-4C98-B92B-BE206512C72F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>70</integer>
+			<integer>275</integer>
 			<key>ypos</key>
-			<integer>130</integer>
+			<integer>275</integer>
 		</dict>
 		<key>9B4397FF-71AA-4746-B00C-E9D7580A6F55</key>
 		<dict>
 			<key>xpos</key>
-			<integer>310</integer>
+			<integer>275</integer>
 			<key>ypos</key>
-			<integer>490</integer>
+			<integer>400</integer>
 		</dict>
 		<key>BCA1E2BC-3E6C-446A-A7D3-270B1CAC1D76</key>
 		<dict>
 			<key>xpos</key>
-			<integer>310</integer>
+			<integer>275</integer>
 			<key>ypos</key>
-			<integer>610</integer>
-		</dict>
-		<key>C27FD00F-55A5-4455-90A8-D7CC8DF84E7F</key>
-		<dict>
-			<key>xpos</key>
-			<integer>70</integer>
-			<key>ypos</key>
-			<integer>370</integer>
+			<integer>520</integer>
 		</dict>
 		<key>CD71AE4A-3C50-4C2E-9E08-A7C4D90A6E13</key>
 		<dict>
 			<key>xpos</key>
-			<integer>310</integer>
+			<integer>275</integer>
 			<key>ypos</key>
-			<integer>250</integer>
+			<integer>150</integer>
 		</dict>
 		<key>E29003AD-6B07-4A51-B8E5-814A5F3F7270</key>
 		<dict>
 			<key>xpos</key>
-			<integer>70</integer>
+			<integer>35</integer>
 			<key>ypos</key>
-			<integer>10</integer>
-		</dict>
-		<key>FD6A97DA-43C8-408F-987F-349E9A6ABE52</key>
-		<dict>
-			<key>xpos</key>
-			<integer>310</integer>
-			<key>ypos</key>
-			<integer>370</integer>
+			<integer>25</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.5.10</string>
+	<string>1.6.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

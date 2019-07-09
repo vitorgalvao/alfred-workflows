@@ -3,7 +3,6 @@
 set -e # Abort on any failure.
 
 imgur_uploader_exec='./imgur'
-resample_dpi_exec='./_licensed/resample-dpi/resample-dpi'
 
 tmp_name="$(mktemp -t 'webscreenshot')"
 url_list="${alfred_workflow_cache}/urls.txt"
@@ -37,13 +36,6 @@ function prepend {
     echo "${line_to_prepend}" | cat - "${file_to_prepend_to}" > "${tmp_prepend_file}"
     mv "${tmp_prepend_file}" "${file_to_prepend_to}"
   fi
-}
-
-function resample_dpi {
-  local screenshot_file="${1}"
-  bash "${resample_dpi_exec}" "${screenshot_file}" &>/dev/null
-
-  echo "${screenshot_file}"
 }
 
 function take_screenshot {
@@ -89,14 +81,8 @@ function upload_file {
 
 if [[ "${1}" == 'take_screenshot' ]]; then
   screenshot_file=$(take_screenshot)
-  shift
 elif [[ "${1}" == 'upload_image' ]]; then
   screenshot_file="$(copy_image "${2}")"
-  shift 2
-fi
-
-if [[ "${1}" == 'resample' ]]; then
-  screenshot_file="$(resample_dpi "${screenshot_file}")"
 fi
 
 upload_file "${screenshot_file}"
