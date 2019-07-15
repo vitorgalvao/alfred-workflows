@@ -149,6 +149,11 @@ Deal with misbehaving processes
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/ProcessControl) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/ProcessControl/ProcessControl.alfredworkflow)
 
+### QuitArena <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/QuitArena/source/icon.png' width='60' align='center' alt='QuitArena icon'>
+Quit all apps, with exceptions
+
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/QuitArena) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/QuitArena/QuitArena.alfredworkflow)
+
 ### RecentDownloads <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RecentDownloads/source/icon.png' width='60' align='center' alt='RecentDownloads icon'>
 List and act on the contents of a directory
 
