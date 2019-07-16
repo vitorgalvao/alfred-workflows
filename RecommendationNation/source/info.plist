@@ -58,6 +58,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>1FF20159-10F8-4A6C-8821-613488BEE54F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>F4DE1682-A76D-4656-BDC9-C10BC4CF952E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>329F9C98-5F56-4D30-AC13-770AF9675893</key>
 		<array>
 			<dict>
@@ -288,7 +301,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>5B2BF329-3C6F-4E09-9952-CE0A1557EAB0</string>
+				<string>1FF20159-10F8-4A6C-8821-613488BEE54F</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -465,6 +478,8 @@ add_line(Recommendations_File, ENV['type'], ENV['title'], ENV['person'], ENV['re
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>2</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -503,7 +518,7 @@ show_types(Sites)</string>
 			<key>uid</key>
 			<string>04AD2E9D-6BDB-4879-9E10-262543D5A318</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -646,6 +661,8 @@ open_site(Recommendations_File, Sites, ARGV[0].to_i)</string>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>2</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -684,7 +701,7 @@ show_recommendations(Recommendations_File)</string>
 			<key>uid</key>
 			<string>ACB38689-A9FA-4A36-AAE8-5C3F04D717FA</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -806,31 +823,6 @@ fi</string>
 				<key>script</key>
 				<string>require_relative File.join(Dir.pwd, 'recommendationnation.rb')
 
-edit_list(Recommendations_File)</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>2</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>9219E3AB-C3C5-4EFB-9660-980766DEABEC</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>require_relative File.join(Dir.pwd, 'recommendationnation.rb')
-
 open_site(Recommendations_File, Sites, ARGV[0].to_i)
 delete_line(Recommendations_File, ARGV[0].to_i)</string>
 				<key>scriptargtype</key>
@@ -844,6 +836,31 @@ delete_line(Recommendations_File, ARGV[0].to_i)</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>2257A6A6-DA8F-48A1-B6E0-7652D5FE4E27</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require_relative File.join(Dir.pwd, 'recommendationnation.rb')
+
+edit_list(Recommendations_File)</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>9219E3AB-C3C5-4EFB-9660-980766DEABEC</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -944,10 +961,40 @@ move_to_top(Recommendations_File, ARGV[0].to_i)</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>ObjC.import('stdlib');
+
+Application('com.runningwithcrayons.Alfred').setConfiguration($.getenv('type') + '_site', {
+  toValue: $.getenv('site'),
+  inWorkflow: $.getenv('alfred_workflow_bundleid')
+});</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>7</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>F4DE1682-A76D-4656-BDC9-C10BC4CF952E</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>2</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -986,7 +1033,7 @@ show_type_sites(Sites, ENV['type'])</string>
 			<key>uid</key>
 			<string>DB7CDD15-14F5-4AEB-AF18-E8E4DFB5868B</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -995,6 +1042,8 @@ show_type_sites(Sites, ENV['type'])</string>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>2</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -1033,30 +1082,25 @@ show_types(Sites)</string>
 			<key>uid</key>
 			<string>FAC71A36-9691-46D7-9E1D-D055F4E26EB8</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>/usr/libexec/PlistBuddy -c "set variables:${type}_site '${1}'" info.plist || /usr/libexec/PlistBuddy -c "add variables:${type}_site string '${1}'" info.plist</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
+				<key>argument</key>
 				<string></string>
-				<key>type</key>
-				<integer>0</integer>
+				<key>variables</key>
+				<dict>
+					<key>site</key>
+					<string>{query}</string>
+				</dict>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
-			<string>5B2BF329-3C6F-4E09-9952-CE0A1557EAB0</string>
+			<string>1FF20159-10F8-4A6C-8821-613488BEE54F</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1138,7 +1182,7 @@ To keep your list synced between machines, use the `recs_dir` Workflow Environme
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>1380</integer>
+			<integer>1430</integer>
 			<key>ypos</key>
 			<integer>160</integer>
 		</dict>
@@ -1162,6 +1206,13 @@ To keep your list synced between machines, use the `recs_dir` Workflow Environme
 			<integer>300</integer>
 			<key>ypos</key>
 			<integer>190</integer>
+		</dict>
+		<key>1FF20159-10F8-4A6C-8821-613488BEE54F</key>
+		<dict>
+			<key>xpos</key>
+			<integer>745</integer>
+			<key>ypos</key>
+			<integer>940</integer>
 		</dict>
 		<key>2257A6A6-DA8F-48A1-B6E0-7652D5FE4E27</key>
 		<dict>
@@ -1194,7 +1245,7 @@ To keep your list synced between machines, use the `recs_dir` Workflow Environme
 		<key>39C016E6-A2DF-4AD7-94AF-52BA677F1AC8</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1180</integer>
+			<integer>1185</integer>
 			<key>ypos</key>
 			<integer>50</integer>
 		</dict>
@@ -1205,24 +1256,17 @@ To keep your list synced between machines, use the `recs_dir` Workflow Environme
 			<key>ypos</key>
 			<integer>460</integer>
 		</dict>
-		<key>5B2BF329-3C6F-4E09-9952-CE0A1557EAB0</key>
-		<dict>
-			<key>xpos</key>
-			<integer>810</integer>
-			<key>ypos</key>
-			<integer>910</integer>
-		</dict>
 		<key>62BD5879-500B-47BB-8E34-D89ACBC573D2</key>
 		<dict>
 			<key>xpos</key>
-			<integer>740</integer>
+			<integer>745</integer>
 			<key>ypos</key>
 			<integer>50</integer>
 		</dict>
 		<key>80E14E7C-FDDA-469C-9D2A-A03DDA3F04E6</key>
 		<dict>
 			<key>xpos</key>
-			<integer>960</integer>
+			<integer>965</integer>
 			<key>ypos</key>
 			<integer>50</integer>
 		</dict>
@@ -1296,6 +1340,13 @@ To keep your list synced between machines, use the `recs_dir` Workflow Environme
 			<key>ypos</key>
 			<integer>760</integer>
 		</dict>
+		<key>F4DE1682-A76D-4656-BDC9-C10BC4CF952E</key>
+		<dict>
+			<key>xpos</key>
+			<integer>810</integer>
+			<key>ypos</key>
+			<integer>910</integer>
+		</dict>
 		<key>F83FE6A8-9603-4F47-A66A-FA39AB330AC5</key>
 		<dict>
 			<key>xpos</key>
@@ -1320,19 +1371,15 @@ To keep your list synced between machines, use the `recs_dir` Workflow Environme
 	</dict>
 	<key>variables</key>
 	<dict>
-		<key>film_site</key>
-		<string>letterboxd</string>
 		<key>recs_dir</key>
 		<string>~/Dropbox/Libraries/AlfredWorkflowsData/RecommendationNation</string>
-		<key>television_site</key>
-		<string>tvtime</string>
 	</dict>
 	<key>variablesdontexport</key>
 	<array>
 		<string>recs_dir</string>
 	</array>
 	<key>version</key>
-	<string>1.0.2</string>
+	<string>1.0.3</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
