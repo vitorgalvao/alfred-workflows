@@ -18,6 +18,26 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>61EF30B1-4A9C-421D-8F3D-F4CF6C1A599D</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Reveal in Finder</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>A9F714D5-C71F-4DAB-82FC-622D836FEA41</string>
+				<key>modifiers</key>
+				<integer>8388608</integer>
+				<key>modifiersubtext</key>
+				<string>Clear cache</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
 		</array>
 		<key>1E47C82D-C9C1-4961-9DC8-13EB6858EF20</key>
 		<array>
@@ -42,6 +62,29 @@
 				<false/>
 			</dict>
 		</array>
+		<key>61EF30B1-4A9C-421D-8F3D-F4CF6C1A599D</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>98D0B5C7-39EF-41AD-9025-6E1822E57BAE</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>498E9DAD-EF1C-441B-843B-A37424C5BABC</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>6EFF2E1A-ED35-4BAC-8EB4-A272C1F8A508</key>
 		<array>
 			<dict>
@@ -54,12 +97,45 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>61EF30B1-4A9C-421D-8F3D-F4CF6C1A599D</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Show in Finder</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
 		</array>
 		<key>A10F711E-4562-4988-8205-77E555679788</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>1E47C82D-C9C1-4961-9DC8-13EB6858EF20</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>61EF30B1-4A9C-421D-8F3D-F4CF6C1A599D</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Show in Finder</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>A9F714D5-C71F-4DAB-82FC-622D836FEA41</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>93C9C9D5-0479-4098-BDAF-680FF8116DE7</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -77,6 +153,26 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>61EF30B1-4A9C-421D-8F3D-F4CF6C1A599D</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Reveal in Finder</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>A9F714D5-C71F-4DAB-82FC-622D836FEA41</string>
+				<key>modifiers</key>
+				<integer>8388608</integer>
+				<key>modifiersubtext</key>
+				<string>Clear cache</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -99,6 +195,8 @@
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -137,7 +235,7 @@
 			<key>uid</key>
 			<string>A10F711E-4562-4988-8205-77E555679788</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -260,6 +358,8 @@ fi</string>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -298,7 +398,20 @@ fi</string>
 			<key>uid</key>
 			<string>6EFF2E1A-ED35-4BAC-8EB4-A272C1F8A508</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>path</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.revealfile</string>
+			<key>uid</key>
+			<string>498E9DAD-EF1C-441B-843B-A37424C5BABC</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -307,6 +420,8 @@ fi</string>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -345,7 +460,15 @@ fi</string>
 			<key>uid</key>
 			<string>04F0C2C5-E539-4961-B943-7937EC802CE8</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.junction</string>
+			<key>uid</key>
+			<string>61EF30B1-4A9C-421D-8F3D-F4CF6C1A599D</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -354,6 +477,8 @@ fi</string>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -392,7 +517,38 @@ fi</string>
 			<key>uid</key>
 			<string>B59973FE-3ECE-4615-A90C-038C46F54693</string>
 			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>rm "${alfred_workflow_cache}/added_cache.txt"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>93C9C9D5-0479-4098-BDAF-680FF8116DE7</string>
+			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.junction</string>
+			<key>uid</key>
+			<string>A9F714D5-C71F-4DAB-82FC-622D836FEA41</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -402,6 +558,8 @@ fi</string>
 
 To act on the selections, use the standard Alfred shortcuts. You can activate file actions, dive into directories, preview files, add them to the file buffer — whatever you want to do that is supported by Alfred.
 
+⌥↵ opens the selection in Finder, while fn↵ clears the cache for `rda` and `rdz`.
+
 By default the Workflow looks in `~/Downloads`. Change the value in the `downloads_dir` Workflow Environment Variable to use a different path.</string>
 	<key>uidata</key>
 	<dict>
@@ -410,14 +568,28 @@ By default the Workflow looks in `~/Downloads`. Change the value in the `downloa
 			<key>xpos</key>
 			<integer>30</integer>
 			<key>ypos</key>
-			<integer>260</integer>
+			<integer>280</integer>
 		</dict>
 		<key>1E47C82D-C9C1-4961-9DC8-13EB6858EF20</key>
 		<dict>
 			<key>xpos</key>
-			<integer>240</integer>
+			<integer>330</integer>
 			<key>ypos</key>
 			<integer>50</integer>
+		</dict>
+		<key>498E9DAD-EF1C-441B-843B-A37424C5BABC</key>
+		<dict>
+			<key>xpos</key>
+			<integer>505</integer>
+			<key>ypos</key>
+			<integer>280</integer>
+		</dict>
+		<key>61EF30B1-4A9C-421D-8F3D-F4CF6C1A599D</key>
+		<dict>
+			<key>xpos</key>
+			<integer>415</integer>
+			<key>ypos</key>
+			<integer>310</integer>
 		</dict>
 		<key>6EFF2E1A-ED35-4BAC-8EB4-A272C1F8A508</key>
 		<dict>
@@ -426,6 +598,13 @@ By default the Workflow looks in `~/Downloads`. Change the value in the `downloa
 			<key>ypos</key>
 			<integer>140</integer>
 		</dict>
+		<key>93C9C9D5-0479-4098-BDAF-680FF8116DE7</key>
+		<dict>
+			<key>xpos</key>
+			<integer>505</integer>
+			<key>ypos</key>
+			<integer>405</integer>
+		</dict>
 		<key>98D0B5C7-39EF-41AD-9025-6E1822E57BAE</key>
 		<dict>
 			<key>colorindex</key>
@@ -433,7 +612,7 @@ By default the Workflow looks in `~/Downloads`. Change the value in the `downloa
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>370</integer>
+			<integer>505</integer>
 			<key>ypos</key>
 			<integer>140</integer>
 		</dict>
@@ -444,17 +623,24 @@ By default the Workflow looks in `~/Downloads`. Change the value in the `downloa
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
+		<key>A9F714D5-C71F-4DAB-82FC-622D836FEA41</key>
+		<dict>
+			<key>xpos</key>
+			<integer>330</integer>
+			<key>ypos</key>
+			<integer>435</integer>
+		</dict>
 		<key>B59973FE-3ECE-4615-A90C-038C46F54693</key>
 		<dict>
 			<key>xpos</key>
 			<integer>30</integer>
 			<key>ypos</key>
-			<integer>380</integer>
+			<integer>405</integer>
 		</dict>
 		<key>F525988E-4ED1-4E45-8CAD-25BAF510025C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>370</integer>
+			<integer>505</integer>
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
@@ -465,7 +651,7 @@ By default the Workflow looks in `~/Downloads`. Change the value in the `downloa
 		<string>~/Downloads</string>
 	</dict>
 	<key>version</key>
-	<string>1.5.2</string>
+	<string>1.6.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
