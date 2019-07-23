@@ -30,13 +30,13 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>A9F714D5-C71F-4DAB-82FC-622D836FEA41</string>
+				<string>40283CF3-23EB-4E8E-B911-AC97BFE88913</string>
 				<key>modifiers</key>
-				<integer>8388608</integer>
+				<integer>131072</integer>
 				<key>modifiersubtext</key>
 				<string>Clear cache</string>
 				<key>vitoclose</key>
-				<false/>
+				<true/>
 			</dict>
 		</array>
 		<key>1E47C82D-C9C1-4961-9DC8-13EB6858EF20</key>
@@ -54,6 +54,32 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>98D0B5C7-39EF-41AD-9025-6E1822E57BAE</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>40283CF3-23EB-4E8E-B911-AC97BFE88913</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>93C9C9D5-0479-4098-BDAF-680FF8116DE7</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>5970AA17-1F25-489B-97BC-F2219D5807DC</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>93C9C9D5-0479-4098-BDAF-680FF8116DE7</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -108,6 +134,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>93C9C9D5-0479-4098-BDAF-680FF8116DE7</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>DD50F8E0-894D-49B5-AEB1-1EF24A1539EA</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>A10F711E-4562-4988-8205-77E555679788</key>
 		<array>
 			<dict>
@@ -127,19 +166,6 @@
 				<integer>524288</integer>
 				<key>modifiersubtext</key>
 				<string>Show in Finder</string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>A9F714D5-C71F-4DAB-82FC-622D836FEA41</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>93C9C9D5-0479-4098-BDAF-680FF8116DE7</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -168,13 +194,13 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>A9F714D5-C71F-4DAB-82FC-622D836FEA41</string>
+				<string>5970AA17-1F25-489B-97BC-F2219D5807DC</string>
 				<key>modifiers</key>
-				<integer>8388608</integer>
+				<integer>131072</integer>
 				<key>modifiersubtext</key>
 				<string>Clear cache</string>
 				<key>vitoclose</key>
-				<false/>
+				<true/>
 			</dict>
 		</array>
 	</dict>
@@ -188,6 +214,21 @@
 	<string>RecentDownloads</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>openwith</key>
+				<string></string>
+				<key>sourcefile</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openfile</string>
+			<key>uid</key>
+			<string>F525988E-4ED1-4E45-8CAD-25BAF510025C</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -238,27 +279,61 @@
 			<integer>3</integer>
 		</dict>
 		<dict>
-			<key>config</key>
-			<dict>
-				<key>openwith</key>
-				<string></string>
-				<key>sourcefile</key>
-				<string></string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.openfile</string>
-			<key>uid</key>
-			<string>F525988E-4ED1-4E45-8CAD-25BAF510025C</string>
-			<key>version</key>
-			<integer>3</integer>
-		</dict>
-		<dict>
 			<key>type</key>
 			<string>alfred.workflow.utility.junction</string>
 			<key>uid</key>
 			<string>1E47C82D-C9C1-4961-9DC8-13EB6858EF20</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>rdo</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>./recentdownloads 'modified'</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>From least recently modified</string>
+				<key>title</key>
+				<string>RecentDownloads</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>6EFF2E1A-ED35-4BAC-8EB4-A272C1F8A508</string>
+			<key>version</key>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -352,64 +427,10 @@ fi</string>
 			<integer>2</integer>
 		</dict>
 		<dict>
-			<key>config</key>
-			<dict>
-				<key>alfredfiltersresults</key>
-				<true/>
-				<key>alfredfiltersresultsmatchmode</key>
-				<integer>0</integer>
-				<key>argumenttreatemptyqueryasnil</key>
-				<false/>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>rdo</string>
-				<key>queuedelaycustom</key>
-				<integer>1</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<false/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string>Please wait…</string>
-				<key>script</key>
-				<string>./recentdownloads 'modified'</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string>From least recently modified</string>
-				<key>title</key>
-				<string>RecentDownloads</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
+			<string>alfred.workflow.utility.junction</string>
 			<key>uid</key>
-			<string>6EFF2E1A-ED35-4BAC-8EB4-A272C1F8A508</string>
-			<key>version</key>
-			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>path</key>
-				<string></string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.revealfile</string>
-			<key>uid</key>
-			<string>498E9DAD-EF1C-441B-843B-A37424C5BABC</string>
+			<string>61EF30B1-4A9C-421D-8F3D-F4CF6C1A599D</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -463,10 +484,33 @@ fi</string>
 			<integer>3</integer>
 		</dict>
 		<dict>
+			<key>config</key>
+			<dict>
+				<key>path</key>
+				<string></string>
+			</dict>
 			<key>type</key>
-			<string>alfred.workflow.utility.junction</string>
+			<string>alfred.workflow.action.revealfile</string>
 			<key>uid</key>
-			<string>61EF30B1-4A9C-421D-8F3D-F4CF6C1A599D</string>
+			<string>498E9DAD-EF1C-441B-843B-A37424C5BABC</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>variables</key>
+				<dict>
+					<key>mode</key>
+					<string>rda</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>40283CF3-23EB-4E8E-B911-AC97BFE88913</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -543,10 +587,35 @@ fi</string>
 			<integer>2</integer>
 		</dict>
 		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>{var:mode} </string>
+				<key>leftcursor</key>
+				<false/>
+			</dict>
 			<key>type</key>
-			<string>alfred.workflow.utility.junction</string>
+			<string>alfred.workflow.utility.showalfred</string>
 			<key>uid</key>
-			<string>A9F714D5-C71F-4DAB-82FC-622D836FEA41</string>
+			<string>DD50F8E0-894D-49B5-AEB1-1EF24A1539EA</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>variables</key>
+				<dict>
+					<key>mode</key>
+					<string>rdz</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>5970AA17-1F25-489B-97BC-F2219D5807DC</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -558,17 +627,21 @@ fi</string>
 
 To act on the selections, use the standard Alfred shortcuts. You can activate file actions, dive into directories, preview files, add them to the file buffer — whatever you want to do that is supported by Alfred.
 
-⌥↵ opens the selection in Finder, while fn↵ clears the cache for `rda` and `rdz`.
+⌥↵ opens the selection in Finder, while ⇧↵ clears the cache for `rda` and `rdz`.
 
 By default the Workflow looks in `~/Downloads`. Change the value in the `downloads_dir` Workflow Environment Variable to use a different path.</string>
 	<key>uidata</key>
 	<dict>
 		<key>04F0C2C5-E539-4961-B943-7937EC802CE8</key>
 		<dict>
+			<key>colorindex</key>
+			<integer>2</integer>
+			<key>note</key>
+			<string>Most recently added</string>
 			<key>xpos</key>
 			<integer>30</integer>
 			<key>ypos</key>
-			<integer>280</integer>
+			<integer>330</integer>
 		</dict>
 		<key>1E47C82D-C9C1-4961-9DC8-13EB6858EF20</key>
 		<dict>
@@ -577,12 +650,26 @@ By default the Workflow looks in `~/Downloads`. Change the value in the `downloa
 			<key>ypos</key>
 			<integer>50</integer>
 		</dict>
+		<key>40283CF3-23EB-4E8E-B911-AC97BFE88913</key>
+		<dict>
+			<key>xpos</key>
+			<integer>330</integer>
+			<key>ypos</key>
+			<integer>430</integer>
+		</dict>
 		<key>498E9DAD-EF1C-441B-843B-A37424C5BABC</key>
 		<dict>
 			<key>xpos</key>
 			<integer>505</integer>
 			<key>ypos</key>
-			<integer>280</integer>
+			<integer>330</integer>
+		</dict>
+		<key>5970AA17-1F25-489B-97BC-F2219D5807DC</key>
+		<dict>
+			<key>xpos</key>
+			<integer>330</integer>
+			<key>ypos</key>
+			<integer>505</integer>
 		</dict>
 		<key>61EF30B1-4A9C-421D-8F3D-F4CF6C1A599D</key>
 		<dict>
@@ -593,17 +680,21 @@ By default the Workflow looks in `~/Downloads`. Change the value in the `downloa
 		</dict>
 		<key>6EFF2E1A-ED35-4BAC-8EB4-A272C1F8A508</key>
 		<dict>
+			<key>colorindex</key>
+			<integer>10</integer>
+			<key>note</key>
+			<string>Least recently modified</string>
 			<key>xpos</key>
 			<integer>30</integer>
 			<key>ypos</key>
-			<integer>140</integer>
+			<integer>165</integer>
 		</dict>
 		<key>93C9C9D5-0479-4098-BDAF-680FF8116DE7</key>
 		<dict>
 			<key>xpos</key>
 			<integer>505</integer>
 			<key>ypos</key>
-			<integer>405</integer>
+			<integer>475</integer>
 		</dict>
 		<key>98D0B5C7-39EF-41AD-9025-6E1822E57BAE</key>
 		<dict>
@@ -614,28 +705,36 @@ By default the Workflow looks in `~/Downloads`. Change the value in the `downloa
 			<key>xpos</key>
 			<integer>505</integer>
 			<key>ypos</key>
-			<integer>140</integer>
+			<integer>165</integer>
 		</dict>
 		<key>A10F711E-4562-4988-8205-77E555679788</key>
 		<dict>
+			<key>colorindex</key>
+			<integer>5</integer>
+			<key>note</key>
+			<string>Most recently modified</string>
 			<key>xpos</key>
 			<integer>30</integer>
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
-		<key>A9F714D5-C71F-4DAB-82FC-622D836FEA41</key>
-		<dict>
-			<key>xpos</key>
-			<integer>330</integer>
-			<key>ypos</key>
-			<integer>435</integer>
-		</dict>
 		<key>B59973FE-3ECE-4615-A90C-038C46F54693</key>
 		<dict>
+			<key>colorindex</key>
+			<integer>8</integer>
+			<key>note</key>
+			<string>Least recently added</string>
 			<key>xpos</key>
 			<integer>30</integer>
 			<key>ypos</key>
-			<integer>405</integer>
+			<integer>475</integer>
+		</dict>
+		<key>DD50F8E0-894D-49B5-AEB1-1EF24A1539EA</key>
+		<dict>
+			<key>xpos</key>
+			<integer>715</integer>
+			<key>ypos</key>
+			<integer>505</integer>
 		</dict>
 		<key>F525988E-4ED1-4E45-8CAD-25BAF510025C</key>
 		<dict>
@@ -651,7 +750,7 @@ By default the Workflow looks in `~/Downloads`. Change the value in the `downloa
 		<string>~/Downloads</string>
 	</dict>
 	<key>version</key>
-	<string>1.6.0</string>
+	<string>1.7.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
