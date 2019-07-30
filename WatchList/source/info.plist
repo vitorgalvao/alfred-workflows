@@ -120,6 +120,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>C929975A-3B90-474A-BA08-595EAB51A9B2</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3C194D92-9446-457E-9DB4-0775F9165D08</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>D75377F6-6B47-4683-B400-224620A75802</key>
 		<array>
 			<dict>
@@ -195,11 +208,21 @@
 				<key>destinationuid</key>
 				<string>98D586EA-8DD5-4EAE-8A4A-3A06AC84E9DC</string>
 				<key>modifiers</key>
-				<integer>1048576</integer>
+				<integer>262144</integer>
 				<key>modifiersubtext</key>
 				<string>Do not mark as watched</string>
 				<key>vitoclose</key>
 				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>C929975A-3B90-474A-BA08-595EAB51A9B2</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Mark as watched without playing</string>
+				<key>vitoclose</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -620,6 +643,50 @@ play(ARGV[0], false)</string>
 				<key>script</key>
 				<string>require "#{Dir.pwd}/watchlist_functions.rb"
 
+mark_watched(ARGV[0])</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>C929975A-3B90-474A-BA08-595EAB51A9B2</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>externaltriggerid</key>
+				<string>sort_order</string>
+				<key>passinputasargument</key>
+				<false/>
+				<key>passvariables</key>
+				<true/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>3C194D92-9446-457E-9DB4-0775F9165D08</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/watchlist_functions.rb"
+
 update_series(ARGV[0])</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
@@ -879,7 +946,7 @@ You then have some options you can pick from, all starting with `wl`.
 
 ![](https://i.imgur.com/SymAbSa.png)
 
-In both cases, ↵ plays the selection. Add ⌘ to play without marking as watched or ⌥ to rescan a directory (useful if you made manual changes to it). ⇧ or ⌘Y shows a quicklook preview on files and streams.
+In both cases, ↵ plays the selection. Add ⌃ to play without marking as watched or ⌥ to rescan a directory (useful if you made manual changes to it). ⌘↵ will mark as watched without playing. ⇧ or ⌘Y shows a quicklook preview on files and streams.
 
 If the `top_on_play` Workflow Environment Variable is set to `true`, the item will be moved to the top of the list before starting playback.
 
@@ -887,7 +954,7 @@ Items starting with `≈` are streams. They show no file size (since they aren�
 
 An item will not be marked as watched if we can access the player’s CLI and it exits with a failure exit code.
 
-`wlu` shows the list of watched items. The limit of recent items in this list is controlled by the `maximum_watched` Workflow Environment Variable. Action an item to mark it as unwatched. Note that in the case of files it does not recover them from the trash, as there is no reliable way to do so on macOS — that step you need to do yourself. If the item has a URL origin (you’ll see it in the subtitle) add ⌘ to open the URL in your default browser or ⌥ to copy it to the clipboard.
+`wlu` shows the list of watched items. The limit of recent items in this list is controlled by the `maximum_watched` Workflow Environment Variable. Action an item to mark it as unwatched. Note that in the case of files it does not recover them from the trash, as there is no reliable way to do so on macOS — that step you need to do yourself. If the item has a URL origin (you’ll see it in the subtitle) add ⌘ to open the URL in your default browser or ⌥ to copy it to the clipboard. If the item has an origin URL, ⇧ or ⌘Y shows a quicklook preview.
 
 ![](https://i.imgur.com/XK0W6Wj.png)
 
@@ -955,6 +1022,13 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
+		<key>3C194D92-9446-457E-9DB4-0775F9165D08</key>
+		<dict>
+			<key>xpos</key>
+			<integer>770</integer>
+			<key>ypos</key>
+			<integer>740</integer>
+		</dict>
 		<key>63FBFF0E-05C5-47D2-9951-CB86E114264B</key>
 		<dict>
 			<key>xpos</key>
@@ -967,7 +1041,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>xpos</key>
 			<integer>250</integer>
 			<key>ypos</key>
-			<integer>980</integer>
+			<integer>1100</integer>
 		</dict>
 		<key>6DBE8BF2-3AA2-46A3-A028-739C1E71A985</key>
 		<dict>
@@ -981,14 +1055,14 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>980</integer>
+			<integer>1100</integer>
 		</dict>
 		<key>824AADC5-ECD6-4B9A-B01B-901EE6EC2552</key>
 		<dict>
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>1340</integer>
+			<integer>1460</integer>
 		</dict>
 		<key>84C51977-8426-491F-A9D4-A6DF7E8F0C8C</key>
 		<dict>
@@ -1013,7 +1087,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>860</integer>
+			<integer>980</integer>
 		</dict>
 		<key>98D586EA-8DD5-4EAE-8A4A-3A06AC84E9DC</key>
 		<dict>
@@ -1036,33 +1110,40 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>ypos</key>
 			<integer>500</integer>
 		</dict>
-		<key>C92FF9E0-CBC7-4421-9B75-4B8C557EB4DD</key>
-		<dict>
-			<key>xpos</key>
-			<integer>520</integer>
-			<key>ypos</key>
-			<integer>1100</integer>
-		</dict>
-		<key>D27FE458-78D9-4C16-BF89-7E489D839F6D</key>
+		<key>C929975A-3B90-474A-BA08-595EAB51A9B2</key>
 		<dict>
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
 			<integer>740</integer>
 		</dict>
+		<key>C92FF9E0-CBC7-4421-9B75-4B8C557EB4DD</key>
+		<dict>
+			<key>xpos</key>
+			<integer>520</integer>
+			<key>ypos</key>
+			<integer>1220</integer>
+		</dict>
+		<key>D27FE458-78D9-4C16-BF89-7E489D839F6D</key>
+		<dict>
+			<key>xpos</key>
+			<integer>520</integer>
+			<key>ypos</key>
+			<integer>860</integer>
+		</dict>
 		<key>D75377F6-6B47-4683-B400-224620A75802</key>
 		<dict>
 			<key>xpos</key>
 			<integer>430</integer>
 			<key>ypos</key>
-			<integer>890</integer>
+			<integer>1010</integer>
 		</dict>
 		<key>DA8908F6-F112-4087-86D4-1B9671DD766C</key>
 		<dict>
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>1220</integer>
+			<integer>1340</integer>
 		</dict>
 		<key>E4752307-AF7E-4E47-80F9-1BB75C5CCFCB</key>
 		<dict>
@@ -1076,7 +1157,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>xpos</key>
 			<integer>250</integer>
 			<key>ypos</key>
-			<integer>1100</integer>
+			<integer>1220</integer>
 		</dict>
 		<key>E8F9509C-843D-40C8-B5F1-6B8FC692A18C</key>
 		<dict>
@@ -1090,7 +1171,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>xpos</key>
 			<integer>250</integer>
 			<key>ypos</key>
-			<integer>860</integer>
+			<integer>980</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
@@ -1113,7 +1194,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 		<string>added_item_order</string>
 	</array>
 	<key>version</key>
-	<string>1.20.0</string>
+	<string>1.21.0</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>

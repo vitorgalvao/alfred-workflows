@@ -16,7 +16,7 @@ You then have some options you can pick from, all starting with `wl`.
 
 ![](https://i.imgur.com/SymAbSa.png)
 
-In both cases, ↵ plays the selection. Add ⌘ to play without marking as watched or ⌥ to rescan a directory (useful if you made manual changes to it). ⇧ or ⌘Y shows a quicklook preview on files and streams.
+In both cases, ↵ plays the selection. Add ⌃ to play without marking as watched or ⌥ to rescan a directory (useful if you made manual changes to it). ⌘↵ will mark as watched without playing. ⇧ or ⌘Y shows a quicklook preview on files and streams.
 
 If the `top_on_play` Workflow Environment Variable is set to `true`, the item will be moved to the top of the list before starting playback.
 
@@ -24,7 +24,7 @@ Items starting with `≈` are streams. They show no file size (since they aren�
 
 An item will not be marked as watched if we can access the player’s CLI and it exits with a failure exit code.
 
-`wlu` shows the list of watched items. The limit of recent items in this list is controlled by the `maximum_watched` Workflow Environment Variable. Action an item to mark it as unwatched. Note that in the case of files it does not recover them from the trash, as there is no reliable way to do so on macOS — that step you need to do yourself. If the item has a URL origin (you’ll see it in the subtitle) add ⌘ to open the URL in your default browser or ⌥ to copy it to the clipboard.
+`wlu` shows the list of watched items. The limit of recent items in this list is controlled by the `maximum_watched` Workflow Environment Variable. Action an item to mark it as unwatched. Note that in the case of files it does not recover them from the trash, as there is no reliable way to do so on macOS — that step you need to do yourself. If the item has a URL origin (you’ll see it in the subtitle) add ⌘ to open the URL in your default browser or ⌥ to copy it to the clipboard. If the item has an origin URL, ⇧ or ⌘Y shows a quicklook preview.
 
 ![](https://i.imgur.com/XK0W6Wj.png)
 

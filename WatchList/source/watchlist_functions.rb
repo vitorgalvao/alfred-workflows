@@ -4,7 +4,7 @@ require 'json'
 require 'open3'
 require 'yaml'
 
-ENV['PATH'] = Open3.capture2('./_sharedresources', 'mediainfo', 'trash', 'youtubedl').first
+ENV['PATH'] = Open3.capture2('./_sharedresources', 'mediainfo', 'youtubedl').first
 
 Lists_dir = ENV['lists_dir'].nil? || ENV['lists_dir'].empty? ? ENV['alfred_workflow_data'] : File.expand_path(ENV['lists_dir'])
 Towatch_list = "#{Lists_dir}/towatch.yaml".freeze
@@ -33,7 +33,7 @@ def add_local_to_watchlist(path)
   elsif File.directory?(path)
     add_dir_to_watchlist(path)
   else
-    error('Not a valid path.')
+    error('Not a valid path')
   end
 end
 
@@ -73,7 +73,7 @@ def add_file_to_watchlist(file_path)
 end
 
 def add_dir_to_watchlist(dir_path)
-  error('Directory has no audiovisual content.') if find_audiovisual_files(dir_path).first.nil?
+  error('Directory has no audiovisual content') if find_audiovisual_files(dir_path).first.nil?
 
   id = random_hex
   name = File.basename(dir_path)
@@ -131,7 +131,7 @@ def add_url_to_watchlist(url, playlist = false)
   playlist_flag = playlist ? '--yes-playlist' : '--no-playlist'
 
   all_names = Open3.capture2('youtube-dl', '--get-title', playlist_flag, url).first.split("\n")
-  error "Could not add url as stream: #{url}." if all_names.empty?
+  error "Could not add url as stream: #{url}" if all_names.empty?
   # If playlist, get the playlist name instead of the the name of the first item
   name = all_names.count > 1 ? Open3.capture2('youtube-dl', '--yes-playlist', '--get-filename', '--output', '%(playlist)s', url).first.split("\n").first : all_names[0]
 
@@ -171,7 +171,7 @@ def display_towatch(sort = nil)
   list_hash = YAML.load_file(Towatch_list)
 
   if list_hash == false || list_hash.nil?
-    script_filter_items.push(title: 'Play (wlp)', subtitle: 'Nothing to watch. Go add something.', valid: false)
+    script_filter_items.push(title: 'Play (wlp)', subtitle: 'Nothing to watch', valid: false)
   else
     hash_to_output =
       case sort
@@ -192,35 +192,34 @@ def display_towatch(sort = nil)
     hash_to_output.each do |id, details|
       item_count = details['count'].nil? ? '' : "(#{details['count']}) 𐄁 "
 
-      subtitle_info =
-        if details['type'] == 'stream'
-          "≈ #{item_count}#{details['duration']['human']} 𐄁 #{details['url']}"
-        else
-          "#{item_count}#{details['duration']['human']} 𐄁 #{details['size']['human']} 𐄁 #{details['path']}"
-        end
-
-      common_structure = {
+      common_values = {
         title: details['name'],
-        subtitle: subtitle_info,
         arg: id
       }
 
-      if details['type'] == 'series'
+      common_no_stream = { subtitle: "#{item_count}#{details['duration']['human']} 𐄁 #{details['size']['human']} 𐄁 #{details['path']}" }
+      common_no_series = { mods: { alt: { subtitle: 'Rescan is only available for series', valid: false } } }
+
+      case details['type']
+      when 'file'
         script_filter_items.push(
-          **common_structure,
-          mods: { alt: { subtitle: 'Rescan series' } }
-        )
-      elsif details['type'] == 'file'
-        script_filter_items.push(
-          **common_structure,
+          **common_values,
+          **common_no_stream,
           quicklookurl: details['path'],
-          mods: { alt: { subtitle: 'Rescan is only available for series', valid: false } }
+          **common_no_series
         )
-      else # Stream
+      when 'stream'
         script_filter_items.push(
-          **common_structure,
+          **common_values,
+          subtitle: "≈ #{item_count}#{details['duration']['human']} 𐄁 #{details['url']}",
           quicklookurl: details['url'],
-          mods: { alt: { subtitle: 'Rescan is only available for series', valid: false } }
+          **common_no_series
+        )
+      when 'series'
+        script_filter_items.push(
+          **common_values,
+          **common_no_stream,
+          mods: { alt: { subtitle: 'Rescan series' } }
         )
       end
     end
@@ -236,56 +235,55 @@ def display_watched
   list_hash = YAML.load_file(Watched_list)
 
   if list_hash == false || list_hash.nil?
-    script_filter_items.push(title: 'Mark unwatched (wlu)', subtitle: 'You have no unwatched files.', valid: false)
+    script_filter_items.push(title: 'Mark unwatched (wlu)', subtitle: 'You have no unwatched files', valid: false)
   else
     list_hash.each do |id, details|
-      if details['type'] == 'stream'
+
+      common_values = {
+        title: details['name'],
+        arg: id
+      }
+
+      common_has_url = {
+        quicklookurl: details['url'],
+        mods: {
+          cmd: {
+            subtitle: 'Open link in default browser',
+            arg: details['url']
+          },
+          alt: {
+            subtitle: 'Copy link to clipboard',
+            arg: details['url']
+          }
+        }
+      }
+
+      if details['url'].nil?
         script_filter_items.push(
-          title: details['name'],
-          subtitle: details['url'],
-          arg: id,
+          **common_values,
+          subtitle: details['path'],
           mods: {
             cmd: {
-              subtitle: 'Open link in default browser',
-              arg: details['url']
+              subtitle: 'This item has no origin url',
+              valid: false
             },
             alt: {
-              subtitle: 'Copy link to clipboard',
-              arg: details['url']
+              subtitle: 'This item has no origin url',
+              valid: false
             }
           }
         )
-      elsif details['url'].nil?
+      elsif details['type'] == 'stream'
         script_filter_items.push(
-          title: details['name'],
-          subtitle: details['path'],
-          arg: id,
-          mods: {
-            cmd: {
-              subtitle: 'This item has no origin url.',
-              valid: false
-            },
-            alt: {
-              subtitle: 'This item has no origin url.',
-              valid: false
-            }
-          }
+          **common_values,
+          subtitle: details['url'],
+          **common_has_url
         )
       else
         script_filter_items.push(
-          title: details['name'],
+          **common_values,
           subtitle: "#{details['url']} 𐄁 #{details['path']}",
-          arg: id,
-          mods: {
-            cmd: {
-              subtitle: 'Open link in default browser',
-              arg: details['url']
-            },
-            alt: {
-              subtitle: 'Copy link to clipboard',
-              arg: details['url']
-            }
-          }
+          **common_has_url
         )
       end
     end
@@ -300,17 +298,16 @@ def play(id, send_to_watched = true)
   case item['type']
   when 'file'
     return unless play_item('file', item['path'])
-    return if send_to_watched == false
-    trash(item['path'])
-    mark_watched(id)
+
+    mark_watched(id) if send_to_watched == true
   when 'stream'
     return unless play_item('stream', item['url'])
-    system('/usr/bin/afplay', '/System/Library/Sounds/Purr.aiff')
+
     mark_watched(id) if send_to_watched == true
   when 'series'
     if !File.exist?(item['path']) && send_to_watched == true
       mark_watched(id)
-      abort 'Marking as watched since the directory no longer exists.'
+      abort 'Marking as watched since the directory no longer exists'
     end
 
     audiovisual_files = find_audiovisual_files(item['path'])
@@ -321,7 +318,6 @@ def play(id, send_to_watched = true)
 
     # If there are no more audiovisual files in the directory in addition to the one we just watched, trash the whole directory, else trash just the watched file
     if audiovisual_files.reject { |e| e == first_file }.empty?
-      trash(item['path'])
       mark_watched(id) if send_to_watched == true
     else
       trash(first_file)
@@ -332,13 +328,18 @@ end
 
 def mark_watched(id)
   maximum_watched = ENV['maximum_watched'].is_a?(Integer) ? ENV['maximum_watched'] : 9
+  item = YAML.load_file(Towatch_list)[id]
 
   switch_list(id, Towatch_list, Watched_list)
-
   list_hash = YAML.load_file(Watched_list)
-  return unless list_hash.count > maximum_watched
-
   File.write(Watched_list, list_hash.first(maximum_watched).to_h.to_yaml)
+
+  if item['type'] == 'stream'
+    system('/usr/bin/afplay', '/System/Library/Sounds/Purr.aiff')
+    return
+  end
+
+  trash item['path']
 end
 
 def mark_unwatched(id)
@@ -393,7 +394,7 @@ def play_item(type, path)
     return 'other'
   }.call
 
-  error('To play a stream you need mpv, iina, or vlc.') if video_player == 'other' && type == 'stream'
+  error('To play a stream you need mpv, iina, or vlc') if video_player == 'other' && type == 'stream'
 
   video_player == 'other' ? system('open', '-W', path) : Open3.capture2(*video_player, path)[1].success?
 end
@@ -475,7 +476,7 @@ def ensure_data_files
 end
 
 def trash(path)
-  system('trash', '-F', path)
+  system('osascript', '-l', 'JavaScript', '-e', "Application('Finder').delete(Path('#{path}'))")
 end
 
 def notification(message, sound = '')
