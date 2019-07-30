@@ -324,7 +324,7 @@ Open3.capture2('blueutil', '--paired').first.split("\n").each do |device_info|
   name = device_name.empty? ? id : device_name
   icon = device_connected ? 'icon.png' : 'icon_alt.png'
 
-  script_filter_items.push(title: name, subtitle: state, arg: "#{device_connected},#{id}", icon: { path: icon })
+  script_filter_items.push(uid: id, title: name, subtitle: state, arg: "#{device_connected},#{id}", icon: { path: icon })
 end
 
 if script_filter_items.empty?
@@ -409,7 +409,7 @@ puts({ items: script_filter_items }.to_json)</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.1</string>
+	<string>1.1.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
