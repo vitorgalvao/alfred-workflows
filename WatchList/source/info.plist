@@ -636,6 +636,25 @@ play(ARGV[0], false)</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>externaltriggerid</key>
+				<string>sort_order</string>
+				<key>passinputasargument</key>
+				<false/>
+				<key>passvariables</key>
+				<true/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>3C194D92-9446-457E-9DB4-0775F9165D08</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -657,25 +676,6 @@ mark_watched(ARGV[0])</string>
 			<string>C929975A-3B90-474A-BA08-595EAB51A9B2</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>externaltriggerid</key>
-				<string>sort_order</string>
-				<key>passinputasargument</key>
-				<false/>
-				<key>passvariables</key>
-				<true/>
-				<key>workflowbundleid</key>
-				<string>self</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.callexternaltrigger</string>
-			<key>uid</key>
-			<string>3C194D92-9446-457E-9DB4-0775F9165D08</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1194,7 +1194,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 		<string>added_item_order</string>
 	</array>
 	<key>version</key>
-	<string>1.21.0</string>
+	<string>1.21.1</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>

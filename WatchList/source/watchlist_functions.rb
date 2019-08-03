@@ -476,7 +476,8 @@ def ensure_data_files
 end
 
 def trash(path)
-  system('osascript', '-l', 'JavaScript', '-e', "Application('Finder').delete(Path('#{path}'))")
+  escaped_path = path.gsub("'"){ "\\'" } # Escape single quotes, since they are the delimiters for the path in the JXA command
+  system('osascript', '-l', 'JavaScript', '-e', "Application('Finder').delete(Path('#{escaped_path}'))")
 end
 
 def notification(message, sound = '')
