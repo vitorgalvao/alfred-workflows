@@ -29,6 +29,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>CCD42A98-2018-4BC4-9B3A-90AA2B0AEB3A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>4C30FC65-71BF-4EFE-94CC-B038B4D991CA</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
@@ -43,10 +56,25 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>triggerid</key>
+				<string>dnd</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>CCD42A98-2018-4BC4-9B3A-90AA2B0AEB3A</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -107,7 +135,7 @@ puts({ items: script_filter_items }.to_json)</string>
 			<key>uid</key>
 			<string>3E435725-836B-4634-BF9F-B8DBADDDEABF</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -245,14 +273,14 @@ fi</string>
 			<key>xpos</key>
 			<integer>40</integer>
 			<key>ypos</key>
-			<integer>30</integer>
+			<integer>150</integer>
 		</dict>
 		<key>4C30FC65-71BF-4EFE-94CC-B038B4D991CA</key>
 		<dict>
 			<key>xpos</key>
 			<integer>250</integer>
 			<key>ypos</key>
-			<integer>30</integer>
+			<integer>150</integer>
 		</dict>
 		<key>5116FFE2-57F2-4B38-88EA-24FC77101347</key>
 		<dict>
@@ -263,11 +291,18 @@ fi</string>
 			<key>xpos</key>
 			<integer>250</integer>
 			<key>ypos</key>
-			<integer>150</integer>
+			<integer>270</integer>
+		</dict>
+		<key>CCD42A98-2018-4BC4-9B3A-90AA2B0AEB3A</key>
+		<dict>
+			<key>xpos</key>
+			<integer>40</integer>
+			<key>ypos</key>
+			<integer>30</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>1.0.1</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
