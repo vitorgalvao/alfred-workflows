@@ -191,5 +191,5 @@ end
 
 def search_in_website(url)
   username = grab_pinboard_token.sub(/:.*/, '')
-  print "https://pinboard.in/search/u:#{username}?query=#{url}".strip
+  print "https://pinboard.in/search/u:#{username}?query=#{url.sub(%r{^(http[s]|ftp)://}, '')}".strip
 end
