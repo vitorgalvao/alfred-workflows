@@ -82,6 +82,13 @@ elif [[ "${front_browser}" == 'Google Chrome' || "${front_browser}" == 'Google C
       set active tab index of front window to tabIndex
     end tell
 EOF
+elif [[ "${front_browser}" == 'firefox' ]]; then
+  osascript &lt;&lt;EOF
+    tell application "${front_browser}"
+      activate
+      open location "${url}"
+    end tell
+EOF					
 else
   notification 'You need a supported browser as your frontmost app'
   exit 1
