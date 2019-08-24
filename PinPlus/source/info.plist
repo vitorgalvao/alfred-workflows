@@ -1024,11 +1024,11 @@ action="${1}"
 
 function install_agent {
   cp "${plist_file}" "${installed_plist_file}"
-  launchctl load -w "${installed_plist_file}"
+  launchctl bootstrap "gui/$(id -u "${USER}")" "${installed_plist_file}"
 }
 
 function uninstall_agent {
-  launchctl unload -w "${installed_plist_file}"
+  launchctl bootout "gui/$(id -u "${USER}")" "${installed_plist_file}"
   rm "${installed_plist_file}"
 }
 
@@ -1420,7 +1420,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 		<string>unread_action</string>
 	</array>
 	<key>version</key>
-	<string>1.5.6</string>
+	<string>1.5.7</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
