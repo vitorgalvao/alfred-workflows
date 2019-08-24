@@ -440,12 +440,12 @@ function install_agent {
   # Change plist to use correct renew time according to current time zone
   readonly renew_hour="$(date -r $(TZ=EST date -jf "%H" 10 +%s) +"%H")"
   /usr/libexec/PlistBuddy -c "Set StartCalendarInterval:Hour ${renew_hour}" "${installed_plist_file}"
-  
-  launchctl load -w "${installed_plist_file}"
+
+  launchctl bootstrap "gui/$(id -u "${USER}")" "${installed_plist_file}"
 }
 
 function uninstall_agent {
-  launchctl unload -w "${installed_plist_file}"
+  launchctl bootout "gui/$(id -u "${USER}")" "${installed_plist_file}"
   rm "${installed_plist_file}"
 }
 
@@ -555,7 +555,7 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.13.9</string>
+	<string>1.13.10</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
