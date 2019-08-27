@@ -57,7 +57,7 @@ function blueutil_getter {
     local tar_extract blueutil_version
 
     blueutil_path="${shared_resources_bin}/blueutil"
-    readonly blueutil_version='2.5.0'
+    readonly blueutil_version='2.5.1'
     readonly tar_extract="$(mktemp -d)"
 
     ensure_resources_dir
