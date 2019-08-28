@@ -261,10 +261,9 @@ fi</string>
 				<key>script</key>
 				<string>PATH="$(./_sharedresources 'blueutil')"
 
-status="$(cut -d',' -f1 &lt;&lt;&lt; "${1}")"
-id="$(cut -d',' -f2 &lt;&lt;&lt; "${1}")"
+address="${1}"
 
-[[ "${status}" == 'true' ]] &amp;&amp; blueutil --disconnect "${id}" || blueutil --connect "${id}"</string>
+[[ "${connected}" == 'true' ]] &amp;&amp; blueutil --disconnect "${address}" || blueutil --connect "${address}"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -312,19 +311,14 @@ require 'open3'
 
 ENV['PATH'] = Open3.capture2('./_sharedresources', 'blueutil').first
 
+paired_devices = JSON.parse(Open3.capture2('blueutil', '--format', 'json', '--paired').first)
 script_filter_items = []
 
-Open3.capture2('blueutil', '--paired').first.split("\n").each do |device_info|
-  info = device_info.sub(/\([^)]*\)/, '').split(',')
-  id = info[0].sub('address: ', '').strip
-  device_connected = info[1].sub(/ \(.*/, '').strip == 'connected' ? true : false
-  device_name = info[4].sub(/name: "(.*)"/, '\1').strip
+paired_devices.each do |device|
+  state = device['connected'] ? 'Connected' : 'Not Connected'
+  icon = device['connected'] ? 'icon.png' : 'icon_alt.png'
 
-  state = device_connected ? 'Connected' : 'Not Connected'
-  name = device_name.empty? ? id : device_name
-  icon = device_connected ? 'icon.png' : 'icon_alt.png'
-
-  script_filter_items.push(uid: id, title: name, subtitle: state, arg: "#{device_connected},#{id}", icon: { path: icon })
+  script_filter_items.push(uid: device['address'], title: device['name'], subtitle: state, arg: device['address'], icon: { path: icon }, variables: { connected: device['connected'].to_s })
 end
 
 if script_filter_items.empty?
@@ -409,7 +403,7 @@ puts({ items: script_filter_items }.to_json)</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.2</string>
+	<string>1.2.0</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
