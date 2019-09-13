@@ -11,7 +11,7 @@ all_cards_info = JSON.parse(URI('https://archive.scryfall.com/json/scryfall-orac
 script_filter_items = []
 
 all_cards_info.each do |card_info|
-  next if card_info['layout'] =~ /(token|double_faced_token)/
+  next if card_info['layout'] =~ /(token|double_faced_token|art_series)/
 
   if card_info['layout'] == 'transform'
     card = card_info['card_faces'][0] # If card is doube-faced, use info of first face
