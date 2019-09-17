@@ -160,7 +160,9 @@ def fetch_bookmarks(force = false)
 
   unread_bookmarks = []
   all_bookmarks.each do |bookmark|
-    unread_bookmarks.push(bookmark) if bookmark['toread'] == 'yes'
+    next unless bookmark['toread'] == 'yes'
+
+    ENV['unread_order'] == 'oldest_first' ? unread_bookmarks.unshift(bookmark) : unread_bookmarks.push(bookmark)
   end
 
   write_bookmarks(all_bookmarks, All_bookmarks_json)

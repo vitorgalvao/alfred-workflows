@@ -25,11 +25,13 @@ In each case:
 
 Unread bookmarks suffer an extra event when acted upon, depending on the `unread_action` Workflow Environment Variable. `archive` will mark the bookmark as read and `delete` will remove it from your account. Any other value (including none) will leave it untouched.
 
+The `unread_order` Workflow Environment Variable affects the display of `pun`. Valid options are `oldest_first` and `newest_first`, defaulting to the latter.
+
 `:pinpluslaunchd` will install (or later remove, running the same command) a `launchd` service to seamlessly fetch bookmarks every hour.
 
 ![](https://i.imgur.com/onOFCVY.png)
 
-Bookmarks are auto-updated in accordance to the requirements of the Pinboard API. `:pinplusforceupdate` will force an update, but should be avoided.
+Bookmarks are auto-updated in accordance to the requirements of the Pinboard API. `:pinplusforceupdate` will force an update, but should be avoided. The `minutes_between_checks` Workflow Environment Variable defaults to `10`.
 
 ![](https://i.imgur.com/Lr0iNij.png)
 
