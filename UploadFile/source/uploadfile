@@ -51,7 +51,7 @@ function transfer {
   notification "Uploading “${file_name}”"
 
   readonly hosts=('transfer.sh' 'alpha.transfer.sh' 'bayfiles.com' 'anonfile.com' 'megaupload.nz' 'forumfiles.com')
-  readonly default_host="${hosts[1]}"
+  readonly default_host="${hosts[0]}"
 
   if [[ -n "${upload_file_to}" ]] && string_in_array "${upload_file_to}" "${hosts[@]}"; then
     upload_host="${upload_file_to}"
