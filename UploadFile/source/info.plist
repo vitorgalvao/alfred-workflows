@@ -218,6 +218,8 @@ fi</string>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -295,7 +297,7 @@ puts(script_filter_content.to_json)</string>
 			<key>uid</key>
 			<string>A697CADF-6E4A-4C9D-8D61-A8BFCE2DACA4</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -315,29 +317,29 @@ You’ll get notifications of the various phases, with a sound when it’s compl
 
 ![](https://i.imgur.com/iOxLOWb.png)
 
-You can change the upload host in the `upload_file_to` Workflow Environment Variable. By default it uses [transfer.sh](https://transfer.sh/). Other supported hosts are: [bayfiles.com](https://bayfiles.com/), [anonfile.com](https://anonfile.com/), [megaupload.nz](https://megaupload.nz/), and [forumfiles.com](https://forumfiles.com/).</string>
+You can change the upload host in the `upload_file_to` Workflow Environment Variable. By default it uses [transfer.sh](https://transfer.sh/). Other supported hosts are: [alpha.transfer.sh](https://alpha.transfer.sh/) [bayfiles.com](https://bayfiles.com/), [anonfile.com](https://anonfile.com/), [megaupload.nz](https://megaupload.nz/), and [forumfiles.com](https://forumfiles.com/).</string>
 	<key>uidata</key>
 	<dict>
 		<key>3444071E-B0B8-4C12-9699-210912A13E67</key>
 		<dict>
 			<key>xpos</key>
-			<integer>450</integer>
+			<integer>435</integer>
 			<key>ypos</key>
-			<integer>10</integer>
+			<integer>25</integer>
 		</dict>
 		<key>55E5D2C8-6F1C-416A-B7D8-C27393CF7485</key>
 		<dict>
 			<key>xpos</key>
-			<integer>450</integer>
+			<integer>435</integer>
 			<key>ypos</key>
-			<integer>130</integer>
+			<integer>145</integer>
 		</dict>
 		<key>A697CADF-6E4A-4C9D-8D61-A8BFCE2DACA4</key>
 		<dict>
 			<key>xpos</key>
-			<integer>250</integer>
+			<integer>235</integer>
 			<key>ypos</key>
-			<integer>130</integer>
+			<integer>145</integer>
 		</dict>
 		<key>D503A9AC-59F1-4C55-816D-CAC532C04442</key>
 		<dict>
@@ -346,16 +348,16 @@ You can change the upload host in the `upload_file_to` Workflow Environment Vari
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>640</integer>
+			<integer>625</integer>
 			<key>ypos</key>
-			<integer>10</integer>
+			<integer>25</integer>
 		</dict>
 		<key>DEA90A14-B8E3-469F-B314-4F347CF478B3</key>
 		<dict>
 			<key>xpos</key>
-			<integer>50</integer>
+			<integer>35</integer>
 			<key>ypos</key>
-			<integer>10</integer>
+			<integer>25</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
@@ -364,7 +366,7 @@ You can change the upload host in the `upload_file_to` Workflow Environment Vari
 		<string>transfer.sh</string>
 	</dict>
 	<key>version</key>
-	<string>1.6.0</string>
+	<string>1.6.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
