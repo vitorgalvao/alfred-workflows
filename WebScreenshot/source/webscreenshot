@@ -3,20 +3,16 @@
 readonly url_list="${alfred_workflow_cache}/urls.txt"
 
 function notification {
-  ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
+  ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --sound "${2}" --title "${alfred_workflow_name}"
 }
 
 function failure {
-  local message="${1}"
-
-  afplay /System/Library/Sounds/Funk.aiff &
-  notification "${message}"
+  notification "${1}" 'Funk'
   exit 1
 }
 
 function success {
-  afplay /System/Library/Sounds/Ping.aiff &
-  notification 'Link copied to clipboard'
+  notification 'Link copied to clipboard' 'Ping'
 }
 
 function prepend {
