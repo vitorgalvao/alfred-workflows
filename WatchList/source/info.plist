@@ -843,7 +843,7 @@ mark_unwatched(ARGV[0])</string>
 			<key>config</key>
 			<dict>
 				<key>alfredfiltersresults</key>
-				<false/>
+				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
 				<key>argumenttreatemptyqueryasnil</key>
@@ -1194,7 +1194,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 		<string>added_item_order</string>
 	</array>
 	<key>version</key>
-	<string>1.21.2</string>
+	<string>1.21.3</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
