@@ -457,6 +457,9 @@ def switch_list(id, origin_list, target_list)
   ensure_data_files
 
   id_hash = { id => YAML.load_file(origin_list)[id] }
+
+  abort 'Item no longer exists' if id_hash.values.first.nil? # Detect if an item no longer exists before trying to move. Fix for cases where the same item is chosen a second time before having finished playing.
+
   delete_from_list(id, origin_list)
   prepend_to_list(id_hash, target_list)
 end
