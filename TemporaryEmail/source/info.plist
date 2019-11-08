@@ -55,6 +55,10 @@
   ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
 }
 
+function get_front_browser {
+  front_browser="$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')"
+}
+
 if [[ -n "${1}" ]]; then
   email_name="${1//[^[:alnum:]]}"
 else
@@ -64,7 +68,20 @@ fi
 email="${email_name}@teleosaurs.xyz"
 url="https://teleosaurs.xyz/inbox/${email_name}"
 
-front_browser="$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')"
+get_front_browser
+
+# Firefox does not support AppleScript, so we must open a browser that supports it
+if [[ "${front_browser}" == 'firefox' ]]; then
+  osascript -e 'tell application "Safari" to activate'
+  get_front_browser
+  start_time=$(date +%s)
+  while [ $(expr $(date +%s) - $start_time) -lt 10 -a $front_browser != 'Safari' ]
+  do
+    sleep 1
+    get_front_browser
+  done
+
+fi
 
 if [[ "${front_browser}" == 'Safari' || "${front_browser}" == 'Safari Technology Preview' || "${front_browser}" == 'Webkit' ]]; then
   osascript &lt;&lt;EOF
