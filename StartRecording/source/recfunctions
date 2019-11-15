@@ -3,7 +3,7 @@
 readonly media="${1}"
 
 function app_exists? {
-  readonly local app="${1}"
+  local -r app="${1}"
 
   if ! osascript -e "exists application \"${app}\""; then
     echo "
