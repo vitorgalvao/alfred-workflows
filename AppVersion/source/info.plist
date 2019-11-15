@@ -86,6 +86,8 @@
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -143,7 +145,7 @@ puts({ items: script_filter_items }.to_json)</string>
 			<key>uid</key>
 			<string>56E911C8-B422-41A5-B703-DBA1649E1DA1</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -160,7 +162,7 @@ puts({ items: script_filter_items }.to_json)</string>
 			<key>uid</key>
 			<string>D7A8FF94-E45E-4FD4-BA1A-11237326A0E1</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -187,13 +189,13 @@ function url_exists {
 }
 
 function notification {
-  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  local -r notificator="$(find . -type d -name 'Notificator.app')"
   if [[ -n "${notificator}" ]]; then
     "${notificator}/Contents/Resources/Scripts/notificator" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
     return
   fi
 
-  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  local -r terminal_notifier="$(find . -type f -name 'terminal-notifier')"
   if [[ -n "${terminal_notifier}" ]]; then
     "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
     return
@@ -256,38 +258,6 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>acceptsmulti</key>
-				<false/>
-				<key>filetypes</key>
-				<array>
-					<string>com.apple.application-bundle</string>
-				</array>
-				<key>name</key>
-				<string>App version</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.action</string>
-			<key>uid</key>
-			<string>778BD714-0E96-4EA4-A4FD-751D05C92D2D</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>largetypetext</key>
-				<string>{query}</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.largetype</string>
-			<key>uid</key>
-			<string>79EAF480-9E98-4ED6-A0BC-7162FC442749</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -307,6 +277,50 @@ fi</string>
 			<string>D7E96C4B-C158-4A5C-9D3A-7C6C37A6557D</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alignment</key>
+				<integer>0</integer>
+				<key>backgroundcolor</key>
+				<string></string>
+				<key>fadespeed</key>
+				<integer>0</integer>
+				<key>fillmode</key>
+				<integer>0</integer>
+				<key>font</key>
+				<string></string>
+				<key>largetypetext</key>
+				<string>{query}</string>
+				<key>textcolor</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.largetype</string>
+			<key>uid</key>
+			<string>79EAF480-9E98-4ED6-A0BC-7162FC442749</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsmulti</key>
+				<false/>
+				<key>filetypes</key>
+				<array>
+					<string>com.apple.application-bundle</string>
+				</array>
+				<key>name</key>
+				<string>App version</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>778BD714-0E96-4EA4-A4FD-751D05C92D2D</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -367,7 +381,7 @@ If the app you want to check the version of is located anywhere else, you can fi
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.3</string>
+	<string>1.0.4</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
