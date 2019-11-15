@@ -121,6 +121,19 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>triggerid</key>
+				<string>agents_script_filter</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>901E2D9C-BEA1-40BD-B554-618C2347FD70</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -143,13 +156,13 @@ function url_exists {
 }
 
 function notification {
-  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  local -r notificator="$(find . -type d -name 'Notificator.app')"
   if [[ -n "${notificator}" ]]; then
     "${notificator}/Contents/Resources/Scripts/notificator" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
     return
   fi
 
-  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  local -r terminal_notifier="$(find . -type f -name 'terminal-notifier')"
   if [[ -n "${terminal_notifier}" ]]; then
     "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
     return
@@ -212,23 +225,12 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>triggerid</key>
-				<string>agents_script_filter</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>901E2D9C-BEA1-40BD-B554-618C2347FD70</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -297,7 +299,7 @@ fi</string>
 			<key>uid</key>
 			<string>102399E3-16B0-445A-911C-1F610D31B3F5</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -533,7 +535,7 @@ Currently supports Safari and Safari Technology Preview. Webkit is excluded beca
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.2</string>
+	<string>1.0.3</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
