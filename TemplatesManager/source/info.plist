@@ -254,6 +254,8 @@ local_put({query})</string>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -294,7 +296,7 @@ local_info</string>
 			<key>uid</key>
 			<string>7CF8B650-20A5-4F70-A3CE-F4BCB6835A26</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -346,13 +348,13 @@ function url_exists {
 }
 
 function notification {
-  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  local -r notificator="$(find . -type d -name 'Notificator.app')"
   if [[ -n "${notificator}" ]]; then
     "${notificator}/Contents/Resources/Scripts/notificator" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
     return
   fi
 
-  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  local -r terminal_notifier="$(find . -type f -name 'terminal-notifier')"
   if [[ -n "${terminal_notifier}" ]]; then
     "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
     return
@@ -490,6 +492,8 @@ local_edit</string>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -530,7 +534,7 @@ remote_info</string>
 			<key>uid</key>
 			<string>E5C08248-28E9-4EF7-817F-FA9B2BC335D2</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -572,7 +576,7 @@ remote_put({query})</string>
 			<key>uid</key>
 			<string>74F33B68-BE23-4E47-8171-DC06AF39E9A8</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -881,7 +885,7 @@ It has a lot of options and you’ll likely use most of them, so I’ll fire thr
 		<string>custom_templates_dir</string>
 	</array>
 	<key>version</key>
-	<string>1.6.8</string>
+	<string>1.6.9</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
