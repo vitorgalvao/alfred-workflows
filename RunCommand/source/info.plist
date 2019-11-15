@@ -349,15 +349,27 @@ fi
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alignment</key>
+				<integer>0</integer>
+				<key>backgroundcolor</key>
+				<string></string>
+				<key>fadespeed</key>
+				<integer>0</integer>
+				<key>fillmode</key>
+				<integer>0</integer>
+				<key>font</key>
+				<string></string>
 				<key>largetypetext</key>
 				<string>{query}</string>
+				<key>textcolor</key>
+				<string></string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.output.largetype</string>
 			<key>uid</key>
 			<string>1B016A28-C600-4740-8FA0-87F959C452C5</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -407,13 +419,13 @@ function url_exists {
 }
 
 function notification {
-  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  local -r notificator="$(find . -type d -name 'Notificator.app')"
   if [[ -n "${notificator}" ]]; then
     "${notificator}/Contents/Resources/Scripts/notificator" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
     return
   fi
 
-  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  local -r terminal_notifier="$(find . -type f -name 'terminal-notifier')"
   if [[ -n "${terminal_notifier}" ]]; then
     "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
     return
@@ -674,7 +686,7 @@ To get the output of a command as `Large Type`, actioning it with ⌘↵ instead
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.12.5</string>
+	<string>1.12.6</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
