@@ -81,7 +81,7 @@
 			<key>uid</key>
 			<string>630129C2-A7B6-480C-B4F4-7088EAEF71B2</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -123,6 +123,8 @@ perl -pe 's/(https?:\/\/)(m\.|mobile\.|touch\.)(.*)/\1\3/;s/\?.*//;s/(https:\/\/
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -174,24 +176,7 @@ EOF</string>
 			<key>uid</key>
 			<string>FFC25DDE-7F2E-4A61-A2D0-0B4549044CAA</string>
 			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>focusedappvariable</key>
-				<false/>
-				<key>focusedappvariablename</key>
-				<string></string>
-				<key>keyword</key>
-				<string>lc</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.snippet</string>
-			<key>uid</key>
-			<string>B7D6699F-FC18-4DB5-A6ED-EE17A07868AB</string>
-			<key>version</key>
-			<integer>1</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -218,13 +203,13 @@ function url_exists {
 }
 
 function notification {
-  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  local -r notificator="$(find . -type d -name 'Notificator.app')"
   if [[ -n "${notificator}" ]]; then
     "${notificator}/Contents/Resources/Scripts/notificator" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
     return
   fi
 
-  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  local -r terminal_notifier="$(find . -type f -name 'terminal-notifier')"
   if [[ -n "${terminal_notifier}" ]]; then
     "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
     return
@@ -284,6 +269,23 @@ fi</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>keyword</key>
+				<string>lc</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.snippet</string>
+			<key>uid</key>
+			<string>B7D6699F-FC18-4DB5-A6ED-EE17A07868AB</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>Clean clutter from URLs such as all sorts of [`utm_` variants](http://www.bytefive.com/blogs/understanding-utm_source-utm_medium-and-utm_campaign) and subdomains like `m.` for mobile sites.
@@ -298,9 +300,9 @@ The option for shortened links will also work on long URLs. This option, however
 		<key>630129C2-A7B6-480C-B4F4-7088EAEF71B2</key>
 		<dict>
 			<key>xpos</key>
-			<integer>530</integer>
+			<integer>440</integer>
 			<key>ypos</key>
-			<integer>10</integer>
+			<integer>30</integer>
 		</dict>
 		<key>809F9F9B-1BF9-4FF9-8EBC-F939220890C2</key>
 		<dict>
@@ -309,34 +311,34 @@ The option for shortened links will also work on long URLs. This option, however
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>530</integer>
+			<integer>440</integer>
 			<key>ypos</key>
-			<integer>130</integer>
+			<integer>150</integer>
 		</dict>
 		<key>87BE9FDE-D40E-46A8-B0CF-10D7D63F9352</key>
 		<dict>
 			<key>xpos</key>
-			<integer>330</integer>
+			<integer>240</integer>
 			<key>ypos</key>
-			<integer>10</integer>
+			<integer>30</integer>
 		</dict>
 		<key>B7D6699F-FC18-4DB5-A6ED-EE17A07868AB</key>
 		<dict>
 			<key>xpos</key>
-			<integer>130</integer>
+			<integer>40</integer>
 			<key>ypos</key>
-			<integer>130</integer>
+			<integer>150</integer>
 		</dict>
 		<key>FFC25DDE-7F2E-4A61-A2D0-0B4549044CAA</key>
 		<dict>
 			<key>xpos</key>
-			<integer>130</integer>
+			<integer>40</integer>
 			<key>ypos</key>
-			<integer>10</integer>
+			<integer>30</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.2</string>
+	<string>1.1.3</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
