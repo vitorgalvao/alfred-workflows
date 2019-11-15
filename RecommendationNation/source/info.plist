@@ -728,13 +728,13 @@ function url_exists {
 }
 
 function notification {
-  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  local -r notificator="$(find . -type d -name 'Notificator.app')"
   if [[ -n "${notificator}" ]]; then
     "${notificator}/Contents/Resources/Scripts/notificator" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
     return
   fi
 
-  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  local -r terminal_notifier="$(find . -type f -name 'terminal-notifier')"
   if [[ -n "${terminal_notifier}" ]]; then
     "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
     return
@@ -823,8 +823,7 @@ fi</string>
 				<key>script</key>
 				<string>require_relative File.join(Dir.pwd, 'recommendationnation.rb')
 
-open_site(Recommendations_File, Sites, ARGV[0].to_i)
-delete_line(Recommendations_File, ARGV[0].to_i)</string>
+edit_list(Recommendations_File)</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -835,7 +834,7 @@ delete_line(Recommendations_File, ARGV[0].to_i)</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>2257A6A6-DA8F-48A1-B6E0-7652D5FE4E27</string>
+			<string>9219E3AB-C3C5-4EFB-9660-980766DEABEC</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -849,7 +848,8 @@ delete_line(Recommendations_File, ARGV[0].to_i)</string>
 				<key>script</key>
 				<string>require_relative File.join(Dir.pwd, 'recommendationnation.rb')
 
-edit_list(Recommendations_File)</string>
+open_site(Recommendations_File, Sites, ARGV[0].to_i)
+delete_line(Recommendations_File, ARGV[0].to_i)</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -860,7 +860,7 @@ edit_list(Recommendations_File)</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>9219E3AB-C3C5-4EFB-9660-980766DEABEC</string>
+			<string>2257A6A6-DA8F-48A1-B6E0-7652D5FE4E27</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -1379,7 +1379,7 @@ To keep your list synced between machines, use the `recs_dir` Workflow Environme
 		<string>recs_dir</string>
 	</array>
 	<key>version</key>
-	<string>1.0.3</string>
+	<string>1.0.4</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
