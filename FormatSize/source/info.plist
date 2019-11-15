@@ -23,6 +23,8 @@
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -75,7 +77,7 @@ echo "&lt;/items&gt;"</string>
 			<key>uid</key>
 			<string>785C12C1-537B-4D4D-AA2B-25D2C5D33231</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -84,6 +86,8 @@ echo "&lt;/items&gt;"</string>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -136,7 +140,7 @@ echo "&lt;/items&gt;"</string>
 			<key>uid</key>
 			<string>BD54C221-BA04-4681-BD20-2A8FE610186F</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -145,6 +149,8 @@ echo "&lt;/items&gt;"</string>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -197,7 +203,7 @@ echo "&lt;/items&gt;"</string>
 			<key>uid</key>
 			<string>BD21EA10-41BC-4F6E-9688-FC115DD3E5FA</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -206,6 +212,8 @@ echo "&lt;/items&gt;"</string>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -258,7 +266,7 @@ echo "&lt;/items&gt;"</string>
 			<key>uid</key>
 			<string>18F65376-7567-4DB6-AE98-CA42FD18DB64</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -267,6 +275,8 @@ echo "&lt;/items&gt;"</string>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -319,7 +329,7 @@ echo "&lt;/items&gt;"</string>
 			<key>uid</key>
 			<string>F25005BB-AA14-480E-B744-0131E97DFED3</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -328,6 +338,8 @@ echo "&lt;/items&gt;"</string>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>2</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -374,7 +386,7 @@ cat "${file}"</string>
 			<key>uid</key>
 			<string>AB9CA804-7253-4FC6-997B-D7EDCCEED678</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -383,6 +395,8 @@ cat "${file}"</string>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -419,13 +433,13 @@ function url_exists {
 }
 
 function notification {
-  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  local -r notificator="$(find . -type d -name 'Notificator.app')"
   if [[ -n "${notificator}" ]]; then
     "${notificator}/Contents/Resources/Scripts/notificator" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
     return
   fi
 
-  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  local -r terminal_notifier="$(find . -type f -name 'terminal-notifier')"
   if [[ -n "${terminal_notifier}" ]]; then
     "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
     return
@@ -489,7 +503,7 @@ fi</string>
 			<key>uid</key>
 			<string>E09C0879-1DAF-48C7-A9C5-28ACE0F0429F</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -507,37 +521,37 @@ Paper sizes taken from [wikipedia](https://en.wikipedia.org/wiki/Paper_sizes) an
 		<key>18F65376-7567-4DB6-AE98-CA42FD18DB64</key>
 		<dict>
 			<key>xpos</key>
-			<integer>300</integer>
+			<integer>35</integer>
 			<key>ypos</key>
-			<real>370</real>
+			<integer>390</integer>
 		</dict>
 		<key>785C12C1-537B-4D4D-AA2B-25D2C5D33231</key>
 		<dict>
 			<key>xpos</key>
-			<integer>300</integer>
+			<integer>35</integer>
 			<key>ypos</key>
-			<real>10</real>
+			<integer>30</integer>
 		</dict>
 		<key>AB9CA804-7253-4FC6-997B-D7EDCCEED678</key>
 		<dict>
 			<key>xpos</key>
-			<integer>300</integer>
+			<integer>35</integer>
 			<key>ypos</key>
-			<real>610</real>
+			<integer>630</integer>
 		</dict>
 		<key>BD21EA10-41BC-4F6E-9688-FC115DD3E5FA</key>
 		<dict>
 			<key>xpos</key>
-			<integer>300</integer>
+			<integer>35</integer>
 			<key>ypos</key>
-			<real>250</real>
+			<integer>270</integer>
 		</dict>
 		<key>BD54C221-BA04-4681-BD20-2A8FE610186F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>300</integer>
+			<integer>35</integer>
 			<key>ypos</key>
-			<real>130</real>
+			<integer>150</integer>
 		</dict>
 		<key>E09C0879-1DAF-48C7-A9C5-28ACE0F0429F</key>
 		<dict>
@@ -546,20 +560,20 @@ Paper sizes taken from [wikipedia](https://en.wikipedia.org/wiki/Paper_sizes) an
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>450</integer>
+			<integer>185</integer>
 			<key>ypos</key>
-			<integer>610</integer>
+			<integer>630</integer>
 		</dict>
 		<key>F25005BB-AA14-480E-B744-0131E97DFED3</key>
 		<dict>
 			<key>xpos</key>
-			<integer>300</integer>
+			<integer>35</integer>
 			<key>ypos</key>
-			<real>490</real>
+			<integer>510</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.6.0</string>
+	<string>1.6.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
