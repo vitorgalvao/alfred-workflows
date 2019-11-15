@@ -51,6 +51,101 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
+				<string>function notification {
+  ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
+}
+
+IFS=' ' read special number &lt;&lt;&lt; '{query}'
+
+[[ -z "${number}" || "${number}" -gt 64 ]] &amp;&amp; number='64'
+
+ruby getPassword.rb "${special}" "${number}" | pbcopy
+
+notification "Password copied to the clipboard (${number} characters)"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>FF316160-82F1-4AC1-8D82-72A1F0AC9ED6</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>sp</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>[[ '{query}' -gt 64 ]] || [[ '{query}' -lt 1 ]] &amp;&amp; number='64' || number='{query}'
+
+cat &lt;&lt; EOF
+&lt;?xml version='1.0'?&gt;&lt;items&gt;
+  &lt;item uid='sp' arg='yes {query}' valid='yes'&gt;
+    &lt;title&gt;Password with all characters allowed&lt;/title&gt;
+    &lt;subtitle&gt;Getting password with ${number} characters&lt;/subtitle&gt;
+  &lt;/item&gt;
+  &lt;item uid='spns' arg='no {query}' valid='yes'&gt;
+    &lt;title&gt;Password without special characters&lt;/title&gt;
+    &lt;subtitle&gt;Getting password with ${number} characters&lt;/subtitle&gt;
+  &lt;/item&gt;
+&lt;/items&gt;
+EOF</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Get a strong password (with optional maximum number of characters)</string>
+				<key>title</key>
+				<string>StrongPassword</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>833B9AF0-2223-4218-84F4-75B180E64183</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
 				<string># THESE VARIABLES MUST BE SET. SEE THE ONEUPDATER README FOR AN EXPLANATION OF EACH.
 readonly remote_info_plist="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
 readonly workflow_url="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/${alfred_workflow_name}.alfredworkflow"
@@ -68,13 +163,13 @@ function url_exists {
 }
 
 function notification {
-  readonly local notificator="$(find . -type d -name 'Notificator.app')"
+  local -r notificator="$(find . -type d -name 'Notificator.app')"
   if [[ -n "${notificator}" ]]; then
     "${notificator}/Contents/Resources/Scripts/notificator" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
     return
   fi
 
-  readonly local terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  local -r terminal_notifier="$(find . -type f -name 'terminal-notifier')"
   if [[ -n "${terminal_notifier}" ]]; then
     "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
     return
@@ -134,99 +229,6 @@ fi</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>alfredfiltersresults</key>
-				<false/>
-				<key>alfredfiltersresultsmatchmode</key>
-				<integer>0</integer>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>sp</string>
-				<key>queuedelaycustom</key>
-				<integer>1</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<false/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string>Please wait…</string>
-				<key>script</key>
-				<string>[[ '{query}' -gt 64 ]] || [[ '{query}' -lt 1 ]] &amp;&amp; number='64' || number='{query}'
-
-cat &lt;&lt; EOF
-&lt;?xml version='1.0'?&gt;&lt;items&gt;
-  &lt;item uid='sp' arg='yes {query}' valid='yes'&gt;
-    &lt;title&gt;Password with all characters allowed&lt;/title&gt;
-    &lt;subtitle&gt;Getting password with ${number} characters&lt;/subtitle&gt;
-  &lt;/item&gt;
-  &lt;item uid='spns' arg='no {query}' valid='yes'&gt;
-    &lt;title&gt;Password without special characters&lt;/title&gt;
-    &lt;subtitle&gt;Getting password with ${number} characters&lt;/subtitle&gt;
-  &lt;/item&gt;
-&lt;/items&gt;
-EOF</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string>Get a strong password (with optional maximum number of characters)</string>
-				<key>title</key>
-				<string>StrongPassword</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>833B9AF0-2223-4218-84F4-75B180E64183</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>function notification {
-  ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
-}
-
-IFS=' ' read special number &lt;&lt;&lt; '{query}'
-
-[[ -z "${number}" || "${number}" -gt 64 ]] &amp;&amp; number='64'
-
-ruby getPassword.rb "${special}" "${number}" | pbcopy
-
-notification "Password copied to the clipboard (${number} characters)"</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>FF316160-82F1-4AC1-8D82-72A1F0AC9ED6</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
 	</array>
 	<key>readme</key>
 	<string>Get strong passwords by combining up to three sources — https://www.grc.com/passwords.htm (unless you choose to have a password without special characters), http://www.random.org/passwords/, and `ruby` itself. There’s at the end a technical explanation on how it works.
@@ -271,7 +273,7 @@ I strived to keep the code very readable; inspect it at will. What this does is 
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.2.5</string>
+	<string>1.2.7</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
