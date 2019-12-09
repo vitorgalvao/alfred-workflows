@@ -360,7 +360,7 @@ if File.exist?(progressfile)
 
   if filecontents.grep(%r{\[download\].*%.*ETA}).any?
     filename = File.basename(filecontents.grep(%r{\[download\] Destination: })[0].strip)
-    progress = filecontents[-1].delete('[download]').strip
+    progress = filecontents[-1].sub('[download]', '').strip
 
     script_filter_content = {
       rerun: 1,
@@ -638,7 +638,7 @@ The Workflow Environment Variables represent the directories where videos will d
 		<string>~/Downloads</string>
 	</dict>
 	<key>version</key>
-	<string>1.22.12</string>
+	<string>1.22.13</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
