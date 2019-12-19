@@ -23,7 +23,7 @@ if !File.exist?(list_file) || (((Time.now - File.mtime(list_file)) / (24 * 3600)
     page = Nokogiri::HTML(URI.parse(item).open, nil, Encoding::UTF_8.to_s) # Forced UTF-8
     url = page.at('.embed-wrapper').attr('data-src')
     title = page.at('h1.title').text
-    image = 'https:' + page.at('.bar-hidden').at('img').attr('src')
+    image = URI.escape('https:' + page.at('.bar-hidden').at('img').attr('src'))
     synopsis = page.at('.description').text.strip
     details = page.at('.details')
     genre = details.at('span').text
