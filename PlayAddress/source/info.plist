@@ -94,6 +94,33 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>if ! osascript -e "tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"new\" in workflow \"com.vitorgalvao.alfred.downvid\" with argument \"${url} video watchlist_true playlist_false\""; then
+  if osascript -e "display dialog \"The DownVid Workflow is required to download videos.\" with title \"DownVid is missing\" with icon POSIX file \"${PWD}/icon.png\" buttons { \"Cancel\", \"Download DownVid\" } default button \"Download DownVid\""; then
+    open 'https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/DownVid/DownVid.alfredworkflow'
+  fi
+fi</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>359734FE-C703-415A-9038-E76AF0A25AAA</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -126,7 +153,7 @@ let title, url, clipboard
 let script_filter_items = []
 
 // Get details from frontmost browser, if any
-if (['Google Chrome', 'Google Chrome Canary', 'Chromium', 'Vivaldi'].indexOf(frontmost_app_name) &gt; -1) {
+if (['Google Chrome', 'Google Chrome Canary', 'Chromium', 'Vivaldi', 'Brave Browser'].indexOf(frontmost_app_name) &gt; -1) {
   title = frontmost_app.windows[0].activeTab.name()
   url = frontmost_app.windows[0].activeTab.url()
 
@@ -198,33 +225,6 @@ if (script_filter_items.length === 0) {
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>if ! osascript -e "tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"new\" in workflow \"com.vitorgalvao.alfred.downvid\" with argument \"${url} video watchlist_true playlist_false\""; then
-  if osascript -e "display dialog \"The DownVid Workflow is required to download videos.\" with title \"DownVid is missing\" with icon POSIX file \"${PWD}/icon.png\" buttons { \"Cancel\", \"Download DownVid\" } default button \"Download DownVid\""; then
-    open 'https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/DownVid/DownVid.alfredworkflow'
-  fi
-fi</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>359734FE-C703-415A-9038-E76AF0A25AAA</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
 				<string>ObjC.import('stdlib')
 const browser = $.getenv('browser')
 const url = $.getenv('url')
@@ -260,6 +260,42 @@ if (close_browser &amp;&amp; browser &amp;&amp; $.system('/usr/local/bin/youtube
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>3238CA6D-80AE-4CD7-B09C-6297766F4936</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>pbcopy &lt;&lt;&lt; "${url}" # Save URL to clipboard history
+
+if [[ "$(mdfind kMDItemCFBundleIdentifier = io.mpv)" ]]; then
+  PATH="$(./_sharedresources 'youtubedl')"
+  video_player='mpv'
+elif [[ "$(mdfind kMDItemCFBundleIdentifier = com.colliderli.iina)" ]]; then
+  video_player='iina'
+elif [[ "$(mdfind kMDItemCFBundleIdentifier = org.videolan.vlc)" ]]; then
+  video_player='vlc'
+else
+  warning 'To play a stream you need mpv, iina, or vlc.'
+fi
+
+open -na "${video_player}" --args "${url}"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>197D2E43-384A-44B1-BE86-B36582E4CE52</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -355,42 +391,6 @@ fi</string>
 			<integer>2</integer>
 		</dict>
 		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>pbcopy &lt;&lt;&lt; "${url}" # Save URL to clipboard history
-
-if [[ "$(mdfind kMDItemCFBundleIdentifier = io.mpv)" ]]; then
-  PATH="$(./_sharedresources 'youtubedl')"
-  video_player='mpv'
-elif [[ "$(mdfind kMDItemCFBundleIdentifier = com.colliderli.iina)" ]]; then
-  video_player='iina'
-elif [[ "$(mdfind kMDItemCFBundleIdentifier = org.videolan.vlc)" ]]; then
-  video_player='vlc'
-else
-  warning 'To play a stream you need mpv, iina, or vlc.'
-fi
-
-open -na "${video_player}" --args "${url}"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>197D2E43-384A-44B1-BE86-B36582E4CE52</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
 			<key>type</key>
 			<string>alfred.workflow.utility.junction</string>
 			<key>uid</key>
@@ -470,7 +470,7 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 		<string>true</string>
 	</dict>
 	<key>version</key>
-	<string>1.0.6</string>
+	<string>1.0.7</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
