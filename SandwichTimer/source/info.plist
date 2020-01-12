@@ -360,7 +360,7 @@ timer "${1}"</string>
 				<integer>102</integer>
 				<key>script</key>
 				<string>source './sandwichtimer'
-download_app</string>
+download_app '/Applications'</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -481,7 +481,7 @@ With both options, actioning with ⌥ will quit all instances of the SandwichTim
 		<string>/Applications/SandwichTimer.app</string>
 	</dict>
 	<key>version</key>
-	<string>1.0.2</string>
+	<string>1.0.3</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
