@@ -59,10 +59,10 @@ Toggle bluetooth and paired device connectivity
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/DenteAzul) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/DenteAzul/DenteAzul.alfredworkflow)
 
-### DownVid <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/DownVid/source/icon.png' width='60' align='center' alt='DownVid icon'>
-Download videos from popular sources
+### DownMedia <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/DownMedia/source/icon.png' width='60' align='center' alt='DownMedia icon'>
+Download media from popular sources
 
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownVid) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/DownVid/DownVid.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownMedia) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/DownMedia/DownMedia.alfredworkflow)
 
 ### FormatSize <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/FormatSize/source/icon.png' width='60' align='center' alt='FormatSize icon'>
 Reference paper sizes and device resolutions
