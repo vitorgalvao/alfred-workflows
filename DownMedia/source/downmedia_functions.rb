@@ -225,7 +225,7 @@ def kill_download
 end
 
 def get_title_url
-  url_title = Open3.capture2(Pathname.pwd.join('get_title_and_url.js').to_path).first.split("\n")
+  url_title = Open3.capture2(Pathname.pwd.join('get_title_and_url.js').to_path, '--').first.split("\n") # Second dummy argument is to not require shellescaping single argument
 
   return false if url_title.empty?
 
