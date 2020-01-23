@@ -32,15 +32,27 @@ def show_options(media_type)
     mods: {
       cmd: {
         subtitle: "Add to WatchList (⌥): #{Add_to_watchlist} 𐄁 Full Playlist (⌘): true",
-        variables: { full_playlist: true }
+        variables: {
+          media_type: media_type,
+          Add_to_watchlist: Add_to_watchlist,
+          full_playlist: true # Modified variable
+        }
       },
       alt: {
         subtitle: "Add to WatchList (⌥): #{!Add_to_watchlist} 𐄁 Full Playlist (⌘): false",
-        variables: { add_to_watchlist: !Add_to_watchlist }
+        variables: {
+          media_type: media_type,
+          add_to_watchlist: !Add_to_watchlist, # Modified variable
+          full_playlist: false
+        }
       },
       'cmd+alt': {
         subtitle: "Add to WatchList (⌥): #{!Add_to_watchlist} 𐄁 Full Playlist (⌘): true",
-        variables: { add_to_watchlist: !Add_to_watchlist, full_playlist: true }
+        variables: {
+          media_type: media_type,
+          add_to_watchlist: !Add_to_watchlist, # Modified variable
+          full_playlist: true # Modified variable
+        }
       }
     }
   }
