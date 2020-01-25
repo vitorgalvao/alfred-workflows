@@ -26,7 +26,7 @@ def move_to_dir(path, target_dir)
 end
 
 def add_local_to_watchlist(path)
-  ensure_data_files
+  ensure_data_paths
 
   if File.file?(path)
     add_file_to_watchlist(path)
@@ -165,7 +165,7 @@ def add_url_to_watchlist(url, playlist = false)
 end
 
 def display_towatch(sort = nil)
-  ensure_data_files
+  ensure_data_paths
 
   script_filter_items = []
   list_hash = YAML.load_file(Towatch_list)
@@ -229,7 +229,7 @@ def display_towatch(sort = nil)
 end
 
 def display_watched
-  ensure_data_files
+  ensure_data_paths
 
   script_filter_items = []
   list_hash = YAML.load_file(Watched_list)
@@ -454,7 +454,7 @@ def delete_from_list(id, list)
 end
 
 def switch_list(id, origin_list, target_list)
-  ensure_data_files
+  ensure_data_paths
 
   id_hash = { id => YAML.load_file(origin_list)[id] }
 
@@ -468,12 +468,10 @@ def send_to_top(id)
   switch_list(id, Towatch_list, Towatch_list)
 end
 
-def ensure_data_files
+def ensure_data_paths
   require 'fileutils'
 
   Dir.mkdir(List_dir) unless Dir.exist?(File.expand_path(Lists_dir))
-  Dir.mkdir(ENV['alfred_workflow_cache']) unless Dir.exist?(ENV['alfred_workflow_cache']) # For Downvid
-
   FileUtils.touch(Towatch_list) unless File.exist?(Towatch_list)
   FileUtils.touch(Watched_list) unless File.exist?(Watched_list)
 end

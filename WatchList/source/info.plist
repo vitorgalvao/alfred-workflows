@@ -397,7 +397,6 @@ add_url_to_watchlist(ARGV[0].strip)</string>
 				<key>script</key>
 				<string>require "#{Dir.pwd}/watchlist_functions.rb"
 
-clipboard = %x(pbpaste).strip
 add_url_to_watchlist(ARGV[0].strip, true)</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
@@ -1194,7 +1193,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 		<string>added_item_order</string>
 	</array>
 	<key>version</key>
-	<string>1.22.3</string>
+	<string>20.1</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
