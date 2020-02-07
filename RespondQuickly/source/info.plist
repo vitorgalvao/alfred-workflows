@@ -49,6 +49,72 @@
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>readonly qr_image="$(
+  if [[ "${save_to_desktop}" == 'true' ]]; then
+    echo "${HOME}/Desktop/$(date '+%Y%m%d-%H%M%S').png"
+  else
+    echo "$(mktemp).png"
+  fi
+)"
+
+readonly encoded_text="$(perl -MURI::Escape -wlne 'print uri_escape ($_)' &lt;&lt;&lt; "${1}" | perl -pe 's/\n/%0A/')"
+ 
+curl --location --silent --output "${qr_image}" "http://chart.apis.google.com/chart?cht=qr&amp;chs=400x400&amp;chl=${encoded_text}&amp;chld=H|0"
+
+qlmanage -p "${qr_image}"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>B5D50DD5-AB63-4406-AA30-3C731D7CD43B</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>1</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>12</integer>
+				<key>hotmod</key>
+				<integer>1835008</integer>
+				<key>hotstring</key>
+				<string>Q</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>AFA539B0-9BB1-43CD-96FB-1AA6866EA13B</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
 				<string># THESE VARIABLES MUST BE SET. SEE THE ONEUPDATER README FOR AN EXPLANATION OF EACH.
@@ -134,68 +200,11 @@ fi</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>action</key>
-				<integer>0</integer>
-				<key>argument</key>
-				<integer>1</integer>
-				<key>focusedappvariable</key>
-				<false/>
-				<key>focusedappvariablename</key>
-				<string></string>
-				<key>hotkey</key>
-				<integer>12</integer>
-				<key>hotmod</key>
-				<integer>1835008</integer>
-				<key>hotstring</key>
-				<string>Q</string>
-				<key>leftcursor</key>
-				<false/>
-				<key>modsmode</key>
-				<integer>0</integer>
-				<key>relatedAppsMode</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.hotkey</string>
-			<key>uid</key>
-			<string>AFA539B0-9BB1-43CD-96FB-1AA6866EA13B</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>qr_image="$(mktemp).png"
-encoded_text="$(perl -MURI::Escape -wlne 'print uri_escape ($_)' &lt;&lt;&lt; "${1}" | perl -pe 's/\n/%0A/')"
- 
-curl --location --silent --output "${qr_image}" "http://chart.apis.google.com/chart?cht=qr&amp;chs=400x400&amp;chl=${encoded_text}&amp;chld=H|0"
-
-qlmanage -p "${qr_image}"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>B5D50DD5-AB63-4406-AA30-3C731D7CD43B</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
 	</array>
 	<key>readme</key>
-	<string>Select some text, press the keyboard shortcut, and it’ll convert it to a QR Code that’ll be opened with QuickLook.</string>
+	<string>Select some text, press the keyboard shortcut, and it’ll convert it to a QR Code that’ll be opened with QuickLook.
+
+Images are saved to a temporary location auto-cleaned by the system. To keep images for reuse, set the `save_to_desktop` Workflow Environment Variable to `true`.</string>
 	<key>uidata</key>
 	<dict>
 		<key>8CB9A286-0D57-4AF9-8AD3-AFB73F8E2693</key>
@@ -224,8 +233,13 @@ qlmanage -p "${qr_image}"</string>
 			<integer>20</integer>
 		</dict>
 	</dict>
+	<key>variables</key>
+	<dict>
+		<key>save_to_desktop</key>
+		<string>false</string>
+	</dict>
 	<key>version</key>
-	<string>1.1.3</string>
+	<string>20.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
