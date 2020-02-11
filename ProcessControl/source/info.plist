@@ -337,6 +337,7 @@ processes.each do |item|
   freeze_exec = "kill -STOP #{pid}"
 
   script_filter_items.push(
+    uid: pid,
     title: command,
     subtitle: "CPU: #{cpu}% / Memory: #{memory}% / Niceness: #{nice} / PID: #{pid}",
     arg: pid,
@@ -717,7 +718,7 @@ On each process:
 		<string>3</string>
 	</dict>
 	<key>version</key>
-	<string>1.0.11</string>
+	<string>20.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
