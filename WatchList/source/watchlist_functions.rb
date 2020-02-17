@@ -412,6 +412,8 @@ def duration_in_seconds(file_path)
 end
 
 def seconds_to_hms(total_seconds)
+  return nil if total_seconds.zero? # Can happen when failing to get duration of a valid video (e.g. direct link to MP4)
+
   seconds = total_seconds % 60
   minutes = (total_seconds / 60) % 60
   hours = total_seconds / (60 * 60)
