@@ -6,32 +6,60 @@ require 'pathname'
 order = ARGV[0] # modified, modified_reverse, added, added_reverse
 abort 'You need to specify an order type.' if ARGV[0].empty?
 
-downloads_dir = ENV['downloads_dir'].nil? || ENV['downloads_dir'].empty? ? "#{ENV['HOME']}/Downloads" : File.expand_path(ENV['downloads_dir'])
-all_entries = Pathname(downloads_dir).children.map(&:to_path).reject { |p| File.basename(p).start_with?('.') }
+Cache_dir = Pathname(ENV['alfred_workflow_cache'])
+
+Downloads_dir =
+  if ENV['Downloads_dir'].nil? || ENV['Downloads_dir'].empty?
+    Pathname(ENV['HOME']).join('Downloads')
+  else
+    Pathname(ENV['Downloads_dir']).expand_path
+  end
+
+All_entries =
+  Downloads_dir
+  .children
+  .reject { |p| p.basename.to_path.start_with?('.') }
+
 script_filter_items = []
 
 entries =
   if order =~ /modified.*/
-    all_entries.sort_by(&File.method(:mtime))
+    All_entries.sort_by(&:mtime)
   elsif order =~ /added.*/
-    entries_cache_file = "#{ENV['alfred_workflow_cache']}/added_cache.txt"
+    entries_cache_file = Cache_dir.join('added_cache.txt')
 
-    entries_date_old = File.mtime(entries_cache_file).to_i rescue 0
-    entries_date_new = File.mtime(downloads_dir).to_i
+    entries_date_old = entries_cache_file.mtime.to_i rescue 0
+    entries_date_new = Downloads_dir.mtime.to_i
 
     if entries_date_old != entries_date_new
       require 'open3'
-      entries_by_added = Open3.capture2('mdls', '-name', 'kMDItemFSName', '-name', 'kMDItemDateAdded', '-raw', *all_entries).first.split("\0").each_slice(2).sort.map { |a| "#{downloads_dir}/#{a[1]}" }
 
-      if entries_by_added.none? { |entry| File.basename(entry) == '(null)' } # Prevent saving a cache file when there are incomplete files (downloads in progress)
-        Dir.mkdir(ENV['alfred_workflow_cache']) unless Dir.exist?(ENV['alfred_workflow_cache'])
-        File.write(entries_cache_file, entries_by_added.join("\n"))
-        File.utime(entries_date_new, entries_date_new, entries_cache_file)
+      entries_by_added =
+        Open3
+        .capture2(
+          'mdls',
+          '-name', 'kMDItemFSName',
+          '-name', 'kMDItemDateAdded',
+          '-raw',
+          *All_entries.map(&:to_path)
+        )
+        .first
+        .split("\0")
+        .each_slice(2)
+        .sort
+        .map { |p| Downloads_dir.join(p[1]) }
+
+      # Prevent saving a cache file
+      # when there are incomplete files (downloads in progress)
+      if entries_by_added.none? { |p| p.basename == '(null)' }
+        Cache_dir.mkpath
+        entries_cache_file.write(entries_by_added.join("\n"))
+        entries_cache_file.utime(entries_date_new, entries_date_new)
       end
 
       entries_by_added
     else
-      File.read(entries_cache_file).split("\n")
+      entries_cache_file.read.split("\n").map { |p| Pathname(p) }
     end
   else
     abort 'Unrecognised order type.'
@@ -40,8 +68,20 @@ entries =
 entries.reverse! if order =~ /.+_reverse/
 
 entries.each do |entry|
-  name = File.directory?(entry) ? File.basename(entry) : File.basename(entry, File.extname(entry))
-  script_filter_items.push(type: 'file', title: name, subtitle: entry, icon: { path: entry, type: 'fileicon' }, arg: entry)
+  name =
+    if entry.directory?
+      entry.basename.to_path
+    else
+      entry.basename(entry.extname).to_path
+    end
+
+  script_filter_items.push(
+    type: 'file',
+    title: name,
+    subtitle: entry,
+    icon: { path: entry, type: 'fileicon' },
+    arg: entry
+  )
 end
 
 puts({ items: script_filter_items }.to_json)
