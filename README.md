@@ -194,6 +194,11 @@ Run pomodoros and other timers
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/SandwichTimer) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/SandwichTimer/SandwichTimer.alfredworkflow)
 
+### SequentialPaste <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/SequentialPaste/source/icon.png' width='60' align='center' alt='SequentialPaste icon'>
+Paste previous clipboard entries in order
+
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/SequentialPaste) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/SequentialPaste/SequentialPaste.alfredworkflow)
+
 ### ShortFilms <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/ShortFilms/source/icon.png' width='60' align='center' alt='ShortFilms icon'>
 Stream from a selection of short films
 
