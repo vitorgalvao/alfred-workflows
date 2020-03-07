@@ -376,6 +376,7 @@ fi</string>
 				<integer>102</integer>
 				<key>script</key>
 				<string>readonly count_file="${alfred_workflow_cache}/counts_file.txt"
+mkdir -p "${alfred_workflow_cache}"
 
 readonly default_reset='2'
 [[ "${reset_mins}" =~ ^[0-9]+$ ]] || reset_mins="${default_reset}"
@@ -610,7 +611,7 @@ Call `:sequentialpasteresetcount` for a manual reset.</string>
 		<string>2</string>
 	</dict>
 	<key>version</key>
-	<string>20.2</string>
+	<string>20.3</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
