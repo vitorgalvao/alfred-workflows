@@ -379,6 +379,7 @@ fi</string>
 
 readonly default_reset='2'
 [[ "${reset_mins}" =~ ^[0-9]+$ ]] || reset_mins="${default_reset}"
+[[ "${reset_mins}" -lt '1' ]] &amp;&amp; reset_mins='1'
 
 if [[ "${1}" == 'reset' ]]; then
   rm "${count_file}"
@@ -609,7 +610,7 @@ Call `:sequentialpasteresetcount` for a manual reset.</string>
 		<string>2</string>
 	</dict>
 	<key>version</key>
-	<string>20.1</string>
+	<string>20.2</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
