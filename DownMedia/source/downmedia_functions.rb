@@ -22,6 +22,7 @@ def show_options(media_type)
   script_filter_items = []
 
   common_options = {
+    uid: "downmedia #{media_type}",
     subtitle: "Add to WatchList (⌥): #{Add_to_watchlist} 𐄁 Full Playlist (⌘): false",
     valid: true,
     variables: {
@@ -95,6 +96,7 @@ def show_progress
     destination = Pathname(progress_lines.select { |line| line.start_with?('Destination:') }.last.sub('Destination: ', '')).basename rescue 'Getting destination name…'
 
     script_filter_items.push(
+      uid: 'downmedia progress',
       title: progress,
       subtitle: destination,
       valid: false,
@@ -114,6 +116,7 @@ def show_progress
     )
   else
     script_filter_items.push(
+      uid: 'downmedia progress',
       title: 'No Download in Progress',
       subtitle: 'Will auto-refresh if a download starts',
       valid: false
