@@ -8,7 +8,7 @@ All commands are accessed via the keyword `rec`.
 
 ![](https://i.imgur.com/Ul4Zv0m.gif)
 
-`View recommendations` shows you everything you’ve saved. ↵ on an item searches for it on a relevant website. For example, by default film recommendations will open on [IMDB](https://www.imdb.com/), while book recommendations will open on [Goodreads](https://www.goodreads.com/).
+`View recommendations` shows everything you’ve saved. ↵ on an item searches for it on a relevant website. For example, by default film recommendations open on [IMDB](https://www.imdb.com/), while book recommendations will open on [Goodreads](https://www.goodreads.com/).
 
 ![](https://i.imgur.com/jf7Q4rY.png)
 

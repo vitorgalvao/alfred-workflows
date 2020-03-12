@@ -32,32 +32,6 @@
 				<false/>
 			</dict>
 		</array>
-		<key>113D4006-AAB5-4AA9-9134-061A8DECB9E7</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>04AD2E9D-6BDB-4879-9E10-262543D5A318</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>1DC28F93-2FFA-4071-8528-E3398E5B6F57</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>ACB38689-A9FA-4A36-AAE8-5C3F04D717FA</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>1FF20159-10F8-4A6C-8821-613488BEE54F</key>
 		<array>
 			<dict>
@@ -140,37 +114,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>113D4006-AAB5-4AA9-9134-061A8DECB9E7</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>1DC28F93-2FFA-4071-8528-E3398E5B6F57</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>FF7BD6CB-A079-40E1-8D1F-E57F33AC49E6</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>BA0923A9-ABD8-40B5-92F6-B3154DDE9700</string>
+				<string>FD9C3ECF-4AC2-4B27-8734-33DF94E244C2</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -241,19 +185,6 @@
 				<integer>131072</integer>
 				<key>modifiersubtext</key>
 				<string>Send to top.</string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>BA0923A9-ABD8-40B5-92F6-B3154DDE9700</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>FAC71A36-9691-46D7-9E1D-D055F4E26EB8</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -336,11 +267,47 @@
 				<false/>
 			</dict>
 		</array>
-		<key>FF7BD6CB-A079-40E1-8D1F-E57F33AC49E6</key>
+		<key>FD9C3ECF-4AC2-4B27-8734-33DF94E244C2</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
+				<string>04AD2E9D-6BDB-4879-9E10-262543D5A318</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>E3B0541E-4650-43E5-B1DB-7BCD7777AB0D</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>ACB38689-A9FA-4A36-AAE8-5C3F04D717FA</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>3AD294A5-2731-4CFA-9A95-EC222F22F9CC</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
 				<string>9219E3AB-C3C5-4EFB-9660-980766DEABEC</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>A59777CA-F7F8-4D4F-812E-70200605FAEF</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>FAC71A36-9691-46D7-9E1D-D055F4E26EB8</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -523,6 +490,64 @@ show_types(Sites)</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string>{var:action}</string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>add</string>
+						<key>outputlabel</key>
+						<string>Add</string>
+						<key>uid</key>
+						<string>E3B0541E-4650-43E5-B1DB-7BCD7777AB0D</string>
+					</dict>
+					<dict>
+						<key>inputstring</key>
+						<string>{var:action}</string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>view</string>
+						<key>outputlabel</key>
+						<string>View</string>
+						<key>uid</key>
+						<string>3AD294A5-2731-4CFA-9A95-EC222F22F9CC</string>
+					</dict>
+					<dict>
+						<key>inputstring</key>
+						<string>{var:action}</string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>edit</string>
+						<key>outputlabel</key>
+						<string>Edit</string>
+						<key>uid</key>
+						<string>A59777CA-F7F8-4D4F-812E-70200605FAEF</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>Change</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>FD9C3ECF-4AC2-4B27-8734-33DF94E244C2</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argument</key>
 				<string></string>
 				<key>variables</key>
@@ -553,25 +578,6 @@ show_types(Sites)</string>
 			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
 			<string>80E14E7C-FDDA-469C-9D2A-A03DDA3F04E6</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>inputstring</key>
-				<string>{var:action}</string>
-				<key>matchcasesensitive</key>
-				<true/>
-				<key>matchmode</key>
-				<integer>0</integer>
-				<key>matchstring</key>
-				<string>add</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.filter</string>
-			<key>uid</key>
-			<string>113D4006-AAB5-4AA9-9134-061A8DECB9E7</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -797,25 +803,6 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>inputstring</key>
-				<string>{var:action}</string>
-				<key>matchcasesensitive</key>
-				<true/>
-				<key>matchmode</key>
-				<integer>0</integer>
-				<key>matchstring</key>
-				<string>view</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.filter</string>
-			<key>uid</key>
-			<string>1DC28F93-2FFA-4071-8528-E3398E5B6F57</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -863,25 +850,6 @@ delete_line(Recommendations_File, ARGV[0].to_i)</string>
 			<string>2257A6A6-DA8F-48A1-B6E0-7652D5FE4E27</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>inputstring</key>
-				<string>{var:action}</string>
-				<key>matchcasesensitive</key>
-				<true/>
-				<key>matchmode</key>
-				<integer>0</integer>
-				<key>matchstring</key>
-				<string>edit</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.filter</string>
-			<key>uid</key>
-			<string>FF7BD6CB-A079-40E1-8D1F-E57F33AC49E6</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1120,25 +1088,6 @@ show_types(Sites)</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>inputstring</key>
-				<string>{var:action}</string>
-				<key>matchcasesensitive</key>
-				<true/>
-				<key>matchmode</key>
-				<integer>0</integer>
-				<key>matchstring</key>
-				<string>change</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.filter</string>
-			<key>uid</key>
-			<string>BA0923A9-ABD8-40B5-92F6-B3154DDE9700</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
 	</array>
 	<key>readme</key>
 	<string>A list of movies to watch or books to read becomes less useful as it grows. Eventually you forget why you added an item, meaning you no longer know if it’s no longer relevant or the one you should prioritise. `RecommendationNation` aims to mitigate that problem by saving the “why” together with the “what”.
@@ -1151,7 +1100,7 @@ All commands are accessed via the keyword `rec`.
 
 ![](https://i.imgur.com/Ul4Zv0m.gif)
 
-`View recommendations` shows you everything you’ve saved. ↵ on an item searches for it on a relevant website. For example, by default film recommendations will open on [IMDB](https://www.imdb.com/), while book recommendations will open on [Goodreads](https://www.goodreads.com/).
+`View recommendations` shows everything you’ve saved. ↵ on an item searches for it on a relevant website. For example, by default film recommendations open on [IMDB](https://www.imdb.com/), while book recommendations will open on [Goodreads](https://www.goodreads.com/).
 
 ![](https://i.imgur.com/jf7Q4rY.png)
 
@@ -1171,7 +1120,7 @@ To keep your list synced between machines, use the `recs_dir` Workflow Environme
 		<key>04AD2E9D-6BDB-4879-9E10-262543D5A318</key>
 		<dict>
 			<key>xpos</key>
-			<integer>370</integer>
+			<integer>420</integer>
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
@@ -1182,56 +1131,42 @@ To keep your list synced between machines, use the `recs_dir` Workflow Environme
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>1430</integer>
+			<integer>1480</integer>
 			<key>ypos</key>
 			<integer>160</integer>
 		</dict>
 		<key>1084E76E-1985-402B-847F-CF68757DEBD8</key>
 		<dict>
 			<key>xpos</key>
-			<integer>530</integer>
+			<integer>580</integer>
 			<key>ypos</key>
 			<integer>940</integer>
-		</dict>
-		<key>113D4006-AAB5-4AA9-9134-061A8DECB9E7</key>
-		<dict>
-			<key>xpos</key>
-			<integer>300</integer>
-			<key>ypos</key>
-			<integer>50</integer>
-		</dict>
-		<key>1DC28F93-2FFA-4071-8528-E3398E5B6F57</key>
-		<dict>
-			<key>xpos</key>
-			<integer>300</integer>
-			<key>ypos</key>
-			<integer>190</integer>
 		</dict>
 		<key>1FF20159-10F8-4A6C-8821-613488BEE54F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>745</integer>
+			<integer>795</integer>
 			<key>ypos</key>
 			<integer>940</integer>
 		</dict>
 		<key>2257A6A6-DA8F-48A1-B6E0-7652D5FE4E27</key>
 		<dict>
 			<key>xpos</key>
-			<integer>590</integer>
+			<integer>640</integer>
 			<key>ypos</key>
 			<integer>310</integer>
 		</dict>
 		<key>273E24F5-5783-4EAA-965E-35A00995E444</key>
 		<dict>
 			<key>xpos</key>
-			<integer>590</integer>
+			<integer>640</integer>
 			<key>ypos</key>
 			<integer>610</integer>
 		</dict>
 		<key>329F9C98-5F56-4D30-AC13-770AF9675893</key>
 		<dict>
 			<key>xpos</key>
-			<integer>530</integer>
+			<integer>580</integer>
 			<key>ypos</key>
 			<integer>50</integer>
 		</dict>
@@ -1245,28 +1180,28 @@ To keep your list synced between machines, use the `recs_dir` Workflow Environme
 		<key>39C016E6-A2DF-4AD7-94AF-52BA677F1AC8</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1185</integer>
+			<integer>1235</integer>
 			<key>ypos</key>
 			<integer>50</integer>
 		</dict>
 		<key>5129CE8D-104C-4235-918F-C0F2993FA2A8</key>
 		<dict>
 			<key>xpos</key>
-			<integer>590</integer>
+			<integer>640</integer>
 			<key>ypos</key>
 			<integer>460</integer>
 		</dict>
 		<key>62BD5879-500B-47BB-8E34-D89ACBC573D2</key>
 		<dict>
 			<key>xpos</key>
-			<integer>745</integer>
+			<integer>795</integer>
 			<key>ypos</key>
 			<integer>50</integer>
 		</dict>
 		<key>80E14E7C-FDDA-469C-9D2A-A03DDA3F04E6</key>
 		<dict>
 			<key>xpos</key>
-			<integer>965</integer>
+			<integer>1015</integer>
 			<key>ypos</key>
 			<integer>50</integer>
 		</dict>
@@ -1280,93 +1215,86 @@ To keep your list synced between machines, use the `recs_dir` Workflow Environme
 		<key>8CFD0664-03BF-4054-8237-4F1EBDE6CE57</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1030</integer>
+			<integer>1080</integer>
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
 		<key>9219E3AB-C3C5-4EFB-9660-980766DEABEC</key>
 		<dict>
 			<key>xpos</key>
-			<integer>370</integer>
+			<integer>420</integer>
 			<key>ypos</key>
 			<integer>310</integer>
 		</dict>
 		<key>ACB38689-A9FA-4A36-AAE8-5C3F04D717FA</key>
 		<dict>
 			<key>xpos</key>
-			<integer>370</integer>
+			<integer>420</integer>
 			<key>ypos</key>
 			<integer>160</integer>
-		</dict>
-		<key>BA0923A9-ABD8-40B5-92F6-B3154DDE9700</key>
-		<dict>
-			<key>xpos</key>
-			<integer>300</integer>
-			<key>ypos</key>
-			<integer>940</integer>
 		</dict>
 		<key>BEE116C1-581A-4AA5-8422-ABE96BEFE9D1</key>
 		<dict>
 			<key>xpos</key>
-			<integer>590</integer>
+			<integer>640</integer>
 			<key>ypos</key>
 			<integer>160</integer>
 		</dict>
 		<key>C1B92374-D5FB-40A4-8E11-90103AC80298</key>
 		<dict>
 			<key>xpos</key>
-			<integer>810</integer>
+			<integer>860</integer>
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
 		<key>D67B8F7C-1D60-4834-AB6A-931A63E50BB6</key>
 		<dict>
 			<key>xpos</key>
-			<integer>590</integer>
+			<integer>640</integer>
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
 		<key>DB7CDD15-14F5-4AEB-AF18-E8E4DFB5868B</key>
 		<dict>
 			<key>xpos</key>
-			<integer>590</integer>
+			<integer>640</integer>
 			<key>ypos</key>
 			<integer>910</integer>
 		</dict>
 		<key>F0F8DA59-7ABE-478A-843E-93D6515CE5B7</key>
 		<dict>
 			<key>xpos</key>
-			<integer>590</integer>
+			<integer>640</integer>
 			<key>ypos</key>
 			<integer>760</integer>
 		</dict>
 		<key>F4DE1682-A76D-4656-BDC9-C10BC4CF952E</key>
 		<dict>
 			<key>xpos</key>
-			<integer>810</integer>
+			<integer>860</integer>
 			<key>ypos</key>
 			<integer>910</integer>
 		</dict>
 		<key>F83FE6A8-9603-4F47-A66A-FA39AB330AC5</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1250</integer>
+			<integer>1300</integer>
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
 		<key>FAC71A36-9691-46D7-9E1D-D055F4E26EB8</key>
 		<dict>
 			<key>xpos</key>
-			<integer>370</integer>
+			<integer>420</integer>
 			<key>ypos</key>
 			<integer>910</integer>
 		</dict>
-		<key>FF7BD6CB-A079-40E1-8D1F-E57F33AC49E6</key>
+		<key>FD9C3ECF-4AC2-4B27-8734-33DF94E244C2</key>
 		<dict>
 			<key>xpos</key>
-			<integer>300</integer>
+			<integer>260</integer>
 			<key>ypos</key>
-			<integer>340</integer>
+			<integer>20</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
@@ -1379,7 +1307,7 @@ To keep your list synced between machines, use the `recs_dir` Workflow Environme
 		<string>recs_dir</string>
 	</array>
 	<key>version</key>
-	<string>1.0.4</string>
+	<string>20.1</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>

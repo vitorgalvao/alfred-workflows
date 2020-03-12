@@ -77,7 +77,7 @@ def show_recommendations(list_file)
   else
     File.readlines(list_file).each_with_index do |line, index|
       info = line.parse_csv
-      script_filter_items.push(title: info[1], subtitle: "#{info[0].capitalize} rec from #{info[2]}. #{info[3]}.", match: info.join(' '), arg: index)
+      script_filter_items.push(title: info[1], subtitle: "#{info[0].capitalize} rec from #{info[2]}. #{info[3]}.".sub(%r{\s*\.*$}, '.'), match: info.join(' '), arg: index)
     end
   end
 
