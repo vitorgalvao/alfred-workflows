@@ -14,4 +14,4 @@ You’ll get notifications of the various phases, with a sound when it’s compl
 
 ![](https://i.imgur.com/iOxLOWb.png)
 
-You can change the upload host in the `upload_file_to` Workflow Environment Variable. By default it uses [transfer.sh](https://transfer.sh/). Other supported hosts are: [alpha.transfer.sh](https://alpha.transfer.sh/) [bayfiles.com](https://bayfiles.com/), [anonfile.com](https://anonfile.com/), [megaupload.is](https://megaupload.is/), and [forumfiles.com](https://forumfiles.com/).
+You can change the upload host in the `upload_file_to` Workflow Environment Variable. Supported hosts are: [0x0.st](https://0x0.st/), [transfer.sh](https://transfer.sh/), [alpha.transfer.sh](https://alpha.transfer.sh/) [bayfiles.com](https://bayfiles.com/), [anonfile.com](https://anonfile.com/), [megaupload.is](https://megaupload.is/), and [forumfiles.com](https://forumfiles.com/).
