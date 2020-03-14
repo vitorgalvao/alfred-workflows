@@ -2,6 +2,7 @@ require 'cgi'
 require 'fileutils'
 require 'json'
 require 'open-uri'
+require 'open3'
 require 'shellwords'
 
 Last_access_file = "#{ENV['alfred_workflow_data']}/last_access_file.txt".freeze
@@ -27,7 +28,7 @@ def error(message)
 end
 
 def save_pinboard_token
-  pinboard_token = %x(osascript -l JavaScript -e "
+  pinboard_token = Open3.capture2('osascript', '-l', 'JavaScript', '-e', "
     const app = Application.currentApplication()
     app.includeStandardAdditions = true
 
@@ -40,7 +41,7 @@ def save_pinboard_token
     })
 
     response.textReturned
-  ").strip
+  ").first.strip
 
   error('Cannot continue without a Pinboard token.') if pinboard_token.empty?
 
@@ -51,7 +52,7 @@ def save_pinboard_token
 end
 
 def grab_pinboard_token
-  pinboard_token = %x(security find-generic-password -s 'Pinboard API Token' -w).strip
+  pinboard_token = Open3.capture2('security', 'find-generic-password', '-s', 'Pinboard API Token', '-w').first.strip
   pinboard_token.empty? ? save_pinboard_token : pinboard_token
 end
 
@@ -61,7 +62,7 @@ def reset_pinboard_token
 end
 
 def grab_url_title
-  url, title = %x("#{__dir__}"/get_url_and_title).strip.split('|')
+  url, title = Open3.capture2("#{__dir__}/get_url_and_title", '--').first.strip.split('|') # Second dummy argument is to not require shellescaping single argument
 
   error('You need a supported web browser as your frontmost app.') if url.nil?
   title ||= url # For pages without a title tag
@@ -70,7 +71,7 @@ def grab_url_title
 end
 
 def open_gui
-  pinplus_app_path = %x(mdfind kMDItemCFBundleIdentifier = com.vitorgalvao.pinplus).strip
+  pinplus_app_path = Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier = com.vitorgalvao.pinplus').first.strip
   pinplus_app_path.empty? ? system("#{__dir__.shellescape}/run_bookmarklet") : system("#{pinplus_app_path}/Contents/MacOS/PinPlus")
 end
 
