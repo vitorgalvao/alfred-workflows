@@ -167,62 +167,61 @@ end
 def display_towatch(sort = nil)
   ensure_data_paths
 
-  script_filter_items = []
   list_hash = YAML.load_file(Towatch_list)
 
   if list_hash == false || list_hash.nil?
-    script_filter_items.push(title: 'Play (wlp)', subtitle: 'Nothing to watch', valid: false)
-  else
-    hash_to_output =
-      case sort
-      when 'duration_ascending'
-        list_hash.sort_by { |_id, content| content['duration']['machine'] }
-      when 'duration_descending'
-        list_hash.sort_by { |_id, content| content['duration']['machine'] }.reverse
-      when 'size_ascending'
-        list_hash.sort_by { |_id, content| content['size']['machine'] || Float::INFINITY }
-      when 'size_descending'
-        list_hash.sort_by { |_id, content| content['size']['machine'] || -Float::INFINITY }.reverse
-      when 'best_ratio'
-        list_hash.sort_by { |_id, content| content['ratio'] || -Float::INFINITY }.reverse
-      else
-        list_hash
-      end
+    puts({ items: [{ title: 'Play (wlp)', subtitle: 'Nothing to watch', valid: false }] }.to_json)
+    exit 0
+  end
 
-    hash_to_output.each do |id, details|
-      item_count = details['count'].nil? ? '' : "(#{details['count']}) 𐄁 "
+  script_filter_items = []
 
-      common_values = {
-        title: details['name'],
-        arg: id
-      }
-
-      common_no_stream = { subtitle: "#{item_count}#{details['duration']['human']} 𐄁 #{details['size']['human']} 𐄁 #{details['path']}" }
-      common_no_series = { mods: { alt: { subtitle: 'Rescan is only available for series', valid: false } } }
-
-      case details['type']
-      when 'file'
-        script_filter_items.push(
-          **common_values,
-          **common_no_stream,
-          quicklookurl: details['path'],
-          **common_no_series
-        )
-      when 'stream'
-        script_filter_items.push(
-          **common_values,
-          subtitle: "≈ #{item_count}#{details['duration']['human']} 𐄁 #{details['url']}",
-          quicklookurl: details['url'],
-          **common_no_series
-        )
-      when 'series'
-        script_filter_items.push(
-          **common_values,
-          **common_no_stream,
-          mods: { alt: { subtitle: 'Rescan series' } }
-        )
-      end
+  hash_to_output =
+    case sort
+    when 'duration_ascending'
+      list_hash.sort_by { |_id, content| content['duration']['machine'] }
+    when 'duration_descending'
+      list_hash.sort_by { |_id, content| content['duration']['machine'] }.reverse
+    when 'size_ascending'
+      list_hash.sort_by { |_id, content| content['size']['machine'] || Float::INFINITY }
+    when 'size_descending'
+      list_hash.sort_by { |_id, content| content['size']['machine'] || -Float::INFINITY }.reverse
+    when 'best_ratio'
+      list_hash.sort_by { |_id, content| content['ratio'] || -Float::INFINITY }.reverse
+    else
+      list_hash
     end
+
+  hash_to_output.each do |id, details|
+    item_count = details['count'].nil? ? '' : "(#{details['count']}) 𐄁 "
+
+    # Common values
+    item = {
+      title: details['name'],
+      arg: id,
+      mods: {}
+    }
+
+    # Common modifications
+    case details['type']
+    when 'file', 'series' # Not a stream
+      item[:subtitle] = "#{item_count}#{details['duration']['human']} 𐄁 #{details['size']['human']} 𐄁 #{details['path']}"
+    when 'file', 'stream' # Not a series
+      item[:mods][:alt] = { subtitle: 'Rescan is only available for series', valid: false }
+    end
+
+    # Specific modifications
+    case details['type']
+    when 'file'
+      item[:quicklookurl] = details['path']
+    when 'stream'
+      item[:subtitle] = "≈ #{item_count}#{details['duration']['human']} 𐄁 #{details['url']}"
+      item[:quicklookurl] = details['url']
+    when 'series'
+      item[:mods][:alt] = { subtitle: 'Rescan series' }
+    end
+
+    script_filter_items.push(item)
   end
 
   puts({ items: script_filter_items }.to_json)
@@ -231,63 +230,38 @@ end
 def display_watched
   ensure_data_paths
 
-  script_filter_items = []
   list_hash = YAML.load_file(Watched_list)
 
   if list_hash == false || list_hash.nil?
-    script_filter_items.push(title: 'Mark unwatched (wlu)', subtitle: 'You have no unwatched files', valid: false)
-  else
-    list_hash.each do |id, details|
-
-      common_values = {
-        title: details['name'],
-        arg: id
-      }
-
-      common_has_url = {
-        quicklookurl: details['url'],
-        mods: {
-          cmd: {
-            subtitle: 'Open link in default browser',
-            arg: details['url']
-          },
-          alt: {
-            subtitle: 'Copy link to clipboard',
-            arg: details['url']
-          }
-        }
-      }
-
-      if details['url'].nil?
-        script_filter_items.push(
-          **common_values,
-          subtitle: details['path'],
-          mods: {
-            cmd: {
-              subtitle: 'This item has no origin url',
-              valid: false
-            },
-            alt: {
-              subtitle: 'This item has no origin url',
-              valid: false
-            }
-          }
-        )
-      elsif details['type'] == 'stream'
-        script_filter_items.push(
-          **common_values,
-          subtitle: details['url'],
-          **common_has_url
-        )
-      else
-        script_filter_items.push(
-          **common_values,
-          subtitle: "#{details['url']} 𐄁 #{details['path']}",
-          **common_has_url
-        )
-      end
-    end
+    puts({ items: [{ title: 'Mark unwatched (wlu)', subtitle: 'You have no unwatched files', valid: false }] }.to_json)
+    exit 0
   end
+
+  script_filter_items = []
+
+  list_hash.each do |id, details|
+    # Common values
+    item = {
+      title: details['name'],
+      arg: id,
+      mods: {}
+    }
+
+    # Modifications
+    if details['url'].nil?
+      item[:subtitle] = details['path']
+      item[:mods][:cmd] = { subtitle: 'This item has no origin url', valid: false }
+      item[:mods][:alt] = { subtitle: 'This item has no origin url', valid: false }
+    else
+      item[:subtitle] = details['type'] == 'stream' ? details['url'] : "#{details['url']} 𐄁 #{details['path']}"
+      item[:quicklookurl] = details['url']
+      item[:mods][:cmd] = { subtitle: 'Open link in default browser', arg: details['url'] }
+      item[:mods][:alt] = { subtitle: 'Copy link to clipboard', arg: details['url'] }
+    end
+
+    script_filter_items.push(item)
+  end
+
   puts({ items: script_filter_items }.to_json)
 end
 
@@ -324,6 +298,30 @@ def play(id, send_to_watched = true)
       update_series(id)
     end
   end
+end
+
+# By checking for and running the CLI of certain players instead of the app bundle, we get access to the exit status. That way, in the 'play' method, even if the file were to be marked as watched we do not do it unless it was a success.
+# This means we can configure our video player to not exit successfully on certain conditions and have greater granularity with WatchList.
+def play_item(type, path)
+  return true if type != 'stream' && !File.exist?(path) # If non-stream item does not exist, exit successfully so it can still be marked as watched
+
+  # The 'split' together with 'last' serves to try to pick the last installed version, in case more than one is found (multiple versions in Homebrew Cellar, for example)
+  video_player = lambda {
+    mpv = Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier', '=', 'io.mpv').first.strip.split("\n").last
+    return [mpv + '/Contents/MacOS/mpv', '--quiet'] if mpv
+
+    iina = Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier', '=', 'com.colliderli.iina').first.strip.split("\n").last
+    return iina + '/Contents/MacOS/IINA' if iina
+
+    vlc = Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier', '=', 'org.videolan.vlc').first.strip.split("\n").last
+    return vlc + '/Contents/MacOS/VLC' if vlc
+
+    return 'other'
+  }.call
+
+  error('To play a stream you need mpv, iina, or vlc') if video_player == 'other' && type == 'stream'
+
+  video_player == 'other' ? system('open', '-W', path) : Open3.capture2(*video_player, path)[1].success?
 end
 
 def mark_watched(id)
@@ -373,30 +371,6 @@ def edit_towatch
   end
 
   File.write(Towatch_list, target_hash.to_yaml)
-end
-
-# By checking for and running the CLI of certain players instead of the app bundle, we get access to the exit status. That way, in the 'play' method, even if the file were to be marked as watched we do not do it unless it was a success.
-# This means we can configure our video player to not exit successfully on certain conditions and have greater granularity with WatchList.
-def play_item(type, path)
-  return true if type != 'stream' && !File.exist?(path) # If non-stream item does not exist, exit successfully so it can still be marked as watched
-
-  # The 'split' together with 'last' serves to try to pick the last installed version, in case more than one is found (multiple versions in Homebrew Cellar, for example)
-  video_player = lambda {
-    mpv = Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier', '=', 'io.mpv').first.strip.split("\n").last
-    return [mpv + '/Contents/MacOS/mpv', '--quiet'] if mpv
-
-    iina = Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier', '=', 'com.colliderli.iina').first.strip.split("\n").last
-    return iina + '/Contents/MacOS/IINA' if iina
-
-    vlc = Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier', '=', 'org.videolan.vlc').first.strip.split("\n").last
-    return vlc + '/Contents/MacOS/VLC' if vlc
-
-    return 'other'
-  }.call
-
-  error('To play a stream you need mpv, iina, or vlc') if video_player == 'other' && type == 'stream'
-
-  video_player == 'other' ? system('open', '-W', path) : Open3.capture2(*video_player, path)[1].success?
 end
 
 def random_hex
@@ -473,7 +447,7 @@ end
 def ensure_data_paths
   require 'fileutils'
 
-  Dir.mkdir(List_dir) unless Dir.exist?(File.expand_path(Lists_dir))
+  Dir.mkdir(Lists_dir) unless Dir.exist?(File.expand_path(Lists_dir))
   FileUtils.touch(Towatch_list) unless File.exist?(Towatch_list)
   FileUtils.touch(Watched_list) unless File.exist?(Watched_list)
 end
