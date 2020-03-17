@@ -5,9 +5,9 @@ require 'open-uri'
 require 'open3'
 require 'shellwords'
 
-Last_access_file = "#{ENV['alfred_workflow_data']}/last_access_file.txt".freeze
-All_bookmarks_json = "#{ENV['alfred_workflow_data']}/all_bookmarks.json".freeze
-Unread_bookmarks_json = "#{ENV['alfred_workflow_data']}/unread_bookmarks.json".freeze
+Last_access_file = "#{ENV['alfred_workflow_cache']}/last_access_file.txt".freeze
+All_bookmarks_json = "#{ENV['alfred_workflow_cache']}/all_bookmarks.json".freeze
+Unread_bookmarks_json = "#{ENV['alfred_workflow_cache']}/unread_bookmarks.json".freeze
 
 def notification(message, title = ENV['alfred_workflow_name'])
   system("#{__dir__}/Notificator.app/Contents/Resources/Scripts/notificator", '--message', message, '--title', title)
@@ -46,7 +46,7 @@ def save_pinboard_token
   error('Cannot continue without a Pinboard token.') if pinboard_token.empty?
 
   system('security', 'add-generic-password', '-a', pinboard_token.split(':').first, '-s', 'Pinboard API Token', '-w', pinboard_token)
-  error 'Seem either the API token is incorrect or Pinboard’s servers are down.' if open("https://api.pinboard.in/v1/user/api_token/?auth_token=#{pinboard_token}").nil?
+  error 'Seem either the API token is incorrect or Pinboard’s servers are down.' if URI("https://api.pinboard.in/v1/user/api_token/?auth_token=#{pinboard_token}").open.nil?
 
   grab_pinboard_token
 end
@@ -83,7 +83,7 @@ def add_unread
   url_encoded = CGI.escape(url)
   title_encoded = CGI.escape(title)
 
-  result = JSON.parse(open("https://api.pinboard.in/v1/posts/add?url=#{url_encoded}&description=#{title_encoded}&toread=yes&auth_token=#{grab_pinboard_token}&format=json").read)['result_code']
+  result = JSON.parse(URI("https://api.pinboard.in/v1/posts/add?url=#{url_encoded}&description=#{title_encoded}&toread=yes&auth_token=#{grab_pinboard_token}&format=json").read)['result_code']
 
   return if result == 'done'
 
@@ -97,26 +97,26 @@ def add_unread
   error('Error adding bookmark. See error log in Desktop.')
 end
 
-def unsynced_with_website?
-  FileUtils.mkdir_p(ENV['alfred_workflow_data']) unless Dir.exist?(ENV['alfred_workflow_data'])
+def synced_with_website?
+  FileUtils.mkdir_p(ENV['alfred_workflow_cache']) unless Dir.exist?(ENV['alfred_workflow_cache'])
 
   last_access_local = File.exist?(Last_access_file) ? File.read(Last_access_file) : 'File does not yet exist'
-  last_access_remote = JSON.parse(open("https://api.pinboard.in/v1/posts/update?auth_token=#{grab_pinboard_token}&format=json").read)['update_time']
+  last_access_remote = JSON.parse(URI("https://api.pinboard.in/v1/posts/update?auth_token=#{grab_pinboard_token}&format=json").read)['update_time']
 
   if last_access_local == last_access_remote
     FileUtils.touch(Last_access_file)
-    return false
+    return true
   end
 
   File.write(Last_access_file, last_access_remote)
-  return true
+  false
 end
 
 def action_unread(action, url)
   url_encoded = CGI.escape(url)
 
   if action == 'delete'
-    open("https://api.pinboard.in/v1/posts/delete?url=#{url_encoded}&auth_token=#{grab_pinboard_token}")
+    URI("https://api.pinboard.in/v1/posts/delete?url=#{url_encoded}&auth_token=#{grab_pinboard_token}").open
     return
   end
 
@@ -124,16 +124,14 @@ def action_unread(action, url)
 
   toread = 'no'
 
-  bookmark = JSON.parse(open("https://api.pinboard.in/v1/posts/get?url=#{url_encoded}&auth_token=#{grab_pinboard_token}&format=json").read)['posts'][0]
+  bookmark = JSON.parse(URI("https://api.pinboard.in/v1/posts/get?url=#{url_encoded}&auth_token=#{grab_pinboard_token}&format=json").read)['posts'][0]
 
   title_encoded = CGI.escape(bookmark['description'])
   description_encoded = CGI.escape(bookmark['extended'])
   shared = bookmark['shared']
   tags_encoded = CGI.escape(bookmark['tags'])
 
-  open("https://api.pinboard.in/v1/posts/add?url=#{url_encoded}&description=#{title_encoded}&extended=#{description_encoded}&shared=#{shared}&toread=#{toread}&tags=#{tags_encoded}&auth_token=#{grab_pinboard_token}")
-
-  return
+  URI("https://api.pinboard.in/v1/posts/add?url=#{url_encoded}&description=#{title_encoded}&extended=#{description_encoded}&shared=#{shared}&toread=#{toread}&tags=#{tags_encoded}&auth_token=#{grab_pinboard_token}").open
 end
 
 def old_local_copy?
@@ -142,7 +140,7 @@ def old_local_copy?
   cache_minutes = ENV['minutes_between_checks'].to_i > 10 ? ENV['minutes_between_checks'].to_i : 10 # Default to keeping the cache for 10 minutes
   return false if ((Time.now - File.mtime(Last_access_file)) / 60).to_i < cache_minutes
 
-  return true
+  true
 end
 
 def show_bookmarks(bookmarks_file)
@@ -152,9 +150,8 @@ end
 
 def fetch_bookmarks(force = false)
   unless force
-    # These are separated instead of in an '||' because the 'if' is not lazily evaluated, so 'unsynced_with_website?' (which is slow) would run on every check
     return unless old_local_copy?
-    return unless unsynced_with_website?
+    return if synced_with_website?
   end
 
   all_bookmarks = JSON.parse(open("https://api.pinboard.in/v1/posts/all?auth_token=#{grab_pinboard_token}&format=json").read)
