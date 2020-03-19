@@ -9,10 +9,10 @@ abort 'You need to specify an order type.' if ARGV[0].empty?
 Cache_dir = Pathname(ENV['alfred_workflow_cache'])
 
 Downloads_dir =
-  if ENV['Downloads_dir'].nil? || ENV['Downloads_dir'].empty?
+  if ENV['downloads_dir'].nil? || ENV['downloads_dir'].empty?
     Pathname(ENV['HOME']).join('Downloads')
   else
-    Pathname(ENV['Downloads_dir']).expand_path
+    Pathname(ENV['downloads_dir']).expand_path
   end
 
 All_entries =

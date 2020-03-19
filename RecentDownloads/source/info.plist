@@ -279,8 +279,6 @@
 			<integer>3</integer>
 		</dict>
 		<dict>
-			<key>config</key>
-			<dict/>
 			<key>type</key>
 			<string>alfred.workflow.utility.junction</string>
 			<key>uid</key>
@@ -429,8 +427,6 @@ fi</string>
 			<integer>2</integer>
 		</dict>
 		<dict>
-			<key>config</key>
-			<dict/>
 			<key>type</key>
 			<string>alfred.workflow.utility.junction</string>
 			<key>uid</key>
@@ -753,10 +749,8 @@ By default the Workflow looks in `~/Downloads`. Change the value in the `downloa
 		<key>downloads_dir</key>
 		<string>~/Downloads</string>
 	</dict>
-	<key>variablesdontexport</key>
-	<array/>
 	<key>version</key>
-	<string>20.1</string>
+	<string>20.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
