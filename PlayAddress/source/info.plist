@@ -27,7 +27,7 @@
 				<key>modifiers</key>
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
-				<string>Download video to watch later.</string>
+				<string>Download video to watch later</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -471,7 +471,7 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 		<string>true</string>
 	</dict>
 	<key>version</key>
-	<string>2020.1</string>
+	<string>20.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
