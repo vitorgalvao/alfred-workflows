@@ -4,7 +4,7 @@ Redcarpet_dir = "#{__dir__}/_licensed/Redcarpet".freeze
 $LOAD_PATH.unshift "#{Redcarpet_dir}/gems/redcarpet-3.4.0/lib"
 
 def notification(subtitle, message, sound = '')
-  system("#{__dir__}/Notificator.app/Contents/Resources/Scripts/notificator", '--message', message, '--subtitle', subtitle, '--sound', sound, '--title', ENV['alfred_workflow_name'])
+  system("#{Dir.pwd}/Notificator.app/Contents/Resources/Scripts/notificator", '--message', message, '--subtitle', subtitle, '--sound', sound, '--title', ENV['alfred_workflow_name'])
 end
 
 begin
