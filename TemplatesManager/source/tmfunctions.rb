@@ -25,7 +25,7 @@ def finder_dir
 end
 
 def notification(message)
-  system("#{__dir__}/Notificator.app/Contents/Resources/Scripts/notificator", '--message', message, '--title', ENV['alfred_workflow_name'])
+  system("#{Dir.pwd}/Notificator.app/Contents/Resources/Scripts/notificator", '--message', message, '--title', ENV['alfred_workflow_name'])
 end
 
 def local_list
@@ -132,7 +132,7 @@ def local_script_run(location)
 
   require 'shellwords'
   Dir.chdir(location)
-  system("#{__dir__}/#{tm_script}".shellescape)
+  system("#{Dir.pwd}/#{tm_script}".shellescape)
 end
 
 # Copy files and directories directly

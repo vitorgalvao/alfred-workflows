@@ -885,7 +885,7 @@ It has a lot of options and you’ll likely use most of them, so I’ll fire thr
 		<string>custom_templates_dir</string>
 	</array>
 	<key>version</key>
-	<string>1.6.10</string>
+	<string>20.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
