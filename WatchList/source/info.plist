@@ -121,18 +121,7 @@
 			</dict>
 		</array>
 		<key>C929975A-3B90-474A-BA08-595EAB51A9B2</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>3C194D92-9446-457E-9DB4-0775F9165D08</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
+		<array/>
 		<key>D75377F6-6B47-4683-B400-224620A75802</key>
 		<array>
 			<dict>
@@ -202,7 +191,7 @@
 				<key>modifiersubtext</key>
 				<string></string>
 				<key>vitoclose</key>
-				<false/>
+				<true/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -635,25 +624,6 @@ play(ARGV[0], false)</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>externaltriggerid</key>
-				<string>sort_order</string>
-				<key>passinputasargument</key>
-				<false/>
-				<key>passvariables</key>
-				<true/>
-				<key>workflowbundleid</key>
-				<string>self</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.callexternaltrigger</string>
-			<key>uid</key>
-			<string>3C194D92-9446-457E-9DB4-0775F9165D08</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -1021,13 +991,6 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
-		<key>3C194D92-9446-457E-9DB4-0775F9165D08</key>
-		<dict>
-			<key>xpos</key>
-			<integer>770</integer>
-			<key>ypos</key>
-			<integer>740</integer>
-		</dict>
 		<key>63FBFF0E-05C5-47D2-9951-CB86E114264B</key>
 		<dict>
 			<key>xpos</key>
@@ -1193,7 +1156,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 		<string>added_item_order</string>
 	</array>
 	<key>version</key>
-	<string>20.5</string>
+	<string>20.6</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
