@@ -46,7 +46,7 @@ def save_pinboard_token
   error('Cannot continue without a Pinboard token.') if pinboard_token.empty?
 
   system('security', 'add-generic-password', '-a', pinboard_token.split(':').first, '-s', 'Pinboard API Token', '-w', pinboard_token)
-  error 'Seem either the API token is incorrect or Pinboard’s servers are down.' if URI("https://api.pinboard.in/v1/user/api_token/?auth_token=#{pinboard_token}").open.nil?
+  error 'Seem either the API token is incorrect or Pinboard’s servers are down.' if URI.open("https://api.pinboard.in/v1/user/api_token/?auth_token=#{pinboard_token}").nil?
 
   grab_pinboard_token
 end
@@ -116,7 +116,7 @@ def action_unread(action, url)
   url_encoded = CGI.escape(url)
 
   if action == 'delete'
-    URI("https://api.pinboard.in/v1/posts/delete?url=#{url_encoded}&auth_token=#{grab_pinboard_token}").open
+    URI.open("https://api.pinboard.in/v1/posts/delete?url=#{url_encoded}&auth_token=#{grab_pinboard_token}")
     return
   end
 
@@ -131,7 +131,7 @@ def action_unread(action, url)
   shared = bookmark['shared']
   tags_encoded = CGI.escape(bookmark['tags'])
 
-  URI("https://api.pinboard.in/v1/posts/add?url=#{url_encoded}&description=#{title_encoded}&extended=#{description_encoded}&shared=#{shared}&toread=#{toread}&tags=#{tags_encoded}&auth_token=#{grab_pinboard_token}").open
+  URI.open("https://api.pinboard.in/v1/posts/add?url=#{url_encoded}&description=#{title_encoded}&extended=#{description_encoded}&shared=#{shared}&toread=#{toread}&tags=#{tags_encoded}&auth_token=#{grab_pinboard_token}")
 end
 
 def old_local_copy?
