@@ -73,7 +73,7 @@ function transfer {
   elif [[ "${upload_host}" == '0x0.st' ]]; then
     curl --globoff --progress-bar --form "file=@\"${escaped_file_path}\"" "https://${upload_host}" 2> "${progress_file}" | tr -d '\n' | pbcopy
   else
-    curl --globoff --progress-bar --form "file=@\"${escaped_file_path}\"" "https://api.${upload_host}/upload" 2> "${progress_file}" | ruby -e 'require "json"; data = JSON.parse(gets); abort "There was an error uploading" if data["status"] == false; puts data["data"]["file"]["url"]["full"]' | tr -d '\n' | pbcopy
+    curl --globoff --progress-bar --form "file=@\"${escaped_file_path}\"" "https://api.${upload_host}/upload" 2> "${progress_file}" | ruby -r 'json' -e 'data = JSON.parse(gets); abort "There was an error uploading" if data["status"] == false; puts data["data"]["file"]["url"]["full"]' | tr -d '\n' | pbcopy
   fi
 
   # Play sound and show message
