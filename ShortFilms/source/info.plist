@@ -116,7 +116,7 @@
 				<key>runningsubtext</key>
 				<string>Updating list may take a while…</string>
 				<key>script</key>
-				<string>ruby shortfilms.rb</string>
+				<string></string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -554,8 +554,10 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 			<integer>690</integer>
 		</dict>
 	</dict>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
-	<string>20.1</string>
+	<string>20.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
