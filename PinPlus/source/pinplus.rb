@@ -83,7 +83,7 @@ def add_unread
   url_encoded = CGI.escape(url)
   title_encoded = CGI.escape(title)
 
-  result = JSON.parse(URI("https://api.pinboard.in/v1/posts/add?url=#{url_encoded}&description=#{title_encoded}&toread=yes&auth_token=#{grab_pinboard_token}&format=json").read)['result_code']
+  result = JSON.parse(URI.open("https://api.pinboard.in/v1/posts/add?url=#{url_encoded}&description=#{title_encoded}&toread=yes&auth_token=#{grab_pinboard_token}&format=json").read)['result_code']
 
   return if result == 'done'
 
@@ -101,7 +101,7 @@ def synced_with_website?
   FileUtils.mkdir_p(ENV['alfred_workflow_cache']) unless Dir.exist?(ENV['alfred_workflow_cache'])
 
   last_access_local = File.exist?(Last_access_file) ? File.read(Last_access_file) : 'File does not yet exist'
-  last_access_remote = JSON.parse(URI("https://api.pinboard.in/v1/posts/update?auth_token=#{grab_pinboard_token}&format=json").read)['update_time']
+  last_access_remote = JSON.parse(URI.open("https://api.pinboard.in/v1/posts/update?auth_token=#{grab_pinboard_token}&format=json").read)['update_time']
 
   if last_access_local == last_access_remote
     FileUtils.touch(Last_access_file)
@@ -124,7 +124,7 @@ def action_unread(action, url)
 
   toread = 'no'
 
-  bookmark = JSON.parse(URI("https://api.pinboard.in/v1/posts/get?url=#{url_encoded}&auth_token=#{grab_pinboard_token}&format=json").read)['posts'][0]
+  bookmark = JSON.parse(URI.open("https://api.pinboard.in/v1/posts/get?url=#{url_encoded}&auth_token=#{grab_pinboard_token}&format=json").read)['posts'][0]
 
   title_encoded = CGI.escape(bookmark['description'])
   description_encoded = CGI.escape(bookmark['extended'])
