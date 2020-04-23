@@ -281,8 +281,10 @@
 paths = ENV['added_item_order'] == 'append' ? ARGV.sort : ARGV.sort.reverse
 
 paths.each do |path|
+  require_audiovisual(path)
+
   if !ENV['move_on_add'].nil? &amp;&amp; !ENV['move_on_add'].empty?
-    new_path = move_to_dir(path, File.join(ENV['HOME'], ENV['move_on_add']))
+    new_path = move_to_dir(path, File.expand_path(ENV['move_on_add']))
     add_local_to_watchlist(new_path)
   else
     add_local_to_watchlist(path)
@@ -901,7 +903,7 @@ display_watched</string>
  
 We often have series of videos and streams that we’d like to watch but not necessarily keep after, but tracking which we’ve already seen (and are thus safe to delete) can be a chore.
  
-Select in the Finder the files or directories you wish to add to your list and apply the file action `Add to watchlist`. If the `move_on_add` Workflow Environment Variable is set, the items will be moved to that directory (relative to your home). Items will be prepended or appended to the list, depending on the `add_item_order` Workflow Environment Variable. Alternatively, call `swl` to add the URL in your clipboard as a stream (add ⌘ for the full playlist).
+Select in the Finder the files or directories you wish to add to your list and apply the file action `Add to watchlist`. If the `move_on_add` Workflow Environment Variable is set, the items will be moved to that directory. Items will be prepended or appended to the list, depending on the `add_item_order` Workflow Environment Variable. Alternatively, call `swl` to add the URL in your clipboard as a stream (add ⌘ for the full playlist).
 
 You then have some options you can pick from, all starting with `wl`.
 
@@ -1145,7 +1147,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 		<key>maximum_watched</key>
 		<string>9</string>
 		<key>move_on_add</key>
-		<string>Movies</string>
+		<string>~/Movies</string>
 		<key>top_on_play</key>
 		<string>true</string>
 	</dict>
@@ -1156,7 +1158,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 		<string>added_item_order</string>
 	</array>
 	<key>version</key>
-	<string>20.6</string>
+	<string>20.7</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>

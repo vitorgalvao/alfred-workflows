@@ -73,8 +73,6 @@ def add_file_to_watchlist(file_path)
 end
 
 def add_dir_to_watchlist(dir_path)
-  error('Directory has no audiovisual content') if find_audiovisual_files(dir_path).first.nil?
-
   id = random_hex
   name = File.basename(dir_path)
 
@@ -105,7 +103,7 @@ def update_series(id)
   list_hash = YAML.load_file(Towatch_list)
 
   dir_path = list_hash[id]['path']
-  audiovisual_files = find_audiovisual_files(dir_path)
+  audiovisual_files = list_audiovisual_files(dir_path)
   first_file = audiovisual_files.first
   count = audiovisual_files.count
 
@@ -284,7 +282,7 @@ def play(id, send_to_watched = true)
       abort 'Marking as watched since the directory no longer exists'
     end
 
-    audiovisual_files = find_audiovisual_files(item['path'])
+    audiovisual_files = list_audiovisual_files(item['path'])
     first_file = audiovisual_files.first
 
     return unless play_item('file', first_file)
@@ -401,9 +399,23 @@ def audiovisual_file?(path)
   Open3.capture2('mdls', '-name', 'kMDItemContentTypeTree', path).first.include?('public.audiovisual-content')
 end
 
-def find_audiovisual_files(dir_path)
+def list_audiovisual_files(dir_path)
   escaped_path = dir_path.gsub(/([\*\?\[\]{}\\])/, '\\\\\1')
   Dir.glob("#{escaped_path}/**/*").map(&:downcase).sort.select { |e| audiovisual_file?(e) }
+end
+
+def require_audiovisual(path)
+  if File.file?(path)
+    return if audiovisual_file?(path)
+
+    error('Is not an audiovisual file')
+  elsif File.directory?(path)
+    return unless list_audiovisual_files(path).first.nil?
+
+    error('Directory has no audiovisual content')
+  else
+    error('Not a valid path')
+  end
 end
 
 def add_to_list(hash, list)
