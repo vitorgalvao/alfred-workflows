@@ -3,7 +3,7 @@
 require 'json'
 require 'open-uri'
 
-devices = JSON.parse(URI.open('https://raw.githubusercontent.com/LeaVerou/dpi/gh-pages/devices.json').read)['device']
+devices = JSON.parse(URI('https://raw.githubusercontent.com/LeaVerou/dpi/gh-pages/devices.json').read)['device']
 
 script_filter_items = []
 
