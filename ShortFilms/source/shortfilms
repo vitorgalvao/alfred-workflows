@@ -13,14 +13,14 @@ if !File.exist?(list_file) || (((Time.now - File.mtime(list_file)) / (24 * 3600)
   Dir.mkdir(ENV['alfred_workflow_cache']) unless Dir.exist?(ENV['alfred_workflow_cache'])
 
   site_rss = 'https://www.shortoftheweek.com/feed'
-  site_feed = RSS::Parser.parse(URI.open(site_rss).read)
+  site_feed = RSS::Parser.parse(URI(site_rss).read)
 
   script_filter_items = []
 
   # Grab link from items, remove "/news/" links, load info from links into array
   site_feed.items.map(&:link).reject { |link| link.match('/news/') }.each do |item|
     # Get details
-    page = Nokogiri::HTML(URI.open(item), nil, Encoding::UTF_8.to_s) # Forced UTF-8
+    page = Nokogiri::HTML(URI(item).open, nil, Encoding::UTF_8.to_s) # Forced UTF-8
     url = page.at('.embed-wrapper').attr('data-src')
     title = page.at('h1.title').text
     image = URI.escape('https:' + page.at('.bar-hidden').at('img').attr('src'))
@@ -33,7 +33,7 @@ if !File.exist?(list_file) || (((Time.now - File.mtime(list_file)) / (24 * 3600)
     # set banner image as icon
     downloaded_image = "#{ENV['alfred_workflow_cache']}/#{File.basename(image)}"
     unless File.exist?(downloaded_image) # Do not redownload or resize old images
-      File.write(downloaded_image, URI.open(image).read)
+      File.write(downloaded_image, URI(image).read)
       image_width = Open3.capture2('sips', '--getProperty', 'pixelWidth', downloaded_image).first.split("\s").last.to_i
       image_height = Open3.capture2('sips', '--getProperty', 'pixelHeight', downloaded_image).first.split("\s").last.to_i
       smaller_dimension = (image_width > image_height ? image_height : image_width).to_s
