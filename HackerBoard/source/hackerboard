@@ -12,7 +12,7 @@ if ARGV[0] == 'pinboard'
 
     script_filter_items = []
 
-    JSON.parse(URI.open('https://feeds.pinboard.in/json/popular/').read).each do |item|
+    JSON.parse(URI('https://feeds.pinboard.in/json/popular/').read).each do |item|
       script_filter_items.push(title: item['d'], subtitle: item['u'], arg: item['u'])
     end
 
@@ -31,7 +31,7 @@ elsif ARGV[0] == 'hackernews'
 
     script_filter_items = []
 
-    RSS::Parser.parse(URI.open('https://news.ycombinator.com/rss')).items.each do |item|
+    RSS::Parser.parse(URI('https://news.ycombinator.com/rss').open).items.each do |item|
       if ENV['hn_main'] == 'comments'
         main_link = item.comments
         secondary_link = item.link
