@@ -6,6 +6,19 @@
 	<string>com.vitorgalvao.alfred.linkclean</string>
 	<key>connections</key>
 	<dict>
+		<key>7C2672E2-049F-4486-9B04-56940BF42AB1</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>87BE9FDE-D40E-46A8-B0CF-10D7D63F9352</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>87BE9FDE-D40E-46A8-B0CF-10D7D63F9352</key>
 		<array>
 			<dict>
@@ -33,7 +46,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>87BE9FDE-D40E-46A8-B0CF-10D7D63F9352</string>
+				<string>7C2672E2-049F-4486-9B04-56940BF42AB1</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -86,80 +99,36 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>url="$(pbpaste)"
-
-if [[ "{query}" == "short" ]]; then
-  # expand short url
-  expanded=$(curl --silent --head --location "${url}" | grep '^Location' | head -1 | sed 's/Location: //')
-  # change url to it, if it was expanded
-  [[ -n "${expanded}" ]] &amp;&amp; url="${expanded}"
-fi
-
-# remove 'm.' 'mobile.' 'touch.', anything after and including '?', 'ref=' and after from amazon
-perl -pe 's/(https?:\/\/)(m\.|mobile\.|touch\.)(.*)/\1\3/;s/\?.*//;s/(https:\/\/(www|smile)?\.amazon\..*\/)ref=.*/\1/' &lt;&lt;&lt; "${url}" | tr -d '\n'</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>87BE9FDE-D40E-46A8-B0CF-10D7D63F9352</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
 				<key>argumenttreatemptyqueryasnil</key>
-				<false/>
+				<true/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
-				<integer>2</integer>
+				<integer>1</integer>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>keyword</key>
 				<string>lc</string>
 				<key>queuedelaycustom</key>
-				<integer>1</integer>
+				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
-				<false/>
+				<true/>
 				<key>queuedelaymode</key>
 				<integer>0</integer>
 				<key>queuemode</key>
-				<integer>1</integer>
+				<integer>2</integer>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
-				<string>cat &lt;&lt; EOF
-	&lt;?xml version='1.0'?&gt;&lt;items&gt;
-	  &lt;item uid='long' valid='yes' arg='long'&gt;
-	    &lt;title&gt;Long link clean&lt;/title&gt;
-	    &lt;subtitle&gt;For long URLs where you see the extraneous information&lt;/subtitle&gt;
-	    &lt;icon&gt;icon.png&lt;/icon&gt;
-	  &lt;/item&gt;
-	  &lt;item uid='short' valid='yes' arg='short'&gt;
-	    &lt;title&gt;Shortened link clean&lt;/title&gt;
-	    &lt;subtitle&gt;For shortened URLs where you do not see the extraneous information (use if uncertain)&lt;/subtitle&gt;
-	    &lt;icon&gt;icon.png&lt;/icon&gt;
-	  &lt;/item&gt;
-	&lt;/items&gt;
-EOF</string>
+				<string>require "#{Dir.pwd}/linkclean_functions.rb"
+
+display_options</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
@@ -167,9 +136,9 @@ EOF</string>
 				<key>title</key>
 				<string>LinkClean</string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>2</integer>
 				<key>withspace</key>
-				<false/>
+				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
@@ -177,6 +146,31 @@ EOF</string>
 			<string>FFC25DDE-7F2E-4A61-A2D0-0B4549044CAA</string>
 			<key>version</key>
 			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/linkclean_functions.rb"
+
+print clean_url(follow_redirects(ARGV[0]))</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>87BE9FDE-D40E-46A8-B0CF-10D7D63F9352</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -286,23 +280,43 @@ fi</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>{clipboard}</string>
+				<key>variables</key>
+				<dict/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>7C2672E2-049F-4486-9B04-56940BF42AB1</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>Clean clutter from URLs such as all sorts of [`utm_` variants](http://www.bytefive.com/blogs/understanding-utm_source-utm_medium-and-utm_campaign) and subdomains like `m.` for mobile sites.
 
-Copy a link to your clipboard and call `lc` in Alfred. The clean link will both be copied to your clipboard and pasted to your frontmost app.
+Run `lc` and input a URL, or leave it blank to use your clipboard contents. Action it and a clean link will be copied to your clipboard and pasted to your frontmost app. If given a shotened URL, redirects will be followed before cleaning.
 
-![](https://i.imgur.com/5FGPUhz.png)
-
-The option for shortened links will also work on long URLs. This option, however, takes a bit longer since it needs to first make a call to expand it into its longer form, which is why there are two options — if you have a long link and pick that option, it’ll be way faster (and does not require internet connectivity).</string>
+![](https://i.imgur.com/QfXdBH6.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>630129C2-A7B6-480C-B4F4-7088EAEF71B2</key>
 		<dict>
 			<key>xpos</key>
-			<integer>440</integer>
+			<integer>490</integer>
 			<key>ypos</key>
 			<integer>30</integer>
+		</dict>
+		<key>7C2672E2-049F-4486-9B04-56940BF42AB1</key>
+		<dict>
+			<key>xpos</key>
+			<integer>200</integer>
+			<key>ypos</key>
+			<integer>180</integer>
 		</dict>
 		<key>809F9F9B-1BF9-4FF9-8EBC-F939220890C2</key>
 		<dict>
@@ -311,14 +325,14 @@ The option for shortened links will also work on long URLs. This option, however
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>440</integer>
+			<integer>490</integer>
 			<key>ypos</key>
 			<integer>150</integer>
 		</dict>
 		<key>87BE9FDE-D40E-46A8-B0CF-10D7D63F9352</key>
 		<dict>
 			<key>xpos</key>
-			<integer>240</integer>
+			<integer>290</integer>
 			<key>ypos</key>
 			<integer>30</integer>
 		</dict>
@@ -338,7 +352,7 @@ The option for shortened links will also work on long URLs. This option, however
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.4</string>
+	<string>20.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
