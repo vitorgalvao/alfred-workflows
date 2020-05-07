@@ -261,6 +261,7 @@ fi</string>
 				<string>ObjC.import('stdlib') // For $.getenv
 
 const close_current = $.getenv('close_tab') === 'true'
+const webkit_menu = $.getenv('webkit_menu_path').split(',').map(item =&gt; item.trim())
 
 const frontmost_process = Application('System Events').applicationProcesses.where({ frontmost: true })
 const frontmost_app_name = frontmost_process.name()[0]
@@ -274,9 +275,16 @@ if (['Google Chrome', 'Google Chrome Canary', 'Chromium', 'Opera', 'Vivaldi', 'B
   frontmost_app.windows[0].activeTab.url = current_tab_url
 } else if (['Safari', 'Safari Technology Preview', 'Webkit'].indexOf(frontmost_app_name) &gt; -1) {
   const current_tab_url = frontmost_app.documents[0].url()
+
+  try {
+    frontmost_process.menuBars[0].menuBarItems.byName(webkit_menu[0])
+      .menus[0].menuItems.byName(webkit_menu[1]).click()
+  } catch {
+    throw new Error('Unable to find menu item. Verify that the "webkit_menu_path" variable has the correct two-step path, separated by a comma, with the exact names of the items')
+  }
+
   if (close_current) frontmost_app.documents[0].close()
 
-  frontmost_process.menuBars[0].menuBarItems.byName('File').menus[0].menuItems.byName('New Private Window').click()
   frontmost_app.documents[0].url = current_tab_url
 } else {
   throw new Error('You need a supported browser as your frontmost app')
@@ -409,9 +417,11 @@ if (['Google Chrome', 'Google Chrome Canary', 'Chromium', 'Opera', 'Vivaldi', 'B
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Open the current browser tab in a private window, with the possibility of temporary profiles. The latter is only supported in Chromium-based browsers and acts as if you were opening them for the first time without changing a single setting.
+	<string>Invoke `ic` to open the current tab in your frontmost browser in a new incognito (Chromium-based browsers) or private (Webkit-based browsers) window. Actioning with ⌃↵ will also close the tab in your current window. ⌥↵ opens the tab in a new clean temporary browser profile window, and ⌘↵ does the same while closing the tab in the current window.
 
-Invoke the Workflow with `ic`, and it will open a new incognito window with your current tab. ⌘↵ will also close the tab in your current window. ⌥↵ opens the current tab in a new Chromium-browser instance, and ⌃↵ also closes the tab in the current window.</string>
+Webkit-based browsers do not support multiple profiles, so that feature is not available to them.
+
+In addition, Webkit-based browsers do not support opening new private windows programatically, so to do it we can either fake a keyboard shortcut or click the menu options. Faking keyboard shortcuts can break in more situations, so this Workflow uses the latter technique. If your system is not in English, change the `webkit_menu_path` Workflow Environment Variable to the menu words in your language (they must be exact).</string>
 	<key>uidata</key>
 	<dict>
 		<key>51478E73-B6B6-403C-B9C1-A8AD48651EAE</key>
@@ -479,8 +489,13 @@ Invoke the Workflow with `ic`, and it will open a new incognito window with your
 			<integer>20</integer>
 		</dict>
 	</dict>
+	<key>variables</key>
+	<dict>
+		<key>webkit_menu_path</key>
+		<string>File, New Private Window</string>
+	</dict>
 	<key>version</key>
-	<string>20.2</string>
+	<string>20.3</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
