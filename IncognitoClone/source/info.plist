@@ -6,19 +6,6 @@
 	<string>com.vitorgalvao.alfred.incognitoclone</string>
 	<key>connections</key>
 	<dict>
-		<key>4F459C78-66B4-44BA-BB97-470BB0B95816</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>E55931A9-AE1B-4D92-92C2-E387DD102210</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>51478E73-B6B6-403C-B9C1-A8AD48651EAE</key>
 		<array>
 			<dict>
@@ -32,11 +19,37 @@
 				<false/>
 			</dict>
 		</array>
-		<key>A644E54E-1092-4095-A58E-0937A8171089</key>
+		<key>67D2781F-8C6C-47C6-9CB0-418A80B12D94</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>E55931A9-AE1B-4D92-92C2-E387DD102210</string>
+				<string>51478E73-B6B6-403C-B9C1-A8AD48651EAE</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>972C5BD5-BBF1-47A0-A92D-5EC40578BA1E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>F91EA669-611F-436A-89B4-0D448347CCB6</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>B87F8E59-81FA-4464-AA57-9D4A4578B362</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>51478E73-B6B6-403C-B9C1-A8AD48651EAE</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -49,7 +62,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>F91EA669-611F-436A-89B4-0D448347CCB6</string>
+				<string>972C5BD5-BBF1-47A0-A92D-5EC40578BA1E</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -59,31 +72,44 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>4F459C78-66B4-44BA-BB97-470BB0B95816</string>
+				<string>F8CC16BF-1B35-4056-B47E-07EBE41A4384</string>
 				<key>modifiers</key>
 				<integer>262144</integer>
 				<key>modifiersubtext</key>
-				<string>Opens in incognito, and closes the original tab</string>
+				<string>Opens in incognito and closes the original tab</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>51478E73-B6B6-403C-B9C1-A8AD48651EAE</string>
+				<string>B87F8E59-81FA-4464-AA57-9D4A4578B362</string>
 				<key>modifiers</key>
 				<integer>524288</integer>
 				<key>modifiersubtext</key>
-				<string>Opens in window with new profile</string>
+				<string>Opens in window with new profile (Chromium-based browsers only)</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>A644E54E-1092-4095-A58E-0937A8171089</string>
+				<string>67D2781F-8C6C-47C6-9CB0-418A80B12D94</string>
 				<key>modifiers</key>
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
-				<string>Opens in window with new profile, and closes the original tab</string>
+				<string>Opens in window with new profile, and closes the original tab (Chromium-based browsers only)</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>F8CC16BF-1B35-4056-B47E-07EBE41A4384</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>F91EA669-611F-436A-89B4-0D448347CCB6</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -105,34 +131,13 @@
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
 	<key>description</key>
-	<string>Opens Chrome’s frontmost tab in an incognito window</string>
+	<string>Open browser frontmost tabs in private windows</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
 	<string>IncognitoClone</string>
 	<key>objects</key>
 	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>keyword</key>
-				<string>ic</string>
-				<key>subtext</key>
-				<string>Opens Chrome’s frontmost tab in an incognito window</string>
-				<key>text</key>
-				<string>IncognitoClone</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>D1C78EAD-183B-46FC-93DD-CE9D62824D4D</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -227,19 +232,61 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>ic</string>
+				<key>subtext</key>
+				<string>Open browser frontmost tabs in private windows</string>
+				<key>text</key>
+				<string>IncognitoClone</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>D1C78EAD-183B-46FC-93DD-CE9D62824D4D</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>tell application "Google Chrome"  set current_url to URL of active tab of front window  make new window with properties {mode:"incognito"}
-  tell active tab of front window to set URL to current_urlend tell</string>
+				<string>ObjC.import('stdlib') // For $.getenv
+
+const close_current = $.getenv('close_tab') === 'true'
+
+const frontmost_process = Application('System Events').applicationProcesses.where({ frontmost: true })
+const frontmost_app_name = frontmost_process.name()[0]
+const frontmost_app = Application(frontmost_app_name)
+
+if (['Google Chrome', 'Google Chrome Canary', 'Chromium', 'Opera', 'Vivaldi', 'Brave Browser'].indexOf(frontmost_app_name) &gt; -1) {
+  const current_tab_url = frontmost_app.windows[0].activeTab.url()
+  if (close_current) frontmost_app.windows[0].activeTab.close()
+
+  frontmost_app.Window({ mode: 'incognito' }).make()
+  frontmost_app.windows[0].activeTab.url = current_tab_url
+} else if (['Safari', 'Safari Technology Preview', 'Webkit'].indexOf(frontmost_app_name) &gt; -1) {
+  const current_tab_url = frontmost_app.documents[0].url()
+  if (close_current) frontmost_app.documents[0].close()
+
+  frontmost_process.menuBars[0].menuBarItems.byName('File').menus[0].menuItems.byName('New Private Window').click()
+  frontmost_app.documents[0].url = current_tab_url
+} else {
+  throw new Error('You need a supported browser as your frontmost app')
+}</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>6</integer>
+				<integer>7</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -251,25 +298,38 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>tell application "Google Chrome"  set current_url to URL of active tab of front window  close active tab of front window  make new window with properties {mode:"incognito"}  tell active tab of front window to set URL to current_urlend tell</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
+				<key>argument</key>
 				<string></string>
-				<key>type</key>
-				<integer>6</integer>
+				<key>variables</key>
+				<dict>
+					<key>close_tab</key>
+					<string>false</string>
+				</dict>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
-			<string>4F459C78-66B4-44BA-BB97-470BB0B95816</string>
+			<string>972C5BD5-BBF1-47A0-A92D-5EC40578BA1E</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>variables</key>
+				<dict>
+					<key>close_tab</key>
+					<string>true</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>F8CC16BF-1B35-4056-B47E-07EBE41A4384</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -279,13 +339,30 @@ fi</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>tell application "Google Chrome" to set current_url to URL of active tab of front windowdo shell script "open -na 'Google Chrome' --args --user-data-dir=\"$(mktemp -d)\" --no-first-run " &amp; current_url</string>
+				<string>ObjC.import('stdlib') // For $.getenv
+
+const close_current = $.getenv('close_tab') === 'true'
+
+const frontmost_app_name = Application('System Events').applicationProcesses.where({ frontmost: true }).name()[0]
+const frontmost_app = Application(frontmost_app_name)
+
+if (['Google Chrome', 'Google Chrome Canary', 'Chromium', 'Opera', 'Vivaldi', 'Brave Browser'].indexOf(frontmost_app_name) &gt; -1) {
+  const current_tab_url = frontmost_app.windows[0].activeTab.url()
+
+  const app = Application.currentApplication()
+  app.includeStandardAdditions = true
+  app.doShellScript('open -na "Google Chrome" --args --user-data-dir="$(mktemp -d)" --no-first-run ' + current_tab_url)
+} else if (['Safari', 'Safari Technology Preview', 'Webkit'].indexOf(frontmost_app_name) &gt; -1) {
+  throw new Error('Webkit-based browsers do not support multiple profiles')
+} else {
+  throw new Error('You need a supported browser as your frontmost app')
+}</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>6</integer>
+				<integer>7</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -297,55 +374,75 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>tell application "Google Chrome"  set current_url to URL of active tab of front window  close active tab of front windowend tell
-
-do shell script "open -na 'Google Chrome' --args --user-data-dir=\"$(mktemp -d)\" --no-first-run " &amp; current_url</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
+				<key>argument</key>
 				<string></string>
-				<key>type</key>
-				<integer>6</integer>
+				<key>variables</key>
+				<dict>
+					<key>close_tab</key>
+					<string>false</string>
+				</dict>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
-			<string>A644E54E-1092-4095-A58E-0937A8171089</string>
+			<string>B87F8E59-81FA-4464-AA57-9D4A4578B362</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>variables</key>
+				<dict>
+					<key>close_tab</key>
+					<string>true</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>67D2781F-8C6C-47C6-9CB0-418A80B12D94</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Open your current Chrome tab in incognito mode or a new Chrome instance with an empty profile. The latter acts as if you were opening Chrome fro the first time without changing a single setting. That is particularly useful when a setting o plugin is making it difficult to use a page.
- 
-Call it with `ic`, and it will open a new incognito window with your current tab. ⌘↵ will also close the tab in your current window. ⌥↵ opens the current tab in a new Chrome instance, and ⌃↵ also closes the tab in the current window.</string>
+	<string>Open the current browser tab in a private window, with the possibility of temporary profiles. The latter is only supported in Chromium-based browsers and acts as if you were opening them for the first time without changing a single setting.
+
+Invoke the Workflow with `ic`, and it will open a new incognito window with your current tab. ⌘↵ will also close the tab in your current window. ⌥↵ opens the current tab in a new Chromium-browser instance, and ⌃↵ also closes the tab in the current window.</string>
 	<key>uidata</key>
 	<dict>
-		<key>4F459C78-66B4-44BA-BB97-470BB0B95816</key>
-		<dict>
-			<key>xpos</key>
-			<integer>220</integer>
-			<key>ypos</key>
-			<integer>140</integer>
-		</dict>
 		<key>51478E73-B6B6-403C-B9C1-A8AD48651EAE</key>
 		<dict>
+			<key>note</key>
+			<string>New profile window. Chromium-based.</string>
 			<key>xpos</key>
-			<integer>220</integer>
+			<integer>255</integer>
 			<key>ypos</key>
-			<integer>260</integer>
+			<integer>210</integer>
 		</dict>
-		<key>A644E54E-1092-4095-A58E-0937A8171089</key>
+		<key>67D2781F-8C6C-47C6-9CB0-418A80B12D94</key>
 		<dict>
 			<key>xpos</key>
-			<integer>220</integer>
+			<integer>180</integer>
 			<key>ypos</key>
-			<integer>380</integer>
+			<integer>315</integer>
+		</dict>
+		<key>972C5BD5-BBF1-47A0-A92D-5EC40578BA1E</key>
+		<dict>
+			<key>xpos</key>
+			<integer>180</integer>
+			<key>ypos</key>
+			<integer>50</integer>
+		</dict>
+		<key>B87F8E59-81FA-4464-AA57-9D4A4578B362</key>
+		<dict>
+			<key>xpos</key>
+			<integer>180</integer>
+			<key>ypos</key>
+			<integer>240</integer>
 		</dict>
 		<key>D1C78EAD-183B-46FC-93DD-CE9D62824D4D</key>
 		<dict>
@@ -365,16 +462,25 @@ Call it with `ic`, and it will open a new incognito window with your current tab
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
-		<key>F91EA669-611F-436A-89B4-0D448347CCB6</key>
+		<key>F8CC16BF-1B35-4056-B47E-07EBE41A4384</key>
 		<dict>
 			<key>xpos</key>
-			<integer>220</integer>
+			<integer>180</integer>
+			<key>ypos</key>
+			<integer>135</integer>
+		</dict>
+		<key>F91EA669-611F-436A-89B4-0D448347CCB6</key>
+		<dict>
+			<key>note</key>
+			<string>Incognito or Private window. Chromium-based or Webkit-based.</string>
+			<key>xpos</key>
+			<integer>255</integer>
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.5</string>
+	<string>20.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
