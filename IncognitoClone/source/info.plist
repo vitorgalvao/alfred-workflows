@@ -419,35 +419,35 @@ Invoke the Workflow with `ic`, and it will open a new incognito window with your
 			<key>note</key>
 			<string>New profile window. Chromium-based.</string>
 			<key>xpos</key>
-			<integer>255</integer>
+			<integer>260</integer>
 			<key>ypos</key>
 			<integer>210</integer>
 		</dict>
 		<key>67D2781F-8C6C-47C6-9CB0-418A80B12D94</key>
 		<dict>
 			<key>xpos</key>
-			<integer>180</integer>
+			<integer>185</integer>
 			<key>ypos</key>
-			<integer>315</integer>
+			<integer>310</integer>
 		</dict>
 		<key>972C5BD5-BBF1-47A0-A92D-5EC40578BA1E</key>
 		<dict>
 			<key>xpos</key>
-			<integer>180</integer>
+			<integer>185</integer>
 			<key>ypos</key>
 			<integer>50</integer>
 		</dict>
 		<key>B87F8E59-81FA-4464-AA57-9D4A4578B362</key>
 		<dict>
 			<key>xpos</key>
-			<integer>180</integer>
+			<integer>185</integer>
 			<key>ypos</key>
 			<integer>240</integer>
 		</dict>
 		<key>D1C78EAD-183B-46FC-93DD-CE9D62824D4D</key>
 		<dict>
 			<key>xpos</key>
-			<integer>20</integer>
+			<integer>25</integer>
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
@@ -458,29 +458,29 @@ Invoke the Workflow with `ic`, and it will open a new incognito window with your
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>430</integer>
+			<integer>435</integer>
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
 		<key>F8CC16BF-1B35-4056-B47E-07EBE41A4384</key>
 		<dict>
 			<key>xpos</key>
-			<integer>180</integer>
+			<integer>185</integer>
 			<key>ypos</key>
-			<integer>135</integer>
+			<integer>125</integer>
 		</dict>
 		<key>F91EA669-611F-436A-89B4-0D448347CCB6</key>
 		<dict>
 			<key>note</key>
 			<string>Incognito or Private window. Chromium-based or Webkit-based.</string>
 			<key>xpos</key>
-			<integer>255</integer>
+			<integer>260</integer>
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>20.1</string>
+	<string>20.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
