@@ -361,6 +361,8 @@ fi</string>
 				<integer>-1</integer>
 				<key>keymod</key>
 				<integer>1048576</integer>
+				<key>overridewithargument</key>
+				<false/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.output.dispatchkeycombo</string>
@@ -434,6 +436,8 @@ fi</string>
 				<integer>51</integer>
 				<key>keymod</key>
 				<integer>0</integer>
+				<key>overridewithargument</key>
+				<false/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.output.dispatchkeycombo</string>
@@ -587,8 +591,10 @@ Supported in conversion to HTML:
 			<integer>180</integer>
 		</dict>
 	</dict>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
-	<string>20.1</string>
+	<string>20.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
