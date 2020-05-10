@@ -243,11 +243,37 @@
 				<false/>
 			</dict>
 		</array>
+		<key>DC6DE0A7-2311-4F8C-A1A8-457DC074F1EA</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>BBA7D5B8-BDF1-4669-B928-461708E18DDF</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>EF339515-CFD8-47BF-B208-FF9DCA32A2C1</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>E3D8770A-3517-4F4F-854A-7E88C2FA4E37</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>EFCEA4B6-8BAA-4509-AD10-EDA3CF3DF3EB</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>DC6DE0A7-2311-4F8C-A1A8-457DC074F1EA</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -526,6 +552,63 @@ add_unread</string>
 			<string>alfred.workflow.trigger.hotkey</string>
 			<key>uid</key>
 			<string>312A5A83-445F-49A9-91E3-5E65184C33B9</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/pinplus.rb"
+
+print JSON.parse(File.read(Unread_bookmarks_json))['items'].map { |item| item['arg'
+] }.sample</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>DC6DE0A7-2311-4F8C-A1A8-457DC074F1EA</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>15</integer>
+				<key>hotmod</key>
+				<integer>262144</integer>
+				<key>hotstring</key>
+				<string>R</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>EFCEA4B6-8BAA-4509-AD10-EDA3CF3DF3EB</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -1211,7 +1294,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<key>xpos</key>
 			<integer>450</integer>
 			<key>ypos</key>
-			<integer>800</integer>
+			<integer>955</integer>
 		</dict>
 		<key>0428362E-5C9C-4EB0-B5B2-470ABC9845E7</key>
 		<dict>
@@ -1220,42 +1303,42 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<key>xpos</key>
 			<integer>770</integer>
 			<key>ypos</key>
-			<integer>470</integer>
+			<integer>625</integer>
 		</dict>
 		<key>06DF291B-32C4-425D-A58F-0A1E2678206E</key>
 		<dict>
 			<key>xpos</key>
 			<integer>680</integer>
 			<key>ypos</key>
-			<integer>500</integer>
+			<integer>655</integer>
 		</dict>
 		<key>0DF168C1-F23D-42AE-937F-D625877ED05D</key>
 		<dict>
 			<key>xpos</key>
 			<integer>240</integer>
 			<key>ypos</key>
-			<integer>1100</integer>
+			<integer>1255</integer>
 		</dict>
 		<key>16CA0D08-3EB2-4A69-8EA3-7F2A2FAA2A5C</key>
 		<dict>
 			<key>xpos</key>
 			<integer>240</integer>
 			<key>ypos</key>
-			<integer>1360</integer>
+			<integer>1515</integer>
 		</dict>
 		<key>23352050-CC5C-4680-8243-005771354087</key>
 		<dict>
 			<key>xpos</key>
 			<integer>240</integer>
 			<key>ypos</key>
-			<integer>1230</integer>
+			<integer>1385</integer>
 		</dict>
 		<key>2B67AFF0-0412-4E9B-88CE-ADF345434F52</key>
 		<dict>
 			<key>xpos</key>
 			<integer>20</integer>
 			<key>ypos</key>
-			<integer>340</integer>
+			<integer>495</integer>
 		</dict>
 		<key>312A5A83-445F-49A9-91E3-5E65184C33B9</key>
 		<dict>
@@ -1278,28 +1361,28 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<key>xpos</key>
 			<integer>20</integer>
 			<key>ypos</key>
-			<integer>1100</integer>
+			<integer>1255</integer>
 		</dict>
 		<key>51173530-985F-468F-90DC-B37CC651F01A</key>
 		<dict>
 			<key>xpos</key>
 			<integer>450</integer>
 			<key>ypos</key>
-			<integer>970</integer>
+			<integer>1125</integer>
 		</dict>
 		<key>65AAB448-3013-42AB-A59B-A886A23A7B3C</key>
 		<dict>
 			<key>xpos</key>
 			<integer>360</integer>
 			<key>ypos</key>
-			<integer>660</integer>
+			<integer>815</integer>
 		</dict>
 		<key>71E82EE1-88EE-483E-A952-AC7AB8F4EDDF</key>
 		<dict>
 			<key>xpos</key>
 			<integer>20</integer>
 			<key>ypos</key>
-			<integer>1490</integer>
+			<integer>1645</integer>
 		</dict>
 		<key>7801D860-3678-41BF-8A9F-B294A3AA31CD</key>
 		<dict>
@@ -1317,7 +1400,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<key>xpos</key>
 			<integer>660</integer>
 			<key>ypos</key>
-			<integer>800</integer>
+			<integer>955</integer>
 		</dict>
 		<key>9A055C32-C5CF-4D41-B7F2-366BC26FCE51</key>
 		<dict>
@@ -1335,7 +1418,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<key>xpos</key>
 			<integer>450</integer>
 			<key>ypos</key>
-			<integer>340</integer>
+			<integer>495</integer>
 		</dict>
 		<key>A47E38E8-87FB-42B7-A966-4CFC5B0798FF</key>
 		<dict>
@@ -1349,49 +1432,65 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<key>xpos</key>
 			<integer>240</integer>
 			<key>ypos</key>
-			<integer>1490</integer>
+			<integer>1645</integer>
 		</dict>
 		<key>AC4A2ACA-CEFF-4C48-9B37-A39B17B934C4</key>
 		<dict>
 			<key>xpos</key>
 			<integer>360</integer>
 			<key>ypos</key>
-			<integer>1000</integer>
+			<integer>1155</integer>
 		</dict>
 		<key>BBA7D5B8-BDF1-4669-B928-461708E18DDF</key>
 		<dict>
 			<key>xpos</key>
 			<integer>360</integer>
 			<key>ypos</key>
-			<integer>500</integer>
+			<integer>655</integer>
 		</dict>
 		<key>D6663B13-40B4-4E96-BC66-4AB752C0CAF3</key>
 		<dict>
 			<key>xpos</key>
 			<integer>20</integer>
 			<key>ypos</key>
-			<integer>1360</integer>
+			<integer>1515</integer>
+		</dict>
+		<key>DC6DE0A7-2311-4F8C-A1A8-457DC074F1EA</key>
+		<dict>
+			<key>note</key>
+			<string>Get random unread bookmark</string>
+			<key>xpos</key>
+			<integer>240</integer>
+			<key>ypos</key>
+			<integer>340</integer>
 		</dict>
 		<key>E3D8770A-3517-4F4F-854A-7E88C2FA4E37</key>
 		<dict>
 			<key>xpos</key>
 			<integer>240</integer>
 			<key>ypos</key>
-			<integer>1620</integer>
+			<integer>1775</integer>
 		</dict>
 		<key>EF339515-CFD8-47BF-B208-FF9DCA32A2C1</key>
 		<dict>
 			<key>xpos</key>
 			<integer>20</integer>
 			<key>ypos</key>
-			<integer>1620</integer>
+			<integer>1775</integer>
+		</dict>
+		<key>EFCEA4B6-8BAA-4509-AD10-EDA3CF3DF3EB</key>
+		<dict>
+			<key>xpos</key>
+			<integer>20</integer>
+			<key>ypos</key>
+			<integer>340</integer>
 		</dict>
 		<key>F19E7C66-0D3E-4ADE-A607-590AD4B34BFA</key>
 		<dict>
 			<key>xpos</key>
 			<integer>20</integer>
 			<key>ypos</key>
-			<integer>1230</integer>
+			<integer>1385</integer>
 		</dict>
 		<key>F3FE5E70-3869-4937-9ECB-ADAED3106B1F</key>
 		<dict>
@@ -1400,14 +1499,14 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<key>xpos</key>
 			<integer>450</integer>
 			<key>ypos</key>
-			<integer>630</integer>
+			<integer>785</integer>
 		</dict>
 		<key>FA9C9F80-EFDB-4A12-AA7A-DC5D0F76E557</key>
 		<dict>
 			<key>xpos</key>
 			<integer>20</integer>
 			<key>ypos</key>
-			<integer>470</integer>
+			<integer>625</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
@@ -1425,7 +1524,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 		<string>unread_order</string>
 	</array>
 	<key>version</key>
-	<string>20.7</string>
+	<string>20.8</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
