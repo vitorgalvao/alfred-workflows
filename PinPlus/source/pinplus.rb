@@ -181,7 +181,6 @@ def write_bookmarks(bookmarks, bookmarks_file)
         fn: { subtitle: bookmark['extended'] },
         ctrl: { subtitle: bookmark['tags'] }
       },
-      quicklookurl: bookmark['href'],
       arg: bookmark['href']
     )
   end
