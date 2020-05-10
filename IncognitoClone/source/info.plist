@@ -356,6 +356,7 @@ const frontmost_app = Application(frontmost_app_name)
 
 if (['Google Chrome', 'Google Chrome Canary', 'Chromium', 'Opera', 'Vivaldi', 'Brave Browser'].indexOf(frontmost_app_name) &gt; -1) {
   const current_tab_url = frontmost_app.windows[0].activeTab.url()
+  if (close_current) frontmost_app.windows[0].activeTab.close()
 
   const app = Application.currentApplication()
   app.includeStandardAdditions = true
@@ -495,7 +496,7 @@ In addition, Webkit-based browsers do not support opening new private windows pr
 		<string>File, New Private Window</string>
 	</dict>
 	<key>version</key>
-	<string>20.3</string>
+	<string>20.4</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
