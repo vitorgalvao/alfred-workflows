@@ -8,7 +8,7 @@ require 'pathname'
 ENV['PATH'] = Open3.capture2(Pathname.pwd.join('_sharedresources').to_path, 'ffmpeg', 'youtubedl').first
 
 Add_to_watchlist = ENV['add_to_watchlist'] == 'true'
-Audio_only_format = ENV['audio_format'].nil? || ENV['audio_format'].empty? ? 'best' : ENV['audio_only_format']
+Audio_only_format = ENV['audio_only_format'].nil? || ENV['audio_only_format'].empty? ? 'best' : ENV['audio_only_format']
 Download_dir = ENV['download_dir'].nil? || ENV['download_dir'].empty? ? Pathname(ENV['HOME']).join('Downloads') : Pathname(ENV['download_dir']).expand_path
 
 Pid_file = Pathname(ENV['alfred_workflow_cache']).join('pid.txt')
@@ -171,6 +171,9 @@ def download_url(url, media_type, add_to_watchlist_string, full_playlist_string)
 
   flags.push('--ignore-errors', '--output', Download_dir.join(title_template).to_path, url)
 
+  # May fail in certain situations, due to bugs in getting the filename beforehand
+  # https://github.com/ytdl-org/youtube-dl/issues/5710
+  # https://github.com/ytdl-org/youtube-dl/issues/7137
   get_filename = Open3.capture2('youtube-dl', '--get-filename', *flags).first.strip
 
   save_path = full_playlist ?
