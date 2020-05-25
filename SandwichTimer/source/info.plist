@@ -154,7 +154,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>source './sandwichtimer'
+				<string>source './sandwichtimer_functions.bash'
 pomodoro</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
@@ -269,7 +269,7 @@ fi</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>source './sandwichtimer'
+				<string>source './sandwichtimer_functions.bash'
 quit</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
@@ -314,8 +314,10 @@ quit</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>source './sandwichtimer'
-timer "${1}"</string>
+				<string>source './sandwichtimer_functions.bash'
+
+IFS=' ' read -ra argv &lt;&lt;&lt; "${1}" # Split input on spaces
+timer "${argv[0]}" "${argv[*]:1}" # '*' instead of '@' so they are read as a single string and not as separate arguments</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -338,7 +340,7 @@ timer "${1}"</string>
 				<key>keyword</key>
 				<string>timer</string>
 				<key>subtext</key>
-				<string>Timer for {query} minutes</string>
+				<string>Timer for a number of minutes</string>
 				<key>text</key>
 				<string>Start a timer</string>
 				<key>withspace</key>
@@ -359,7 +361,7 @@ timer "${1}"</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>source './sandwichtimer'
+				<string>source './sandwichtimer_functions.bash'
 download_app '/Applications'</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
@@ -402,7 +404,7 @@ download_app '/Applications'</string>
 
 Call `pomo` or set a keyboard shortcut to start a pomodoro timer. If another is already running, it’ll be aborted.
 
-`timer` will let you set as many timers as you want, for the specified amount of time.
+`timer` will let you set as many timers as you want, for the specified amount of time. Text after the number of minutes will be used as the timer’s title.
 
 With both options, actioning with ⌥ will quit all instances of the SandwichTimer app.</string>
 	<key>uidata</key>
@@ -481,7 +483,7 @@ With both options, actioning with ⌥ will quit all instances of the SandwichTim
 		<string>/Applications/SandwichTimer.app</string>
 	</dict>
 	<key>version</key>
-	<string>1.0.3</string>
+	<string>20.1</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>

@@ -2,6 +2,6 @@ Control [SandwichTimer](https://github.com/vitorgalvao/sandwichtimer) from Alfre
 
 Call `pomo` or set a keyboard shortcut to start a pomodoro timer. If another is already running, it’ll be aborted.
 
-`timer` will let you set as many timers as you want, for the specified amount of time.
+`timer` will let you set as many timers as you want, for the specified amount of time. Text after the number of minutes will be used as the timer’s title.
 
 With both options, actioning with ⌥ will quit all instances of the SandwichTimer app.

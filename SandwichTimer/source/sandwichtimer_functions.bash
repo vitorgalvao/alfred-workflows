@@ -16,7 +16,7 @@ function quit {
 }
 
 function timer {
-  "${sandwich_timer_app}/Contents/MacOS/SandwichTimer" "${1}"
+  "${sandwich_timer_app}/Contents/MacOS/SandwichTimer" "${1}" "${2}"
 }
 
 if [[ ! -e "${sandwich_timer_app}" ]]; then
