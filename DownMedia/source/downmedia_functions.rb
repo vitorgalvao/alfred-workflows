@@ -5,11 +5,30 @@ require 'json'
 require 'open3'
 require 'pathname'
 
+# Helpers
+def get_env(env_variable:, default:, make_pathname: false)
+  if env_variable.nil? || env_variable.empty?
+    return make_pathname ? Pathname.new(default).expand_path : default
+  end
+
+  make_pathname ? Pathname.new(env_variable).expand_path : env_variable
+end
+
+# Constants
 ENV['PATH'] = Open3.capture2(Pathname.pwd.join('_sharedresources').to_path, 'ffmpeg', 'youtubedl').first
 
 Add_to_watchlist = ENV['add_to_watchlist'] == 'true'
-Audio_only_format = ENV['audio_only_format'].nil? || ENV['audio_only_format'].empty? ? 'best' : ENV['audio_only_format']
-Download_dir = ENV['download_dir'].nil? || ENV['download_dir'].empty? ? Pathname(ENV['HOME']).join('Downloads') : Pathname(ENV['download_dir']).expand_path
+
+Audio_only_format = get_env(
+  env_variable: ENV['audio_only_format'],
+  default: 'best'
+)
+
+Download_dir = get_env(
+  env_variable: ENV['download_dir'],
+  default: Pathname(ENV['HOME']).join('Downloads').to_path,
+  make_pathname: true
+)
 
 Pid_file = Pathname(ENV['alfred_workflow_cache']).join('pid.txt')
 Progress_file = Pathname(ENV['alfred_workflow_cache']).join('progress.txt')

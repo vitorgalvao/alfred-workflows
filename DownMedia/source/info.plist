@@ -1015,7 +1015,7 @@ The Workflow Environment Variables represent the directory to download to, the a
 		<string>~/Downloads</string>
 	</dict>
 	<key>version</key>
-	<string>20.6</string>
+	<string>20.7</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
