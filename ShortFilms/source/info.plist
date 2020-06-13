@@ -557,7 +557,7 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>20.3</string>
+	<string>20.5</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
