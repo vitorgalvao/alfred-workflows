@@ -74,7 +74,7 @@ if [[ "${front_browser}" == 'Safari' || "${front_browser}" == 'Safari Technology
       tell front window to set current tab to tab tabIndex
     end tell
 EOF
-elif [[ "${front_browser}" == 'Google Chrome' || "${front_browser}" == 'Google Chrome Canary' || "${front_browser}" == 'Chromium' || "${front_browser}" == 'Opera' || "${front_browser}" == 'Vivaldi' || "${front_browser}" == 'Brave Browser' ]]; then
+elif [[ "${front_browser}" == 'Google Chrome' || "${front_browser}" == 'Google Chrome Canary' || "${front_browser}" == 'Microsoft Edge' || "${front_browser}" == 'Chromium' || "${front_browser}" == 'Opera' || "${front_browser}" == 'Vivaldi' || "${front_browser}" == 'Brave Browser' ]]; then
   osascript &lt;&lt;EOF
     tell application "${front_browser}"
       set tabIndex to active tab index of front window
