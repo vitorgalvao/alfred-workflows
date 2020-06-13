@@ -46,65 +46,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>acceptsmulti</key>
-				<false/>
-				<key>filetypes</key>
-				<array>
-					<string>+public.image</string>
-				</array>
-				<key>name</key>
-				<string>Image coordinates in map</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.action</string>
-			<key>uid</key>
-			<string>4B6F8EAF-EEB4-4F5B-B631-0EE4E6423E1A</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>PATH="$(./_sharedresources 'exiftool')"
-
-function notification {
-  ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
-}
-
-file="${1}"
-
-[[ "${map_provider}" == 'Google' ]] &amp;&amp; map_url='https://www.google.com/maps?q=' || map_url='http://maps.apple.com/?q='
-
-coordinates="$(exiftool -printFormat '$gpslatitude, $gpslongitude' --printConv "${file}")"
-
-if [[ -z "${coordinates}" ]]; then
-  afplay /System/Library/Sounds/Funk.aiff
-  notification 'Image has no GPS information'
-else
-  open "${map_url}${coordinates}"
-fi</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>B4C31897-81BA-427A-94FC-5311B89CD053</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -193,6 +134,65 @@ fi</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>PATH="$(./_sharedresources 'exiftool')"
+
+function notification {
+  ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
+}
+
+file="${1}"
+
+[[ "${map_provider}" == 'Google' ]] &amp;&amp; map_url='https://www.google.com/maps?q=' || map_url='http://maps.apple.com/?q='
+
+coordinates="$(exiftool -printFormat '$gpslatitude, $gpslongitude' --printConv "${file}")"
+
+if [[ -z "${coordinates}" ]]; then
+  afplay /System/Library/Sounds/Funk.aiff
+  notification 'Image has no GPS information'
+else
+  open "${map_url}${coordinates}"
+fi</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>B4C31897-81BA-427A-94FC-5311B89CD053</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsmulti</key>
+				<false/>
+				<key>filetypes</key>
+				<array>
+					<string>+public.image</string>
+				</array>
+				<key>name</key>
+				<string>Image coordinates in map</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>4B6F8EAF-EEB4-4F5B-B631-0EE4E6423E1A</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>Use the `Image coordinates in map` File Action to open an image’s location in the maps provider of your choice.
@@ -234,7 +234,7 @@ The `map_provider` Workflow Environment Variable defaults to `Apple`, but also s
 		<string>Apple</string>
 	</dict>
 	<key>version</key>
-	<string>1.0.4</string>
+	<string>20.2</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
