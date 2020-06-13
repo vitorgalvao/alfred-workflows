@@ -66,7 +66,7 @@ url="https://teleosaurs.xyz/inbox/${email_name}"
 
 front_browser="$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')"
 
-if [[ "${front_browser}" == 'Safari' || "${front_browser}" == 'Safari Technology Preview' || "${front_browser}" == 'Webkit' ]]; then
+if [[ "${front_browser}" == 'Safari'* || "${front_browser}" == 'Webkit'* ]]; then
   osascript &lt;&lt;EOF
     tell application "${front_browser}"
       set tabIndex to index of current tab of front window
@@ -74,7 +74,7 @@ if [[ "${front_browser}" == 'Safari' || "${front_browser}" == 'Safari Technology
       tell front window to set current tab to tab tabIndex
     end tell
 EOF
-elif [[ "${front_browser}" == 'Google Chrome' || "${front_browser}" == 'Google Chrome Canary' || "${front_browser}" == 'Chromium' || "${front_browser}" == 'Opera' || "${front_browser}" == 'Vivaldi' || "${front_browser}" == 'Brave Browser' ]]; then
+elif [[ "${front_browser}" == 'Google Chrome'* || "${front_browser}" == 'Chromium'* || "${front_browser}" == 'Opera'* || "${front_browser}" == 'Vivaldi'* || "${front_browser}" == 'Brave Browser'* || || "${front_browser}" == 'Microsoft Edge'* ]]; then
   osascript &lt;&lt;EOF
     tell application "${front_browser}"
       set tabIndex to active tab index of front window
@@ -253,7 +253,7 @@ Giving an argument will try to use that specific name, while leaving it blank wi
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.6.3</string>
+	<string>20.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
