@@ -267,13 +267,16 @@ const frontmost_process = Application('System Events').applicationProcesses.wher
 const frontmost_app_name = frontmost_process.name()[0]
 const frontmost_app = Application(frontmost_app_name)
 
-if (['Google Chrome', 'Google Chrome Canary', 'Chromium', 'Opera', 'Vivaldi', 'Brave Browser'].indexOf(frontmost_app_name) &gt; -1) {
+const chromium_variants = ['Google Chrome', 'Chromium', 'Opera', 'Vivaldi', 'Brave Browser', 'Microsoft Edge']
+const webkit_variants = ['Safari', 'Webkit']
+
+if (chromium_variants.some(app_name =&gt; frontmost_app_name.startsWith(app_name))) {
   const current_tab_url = frontmost_app.windows[0].activeTab.url()
   if (close_current) frontmost_app.windows[0].activeTab.close()
 
   frontmost_app.Window({ mode: 'incognito' }).make()
   frontmost_app.windows[0].activeTab.url = current_tab_url
-} else if (['Safari', 'Safari Technology Preview', 'Webkit'].indexOf(frontmost_app_name) &gt; -1) {
+} else if (webkit_variants.some(app_name =&gt; frontmost_app_name.startsWith(app_name))) {
   const current_tab_url = frontmost_app.documents[0].url()
 
   try {
@@ -354,14 +357,17 @@ const close_current = $.getenv('close_tab') === 'true'
 const frontmost_app_name = Application('System Events').applicationProcesses.where({ frontmost: true }).name()[0]
 const frontmost_app = Application(frontmost_app_name)
 
-if (['Google Chrome', 'Google Chrome Canary', 'Chromium', 'Opera', 'Vivaldi', 'Brave Browser'].indexOf(frontmost_app_name) &gt; -1) {
+const chromium_variants = ['Google Chrome', 'Chromium', 'Opera', 'Vivaldi', 'Brave Browser', 'Microsoft Edge']
+const webkit_variants = ['Safari', 'Webkit']
+
+if (chromium_variants.some(app_name =&gt; frontmost_app_name.startsWith(app_name))) {
   const current_tab_url = frontmost_app.windows[0].activeTab.url()
   if (close_current) frontmost_app.windows[0].activeTab.close()
 
   const app = Application.currentApplication()
   app.includeStandardAdditions = true
   app.doShellScript('open -na "Google Chrome" --args --user-data-dir="$(mktemp -d)" --no-first-run ' + current_tab_url)
-} else if (['Safari', 'Safari Technology Preview', 'Webkit'].indexOf(frontmost_app_name) &gt; -1) {
+} else if (webkit_variants.some(app_name =&gt; frontmost_app_name.startsWith(app_name))) {
   throw new Error('Webkit-based browsers do not support multiple profiles')
 } else {
   throw new Error('You need a supported browser as your frontmost app')
@@ -496,7 +502,7 @@ In addition, Webkit-based browsers do not support opening new private windows pr
 		<string>File, New Private Window</string>
 	</dict>
 	<key>version</key>
-	<string>20.4</string>
+	<string>20.5</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
