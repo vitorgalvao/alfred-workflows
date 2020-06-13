@@ -348,7 +348,7 @@ Copy a link to your clipboard, run `vidur` and pick your verbosity level. It’l
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.2.10</string>
+	<string>20.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
