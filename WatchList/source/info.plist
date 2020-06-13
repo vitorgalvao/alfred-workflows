@@ -251,26 +251,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>acceptsmulti</key>
-				<true/>
-				<key>filetypes</key>
-				<array>
-					<string>+public.audiovisual-content</string>
-					<string>public.folder</string>
-				</array>
-				<key>name</key>
-				<string>Add to watchlist</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.action</string>
-			<key>uid</key>
-			<string>3B8DC012-8D13-4919-8EB0-AC42C883527E</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -307,6 +287,26 @@ end</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>acceptsmulti</key>
+				<true/>
+				<key>filetypes</key>
+				<array>
+					<string>+public.audiovisual-content</string>
+					<string>public.folder</string>
+				</array>
+				<key>name</key>
+				<string>Add to watchlist</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>3B8DC012-8D13-4919-8EB0-AC42C883527E</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>triggerid</key>
 				<string>add_file_to_watchlist</string>
 			</dict>
@@ -314,27 +314,6 @@ end</string>
 			<string>alfred.workflow.trigger.external</string>
 			<key>uid</key>
 			<string>63FBFF0E-05C5-47D2-9951-CB86E114264B</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>keyword</key>
-				<string>swl</string>
-				<key>subtext</key>
-				<string>Adds url to play media from stream</string>
-				<key>text</key>
-				<string>Add stream (swl)</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>A22F833D-4556-4FEE-8A77-EE6A6A2FE8FE</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -362,6 +341,27 @@ add_url_to_watchlist(ARGV[0].strip)</string>
 			<string>6DBE8BF2-3AA2-46A3-A028-739C1E71A985</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>swl</string>
+				<key>subtext</key>
+				<string>Adds url to play media from stream</string>
+				<key>text</key>
+				<string>Add stream (swl)</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>A22F833D-4556-4FEE-8A77-EE6A6A2FE8FE</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -417,6 +417,31 @@ add_url_to_watchlist(ARGV[0].strip, true)</string>
 			<string>E4752307-AF7E-4E47-80F9-1BB75C5CCFCB</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/watchlist_functions.rb"
+
+play(ARGV[0])</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>AFB3D5CC-1B83-4675-91D8-770B0B2B7576</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -481,31 +506,6 @@ display_towatch(ENV['sort_order'])</string>
 			<string>E8F9509C-843D-40C8-B5F1-6B8FC692A18C</string>
 			<key>version</key>
 			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>require "#{Dir.pwd}/watchlist_functions.rb"
-
-play(ARGV[0])</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>2</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>AFB3D5CC-1B83-4675-91D8-770B0B2B7576</string>
-			<key>version</key>
-			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -742,27 +742,6 @@ update_series(ARGV[0])</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>keyword</key>
-				<string>wle</string>
-				<key>subtext</key>
-				<string>Reorder and rename watchlist items</string>
-				<key>text</key>
-				<string>Edit (wle)</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>68BC0595-725B-4DDD-B33F-01C3DE55A709</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -788,27 +767,23 @@ edit_towatch</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>require "#{Dir.pwd}/watchlist_functions.rb"
-
-mark_unwatched(ARGV[0])</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
+				<key>argumenttype</key>
 				<integer>2</integer>
+				<key>keyword</key>
+				<string>wle</string>
+				<key>subtext</key>
+				<string>Reorder and rename watchlist items</string>
+				<key>text</key>
+				<string>Edit (wle)</string>
+				<key>withspace</key>
+				<false/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
-			<string>C92FF9E0-CBC7-4421-9B75-4B8C557EB4DD</string>
+			<string>68BC0595-725B-4DDD-B33F-01C3DE55A709</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -860,6 +835,31 @@ display_watched</string>
 			<string>E75EF64B-CE9C-4789-8FCC-8095D43D1FEA</string>
 			<key>version</key>
 			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/watchlist_functions.rb"
+
+mark_unwatched(ARGV[0])</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>C92FF9E0-CBC7-4421-9B75-4B8C557EB4DD</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1158,7 +1158,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 		<string>added_item_order</string>
 	</array>
 	<key>version</key>
-	<string>20.7</string>
+	<string>20.9</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
