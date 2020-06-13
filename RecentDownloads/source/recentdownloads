@@ -3,17 +3,26 @@
 require 'json'
 require 'pathname'
 
+# Helpers
+def get_env(env_variable:, default:, make_pathname: false)
+  if env_variable.nil? || env_variable.empty?
+    return make_pathname ? Pathname.new(default).expand_path : default
+  end
+
+  make_pathname ? Pathname.new(env_variable).expand_path : env_variable
+end
+
+# Constants
 order = ARGV[0] # modified, modified_reverse, added, added_reverse
 abort 'You need to specify an order type.' if ARGV[0].empty?
 
 Cache_dir = Pathname(ENV['alfred_workflow_cache'])
 
-Downloads_dir =
-  if ENV['downloads_dir'].nil? || ENV['downloads_dir'].empty?
-    Pathname(ENV['HOME']).join('Downloads')
-  else
-    Pathname(ENV['downloads_dir']).expand_path
-  end
+Downloads_dir = get_env(
+  env_variable: ENV['Downloads_dir'],
+  default: Pathname.new(ENV['HOME']).join('Downloads').to_path,
+  make_pathname: true
+)
 
 All_entries =
   Downloads_dir
