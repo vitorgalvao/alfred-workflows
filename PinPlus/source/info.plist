@@ -595,7 +595,7 @@ print JSON.parse(File.read(Unread_bookmarks_json))['items'].map { |item| item['a
 				<key>hotkey</key>
 				<integer>15</integer>
 				<key>hotmod</key>
-				<integer>262144</integer>
+				<integer>524288</integer>
 				<key>hotstring</key>
 				<string>R</string>
 				<key>leftcursor</key>
@@ -1524,7 +1524,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 		<string>unread_order</string>
 	</array>
 	<key>version</key>
-	<string>20.8</string>
+	<string>20.9</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

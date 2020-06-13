@@ -62,7 +62,7 @@ def reset_pinboard_token
 end
 
 def grab_url_title
-  url, title = Open3.capture2("#{__dir__}/get_url_and_title", '--').first.strip.split('|') # Second dummy argument is to not require shellescaping single argument
+  url, title = Open3.capture2("#{__dir__}/get_url_and_title.js", '--').first.strip.split('|') # Second dummy argument is to not require shellescaping single argument
 
   error('You need a supported web browser as your frontmost app.') if url.nil?
   title ||= url # For pages without a title tag
@@ -72,7 +72,7 @@ end
 
 def open_gui
   pinplus_app_path = Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier = com.vitorgalvao.pinplus').first.strip
-  pinplus_app_path.empty? ? system("#{__dir__.shellescape}/run_bookmarklet") : system("#{pinplus_app_path}/Contents/MacOS/PinPlus")
+  pinplus_app_path.empty? ? system("#{__dir__.shellescape}/run_bookmarklet.js") : system("#{pinplus_app_path}/Contents/MacOS/PinPlus")
 end
 
 def add_unread

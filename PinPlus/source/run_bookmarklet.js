@@ -4,9 +4,12 @@ const bookmarklet_code = "q=location.href;if(document.getSelection){d=document.g
 const frontmost_app_name = Application('System Events').applicationProcesses.where({ frontmost: true }).name()[0]
 const frontmost_app = Application(frontmost_app_name)
 
-if (['Google Chrome', 'Google Chrome Canary', 'Chromium', 'Vivaldi', 'Brave Browser'].indexOf(frontmost_app_name) > -1) {
+const chromium_variants = ['Google Chrome', 'Chromium', 'Opera', 'Vivaldi', 'Brave Browser', 'Microsoft Edge']
+const webkit_variants = ['Safari', 'Webkit']
+
+if (chromium_variants.some(app_name => frontmost_app_name.startsWith(app_name))) {
   frontmost_app.windows[0].activeTab.url = 'javascript:' + bookmarklet_code
-} else if (['Safari', 'Safari Technology Preview', 'Webkit'].indexOf(frontmost_app_name) > -1) {
+} else if (webkit_variants.some(app_name => frontmost_app_name.startsWith(app_name))) {
   frontmost_app.doJavaScript(bookmarklet_code, { in: frontmost_app.documents[0] })
 } else {
   throw new Error('You need a supported browser as your frontmost app')
