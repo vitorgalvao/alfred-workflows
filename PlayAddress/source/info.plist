@@ -229,12 +229,15 @@ if (script_filter_items.length === 0) {
 				<string>ObjC.import('stdlib')
 const browser = $.getenv('browser')
 const url = $.getenv('url')
-close_browser = ($.getenv('close_tab') === 'true') ? true : false
+const close_browser = ($.getenv('close_tab') === 'true') ? true : false
+
+const chromium_variants = ['Google Chrome', 'Chromium', 'Opera', 'Vivaldi', 'Brave Browser', 'Microsoft Edge']
+const webkit_variants = ['Safari', 'Webkit']
 
 if (close_browser &amp;&amp; browser &amp;&amp; $.system('/usr/local/bin/youtube-dl --simulate --quiet ' + url) === 0) {
-  if (['Google Chrome', 'Google Chrome Canary', 'Chromium', 'Vivaldi'].indexOf(browser) &gt; -1) {
+  if (chromium_variants.some(app_name =&gt; browser.startsWith(app_name))) {
     Application(browser).windows[0].tabs().forEach(tab =&gt; { if (tab.url() === url) tab.close() })
-  } else if (['Safari', 'Safari Technology Preview', 'Webkit'].indexOf(browser) &gt; -1) {
+  } else if (webkit_variants.some(app_name =&gt; browser.startsWith(app_name))) {
     let current_tab_index = 0
     let last_tab_index = Application('Safari').windows[0].tabs.length - 1
 
@@ -471,7 +474,7 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 		<string>true</string>
 	</dict>
 	<key>version</key>
-	<string>20.3</string>
+	<string>20.4</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
