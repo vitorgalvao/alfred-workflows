@@ -149,18 +149,21 @@ fi</string>
 				<string>const frontmost_app_name = Application('System Events').applicationProcesses.where({ frontmost: true }).name()[0]
 const frontmost_app = Application(frontmost_app_name)
 
+const chromium_variants = ['Google Chrome', 'Chromium', 'Opera', 'Vivaldi', 'Brave Browser', 'Microsoft Edge']
+const webkit_variants = ['Safari', 'Webkit']
+
 let title, url, clipboard
 let script_filter_items = []
 
 // Get details from frontmost browser, if any
-if (['Google Chrome', 'Google Chrome Canary', 'Chromium', 'Vivaldi', 'Brave Browser'].indexOf(frontmost_app_name) &gt; -1) {
+if (chromium_variants.some(app_name =&gt; frontmost_app_name.startsWith(app_name))) {
   title = frontmost_app.windows[0].activeTab.name()
   url = frontmost_app.windows[0].activeTab.url()
 
   if (title.length === 0) title = 'Web page does not have a title'
 
   script_filter_items.push({ 'variables': { 'browser': frontmost_app_name, 'url': url }, 'title': title, 'subtitle': url })
-} else if (['Safari', 'Safari Technology Preview', 'Webkit'].indexOf(frontmost_app_name) &gt; -1) {
+} else if (webkit_variants.some(app_name =&gt; frontmost_app_name.startsWith(app_name))) {
   title = frontmost_app.documents[0].name()
   url = frontmost_app.documents[0].url()
 
@@ -227,22 +230,23 @@ if (script_filter_items.length === 0) {
 				<integer>102</integer>
 				<key>script</key>
 				<string>ObjC.import('stdlib')
-const browser = $.getenv('browser')
+const browser_name = $.getenv('browser')
+const browser = Application(browser_name)
 const url = $.getenv('url')
 const close_browser = ($.getenv('close_tab') === 'true') ? true : false
 
 const chromium_variants = ['Google Chrome', 'Chromium', 'Opera', 'Vivaldi', 'Brave Browser', 'Microsoft Edge']
 const webkit_variants = ['Safari', 'Webkit']
 
-if (close_browser &amp;&amp; browser &amp;&amp; $.system('/usr/local/bin/youtube-dl --simulate --quiet ' + url) === 0) {
-  if (chromium_variants.some(app_name =&gt; browser.startsWith(app_name))) {
-    Application(browser).windows[0].tabs().forEach(tab =&gt; { if (tab.url() === url) tab.close() })
-  } else if (webkit_variants.some(app_name =&gt; browser.startsWith(app_name))) {
+if (close_browser &amp;&amp; browser_name &amp;&amp; $.system('/usr/local/bin/youtube-dl --simulate --quiet ' + url) === 0) {
+  if (chromium_variants.some(app_name =&gt; browser_name.startsWith(app_name))) {
+    browser.windows[0].tabs().forEach(tab =&gt; { if (tab.url() === url) tab.close() })
+  } else if (webkit_variants.some(app_name =&gt; browser_name.startsWith(app_name))) {
     let current_tab_index = 0
-    let last_tab_index = Application('Safari').windows[0].tabs.length - 1
+    let last_tab_index = browser.windows[0].tabs.length - 1
 
     while (current_tab_index &lt;= last_tab_index) {
-      let tab = Application('Safari').windows[0].tabs[current_tab_index]
+      let tab = browser.windows[0].tabs[current_tab_index]
 
       if (tab.url() === url) {
         tab.close()
@@ -474,7 +478,7 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 		<string>true</string>
 	</dict>
 	<key>version</key>
-	<string>20.4</string>
+	<string>20.5</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
