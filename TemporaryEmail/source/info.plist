@@ -74,7 +74,7 @@ if [[ "${front_browser}" == 'Safari'* || "${front_browser}" == 'Webkit'* ]]; the
       tell front window to set current tab to tab tabIndex
     end tell
 EOF
-elif [[ "${front_browser}" == 'Google Chrome'* || "${front_browser}" == 'Chromium'* || "${front_browser}" == 'Opera'* || "${front_browser}" == 'Vivaldi'* || "${front_browser}" == 'Brave Browser'* || || "${front_browser}" == 'Microsoft Edge'* ]]; then
+elif [[ "${front_browser}" == 'Google Chrome'* || "${front_browser}" == 'Chromium'* || "${front_browser}" == 'Opera'* || "${front_browser}" == 'Vivaldi'* || "${front_browser}" == 'Brave Browser'* || "${front_browser}" == 'Microsoft Edge'* ]]; then
   osascript &lt;&lt;EOF
     tell application "${front_browser}"
       set tabIndex to active tab index of front window
@@ -253,7 +253,7 @@ Giving an argument will try to use that specific name, while leaving it blank wi
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>20.1</string>
+	<string>20.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
