@@ -32,11 +32,63 @@
 				<false/>
 			</dict>
 		</array>
+		<key>69B69AB9-AE77-462E-89CF-AF13DEAB136D</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>EA95B68F-DA2E-4CA9-B909-4FCA225542F1</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>8B6D0381-702B-44F5-8EF1-814A23F10CDD</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>5D484555-2194-4B80-B6E9-A06275C93301</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>B9C75D35-BFFB-46F2-AF8A-C4588A99A843</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>8B6D0381-702B-44F5-8EF1-814A23F10CDD</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>D760EFB0-4998-4ABB-BFD4-ED75D1E1A9A2</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>B9C75D35-BFFB-46F2-AF8A-C4588A99A843</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>DAC2512F-DDFA-417B-BA97-3E8F2E082F54</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>69B69AB9-AE77-462E-89CF-AF13DEAB136D</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -69,36 +121,6 @@
 	<string>QuitArena</string>
 	<key>objects</key>
 	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>ObjC.import('stdlib');
-
-let keep_alive_array = $.getenv('keep_alive').split(',').map(app =&gt; app.trim())
-if ($.getenv('kill_finder') !== 'true') keep_alive_array.push('Finder')
-
-const running_apps = Application('System Events').applicationProcesses.where({ backgroundOnly: false }).name().filter(app =&gt; !keep_alive_array.includes(app))
-
-running_apps.forEach(app =&gt; Application(app).quit())</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>7</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>8B6D0381-702B-44F5-8EF1-814A23F10CDD</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -224,6 +246,88 @@ fi</string>
 let keep_alive_array = $.getenv('keep_alive').split(',').map(app =&gt; app.trim())
 if ($.getenv('kill_finder') !== 'true') keep_alive_array.push('Finder')
 
+const running_apps = Application('System Events').applicationProcesses.where({ backgroundOnly: false }).name().filter(app =&gt; !keep_alive_array.includes(app))
+
+running_apps.forEach(app =&gt; Application(app).quit())</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>7</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>8B6D0381-702B-44F5-8EF1-814A23F10CDD</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>triggerid</key>
+				<string>quit_apps</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>D760EFB0-4998-4ABB-BFD4-ED75D1E1A9A2</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>variables</key>
+				<dict>
+					<key>keep_alive</key>
+					<string>{query}</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>B9C75D35-BFFB-46F2-AF8A-C4588A99A843</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>qprocesses</string>
+				<key>subtext</key>
+				<string>Quit all processes except {var:keep_alive}</string>
+				<key>text</key>
+				<string>Quit processes</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>426A557E-6B56-4FED-BBF6-2926305942C2</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>ObjC.import('stdlib');
+
+let keep_alive_array = $.getenv('keep_alive').split(',').map(app =&gt; app.trim())
+if ($.getenv('kill_finder') !== 'true') keep_alive_array.push('Finder')
+
 const app = Application.currentApplication()
 app.includeStandardAdditions = true
 
@@ -255,21 +359,31 @@ running_processes.forEach(processName =&gt; {
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>keyword</key>
-				<string>qprocesses</string>
-				<key>subtext</key>
-				<string>Quit all processes except {var:keep_alive}</string>
-				<key>text</key>
-				<string>Quit processes</string>
-				<key>withspace</key>
-				<false/>
+				<key>triggerid</key>
+				<string>quit_processes</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
+			<string>alfred.workflow.trigger.external</string>
 			<key>uid</key>
-			<string>426A557E-6B56-4FED-BBF6-2926305942C2</string>
+			<string>DAC2512F-DDFA-417B-BA97-3E8F2E082F54</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>variables</key>
+				<dict>
+					<key>keep_alive</key>
+					<string>{query}</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>69B69AB9-AE77-462E-89CF-AF13DEAB136D</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -283,22 +397,24 @@ You’ll need to use the exact names of the apps as they present themselves to t
 
 `qprocesses` will kill all processes, subject to the same `keep_alive` and `kill_finder` settings, meaning even things in the background that you don’t see will be asked to quit.
 
-Note both options *ask* the apps to exit (`SIGTERM`) instead of *telling* them (`SIGKILL`). If you need to force processes to terminate, consider [ProcessControl](https://github.com/vitorgalvao/alfred-workflows/tree/master/ProcessControl) instead.</string>
+Note both options *ask* the apps to exit (`SIGTERM`) instead of *telling* them (`SIGKILL`). If you need to force processes to terminate, consider [ProcessControl](https://github.com/vitorgalvao/alfred-workflows/tree/master/ProcessControl) instead.
+
+The External Triggers allow to temporarily override which apps to keep alive by giving them as the argument.</string>
 	<key>uidata</key>
 	<dict>
 		<key>2A6C00C6-2448-4DF3-9041-A4AC18F81DC1</key>
 		<dict>
 			<key>xpos</key>
-			<integer>40</integer>
+			<integer>35</integer>
 			<key>ypos</key>
 			<integer>30</integer>
 		</dict>
 		<key>426A557E-6B56-4FED-BBF6-2926305942C2</key>
 		<dict>
 			<key>xpos</key>
-			<integer>40</integer>
+			<integer>35</integer>
 			<key>ypos</key>
-			<integer>155</integer>
+			<integer>280</integer>
 		</dict>
 		<key>5D484555-2194-4B80-B6E9-A06275C93301</key>
 		<dict>
@@ -307,23 +423,51 @@ Note both options *ask* the apps to exit (`SIGTERM`) instead of *telling* them (
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>440</integer>
+			<integer>485</integer>
 			<key>ypos</key>
 			<integer>30</integer>
+		</dict>
+		<key>69B69AB9-AE77-462E-89CF-AF13DEAB136D</key>
+		<dict>
+			<key>xpos</key>
+			<integer>200</integer>
+			<key>ypos</key>
+			<integer>435</integer>
 		</dict>
 		<key>8B6D0381-702B-44F5-8EF1-814A23F10CDD</key>
 		<dict>
 			<key>xpos</key>
-			<integer>245</integer>
+			<integer>290</integer>
 			<key>ypos</key>
 			<integer>30</integer>
+		</dict>
+		<key>B9C75D35-BFFB-46F2-AF8A-C4588A99A843</key>
+		<dict>
+			<key>xpos</key>
+			<integer>200</integer>
+			<key>ypos</key>
+			<integer>185</integer>
+		</dict>
+		<key>D760EFB0-4998-4ABB-BFD4-ED75D1E1A9A2</key>
+		<dict>
+			<key>xpos</key>
+			<integer>35</integer>
+			<key>ypos</key>
+			<integer>155</integer>
+		</dict>
+		<key>DAC2512F-DDFA-417B-BA97-3E8F2E082F54</key>
+		<dict>
+			<key>xpos</key>
+			<integer>35</integer>
+			<key>ypos</key>
+			<integer>405</integer>
 		</dict>
 		<key>EA95B68F-DA2E-4CA9-B909-4FCA225542F1</key>
 		<dict>
 			<key>xpos</key>
-			<integer>245</integer>
+			<integer>290</integer>
 			<key>ypos</key>
-			<integer>155</integer>
+			<integer>280</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
@@ -338,7 +482,7 @@ Note both options *ask* the apps to exit (`SIGTERM`) instead of *telling* them (
 		<string>keep_alive</string>
 	</array>
 	<key>version</key>
-	<string>1.0.1</string>
+	<string>20.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

@@ -7,3 +7,5 @@ You’ll need to use the exact names of the apps as they present themselves to t
 `qprocesses` will kill all processes, subject to the same `keep_alive` and `kill_finder` settings, meaning even things in the background that you don’t see will be asked to quit.
 
 Note both options *ask* the apps to exit (`SIGTERM`) instead of *telling* them (`SIGKILL`). If you need to force processes to terminate, consider [ProcessControl](https://github.com/vitorgalvao/alfred-workflows/tree/master/ProcessControl) instead.
+
+The External Triggers allow to temporarily override which apps to keep alive by giving them as the argument.
