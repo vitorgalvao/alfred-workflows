@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.vitorgalvao.alfred.notetaker</string>
+	<key>connections</key>
+	<dict>
+		<key>03643B46-4437-4668-B20D-2426B2945D5A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>39AEE376-1119-4C0E-BF24-CB23030EE283</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>0B9F972C-420B-4358-93C1-B5106DB6B27E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>AAA5D8DE-48BF-4E6A-9229-2F7628346746</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>30D6EA84-603F-4933-88FB-EA72177B8395</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>22D55C69-CF3B-460D-A930-76CEF98F13D5</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D6A37A51-1C81-4498-8A9F-6C5CE2C42C2F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>EBD71B97-DD3E-4484-A6DF-8630133F8F63</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Copy and delete note</string>
+				<key>vitoclose</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>0B9F972C-420B-4358-93C1-B5106DB6B27E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>35C8230F-B24B-433B-AD8A-97530A5C5B86</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Edit note</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>3078BCDF-E3A8-45C7-9EB8-8EE49B29FC2E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>39AEE376-1119-4C0E-BF24-CB23030EE283</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>35C8230F-B24B-433B-AD8A-97530A5C5B86</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2BB2CA5C-BC90-4D41-A56D-DE0FBD36FF5A</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>39AEE376-1119-4C0E-BF24-CB23030EE283</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2BB2CA5C-BC90-4D41-A56D-DE0FBD36FF5A</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>8B624B4D-A785-4CE0-9010-6D1220595A1C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>03643B46-4437-4668-B20D-2426B2945D5A</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>A38531BC-2CB7-4D2A-B0E9-DB2B398B867B</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3078BCDF-E3A8-45C7-9EB8-8EE49B29FC2E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>D6A37A51-1C81-4498-8A9F-6C5CE2C42C2F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2BB2CA5C-BC90-4D41-A56D-DE0FBD36FF5A</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>EBD71B97-DD3E-4484-A6DF-8630133F8F63</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2BB2CA5C-BC90-4D41-A56D-DE0FBD36FF5A</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Vítor Galvão</string>
+	<key>description</key>
+	<string>Keep small bits of text</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>NoteTaker</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>hotstring</key>
+				<string></string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>A38531BC-2CB7-4D2A-B0E9-DB2B398B867B</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>{date:yyyy-MM-dd-HH-mm-ss}</string>
+				<key>variables</key>
+				<dict/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>3078BCDF-E3A8-45C7-9EB8-8EE49B29FC2E</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/notetaker_functions.rb"
+
+add_note(title: ARGV[0])</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>39AEE376-1119-4C0E-BF24-CB23030EE283</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>triggerid</key>
+				<string>add_note</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>8B624B4D-A785-4CE0-9010-6D1220595A1C</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>nadd</string>
+				<key>subtext</key>
+				<string>The contents will be your clipboard</string>
+				<key>text</key>
+				<string>Add a note title</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>03643B46-4437-4668-B20D-2426B2945D5A</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>nview</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Collecting notes…</string>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/notetaker_functions.rb"
+
+display_notes</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>View notes</string>
+				<key>type</key>
+				<integer>2</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>22D55C69-CF3B-460D-A930-76CEF98F13D5</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/notetaker_functions.rb"
+
+copy_note(path: ARGV[0])</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>D6A37A51-1C81-4498-8A9F-6C5CE2C42C2F</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string># THESE VARIABLES MUST BE SET. SEE THE ONEUPDATER README FOR AN EXPLANATION OF EACH.
+readonly remote_info_plist="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
+readonly workflow_url="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/${alfred_workflow_name}.alfredworkflow"
+readonly download_type='direct'
+readonly frequency_check='4'
+
+# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED!
+function abort {
+  echo "${1}" &gt;&amp;2
+  exit 1
+}
+
+function url_exists {
+  curl --silent --location --output /dev/null --fail --range 0-0 "${1}"
+}
+
+function notification {
+  local -r notificator="$(find . -type d -name 'Notificator.app')"
+  if [[ -n "${notificator}" ]]; then
+    "${notificator}/Contents/Resources/Scripts/notificator" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
+    return
+  fi
+
+  local -r terminal_notifier="$(find . -type f -name 'terminal-notifier')"
+  if [[ -n "${terminal_notifier}" ]]; then
+    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+    return
+  fi
+
+  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
+}
+
+# Local sanity checks
+readonly local_info_plist='info.plist'
+readonly local_version="$(/usr/libexec/PlistBuddy -c 'print version' "${local_info_plist}")"
+
+[[ -n "${local_version}" ]] || abort 'You need to set a workflow version in the configuration sheet.'
+[[ "${download_type}" =~ ^(direct|page|github_release)$ ]] || abort "'download_type' (${download_type}) needs to be one of 'direct', 'page', or 'github_release'."
+[[ "${frequency_check}" =~ ^[0-9]+$ ]] || abort "'frequency_check' (${frequency_check}) needs to be a number."
+
+# Check for updates
+if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
+  if ! url_exists "${remote_info_plist}"; then abort "'remote_info_plist' (${remote_info_plist}) appears to not be reachable."; fi # Remote sanity check
+
+  readonly tmp_file="$(mktemp)"
+  curl --silent --location --output "${tmp_file}" "${remote_info_plist}"
+  readonly remote_version="$(/usr/libexec/PlistBuddy -c 'print version' "${tmp_file}")"
+
+  if [[ "${local_version}" == "${remote_version}" ]]; then
+    touch "${local_info_plist}" # Reset timer by touching local file
+    exit 0
+  fi
+
+  if [[ "${download_type}" == 'page' ]]; then
+    notification 'Opening download page…'
+    open "${workflow_url}"
+    exit 0
+  fi
+
+  download_url="$([[ "${download_type}" == 'github_release' ]] &amp;&amp; curl --silent "https://api.github.com/repos/${workflow_url}/releases/latest" | grep 'browser_download_url' | head -1 | sed -E 's/.*browser_download_url": "(.*)"/\1/' || echo "${workflow_url}")"
+
+  if url_exists "${download_url}"; then
+    notification 'Downloading and installing…'
+    curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${download_url}"
+    open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
+  else
+    abort "'workflow_url' (${download_url}) appears to not be reachable."
+  fi
+fi</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>2BB2CA5C-BC90-4D41-A56D-DE0FBD36FF5A</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/notetaker_functions.rb"
+
+copy_note(path: ARGV[0])
+trash(path: ARGV[0])</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>EBD71B97-DD3E-4484-A6DF-8630133F8F63</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string>{var:add_note_external}</string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>true</string>
+						<key>outputlabel</key>
+						<string>Make note</string>
+						<key>uid</key>
+						<string>30D6EA84-603F-4933-88FB-EA72177B8395</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>0B9F972C-420B-4358-93C1-B5106DB6B27E</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/notetaker_functions.rb"
+
+edit_note(path: ARGV[0])</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>35C8230F-B24B-433B-AD8A-97530A5C5B86</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>externaltriggerid</key>
+				<string>add_note</string>
+				<key>passinputasargument</key>
+				<false/>
+				<key>passvariables</key>
+				<false/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>AAA5D8DE-48BF-4E6A-9229-2F7628346746</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>Save named clipboard items for later retrieval.
+
+Call `nadd`, type a name, and press ↵. Your clipboard contents will be saved to a txt file of the chosen name.
+
+![](https://i.imgur.com/7IW8TSn.png)
+
+Retrieve your notes with `nview`. ⇧ or ⌘Y will quicklook its contents; ↵ will copy them; ⌘↵ copies and deletes; ⌥↵ opens the note in your text editor.
+
+![](https://i.imgur.com/xfFY6uW.png)
+
+To keep notes synced between machines, use the `notes_dir` Workflow Environment Variable to pick a custom save location.</string>
+	<key>uidata</key>
+	<dict>
+		<key>03643B46-4437-4668-B20D-2426B2945D5A</key>
+		<dict>
+			<key>xpos</key>
+			<integer>205</integer>
+			<key>ypos</key>
+			<integer>215</integer>
+		</dict>
+		<key>0B9F972C-420B-4358-93C1-B5106DB6B27E</key>
+		<dict>
+			<key>xpos</key>
+			<integer>330</integer>
+			<key>ypos</key>
+			<integer>555</integer>
+		</dict>
+		<key>22D55C69-CF3B-460D-A930-76CEF98F13D5</key>
+		<dict>
+			<key>xpos</key>
+			<integer>205</integer>
+			<key>ypos</key>
+			<integer>340</integer>
+		</dict>
+		<key>2BB2CA5C-BC90-4D41-A56D-DE0FBD36FF5A</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>12</integer>
+			<key>note</key>
+			<string>OneUpdater</string>
+			<key>xpos</key>
+			<integer>760</integer>
+			<key>ypos</key>
+			<integer>340</integer>
+		</dict>
+		<key>3078BCDF-E3A8-45C7-9EB8-8EE49B29FC2E</key>
+		<dict>
+			<key>xpos</key>
+			<integer>205</integer>
+			<key>ypos</key>
+			<integer>55</integer>
+		</dict>
+		<key>35C8230F-B24B-433B-AD8A-97530A5C5B86</key>
+		<dict>
+			<key>xpos</key>
+			<integer>525</integer>
+			<key>ypos</key>
+			<integer>590</integer>
+		</dict>
+		<key>39AEE376-1119-4C0E-BF24-CB23030EE283</key>
+		<dict>
+			<key>xpos</key>
+			<integer>525</integer>
+			<key>ypos</key>
+			<integer>215</integer>
+		</dict>
+		<key>8B624B4D-A785-4CE0-9010-6D1220595A1C</key>
+		<dict>
+			<key>xpos</key>
+			<integer>30</integer>
+			<key>ypos</key>
+			<integer>215</integer>
+		</dict>
+		<key>A38531BC-2CB7-4D2A-B0E9-DB2B398B867B</key>
+		<dict>
+			<key>note</key>
+			<string>Instant note from most recent clipboard item. Will be named with the current date.</string>
+			<key>xpos</key>
+			<integer>30</integer>
+			<key>ypos</key>
+			<integer>25</integer>
+		</dict>
+		<key>AAA5D8DE-48BF-4E6A-9229-2F7628346746</key>
+		<dict>
+			<key>xpos</key>
+			<integer>530</integer>
+			<key>ypos</key>
+			<integer>715</integer>
+		</dict>
+		<key>D6A37A51-1C81-4498-8A9F-6C5CE2C42C2F</key>
+		<dict>
+			<key>xpos</key>
+			<integer>525</integer>
+			<key>ypos</key>
+			<integer>340</integer>
+		</dict>
+		<key>EBD71B97-DD3E-4484-A6DF-8630133F8F63</key>
+		<dict>
+			<key>xpos</key>
+			<integer>525</integer>
+			<key>ypos</key>
+			<integer>465</integer>
+		</dict>
+	</dict>
+	<key>variables</key>
+	<dict>
+		<key>notes_dir</key>
+		<string>~/Dropbox/Libraries/AlfredWorkflowsData/NoteTaker</string>
+	</dict>
+	<key>version</key>
+	<string>20.1</string>
+	<key>webaddress</key>
+	<string>https://vitorgalvao.com/</string>
+</dict>
+</plist>
