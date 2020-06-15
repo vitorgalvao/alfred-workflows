@@ -154,7 +154,7 @@ def fetch_bookmarks(force = false)
     return if synced_with_website?
   end
 
-  all_bookmarks = JSON.parse(open("https://api.pinboard.in/v1/posts/all?auth_token=#{grab_pinboard_token}&format=json").read)
+  all_bookmarks = JSON.parse(URI("https://api.pinboard.in/v1/posts/all?auth_token=#{grab_pinboard_token}&format=json").read)
 
   unread_bookmarks = []
   all_bookmarks.each do |bookmark|
