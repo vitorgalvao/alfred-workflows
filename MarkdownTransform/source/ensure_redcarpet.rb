@@ -1,7 +1,6 @@
 #!/usr/bin/ruby
 
-Redcarpet_dir = "#{__dir__}/_licensed/Redcarpet".freeze
-$LOAD_PATH.unshift "#{Redcarpet_dir}/gems/redcarpet-3.5.0/lib"
+Gem.paths = { 'GEM_HOME' => "#{Dir.pwd}/_licensed/Gems" }
 
 def notification(subtitle, message, sound = '')
   system("#{Dir.pwd}/Notificator.app/Contents/Resources/Scripts/notificator", '--message', message, '--subtitle', subtitle, '--sound', sound, '--title', ENV['alfred_workflow_name'])

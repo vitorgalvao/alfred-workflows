@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 
-require_relative "#{__dir__}/ensure_redcarpet.rb"
+require_relative "#{Dir.pwd}/ensure_redcarpet.rb"
 require 'open3'
 
 rich_text_style = '
