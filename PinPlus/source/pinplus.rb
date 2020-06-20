@@ -40,7 +40,7 @@ def save_pinboard_token
     const response = app.displayDialog('Your Pinboard API Token:', {
       defaultAnswer: 'Get it on https://pinboard.in/settings/password',
       withTitle: 'Pinboard API Token Missing',
-      withIcon: Path('#{__dir__}/icon.png'),
+      withIcon: Path('#{Dir.pwd}/icon.png'),
       buttons: ['Cancel', 'OK'],
       defaultButton: 'OK'
     })
