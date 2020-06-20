@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 
-Gem.paths = { 'GEM_HOME' => "#{Dir.pwd}/_licensed/Gems" }
+Gem.paths = { 'GEM_PATH' => Gem.path.unshift("#{Dir.pwd}/_licensed/Redcarpet").join(File::PATH_SEPARATOR) }
 
 def notification(subtitle, message, sound = '')
   system("#{Dir.pwd}/Notificator.app/Contents/Resources/Scripts/notificator", '--message', message, '--subtitle', subtitle, '--sound', sound, '--title', ENV['alfred_workflow_name'])
