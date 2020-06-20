@@ -3,7 +3,12 @@ require 'fileutils'
 require 'json'
 require 'open-uri'
 require 'open3'
-require 'shellwords'
+
+class String
+  def no_feff
+    sub("\xEF\xBB\xBF", '').strip
+  end
+end
 
 Last_access_file = "#{ENV['alfred_workflow_cache']}/last_access_file.txt".freeze
 All_bookmarks_json = "#{ENV['alfred_workflow_cache']}/all_bookmarks.json".freeze
@@ -62,7 +67,7 @@ def reset_pinboard_token
 end
 
 def grab_url_title
-  url, title = Open3.capture2("#{__dir__}/get_url_and_title.js", '--').first.strip.split('|') # Second dummy argument is to not require shellescaping single argument
+  url, title = Open3.capture2("#{Dir.pwd}/get_url_and_title.js", '--').first.strip.split('|') # Second dummy argument is to not require shellescaping single argument
 
   error('You need a supported web browser as your frontmost app.') if url.nil?
   title ||= url # For pages without a title tag
@@ -72,7 +77,7 @@ end
 
 def open_gui
   pinplus_app_path = Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier = com.vitorgalvao.pinplus').first.strip
-  pinplus_app_path.empty? ? system("#{__dir__.shellescape}/run_bookmarklet.js") : system("#{pinplus_app_path}/Contents/MacOS/PinPlus")
+  pinplus_app_path.empty? ? system("#{Dir.pwd}/run_bookmarklet.js", '--') : system("#{pinplus_app_path}/Contents/MacOS/PinPlus") # Second dummy argument is to not require shellescaping single argument
 end
 
 def add_unread
@@ -83,7 +88,7 @@ def add_unread
   url_encoded = CGI.escape(url)
   title_encoded = CGI.escape(title)
 
-  result = JSON.parse(URI("https://api.pinboard.in/v1/posts/add?url=#{url_encoded}&description=#{title_encoded}&toread=yes&auth_token=#{grab_pinboard_token}&format=json").read)['result_code']
+  result = JSON.parse(URI("https://api.pinboard.in/v1/posts/add?url=#{url_encoded}&description=#{title_encoded}&toread=yes&auth_token=#{grab_pinboard_token}&format=json").read.no_feff)['result_code']
 
   return if result == 'done'
 
@@ -101,7 +106,7 @@ def synced_with_website?
   FileUtils.mkdir_p(ENV['alfred_workflow_cache']) unless Dir.exist?(ENV['alfred_workflow_cache'])
 
   last_access_local = File.exist?(Last_access_file) ? File.read(Last_access_file) : 'File does not yet exist'
-  last_access_remote = JSON.parse(URI("https://api.pinboard.in/v1/posts/update?auth_token=#{grab_pinboard_token}&format=json").read)['update_time']
+  last_access_remote = JSON.parse(URI("https://api.pinboard.in/v1/posts/update?auth_token=#{grab_pinboard_token}&format=json").read.no_feff)['update_time']
 
   if last_access_local == last_access_remote
     FileUtils.touch(Last_access_file)
@@ -124,7 +129,7 @@ def action_unread(action, url)
 
   toread = 'no'
 
-  bookmark = JSON.parse(URI("https://api.pinboard.in/v1/posts/get?url=#{url_encoded}&auth_token=#{grab_pinboard_token}&format=json").read)['posts'][0]
+  bookmark = JSON.parse(URI("https://api.pinboard.in/v1/posts/get?url=#{url_encoded}&auth_token=#{grab_pinboard_token}&format=json").read.no_feff)['posts'][0]
 
   title_encoded = CGI.escape(bookmark['description'])
   description_encoded = CGI.escape(bookmark['extended'])
@@ -154,7 +159,7 @@ def fetch_bookmarks(force = false)
     return if synced_with_website?
   end
 
-  all_bookmarks = JSON.parse(URI("https://api.pinboard.in/v1/posts/all?auth_token=#{grab_pinboard_token}&format=json").read)
+  all_bookmarks = JSON.parse(URI("https://api.pinboard.in/v1/posts/all?auth_token=#{grab_pinboard_token}&format=json").read.no_feff)
 
   unread_bookmarks = []
   all_bookmarks.each do |bookmark|
