@@ -13,7 +13,14 @@ if !File.exist?(list_file) || (((Time.now - File.mtime(list_file)) / (24 * 3600)
   Dir.mkdir(ENV['alfred_workflow_cache']) unless Dir.exist?(ENV['alfred_workflow_cache'])
 
   site_rss = 'https://www.shortoftheweek.com/feed'
-  site_feed = RSS::Parser.parse(URI(site_rss).read)
+  site_feed = begin
+                RSS::Parser.parse(URI(site_rss).read)
+              rescue OpenSSL::SSL::SSLError
+                require 'openssl'
+                OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
+
+                retry
+              end
 
   script_filter_items = []
 
