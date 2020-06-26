@@ -16,15 +16,13 @@ function success {
 }
 
 function prepend {
-  local line_to_prepend file_to_prepend_to tmp_prepend_file
-
   if [[ -z "${1}" ]] || [[ ! -f "${2}" ]]; then
     echo 'usage: prepend <line_to_prepend> <file_to_prepend_to>'
     return 1
   else
-    line_to_prepend="${1}"
-    file_to_prepend_to="${2}"
-    tmp_prepend_file="$(mktemp -t prepend)"
+    local -r line_to_prepend="${1}"
+    local -r file_to_prepend_to="${2}"
+    local -r tmp_prepend_file="$(mktemp -t prepend)"
 
     echo "${line_to_prepend}" | cat - "${file_to_prepend_to}" > "${tmp_prepend_file}"
     mv "${tmp_prepend_file}" "${file_to_prepend_to}"
@@ -32,7 +30,7 @@ function prepend {
 }
 
 function take_screenshot {
-  local screenshot_file="$(mktemp).png"
+  local -r screenshot_file="$(mktemp).png"
 
   screencapture -i "${screenshot_file}"
 
@@ -40,8 +38,8 @@ function take_screenshot {
 }
 
 function register_links {
-  local screenshot_url="${1}"
-  local screenshot_del="${2}"
+  local -r screenshot_url="${1}"
+  local -r screenshot_del="${2}"
 
   [[ -d "${alfred_workflow_cache}" ]] || mkdir -p "${alfred_workflow_cache}"
   [[ -f "${url_list}" ]] || touch "${url_list}"
@@ -50,14 +48,14 @@ function register_links {
 }
 
 function upload_file {
-  local screenshot_file="${1}"
-  local upload_response="$(./imgur "${screenshot_file}" 2>&1)" # This will already copy the URL to the clipboard
+  local -r screenshot_file="${1}"
+  local -r upload_response="$(./imgur "${screenshot_file}" 2>&1)" # This will already copy the URL to the clipboard
 
   [[ "${upload_response}" == 'Upload failed' ]] && failure 'Upload failed'
   success
 
-  local screenshot_url="$(head -1 <<< "${upload_response}")"
-  local screenshot_del="$(tail -1 <<< "${upload_response}" | sed 's/Delete page: //')"
+  local -r screenshot_url="$(head -1 <<< "${upload_response}")"
+  local -r screenshot_del="$(tail -1 <<< "${upload_response}" | sed 's/Delete page: //')"
 
   register_links "${screenshot_url}" "${screenshot_del}"
 }
