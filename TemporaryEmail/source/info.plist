@@ -23,6 +23,44 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
+				<string>A62BDC1B-6EF0-4884-8225-DED4378FC038</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>A62BDC1B-6EF0-4884-8225-DED4378FC038</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E9B13513-9247-4498-8320-6E24CF7DBDB5</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>8174851A-74D2-4634-B71B-9BCC7064C9F5</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>1BFF14FC-DF72-4BC9-807B-3D38432CF08D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>E9B13513-9247-4498-8320-6E24CF7DBDB5</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
 				<string>1BFF14FC-DF72-4BC9-807B-3D38432CF08D</string>
 				<key>modifiers</key>
 				<integer>0</integer>
@@ -55,12 +93,7 @@
   ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
 }
 
-if [[ -n "${1}" ]]; then
-  email_name="${1//[^[:alnum:]]}"
-else
-  email_name="$(openssl rand -base64 12 | tr -d '/=+')"
-fi
-
+email_name="${1//[^[:alnum:]]}"
 email="${email_name}@teleosaurs.xyz"
 url="https://teleosaurs.xyz/inbox/${email_name}"
 
@@ -121,6 +154,19 @@ notification 'Temporary email address copied to clipboard'</string>
 			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
 			<string>9066A3FA-E9D2-44AF-BB72-A54ABBEB3A3D</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.random</string>
+			<key>uid</key>
+			<string>E9B13513-9247-4498-8320-6E24CF7DBDB5</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -215,6 +261,36 @@ fi</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string></string>
+						<key>outputlabel</key>
+						<string>Random</string>
+						<key>uid</key>
+						<string>8174851A-74D2-4634-B71B-9BCC7064C9F5</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>Specific</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>A62BDC1B-6EF0-4884-8225-DED4378FC038</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>Create temporary email inboxes via [Teleosaurs Mail](http://teleosaurs.xyz/).
@@ -229,9 +305,9 @@ Giving an argument will try to use that specific name, while leaving it blank wi
 		<key>1BFF14FC-DF72-4BC9-807B-3D38432CF08D</key>
 		<dict>
 			<key>xpos</key>
-			<integer>240</integer>
+			<integer>390</integer>
 			<key>ypos</key>
-			<integer>20</integer>
+			<integer>25</integer>
 		</dict>
 		<key>45C10052-0E98-4B4A-9B23-99DF057B5FA5</key>
 		<dict>
@@ -240,20 +316,34 @@ Giving an argument will try to use that specific name, while leaving it blank wi
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>450</integer>
+			<integer>565</integer>
 			<key>ypos</key>
-			<integer>20</integer>
+			<integer>25</integer>
 		</dict>
 		<key>9066A3FA-E9D2-44AF-BB72-A54ABBEB3A3D</key>
 		<dict>
 			<key>xpos</key>
 			<integer>30</integer>
 			<key>ypos</key>
-			<integer>20</integer>
+			<integer>25</integer>
+		</dict>
+		<key>A62BDC1B-6EF0-4884-8225-DED4378FC038</key>
+		<dict>
+			<key>xpos</key>
+			<integer>185</integer>
+			<key>ypos</key>
+			<integer>45</integer>
+		</dict>
+		<key>E9B13513-9247-4498-8320-6E24CF7DBDB5</key>
+		<dict>
+			<key>xpos</key>
+			<integer>295</integer>
+			<key>ypos</key>
+			<integer>25</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>20.2</string>
+	<string>20.3</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
