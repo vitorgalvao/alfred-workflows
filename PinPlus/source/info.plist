@@ -782,6 +782,8 @@ action_unread(ENV['unread_action'], ARGV[0])</string>
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>is_unread</key>
@@ -829,6 +831,8 @@ echo "${1}" # To pass the URL to be acted upon, if unread bookmark</string>
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>is_unread</key>
@@ -908,6 +912,8 @@ search_in_website(ARGV[0])</string>
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>is_unread</key>
@@ -1524,7 +1530,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 		<string>unread_order</string>
 	</array>
 	<key>version</key>
-	<string>20.13</string>
+	<string>20.14</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
