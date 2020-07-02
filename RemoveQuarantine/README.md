@@ -4,7 +4,7 @@ Call `rq` and a list of your top-level apps at `/Applications` with the file qua
 
 Results are treated as files, so you can select a bunch of them at once via the File Buffer, to act on multiple apps.
 
-If the app you want to remove the attribute from is located anywhere else, you can find it and use the File Action on it for the same effect.
+If the app or dmg you want to remove the attribute from is located anywhere else, you can find it and use the File Action on it for the same effect.
 
 ![](https://i.imgur.com/jlZVNDN.png)
 
