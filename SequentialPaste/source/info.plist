@@ -215,6 +215,8 @@
 			<dict>
 				<key>argument</key>
 				<string></string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>newline</key>
@@ -240,11 +242,11 @@
 				<key>focusedappvariablename</key>
 				<string></string>
 				<key>hotkey</key>
-				<integer>8</integer>
+				<integer>9</integer>
 				<key>hotmod</key>
 				<integer>1179648</integer>
 				<key>hotstring</key>
-				<string>C</string>
+				<string>V</string>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -461,6 +463,8 @@ echo -n  "${count}"</string>
 			<dict>
 				<key>argument</key>
 				<string></string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>newline</key>
@@ -500,6 +504,8 @@ echo -n  "${count}"</string>
 			<dict>
 				<key>argument</key>
 				<string>reset</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict/>
 			</dict>
@@ -611,7 +617,7 @@ Call `:sequentialpasteresetcount` for a manual reset.</string>
 		<string>2</string>
 	</dict>
 	<key>version</key>
-	<string>20.3</string>
+	<string>20.4</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
