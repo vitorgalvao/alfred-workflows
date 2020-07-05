@@ -264,8 +264,8 @@ fi</string>
 	<key>readme</key>
 	<string>Call `dnd` to toggle Do Not Disturb.
 
-![](https://i.imgur.com/1zSrPs1.png)
-![](https://i.imgur.com/sHdFKYr.png)</string>
+![](https://i.imgur.com/wbWvItv.png)
+![](https://i.imgur.com/uFToKeR.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>3E435725-836B-4634-BF9F-B8DBADDDEABF</key>
@@ -302,7 +302,7 @@ fi</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.2</string>
+	<string>20.1</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
