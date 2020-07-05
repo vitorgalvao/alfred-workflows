@@ -12,7 +12,7 @@ Configure the `Hotkey Trigger` to add your current browser tab as an unread book
 
 `pin` and `pun` are similar. The former shows all your bookmarks (type to filter), while the latter shows only the unread ones.
 
-![](https://i.imgur.com/hrxtJ54.png)
+![](https://i.imgur.com/JK0RDqS.png)
 
 In each case:
 
@@ -29,12 +29,12 @@ The `unread_order` Workflow Environment Variable affects the display of `pun`. V
 
 `:pinpluslaunchd` will install (or later remove, running the same command) a `launchd` service to seamlessly fetch bookmarks every hour.
 
-![](https://i.imgur.com/onOFCVY.png)
+![](https://i.imgur.com/sstjtK2.png)
 
 Bookmarks are auto-updated in accordance to the requirements of the Pinboard API. `:pinplusforceupdate` will force an update, but should be avoided. The `minutes_between_checks` Workflow Environment Variable defaults to `10`.
 
-![](https://i.imgur.com/Lr0iNij.png)
+![](https://i.imgur.com/W2KmV8C.png)
 
 If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`.
 
-![](https://i.imgur.com/XOHDq0q.png)
+![](https://i.imgur.com/J7fFguC.png)
