@@ -2,5 +2,5 @@ Pause and resume execution of the frontmost app. Directly inspired by [Universal
 
 Set keyboard shortcuts or use the keywords `freeze` and `unfreeze` to call it.
 
-![](https://i.imgur.com/quGR0qY.png)
-![](https://i.imgur.com/Qmla1Ho.png)
+![](https://i.imgur.com/WJzJkB1.png)
+![](https://i.imgur.com/S3uXQBh.png)

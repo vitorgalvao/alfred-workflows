@@ -354,8 +354,8 @@ notification "Unfroze ${front_app}"</string>
 
 Set keyboard shortcuts or use the keywords `freeze` and `unfreeze` to call it.
 
-![](https://i.imgur.com/quGR0qY.png)
-![](https://i.imgur.com/Qmla1Ho.png)</string>
+![](https://i.imgur.com/WJzJkB1.png)
+![](https://i.imgur.com/S3uXQBh.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>11993AF0-0988-4889-AB1E-5C61FB363DDC</key>
@@ -413,7 +413,7 @@ Set keyboard shortcuts or use the keywords `freeze` and `unfreeze` to call it.
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.2.6</string>
+	<string>20.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
