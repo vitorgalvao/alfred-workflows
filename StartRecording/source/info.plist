@@ -287,6 +287,8 @@ fi</string>
 			<dict>
 				<key>argument</key>
 				<string>audio</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict/>
 			</dict>
@@ -354,6 +356,8 @@ fi</string>
 			<dict>
 				<key>argument</key>
 				<string>screen</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict/>
 			</dict>
@@ -419,6 +423,8 @@ fi</string>
 			<dict>
 				<key>argument</key>
 				<string>webcam</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict/>
 			</dict>
@@ -559,7 +565,7 @@ At the moment, only QuickTime Player is supported as a recording app.</string>
 		<string>QuickTime Player</string>
 	</dict>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>20.1</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
