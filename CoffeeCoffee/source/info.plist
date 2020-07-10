@@ -224,6 +224,8 @@ fi</string>
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>prevent_display_sleep</key>
@@ -341,6 +343,8 @@ fi</string>
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>prevent_display_sleep</key>
@@ -359,13 +363,13 @@ fi</string>
 	<string>Prevent your computer from going to sleep.
 
 Type `coffee` to turn it on. Action with ⌥ to also prevent the display from going to sleep.
-![](https://i.imgur.com/eVauELH.png)
+![](https://i.imgur.com/GSUCRr4.png)
 
 If you give a value it’ll be active for that amount of time. It defaults to minutes, but will also understand seconds and hours.
-![](https://i.imgur.com/ONW8o5M.png)
+![](https://i.imgur.com/lrTcwSa.png)
 
 Run `coffee` again to manually turn it off.
-![](https://i.imgur.com/60LCrQN.png)</string>
+![](https://i.imgur.com/d9NqISv.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>0B01601F-72A7-4C92-8B67-197D677D2A12</key>
@@ -420,7 +424,7 @@ Run `coffee` again to manually turn it off.
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>20.1</string>
+	<string>20.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
