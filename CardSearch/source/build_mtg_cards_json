@@ -6,7 +6,11 @@ require 'open-uri'
 cards_json = File.join(ENV['mtg_cards_json'])
 Dir.mkdir(ENV['alfred_workflow_cache']) unless Dir.exist?(ENV['alfred_workflow_cache'])
 
-all_cards_info = JSON.parse(URI('https://archive.scryfall.com/json/scryfall-oracle-cards.json').read)
+all_cards_info = lambda {
+  data_url = JSON.parse(URI('https://api.scryfall.com/bulk-data/oracle-cards').read)['download_uri']
+
+  JSON.parse(URI(data_url).read)
+}.call
 
 script_filter_items = []
 

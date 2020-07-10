@@ -438,7 +438,7 @@ fi</string>
 
 `:mtgrebuild` updates the card database.
 
-![](https://i.imgur.com/0VMpnsH.png)</string>
+![](https://i.imgur.com/BTK0EmR.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>03564AD6-B6E9-4DA5-B5FD-BE6897EC368B</key>
@@ -515,7 +515,7 @@ fi</string>
 		<string>normal</string>
 	</dict>
 	<key>version</key>
-	<string>20.2</string>
+	<string>20.3</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>

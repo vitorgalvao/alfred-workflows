@@ -6,4 +6,4 @@ Search for Magic: The Gathering cards by name with `mtg` followed by your search
 
 `:mtgrebuild` updates the card database.
 
-![](https://i.imgur.com/0VMpnsH.png)
+![](https://i.imgur.com/BTK0EmR.png)
