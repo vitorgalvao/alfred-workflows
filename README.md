@@ -229,6 +229,11 @@ Get a temporary email inbox
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/TemporaryEmail) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/TemporaryEmail/TemporaryEmail.alfredworkflow)
 
+### TrialSounds <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/TrialSounds/source/icon.png' width='60' align='center' alt='TrialSounds icon'>
+Listen to /System/Library/Sounds
+
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/TrialSounds) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/TrialSounds/TrialSounds.alfredworkflow)
+
 ### TurnShoot <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/TurnShoot/source/icon.png' width='60' align='center' alt='TurnShoot icon'>
 A two-player game for Alfred
 
