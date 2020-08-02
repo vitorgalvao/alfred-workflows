@@ -99,6 +99,31 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/linkclean_functions.rb"
+
+print clean_url(follow_redirects(ARGV[0]))</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>87BE9FDE-D40E-46A8-B0CF-10D7D63F9352</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -146,31 +171,6 @@ display_options</string>
 			<string>FFC25DDE-7F2E-4A61-A2D0-0B4549044CAA</string>
 			<key>version</key>
 			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>require "#{Dir.pwd}/linkclean_functions.rb"
-
-print clean_url(follow_redirects(ARGV[0]))</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>2</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>87BE9FDE-D40E-46A8-B0CF-10D7D63F9352</string>
-			<key>version</key>
-			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -285,6 +285,8 @@ fi</string>
 			<dict>
 				<key>argument</key>
 				<string>{clipboard}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict/>
 			</dict>
@@ -301,7 +303,7 @@ fi</string>
 
 Run `lc` and input a URL, or leave it blank to use your clipboard contents. Action it and a clean link will be copied to your clipboard and pasted to your frontmost app. If given a shotened URL, redirects will be followed before cleaning.
 
-![](https://i.imgur.com/QfXdBH6.png)</string>
+![](https://i.imgur.com/BOlDUmt.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>630129C2-A7B6-480C-B4F4-7088EAEF71B2</key>
@@ -352,7 +354,7 @@ Run `lc` and input a URL, or leave it blank to use your clipboard contents. Acti
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>20.1</string>
+	<string>20.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
