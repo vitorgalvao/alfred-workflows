@@ -44,13 +44,13 @@ if !List_file.exist? || (((Time.now - List_file.mtime) / (24 * 3600)).ceil > 1) 
 
     unless downloaded_image.exist? # Do not redownload or resize old images
       # Fork the processes to speedup task
-      Process.fork {
+      Process.detach(Process.fork {
         downloaded_image.write(URI(image).read)
         image_width = Open3.capture2('sips', '--getProperty', 'pixelWidth', downloaded_image.to_path).first.split("\s").last.to_i
         image_height = Open3.capture2('sips', '--getProperty', 'pixelHeight', downloaded_image.to_path).first.split("\s").last.to_i
         smaller_dimension = (image_width > image_height ? image_height : image_width).to_s
         system('sips', '--cropToHeightWidth', smaller_dimension, smaller_dimension, downloaded_image.to_path, out: File::NULL)
-      }
+      })
     end
 
     script_filter_items.push(title: title, subtitle: "#{genre} 𐄁 #{duration} 𐄁 #{author}", icon: { path: downloaded_image }, mods: { alt: { subtitle: synopsis } }, quicklookurl: item, arg: url)
