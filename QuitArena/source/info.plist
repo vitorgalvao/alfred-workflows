@@ -245,6 +245,7 @@ fi</string>
 
 let keep_alive_array = $.getenv('keep_alive').split(',').map(app =&gt; app.trim())
 if ($.getenv('kill_finder') !== 'true') keep_alive_array.push('Finder')
+if ($.getenv('kill_alfred') !== 'true') keep_alive_array.push('Alfred', 'Alfred Preferences')
 
 const running_apps = Application('System Events').applicationProcesses.where({ backgroundOnly: false }).name().filter(app =&gt; !keep_alive_array.includes(app))
 
@@ -281,6 +282,8 @@ running_apps.forEach(app =&gt; Application(app).quit())</string>
 			<dict>
 				<key>argument</key>
 				<string></string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>keep_alive</key>
@@ -327,6 +330,7 @@ running_apps.forEach(app =&gt; Application(app).quit())</string>
 
 let keep_alive_array = $.getenv('keep_alive').split(',').map(app =&gt; app.trim())
 if ($.getenv('kill_finder') !== 'true') keep_alive_array.push('Finder')
+if ($.getenv('kill_alfred') !== 'true') keep_alive_array.push('Alfred', 'Alfred Preferences')
 
 const app = Application.currentApplication()
 app.includeStandardAdditions = true
@@ -374,6 +378,8 @@ running_processes.forEach(processName =&gt; {
 			<dict>
 				<key>argument</key>
 				<string></string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>keep_alive</key>
@@ -389,17 +395,17 @@ running_processes.forEach(processName =&gt; {
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Call `qapps` and all apps excluding the ones you set in the `keep_alive` Workflow Environment Variable will quit. The Finder is added to the exclusion list by default, unless you set `kill_finder` to `true`.
+	<string>Call `qapps` and all apps excluding the ones you set in the `keep_alive` Workflow Environment Variable will quit. The Finder and Alfred (including Alfred Preferences) are added to the exclusion list by default, unless you set their `kill_` variables to `true`.
 
-![](https://i.imgur.com/7tcVJKV.png)
+![](https://i.imgur.com/o1xU4er.png)
 
-You’ll need to use the exact names of the apps as they present themselves to the system. To prevent multiple from quitting, separate their names with commas.
+Use the exact application names as they present themselves to the system. To prevent multiple apps from quitting, separate their names with commas.
 
-`qprocesses` will kill all processes, subject to the same `keep_alive` and `kill_finder` settings, meaning even things in the background that you don’t see will be asked to quit.
+`qprocesses` will kill all processes, subject to the same `keep_alive` and `kill_` settings, meaning even things in the background that you don’t see will be asked to quit.
 
 The External Triggers allow to temporarily override which apps to keep alive by passing them as the argument.
 
-Note both options *ask* the apps to exit (`SIGTERM`) instead of *telling* them (`SIGKILL`). If you need to force processes to terminate, consider [ProcessControl](https://github.com/vitorgalvao/alfred-workflows/tree/master/ProcessControl) instead.</string>
+Note both options *ask* the apps to exit (`SIGTERM`) instead of *telling* them (`SIGKILL`). If you need to force individual processes to terminate, use [ProcessControl](https://github.com/vitorgalvao/alfred-workflows/tree/master/ProcessControl) instead.</string>
 	<key>uidata</key>
 	<dict>
 		<key>2A6C00C6-2448-4DF3-9041-A4AC18F81DC1</key>
@@ -474,6 +480,8 @@ Note both options *ask* the apps to exit (`SIGTERM`) instead of *telling* them (
 	<dict>
 		<key>keep_alive</key>
 		<string></string>
+		<key>kill_alfred</key>
+		<string>false</string>
 		<key>kill_finder</key>
 		<string>false</string>
 	</dict>
@@ -482,7 +490,7 @@ Note both options *ask* the apps to exit (`SIGTERM`) instead of *telling* them (
 		<string>keep_alive</string>
 	</array>
 	<key>version</key>
-	<string>20.2</string>
+	<string>20.3</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
