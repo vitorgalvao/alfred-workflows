@@ -215,6 +215,8 @@
 			<dict>
 				<key>argument</key>
 				<string>{date:yyyy-MM-dd-HH-mm-ss}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict/>
 			</dict>
@@ -557,11 +559,11 @@ edit_note(path: ARGV[0])</string>
 
 Call `nadd`, type a name, and press ↵. Your clipboard contents will be saved to a txt file of the chosen name.
 
-![](https://i.imgur.com/7IW8TSn.png)
+![](https://i.imgur.com/NbhOYxS.png)
 
 Retrieve your notes with `nview`. ⇧ or ⌘Y will quicklook its contents; ↵ will copy them; ⌘↵ copies and deletes; ⌥↵ opens the note in your text editor.
 
-![](https://i.imgur.com/xfFY6uW.png)
+![](https://i.imgur.com/DArBMS6.png)
 
 To keep notes synced between machines, use the `notes_dir` Workflow Environment Variable to pick a custom save location.</string>
 	<key>uidata</key>
@@ -663,7 +665,7 @@ To keep notes synced between machines, use the `notes_dir` Workflow Environment 
 		<string>~/Dropbox/Libraries/AlfredWorkflowsData/NoteTaker</string>
 	</dict>
 	<key>version</key>
-	<string>20.1</string>
+	<string>20.2</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
