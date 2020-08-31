@@ -1,3 +1,4 @@
+#!/Users/vitor/.rubies/ruby-2.7.0/bin/ruby
 #!/usr/bin/env ruby
 
 require 'json'
@@ -11,10 +12,13 @@ def follow_redirects(url)
 end
 
 def clean_url(url)
+  # Amazon
+  return url.sub(%r{[&/]ref=.*}, '') if url =~ %r{^https://(www|smile)?\.?amazon\.}
+
+  # Generic
   url
     .sub(%r{(https?://)(m\.|mobile\.|touch\.)(.*)}, '\1\3') # 'm.' 'mobile.' 'touch.'
     .sub(%r{\?.*}, '') # Anything after and including '?'
-    .sub(%r{(https://(www|smile)?\.amazon\..*/)ref=.*}, '\1') # 'ref=' and after from amazon
 end
 
 def display_options
