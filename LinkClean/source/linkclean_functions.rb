@@ -1,4 +1,3 @@
-#!/Users/vitor/.rubies/ruby-2.7.0/bin/ruby
 #!/usr/bin/env ruby
 
 require 'json'
@@ -12,8 +11,16 @@ def follow_redirects(url)
 end
 
 def clean_url(url)
+  uri = URI.parse(url)
+
   # Amazon
-  return url.sub(%r{[&/]ref=.*}, '') if url =~ %r{^https://(www|smile)?\.?amazon\.}
+  if url =~ %r{^https://(www|smile)?\.?amazon\.}
+    # For a search page, remove everything after the search query
+    return url.sub(%r{&.*}, '') if uri.path == '/s'
+
+    # Remove parameters, which may come after ? or /
+    return url.sub(%r{[?/]\w+=.*}, '')
+  end
 
   # Generic
   url
