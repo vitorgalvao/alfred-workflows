@@ -805,7 +805,7 @@ action_unread(ENV['unread_action'], ARGV[0])</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>./downmedia_download.js 'video' "${1}"
+				<string>./downmedia-download 'video' "${1}"
 echo "${1}" # To pass the URL to be acted upon, if unread bookmark</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
@@ -1527,7 +1527,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 		<string>unread_order</string>
 	</array>
 	<key>version</key>
-	<string>20.16</string>
+	<string>20.17</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
