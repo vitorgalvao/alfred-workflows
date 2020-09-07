@@ -16,7 +16,7 @@ You then have some options you can pick from, all starting with `wl`.
 
 ![](https://i.imgur.com/SymAbSa.png)
 
-In both cases, ↵ plays the selection. Add ⌃ to play without marking as watched or ⌥ to rescan a directory (useful if you made manual changes to it). ⌘↵ will mark as watched without playing. ⇧ or ⌘Y shows a quicklook preview on files and streams.
+In both cases, ↵ plays the selection. Add ⌃ to play without marking as watched or ⌥ to, depending on the entry, download a stream or rescan a series’ directory (useful if you made manual changes to it). ⌘↵ will mark as watched without playing. ⇧ or ⌘Y shows a quicklook preview on files and streams.
 
 If the `top_on_play` Workflow Environment Variable is set to `true`, the item will be moved to the top of the list before starting playback.
 

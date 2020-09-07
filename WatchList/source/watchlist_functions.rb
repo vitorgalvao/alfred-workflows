@@ -204,17 +204,17 @@ def display_towatch(sort = nil)
     case details['type']
     when 'file', 'series' # Not a stream
       item[:subtitle] = "#{item_count}#{details['duration']['human']} 𐄁 #{details['size']['human']} 𐄁 #{details['path']}"
-    when 'file', 'stream' # Not a series
-      item[:mods][:alt] = { subtitle: 'Rescan is only available for series', valid: false }
     end
 
     # Specific modifications
     case details['type']
     when 'file'
       item[:quicklookurl] = details['path']
+      item[:mods][:alt] = { subtitle: 'This modifier is only available on series and streams', valid: false }
     when 'stream'
       item[:subtitle] = "≈ #{item_count}#{details['duration']['human']} 𐄁 #{details['url']}"
       item[:quicklookurl] = details['url']
+      item[:mods][:alt] = { subtitle: 'Download stream' }
     when 'series'
       item[:mods][:alt] = { subtitle: 'Rescan series' }
     end
@@ -340,6 +340,14 @@ end
 
 def mark_unwatched(id)
   switch_list(id, Watched_list, Towatch_list)
+end
+
+def download_stream(id)
+  item = YAML.load_file(Towatch_list)[id]
+  url = item['url']
+
+  system("#{Dir.pwd}/downmedia-download", 'video', url)
+  mark_watched(id)
 end
 
 def edit_towatch
