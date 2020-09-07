@@ -1,6 +1,6 @@
 Stream from a selection of short films, powered by [Short of the Week](https://www.shortoftheweek.com/).
 
-Run `shorts` and it’ll show a list of the latest films. Pick one and it’ll start streaming. Alternatively, use ⌘ to download the video (requires [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownVid); adds to [WatchList](https://github.com/vitorgalvao/alfred-workflows/tree/master/WatchList) if available), ⌥ to see its synopsis, or ⌃ to copy the short’s link to the clipboard.
+Run `shorts` and it’ll show a list of the latest films. Pick one and it’ll start streaming. Alternatively, add ⌘ to download the video (requires [DownMedia](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownMedia)), ⌥ to see its synopsis, or ⌃ to copy the short’s link to the clipboard.
 
 ![](https://i.imgur.com/nhXigIF.png)
 
