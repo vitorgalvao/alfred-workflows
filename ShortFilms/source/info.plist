@@ -179,11 +179,7 @@ open -a "${video_player}" --args "${1}"</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>if ! osascript -e "tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"download_video\" in workflow \"com.vitorgalvao.alfred.downmedia\" with argument \"${1}\""; then
-  if osascript -e "display dialog \"The DownMedia Workflow is required to download videos.\" with title \"DownMedia is missing\" with icon POSIX file \"${PWD}/icon.png\" buttons { \"Cancel\", \"Download DownMedia\" } default button \"Download DownMedia\""; then
-    open 'https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/DownMedia/DownMedia.alfredworkflow'
-  fi
-fi</string>
+				<string>./downmedia_download.js 'video' "${1}"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -557,7 +553,7 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>20.8</string>
+	<string>20.9</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
