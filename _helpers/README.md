@@ -17,6 +17,8 @@ This scripts saves from the duplication of always having to bundle the same tool
   * If we do not (have the tool installed), download it to `~/Library/Application Support/Alfred/Workflow Data/com.vitorgalvao.alfred._sharedresources`.
 * A `PATH` which includes all tools is output. Use it to set the `PATH` in your Workflow.
 
-### `downmedia_download.js`
+### `downmedia-download`
 
-In Workflows that deal with URLs,
+A convenient way to download media from a URL in a Workflow result. Call the script with two arguments: the type of media you want to save as (`video` or `audio`) followed by the URL.
+
+It uses [DownMedia](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownMedia) for the Download. If the Workflow isn’t installed, a dialog will provide a direct link to get it.
