@@ -32,7 +32,7 @@ An item will not be marked as watched if we can access the player’s CLI and it
 
 To keep your lists synced between machines, use the `lists_dir` Workflow Environment Variable to pick a custom save location.
 
-Finally, if you use [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownVid) it has an option to add the downloaded video files directly to your watchlist.
+Finally, if you use [DownMedia](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownMedia) it has an option to add the downloaded video files directly to your watchlist.
 
 #### Subtitle reference:
 

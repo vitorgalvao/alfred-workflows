@@ -16,3 +16,7 @@ This scripts saves from the duplication of always having to bundle the same tool
     * If not, leave it alone.
   * If we do not (have the tool installed), download it to `~/Library/Application Support/Alfred/Workflow Data/com.vitorgalvao.alfred._sharedresources`.
 * A `PATH` which includes all tools is output. Use it to set the `PATH` in your Workflow.
+
+### `downmedia_download.js`
+
+In Workflows that deal with URLs,
