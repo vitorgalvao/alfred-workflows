@@ -1269,7 +1269,7 @@ In each case:
 + ↵ opens the bookmark in your default web browser.
 + ⇧↵ opens the bookmark in Pinboard’s website, so you can edit it at will.
 + ⌥↵ copies the bookmark’s URL to your clipboard.
-+ ⌘↵ downloads the video on the page, if any. It requires [DownVid](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownVid) and will automatically add to [WatchList](https://github.com/vitorgalvao/alfred-workflows/tree/master/WatchList) if available)
++ ⌘↵ downloads the video on the page, if any (requires [DownMedia](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownMedia)).
 + `fn` shows the bookmark’s description.
 + ⌃ shows the bookmark’s tags.
 
@@ -1527,7 +1527,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 		<string>unread_order</string>
 	</array>
 	<key>version</key>
-	<string>20.21</string>
+	<string>20.22</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
