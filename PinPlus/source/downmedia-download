@@ -4,6 +4,16 @@ ObjC.import('stdlib') // For $.getenv
 const app = Application.currentApplication()
 app.includeStandardAdditions = true
 
+// If inside a Workflow, use it's icon in the dialog
+// Otherwise, use a generic icon
+const dialog_icon = (() => {
+  try {
+    return Path($.getenv('alfred_preferences') + '/workflows/' + $.getenv('alfred_workflow_uid') + '/icon.png')
+  } catch {
+    return 'caution'
+  }
+})()
+
 function run(argv) {
   const media = argv[0]
   const url = argv[1]
@@ -17,7 +27,7 @@ function run(argv) {
       buttons: ['Cancel', 'Download DownMedia'],
       defaultButton: 'Download DownMedia',
       cancelButton: 'Cancel',
-      withIcon: Path($.getenv('alfred_preferences') + '/workflows/' + $.getenv('alfred_workflow_uid') + '/icon.png')
+      withIcon: dialog_icon
     })) app.openLocation('https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/DownMedia/DownMedia.alfredworkflow')
   }
 }
