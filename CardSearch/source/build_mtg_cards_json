@@ -2,22 +2,57 @@
 
 require 'json'
 require 'open-uri'
+require 'pathname'
 
-cards_json = File.join(ENV['mtg_cards_json'])
-Dir.mkdir(ENV['alfred_workflow_cache']) unless Dir.exist?(ENV['alfred_workflow_cache'])
+# Helpers
+def get_env(env_variable:, default:, as_bool: false, make_pathname: false)
+  to_bool = lambda { |value|
+    case value
+    when true, 'true', 'yes', 1, '1' then true
+    when false, 'false', 'no', 0, '0', nil, '' then false
+    else raise ArgumentError, "Invalid value: #{value.inspect}"
+    end
+  }
 
-all_cards_info = lambda {
+  if env_variable.nil? || env_variable.empty?
+    return to_bool.call(env_variable) if as_bool
+    return Pathname.new(default).expand_path if make_pathname
+    return default
+  end
+
+  return to_bool.call(env_variable) if as_bool
+  return Pathname.new(env_variable).expand_path if make_pathname
+  env_variable
+end
+
+# Constants
+Ignored_layouts = %w[art_series double_faced_token token vanguard]
+Multi_faced_layout = %w[modal_dfc transform]
+Rarity_order = %w[mythic rare uncommon common]
+
+Sort_by_rarity = get_env(
+  env_variable: ENV['mtg_sort_by_rarity'],
+  default: false,
+  as_bool: true
+)
+
+Cards_json = Pathname.new(ENV['mtg_cards_json'])
+Pathname.new(ENV['alfred_workflow_cache']).mkpath
+
+All_cards_info = lambda {
   data_url = JSON.parse(URI('https://api.scryfall.com/bulk-data/oracle-cards').read)['download_uri']
+  data = JSON.parse(URI(data_url).read)
 
-  JSON.parse(URI(data_url).read)
+  Sort_by_rarity ? data.sort_by { |card_info| Rarity_order.index(card_info['rarity']) } : data
 }.call
+
 
 script_filter_items = []
 
-all_cards_info.each do |card_info|
-  next if card_info['layout'] =~ /(token|double_faced_token|art_series)/
+All_cards_info.each do |card_info|
+  next if Ignored_layouts.any? { |layout| card_info['layout'] == layout }
 
-  if card_info['layout'] == 'transform'
+  if Multi_faced_layout.any? { |layout| card_info['layout'] == layout }
     card = card_info['card_faces'][0] # If card is doube-faced, use info of first face
     card['scryfall_uri'] = card_info['scryfall_uri']
   else
@@ -58,4 +93,4 @@ all_cards_info.each do |card_info|
   )
 end
 
-File.write(cards_json, { items: script_filter_items }.to_json)
+Cards_json.write({ items: script_filter_items }.to_json)
