@@ -5,24 +5,28 @@ require 'open-uri'
 require 'pathname'
 
 # Helpers
-def get_env(env_variable:, default:, as_bool: false, make_pathname: false)
-  to_bool = lambda { |value|
-    case value
-    when true, 'true', 'yes', 1, '1' then true
-    when false, 'false', 'no', 0, '0', nil, '' then false
-    else raise ArgumentError, "Invalid value: #{value.inspect}"
+def get_env(env_variable:, default:, as_bool: false, as_pathname: false, match_list: [])
+  # If boolean, return early
+  if as_bool
+    case env_variable
+    when true, 'true', 'yes', 1, '1' then return true
+    when false, 'false', 'no', 0, '0', nil, '' then return false
+    else raise ArgumentError, "Invalid value: #{env_variable.inspect}"
     end
-  }
-
-  if env_variable.nil? || env_variable.empty?
-    return to_bool.call(env_variable) if as_bool
-    return Pathname.new(default).expand_path if make_pathname
-    return default
   end
 
-  return to_bool.call(env_variable) if as_bool
-  return Pathname.new(env_variable).expand_path if make_pathname
-  env_variable
+  # Extract string
+  var_as_string = lambda {
+    return default if env_variable.nil? || env_variable.empty?
+    return env_variable if match_list.empty? || match_list.include?(env_variable)
+
+    default
+  }.call
+
+  # If pathname, make it now
+  return Pathname.new(var_as_string).expand_path if as_pathname
+
+  var_as_string
 end
 
 # Constants
@@ -80,7 +84,11 @@ All_cards_info.each do |card_info|
 
   pt = card['power'].nil? ? '' : " 𐄁 #{card['power']}/#{card['toughness']}"
   rulings = card['oracle_text'].nil? || card['oracle_text'].empty? ? '' : " 𐄁 #{card['oracle_text'].gsub("\n", '. ')}"
-  image_size = ENV['mtg_image_size'] =~ /(png|large|normal|small)/ ? ENV['mtg_image_size'] : 'png'
+  image_size = get_env(
+    env_variable: ENV['mtg_image_size'],
+    default: 'png',
+    match_list: %w[png large normal small]
+  )
   image = card['image_uris'][image_size]
 
   script_filter_items.push(
