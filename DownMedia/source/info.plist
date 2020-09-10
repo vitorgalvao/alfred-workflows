@@ -546,6 +546,8 @@ download_url(ARGV[0], ENV['media_type'], ENV['add_to_watchlist'], ENV['full_play
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>media_type</key>
@@ -564,6 +566,8 @@ download_url(ARGV[0], ENV['media_type'], ENV['add_to_watchlist'], ENV['full_play
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>full_playlist</key>
@@ -595,6 +599,8 @@ download_url(ARGV[0], ENV['media_type'], ENV['add_to_watchlist'], ENV['full_play
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>media_type</key>
@@ -1015,7 +1021,7 @@ The Workflow Environment Variables represent the directory to download to, the a
 		<string>~/Downloads</string>
 	</dict>
 	<key>version</key>
-	<string>20.8</string>
+	<string>20.9</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

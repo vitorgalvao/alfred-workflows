@@ -6,12 +6,28 @@ require 'open3'
 require 'pathname'
 
 # Helpers
-def get_env(env_variable:, default:, make_pathname: false)
-  if env_variable.nil? || env_variable.empty?
-    return make_pathname ? Pathname.new(default).expand_path : default
+def get_env(env_variable:, default:, as_bool: false, as_pathname: false, match_list: [])
+  # If boolean, return early
+  if as_bool
+    case env_variable
+    when true, 'true', 'yes', 1, '1' then return true
+    when false, 'false', 'no', 0, '0', nil, '' then return false
+    else raise ArgumentError, "Invalid value: #{env_variable.inspect}"
+    end
   end
 
-  make_pathname ? Pathname.new(env_variable).expand_path : env_variable
+  # Extract string
+  var_as_string = lambda {
+    return default if env_variable.nil? || env_variable.empty?
+    return env_variable if match_list.empty? || match_list.include?(env_variable)
+
+    default
+  }.call
+
+  # If pathname, make it now
+  return Pathname.new(var_as_string).expand_path if as_pathname
+
+  var_as_string
 end
 
 # Constants
