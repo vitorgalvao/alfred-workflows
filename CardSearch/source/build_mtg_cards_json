@@ -30,7 +30,7 @@ def get_env(env_variable:, default:, as_bool: false, as_pathname: false, match_l
 end
 
 # Constants
-Ignored_layouts = %w[art_series double_faced_token token vanguard]
+Ignored_layouts = %w[art_series double_faced_token scheme token vanguard]
 Multi_faced_layout = %w[modal_dfc transform]
 Rarity_order = %w[mythic rare uncommon common]
 
