@@ -105,7 +105,7 @@ Creates a new file in the current Finder directory
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/NewFile) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/NewFile/NewFile.alfredworkflow)
 
 ### NoteTaker <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/NoteTaker/source/icon.png' width='60' align='center' alt='NoteTaker icon'>
-Creates a new file in the current Finder directory
+Save named clipboard items for later retrieval
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/NoteTaker) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/NoteTaker/NoteTaker.alfredworkflow)
 
