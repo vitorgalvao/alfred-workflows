@@ -43,7 +43,7 @@ Audio_only_format = get_env(
 Download_dir = get_env(
   env_variable: ENV['download_dir'],
   default: Pathname(ENV['HOME']).join('Downloads').to_path,
-  make_pathname: true
+  as_pathname: true
 )
 
 Pid_file = Pathname(ENV['alfred_workflow_cache']).join('pid.txt')
