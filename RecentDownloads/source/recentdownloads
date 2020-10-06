@@ -35,7 +35,7 @@ abort 'You need to specify an order type.' if ARGV[0].empty?
 Cache_dir = Pathname(ENV['alfred_workflow_cache'])
 
 Downloads_dir = get_env(
-  env_variable: ENV['Downloads_dir'],
+  env_variable: ENV['downloads_dir'],
   default: Pathname.new(ENV['HOME']).join('Downloads').to_path,
   as_pathname: true
 )
