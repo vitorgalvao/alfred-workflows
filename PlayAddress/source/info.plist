@@ -381,6 +381,14 @@ if (close_browser &amp;&amp; browser_name &amp;&amp; $.system('/usr/local/bin/yo
 			<integer>1</integer>
 		</dict>
 		<dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.junction</string>
+			<key>uid</key>
+			<string>3AB464F1-6E2E-4CF3-A4A0-AFDA2F41AAC1</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
 			<key>config</key>
 			<dict>
 				<key>conditions</key>
@@ -407,14 +415,6 @@ if (close_browser &amp;&amp; browser_name &amp;&amp; $.system('/usr/local/bin/yo
 			<string>alfred.workflow.utility.conditional</string>
 			<key>uid</key>
 			<string>79289C24-D237-4E6E-A781-3C54066C0461</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.junction</string>
-			<key>uid</key>
-			<string>3AB464F1-6E2E-4CF3-A4A0-AFDA2F41AAC1</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -558,7 +558,7 @@ fi</string>
 	<key>readme</key>
 	<string>Run `playadd` and available options will appear to play the URL in the frontmost browser tab or your clipboard.
 
-![](https://i.imgur.com/rAWiidy.png)
+![](https://i.imgur.com/xeUx0lj.png)
 
 Pick one of them and the URL will play. ⌘↵ downloads the video (requires [DownMedia](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownMedia)).
 
@@ -664,7 +664,7 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 		<string>use_watchlist</string>
 	</array>
 	<key>version</key>
-	<string>20.9</string>
+	<string>20.10</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

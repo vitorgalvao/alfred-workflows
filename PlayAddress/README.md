@@ -1,6 +1,6 @@
 Run `playadd` and available options will appear to play the URL in the frontmost browser tab or your clipboard.
 
-![](https://i.imgur.com/rAWiidy.png)
+![](https://i.imgur.com/xeUx0lj.png)
 
 Pick one of them and the URL will play. ⌘↵ downloads the video (requires [DownMedia](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownMedia)).
 
