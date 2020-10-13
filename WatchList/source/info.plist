@@ -6,11 +6,37 @@
 	<string>com.vitorgalvao.alfred.watchlist</string>
 	<key>connections</key>
 	<dict>
+		<key>26626E87-515C-4312-87F7-4F604EBBF2F9</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>AFB3D5CC-1B83-4675-91D8-770B0B2B7576</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>2D2C4B1F-AD23-4F61-A7B2-2122216F9F0F</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>E8F9509C-843D-40C8-B5F1-6B8FC692A18C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>35496472-08A5-4D85-9E98-65CD6118B500</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>AFB3D5CC-1B83-4675-91D8-770B0B2B7576</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -50,6 +76,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>7D39E405-629C-4741-BBA3-D87CFC3D419A</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>79817F29-F5D9-400C-9C2E-3289466CAD05</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>35496472-08A5-4D85-9E98-65CD6118B500</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -122,6 +161,19 @@
 		</array>
 		<key>C929975A-3B90-474A-BA08-595EAB51A9B2</key>
 		<array/>
+		<key>D69DD7A5-07C5-46B2-920C-B06AF76BDC48</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>26626E87-515C-4312-87F7-4F604EBBF2F9</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>D75377F6-6B47-4683-B400-224620A75802</key>
 		<array>
 			<dict>
@@ -279,17 +331,7 @@
 				<string>require "#{Dir.pwd}/watchlist_functions.rb"
 
 paths = ENV['added_item_order'] == 'append' ? ARGV.sort : ARGV.sort.reverse
-
-paths.each do |path|
-  require_audiovisual(path)
-
-  if !ENV['move_on_add'].nil? &amp;&amp; !ENV['move_on_add'].empty?
-    new_path = move_to_dir(path, File.expand_path(ENV['move_on_add']))
-    add_local_to_watchlist(new_path)
-  else
-    add_local_to_watchlist(path)
-  end
-end</string>
+paths.each { |path| add_local_to_watchlist(path) }</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -419,6 +461,93 @@ add_url_to_watchlist(ARGV[0].strip, true)</string>
 			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
 			<string>E4752307-AF7E-4E47-80F9-1BB75C5CCFCB</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsmulti</key>
+				<false/>
+				<key>filetypes</key>
+				<array>
+					<string>+public.audiovisual-content</string>
+					<string>public.folder</string>
+				</array>
+				<key>name</key>
+				<string>Play through watchlist</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>79817F29-F5D9-400C-9C2E-3289466CAD05</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/watchlist_functions.rb"
+
+id = random_hex
+add_local_to_watchlist(ARGV[0], id)
+print id</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>35496472-08A5-4D85-9E98-65CD6118B500</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/watchlist_functions.rb"
+
+id = random_hex
+add_url_to_watchlist(ARGV[0].strip, false, id)
+print id</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>26626E87-515C-4312-87F7-4F604EBBF2F9</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>triggerid</key>
+				<string>add_and_play_stream</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>D69DD7A5-07C5-46B2-920C-B06AF76BDC48</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -996,10 +1125,24 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>ypos</key>
 			<integer>380</integer>
 		</dict>
+		<key>26626E87-515C-4312-87F7-4F604EBBF2F9</key>
+		<dict>
+			<key>xpos</key>
+			<integer>250</integer>
+			<key>ypos</key>
+			<integer>620</integer>
+		</dict>
 		<key>2D2C4B1F-AD23-4F61-A7B2-2122216F9F0F</key>
 		<dict>
 			<key>xpos</key>
 			<integer>40</integer>
+			<key>ypos</key>
+			<integer>740</integer>
+		</dict>
+		<key>35496472-08A5-4D85-9E98-65CD6118B500</key>
+		<dict>
+			<key>xpos</key>
+			<integer>250</integer>
 			<key>ypos</key>
 			<integer>500</integer>
 		</dict>
@@ -1022,7 +1165,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>xpos</key>
 			<integer>250</integer>
 			<key>ypos</key>
-			<integer>1100</integer>
+			<integer>1340</integer>
 		</dict>
 		<key>6DBE8BF2-3AA2-46A3-A028-739C1E71A985</key>
 		<dict>
@@ -1031,19 +1174,26 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>ypos</key>
 			<integer>260</integer>
 		</dict>
+		<key>79817F29-F5D9-400C-9C2E-3289466CAD05</key>
+		<dict>
+			<key>xpos</key>
+			<integer>40</integer>
+			<key>ypos</key>
+			<integer>500</integer>
+		</dict>
 		<key>7D39E405-629C-4741-BBA3-D87CFC3D419A</key>
 		<dict>
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>1100</integer>
+			<integer>1340</integer>
 		</dict>
 		<key>824AADC5-ECD6-4B9A-B01B-901EE6EC2552</key>
 		<dict>
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>1460</integer>
+			<integer>1700</integer>
 		</dict>
 		<key>84C51977-8426-491F-A9D4-A6DF7E8F0C8C</key>
 		<dict>
@@ -1061,21 +1211,21 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>xpos</key>
 			<integer>770</integer>
 			<key>ypos</key>
-			<integer>500</integer>
+			<integer>740</integer>
 		</dict>
 		<key>9537F6F1-6608-4671-BE03-A3DCD23A06DF</key>
 		<dict>
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>980</integer>
+			<integer>1220</integer>
 		</dict>
 		<key>98D586EA-8DD5-4EAE-8A4A-3A06AC84E9DC</key>
 		<dict>
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>620</integer>
+			<integer>860</integer>
 		</dict>
 		<key>A22F833D-4556-4FEE-8A77-EE6A6A2FE8FE</key>
 		<dict>
@@ -1089,42 +1239,49 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>500</integer>
+			<integer>740</integer>
 		</dict>
 		<key>C929975A-3B90-474A-BA08-595EAB51A9B2</key>
 		<dict>
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>740</integer>
+			<integer>980</integer>
 		</dict>
 		<key>C92FF9E0-CBC7-4421-9B75-4B8C557EB4DD</key>
 		<dict>
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>1220</integer>
+			<integer>1460</integer>
 		</dict>
 		<key>D27FE458-78D9-4C16-BF89-7E489D839F6D</key>
 		<dict>
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>860</integer>
+			<integer>1100</integer>
+		</dict>
+		<key>D69DD7A5-07C5-46B2-920C-B06AF76BDC48</key>
+		<dict>
+			<key>xpos</key>
+			<integer>40</integer>
+			<key>ypos</key>
+			<integer>620</integer>
 		</dict>
 		<key>D75377F6-6B47-4683-B400-224620A75802</key>
 		<dict>
 			<key>xpos</key>
 			<integer>430</integer>
 			<key>ypos</key>
-			<integer>1010</integer>
+			<integer>1250</integer>
 		</dict>
 		<key>DA8908F6-F112-4087-86D4-1B9671DD766C</key>
 		<dict>
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>1340</integer>
+			<integer>1580</integer>
 		</dict>
 		<key>E4752307-AF7E-4E47-80F9-1BB75C5CCFCB</key>
 		<dict>
@@ -1138,21 +1295,21 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>xpos</key>
 			<integer>250</integer>
 			<key>ypos</key>
-			<integer>1220</integer>
+			<integer>1460</integer>
 		</dict>
 		<key>E8F9509C-843D-40C8-B5F1-6B8FC692A18C</key>
 		<dict>
 			<key>xpos</key>
 			<integer>250</integer>
 			<key>ypos</key>
-			<integer>500</integer>
+			<integer>740</integer>
 		</dict>
 		<key>FA9B96C8-46F8-4275-A082-2D7CFB7B7867</key>
 		<dict>
 			<key>xpos</key>
 			<integer>250</integer>
 			<key>ypos</key>
-			<integer>980</integer>
+			<integer>1220</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
@@ -1175,7 +1332,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 		<string>added_item_order</string>
 	</array>
 	<key>version</key>
-	<string>20.11</string>
+	<string>20.12</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>

@@ -9,6 +9,7 @@ ENV['PATH'] = Open3.capture2('./_sharedresources', 'mediainfo', 'youtubedl').fir
 Lists_dir = ENV['lists_dir'].nil? || ENV['lists_dir'].empty? ? ENV['alfred_workflow_data'] : File.expand_path(ENV['lists_dir'])
 Towatch_list = "#{Lists_dir}/towatch.yaml".freeze
 Watched_list = "#{Lists_dir}/watched.yaml".freeze
+Move_when_adding = !ENV['move_on_add'].nil? && !ENV['move_on_add'].empty?
 
 def move_to_dir(path, target_dir)
   path_name = File.basename(path)
@@ -25,19 +26,22 @@ def move_to_dir(path, target_dir)
   target_path # Return value to it can be passed to add function
 end
 
-def add_local_to_watchlist(path)
+def add_local_to_watchlist(path, id = random_hex)
   ensure_data_paths
+  require_audiovisual(path)
 
-  if File.file?(path)
-    add_file_to_watchlist(path)
-  elsif File.directory?(path)
-    add_dir_to_watchlist(path)
+  target_path = Move_when_adding ? move_to_dir(path, File.expand_path(ENV['move_on_add'])) : path
+
+  if File.file?(target_path)
+    add_file_to_watchlist(target_path, id)
+  elsif File.directory?(target_path)
+    add_dir_to_watchlist(target_path, id)
   else
     error('Not a valid path')
   end
 end
 
-def add_file_to_watchlist(file_path)
+def add_file_to_watchlist(file_path, id = random_hex)
   name = File.basename(file_path, File.extname(file_path))
 
   duration_machine = duration_in_seconds(file_path)
@@ -51,7 +55,7 @@ def add_file_to_watchlist(file_path)
   url = Open3.capture2('mdls', '-raw', '-name', 'kMDItemWhereFroms', file_path).first.split("\n")[1].strip.delete('"') rescue nil
 
   hash = {
-    random_hex => {
+    id => {
       'type' => 'file',
       'name' => name,
       'path' => file_path,
@@ -72,8 +76,7 @@ def add_file_to_watchlist(file_path)
   add_to_list(hash, Towatch_list)
 end
 
-def add_dir_to_watchlist(dir_path)
-  id = random_hex
+def add_dir_to_watchlist(dir_path, id = random_hex)
   name = File.basename(dir_path)
 
   hash = {
@@ -125,7 +128,7 @@ def update_series(id)
   File.write(Towatch_list, list_hash.to_yaml)
 end
 
-def add_url_to_watchlist(url, playlist = false)
+def add_url_to_watchlist(url, playlist = false, id = random_hex)
   playlist_flag = playlist ? '--yes-playlist' : '--no-playlist'
 
   all_names = Open3.capture2('youtube-dl', '--get-title', playlist_flag, url).first.split("\n")
@@ -140,7 +143,7 @@ def add_url_to_watchlist(url, playlist = false)
   duration_human = seconds_to_hms(duration_machine)
 
   hash = {
-    random_hex => {
+    id => {
       'type' => 'stream',
       'name' => name,
       'path' => nil,
