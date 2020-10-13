@@ -6,6 +6,19 @@
 	<string>com.vitorgalvao.alfred.playaddress</string>
 	<key>connections</key>
 	<dict>
+		<key>174651EE-D8CF-4041-B1FD-C2F8D2646EC1</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3238CA6D-80AE-4CD7-B09C-6297766F4936</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>197D2E43-384A-44B1-BE86-B36582E4CE52</key>
 		<array>
 			<dict>
@@ -33,7 +46,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>8FE08360-28F3-4F26-8523-75D368B83282</string>
+				<string>79289C24-D237-4E6E-A781-3C54066C0461</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -48,7 +61,65 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>3238CA6D-80AE-4CD7-B09C-6297766F4936</string>
+				<string>174651EE-D8CF-4041-B1FD-C2F8D2646EC1</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>3AB464F1-6E2E-4CF3-A4A0-AFDA2F41AAC1</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>174651EE-D8CF-4041-B1FD-C2F8D2646EC1</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>CC5C8F05-C2B1-410B-B94A-46D8B7C429B0</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>3F2114BA-DAA7-4DF6-BD3D-DAFD6E7439F0</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>79289C24-D237-4E6E-A781-3C54066C0461</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3AB464F1-6E2E-4CF3-A4A0-AFDA2F41AAC1</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>0BC66730-6EE7-4E58-B4AA-61C984B7ED91</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>8FE08360-28F3-4F26-8523-75D368B83282</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -61,7 +132,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>3238CA6D-80AE-4CD7-B09C-6297766F4936</string>
+				<string>174651EE-D8CF-4041-B1FD-C2F8D2646EC1</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -99,11 +170,10 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>if ! osascript -e "tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"download_video\" in workflow \"com.vitorgalvao.alfred.downmedia\" with argument \"${1}\""; then
-  if osascript -e "display dialog \"The DownMedia Workflow is required to download videos.\" with title \"DownMedia is missing\" with icon POSIX file \"${PWD}/icon.png\" buttons { \"Cancel\", \"Download DownMedia\" } default button \"Download DownMedia\""; then
-    open 'https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/DownMedia/DownMedia.alfredworkflow'
-  fi
-fi</string>
+				<string>readonly url="${1}"
+
+./downmedia-download 'video' "${url}"
+echo "${url}"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -152,24 +222,24 @@ const frontmost_app = Application(frontmost_app_name)
 const chromium_variants = ['Google Chrome', 'Chromium', 'Opera', 'Vivaldi', 'Brave Browser', 'Microsoft Edge']
 const webkit_variants = ['Safari', 'Webkit']
 
-let title, url, clipboard
+let title, clipboard
 let script_filter_items = []
 
 // Get details from frontmost browser, if any
 if (chromium_variants.some(app_name =&gt; frontmost_app_name.startsWith(app_name))) {
   title = frontmost_app.windows[0].activeTab.name()
-  url = frontmost_app.windows[0].activeTab.url()
+  url = frontmost_app.windows[0].activeTab.url().trim()
 
   if (title.length === 0) title = 'Web page does not have a title'
 
-  script_filter_items.push({ 'variables': { 'browser': frontmost_app_name, 'url': url }, 'title': title, 'subtitle': url })
+  script_filter_items.push({ 'variables': { 'browser': frontmost_app_name }, 'title': title, 'subtitle': url, 'arg': url })
 } else if (webkit_variants.some(app_name =&gt; frontmost_app_name.startsWith(app_name))) {
   title = frontmost_app.documents[0].name()
-  url = frontmost_app.documents[0].url()
+  url = frontmost_app.documents[0].url().trim()
 
   if (title.length === 0) title = 'Web page does not have a title'
 
-  script_filter_items.push({ 'variables': { 'browser': frontmost_app_name, 'url': url }, 'title': title, 'subtitle': url })
+  script_filter_items.push({ 'variables': { 'browser': frontmost_app_name }, 'title': title, 'subtitle': url, 'arg': url })
 }
 
 // Get details from clipboard
@@ -185,9 +255,9 @@ clipboard = (() =&gt; {
 
 if (RegExp('^https?://').test(clipboard)) {
   title = 'Play clipboard URL'
-  url = clipboard
+  url = clipboard.trim()
 
-  script_filter_items.push({ 'variables': { 'browser': false, 'url': url }, 'title': title, 'subtitle': url })
+  script_filter_items.push({ 'variables': { 'browser': false }, 'title': title, 'subtitle': url, 'arg': url })
 }
 
 if (script_filter_items.length === 0) {
@@ -274,12 +344,90 @@ if (close_browser &amp;&amp; browser_name &amp;&amp; $.system('/usr/local/bin/yo
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict>
+					<key>url</key>
+					<string>{query}</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>174651EE-D8CF-4041-B1FD-C2F8D2646EC1</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>externaltriggerid</key>
+				<string>add_and_play_stream</string>
+				<key>passinputasargument</key>
+				<true/>
+				<key>passvariables</key>
+				<false/>
+				<key>workflowbundleid</key>
+				<string>com.vitorgalvao.alfred.watchlist</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>CC5C8F05-C2B1-410B-B94A-46D8B7C429B0</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string>{var:use_watchlist}</string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>true</string>
+						<key>outputlabel</key>
+						<string>Use WatchList</string>
+						<key>uid</key>
+						<string>0BC66730-6EE7-4E58-B4AA-61C984B7ED91</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>else</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>79289C24-D237-4E6E-A781-3C54066C0461</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.junction</string>
+			<key>uid</key>
+			<string>3AB464F1-6E2E-4CF3-A4A0-AFDA2F41AAC1</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>pbcopy &lt;&lt;&lt; "${url}" # Save URL to clipboard history
+				<string>readonly url="${1}"
+pbcopy &lt;&lt;&lt; "${url}" # Save URL to clipboard history
 
 if [[ "$(mdfind kMDItemCFBundleIdentifier = io.mpv)" ]]; then
   PATH="$(./_sharedresources 'youtubedl')"
@@ -416,17 +564,26 @@ Pick one of them and the URL will play. ⌘↵ downloads the video (requires [Do
 
 If the `close_tab` Workflow Environment Variable is `true` and the URL is supported, the browser tabs with the matching URL will close.
 
+If the `use_watchlist` Workflow Environment Variable is `true`, streams will be added and played from [WatchList](https://github.com/vitorgalvao/alfred-workflows/tree/master/WatchList) (a separate Workflow).
+
 To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.io/iina/), or [VLC](http://www.videolan.org/vlc/index.html).</string>
 	<key>uidata</key>
 	<dict>
+		<key>174651EE-D8CF-4041-B1FD-C2F8D2646EC1</key>
+		<dict>
+			<key>xpos</key>
+			<integer>495</integer>
+			<key>ypos</key>
+			<integer>55</integer>
+		</dict>
 		<key>197D2E43-384A-44B1-BE86-B36582E4CE52</key>
 		<dict>
 			<key>note</key>
 			<string>Play video</string>
 			<key>xpos</key>
-			<integer>460</integer>
+			<integer>495</integer>
 			<key>ypos</key>
-			<integer>200</integer>
+			<integer>340</integer>
 		</dict>
 		<key>2C17F6E1-CA91-4D8D-B014-91010DFDCD35</key>
 		<dict>
@@ -440,7 +597,7 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 			<key>note</key>
 			<string>Close browser tab</string>
 			<key>xpos</key>
-			<integer>460</integer>
+			<integer>665</integer>
 			<key>ypos</key>
 			<integer>25</integer>
 		</dict>
@@ -453,6 +610,13 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 			<key>ypos</key>
 			<integer>25</integer>
 		</dict>
+		<key>3AB464F1-6E2E-4CF3-A4A0-AFDA2F41AAC1</key>
+		<dict>
+			<key>xpos</key>
+			<integer>335</integer>
+			<key>ypos</key>
+			<integer>205</integer>
+		</dict>
 		<key>3F2114BA-DAA7-4DF6-BD3D-DAFD6E7439F0</key>
 		<dict>
 			<key>colorindex</key>
@@ -462,23 +626,41 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 			<key>xpos</key>
 			<integer>665</integer>
 			<key>ypos</key>
-			<integer>200</integer>
+			<integer>340</integer>
+		</dict>
+		<key>79289C24-D237-4E6E-A781-3C54066C0461</key>
+		<dict>
+			<key>xpos</key>
+			<integer>155</integer>
+			<key>ypos</key>
+			<integer>205</integer>
 		</dict>
 		<key>8FE08360-28F3-4F26-8523-75D368B83282</key>
 		<dict>
 			<key>xpos</key>
-			<integer>295</integer>
+			<integer>335</integer>
 			<key>ypos</key>
-			<integer>230</integer>
+			<integer>360</integer>
+		</dict>
+		<key>CC5C8F05-C2B1-410B-B94A-46D8B7C429B0</key>
+		<dict>
+			<key>note</key>
+			<string>Play video through WatchList</string>
+			<key>xpos</key>
+			<integer>665</integer>
+			<key>ypos</key>
+			<integer>175</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
 	<dict>
 		<key>close_tab</key>
 		<string>true</string>
+		<key>use_watchlist</key>
+		<string>false</string>
 	</dict>
 	<key>version</key>
-	<string>20.6</string>
+	<string>20.8</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
