@@ -657,10 +657,14 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 		<key>close_tab</key>
 		<string>true</string>
 		<key>use_watchlist</key>
-		<string>false</string>
+		<string>true</string>
 	</dict>
+	<key>variablesdontexport</key>
+	<array>
+		<string>use_watchlist</string>
+	</array>
 	<key>version</key>
-	<string>20.8</string>
+	<string>20.9</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
