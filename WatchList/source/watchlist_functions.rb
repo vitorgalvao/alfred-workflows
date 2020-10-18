@@ -329,7 +329,7 @@ def mark_watched(id)
   item = YAML.load_file(Towatch_list)[id]
   maximum_watched =
     begin
-      Integer(ENV['maximum_watched'])
+      Integer(ENV['maximum_watched'], 10)
     rescue ArgumentError
       9
     end
