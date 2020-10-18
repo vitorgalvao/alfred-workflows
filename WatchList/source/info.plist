@@ -467,26 +467,6 @@ add_url_to_watchlist(ARGV[0].strip, true)</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>acceptsmulti</key>
-				<false/>
-				<key>filetypes</key>
-				<array>
-					<string>+public.audiovisual-content</string>
-					<string>public.folder</string>
-				</array>
-				<key>name</key>
-				<string>Play through watchlist</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.action</string>
-			<key>uid</key>
-			<string>79817F29-F5D9-400C-9C2E-3289466CAD05</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -510,6 +490,26 @@ print id</string>
 			<string>35496472-08A5-4D85-9E98-65CD6118B500</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsmulti</key>
+				<false/>
+				<key>filetypes</key>
+				<array>
+					<string>+public.audiovisual-content</string>
+					<string>public.folder</string>
+				</array>
+				<key>name</key>
+				<string>Play through watchlist</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>79817F29-F5D9-400C-9C2E-3289466CAD05</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1319,7 +1319,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 		<key>lists_dir</key>
 		<string>~/Dropbox/Libraries/AlfredWorkflowsData/WatchList</string>
 		<key>maximum_watched</key>
-		<string>9</string>
+		<string>20</string>
 		<key>move_on_add</key>
 		<string>~/Movies</string>
 		<key>top_on_play</key>
@@ -1332,7 +1332,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 		<string>added_item_order</string>
 	</array>
 	<key>version</key>
-	<string>20.12</string>
+	<string>20.13</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>

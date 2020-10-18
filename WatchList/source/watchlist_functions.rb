@@ -326,8 +326,13 @@ def play_item(type, path)
 end
 
 def mark_watched(id)
-  maximum_watched = ENV['maximum_watched'].is_a?(Integer) ? ENV['maximum_watched'] : 9
   item = YAML.load_file(Towatch_list)[id]
+  maximum_watched =
+    begin
+      Integer(ENV['maximum_watched'])
+    rescue ArgumentError
+      9
+    end
 
   switch_list(id, Towatch_list, Watched_list)
   list_hash = YAML.load_file(Watched_list)
