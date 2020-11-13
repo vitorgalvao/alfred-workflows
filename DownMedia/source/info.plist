@@ -161,6 +161,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>BF3AD75A-24F4-48F8-9C08-6DB615CE6B35</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>87AAFCF7-6532-4486-8489-54674100A52C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>C80AD651-BCAF-4B86-869A-D4D847A2379B</key>
 		<array>
 			<dict>
@@ -413,6 +426,33 @@ show_options('audio')</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/downmedia_functions.rb"
+
+save_pid(Process.pid)
+save_query(ARGV[0], ENV['media_type'], ENV['add_to_watchlist'], ENV['full_playlist'])
+download_url(ARGV[0], ENV['media_type'], ENV['add_to_watchlist'], ENV['full_playlist'])</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>6A286F10-FD49-4463-9540-0EECBE45438D</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>triggerid</key>
 				<string>download_video</string>
 			</dict>
@@ -517,29 +557,22 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
+				<key>argument</key>
+				<string>{query}</string>
+				<key>passthroughargument</key>
 				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>require "#{Dir.pwd}/downmedia_functions.rb"
-
-save_pid(Process.pid)
-save_query(ARGV[0], ENV['media_type'], ENV['add_to_watchlist'], ENV['full_playlist'])
-download_url(ARGV[0], ENV['media_type'], ENV['add_to_watchlist'], ENV['full_playlist'])</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>2</integer>
+				<key>variables</key>
+				<dict>
+					<key>full_playlist</key>
+					<string>false</string>
+				</dict>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
-			<string>6A286F10-FD49-4463-9540-0EECBE45438D</string>
+			<string>05D66076-BBF0-42B3-AACE-3395B291DCB8</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -558,26 +591,6 @@ download_url(ARGV[0], ENV['media_type'], ENV['add_to_watchlist'], ENV['full_play
 			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
 			<string>C80AD651-BCAF-4B86-869A-D4D847A2379B</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string>{query}</string>
-				<key>passthroughargument</key>
-				<false/>
-				<key>variables</key>
-				<dict>
-					<key>full_playlist</key>
-					<string>false</string>
-				</dict>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>05D66076-BBF0-42B3-AACE-3395B291DCB8</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -613,31 +626,6 @@ download_url(ARGV[0], ENV['media_type'], ENV['add_to_watchlist'], ENV['full_play
 			<string>FD70A114-2767-4782-8D5F-86AC4B3BB8B3</string>
 			<key>version</key>
 			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>require "#{Dir.pwd}/downmedia_functions.rb"
-
-kill_download</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>2</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>BDEED30D-47F5-468D-899C-0AD5D4FFAADB</string>
-			<key>version</key>
-			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -716,6 +704,31 @@ show_progress</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/downmedia_functions.rb"
+
+kill_download</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>BDEED30D-47F5-468D-899C-0AD5D4FFAADB</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>conditions</key>
 				<array>
 					<dict>
@@ -742,6 +755,57 @@ show_progress</string>
 			<string>879AF67B-0DE2-4574-A27B-A502D1E8A123</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>:downmediaservices</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/downmedia_functions.rb"
+
+show_services</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>To or from ~/Library/Services</string>
+				<key>title</key>
+				<string>Install or remove DownMedia Services</string>
+				<key>type</key>
+				<integer>2</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>67C1A19D-DDF7-450A-A615-B9C134D6975F</string>
+			<key>version</key>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -798,53 +862,15 @@ cleanup_tmp_files</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>alfredfiltersresults</key>
-				<false/>
-				<key>alfredfiltersresultsmatchmode</key>
-				<integer>0</integer>
-				<key>argumenttreatemptyqueryasnil</key>
-				<false/>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>keyword</key>
-				<string>:downmediaservices</string>
-				<key>queuedelaycustom</key>
-				<integer>3</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<true/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string>Please wait…</string>
-				<key>script</key>
-				<string>require "#{Dir.pwd}/downmedia_functions.rb"
-
-show_services</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string>To or from ~/Library/Services</string>
-				<key>title</key>
-				<string>Install or remove DownMedia Services</string>
-				<key>type</key>
-				<integer>2</integer>
-				<key>withspace</key>
-				<false/>
+				<key>triggerid</key>
+				<string>downmediaservicesinstall</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
+			<string>alfred.workflow.trigger.external</string>
 			<key>uid</key>
-			<string>67C1A19D-DDF7-450A-A615-B9C134D6975F</string>
+			<string>BF3AD75A-24F4-48F8-9C08-6DB615CE6B35</string>
 			<key>version</key>
-			<integer>3</integer>
+			<integer>1</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -975,6 +1001,13 @@ The Workflow Environment Variables represent the directory to download to, the a
 			<key>ypos</key>
 			<integer>515</integer>
 		</dict>
+		<key>BF3AD75A-24F4-48F8-9C08-6DB615CE6B35</key>
+		<dict>
+			<key>xpos</key>
+			<integer>470</integer>
+			<key>ypos</key>
+			<integer>755</integer>
+		</dict>
 		<key>C80AD651-BCAF-4B86-869A-D4D847A2379B</key>
 		<dict>
 			<key>xpos</key>
@@ -1021,7 +1054,7 @@ The Workflow Environment Variables represent the directory to download to, the a
 		<string>~/Downloads</string>
 	</dict>
 	<key>version</key>
-	<string>20.10</string>
+	<string>20.11</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
