@@ -36,7 +36,7 @@
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
 	<key>description</key>
-	<string>Open image GPS coordinates in a map</string>
+	<string>Open media GPS coordinates in a map</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -52,10 +52,10 @@
 				<integer>0</integer>
 				<key>script</key>
 				<string># THESE VARIABLES MUST BE SET. SEE THE ONEUPDATER README FOR AN EXPLANATION OF EACH.
-readonly remote_info_plist="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
-readonly workflow_url="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/${alfred_workflow_name}.alfredworkflow"
+readonly remote_info_plist="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MediaCoordinates/source/info.plist"
+readonly workflow_url="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MediaCoordinates/MediaCoordinates.alfredworkflow"
 readonly download_type='direct'
-readonly frequency_check='4'
+readonly frequency_check='1'
 
 # FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED!
 function abort {
@@ -156,7 +156,7 @@ coordinates="$(exiftool -printFormat '$gpslatitude, $gpslongitude' --printConv "
 
 if [[ -z "${coordinates}" ]]; then
   afplay /System/Library/Sounds/Funk.aiff
-  notification 'Image has no GPS information'
+  notification 'Could not find GPS information'
 else
   open "${map_url}${coordinates}"
 fi</string>
@@ -185,7 +185,7 @@ fi</string>
 					<string>+public.image</string>
 				</array>
 				<key>name</key>
-				<string>Image coordinates in map</string>
+				<string>Coordinates in map</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.trigger.action</string>
@@ -196,9 +196,9 @@ fi</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Use the `Image coordinates in map` File Action to open an image’s location in the maps provider of your choice.
+	<string>Use the `Coordinates in map` File Action to open in the maps provider of your choice the location where the chosen media was recorded.
 
-![](https://i.imgur.com/wZcszDd.png)
+![](https://i.imgur.com/iSqH99u.png)
 
 The `map_provider` Workflow Environment Variable defaults to `Apple`, but also supports `Google`.</string>
 	<key>uidata</key>
@@ -235,7 +235,7 @@ The `map_provider` Workflow Environment Variable defaults to `Apple`, but also s
 		<string>Apple</string>
 	</dict>
 	<key>version</key>
-	<string>20.4</string>
+	<string>20.11</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
