@@ -94,6 +94,11 @@ Convert Markdown to other formats
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/MarkdownTransform) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MarkdownTransform/MarkdownTransform.alfredworkflow)
 
+### MediaCoordinates <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MediaCoordinates/source/icon.png' width='60' align='center' alt='MediaCoordinates icon'>
+Open media GPS coordinates in a map
+
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/MediaCoordinates) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MediaCoordinates/MediaCoordinates.alfredworkflow)
+
 ### MediaThorn <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MediaThorn/source/icon.png' width='60' align='center' alt='MediaThorn icon'>
 Get ratings for different types of media
 
@@ -133,11 +138,6 @@ Play a round of table tennis with Alfred
 Interact with your Pinboard bookmarks
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/PinPlus) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/PinPlus/PinPlus.alfredworkflow)
-
-### PhotoCoordinates <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/PhotoCoordinates/source/icon.png' width='60' align='center' alt='PhotoCoordinates icon'>
-Open image GPS coordinates in a map
-
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/PhotoCoordinates) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/PhotoCoordinates/PhotoCoordinates.alfredworkflow)
 
 ### ProcessControl <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/ProcessControl/source/icon.png' width='60' align='center' alt='ProcessControl icon'>
 Deal with misbehaving processes
