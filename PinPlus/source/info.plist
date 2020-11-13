@@ -256,6 +256,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>E2546762-C286-4BEE-9724-7AE1B682C619</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>A5E2E99E-54FF-47D3-BCCE-603E4E2D5424</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>EF339515-CFD8-47BF-B208-FF9DCA32A2C1</key>
 		<array>
 			<dict>
@@ -1195,7 +1208,7 @@ fi</string>
 				<key>subtext</key>
 				<string></string>
 				<key>title</key>
-				<string>Install/remove Pinplus launchd service</string>
+				<string>Install/remove Pinplus launch agent</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
@@ -1207,6 +1220,19 @@ fi</string>
 			<string>71E82EE1-88EE-483E-A952-AC7AB8F4EDDF</string>
 			<key>version</key>
 			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>triggerid</key>
+				<string>pinpluslaunchdinstall</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>E2546762-C286-4BEE-9724-7AE1B682C619</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1467,19 +1493,26 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<key>ypos</key>
 			<integer>340</integer>
 		</dict>
+		<key>E2546762-C286-4BEE-9724-7AE1B682C619</key>
+		<dict>
+			<key>xpos</key>
+			<integer>20</integer>
+			<key>ypos</key>
+			<integer>1775</integer>
+		</dict>
 		<key>E3D8770A-3517-4F4F-854A-7E88C2FA4E37</key>
 		<dict>
 			<key>xpos</key>
 			<integer>240</integer>
 			<key>ypos</key>
-			<integer>1775</integer>
+			<integer>1905</integer>
 		</dict>
 		<key>EF339515-CFD8-47BF-B208-FF9DCA32A2C1</key>
 		<dict>
 			<key>xpos</key>
 			<integer>20</integer>
 			<key>ypos</key>
-			<integer>1775</integer>
+			<integer>1905</integer>
 		</dict>
 		<key>EFCEA4B6-8BAA-4509-AD10-EDA3CF3DF3EB</key>
 		<dict>
@@ -1527,7 +1560,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 		<string>unread_order</string>
 	</array>
 	<key>version</key>
-	<string>20.22</string>
+	<string>20.24</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
