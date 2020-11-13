@@ -182,6 +182,7 @@ fi</string>
 				<key>filetypes</key>
 				<array>
 					<string>+public.audiovisual-content</string>
+					<string>+public.image</string>
 				</array>
 				<key>name</key>
 				<string>Image coordinates in map</string>
@@ -234,7 +235,7 @@ The `map_provider` Workflow Environment Variable defaults to `Apple`, but also s
 		<string>Apple</string>
 	</dict>
 	<key>version</key>
-	<string>20.3</string>
+	<string>20.4</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
