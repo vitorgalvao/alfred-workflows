@@ -93,11 +93,11 @@
   ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
 }
 
-email_name="${1//[^[:alnum:]]}"
-email="${email_name}@teleosaurs.xyz"
-url="https://teleosaurs.xyz/inbox/${email_name}"
+readonly email_name="${1//[^[:alnum:]]}"
+readonly email="${email_name}@mailinator.com"
+readonly url="https://www.mailinator.com/v3/index.jsp?zone=public&amp;query=${email_name}"
 
-front_browser="$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')"
+readonly front_browser="$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')"
 
 if [[ "${front_browser}" == 'Safari'* || "${front_browser}" == 'Webkit'* ]]; then
   osascript &lt;&lt;EOF
@@ -293,9 +293,7 @@ fi</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Create temporary email inboxes via [Teleosaurs Mail](http://teleosaurs.xyz/).
-
-Call `tmpmail` to make a temporary email address and open a background tab with the corresponding inbox. The address will be copied to your clipboard.
+	<string>Call `tmpmail` to make a temporary email address and open a background tab with the corresponding inbox. The address will be copied to your clipboard.
 
 ![](https://i.imgur.com/w7Y9kfZ.png)
 
@@ -343,7 +341,7 @@ Giving an argument will try to use that specific name, while leaving it blank wi
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>20.4</string>
+	<string>20.5</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
