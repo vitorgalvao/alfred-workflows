@@ -94,8 +94,8 @@
 }
 
 readonly email_name="${1//[^[:alnum:]]}"
-readonly email="${email_name}@mailinator.com"
-readonly url="https://www.mailinator.com/v3/index.jsp?zone=public&amp;query=${email_name}"
+readonly email="${email_name}@teleosaurs.xyz"
+readonly url="https://teleosaurs.xyz/inbox/${email_name}"
 
 readonly front_browser="$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')"
 
@@ -341,7 +341,7 @@ Giving an argument will try to use that specific name, while leaving it blank wi
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>20.5</string>
+	<string>20.6</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
