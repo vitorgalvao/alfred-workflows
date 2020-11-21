@@ -6,7 +6,7 @@ For the `File Action`, use Alfred to pick what you want to run a command on and 
  
 For the `Keyword`, type `.` followed by a command. A space between the period and the command is not necessary. This will run the command on the active Finder window (e.g. `.touch this_file`). You can also easily chain commands (`.cd Desktop && rm that_file`).
 
-![](https://i.imgur.com/RwM3Rl5.png)
+![](https://i.imgur.com/2dWlRgq.png)
 
 For commands that would benefit from the files not being at the end (like `cp` and `mv`), you can use `{}` as a placeholder for the files. So if you select some files and want to copy them to `~/Desktop/` you’d type `cp {} ~/Desktop/`.
 

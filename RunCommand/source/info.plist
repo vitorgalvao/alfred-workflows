@@ -236,6 +236,8 @@ echo "${files_list}"</string>
 			<dict>
 				<key>argument</key>
 				<string></string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>files_list</key>
@@ -359,6 +361,8 @@ fi
 				<integer>0</integer>
 				<key>font</key>
 				<string></string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
 				<key>largetypetext</key>
 				<string>{query}</string>
 				<key>textcolor</key>
@@ -575,7 +579,7 @@ For the `File Action`, use Alfred to pick what you want to run a command on and 
  
 For the `Keyword`, type `.` followed by a command. A space between the period and the command is not necessary. This will run the command on the active Finder window (e.g. `.touch this_file`). You can also easily chain commands (`.cd Desktop &amp;&amp; rm that_file`).
 
-![](https://i.imgur.com/RwM3Rl5.png)
+![](https://i.imgur.com/2dWlRgq.png)
 
 For commands that would benefit from the files not being at the end (like `cp` and `mv`), you can use `{}` as a placeholder for the files. So if you select some files and want to copy them to `~/Desktop/` you’d type `cp {} ~/Desktop/`.
 
@@ -686,7 +690,7 @@ To get the output of a command as `Large Type`, actioning it with ⌘↵ instead
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.12.6</string>
+	<string>20.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
