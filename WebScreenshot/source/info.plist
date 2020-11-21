@@ -464,6 +464,8 @@ puts({ items: script_filter_items }.to_json)
 				<false/>
 				<key>clipboardtext</key>
 				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
 				<key>transient</key>
 				<false/>
 			</dict>
@@ -478,7 +480,7 @@ puts({ items: script_filter_items }.to_json)
 	<key>readme</key>
 	<string>Take screenshots with a keyboard shortcut and upload them directly to [imgur](https://imgur.com/). Will produce both a sound and a visual notification when done, and copy the resulting direct link to your clipboard.
 
-![](https://i.imgur.com/yNGbOlw.png)
+![](https://i.imgur.com/wP0LTlj.png)
 
 You may also upload an image (or pdf — imgur supports it as an upload but converts to png) by picking the `Upload Screenshot` `File Action`.
 
@@ -563,7 +565,7 @@ You may also upload an image (or pdf — imgur supports it as an upload but conv
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>20.1</string>
+	<string>20.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
