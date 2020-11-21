@@ -156,6 +156,8 @@ fi</string>
 				<true/>
 				<key>clipboardtext</key>
 				<string></string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
 				<key>transient</key>
 				<false/>
 			</dict>
@@ -279,6 +281,8 @@ fi</string>
 			<dict>
 				<key>argument</key>
 				<string>medium</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict/>
 			</dict>
@@ -295,24 +299,24 @@ fi</string>
 
 Copy a link to your clipboard, run `vidur` and pick your verbosity level. It’ll output the video’s link with its duration and optionally its title and description.
 
-![](https://i.imgur.com/ordEMCh.png)</string>
+![](https://i.imgur.com/wWasGFT.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>28B55659-9FD1-44B6-AA1E-C8BA1149FC87</key>
 		<dict>
 			<key>xpos</key>
-			<integer>290</integer>
+			<integer>305</integer>
 			<key>ypos</key>
-			<integer>10</integer>
+			<integer>30</integer>
 		</dict>
 		<key>2F9C5DCB-8351-4E59-820D-BAF2B7200E0B</key>
 		<dict>
 			<key>note</key>
 			<string>Verbosity level</string>
 			<key>xpos</key>
-			<integer>190</integer>
+			<integer>205</integer>
 			<key>ypos</key>
-			<integer>170</integer>
+			<integer>190</integer>
 		</dict>
 		<key>78EADC1A-884E-4BDD-87A6-1B0ED1230852</key>
 		<dict>
@@ -321,34 +325,34 @@ Copy a link to your clipboard, run `vidur` and pick your verbosity level. It’l
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>660</integer>
+			<integer>675</integer>
 			<key>ypos</key>
-			<integer>10</integer>
+			<integer>30</integer>
 		</dict>
 		<key>83F06055-1527-429B-91A0-E17E57616D3D</key>
 		<dict>
 			<key>xpos</key>
-			<integer>480</integer>
+			<integer>495</integer>
 			<key>ypos</key>
-			<integer>10</integer>
+			<integer>30</integer>
 		</dict>
 		<key>A586CE7B-4D6A-45BE-83AF-3CC03CD3EC76</key>
 		<dict>
 			<key>xpos</key>
-			<integer>20</integer>
+			<integer>35</integer>
 			<key>ypos</key>
-			<integer>10</integer>
+			<integer>30</integer>
 		</dict>
 		<key>D98BBAD4-D6BE-4B42-A790-29432284D04B</key>
 		<dict>
 			<key>xpos</key>
-			<integer>20</integer>
+			<integer>35</integer>
 			<key>ypos</key>
-			<integer>140</integer>
+			<integer>160</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>20.2</string>
+	<string>20.3</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
