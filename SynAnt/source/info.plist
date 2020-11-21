@@ -311,6 +311,25 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>externaltriggerid</key>
+				<string>antonym</string>
+				<key>passinputasargument</key>
+				<true/>
+				<key>passvariables</key>
+				<true/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>55ECFD0B-81BA-4D8A-9C58-61C05F3BB52E</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -394,25 +413,6 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>externaltriggerid</key>
-				<string>antonym</string>
-				<key>passinputasargument</key>
-				<true/>
-				<key>passvariables</key>
-				<true/>
-				<key>workflowbundleid</key>
-				<string>self</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.callexternaltrigger</string>
-			<key>uid</key>
-			<string>55ECFD0B-81BA-4D8A-9C58-61C05F3BB52E</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>triggerid</key>
 				<string>synonym</string>
 			</dict>
@@ -430,6 +430,8 @@ fi</string>
 				<true/>
 				<key>clipboardtext</key>
 				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
 				<key>transient</key>
 				<false/>
 			</dict>
@@ -552,8 +554,8 @@ To set up, [get an API key](https://words.bighugelabs.com/getkey.php) and set it
 
 You can then check for synonyms and antonyms by calling `syn` or `ant` followed by a space and the word you wish to check against.
 
-![](https://i.imgur.com/1p2T6uZ.png)
-![](https://i.imgur.com/p5CsiB8.png)
+![](https://i.imgur.com/rZB8NlO.png)
+![](https://i.imgur.com/5DDgYfq.png)
 
 Alternatively, select a word and press the shortcut you defined to get the results. Pressing ↵ on a word will paste it to the front most app, which is useful when writing a text and want to change a word in place.
 
@@ -645,7 +647,7 @@ If you want to use one of the results to refine your query, press ⌘↵ (synony
 		<string>api_key</string>
 	</array>
 	<key>version</key>
-	<string>1.3.2</string>
+	<string>20.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
