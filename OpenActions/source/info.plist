@@ -250,7 +250,7 @@ fi</string>
 
 This Workflow emulates those options with `File Action`s.
 
-![](https://i.imgur.com/0zJ59j4.png)</string>
+![](https://i.imgur.com/KPML6dy.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>06B3E494-F403-4AE8-810A-6A9945BAEBF9</key>
@@ -294,7 +294,7 @@ This Workflow emulates those options with `File Action`s.
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.3</string>
+	<string>20.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

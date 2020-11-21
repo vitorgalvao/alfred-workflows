@@ -2,4 +2,4 @@ The [`open`](https://developer.apple.com/legacy/library/documentation/Darwin/Ref
 
 This Workflow emulates those options with `File Action`s.
 
-![](https://i.imgur.com/0zJ59j4.png)
+![](https://i.imgur.com/KPML6dy.png)
