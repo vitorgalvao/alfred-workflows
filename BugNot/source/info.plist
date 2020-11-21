@@ -168,6 +168,8 @@ osascript -e "tell application \"System Events\"	keystroke \"${username}\"	key
 				<false/>
 				<key>clipboardtext</key>
 				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
 				<key>transient</key>
 				<false/>
 			</dict>
@@ -327,37 +329,37 @@ If you had the login box selected prior to calling the Workflow, hit â†µ and itâ
 		<key>102D4873-1538-4B56-839D-379DC48A163C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>250</integer>
+			<integer>230</integer>
 			<key>ypos</key>
-			<integer>250</integer>
+			<integer>265</integer>
 		</dict>
 		<key>19EFC881-C598-4139-B02E-427554517796</key>
 		<dict>
 			<key>xpos</key>
-			<integer>250</integer>
+			<integer>230</integer>
 			<key>ypos</key>
-			<integer>130</integer>
+			<integer>145</integer>
 		</dict>
 		<key>3D696DA5-1D90-4A2A-A3A0-550BFDAAF148</key>
 		<dict>
 			<key>xpos</key>
-			<integer>50</integer>
+			<integer>30</integer>
 			<key>ypos</key>
-			<integer>10</integer>
+			<integer>25</integer>
 		</dict>
 		<key>623811E1-9EDE-4B64-8B2C-04D82D84AAA0</key>
 		<dict>
 			<key>xpos</key>
-			<integer>250</integer>
+			<integer>230</integer>
 			<key>ypos</key>
-			<integer>10</integer>
+			<integer>25</integer>
 		</dict>
 		<key>76A74D8D-DBCC-4053-87C7-3C7FEC7B5EEF</key>
 		<dict>
 			<key>xpos</key>
-			<integer>450</integer>
+			<integer>430</integer>
 			<key>ypos</key>
-			<integer>130</integer>
+			<integer>145</integer>
 		</dict>
 		<key>782B2BE5-DA94-41A2-8C58-D701BB46FC5D</key>
 		<dict>
@@ -366,13 +368,13 @@ If you had the login box selected prior to calling the Workflow, hit â†µ and itâ
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>250</integer>
+			<integer>230</integer>
 			<key>ypos</key>
-			<integer>370</integer>
+			<integer>385</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.2.3</string>
+	<string>20.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
