@@ -295,6 +295,8 @@ EOF</string>
 				<integer>123</integer>
 				<key>keymod</key>
 				<integer>11665408</integer>
+				<key>overridewithargument</key>
+				<false/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.output.dispatchkeycombo</string>
@@ -309,7 +311,7 @@ EOF</string>
 
 Use Alfred to pick what you want to rename and choose `Rename` as the action. Alfred’s main window will appear and you type a new name (don’t include the file extension).
 
-![](https://i.imgur.com/301Njow.png)</string>
+![](https://i.imgur.com/F3JNrZA.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>130D3F3F-2318-4073-A4A3-6AED97A70266</key>
@@ -360,7 +362,7 @@ Use Alfred to pick what you want to rename and choose `Rename` as the action. Al
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.1.5</string>
+	<string>20.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
