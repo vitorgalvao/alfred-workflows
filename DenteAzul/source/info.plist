@@ -351,11 +351,11 @@ puts({ items: script_filter_items }.to_json)</string>
 	<key>readme</key>
 	<string>Use `btt` to view and toggle bluetooth status and its menu bar visibility.
 
-![](https://i.imgur.com/OpFJQiL.png)
+![](https://i.imgur.com/Wjry0Nv.png)
 
 `btd` will show your paired devices. Action them to toggle their connection status
 
-![](https://i.imgur.com/haUTkz2.png)</string>
+![](https://i.imgur.com/1nGd8bP.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>38192AA8-F21D-467B-91B2-9BC1000C3106</key>
@@ -403,7 +403,7 @@ puts({ items: script_filter_items }.to_json)</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>20.2</string>
+	<string>20.3</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

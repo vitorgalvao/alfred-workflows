@@ -1,7 +1,7 @@
 Use `btt` to view and toggle bluetooth status and its menu bar visibility.
 
-![](https://i.imgur.com/OpFJQiL.png)
+![](https://i.imgur.com/Wjry0Nv.png)
 
 `btd` will show your paired devices. Action them to toggle their connection status
 
-![](https://i.imgur.com/haUTkz2.png)
+![](https://i.imgur.com/1nGd8bP.png)
