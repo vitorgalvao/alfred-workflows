@@ -108,6 +108,8 @@
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>open_files</key>
@@ -285,6 +287,8 @@ done</string>
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>open_files</key>
@@ -302,7 +306,7 @@ done</string>
 	<key>readme</key>
 	<string>Call `nf` followed by a file name (if you don’t give it an extension, it’ll be `.txt`) to make a new file. If you type `nfo` instead the files will open after creation. If you have a Finder or Path Finder window as your frontmost window, the file will be created there, otherwise it will be created on your Desktop.
 
-![](https://i.imgur.com/uUik2XO.png)</string>
+![](https://i.imgur.com/PiY4Pqa.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>137E4749-7D83-426A-A8C4-AB736358775E</key>
@@ -353,7 +357,7 @@ done</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.2.6</string>
+	<string>20.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
