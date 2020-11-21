@@ -512,6 +512,8 @@ puts({ items: script_filter_items }.to_json)</string>
 			<dict>
 				<key>argument</key>
 				<string></string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>pid</key>
@@ -530,6 +532,8 @@ puts({ items: script_filter_items }.to_json)</string>
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict/>
 			</dict>
@@ -553,6 +557,8 @@ puts({ items: script_filter_items }.to_json)</string>
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict/>
 			</dict>
@@ -568,6 +574,8 @@ puts({ items: script_filter_items }.to_json)</string>
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict/>
 			</dict>
@@ -583,6 +591,8 @@ puts({ items: script_filter_items }.to_json)</string>
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict/>
 			</dict>
@@ -598,6 +608,8 @@ puts({ items: script_filter_items }.to_json)</string>
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict/>
 			</dict>
@@ -612,7 +624,7 @@ puts({ items: script_filter_items }.to_json)</string>
 	<key>readme</key>
 	<string>Call `top` for an auto-updating list of processes, ordered by CPU usage. Type to filter by process name.
 
-![](https://i.imgur.com/QFd5ibj.png)
+![](https://i.imgur.com/l7qwJtK.png)
 
 On each process:
 + ⌘↵ quits.
@@ -623,7 +635,7 @@ On each process:
 
 ↵ gives more granularity over the options.
 
-![](https://i.imgur.com/smw1ihH.png)</string>
+![](https://i.imgur.com/YFwsdt7.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>00F3664D-7E92-49FC-BFC5-47D316937CA7</key>
@@ -718,7 +730,7 @@ On each process:
 		<string>3</string>
 	</dict>
 	<key>version</key>
-	<string>20.3</string>
+	<string>20.4</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
