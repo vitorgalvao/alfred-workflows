@@ -513,7 +513,7 @@ For paper sizes, type `paper`, and you’ll see the available standards; all of 
 
 For device resolutions, type `resolution`, and you’ll see the available devices. You can narrow them down by name.
 
-![](https://i.imgur.com/tLf0Zeo.gif)
+![](https://i.imgur.com/6EIpi2X.png)
 
 Paper sizes taken from [wikipedia](https://en.wikipedia.org/wiki/Paper_sizes) and resolution sizes from [dpi.lv](http://dpi.lv/).</string>
 	<key>uidata</key>
@@ -573,7 +573,7 @@ Paper sizes taken from [wikipedia](https://en.wikipedia.org/wiki/Paper_sizes) an
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>20.2</string>
+	<string>20.3</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

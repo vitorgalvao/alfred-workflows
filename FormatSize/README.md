@@ -4,6 +4,6 @@ For paper sizes, type `paper`, and you’ll see the available standards; all of 
 
 For device resolutions, type `resolution`, and you’ll see the available devices. You can narrow them down by name.
 
-![](https://i.imgur.com/tLf0Zeo.gif)
+![](https://i.imgur.com/6EIpi2X.png)
 
 Paper sizes taken from [wikipedia](https://en.wikipedia.org/wiki/Paper_sizes) and resolution sizes from [dpi.lv](http://dpi.lv/).
