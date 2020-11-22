@@ -146,6 +146,8 @@ if (chromium_variants.some(app_name =&gt; frontmost_app_name.startsWith(app_name
 			<dict>
 				<key>argument</key>
 				<string></string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict/>
 			</dict>
@@ -213,6 +215,8 @@ if (chromium_variants.some(app_name =&gt; frontmost_app_name.startsWith(app_name
 				<false/>
 				<key>clipboardtext</key>
 				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
 				<key>transient</key>
 				<false/>
 			</dict>
@@ -352,7 +356,7 @@ Lastly, edit the workflow’s details and its icon. For completeness it’s pre-
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>20.1</string>
+	<string>20.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
