@@ -121,19 +121,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>triggerid</key>
-				<string>agents_script_filter</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>901E2D9C-BEA1-40BD-B554-618C2347FD70</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -221,6 +208,19 @@ fi</string>
 			<string>037CA721-C5C0-4AD4-862C-DE6F1F06704E</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>triggerid</key>
+				<string>agents_script_filter</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>901E2D9C-BEA1-40BD-B554-618C2347FD70</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -405,6 +405,8 @@ Application("System Events").processes.byName(safari).menuBars[0].menuBarItems.b
 				<string>{var:browser}.txt</string>
 				<key>filetext</key>
 				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
 				<key>relativepathmode</key>
 				<integer>0</integer>
 				<key>type</key>
@@ -435,6 +437,8 @@ Application("System Events").processes.byName(safari).menuBars[0].menuBarItems.b
 			<dict>
 				<key>argument</key>
 				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>browser</key>
@@ -452,7 +456,7 @@ Application("System Events").processes.byName(safari).menuBars[0].menuBarItems.b
 	<key>readme</key>
 	<string>Run `sa` and pick from the list (type to filter results) to switch the user agent for your frontmost browser on the fly.
 
-![](https://i.imgur.com/cULF6XP.png)
+![](https://i.imgur.com/LOynNv2.png)
 
 Since they seldom change, the Workflow builds and references a file of available user agents. At any point you may ⌘↵ on a result to rebuild it (you’ll be instructed to do so on the first run). This makes normal usage considerably faster.
 
@@ -466,76 +470,76 @@ Currently supports Safari and Safari Technology Preview. Webkit is excluded beca
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>600</integer>
+			<integer>615</integer>
 			<key>ypos</key>
-			<integer>10</integer>
+			<integer>20</integer>
 		</dict>
 		<key>102399E3-16B0-445A-911C-1F610D31B3F5</key>
 		<dict>
 			<key>xpos</key>
-			<integer>180</integer>
+			<integer>195</integer>
 			<key>ypos</key>
-			<integer>10</integer>
+			<integer>20</integer>
 		</dict>
 		<key>6BFE213F-AF33-4938-A8B9-1F9EDC67A3FA</key>
 		<dict>
 			<key>xpos</key>
-			<integer>760</integer>
+			<integer>775</integer>
 			<key>ypos</key>
-			<integer>250</integer>
+			<integer>260</integer>
 		</dict>
 		<key>901E2D9C-BEA1-40BD-B554-618C2347FD70</key>
 		<dict>
 			<key>xpos</key>
-			<integer>10</integer>
+			<integer>25</integer>
 			<key>ypos</key>
-			<integer>10</integer>
+			<integer>20</integer>
 		</dict>
 		<key>97832F46-3A7B-41ED-A376-8A9C5B6DB1A7</key>
 		<dict>
 			<key>xpos</key>
-			<integer>440</integer>
+			<integer>455</integer>
 			<key>ypos</key>
-			<integer>250</integer>
+			<integer>260</integer>
 		</dict>
 		<key>AC9A3E3F-3B42-4CA0-B048-6995798B0378</key>
 		<dict>
 			<key>xpos</key>
-			<integer>440</integer>
+			<integer>455</integer>
 			<key>ypos</key>
-			<integer>10</integer>
+			<integer>20</integer>
 		</dict>
 		<key>AD59B338-E907-45D9-8CDD-2EB3812480BC</key>
 		<dict>
 			<key>xpos</key>
-			<integer>10</integer>
+			<integer>25</integer>
 			<key>ypos</key>
-			<integer>250</integer>
+			<integer>260</integer>
 		</dict>
 		<key>C7ECDAAF-F0B3-41DE-8471-B49B318BC71F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>260</integer>
+			<integer>275</integer>
 			<key>ypos</key>
-			<integer>280</integer>
+			<integer>290</integer>
 		</dict>
 		<key>EAF45349-0D69-42CA-BB0B-32526DF7FEFA</key>
 		<dict>
 			<key>xpos</key>
-			<integer>600</integer>
+			<integer>615</integer>
 			<key>ypos</key>
-			<integer>250</integer>
+			<integer>260</integer>
 		</dict>
 		<key>ECD85329-7C6C-48C6-9C0D-1C7011577305</key>
 		<dict>
 			<key>xpos</key>
-			<integer>440</integer>
+			<integer>455</integer>
 			<key>ypos</key>
-			<integer>130</integer>
+			<integer>140</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.3</string>
+	<string>20.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
