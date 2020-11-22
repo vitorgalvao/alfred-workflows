@@ -441,55 +441,6 @@ add_line(Recommendations_File, ENV['type'], ENV['title'], ENV['person'], ENV['re
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>alfredfiltersresults</key>
-				<true/>
-				<key>alfredfiltersresultsmatchmode</key>
-				<integer>2</integer>
-				<key>argumenttreatemptyqueryasnil</key>
-				<false/>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>queuedelaycustom</key>
-				<integer>3</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<true/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string>Getting recommendations</string>
-				<key>script</key>
-				<string>require_relative File.join(Dir.pwd, 'recommendationnation.rb')
-
-show_types(Sites)</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string></string>
-				<key>title</key>
-				<string></string>
-				<key>type</key>
-				<integer>2</integer>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>04AD2E9D-6BDB-4879-9E10-262543D5A318</string>
-			<key>version</key>
-			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>conditions</key>
 				<array>
 					<dict>
@@ -548,8 +499,59 @@ show_types(Sites)</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>2</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Getting recommendations</string>
+				<key>script</key>
+				<string>require_relative File.join(Dir.pwd, 'recommendationnation.rb')
+
+show_types(Sites)</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>04AD2E9D-6BDB-4879-9E10-262543D5A318</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argument</key>
 				<string></string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>action</key>
@@ -568,6 +570,8 @@ show_types(Sites)</string>
 			<dict>
 				<key>argument</key>
 				<string></string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>person</key>
@@ -586,6 +590,8 @@ show_types(Sites)</string>
 			<dict>
 				<key>argument</key>
 				<string></string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>type</key>
@@ -604,6 +610,8 @@ show_types(Sites)</string>
 			<dict>
 				<key>argument</key>
 				<string></string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>reason</key>
@@ -622,6 +630,8 @@ show_types(Sites)</string>
 			<dict>
 				<key>argument</key>
 				<string></string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>title</key>
@@ -810,31 +820,6 @@ fi</string>
 				<key>script</key>
 				<string>require_relative File.join(Dir.pwd, 'recommendationnation.rb')
 
-edit_list(Recommendations_File)</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>2</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>9219E3AB-C3C5-4EFB-9660-980766DEABEC</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>require_relative File.join(Dir.pwd, 'recommendationnation.rb')
-
 open_site(Recommendations_File, Sites, ARGV[0].to_i)
 delete_line(Recommendations_File, ARGV[0].to_i)</string>
 				<key>scriptargtype</key>
@@ -848,6 +833,31 @@ delete_line(Recommendations_File, ARGV[0].to_i)</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>2257A6A6-DA8F-48A1-B6E0-7652D5FE4E27</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require_relative File.join(Dir.pwd, 'recommendationnation.rb')
+
+edit_list(Recommendations_File)</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>9219E3AB-C3C5-4EFB-9660-980766DEABEC</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -1057,6 +1067,8 @@ show_types(Sites)</string>
 			<dict>
 				<key>argument</key>
 				<string></string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>site</key>
@@ -1075,6 +1087,8 @@ show_types(Sites)</string>
 			<dict>
 				<key>argument</key>
 				<string></string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>type</key>
@@ -1094,23 +1108,17 @@ show_types(Sites)</string>
 
 All commands are accessed via the keyword `rec`.
 
-![](https://i.imgur.com/0wKPqgv.png)
+![](https://i.imgur.com/yBnYTHv.png)
 
 `Add recommendation` will walk you through the process of adding a new item. “Reason” is optional.
 
-![](https://i.imgur.com/Ul4Zv0m.gif)
-
 `View recommendations` shows everything you’ve saved. ↵ on an item searches for it on a relevant website. For example, by default film recommendations open on [IMDB](https://www.imdb.com/), while book recommendations will open on [Goodreads](https://www.goodreads.com/).
-
-![](https://i.imgur.com/jf7Q4rY.png)
 
 Several other options are available. ⌘↵ opens on a relevant site and deletes the recommendation from the list; ⌥↵ opens on a generic search site; ⌃↵ deletes the recommendation; ⇧↵ sends it to the top of the list.
 
 `Edit recommendations` opens the list on your default text editor.
 
 `Change default sites` allows you to pick different websites as your source for viewing the recommendations on the web. As an example, the choices for the “Film” category:
-
-![](https://i.imgur.com/2XHlm8E.png)
 
 Your picks will modify the Workflow itself and be accessible via Workflow Environment Variables, meaning you’re not limited to the included choices. If there’s a website you believe I should add, do let me know.
 
@@ -1299,15 +1307,18 @@ To keep your list synced between machines, use the `recs_dir` Workflow Environme
 	</dict>
 	<key>variables</key>
 	<dict>
+		<key>film_site</key>
+		<string>letterboxd</string>
 		<key>recs_dir</key>
 		<string>~/Dropbox/Libraries/AlfredWorkflowsData/RecommendationNation</string>
 	</dict>
 	<key>variablesdontexport</key>
 	<array>
+		<string>film_site</string>
 		<string>recs_dir</string>
 	</array>
 	<key>version</key>
-	<string>20.1</string>
+	<string>20.2</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
