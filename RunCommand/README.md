@@ -2,7 +2,7 @@ Provides both a `File Action` to run shell commands on selected files/directorie
  
 For the `File Action`, use Alfred to pick what you want to run a command on and choose `Run command`. Alfred’s main window will appear and you simply type the command you want.
 
-![](https://i.imgur.com/uFwqIxg.png)
+![](https://i.imgur.com/GEzNXH4.png)
  
 For the `Keyword`, type `.` followed by a command. A space between the period and the command is not necessary. This will run the command on the active Finder window (e.g. `.touch this_file`). You can also easily chain commands (`.cd Desktop && rm that_file`).
 
