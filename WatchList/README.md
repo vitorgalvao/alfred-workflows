@@ -6,15 +6,15 @@ Select in the Finder the files or directories you wish to add to your list and a
 
 You then have some options you can pick from, all starting with `wl`.
 
-![](https://i.imgur.com/jOKRSwY.png)
+![](https://i.imgur.com/vtwvvxI.png)
 
 `wlp` shows the list of items you can play. A reference to each subtitle section can be found at the end.
 
-![](https://i.imgur.com/anCe2I8.png)
+![](https://i.imgur.com/CeHpXMh.png)
 
 `wls` calls `wlp` under the hood, but lets you first select a sort order.
 
-![](https://i.imgur.com/SymAbSa.png)
+![](https://i.imgur.com/wr8MgEm.png)
 
 In both cases, ↵ plays the selection. Add ⌃ to play without marking as watched or ⌥ to, depending on the entry, download a stream or rescan a series’ directory (useful if you made manual changes to it). ⌘↵ will mark as watched without playing. ⇧ or ⌘Y shows a quicklook preview on files and streams.
 
@@ -26,7 +26,7 @@ An item will not be marked as watched if we can access the player’s CLI and it
 
 `wlu` shows the list of watched items. The limit of recent items in this list is controlled by the `maximum_watched` Workflow Environment Variable. Action an item to mark it as unwatched. Note that in the case of files it does not recover them from the trash, as there is no reliable way to do so on macOS — that step you need to do yourself. If the item has a URL origin (you’ll see it in the subtitle) add ⌘ to open the URL in your default browser or ⌥ to copy it to the clipboard. If the item has an origin URL, ⇧ or ⌘Y shows a quicklook preview.
 
-![](https://i.imgur.com/XK0W6Wj.png)
+![](https://i.imgur.com/srW0zxy.png)
 
 `wle` allows you to reorder, rename, and remove items from the list.
 
