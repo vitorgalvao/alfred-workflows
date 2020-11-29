@@ -4,7 +4,7 @@ ObjC.import('stdlib') // For $.getenv
 const app = Application.currentApplication()
 app.includeStandardAdditions = true
 
-// If inside a Workflow, use it's icon in the dialog
+// If inside a Workflow, use its icon in the dialog
 // Otherwise, use a generic icon
 const dialog_icon = (() => {
   try {
