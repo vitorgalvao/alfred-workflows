@@ -219,7 +219,7 @@ fi</string>
 	<key>readme</key>
 	<string>Get [metacritic](http://www.metacritic.com/) ratings for different types of media.
 
-![](https://i.imgur.com/8dI8s6Z.png)</string>
+![](https://i.imgur.com/oKMrEPQ.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>1A78E27E-363C-4575-B0DE-587838EFA355</key>
@@ -249,7 +249,7 @@ fi</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.0.6</string>
+	<string>20.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
