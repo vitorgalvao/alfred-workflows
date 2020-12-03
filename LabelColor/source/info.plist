@@ -249,6 +249,8 @@ fi</string>
 			<dict>
 				<key>argument</key>
 				<string></string>
+				<key>passthroughargument</key>
+				<false/>
 				<key>variables</key>
 				<dict>
 					<key>file_list</key>
@@ -299,7 +301,7 @@ fi</string>
 
 Use Alfred to pick what you want to apply (or remove) a label to and pick `Label…` as the action, or use the keyboard shortcut. Alfred’s main window will appear and you simply select an option or type to filter the color’s name.
 
-![](https://i.imgur.com/hCXjmBD.png)</string>
+![](https://i.imgur.com/RLIHwQ0.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>0A32E04B-A567-475D-9824-E9D404C3773B</key>
@@ -350,7 +352,7 @@ Use Alfred to pick what you want to apply (or remove) a label to and pick `Label
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>1.2.6</string>
+	<string>20.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
