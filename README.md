@@ -204,6 +204,11 @@ Shortcuts for recording from your computer
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/StartRecording) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/StartRecording/StartRecording.alfredworkflow)
 
+### ShutdownTimer <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/ShutdownTimer/source/icon.png' width='60' align='center' alt='ShutdownTimer icon'>
+Shutdown macOS on a timer
+
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/ShutdownTimer) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/ShutdownTimer/ShutdownTimer.alfredworkflow)
+
 ### StrongPassword <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/StrongPassword/source/icon.png' width='60' align='center' alt='StrongPassword icon'>
 Get a strong password by leveraging multiple sources
 
