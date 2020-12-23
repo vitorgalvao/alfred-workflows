@@ -1066,7 +1066,7 @@ fi
 notification "Downloading ${app_name} ${upstream_version}…"
 readonly url="$(get_detail "${app_repo}" 'browser_download_url')"
 
-if curl --silent --location "${url}" | ditto -xk - "${dest_dir}"; then
+if curl --silent --location --no-buffer "${url}" | ditto -xk - "${dest_dir}"; then
   notification "Updated ${app_name} app to ${upstream_version}"
 else
   notification "Failed to update ${app_name} app"
@@ -1560,7 +1560,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 		<string>unread_order</string>
 	</array>
 	<key>version</key>
-	<string>20.26</string>
+	<string>20.27</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
