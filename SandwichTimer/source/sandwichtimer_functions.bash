@@ -3,7 +3,7 @@ function download_app {
   local -r repo='vitorgalvao/sandwichtimer'
   local -r url="$(curl --silent "https://api.github.com/repos/${repo}/releases/latest" | grep 'browser_download_url' | head -1 | sed -E 's/.*browser_download_url": "(.*)"/\1/')"
 
-  curl --silent --location "${url}" | ditto -xk - "${dest}"
+  curl --silent --location --no-buffer "${url}" | ditto -xk - "${dest}"
 }
 
 function pomodoro {
