@@ -5,7 +5,7 @@ readonly shared_resources_id='com.vitorgalvao.alfred._sharedresources'
 [[ -z "${alfred_workflow_data}" ]] && readonly alfred_workflow_data="$(mktemp -d)/Workflow Data/fake_workflow" # To prevent commands reliant on this variable from breaking when testing outside a Workflow
 readonly shared_resources_dir="$(dirname "${alfred_workflow_data}")/${shared_resources_id}"
 readonly shared_resources_bin="${shared_resources_dir}/bin"
-readonly PATH=/usr/local/bin:"${shared_resources_bin}":"${PATH}"
+readonly PATH="/opt/homebrew/bin:/usr/local/bin:${shared_resources_bin}:${PATH}"
 
 function is_string_in_array {
   local -r string="${1}"
