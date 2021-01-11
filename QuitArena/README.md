@@ -2,7 +2,11 @@ Call `qapps` and all apps excluding the ones you set in the `keep_alive` Workflo
 
 ![](https://i.imgur.com/o1xU4er.png)
 
+You can exclude extra apps on a per-run basis by adding them as arguments. Calling with ⌘↵ will also exclude the frontmost app.
+
 Use the exact application names as they present themselves to the system. To prevent multiple apps from quitting, separate their names with commas.
+
+![](https://i.imgur.com/gyLMgeB.png)
 
 `qprocesses` will kill all processes, subject to the same `keep_alive` and `kill_` settings, meaning even things in the background that you don’t see will be asked to quit.
 
