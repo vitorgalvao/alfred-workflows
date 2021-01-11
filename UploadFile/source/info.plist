@@ -315,7 +315,7 @@ It will auto-refresh the progress. Press ⌘↵ to cancel the transfer.
 
 You’ll get notifications of the various phases, with a sound when it’s complete (or canceled). The download URL will be copied to your clipboard.
 
-You can change the upload host in the `upload_file_to` Workflow Environment Variable. Supported hosts are: [0x0.st](https://0x0.st/), [bayfiles.com](https://bayfiles.com/), [anonfile.com](https://anonfile.com/), [megaupload.is](https://megaupload.is/), and [forumfiles.com](https://forumfiles.com/).</string>
+You can change the upload host in the `upload_file_to` Workflow Environment Variable. Supported hosts are: [0x0.st](https://0x0.st/), [arxius.io](https://arxius.io/), [bayfiles.com](https://bayfiles.com/), [anonfile.com](https://anonfile.com/), [megaupload.is](https://megaupload.is/), and [forumfiles.com](https://forumfiles.com/).</string>
 	<key>uidata</key>
 	<dict>
 		<key>3444071E-B0B8-4C12-9699-210912A13E67</key>
@@ -364,7 +364,7 @@ You can change the upload host in the `upload_file_to` Workflow Environment Vari
 		<string>0x0.st</string>
 	</dict>
 	<key>version</key>
-	<string>20.8</string>
+	<string>21.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
