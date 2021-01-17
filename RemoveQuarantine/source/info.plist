@@ -121,7 +121,9 @@ done</string>
 				<string>app_list=()
 
 for app in /Applications/*; do
-  [[ $(xattr "${app}" | grep 'com.apple.quarantine') ]] &amp;&amp; app_list+=("${app}")
+  if xattr -p 'com.apple.quarantine' "${app}" &amp;&gt; /dev/null; then
+    app_list+=("${app}")
+  fi
 done
 
 if [[ "${#app_list[@]}" -eq 0 ]]; then
@@ -321,7 +323,7 @@ Warning: quarantining is a macOS security feature, and I do not recommend you di
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>20.2</string>
+	<string>21.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
