@@ -317,7 +317,7 @@ def play_item(type, path)
     vlc = Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier', '=', 'org.videolan.vlc').first.strip.split("\n").last
     return vlc + '/Contents/MacOS/VLC' if vlc
 
-    return 'other'
+    'other'
   }.call
 
   error('To play a stream you need mpv, iina, or vlc') if video_player == 'other' && type == 'stream'
