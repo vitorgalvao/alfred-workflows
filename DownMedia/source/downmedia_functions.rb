@@ -274,7 +274,24 @@ def get_title_url
 end
 
 def notification(title, message)
-  system("#{Dir.pwd}/Notificator.app/Contents/Resources/Scripts/notificator", '--message', message, '--title', title)
+  notificator_app = Pathname.pwd.join('Notificator.app')
+  notification_command = [
+    notificator_app.join('Contents/Resources/Scripts/notificator').to_path,
+    '--message', message, '--title', title
+  ]
+
+  # Try to show notification and exit if successful
+  return if Open3.capture2(*notification_command)[1].success?
+
+  # If notification failed
+  # Remove quarantine
+  system('/usr/bin/xattr', '-d', 'com.apple.quarantine', notificator_app.to_path)
+
+  # Ad-hoc signing
+  system('/usr/bin/codesign', '--sign', '-', notificator_app.to_path)
+
+  # Send notification again
+  system(*notification_command)
 end
 
 def error(title, message)

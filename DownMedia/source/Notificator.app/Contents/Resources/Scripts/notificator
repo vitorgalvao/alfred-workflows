@@ -9,11 +9,6 @@ readonly program="$(basename "${0}")"
 readonly applet="$(dirname "$(dirname "$(dirname "${0}")")")/MacOS/applet"
 readonly app="$(dirname "$(dirname "$(dirname "${applet}")")")"
 
-function syntax_error {
-  echo -e "${program}: ${1}\nTry \`${program} --help\` for more information." >&2
-  exit 1
-}
-
 function usage {
   echo "
     Usage:
@@ -28,6 +23,8 @@ function usage {
   " | sed -E 's/^ {4}//'
 }
 
+# Options
+args=()
 while [[ "${1}" ]]; do
   case "${1}" in
     -h | --help)
@@ -50,15 +47,22 @@ while [[ "${1}" ]]; do
       notificator_sound="${2}"
       shift
       ;;
+    --)
+      shift
+      args+=("${@}")
+      break
+      ;;
     -*)
-      syntax_error "unrecognized option: ${1}"
+      echo "Unrecognised option: ${1}"
+      exit 1
       ;;
     *)
-      break
+      args+=("${1}")
       ;;
   esac
   shift
 done
+set -- "${args[@]}"
 
 if [[ -z "${notificator_message}" ]]; then
   echo 'A message is mandatory.' >&2
