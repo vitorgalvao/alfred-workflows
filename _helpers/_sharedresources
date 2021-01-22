@@ -1,6 +1,6 @@
 #!/bin/bash
 
-readonly valid_resources=('blueutil' 'cpulimit' 'exiftool' 'ffmpeg' 'mediainfo' 'trash' 'youtubedl') # Keep in sync with resource functions
+readonly valid_resources=('blueutil' 'calmnotifications' 'cpulimit' 'exiftool' 'ffmpeg' 'mediainfo' 'trash' 'youtubedl') # Keep in sync with resource functions
 readonly shared_resources_id='com.vitorgalvao.alfred._sharedresources'
 [[ -z "${alfred_workflow_data}" ]] && readonly alfred_workflow_data="$(mktemp -d)/Workflow Data/fake_workflow" # To prevent commands reliant on this variable from breaking when testing outside a Workflow
 readonly shared_resources_dir="$(dirname "${alfred_workflow_data}")/${shared_resources_id}"
@@ -60,6 +60,24 @@ function blueutil_getter {
       chmod +x "${blueutil_path}"
     else
       curl_error 'blueutil'
+    fi
+  fi
+}
+
+function calmnotifications_getter {
+  local calmnotifications_path
+  calmnotifications_path="$(command -v 'calm-notifications')"
+
+  if [[ -z "${calmnotifications_path}" ]]; then
+    calmnotifications_path="${shared_resources_bin}/calm-notifications"
+    local -r calmnotifications_version='0.0.1'
+
+    ensure_resources_dir
+
+    if curl --silent "https://raw.githubusercontent.com/vitorgalvao/tiny-scripts/master/calm-notifications" --output "${calmnotifications_path}"; then
+      chmod +x "${calmnotifications_path}"
+    else
+      curl_error 'calmnotifications'
     fi
   fi
 }
