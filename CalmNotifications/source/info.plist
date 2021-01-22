@@ -96,10 +96,13 @@
 				<key>script</key>
 				<string>require 'json'
 require 'open3'
+require 'pathname'
+
+ENV['PATH'] = Open3.capture2(Pathname.pwd.join('_sharedresources').to_path, 'calmnotifications').first
 
 script_filter_items = []
 
-dnd_active = Open3.capture2('defaults', '-currentHost', 'read', "#{ENV['HOME']}/Library/Preferences/ByHost/com.apple.notificationcenterui", 'doNotDisturb').first.strip == '0' ? false : true
+dnd_active = Open3.capture2('calm-notifications', 'status').first.strip == 'on'
 
 if dnd_active
   script_filter_items.push(
@@ -145,16 +148,9 @@ puts({ items: script_filter_items }.to_json)</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>action="${1}"
+				<string>PATH="$(./_sharedresources 'calmnotifications')"
 
-if [[ "${action}" == 'on' ]]; then
-  defaults -currentHost write "${HOME}/Library/Preferences/ByHost/com.apple.notificationcenterui" doNotDisturb -boolean true
-  defaults -currentHost write "${HOME}/Library/Preferences/ByHost/com.apple.notificationcenterui" doNotDisturbDate -date "$(date -u +'%Y-%m-%d %H:%M:%S +0000')"
-  killall NotificationCenter
-else
-  defaults -currentHost write "${HOME}/Library/Preferences/ByHost/com.apple.notificationcenterui" doNotDisturb -boolean false
-  killall NotificationCenter
-fi</string>
+calm-notifications "${1}"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -302,7 +298,7 @@ fi</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>20.1</string>
+	<string>21.1</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
