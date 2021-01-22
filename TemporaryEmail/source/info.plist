@@ -115,6 +115,12 @@ elif [[ "${front_browser}" == 'Google Chrome'* || "${front_browser}" == 'Chromiu
       set active tab index of front window to tabIndex
     end tell
 EOF
+elif [[ "${front_browser}" == 'firefox'* ]]; then
+  osascript &lt;&lt;EOF
+    tell application "${front_browser}"
+      open location "${url}"
+    end tell
+EOF
 else
   notification 'You need a supported browser as your frontmost app'
   exit 1
@@ -297,7 +303,9 @@ fi</string>
 
 ![](https://i.imgur.com/w7Y9kfZ.png)
 
-Giving an argument will try to use that specific name, while leaving it blank will create a random address.</string>
+Giving an argument will try to use that specific name, while leaving it blank will create a random address.
+
+Because [Firefox does not support AppleScript](https://bugzilla.mozilla.org/show_bug.cgi?id=125419), the inbox will open in the foreground and you must manually return to the tab you were in.</string>
 	<key>uidata</key>
 	<dict>
 		<key>1BFF14FC-DF72-4BC9-807B-3D38432CF08D</key>
@@ -341,7 +349,7 @@ Giving an argument will try to use that specific name, while leaving it blank wi
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>20.6</string>
+	<string>21.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
