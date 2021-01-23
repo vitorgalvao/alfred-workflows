@@ -300,6 +300,14 @@ if (script_filter_items.length === 0) {
 				<integer>102</integer>
 				<key>script</key>
 				<string>ObjC.import('stdlib')
+
+// Set PATH with youtube-dl
+const app = Application.currentApplication()
+app.includeStandardAdditions = true
+const new_path = app.doShellScript($.getenv('alfred_preferences') + '/workflows/' + $.getenv('alfred_workflow_uid') + '/_sharedresources "youtubedl"')
+$.setenv('PATH', new_path, 1)
+
+// Main
 const browser_name = $.getenv('browser')
 const browser = Application(browser_name)
 const url = $.getenv('url')
@@ -308,7 +316,7 @@ const close_browser = ($.getenv('close_tab') === 'true') ? true : false
 const chromium_variants = ['Google Chrome', 'Chromium', 'Opera', 'Vivaldi', 'Brave Browser', 'Microsoft Edge']
 const webkit_variants = ['Safari', 'Webkit']
 
-if (close_browser &amp;&amp; browser_name &amp;&amp; $.system('/usr/local/bin/youtube-dl --simulate --quiet ' + url) === 0) {
+if (close_browser &amp;&amp; browser_name &amp;&amp; $.system('youtube-dl --simulate --quiet ' + url) === 0) {
   if (chromium_variants.some(app_name =&gt; browser_name.startsWith(app_name))) {
     browser.windows[0].tabs().forEach(tab =&gt; { if (tab.url() === url) tab.close() })
   } else if (webkit_variants.some(app_name =&gt; browser_name.startsWith(app_name))) {
@@ -664,7 +672,7 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 		<string>use_watchlist</string>
 	</array>
 	<key>version</key>
-	<string>21.3</string>
+	<string>21.4</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
