@@ -286,7 +286,7 @@ These are the Workflows that are no longer under development and won’t get mor
 
 + [AppVersion](https://github.com/vitorgalvao/alfred-workflows/tree/fefde12914ed35d1cc7e0e90c62a932cdec3b39a/AppVersion)
 + [RepeatRepeat](https://github.com/vitorgalvao/alfred-workflows/tree/9a70302fa31d6fba2b532bc9dd7eac75d67f6964/RepeatRepeat)
-+ [RottentMovies](https://github.com/vitorgalvao/alfred-workflows/tree/2c0eca9f2336e3470b103586189ba7dd450f2b39/RottenMovies)
++ [RottenMovies](https://github.com/vitorgalvao/alfred-workflows/tree/2c0eca9f2336e3470b103586189ba7dd450f2b39/RottenMovies)
 
 ---
 
