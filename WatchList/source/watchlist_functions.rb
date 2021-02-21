@@ -308,8 +308,14 @@ def play_item(type, path)
 
   # The 'split' together with 'last' serves to try to pick the last installed version, in case more than one is found (multiple versions in Homebrew Cellar, for example)
   video_player = lambda {
-    mpv = Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier', '=', 'io.mpv').first.strip.split("\n").last
-    return [mpv + '/Contents/MacOS/mpv', '--quiet'] if mpv
+    mpv_app = Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier', '=', 'io.mpv').first.strip.split("\n").last
+    return [mpv_app + '/Contents/MacOS/mpv', '--quiet'] if mpv_app
+
+    mpv_homebrew_apple_silicon = '/opt/homebrew/bin/mpv'
+    return mpv_homebrew_apple_silicon if File.executable?(mpv_homebrew_apple_silicon)
+
+    mpv_homebrew_intel = '/usr/local/bin/mpv'
+    return mpv_homebrew_intel if File.executable?(mpv_homebrew_intel)
 
     iina = Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier', '=', 'com.colliderli.iina').first.strip.split("\n").last
     return iina + '/Contents/MacOS/IINA' if iina
