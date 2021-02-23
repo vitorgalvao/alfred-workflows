@@ -7,27 +7,20 @@ List_file = Cache_dir.join('list.json')
 
 # Recheck films if list file does not exist or is older than a day or argument asks for it
 if !List_file.exist? || (((Time.now - List_file.mtime) / (24 * 3600)).ceil > 1) || ARGV[0] == 'update_list'
-  require 'rss'
   require 'json'
-  require 'open3'
-  require 'open-uri'
+  require 'net/http'
   require 'nokogiri'
+  require 'open3'
+  require 'rss'
+  require 'uri'
 
   Cache_dir.mkpath
 
-  site_rss = 'https://www.shortoftheweek.com/feed'
-  site_feed = begin
-                RSS::Parser.parse(URI(site_rss).read)
-              rescue OpenSSL::SSL::SSLError
-                require 'openssl'
-                OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
-                retry
-              end
-
-  script_filter_items = []
+  site_rss = URI.parse('https://www.shortoftheweek.com/feed')
+  site_feed_links = RSS::Parser.parse(Net::HTTP.get(site_rss)).items.map(&:link).reject { |link| link.match('/news/') }
 
   # Grab link from items, remove "/news/" links, load info from links into array
-  site_feed.items.map(&:link).reject { |link| link.match('/news/') }.each do |item|
+  script_filter_items = site_feed_links.each_with_object([]) do |item, array|
     # Get details
     page = Nokogiri::HTML(URI(item).open, nil, Encoding::UTF_8.to_s) # Forced UTF-8
     url = page.at('.embed-wrapper').attr('data-src')
@@ -53,7 +46,14 @@ if !List_file.exist? || (((Time.now - List_file.mtime) / (24 * 3600)).ceil > 1) 
       })
     end
 
-    script_filter_items.push(title: title, subtitle: "#{genre} 𐄁 #{duration} 𐄁 #{author}", icon: { path: downloaded_image }, mods: { alt: { subtitle: synopsis } }, quicklookurl: item, arg: url)
+    array.push(
+      title: title,
+      subtitle: "#{genre} 𐄁 #{duration} 𐄁 #{author}",
+      icon: { path: downloaded_image },
+      mods: { alt: { subtitle: synopsis } },
+      quicklookurl: item,
+      arg: url
+    )
   end
 
   List_file.write({ items: script_filter_items }.to_json)
