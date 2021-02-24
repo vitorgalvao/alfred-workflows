@@ -364,7 +364,7 @@ You can change the upload host in the `upload_file_to` Workflow Environment Vari
 		<string>0x0.st</string>
 	</dict>
 	<key>version</key>
-	<string>21.1</string>
+	<string>21.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
