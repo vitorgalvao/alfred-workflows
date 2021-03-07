@@ -1,28 +1,30 @@
 #!/usr/bin/ruby
+# frozen_string_literal: true
 
-require_relative "#{__dir__}/ensure_redcarpet.rb"
 require 'open3'
+require_relative "#{Dir.pwd}/multimarkdown_bin_arch.rb"
 
-rich_text_style = '
+Rich_text_style = '
   <style>
     body { font-family: sans-serif; font-size: 14; }
     code { font-family: monospace; }
     p    { margin: 0; }
   </style>
 '
+Html = "
+  #{Rich_text_style}
+  #{Open3.capture2(ENV['multimarkdown_bin'], stdin_data: ARGV[0]).first}
+".
+  gsub(/<img[^>]*>/, ''). # Strip images
+  gsub('</p>', '</p><br>') # Enforce line breaks after paragraphs
 
-markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, strikethrough: true, superscript: true)
+Rtf_text = Open3.capture2(
+  'textutil', '-inputencoding', 'utf8', '-convert', 'rtf',
+  '-stdin', '-stdout', '-format', 'html',
+  stdin_data: Html
+).first
 
-text =
-  rich_text_style +
-  markdown
-  .render(ARGV[0])
-  .gsub(/<img[^>]*>/, '') # Strip images
-  .gsub('</p>', '</p><br>') # Enforce line breaks after paragraphs
-
-rtf_text = Open3.capture2('textutil', '-inputencoding', 'utf8', '-convert', 'rtf', '-stdin', '-stdout', '-format', 'html', stdin_data: text).first
-
-rtf_text_lines = rtf_text.split("\n")
+rtf_text_lines = Rtf_text.split("\n")
 rtf_text_lines.slice!(3..4)
 
 print rtf_text_lines.join("\n")

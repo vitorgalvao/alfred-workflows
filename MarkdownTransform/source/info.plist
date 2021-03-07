@@ -141,6 +141,8 @@
 				<true/>
 				<key>clipboardtext</key>
 				<string>{clipboard}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
 				<key>transient</key>
 				<true/>
 			</dict>
@@ -464,6 +466,7 @@ Supported in conversion to RTF:
 * Unordered lists
 * Ordered lists
 * Superscript
+* Subscript
 
 Supported in conversion to BBCode:
 
@@ -480,28 +483,12 @@ Supported in conversion to BBCode:
 * Headers
 * Unordered lists
 * Ordered lists
-* Footnotes
 * Superscript
+* Subscript
 
 Supported in conversion to HTML:
 
-* Italic
-* Bold
-* Italic and Bold
-* Horizontal rule
-* Strikethrough
-* Images
-* Links
-* Quotes
-* Inline code
-* Code blocks
-* Headers
-* Unordered lists
-* Ordered lists
-* Footnotes
-* Superscript
-* Tables
-* Highlights</string>
+Everything supported by [MultiMarkdown](https://en.wikipedia.org/wiki/MultiMarkdown)</string>
 	<key>uidata</key>
 	<dict>
 		<key>26ABF3CB-05C2-473B-9F45-80692E12737E</key>
@@ -591,10 +578,8 @@ Supported in conversion to HTML:
 			<integer>180</integer>
 		</dict>
 	</dict>
-	<key>variablesdontexport</key>
-	<array/>
 	<key>version</key>
-	<string>20.5</string>
+	<string>21.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

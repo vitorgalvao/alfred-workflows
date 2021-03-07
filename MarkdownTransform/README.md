@@ -14,6 +14,7 @@ Supported in conversion to RTF:
 * Unordered lists
 * Ordered lists
 * Superscript
+* Subscript
 
 Supported in conversion to BBCode:
 
@@ -30,25 +31,9 @@ Supported in conversion to BBCode:
 * Headers
 * Unordered lists
 * Ordered lists
-* Footnotes
 * Superscript
+* Subscript
 
 Supported in conversion to HTML:
 
-* Italic
-* Bold
-* Italic and Bold
-* Horizontal rule
-* Strikethrough
-* Images
-* Links
-* Quotes
-* Inline code
-* Code blocks
-* Headers
-* Unordered lists
-* Ordered lists
-* Footnotes
-* Superscript
-* Tables
-* Highlights
+Everything supported by [MultiMarkdown](https://en.wikipedia.org/wiki/MultiMarkdown)

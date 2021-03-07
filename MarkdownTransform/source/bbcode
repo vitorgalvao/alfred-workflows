@@ -1,10 +1,34 @@
 #!/usr/bin/ruby
 
-require_relative "#{__dir__}/ensure_redcarpet.rb"
-require_relative "#{__dir__}/ipboard_bbcode_renderer.rb"
+require 'open3'
+require_relative "#{Dir.pwd}/multimarkdown_bin_arch.rb"
 
-markdown = Redcarpet::Markdown.new(IPBoardBBCodeRender, underline: true, superscript: true, strikethrough: true, autolink: true, fenced_code_blocks: true, footnotes: true)
+class String
+  def surround(html_tag, bbcode_tag)
+    gsub("<#{html_tag}>", "[#{bbcode_tag}]").gsub("</#{html_tag}>", "[/#{bbcode_tag}]")
+  end
+end
 
-print markdown
-  .render(ARGV[0])
-  .gsub(/^$/, "\n") # Bypass empty line collapsing done by IPBoard
+print Open3.capture2(ENV['multimarkdown_bin'], stdin_data: ARGV[0]).first.
+  gsub('<p>', '').gsub('</p>', "\n").
+  surround('strong', 'b').
+  surround('emphasis', 'i').
+  surround('strikethrough', 's').
+  surround('underline', 'u').
+  gsub(%r{<a href="(.*?)">}, '[url="\1"]').gsub('</a>', '[/url]').
+  gsub('<img src="', '[img]').gsub(%r{" alt=".*?" />}, '[/img]').
+  gsub('<ol>', '[list=1]').gsub('</ol>', '[/list]').
+  surround('ul', 'list').
+  surround('li', '*').
+  surround('blockquote', 'quote').
+  gsub('<pre><code>', '[code]').gsub('</code></pre>', '[/code]').
+  gsub('<code>', '[background=#eee][font=courier,monospace]').gsub('</code>', '[/font][/background]').
+  gsub('<h1 id="header1">', "\n\n[b][size=7]").gsub('</h1>', '[/size][/b]').
+  gsub('<h2 id="header2">', "\n\n[b][size=6]").gsub('</h2>', '[/size][/b]').
+  gsub('<h3 id="header3">', "\n\n[b][size=5]").gsub('</h3>', '[/size][/b]').
+  gsub('<h4 id="header4">', "\n\n[b][size=4]").gsub('</h4>', '[/size][/b]').
+  surround('sup', 'sup').
+  surround('sub', 'sub').
+  gsub('<hr />', '[hr]').
+  gsub(/^$/, "\n"). # Bypass empty line collapsing done by IPBoard
+  strip
