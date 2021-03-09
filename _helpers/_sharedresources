@@ -70,7 +70,6 @@ function calmnotifications_getter {
 
   if [[ -z "${calmnotifications_path}" ]]; then
     calmnotifications_path="${shared_resources_bin}/calm-notifications"
-    local -r calmnotifications_version='0.0.1'
 
     ensure_resources_dir
 
