@@ -5,7 +5,7 @@
 	<key>CFBundleAllowMixedLocalizations</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
+	<string>en</string>
 	<key>CFBundleExecutable</key>
 	<string>applet</string>
 	<key>CFBundleIconFile</key>
@@ -29,5 +29,29 @@
 	<true/>
 	<key>LSUIElement</key>
 	<string>1</string>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>This script needs to control other applications to run.</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>This script needs access to your music to run.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>This script needs access to your calendars to run.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This script needs access to your camera to run.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>This script needs access to your contacts to run.</string>
+	<key>NSHomeKitUsageDescription</key>
+	<string>This script needs access to your HomeKit Home to run.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This script needs access to your microphone to run.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This script needs access to your photos to run.</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>This script needs access to your reminders to run.</string>
+	<key>NSSiriUsageDescription</key>
+	<string>This script needs access to Siri to run.</string>
+	<key>NSSystemAdministrationUsageDescription</key>
+	<string>This script needs access to administer this system to run.</string>
+	<key>OSAAppletShowStartupScreen</key>
+	<false/>
 </dict>
 </plist>
