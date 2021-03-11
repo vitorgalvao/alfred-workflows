@@ -9,15 +9,12 @@ readonly program="$(basename "${0}")"
 readonly applet="$(dirname "$(dirname "$(dirname "${0}")")")/MacOS/applet"
 readonly app="$(dirname "$(dirname "$(dirname "${applet}")")")"
 
-function syntax_error {
-  echo "${program}: ${1}\nTry \`${program} --help\` for more information." >&2
-  exit 1
-}
-
 function usage {
   echo "
-    usage: ${program} [options]
-    options:
+    Usage:
+      ${program} [options]
+
+    Options:
       -m, --message <text>       Message text (mandatory).
       -t, --title <text>         Title text.
       -s, --subtitle <text>      Subtitle text.
@@ -26,6 +23,8 @@ function usage {
   " | sed -E 's/^ {4}//'
 }
 
+# Options
+args=()
 while [[ "${1}" ]]; do
   case "${1}" in
     -h | --help)
@@ -48,15 +47,22 @@ while [[ "${1}" ]]; do
       notificator_sound="${2}"
       shift
       ;;
+    --)
+      shift
+      args+=("${@}")
+      break
+      ;;
     -*)
-      syntax_error "unrecognized option: ${1}"
+      echo "Unrecognised option: ${1}"
+      exit 1
       ;;
     *)
-      break
+      args+=("${1}")
       ;;
   esac
   shift
 done
+set -- "${args[@]}"
 
 if [[ -z "${notificator_message}" ]]; then
   echo 'A message is mandatory.' >&2
@@ -64,5 +70,5 @@ if [[ -z "${notificator_message}" ]]; then
 fi
 
 touch "${app}" # Notifications will never fire if we do not do this the first time, for some reason
-osascript -l JavaScript -e 'ObjC.import("Cocoa"); while ($.NSEvent.modifierFlags & $.NSControlKeyMask) { false }' # Prevent script from continuing while ctrl is pressed, otherwise we get the "Press Run to run this script, or Quit to quit." message
+osascript -l JavaScript -e 'ObjC.import("Cocoa"); while ($.NSEvent.modifierFlags & $.NSEventModifierFlagControl) { false }' # Prevent script from continuing while ctrl is pressed, otherwise we get the "Press Run to run this script, or Quit to quit." message
 "${applet}" "${notificator_message}" "${notificator_title}" "${notificator_subtitle}" "${notificator_sound}"
