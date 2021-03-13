@@ -6,6 +6,7 @@
 * Workflow version:
 * Alfred version:
 * macOS version:
+* Architecture: (Intel or Apple Silicon)
 
 #### Description of issue
 
