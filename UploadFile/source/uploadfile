@@ -51,11 +51,11 @@ function transfer {
   local -r escaped_file_path="${file_path//\"/\\\"}"
 
   # Uploading bit
-  local -r file_name=$(ascii_basename "${file_path}")
+  local -r file_name="$(ascii_basename "${file_path}")"
   echo -n "${file_name}" > "${name_file}"
   notification "Uploading “${file_name}”"
 
-  local -r hosts=('0x0.st' 'arxius.io' 'bayfiles.com' 'anonfile.com' 'megaupload.is' 'forumfiles.com')
+  local -r hosts=('transfer.sh' '0x0.st' 'arxius.io' 'bayfiles.com' 'anonfile.com' 'megaupload.is' 'forumfiles.com')
   local -r default_host="${hosts[0]}"
 
   if [[ -n "${upload_file_to}" ]]; then
@@ -69,7 +69,9 @@ function transfer {
     local -r upload_host="${default_host}"
   fi
 
-  if [[ "${upload_host}" == '0x0.st' || "${upload_host}" == 'arxius.io' ]]; then
+  if [[ "${upload_host}" == *'transfer.sh' ]]; then
+    curl --globoff --progress-bar --upload-file "${file_path}" "https://${upload_host}/" 2> "${progress_file}" | tr -d '\n' | pbcopy
+  elif [[ "${upload_host}" == '0x0.st' || "${upload_host}" == 'arxius.io' ]]; then
     curl --globoff --progress-bar --form "file=@\"${escaped_file_path}\"" "https://${upload_host}" 2> "${progress_file}" | tr -d '\n' | pbcopy
   else
     curl --globoff --progress-bar --form "file=@\"${escaped_file_path}\"" "https://api.${upload_host}/upload" 2> "${progress_file}" | ruby -r 'json' -e 'data = JSON.parse(gets); abort "There was an error uploading" if data["status"] == false; puts data["data"]["file"]["url"]["full"]' | tr -d '\n' | pbcopy
