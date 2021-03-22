@@ -49,7 +49,7 @@
 				<key>script</key>
 				<string>IFS=$'\n'
 
-files=$(find "${HOME}/Library" -not -path "${HOME}/Library/Application Support/Dash/*" -not -path "${HOME}/Library/Caches/Metadata/Safari/History/*" -not -path "${HOME}/Library/Mobile Documents/*" -iname '*{query}*')
+files=$(find "${HOME}/Library" -not -path "${HOME}/Library/Application Support/Dash/*" -not -path "${HOME}/Library/Caches/Metadata/Safari/History/*" -not -path "${HOME}/Library/Mobile Documents/*" -not -path "${HOME}/Library/Fonts/*" -iname '*{query}*')
 
 if [[ -z "${files}" ]]; then
   echo "&lt;?xml version='1.0'?&gt;&lt;items&gt;
@@ -234,7 +234,7 @@ The goal of the Workflow is that you select what you recognise as setting you wa
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>20.1</string>
+	<string>21.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
