@@ -234,8 +234,8 @@ if (chromium_variants.some(app_name =&gt; frontmost_app_name.startsWith(app_name
 
   script_filter_items.push({ 'variables': { 'browser': frontmost_app_name }, 'title': title, 'subtitle': url, 'arg': url })
 } else if (webkit_variants.some(app_name =&gt; frontmost_app_name.startsWith(app_name))) {
-  title = frontmost_app.documents[0].name()
-  url = frontmost_app.documents[0].url().trim()
+  title = frontmost_app.windows[0].currentTab.name()
+  url = frontmost_app.windows[0].currentTab.url().trim()
 
   if (title.length === 0) title = 'Web page does not have a title'
 
@@ -389,14 +389,6 @@ if (close_browser &amp;&amp; browser_name &amp;&amp; $.system('youtube-dl --simu
 			<integer>1</integer>
 		</dict>
 		<dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.junction</string>
-			<key>uid</key>
-			<string>3AB464F1-6E2E-4CF3-A4A0-AFDA2F41AAC1</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
 			<key>config</key>
 			<dict>
 				<key>conditions</key>
@@ -423,6 +415,14 @@ if (close_browser &amp;&amp; browser_name &amp;&amp; $.system('youtube-dl --simu
 			<string>alfred.workflow.utility.conditional</string>
 			<key>uid</key>
 			<string>79289C24-D237-4E6E-A781-3C54066C0461</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.junction</string>
+			<key>uid</key>
+			<string>3AB464F1-6E2E-4CF3-A4A0-AFDA2F41AAC1</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -648,7 +648,7 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 			<key>xpos</key>
 			<integer>335</integer>
 			<key>ypos</key>
-			<integer>360</integer>
+			<integer>370</integer>
 		</dict>
 		<key>CC5C8F05-C2B1-410B-B94A-46D8B7C429B0</key>
 		<dict>
@@ -672,7 +672,7 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 		<string>use_watchlist</string>
 	</array>
 	<key>version</key>
-	<string>21.4</string>
+	<string>21.6</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
