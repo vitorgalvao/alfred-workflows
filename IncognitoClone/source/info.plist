@@ -277,7 +277,8 @@ if (chromium_variants.some(app_name =&gt; frontmost_app_name.startsWith(app_name
   frontmost_app.Window({ mode: 'incognito' }).make()
   frontmost_app.windows[0].activeTab.url = current_tab_url
 } else if (webkit_variants.some(app_name =&gt; frontmost_app_name.startsWith(app_name))) {
-  const current_tab_url = frontmost_app.documents[0].url()
+  const current_tab_url = frontmost_app.windows[0].currentTab.url()
+  if (close_current) frontmost_app.windows[0].currentTab.close()
 
   try {
     frontmost_process.menuBars[0].menuBarItems.byName(webkit_menu[0])
@@ -286,9 +287,7 @@ if (chromium_variants.some(app_name =&gt; frontmost_app_name.startsWith(app_name
     throw new Error('Unable to find menu item. Verify that the "webkit_menu_path" variable has the correct two-step path, separated by a comma, with the exact names of the items')
   }
 
-  if (close_current) frontmost_app.documents[0].close()
-
-  frontmost_app.documents[0].url = current_tab_url
+  frontmost_app.windows[0].currentTab.url = current_tab_url
 } else {
   throw new Error('You need a supported browser as your frontmost app')
 }</string>
@@ -510,7 +509,7 @@ In addition, Webkit-based browsers do not support opening new private windows pr
 		<string>File, New Private Window</string>
 	</dict>
 	<key>version</key>
-	<string>20.6</string>
+	<string>21.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
