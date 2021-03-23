@@ -10,7 +10,7 @@ const webkit_variants = ['Safari', 'Webkit']
 if (chromium_variants.some(app_name => frontmost_app_name.startsWith(app_name))) {
   frontmost_app.windows[0].activeTab.url = 'javascript:' + bookmarklet_code
 } else if (webkit_variants.some(app_name => frontmost_app_name.startsWith(app_name))) {
-  frontmost_app.doJavaScript(bookmarklet_code, { in: frontmost_app.documents[0] })
+  frontmost_app.doJavaScript(bookmarklet_code, { in: frontmost_app.windows[0].currentTab })
 } else {
   throw new Error('You need a supported browser as your frontmost app')
 }
