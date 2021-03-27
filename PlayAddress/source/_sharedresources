@@ -6,6 +6,7 @@ readonly shared_resources_id='com.vitorgalvao.alfred._sharedresources'
 readonly shared_resources_dir="$(dirname "${alfred_workflow_data}")/${shared_resources_id}"
 readonly shared_resources_bin="${shared_resources_dir}/bin"
 readonly PATH="/opt/homebrew/bin:/usr/local/bin:${shared_resources_bin}:${PATH}"
+readonly arch="$([[ "$(sysctl -n machdep.cpu.brand_string)" == 'Apple '* ]] && echo 'arm' || echo 'intel')"
 
 function is_string_in_array {
   local -r string="${1}"
@@ -50,13 +51,14 @@ function blueutil_getter {
 
   if [[ -z "${blueutil_path}" ]]; then
     blueutil_path="${shared_resources_bin}/blueutil"
-    local -r blueutil_version='2.5.1'
-    local -r tar_extract="$(mktemp -d)"
+    local -r blueutil_version='2.8.0'
+    local -r download_type="$([[ "${arch}" == 'intel' ]] && echo 'big_sur' || echo 'arm64_big_sur')"
+    local -r extract_dir="$(mktemp -d)"
 
     ensure_resources_dir
 
-    if curl --silent "https://homebrew.bintray.com/bottles/blueutil-${blueutil_version}.mojave.bottle.tar.gz" | tar xC "${tar_extract}"; then
-      mv "${tar_extract}/blueutil/${blueutil_version}/bin/blueutil" "${blueutil_path}"
+    if curl --silent "https://homebrew.bintray.com/bottles/blueutil-${blueutil_version}.${download_type}.bottle.tar.gz" | tar xC "${extract_dir}"; then
+      mv "${extract_dir}/blueutil/${blueutil_version}/bin/blueutil" "${blueutil_path}"
       chmod +x "${blueutil_path}"
     else
       curl_error 'blueutil'
@@ -70,7 +72,6 @@ function calmnotifications_getter {
 
   if [[ -z "${calmnotifications_path}" ]]; then
     calmnotifications_path="${shared_resources_bin}/calm-notifications"
-    local -r calmnotifications_version='0.0.1'
 
     ensure_resources_dir
 
@@ -89,12 +90,13 @@ function cpulimit_getter {
   if [[ -z "${cpulimit_path}" ]]; then
     cpulimit_path="${shared_resources_bin}/cpulimit"
     local -r cpulimit_version='0.2'
-    local -r tar_extract="$(mktemp -d)"
+    local -r download_type="$([[ "${arch}" == 'intel' ]] && echo 'big_sur' || echo 'arm64_big_sur')"
+    local -r extract_dir="$(mktemp -d)"
 
     ensure_resources_dir
 
-    if curl --silent "https://homebrew.bintray.com/bottles/cpulimit-${cpulimit_version}.sierra.bottle.tar.gz" | tar xC "${tar_extract}"; then
-      mv "${tar_extract}/cpulimit/${cpulimit_version}/bin/cpulimit" "${cpulimit_path}"
+    if curl --silent "https://homebrew.bintray.com/bottles/cpulimit-${cpulimit_version}.${download_type}.bottle.tar.gz" | tar xC "${extract_dir}"; then
+      mv "${extract_dir}/cpulimit/${cpulimit_version}/bin/cpulimit" "${cpulimit_path}"
       chmod +x "${cpulimit_path}"
     else
       curl_error 'cpulimit'
@@ -108,14 +110,14 @@ function exiftool_getter {
 
   function get_exiftool {
     exiftool_path="${shared_resources_bin}/exiftool"
-    local -r tar_extract="$(mktemp -d)"
+    local -r extract_dir="$(mktemp -d)"
     local -r lib_dir="${shared_resources_dir}/exiftool"
     local -r latest_tag="$(curl --silent 'https://api.github.com/repos/exiftool/exiftool/tags' | grep 'tarball_url' | head -1 | sed -E 's/.*: "(.*)".*/\1/')"
 
     ensure_resources_dir
 
-    if curl --location --silent "${latest_tag}" | tar xC "${tar_extract}"; then
-      mv "${tar_extract}/"* "${lib_dir}"
+    if curl --location --silent "${latest_tag}" | tar xC "${extract_dir}"; then
+      mv "${extract_dir}/"* "${lib_dir}"
       ln -s "${lib_dir}/exiftool" "${exiftool_path}"
     else
       curl_error 'exiftool'
@@ -136,14 +138,10 @@ function ffmpeg_getter {
 
   function get_ffmpeg {
     ffmpeg_path="${shared_resources_bin}/ffmpeg"
-    local -r download_page='https://evermeet.cx/pub/ffmpeg/'
-    local -r file_name="$(curl --silent "${download_page}" | grep '.dmg' | grep --invert-match '.sig' | head -1 | sed -E 's/.*<a href="(.*)".*/\1/')"
-    local -r dmg="$(mktemp)"
+    local -r extract_dir="$(mktemp -d)"
 
-    if curl --silent --output "${dmg}" "${download_page}${file_name}"; then
-      local -r dmg_mount_point="$(mount_dmg "${dmg}")"
-      cp "${dmg_mount_point}/ffmpeg" "${ffmpeg_path}"
-      unmount_dmg "${dmg_mount_point}"
+    if curl --silent --location --no-buffer 'https://evermeet.cx/ffmpeg/get/zip' | ditto -xk - "${extract_dir}"; then
+      mv "${extract_dir}/ffmpeg" "${ffmpeg_path}"
     else
       curl_error 'ffmpeg'
     fi
@@ -163,7 +161,7 @@ function mediainfo_getter {
 
   function get_mediainfo {
     mediainfo_path="${shared_resources_bin}/mediainfo"
-    local -r file_name="$(curl --silent 'https://mediaarea.net/en/MediaInfo/Download/Mac_OS' | grep 'CLI.*.dmg' | head -1 | sed -E 's/.*<a href="(.*)".*/\1/')"
+    local -r file_name="$(curl --silent 'https://mediaarea.net/en/MediaInfo/Download/Mac_OS' | grep 'CLI.*\.dmg' | head -1 | sed -E 's/.*<a href="(.*)".*/\1/')"
     local -r dmg="$(mktemp)"
     local -r pkg_extract="$(mktemp -d)"
 
@@ -195,12 +193,14 @@ function trash_getter {
   if [[ -z "${trash_path}" ]]; then
     trash_path="${shared_resources_bin}/trash"
     local -r trash_version='0.9.2'
-    local -r tar_extract="$(mktemp -d)"
+    local -r download_type="$([[ "${arch}" == 'intel' ]] && echo 'big_sur' || echo 'arm64_big_sur')"
+
+    local -r extract_dir="$(mktemp -d)"
 
     ensure_resources_dir
 
-    if curl --silent "https://homebrew.bintray.com/bottles/trash-${trash_version}.sierra.bottle.tar.gz" | tar xC "${tar_extract}"; then
-      mv "${tar_extract}/trash/${trash_version}/bin/trash" "${trash_path}"
+    if curl --silent "https://homebrew.bintray.com/bottles/trash-${trash_version}.${download_type}.bottle.tar.gz" | tar xC "${extract_dir}"; then
+      mv "${extract_dir}/trash/${trash_version}/bin/trash" "${trash_path}"
       chmod +x "${trash_path}"
     else
       curl_error 'trash'
