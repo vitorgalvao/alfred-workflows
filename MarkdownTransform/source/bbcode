@@ -13,7 +13,7 @@ end
 print CGI.unescapeHTML(Open3.capture2(ENV['multimarkdown_bin'], stdin_data: ARGV[0]).first).
   gsub('<p>', '').gsub('</p>', "\n").
   bbcode_sub('strong', 'b').
-  bbcode_sub('emphasis', 'i').
+  bbcode_sub('em', 'i').
   bbcode_sub('strikethrough', 's').
   bbcode_sub('underline', 'u').
   gsub(%r{<a href="(.*?)">}, '[url="\1"]').gsub('</a>', '[/url]').
