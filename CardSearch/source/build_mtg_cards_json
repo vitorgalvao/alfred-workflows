@@ -32,7 +32,7 @@ end
 # Constants
 Ignored_layouts = %w[art_series double_faced_token scheme token vanguard]
 Multi_faced_layout = %w[modal_dfc transform]
-Rarity_order = %w[mythic rare uncommon common]
+Rarity_order = %w[mythic rare uncommon common bonus special]
 
 Sort_by_rarity = get_env(
   env_variable: ENV['mtg_sort_by_rarity'],
@@ -49,7 +49,6 @@ All_cards_info = lambda {
 
   Sort_by_rarity ? data.sort_by { |card_info| Rarity_order.index(card_info['rarity']) } : data
 }.call
-
 
 script_filter_items = []
 
