@@ -104,10 +104,10 @@ Get ratings for different types of media
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/MediaThorn) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MediaThorn/MediaThorn.alfredworkflow)
 
-### NewFile <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/NewFile/source/icon.png' width='60' align='center' alt='NewFile icon'>
+### NewPath <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/NewPath/source/icon.png' width='60' align='center' alt='NewPath icon'>
 Creates a new file in the current Finder directory
 
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/NewFile) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/NewFile/NewFile.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/NewPath) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/NewPath/NewPath.alfredworkflow)
 
 ### NoteTaker <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/NoteTaker/source/icon.png' width='60' align='center' alt='NoteTaker icon'>
 Keep small bits of text
