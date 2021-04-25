@@ -646,7 +646,8 @@ end</string>
 
 If a Finder or Path Finder window is the frontmost window, the new paths will be created there, otherwise they will be created on the Desktop. Use `|` to separate the names of multiple entries (surrounding spaces will be trimmed).
 
-![](https://i.imgur.com/PiY4Pqa.png)</string>
+![](https://i.imgur.com/cDBBQG3.png)
+![](https://i.imgur.com/qAXwk5d.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>05CA330B-6091-4733-879B-AD6F4C084CF6</key>
@@ -762,7 +763,7 @@ If a Finder or Path Finder window is the frontmost window, the new paths will be
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>21.3</string>
+	<string>21.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
