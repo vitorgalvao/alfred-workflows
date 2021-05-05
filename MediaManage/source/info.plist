@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.vitorgalvao.alfred.mediamanage</string>
+	<key>connections</key>
+	<dict>
+		<key>092E953B-0C60-43E8-9E06-2A3E03B118A3</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>AF768D14-9EDC-4171-B675-BAD6E6162C55</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>2D36D740-2F81-4A38-823E-3DD93B85CDF0</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>6F862D1A-7952-45D0-AEF3-2D9CF3295403</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>4C0DEEB6-32E5-4F06-ADF2-CC5EC34BDE41</key>
+		<array/>
+		<key>A03AA031-1173-4076-9E5A-527C988D34A4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>F5C7630E-C6F1-45DB-B0F4-7D4DAEDFAA10</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>AF768D14-9EDC-4171-B675-BAD6E6162C55</key>
+		<array/>
+		<key>E31737BC-BED0-48B1-A5B6-74BEAE11ABE3</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>47A690CD-DAEB-47FE-AB61-D61D53233F91</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>F528EA62-0213-4C68-BB3D-5D76276F2786</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>4C0DEEB6-32E5-4F06-ADF2-CC5EC34BDE41</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>FA2E9040-D0AB-4FB6-8B23-766866F1848C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>6F862D1A-7952-45D0-AEF3-2D9CF3295403</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Vítor Galvão</string>
+	<key>description</key>
+	<string></string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>MediaManage</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>readonly dependencies=('guessit' 'subliminal')
+
+notification() {
+  /bin/zsh ./Notificator.app/Contents/Resources/Scripts/notificator --title "${1}" --message "${2}"
+}
+
+# Load pyenv
+export PYTHONPATH='./_licensed'
+PATH="/opt/homebrew/bin:${PATH}"
+eval "$(pyenv init -)"
+
+osascript -l JavaScript -e "Application('Finder').delete(Path('${PYTHONPATH}'))"
+pip install --upgrade --target "${PYTHONPATH}" "${dependencies[@]}"
+
+notification 'Dependencies reinstalled' 'You can now use the Workflow'</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>AF768D14-9EDC-4171-B675-BAD6E6162C55</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>:mediamanagereinstalldependencies</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Reinstall MediaManage Python Dependencies</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>092E953B-0C60-43E8-9E06-2A3E03B118A3</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>PATH="/opt/homebrew/bin:${PATH}"
+
+for dir in "${@}"; do
+  duration="$(human-media-time --unit h "${dir}")"
+
+  if [[ -n "${duration}" ]]; then
+    mv "${dir}" "$(dirname "${dir}")/(${duration}h) $(basename "${dir}")"
+  else
+    echo 'Unable to get duration. Are "human-media-time" and its dependencies installed?' &gt;&amp;2
+    exit 1
+  fi
+done</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>F5C7630E-C6F1-45DB-B0F4-7D4DAEDFAA10</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsmulti</key>
+				<true/>
+				<key>filetypes</key>
+				<array>
+					<string>public.folder</string>
+				</array>
+				<key>name</key>
+				<string>Rename with duration</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>A03AA031-1173-4076-9E5A-527C988D34A4</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsmulti</key>
+				<true/>
+				<key>filetypes</key>
+				<array>
+					<string>+public.audiovisual-content</string>
+					<string>cz.wz.zuggy.subrip</string>
+					<string>public.folder</string>
+				</array>
+				<key>name</key>
+				<string>Rename to media name</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>F528EA62-0213-4C68-BB3D-5D76276F2786</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require 'json'
+require 'open3'
+
+# Prepare guessit
+ENV['PYTHONPATH'] = File.join(Dir.pwd, '_licensed')
+ENV['PATH'] = '/opt/homebrew/bin:' + ENV['PYTHONPATH'] + '/bin:' + ENV['PATH']
+
+paths = ARGV
+
+paths.each do |path|
+  orig_path = path
+  orig_path_dir = File.dirname(orig_path)
+
+  info = JSON.parse(
+    Open3.capture2('guessit', '--json', orig_path).first
+  )
+
+  extension = info['container'] ? '.' + info['container'] : ''
+
+  new_name =
+    if info['type'] == 'movie'
+      info['title'] + extension
+    else
+      info['title'] + ' ' +
+      info['season'].to_s +
+      info['episode'].to_s.rjust(2, '0') +
+      (info['episode_title'].nil? ? '' : ' ' + info['episode_title']) +
+      extension
+    end
+
+  new_path = File.join(orig_path_dir, new_name)
+  abort 'That path already exists. Aborting so as to not overwrite it.' if File.exist?(new_path)
+  File.rename(orig_path, new_path)
+end</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>4C0DEEB6-32E5-4F06-ADF2-CC5EC34BDE41</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>export PYTHONPATH='./_licensed'
+PATH="/opt/homebrew/bin:${PYTHONPATH}/bin:${PATH}"
+
+notification() {
+  /bin/zsh ./Notificator.app/Contents/Resources/Scripts/notificator --title "${1}" --message "${2}"
+}
+
+for file in "${@}"; do
+  result="$(subliminal download --single --language en -- "${file}" | tail -1)"
+  notification "${result}" "$(basename "${file}")"
+
+  sub_file="${file%.*}.srt"
+  [[ -f "${sub_file}" ]] &amp;&amp; osascript -e "tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"fix_subtitle\" in workflow \"com.vitorgalvao.alfred.mediamanage\" with argument \"${sub_file}\""
+done</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>47A690CD-DAEB-47FE-AB61-D61D53233F91</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsmulti</key>
+				<true/>
+				<key>filetypes</key>
+				<array>
+					<string>+public.movie</string>
+				</array>
+				<key>name</key>
+				<string>Search subtitle</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>E31737BC-BED0-48B1-A5B6-74BEAE11ABE3</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>for file in "${@}"; do
+  perl -pi -e "s/(^| )\"/\1“/g,s/([^\n ])\"/\1”/g,s/(^| )'/\1‘/g,s/([^\d'])'/\1’/g,s/\.{3}/…/g,s/^-/—/,s/-{2,}([^&gt;])/—\1/g" "${file}"
+done</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>6F862D1A-7952-45D0-AEF3-2D9CF3295403</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsmulti</key>
+				<true/>
+				<key>filetypes</key>
+				<array>
+					<string>cz.wz.zuggy.subrip</string>
+				</array>
+				<key>name</key>
+				<string>Fix subtitle</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>FA2E9040-D0AB-4FB6-8B23-766866F1848C</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>triggerid</key>
+				<string>fix_subtitle</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>2D36D740-2F81-4A38-823E-3DD93B85CDF0</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>092E953B-0C60-43E8-9E06-2A3E03B118A3</key>
+		<dict>
+			<key>xpos</key>
+			<integer>35</integer>
+			<key>ypos</key>
+			<integer>25</integer>
+		</dict>
+		<key>2D36D740-2F81-4A38-823E-3DD93B85CDF0</key>
+		<dict>
+			<key>xpos</key>
+			<integer>35</integer>
+			<key>ypos</key>
+			<integer>685</integer>
+		</dict>
+		<key>47A690CD-DAEB-47FE-AB61-D61D53233F91</key>
+		<dict>
+			<key>xpos</key>
+			<integer>285</integer>
+			<key>ypos</key>
+			<integer>435</integer>
+		</dict>
+		<key>4C0DEEB6-32E5-4F06-ADF2-CC5EC34BDE41</key>
+		<dict>
+			<key>xpos</key>
+			<integer>285</integer>
+			<key>ypos</key>
+			<integer>310</integer>
+		</dict>
+		<key>6F862D1A-7952-45D0-AEF3-2D9CF3295403</key>
+		<dict>
+			<key>xpos</key>
+			<integer>285</integer>
+			<key>ypos</key>
+			<integer>560</integer>
+		</dict>
+		<key>A03AA031-1173-4076-9E5A-527C988D34A4</key>
+		<dict>
+			<key>xpos</key>
+			<integer>35</integer>
+			<key>ypos</key>
+			<integer>185</integer>
+		</dict>
+		<key>AF768D14-9EDC-4171-B675-BAD6E6162C55</key>
+		<dict>
+			<key>note</key>
+			<string>Ensure python dependencies</string>
+			<key>xpos</key>
+			<integer>285</integer>
+			<key>ypos</key>
+			<integer>25</integer>
+		</dict>
+		<key>E31737BC-BED0-48B1-A5B6-74BEAE11ABE3</key>
+		<dict>
+			<key>xpos</key>
+			<integer>35</integer>
+			<key>ypos</key>
+			<integer>435</integer>
+		</dict>
+		<key>F528EA62-0213-4C68-BB3D-5D76276F2786</key>
+		<dict>
+			<key>xpos</key>
+			<integer>35</integer>
+			<key>ypos</key>
+			<integer>310</integer>
+		</dict>
+		<key>F5C7630E-C6F1-45DB-B0F4-7D4DAEDFAA10</key>
+		<dict>
+			<key>xpos</key>
+			<integer>285</integer>
+			<key>ypos</key>
+			<integer>185</integer>
+		</dict>
+		<key>FA2E9040-D0AB-4FB6-8B23-766866F1848C</key>
+		<dict>
+			<key>xpos</key>
+			<integer>35</integer>
+			<key>ypos</key>
+			<integer>560</integer>
+		</dict>
+	</dict>
+	<key>variablesdontexport</key>
+	<array/>
+	<key>version</key>
+	<string>21.1</string>
+	<key>webaddress</key>
+	<string>https://vitorgalvao.com/</string>
+</dict>
+</plist>
