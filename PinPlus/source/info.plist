@@ -1038,7 +1038,7 @@ reset_pinboard_token</string>
 				<integer>102</integer>
 				<key>script</key>
 				<string>function notification {
-  ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
+  /bin/zsh ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
 }
 
 function get_detail {
@@ -1560,7 +1560,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 		<string>unread_order</string>
 	</array>
 	<key>version</key>
-	<string>21.2</string>
+	<string>21.3</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
