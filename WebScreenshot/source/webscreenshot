@@ -3,18 +3,7 @@
 readonly url_list="${alfred_workflow_cache}/urls.txt"
 
 function notification {
-  local -r notificator_app='./Notificator.app'
-  local -r notificator="${notificator_app}/Contents/Resources/Scripts/notificator"
-
-  if /usr/bin/xattr -p com.apple.quarantine "${notificator_app}" &> /dev/null; then
-    /usr/bin/xattr -d com.apple.quarantine "${notificator_app}"
-  fi
-
-  if ! /usr/bin/codesign --verify "${notificator_app}" 2> /dev/null; then
-    /usr/bin/codesign --sign - "${notificator_app}"
-  fi
-
-  "${notificator}" --message "${1}" --title "${alfred_workflow_name}"
+  /bin/zsh ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
 }
 
 function failure {
