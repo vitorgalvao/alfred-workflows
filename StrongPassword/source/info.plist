@@ -205,7 +205,7 @@ EOF</string>
 				<integer>0</integer>
 				<key>script</key>
 				<string>function notification {
-  ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
+  /bin/zsh ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
 }
 
 IFS=' ' read special number &lt;&lt;&lt; '{query}'
@@ -272,7 +272,7 @@ I strived to keep the code very readable; inspect it at will. What this does is 
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>20.1</string>
+	<string>21.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
