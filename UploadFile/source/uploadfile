@@ -9,7 +9,7 @@ mkdir "${tmp_zip_dir}"
 trap 'rm -rf "${progress_file}" "${name_file}" "${tmp_dir}" "${tmp_zip_dir}"' EXIT
 
 function notification {
-  ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
+  /bin/zsh ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
 }
 
 function ascii_basename {
