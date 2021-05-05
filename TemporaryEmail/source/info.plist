@@ -90,18 +90,7 @@
 				<integer>102</integer>
 				<key>script</key>
 				<string>function notification {
-  local -r notificator_app='./Notificator.app'
-  local -r notificator="${notificator_app}/Contents/Resources/Scripts/notificator"
-
-  if /usr/bin/xattr -p com.apple.quarantine "${notificator_app}" &amp;&gt; /dev/null; then
-    /usr/bin/xattr -d com.apple.quarantine "${notificator_app}"
-  fi
-
-  if ! /usr/bin/codesign --verify "${notificator_app}" 2&gt; /dev/null; then
-    /usr/bin/codesign --sign - "${notificator_app}"
-  fi
-
-  "${notificator}" --message "${1}" --title "${alfred_workflow_name}"
+  /bin/zsh ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
 }
 
 readonly email_name="${1//[^[:alnum:]]}"
@@ -362,7 +351,7 @@ Because [Firefox does not support AppleScript](https://bugzilla.mozilla.org/show
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>21.2</string>
+	<string>21.3</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
