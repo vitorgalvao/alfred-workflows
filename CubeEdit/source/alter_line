@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+def notification(action, card_name, sound)
+  system('/bin/zsh', "#{__dir__}/Notificator.app/Contents/Resources/Scripts/notificator", '--message', card_name, '--title', action, '--sound', sound)
+end
+
+action = ARGV[0]
+
+parts = ARGV[1].split('|')
+list = parts[0]
+count = parts[1]
+name = parts[2]
+
+list_file = File.join(ENV['HOME'], ENV['cube_dir'], list + '.txt')
+lines = File.read(list_file).split("\n").reject(&:empty?)
+
+if action == 'add'
+  lines.push(count + ' ' + name)
+  notification('Added', name, 'Hero')
+else
+  lines.delete(count + ' ' + name)
+  notification('Removed', name, 'Pop')
+end
+
+File.write(list_file, lines.sort.uniq.join("\n") + "\n")
