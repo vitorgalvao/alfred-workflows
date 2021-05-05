@@ -385,7 +385,7 @@ cat "${mtg_cards_json}"</string>
 				<integer>102</integer>
 				<key>script</key>
 				<string>function notification {
-  ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}" --sound "${2}"
+  /bin/zsh ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}" --sound "${2}"
 }
 
 export mtg_cards_json="${alfred_workflow_cache}/all_mtg_cards.json"
@@ -519,7 +519,7 @@ fi</string>
 		<string>true</string>
 	</dict>
 	<key>version</key>
-	<string>21.1</string>
+	<string>21.2</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
