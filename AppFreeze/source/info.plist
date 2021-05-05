@@ -104,7 +104,7 @@
 				<integer>102</integer>
 				<key>script</key>
 				<string>function notification {
-  ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
+  /bin/zsh ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
 }
 
 front_app="$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')"
@@ -276,7 +276,7 @@ fi</string>
 				<integer>0</integer>
 				<key>script</key>
 				<string>function notification {
-  ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
+  /bin/zsh ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
 }
 
 front_app="$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')"
@@ -413,7 +413,7 @@ Set keyboard shortcuts or use the keywords `freeze` and `unfreeze` to call it.
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>20.1</string>
+	<string>21.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
