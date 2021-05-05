@@ -25,7 +25,7 @@ def finder_dir
 end
 
 def notification(message)
-  system("#{Dir.pwd}/Notificator.app/Contents/Resources/Scripts/notificator", '--message', message, '--title', ENV['alfred_workflow_name'])
+  system('/bin/zsh', "#{Dir.pwd}/Notificator.app/Contents/Resources/Scripts/notificator", '--message', message, '--title', ENV['alfred_workflow_name'])
 end
 
 def local_list
