@@ -1,9 +1,4 @@
-#!/bin/bash
-
-export notificator_message=''
-export notificator_title=''
-export notificator_subtitle=''
-export notificator_sound=''
+#!/bin/zsh
 
 readonly program="$(basename "${0}")"
 readonly applet="$(dirname "$(dirname "$(dirname "${0}")")")/MacOS/applet"
@@ -64,11 +59,19 @@ while [[ "${1}" ]]; do
 done
 set -- "${args[@]}"
 
+if /usr/bin/xattr -p com.apple.quarantine "${app}" &> /dev/null; then
+  /usr/bin/xattr -d com.apple.quarantine "${app}"
+fi
+
+if ! /usr/bin/codesign --verify "${app}" 2> /dev/null; then
+  /usr/bin/codesign --sign - "${app}"
+fi
+
 if [[ -z "${notificator_message}" ]]; then
   echo 'A message is mandatory.' >&2
   exit 1
 fi
 
-touch "${app}" # Notifications will never fire if we do not do this the first time, for some reason
 osascript -l JavaScript -e 'ObjC.import("Cocoa"); while ($.NSEvent.modifierFlags & $.NSEventModifierFlagControl) { false }' # Prevent script from continuing while ctrl is pressed, otherwise we get the "Press Run to run this script, or Quit to quit." message
+
 "${applet}" "${notificator_message}" "${notificator_title}" "${notificator_subtitle}" "${notificator_sound}"
