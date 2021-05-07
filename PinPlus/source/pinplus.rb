@@ -162,17 +162,17 @@ def fetch_bookmarks(force = false)
     ENV['unread_order'] == 'oldest_first' ? unread_bookmarks.unshift(bookmark) : unread_bookmarks.push(bookmark)
   end
 
-  write_bookmarks(all_bookmarks, All_bookmarks_json)
-  write_bookmarks(unread_bookmarks, Unread_bookmarks_json)
+  write_bookmarks(all_bookmarks, All_bookmarks_json, true)
+  write_bookmarks(unread_bookmarks, Unread_bookmarks_json, false)
 end
 
-def write_bookmarks(bookmarks, bookmarks_file)
+def write_bookmarks(bookmarks, bookmarks_file, add_uid)
   json = []
 
   bookmarks.each do |bookmark|
     split_href = bookmark['href'].split('/').reject { |a| a.start_with?('http') || a.empty? }.join(' ').sub('www.', '')
 
-    json.push(
+    entry = {
       title: bookmark['description'],
       subtitle: bookmark['href'],
       match: "#{bookmark['description']} #{split_href} #{bookmark['extended']} #{bookmark['tags']}",
@@ -181,7 +181,11 @@ def write_bookmarks(bookmarks, bookmarks_file)
         ctrl: { subtitle: bookmark['tags'] }
       },
       arg: bookmark['href']
-    )
+    }
+
+    entry['uid'] = bookmark['href'] if add_uid
+
+    json.push(entry)
   end
 
   File.write(bookmarks_file, { items: json }.to_json)
