@@ -17,17 +17,18 @@ print CGI.unescapeHTML(Open3.capture2(ENV['multimarkdown_bin'], stdin_data: ARGV
   bbcode_sub('strikethrough', 's').
   bbcode_sub('underline', 'u').
   gsub(%r{<a href="(.*?)">}, '[url="\1"]').gsub('</a>', '[/url]').
-  gsub('<img src="', '[img]').gsub(%r{" alt=".*?" />}, '[/img]').
   gsub('<ol>', '[list=1]').gsub('</ol>', '[/list]').
+  gsub('<img src="', '[img]').gsub(%r{" alt=".*?" />}, '[/img]').
+  gsub(%r{</?figure>}, '').gsub(%r{</?figcaption>}, '').
   bbcode_sub('ul', 'list').
   bbcode_sub('li', '*').
   bbcode_sub('blockquote', 'quote').
   gsub('<pre><code>', '[code]').gsub('</code></pre>', '[/code]').
   gsub('<code>', '[background=#eee][font=courier,monospace]').gsub('</code>', '[/font][/background]').
-  gsub('<h1 id="header1">', "\n\n[b][size=7]").gsub('</h1>', '[/size][/b]').
-  gsub('<h2 id="header2">', "\n\n[b][size=6]").gsub('</h2>', '[/size][/b]').
-  gsub('<h3 id="header3">', "\n\n[b][size=5]").gsub('</h3>', '[/size][/b]').
-  gsub('<h4 id="header4">', "\n\n[b][size=4]").gsub('</h4>', '[/size][/b]').
+  gsub(%r{<h1.*?>}, "\n\n[b][size=7]").gsub('</h1>', '[/size][/b]').
+  gsub(%r{<h2.*?>}, "\n\n[b][size=6]").gsub('</h2>', '[/size][/b]').
+  gsub(%r{<h3.*?>}, "\n\n[b][size=5]").gsub('</h3>', '[/size][/b]').
+  gsub(%r{<h4.*?>}, "\n\n[b][size=4]").gsub('</h4>', '[/size][/b]').
   bbcode_sub('sup', 'sup').
   bbcode_sub('sub', 'sub').
   gsub('<hr />', '[hr]').
