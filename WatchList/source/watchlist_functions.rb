@@ -9,6 +9,7 @@ ENV['PATH'] = Open3.capture2('./_sharedresources', 'mediainfo', 'youtubedl').fir
 Lists_dir = ENV['lists_dir'].nil? || ENV['lists_dir'].empty? ? ENV['alfred_workflow_data'] : File.expand_path(ENV['lists_dir'])
 Towatch_list = "#{Lists_dir}/towatch.yaml".freeze
 Watched_list = "#{Lists_dir}/watched.yaml".freeze
+Quick_playlist = File.join(ENV['alfred_workflow_cache'], 'quick_playlist.txt')
 Move_when_adding = !ENV['move_on_add'].nil? && !ENV['move_on_add'].empty?
 
 def move_to_dir(path, target_dir)
@@ -393,6 +394,35 @@ def edit_towatch
   File.write(Towatch_list, target_hash.to_yaml)
 end
 
+def verify_quick_playlist(minutes_threshold = 3)
+  ensure_data_paths
+
+  return false unless File.exist?(Quick_playlist)
+
+  if (Time.now - File.mtime(Quick_playlist)) / 60 > minutes_threshold
+    File.delete(Quick_playlist)
+    return false
+  end
+
+  true
+end
+
+def add_to_quick_playlist(id)
+  verify_quick_playlist
+  File.write(Quick_playlist, "#{id}\n", mode: 'a')
+end
+
+def play_quick_playlist
+  return false unless verify_quick_playlist
+
+  ids = File.readlines(Quick_playlist).map(&:strip)
+  File.delete(Quick_playlist)
+
+  ids.each do |id|
+    system('osascript', '-l', 'JavaScript', '-e', "Application('com.runningwithcrayons.Alfred').runTrigger('play_id', { inWorkflow: 'com.vitorgalvao.alfred.watchlist', withArgument: '#{id}' })")
+  end
+end
+
 def random_hex
   '%06x' % (rand * 0xffffff)
 end
@@ -484,6 +514,8 @@ def ensure_data_paths
   Dir.mkdir(Lists_dir) unless Dir.exist?(File.expand_path(Lists_dir))
   FileUtils.touch(Towatch_list) unless File.exist?(Towatch_list)
   FileUtils.touch(Watched_list) unless File.exist?(Watched_list)
+
+  Dir.mkdir(ENV['alfred_workflow_cache']) unless Dir.exist?(ENV['alfred_workflow_cache'])
 end
 
 def trash(path)
