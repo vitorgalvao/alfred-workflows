@@ -1,64 +1,71 @@
-Keep a list of audiovisual content to watch and listen to.
- 
-We often have series of videos and streams that we’d like to watch but not necessarily keep after, but tracking which we’ve already seen (and are thus safe to delete) can be a chore.
- 
-Select in the Finder the files or directories you wish to add to your list and apply the file action `Add to watchlist`. If the `move_on_add` Workflow Environment Variable is set, the items will be moved to that directory. Items will be prepended or appended to the list, depending on the `add_item_order` Workflow Environment Variable. Alternatively, call `swl` to add the URL in your clipboard as a stream (add ⌘ for the full playlist).
+WatchList saves your media and streams to a list, eases the choice of what to play next and gets rid of it when you’re done.
 
-You then have some options you can pick from, all starting with `wl`.
+For local content, select the files and directories to add and apply the `Add to watchlist` file action. If the `move_on_add` Workflow Environment Variable is set, the paths will be moved to that directory. Items will be prepended or appended to the list depending on the `add_item_order` Workflow Environment Variable. Calling `swl` adds the URL in your clipboard as a stream (⌘↵ for the full playlist).
+
+Use the `lists_dir` Workflow Environment Variable to pick a custom save location for your data. This allows for easy syncing and cloud backups.
+
+Next, interact with your list. Options begin with `wl`.
 
 ![](https://i.imgur.com/vtwvvxI.png)
 
-`wlp` shows the list of items you can play. A reference to each subtitle section can be found at the end.
+`wlp` shows the list of items to play. A reference to each subtitle section can be found at the end.
 
 ![](https://i.imgur.com/CeHpXMh.png)
 
-`wls` calls `wlp` under the hood, but lets you first select a sort order.
+`wls` calls `wlp` under the hood, but with a custom sort order.
 
 ![](https://i.imgur.com/wr8MgEm.png)
 
-In both cases, ↵ plays the selection. Add ⌃ to play without marking as watched or ⌥ to, depending on the entry, download a stream or rescan a series’ directory (useful if you made manual changes to it). ⌘↵ will mark as watched without playing. ⇧ or ⌘Y shows a quicklook preview on files and streams.
+In both cases:
 
-If the `top_on_play` Workflow Environment Variable is set to `true`, the item will be moved to the top of the list before starting playback.
+* ↵ plays the selection.
+* ⌃↵ plays without marking as watched.
+* ⌥↵ downloads a stream (requires [DownMedia](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownMedia)) or rescans a series’ directory (useful after manual changes).
+* ⌘↵ marks as watched without playing.
+* ⇧↵ appends to a temporary playlist. After adding the desired items, ↵ plays them in order. A playlist which was neither modified nor played for a few minutes will be ignored.
+* ⇧ or ⌘Y shows a Quick Look preview on files and streams.
 
-Items starting with `≈` are streams. They show no file size (since they aren’t taking up any space locally) and present the link they were taken from as opposed to a location on disk. To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.io/iina/), or [VLC](http://www.videolan.org/vlc/index.html).
+If the `top_on_play` Workflow Environment Variable is `true`, the item will be moved to the top of the list before beginning playback.
 
-An item will not be marked as watched if we can access the player’s CLI and it exits with a failure exit code.
+[mpv](http://mpv.io/), [IINA](https://lhc70000.github.io/iina/), and [VLC](http://www.videolan.org/vlc/index.html) are directly supported. If playback exits with a non-zero code, the item will not be marked as played (hence not trashed). Take advantage of that!
 
-`wlu` shows the list of watched items. The limit of recent items in this list is controlled by the `maximum_watched` Workflow Environment Variable. Action an item to mark it as unwatched. Note that in the case of files it does not recover them from the trash, as there is no reliable way to do so on macOS — that step you need to do yourself. If the item has a URL origin (you’ll see it in the subtitle) add ⌘ to open the URL in your default browser or ⌥ to copy it to the clipboard. If the item has an origin URL, ⇧ or ⌘Y shows a quicklook preview.
+`wlu` is the watched list. Its size is controlled by the `maximum_watched` Workflow Environment Variable. Actioning an item will mark it unwatched but won’t recover it from the trash (there is no reliable way to do it on macOS). If the item has an origin URL (shown in the subtitle):
+
+* ⌘↵ opens it in the default web browser.
+* ⌥↵ copies it to the clipboard.
+* ⇧ or ⌘Y shows a Quick Look preview.
 
 ![](https://i.imgur.com/srW0zxy.png)
 
-`wle` allows you to reorder, rename, and remove items from the list.
+`wle` is for reordering, renaming, and manually removing of items.
 
-To keep your lists synced between machines, use the `lists_dir` Workflow Environment Variable to pick a custom save location.
-
-Finally, if you use [DownMedia](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownMedia) it has an option to add the downloaded video files directly to your watchlist.
+If you use [DownMedia](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownMedia) it has an option to add the downloaded video files directly to your watchlist.
 
 #### Subtitle reference:
 
-There are three types of items: `files`, `series`, and `streams`. `stream`s can be further categorised into single item or playlist. Each result has its name as the top title. The subtitle confers more detailed information and follows this template (`~` means it never shows):
+There are three types of items: `files`, `series`, and `streams`. `stream`s can be further categorised into single item or playlist. Each result has its name as the top title. The subtitle confers more detailed information and follows this template:
 
 ```
 ≈ (4) 𐄁 22m 32s 𐄁 691M 𐄁 /Some/Path
 ```
 
-+ ≈. Indicates item is a `stream`.
-    + `file`: ~
-    + `series`: ~
-    + `stream`: Always present.
-+ (4). Number of elements.
-    + `file`: ~
-    + `series`: Remaining audiovisual files in directory.
-    + `stream`: Single item: ~. Playlist: All elements.
-+ 22m 32s. Running time.
-    + `file`: Running time of file.
-    + `series`: Running time of first audiovisual file in directory.
-    + `stream`: Combined running time of all elements.
-+ 691M. Size.
-    + `file`: Size of file.
-    + `series`: Size of first audiovisual file in directory.
-    + `stream`: ~
-+ /Some/Path. Path.
-    + `file`: Path of file.
-    + `series`: Path of directory.
-    + `stream`: URL.
+* ≈. Indicates item is a `stream`.
+    * `file`: N/A.
+    * `series`: N/A.
+    * `stream`: Always present.
+* (4). Number of elements.
+    * `file`: N/A.
+    * `series`: Remaining audiovisual files in directory.
+    * `stream`: Single item: N/A. Playlist: All elements.
+* 22m 32s. Running time.
+    * `file`: Running time of file.
+    * `series`: Running time of first audiovisual file in directory.
+    * `stream`: Combined running time of all elements.
+* 691M. Size.
+    * `file`: Size of file.
+    * `series`: Size of first audiovisual file in directory.
+    * `stream`: N/A.
+* /Some/Path. Path.
+    * `file`: Path of file.
+    * `series`: Path of directory.
+    * `stream`: URL.
