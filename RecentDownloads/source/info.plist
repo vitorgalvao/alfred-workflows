@@ -681,7 +681,13 @@ fi</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>./recentdownloads 'rebuild_added_cache'</string>
+				<string>./recentdownloads 'rebuild_added_cache'
+
+# If Spotlight returns `(null)` as one of the results, keep restarting the service until it's fixed
+if grep --quiet '(null)$' "${alfred_workflow_cache}/added_cache.txt"; then
+  sleep 1
+  launchctl kickstart "gui/$(id -u "${USER}")/com.vitorgalvao.launchd.recentdownloadscacheadded"
+fi</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -838,7 +844,7 @@ By default the Workflow looks in `~/Downloads`. Change the value in the `downloa
 		<string>~/Downloads</string>
 	</dict>
 	<key>version</key>
-	<string>21.3</string>
+	<string>21.4</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
