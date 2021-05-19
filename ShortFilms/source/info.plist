@@ -437,12 +437,12 @@ fi</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>plist_file='com.vitorgalvao.launchd.alfredshortfilmsupdate.plist'
-launchagents_dir="${HOME}/Library/LaunchAgents"
-installed_plist_file="${launchagents_dir}/${plist_file}"
+				<string>readonly plist_file='com.vitorgalvao.launchd.alfredshortfilmsupdate.plist'
+readonly launchagents_dir="${HOME}/Library/LaunchAgents"
+readonly installed_plist_file="${launchagents_dir}/${plist_file}"
 [[ -d "${launchagents_dir}" ]] || mkdir -p "${launchagents_dir}"
 
-action="${1}"
+readonly action="${1}"
 
 function install_agent {
   cp "${plist_file}" "${installed_plist_file}"
@@ -586,7 +586,7 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>21.6</string>
+	<string>21.7</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
