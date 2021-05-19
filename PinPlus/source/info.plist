@@ -1114,12 +1114,12 @@ fi</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>plist_file='com.vitorgalvao.launchd.pinplusfetch.plist'
-launchagents_dir="${HOME}/Library/LaunchAgents"
-installed_plist_file="${launchagents_dir}/${plist_file}"
+				<string>readonly plist_file='com.vitorgalvao.launchd.pinplusfetch.plist'
+readonly launchagents_dir="${HOME}/Library/LaunchAgents"
+readonly installed_plist_file="${launchagents_dir}/${plist_file}"
 [[ -d "${launchagents_dir}" ]] || mkdir -p "${launchagents_dir}"
 
-action="${1}"
+readonly action="${1}"
 
 function install_agent {
   cp "${plist_file}" "${installed_plist_file}"
@@ -1560,7 +1560,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 		<string>unread_order</string>
 	</array>
 	<key>version</key>
-	<string>21.5</string>
+	<string>21.6</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
