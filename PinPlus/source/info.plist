@@ -1208,7 +1208,7 @@ fi</string>
 				<key>subtext</key>
 				<string></string>
 				<key>title</key>
-				<string>Install/remove Pinplus launch agent</string>
+				<string>Install/remove Pinplus launchd agent</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
@@ -1560,7 +1560,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 		<string>unread_order</string>
 	</array>
 	<key>version</key>
-	<string>21.4</string>
+	<string>21.5</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
