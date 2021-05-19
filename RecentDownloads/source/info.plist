@@ -6,6 +6,19 @@
 	<string>com.vitorgalvao.alfred.recentdownloads</string>
 	<key>connections</key>
 	<dict>
+		<key>04E5CE4F-23A9-44F2-9172-637D243D3D3D</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>00283853-99CA-482E-BBF8-ED0F61A114B7</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>04F0C2C5-E539-4961-B943-7937EC802CE8</key>
 		<array>
 			<dict>
@@ -28,16 +41,6 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>40283CF3-23EB-4E8E-B911-AC97BFE88913</string>
-				<key>modifiers</key>
-				<integer>131072</integer>
-				<key>modifiersubtext</key>
-				<string>Clear cache</string>
-				<key>vitoclose</key>
-				<true/>
-			</dict>
 		</array>
 		<key>1E47C82D-C9C1-4961-9DC8-13EB6858EF20</key>
 		<array>
@@ -54,32 +57,6 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>98D0B5C7-39EF-41AD-9025-6E1822E57BAE</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>40283CF3-23EB-4E8E-B911-AC97BFE88913</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>93C9C9D5-0479-4098-BDAF-680FF8116DE7</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>5970AA17-1F25-489B-97BC-F2219D5807DC</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>93C9C9D5-0479-4098-BDAF-680FF8116DE7</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -134,11 +111,11 @@
 				<false/>
 			</dict>
 		</array>
-		<key>93C9C9D5-0479-4098-BDAF-680FF8116DE7</key>
+		<key>78C35C4A-0233-4DFA-92D1-EB6CBEC15CBE</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>DD50F8E0-894D-49B5-AEB1-1EF24A1539EA</string>
+				<string>A2A80C81-C0DB-4E7E-962E-42478760BA01</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -192,15 +169,18 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+		</array>
+		<key>E7D39A70-EDD2-4992-8C11-4C8E745F117C</key>
+		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>5970AA17-1F25-489B-97BC-F2219D5807DC</string>
+				<string>00283853-99CA-482E-BBF8-ED0F61A114B7</string>
 				<key>modifiers</key>
-				<integer>131072</integer>
+				<integer>0</integer>
 				<key>modifiersubtext</key>
-				<string>Clear cache</string>
+				<string></string>
 				<key>vitoclose</key>
-				<true/>
+				<false/>
 			</dict>
 		</array>
 	</dict>
@@ -437,6 +417,19 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>path</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.revealfile</string>
+			<key>uid</key>
+			<string>498E9DAD-EF1C-441B-843B-A37424C5BABC</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -482,39 +475,6 @@ fi</string>
 			<string>04F0C2C5-E539-4961-B943-7937EC802CE8</string>
 			<key>version</key>
 			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>path</key>
-				<string></string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.revealfile</string>
-			<key>uid</key>
-			<string>498E9DAD-EF1C-441B-843B-A37424C5BABC</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string></string>
-				<key>passthroughargument</key>
-				<false/>
-				<key>variables</key>
-				<dict>
-					<key>mode</key>
-					<string>rda</string>
-				</dict>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>40283CF3-23EB-4E8E-B911-AC97BFE88913</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -573,58 +533,168 @@ fi</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>require 'pathname'
+				<string>readonly plist_file='com.vitorgalvao.launchd.recentdownloadscacheadded.plist'
+readonly launchagents_dir="${HOME}/Library/LaunchAgents"
+readonly installed_plist_file="${launchagents_dir}/${plist_file}"
+[[ -d "${launchagents_dir}" ]] || mkdir -p "${launchagents_dir}"
 
-Pathname.new(ENV['alfred_workflow_cache']).join('added_cache.txt').delete
-system('mdimport', '-i', Pathname.new(ENV['downloads_dir']).expand_path.to_path)</string>
+readonly action="${1}"
+
+function install_agent {
+  cp "${plist_file}" "${installed_plist_file}"
+
+  # Set correct directory to watch
+  # Current method might not be robust enough
+  # if there are characters in the path which need escaping
+  readonly expanded_dir="${downloads_dir/#\~/${HOME}}"
+  sed -i '' "s|DOWNLOADS_DIR|${expanded_dir}|" "${installed_plist_file}"
+
+  launchctl bootstrap "gui/$(id -u "${USER}")" "${installed_plist_file}"
+}
+
+function uninstall_agent {
+  launchctl bootout "gui/$(id -u "${USER}")" "${installed_plist_file}"
+  rm "${installed_plist_file}"
+}
+
+if [[ "${action}" == 'install' ]]; then
+  install_agent
+else
+  uninstall_agent
+fi</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>2</integer>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>93C9C9D5-0479-4098-BDAF-680FF8116DE7</string>
+			<string>00283853-99CA-482E-BBF8-ED0F61A114B7</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argument</key>
-				<string>{var:mode} </string>
-				<key>leftcursor</key>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>:recentdownloadslaunchd</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Please wait…</string>
+				<key>script</key>
+				<string>plist_file="${HOME}/Library/LaunchAgents/com.vitorgalvao.launchd.recentdownloadscacheadded.plist"
+
+if [[ -f "${plist_file}" ]]; then
+  echo '
+    {"items": [
+      {
+        "title": "Remove RecentDownloads launchd service",
+        "subtitle": "Stops saving a cache of added files",
+	    "arg": "uninstall"
+      }
+    ]}
+  '
+else
+  echo "
+    {\"items\": [
+      {
+        \"title\": \"Install RecentDownloads launchd service\",
+        \"subtitle\": \"Save a cache of added files whenever ${downloads_dir} is modified\",
+        \"arg\": \"install\"
+      },
+    ]}
+  "
+fi</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>Install/remove RecentDownloads launchd agent</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
 				<false/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.utility.showalfred</string>
+			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>DD50F8E0-894D-49B5-AEB1-1EF24A1539EA</string>
+			<string>E7D39A70-EDD2-4992-8C11-4C8E745F117C</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>triggerid</key>
+				<string>recentdownloadslaunchdinstall</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>04E5CE4F-23A9-44F2-9172-637D243D3D3D</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argument</key>
-				<string></string>
-				<key>passthroughargument</key>
-				<false/>
-				<key>variables</key>
-				<dict>
-					<key>mode</key>
-					<string>rdz</string>
-				</dict>
+				<key>triggerid</key>
+				<string>rebuild_added_cache</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
+			<string>alfred.workflow.trigger.external</string>
 			<key>uid</key>
-			<string>5970AA17-1F25-489B-97BC-F2219D5807DC</string>
+			<string>78C35C4A-0233-4DFA-92D1-EB6CBEC15CBE</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>./recentdownloads 'rebuild_added_cache'</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>A2A80C81-C0DB-4E7E-962E-42478760BA01</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -632,13 +702,29 @@ system('mdimport', '-i', Pathname.new(ENV['downloads_dir']).expand_path.to_path)
 
 ![](https://i.imgur.com/K7ro80G.png)
 
-To act on the selections, use the standard Alfred shortcuts. You can activate file actions, dive into directories, preview files, add them to the file buffer — whatever you want to do that is supported by Alfred.
+The list is auto-refreshed every few seconds, making for a good way to track changes.
 
-⌥↵ opens the selection in Finder, while ⇧↵ clears the cache for `rda` and `rdz`.
+To act on the selections, use the standard Alfred shortcuts. You can activate file actions, dive into directories, preview files, add them to the file buffer… ⌥↵ is hardcoded to always open the selection in the Finder.
+
+Listing by added can be marginally slower than listing by modified due to the need to query Spotlight. To combat that, calling `:recentdownloadslaunchd` will install (or later remove, running the same command) a `launchd` agent to seamlessly update a file cache when the directory is modified.
 
 By default the Workflow looks in `~/Downloads`. Change the value in the `downloads_dir` Workflow Environment Variable to use a different path.</string>
 	<key>uidata</key>
 	<dict>
+		<key>00283853-99CA-482E-BBF8-ED0F61A114B7</key>
+		<dict>
+			<key>xpos</key>
+			<integer>505</integer>
+			<key>ypos</key>
+			<integer>645</integer>
+		</dict>
+		<key>04E5CE4F-23A9-44F2-9172-637D243D3D3D</key>
+		<dict>
+			<key>xpos</key>
+			<integer>30</integer>
+			<key>ypos</key>
+			<integer>775</integer>
+		</dict>
 		<key>04F0C2C5-E539-4961-B943-7937EC802CE8</key>
 		<dict>
 			<key>colorindex</key>
@@ -657,26 +743,12 @@ By default the Workflow looks in `~/Downloads`. Change the value in the `downloa
 			<key>ypos</key>
 			<integer>50</integer>
 		</dict>
-		<key>40283CF3-23EB-4E8E-B911-AC97BFE88913</key>
-		<dict>
-			<key>xpos</key>
-			<integer>330</integer>
-			<key>ypos</key>
-			<integer>430</integer>
-		</dict>
 		<key>498E9DAD-EF1C-441B-843B-A37424C5BABC</key>
 		<dict>
 			<key>xpos</key>
 			<integer>505</integer>
 			<key>ypos</key>
 			<integer>330</integer>
-		</dict>
-		<key>5970AA17-1F25-489B-97BC-F2219D5807DC</key>
-		<dict>
-			<key>xpos</key>
-			<integer>330</integer>
-			<key>ypos</key>
-			<integer>505</integer>
 		</dict>
 		<key>61EF30B1-4A9C-421D-8F3D-F4CF6C1A599D</key>
 		<dict>
@@ -696,12 +768,12 @@ By default the Workflow looks in `~/Downloads`. Change the value in the `downloa
 			<key>ypos</key>
 			<integer>165</integer>
 		</dict>
-		<key>93C9C9D5-0479-4098-BDAF-680FF8116DE7</key>
+		<key>78C35C4A-0233-4DFA-92D1-EB6CBEC15CBE</key>
 		<dict>
 			<key>xpos</key>
-			<integer>505</integer>
+			<integer>30</integer>
 			<key>ypos</key>
-			<integer>475</integer>
+			<integer>925</integer>
 		</dict>
 		<key>98D0B5C7-39EF-41AD-9025-6E1822E57BAE</key>
 		<dict>
@@ -725,6 +797,13 @@ By default the Workflow looks in `~/Downloads`. Change the value in the `downloa
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
+		<key>A2A80C81-C0DB-4E7E-962E-42478760BA01</key>
+		<dict>
+			<key>xpos</key>
+			<integer>505</integer>
+			<key>ypos</key>
+			<integer>925</integer>
+		</dict>
 		<key>B59973FE-3ECE-4615-A90C-038C46F54693</key>
 		<dict>
 			<key>colorindex</key>
@@ -736,12 +815,12 @@ By default the Workflow looks in `~/Downloads`. Change the value in the `downloa
 			<key>ypos</key>
 			<integer>475</integer>
 		</dict>
-		<key>DD50F8E0-894D-49B5-AEB1-1EF24A1539EA</key>
+		<key>E7D39A70-EDD2-4992-8C11-4C8E745F117C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>715</integer>
+			<integer>30</integer>
 			<key>ypos</key>
-			<integer>505</integer>
+			<integer>645</integer>
 		</dict>
 		<key>F525988E-4ED1-4E45-8CAD-25BAF510025C</key>
 		<dict>
@@ -757,7 +836,7 @@ By default the Workflow looks in `~/Downloads`. Change the value in the `downloa
 		<string>~/Downloads</string>
 	</dict>
 	<key>version</key>
-	<string>21.1</string>
+	<string>21.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

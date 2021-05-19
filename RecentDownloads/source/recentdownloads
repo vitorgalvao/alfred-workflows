@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 require 'json'
+require 'open3'
 require 'pathname'
 
 # Helpers
@@ -28,11 +30,28 @@ def get_env(env_variable:, default:, as_bool: false, as_pathname: false, match_l
   var_as_string
 end
 
-# Constants
-order = ARGV[0] # modified, modified_reverse, added, added_reverse
-abort 'You need to specify an order type.' if ARGV[0].empty?
+def launchd_loaded_job?
+  Open3.capture2('/bin/launchctl', 'list', 'com.vitorgalvao.launchd.recentdownloadscacheadded')[1].success?
+end
 
-Cache_dir = Pathname(ENV['alfred_workflow_cache'])
+def by_added(dir, entries)
+  Open3.capture2(
+    'mdls',
+    '-name', 'kMDItemFSName',
+    '-name', 'kMDItemDateAdded',
+    '-raw',
+    *entries.map(&:to_path)
+  )
+  .first
+  .split("\0")
+  .each_slice(2)
+  .sort
+  .map { |p| dir.join(p[1]) }
+end
+
+# Constants
+Order = ARGV[0] # modified, modified_reverse, added, added_reverse, rebuild_added_cache
+Added_cache_file = Pathname.new(ENV['alfred_workflow_cache']).join('added_cache.txt')
 
 Downloads_dir = get_env(
   env_variable: ENV['downloads_dir'],
@@ -40,73 +59,47 @@ Downloads_dir = get_env(
   as_pathname: true
 )
 
-All_entries =
-  Downloads_dir
-  .children
-  .reject { |p| p.basename.to_path.start_with?('.') }
+# Main
+All_entries = Downloads_dir.children.reject { |p| p.basename.to_path.start_with?('.') }
 
-script_filter_items = []
+# If rebuilding cache, exit when done
+if Order == 'rebuild_added_cache'
+  Added_cache_file.dirname.mkpath
+  Added_cache_file.write("#{by_added(Downloads_dir, All_entries).join("\n")}\n")
+  exit 0
+end
 
-entries =
-  if order =~ /modified.*/
-    All_entries.sort_by(&:mtime)
-  elsif order =~ /added.*/
-    entries_cache_file = Cache_dir.join('added_cache.txt')
+# Show results
+Entries_default = lambda {
+  # If non-existing order
+  abort 'Unrecognised order type.' unless Order =~ /(modified|added).*/
 
-    entries_date_old = entries_cache_file.mtime.to_i rescue 0
-    entries_date_new = Downloads_dir.mtime.to_i
+  # If ordered by modified
+  return All_entries.sort_by(&:mtime) if Order =~ /modified.*/
 
-    if entries_date_old != entries_date_new
-      require 'open3'
+  # If ordered by added
+  return by_added(Downloads_dir, All_entries) unless Added_cache_file.exist?
 
-      entries_by_added =
-        Open3
-        .capture2(
-          'mdls',
-          '-name', 'kMDItemFSName',
-          '-name', 'kMDItemDateAdded',
-          '-raw',
-          *All_entries.map(&:to_path)
-        )
-        .first
-        .split("\0")
-        .each_slice(2)
-        .sort
-        .map { |p| Downloads_dir.join(p[1]) }
+  return Added_cache_file.read.split("\n").map { |p| Pathname.new(p) } if launchd_loaded_job?
 
-      # Prevent saving a cache file
-      # when there are incomplete files (downloads in progress)
-      if entries_by_added.none? { |p| p.basename == '(null)' }
-        Cache_dir.mkpath
-        entries_cache_file.write(entries_by_added.join("\n"))
-        entries_cache_file.utime(entries_date_new, entries_date_new)
-      end
+  # If we've reached this point, the job is no longer loaded so the cache should be removed
+  Added_cache_file.delete
+  redo
+}.call
 
-      entries_by_added
-    else
-      entries_cache_file.read.split("\n").map { |p| Pathname(p) }
-    end
-  else
-    abort 'Unrecognised order type.'
-  end
+Entries = Order =~ /.+_reverse/ ? Entries_default.reverse : Entries_default
 
-entries.reverse! if order =~ /.+_reverse/
+Script_filter_items = Entries.each_with_object([]) { |entry, items|
+  name = entry.directory? ? entry.basename.to_path : entry.basename(entry.extname).to_path
 
-entries.each do |entry|
-  name =
-    if entry.directory?
-      entry.basename.to_path
-    else
-      entry.basename(entry.extname).to_path
-    end
-
-  script_filter_items.push(
+  items.push(
+    uid: entry,
     type: 'file',
     title: name,
     subtitle: entry,
     icon: { path: entry, type: 'fileicon' },
     arg: entry
   )
-end
+}
 
-puts({ items: script_filter_items }.to_json)
+puts({ rerun: 2, items: Script_filter_items }.to_json)
