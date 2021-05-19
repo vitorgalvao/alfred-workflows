@@ -8,4 +8,6 @@ To act on the selections, use the standard Alfred shortcuts. You can activate fi
 
 Listing by added can be marginally slower than listing by modified due to the need to query Spotlight. To combat that, calling `:recentdownloadslaunchd` will install (or later remove, running the same command) a `launchd` agent to seamlessly update a file cache when the directory is modified.
 
+![](https://i.imgur.com/QROrdd2.png)
+
 By default the Workflow looks in `~/Downloads`. Change the value in the `downloads_dir` Workflow Environment Variable to use a different path.
