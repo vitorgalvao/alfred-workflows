@@ -1303,7 +1303,7 @@ Unread bookmarks suffer an extra event when acted upon, depending on the `unread
 
 The `unread_order` Workflow Environment Variable affects the display of `pun`. Valid options are `oldest_first` and `newest_first`, defaulting to the latter.
 
-`:pinpluslaunchd` will install (or later remove, running the same command) a `launchd` service to seamlessly fetch bookmarks every hour.
+`:pinpluslaunchd` will install (or later remove, running the same command) a `launchd` agent to seamlessly fetch bookmarks every hour.
 
 ![](https://i.imgur.com/sstjtK2.png)
 
@@ -1560,7 +1560,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 		<string>unread_order</string>
 	</array>
 	<key>version</key>
-	<string>21.6</string>
+	<string>21.7</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
