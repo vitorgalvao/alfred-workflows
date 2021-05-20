@@ -30,10 +30,6 @@ def get_env(env_variable:, default:, as_bool: false, as_pathname: false, match_l
   var_as_string
 end
 
-def launchd_loaded_job?
-  Open3.capture2('/bin/launchctl', 'list', 'com.vitorgalvao.launchd.recentdownloadscacheadded')[1].success?
-end
-
 def by_added(dir, entries)
   Open3.capture2(
     'mdls',
@@ -80,11 +76,7 @@ Entries_default = lambda {
   # If ordered by added
   return by_added(Downloads_dir, All_entries) unless Added_cache_file.exist?
 
-  return Added_cache_file.read.split("\n").map { |p| Pathname.new(p) } if launchd_loaded_job?
-
-  # If we've reached this point, the job is no longer loaded so the cache should be removed
-  Added_cache_file.delete
-  redo
+  Added_cache_file.readlines.map { |p| Pathname.new(p.strip) }
 }.call
 
 Entries = Order =~ /.+_reverse/ ? Entries_default.reverse : Entries_default
