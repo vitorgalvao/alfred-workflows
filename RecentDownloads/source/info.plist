@@ -417,19 +417,6 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>path</key>
-				<string></string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.revealfile</string>
-			<key>uid</key>
-			<string>498E9DAD-EF1C-441B-843B-A37424C5BABC</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -479,6 +466,19 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>path</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.revealfile</string>
+			<key>uid</key>
+			<string>498E9DAD-EF1C-441B-843B-A37424C5BABC</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -524,57 +524,6 @@ fi</string>
 			<string>B59973FE-3ECE-4615-A90C-038C46F54693</string>
 			<key>version</key>
 			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>readonly plist_file='com.vitorgalvao.launchd.recentdownloadscacheadded.plist'
-readonly launchagents_dir="${HOME}/Library/LaunchAgents"
-readonly installed_plist_file="${launchagents_dir}/${plist_file}"
-[[ -d "${launchagents_dir}" ]] || mkdir -p "${launchagents_dir}"
-
-readonly action="${1}"
-
-function install_agent {
-  cp "${plist_file}" "${installed_plist_file}"
-
-  # Set correct directory to watch
-  # Current method might not be robust enough
-  # if there are characters in the path which need escaping
-  readonly expanded_dir="${downloads_dir/#\~/${HOME}}"
-  sed -i '' "s|DOWNLOADS_DIR|${expanded_dir}|" "${installed_plist_file}"
-
-  launchctl bootstrap "gui/$(id -u "${USER}")" "${installed_plist_file}"
-}
-
-function uninstall_agent {
-  launchctl bootout "gui/$(id -u "${USER}")" "${installed_plist_file}"
-  rm "${installed_plist_file}"
-}
-
-if [[ "${action}" == 'install' ]]; then
-  install_agent
-else
-  uninstall_agent
-fi</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>00283853-99CA-482E-BBF8-ED0F61A114B7</string>
-			<key>version</key>
-			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -646,6 +595,64 @@ fi</string>
 			<string>E7D39A70-EDD2-4992-8C11-4C8E745F117C</string>
 			<key>version</key>
 			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>readonly agent_id='com.vitorgalvao.launchd.recentdownloadscacheadded'
+readonly plist_file="${agent_id}.plist"
+readonly launchagents_dir="${HOME}/Library/LaunchAgents"
+readonly installed_plist_file="${launchagents_dir}/${plist_file}"
+[[ -d "${launchagents_dir}" ]] || mkdir -p "${launchagents_dir}"
+
+readonly action="${1}"
+
+function install_agent {
+  cp "${plist_file}" "${installed_plist_file}"
+
+  # Set correct directory to watch
+  # Current method might not be robust enough
+  # if there are characters in the path which need escaping
+  readonly expanded_dir="${downloads_dir/#\~/${HOME}}"
+  sed -i '' "s|DOWNLOADS_DIR|${expanded_dir}|" "${installed_plist_file}"
+
+  launchctl bootstrap "gui/$(id -u "${USER}")" "${installed_plist_file}"
+
+  # Create cache file
+  launchctl kickstart "gui/$(id -u "${USER}")/${agent_id}"
+}
+
+function uninstall_agent {
+  launchctl bootout "gui/$(id -u "${USER}")" "${installed_plist_file}"
+  rm "${installed_plist_file}"
+
+  # Remove cache directory
+  rm -rf "${alfred_workflow_cache}"
+}
+
+if [[ "${action}" == 'install' ]]; then
+  install_agent
+else
+  uninstall_agent
+fi</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>00283853-99CA-482E-BBF8-ED0F61A114B7</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -843,8 +850,10 @@ By default the Workflow looks in `~/Downloads`. Change the value in the `downloa
 		<key>downloads_dir</key>
 		<string>~/Downloads</string>
 	</dict>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
-	<string>21.4</string>
+	<string>21.5</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
