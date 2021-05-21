@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>com.vitorgalvao.launchd.pinplusfetch.plist</string>
+	<string>com.vitorgalvao.launchd.pinplusfetch</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>sh</string>
