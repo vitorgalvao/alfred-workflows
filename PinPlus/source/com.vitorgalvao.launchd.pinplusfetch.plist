@@ -6,9 +6,9 @@
 	<string>com.vitorgalvao.launchd.pinplusfetch</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>sh</string>
-		<string>-c</string>
-		<string>osascript -e 'tell application id &quot;com.runningwithcrayons.Alfred&quot; to run trigger &quot;fetch_bookmarks&quot; in workflow &quot;com.vitorgalvao.alfred.pinplus&quot;'</string>
+                <string>/usr/bin/osascript</string>
+                <string>-e</string>
+                <string>tell application id "com.runningwithcrayons.Alfred" to run trigger "fetch_bookmarks" in workflow "com.vitorgalvao.alfred.pinplus"</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>
