@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 readonly valid_resources=('blueutil' 'calmnotifications' 'cpulimit' 'exiftool' 'ffmpeg' 'mediainfo' 'trash' 'youtubedl') # Keep in sync with resource functions
 readonly shared_resources_id='com.vitorgalvao.alfred._sharedresources'
@@ -70,19 +70,16 @@ function blueutil_getter {
 }
 
 function calmnotifications_getter {
-  local calmnotifications_path
-  calmnotifications_path="$(command -v 'calm-notifications')"
+  local -r bin_name='calm-notifications'
+  command -v "${bin_name}" > /dev/null && return
+a
+  ensure_resources_dir
+  local -r bin_path="${shared_resources_bin}/${bin_name}"
 
-  if [[ -z "${calmnotifications_path}" ]]; then
-    calmnotifications_path="${shared_resources_bin}/calm-notifications"
-
-    ensure_resources_dir
-
-    if curl --silent "https://raw.githubusercontent.com/vitorgalvao/tiny-scripts/master/calm-notifications" --output "${calmnotifications_path}"; then
-      chmod +x "${calmnotifications_path}"
-    else
-      curl_error 'calmnotifications'
-    fi
+  if curl --silent "https://raw.githubusercontent.com/vitorgalvao/tiny-scripts/master/${bin_name}" --output "${bin_path}"; then
+    chmod +x "${bin_path}"
+  else
+    curl_error "${bin_name}"
   fi
 }
 
