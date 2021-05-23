@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 readonly valid_resources=('blueutil' 'calmnotifications' 'cpulimit' 'exiftool' 'ffmpeg' 'mediainfo' 'trash' 'youtubedl') # Keep in sync with resource functions
 readonly shared_resources_id='com.vitorgalvao.alfred._sharedresources'
