@@ -1,12 +1,30 @@
 #!/bin/bash
 
-readonly valid_resources=('blueutil' 'calmnotifications' 'cpulimit' 'exiftool' 'ffmpeg' 'mediainfo' 'trash' 'youtubedl') # Keep in sync with resource functions
+readonly valid_resources=('blueutil' 'calmnotifications' 'cpulimit' 'exiftool' 'ffmpeg' 'googler' 'mediainfo' 'trash' 'youtubedl') # Keep in sync with resource functions
 readonly shared_resources_id='com.vitorgalvao.alfred._sharedresources'
-[[ -z "${alfred_workflow_data}" ]] && readonly alfred_workflow_data="$(mktemp -d)/Workflow Data/fake_workflow" # To prevent commands reliant on this variable from breaking when testing outside a Workflow
+[[ -n "${alfred_workflow_data}" ]] || readonly alfred_workflow_data="$(mktemp -d)/Workflow Data/fake_workflow" # To prevent commands reliant on this variable from breaking when testing outside a Workflow
 readonly shared_resources_dir="$(dirname "${alfred_workflow_data}")/${shared_resources_id}"
 readonly shared_resources_bin="${shared_resources_dir}/bin"
 readonly PATH="/opt/homebrew/bin:/usr/local/bin:${shared_resources_bin}:${PATH}"
 readonly arch="$([[ "$(sysctl -n machdep.cpu.brand_string)" == 'Apple '* ]] && echo 'arm' || echo 'intel')"
+
+function renew_bin {
+  local -r bin_name="${1}"
+  local -r expire_days="${2}"
+  local -r bin_path="$(command -v "${bin_name}")"
+
+  # If binary is not found, renew (download to shared directory)
+  [[ -n "${bin_path}" ]] || return 0
+
+  # If `expire_days` is `never`, do not renew (keep everything as is)
+  [[ "${expire_days}" == 'never' ]] && return 1
+
+  # If binary is in shared directory and older than set days, renew (redownload)
+  [[ "${bin_path}" == *"${shared_resources_id}"* && "$(find "${bin_path}" -mtime "+${expire_days}")" ]] && return 0
+
+  # Otherwise, do not renew (keep everythin as is)
+  return 1
+}
 
 function is_string_in_array {
   local -r string="${1}"
@@ -46,183 +64,189 @@ function unmount_dmg {
 
 # Resource functions
 function blueutil_getter {
-  local blueutil_path
-  blueutil_path="$(command -v 'blueutil')"
+  # Manually change
+  local -r bin_name='blueutil'
+  renew_bin "${bin_name}" '90' || return
 
-  if [[ -z "${blueutil_path}" ]]; then
-    blueutil_path="${shared_resources_bin}/blueutil"
-    local -r blueutil_version='2.8.0'
-    local -r download_type="$([[ "${arch}" == 'intel' ]] && echo 'big_sur' || echo 'arm64_big_sur')"
-    local -r extract_dir="$(mktemp -d)"
+  local -r bin_version='2.9.0'
+  local -r bin_sha="$([[ "${arch}" == 'intel' ]] && echo '429703e2bae1445d2a6ae2e1f52ed2c1f0bad3a94e80b44bfe36e698ba5ded30' || echo 'e29ddccdf7253406a3685f4099f3424ffb6d399ff2643f2d79f281ad97b93a67')"
 
-    ensure_resources_dir
+  # Consistent over Hombrew installs
+  ensure_resources_dir
+  local -r extract_dir="$(mktemp -d)"
+  local -r bin_path="${shared_resources_bin}/${bin_name}"
+  local -r bin_url="https://ghcr.io/v2/homebrew/core/${bin_name}/blobs/sha256:${bin_sha}"
 
-    if curl --silent "https://homebrew.bintray.com/bottles/blueutil-${blueutil_version}.${download_type}.bottle.tar.gz" | tar xC "${extract_dir}"; then
-      mv "${extract_dir}/blueutil/${blueutil_version}/bin/blueutil" "${blueutil_path}"
-      chmod +x "${blueutil_path}"
-    else
-      curl_error 'blueutil'
-    fi
+  if curl --silent --location --header 'Authorization: Bearer QQ==' "${bin_url}" | tar xC "${extract_dir}"; then
+    mv "${extract_dir}/${bin_name}/${bin_version}/bin/${bin_name}" "${bin_path}"
+    chmod +x "${bin_path}"
+  else
+    curl_error "${bin_name}"
   fi
+
+  rm -rf "${extract_dir}"
 }
 
 function calmnotifications_getter {
-  local calmnotifications_path
-  calmnotifications_path="$(command -v 'calm-notifications')"
+  local -r bin_name='calm-notifications'
+  renew_bin "${bin_name}" '90' || return
 
-  if [[ -z "${calmnotifications_path}" ]]; then
-    calmnotifications_path="${shared_resources_bin}/calm-notifications"
+  ensure_resources_dir
+  local -r bin_path="${shared_resources_bin}/${bin_name}"
 
-    ensure_resources_dir
-
-    if curl --silent "https://raw.githubusercontent.com/vitorgalvao/tiny-scripts/master/calm-notifications" --output "${calmnotifications_path}"; then
-      chmod +x "${calmnotifications_path}"
-    else
-      curl_error 'calmnotifications'
-    fi
+  if curl --silent "https://raw.githubusercontent.com/vitorgalvao/tiny-scripts/master/${bin_name}" --output "${bin_path}"; then
+    chmod +x "${bin_path}"
+  else
+    curl_error "${bin_name}"
   fi
 }
 
 function cpulimit_getter {
-  local cpulimit_path
-  cpulimit_path="$(command -v 'cpulimit')"
+  # Manually change
+  local -r bin_name='cpulimit'
+  renew_bin "${bin_name}" '90' || return
 
-  if [[ -z "${cpulimit_path}" ]]; then
-    cpulimit_path="${shared_resources_bin}/cpulimit"
-    local -r cpulimit_version='0.2'
-    local -r download_type="$([[ "${arch}" == 'intel' ]] && echo 'big_sur' || echo 'arm64_big_sur')"
-    local -r extract_dir="$(mktemp -d)"
+  local -r bin_version='0.2'
+  local -r bin_sha="$([[ "${arch}" == 'intel' ]] && echo 'f3f394e17febb7af49a1cb35c46e33856263dc58016d959aad2d2a250aae1d7d' || echo 'f09919436a14d7b1598720ca832435b2500aebe0839f5055a253f52c59642a5d')"
 
-    ensure_resources_dir
+  # Consistent over Hombrew installs
+  ensure_resources_dir
+  local -r extract_dir="$(mktemp -d)"
+  local -r bin_path="${shared_resources_bin}/${bin_name}"
+  local -r bin_url="https://ghcr.io/v2/homebrew/core/${bin_name}/blobs/sha256:${bin_sha}"
 
-    if curl --silent "https://homebrew.bintray.com/bottles/cpulimit-${cpulimit_version}.${download_type}.bottle.tar.gz" | tar xC "${extract_dir}"; then
-      mv "${extract_dir}/cpulimit/${cpulimit_version}/bin/cpulimit" "${cpulimit_path}"
-      chmod +x "${cpulimit_path}"
-    else
-      curl_error 'cpulimit'
-    fi
+  if curl --silent --location --header 'Authorization: Bearer QQ==' "${bin_url}" | tar xC "${extract_dir}"; then
+    mv "${extract_dir}/${bin_name}/${bin_version}/bin/${bin_name}" "${bin_path}"
+    chmod +x "${bin_path}"
+  else
+    curl_error "${bin_name}"
   fi
+
+  rm -rf "${extract_dir}"
 }
 
 function exiftool_getter {
-  local exiftool_path
-  exiftool_path="$(command -v 'exiftool')"
+  local -r bin_name='exiftool'
+  renew_bin "${bin_name}" '90' || return
 
-  function get_exiftool {
-    exiftool_path="${shared_resources_bin}/exiftool"
-    local -r extract_dir="$(mktemp -d)"
-    local -r lib_dir="${shared_resources_dir}/exiftool"
-    local -r latest_tag="$(curl --silent 'https://api.github.com/repos/exiftool/exiftool/tags' | grep 'tarball_url' | head -1 | sed -E 's/.*: "(.*)".*/\1/')"
+  ensure_resources_dir
+  local -r extract_dir="$(mktemp -d)"
+  local -r bin_path="${shared_resources_bin}/${bin_name}"
+  local -r lib_dir="${shared_resources_dir}/${bin_name}"
+  local -r latest_tag="$(curl --silent "https://api.github.com/repos/exiftool/${bin_name}/tags" | grep 'tarball_url' | head -1 | sed -E 's/.*: "(.*)".*/\1/')"
 
-    ensure_resources_dir
-
-    if curl --location --silent "${latest_tag}" | tar xC "${extract_dir}"; then
-      mv "${extract_dir}/"* "${lib_dir}"
-      ln -s "${lib_dir}/exiftool" "${exiftool_path}"
-    else
-      curl_error 'exiftool'
-    fi
-  }
-
-  if [[ -n "${exiftool_path}" ]]; then
-    [[ "${exiftool_path}" == *"${shared_resources_id}"* ]] && [[ $(find "${exiftool_path}" -mtime +90) ]] && get_exiftool
+  if curl --location --silent "${latest_tag}" | tar xC "${extract_dir}"; then
+    mv "${extract_dir}/"* "${lib_dir}"
+    ln -s "${lib_dir}/${bin_name}" "${bin_path}"
   else
-    ensure_resources_dir
-    get_exiftool
+    curl_error "${bin_name}"
   fi
+
+  rm -rf "${extract_dir}"
 }
 
 function ffmpeg_getter {
-  local ffmpeg_path
-  ffmpeg_path="$(command -v 'ffmpeg')"
+  local -r bin_name='ffmpeg'
+  renew_bin "${bin_name}" '90' || return
 
-  function get_ffmpeg {
-    ffmpeg_path="${shared_resources_bin}/ffmpeg"
-    local -r extract_dir="$(mktemp -d)"
+  ensure_resources_dir
+  local -r extract_dir="$(mktemp -d)"
+  local -r bin_path="${shared_resources_bin}/${bin_name}"
 
-    if curl --silent --location --no-buffer 'https://evermeet.cx/ffmpeg/get/zip' | ditto -xk - "${extract_dir}"; then
-      mv "${extract_dir}/ffmpeg" "${ffmpeg_path}"
-    else
-      curl_error 'ffmpeg'
-    fi
-  }
-
-  if [[ -n "${ffmpeg_path}" ]]; then
-    [[ "${ffmpeg_path}" == *"${shared_resources_id}"* ]] && [[ $(find "${ffmpeg_path}" -mtime +90) ]] && get_ffmpeg
+  if curl --silent --location --no-buffer "https://evermeet.cx/${bin_name}/get/zip" | ditto -xk - "${extract_dir}"; then
+    mv "${extract_dir}/${bin_name}" "${bin_path}"
   else
-    ensure_resources_dir
-    get_ffmpeg
+    curl_error "${bin_name}"
   fi
+
+  rm -rf "${extract_dir}"
+}
+
+function googler_getter {
+  # Manually change
+  local -r bin_name='googler'
+  renew_bin "${bin_name}" '90' || return
+
+  local -r bin_version='4.3.2'
+  local -r bin_sha="$([[ "${arch}" == 'intel' ]] && echo 'cdb78a7ecc2656018a8ecaedf15230a9bb4e58eb5a9f405b99da297f1423f58d' || echo '34d74100c542d7674e393c1eeb0ddfc807d2e9e46c130777b16b85ed6a519551')"
+
+  # Consistent over Hombrew installs
+  ensure_resources_dir
+  local -r extract_dir="$(mktemp -d)"
+  local -r bin_path="${shared_resources_bin}/${bin_name}"
+  local -r bin_url="https://ghcr.io/v2/homebrew/core/${bin_name}/blobs/sha256:${bin_sha}"
+
+  if curl --silent --location --header 'Authorization: Bearer QQ==' "${bin_url}" | tar xC "${extract_dir}"; then
+    mv "${extract_dir}/${bin_name}/${bin_version}/bin/${bin_name}" "${bin_path}"
+    chmod +x "${bin_path}"
+  else
+    curl_error "${bin_name}"
+  fi
+
+  rm -rf "${extract_dir}"
 }
 
 function mediainfo_getter {
-  local mediainfo_path
-  mediainfo_path="$(command -v 'mediainfo')"
+  local -r bin_name='mediainfo'
+  renew_bin "${bin_name}" '90' || return
 
-  function get_mediainfo {
-    mediainfo_path="${shared_resources_bin}/mediainfo"
-    local -r file_name="$(curl --silent 'https://mediaarea.net/en/MediaInfo/Download/Mac_OS' | grep 'CLI.*\.dmg' | head -1 | sed -E 's/.*<a href="(.*)".*/\1/')"
-    local -r dmg="$(mktemp)"
-    local -r pkg_extract="$(mktemp -d)"
+  ensure_resources_dir
+  local -r bin_path="${shared_resources_bin}/${bin_name}"
+  local -r file_name="$(curl --silent "https://mediaarea.net/en/MediaInfo/Download/Mac_OS" | grep 'CLI.*\.dmg' | head -1 | sed -E 's/.*<a href="(.*)".*/\1/')"
+  local -r dmg="$(mktemp)"
+  local -r pkg_extract="$(mktemp -d)"
 
-    if curl --silent --output "${dmg}" "https:${file_name}"; then
-      local -r dmg_mount_point="$(mount_dmg "${dmg}")"
-      cd "${pkg_extract}" || exit 1
-      xar -xf "${dmg_mount_point}/mediainfo.pkg"
-      gunzip --decompress --stdout 'Payload' | cpio -i 2> /dev/null
-      cp './usr/local/bin/mediainfo' "${mediainfo_path}"
-      unmount_dmg "${dmg_mount_point}"
-      cd - > /dev/null || exit 1
-    else
-      curl_error 'mediainfo'
-    fi
-  }
-
-  if [[ -n "${mediainfo_path}" ]]; then
-    [[ "${mediainfo_path}" == *"${shared_resources_id}"* ]] && [[ $(find "${mediainfo_path}" -mtime +90) ]] && get_mediainfo
+  if curl --silent --output "${dmg}" "https:${file_name}"; then
+    local -r dmg_mount_point="$(mount_dmg "${dmg}")"
+    cd "${pkg_extract}" || exit 1
+    xar -xf "${dmg_mount_point}/${bin_name}.pkg"
+    gunzip --decompress --stdout 'Payload' | cpio -i 2> /dev/null
+    cp "./usr/local/bin/${bin_name}" "${bin_path}"
+    unmount_dmg "${dmg_mount_point}"
+    cd - > /dev/null || exit 1
+    rm -rf "${dmg}" "${pkg_extract}"
   else
-    ensure_resources_dir
-    get_mediainfo
+    curl_error "${bin_name}"
   fi
 }
 
 function trash_getter {
-  local trash_path
-  trash_path="$(command -v 'trash')"
+  # Manually change
+  local -r bin_name='trash'
+  renew_bin "${bin_name}" '90' || return
 
-  if [[ -z "${trash_path}" ]]; then
-    trash_path="${shared_resources_bin}/trash"
-    local -r trash_version='0.9.2'
-    local -r download_type="$([[ "${arch}" == 'intel' ]] && echo 'big_sur' || echo 'arm64_big_sur')"
+  local -r bin_version='0.9.2'
+  local -r bin_sha="$([[ "${arch}" == 'intel' ]] && echo '403ba52ce97d38535e1d127ca227afd4ea2d0e0c8b414118dbc5376c9ed8f094' || echo '11c0c85ec692ea6d4a125070f0a6ca576aff991608a6c9632b984cbf983e2481')"
 
-    local -r extract_dir="$(mktemp -d)"
+  # Consistent over Hombrew installs
+  ensure_resources_dir
+  local -r extract_dir="$(mktemp -d)"
+  local -r bin_path="${shared_resources_bin}/${bin_name}"
+  local -r bin_url="https://ghcr.io/v2/homebrew/core/${bin_name}/blobs/sha256:${bin_sha}"
 
-    ensure_resources_dir
-
-    if curl --silent "https://homebrew.bintray.com/bottles/trash-${trash_version}.${download_type}.bottle.tar.gz" | tar xC "${extract_dir}"; then
-      mv "${extract_dir}/trash/${trash_version}/bin/trash" "${trash_path}"
-      chmod +x "${trash_path}"
-    else
-      curl_error 'trash'
-    fi
+  if curl --silent --location --header 'Authorization: Bearer QQ==' "${bin_url}" | tar xC "${extract_dir}"; then
+    mv "${extract_dir}/${bin_name}/${bin_version}/bin/${bin_name}" "${bin_path}"
+    chmod +x "${bin_path}"
+  else
+    curl_error "${bin_name}"
   fi
+
+  rm -rf "${extract_dir}"
 }
 
 function youtubedl_getter {
-  local youtubedl_path
-  youtubedl_path="$(command -v 'youtube-dl')"
+  local -r bin_name='youtube-dl'
+  renew_bin "${bin_name}" '15' || return
 
-  if [[ -n "${youtubedl_path}" ]]; then
-    [[ "${youtubedl_path}" == *"${shared_resources_id}"* ]] && [[ $(find "${youtubedl_path}" -mtime +15) ]] && "${youtubedl_path}" --update --quiet
+  youtube-dl --update --quiet && return
+
+  ensure_resources_dir
+  local -r bin_path="${shared_resources_bin}/${bin_name}"
+
+  if curl --silent --location 'https://yt-dl.org/downloads/latest/youtube-dl' --output "${bin_path}"; then
+    chmod +x "${bin_path}"
   else
-    ensure_resources_dir
-    youtubedl_path="${shared_resources_bin}/youtube-dl"
-
-    if curl --silent --location 'https://yt-dl.org/downloads/latest/youtube-dl' --output "${youtubedl_path}"; then
-      chmod +x "${youtubedl_path}"
-    else
-      curl_error 'youtubedl'
-    fi
+    curl_error "${bin_name}"
   fi
 }
 
