@@ -8,6 +8,24 @@ readonly shared_resources_bin="${shared_resources_dir}/bin"
 readonly PATH="/opt/homebrew/bin:/usr/local/bin:${shared_resources_bin}:${PATH}"
 readonly arch="$([[ "$(sysctl -n machdep.cpu.brand_string)" == 'Apple '* ]] && echo 'arm' || echo 'intel')"
 
+function renew_bin {
+  local -r bin_name="${1}"
+  local -r expire_days="${2}"
+  local -r bin_path="$(command -v "${bin_name}")"
+
+  # If binary is not found, renew (download to shared directory)
+  [[ -n "${bin_path}" ]] || return 0
+
+  # If `expire_days` is `never`, do not renew (keep everything as is)
+  [[ "${expire_days}" == 'never' ]] && return 1
+
+  # If binary is in shared directory and older than set days, renew (redownload)
+  [[ "${bin_path}" == *"${shared_resources_id}"* && "$(find "${bin_path}" -mtime "+${expire_days}")" ]] && return 0
+
+  # Otherwise, do not renew (keep everythin as is)
+  return 1
+}
+
 function is_string_in_array {
   local -r string="${1}"
 
@@ -47,7 +65,7 @@ function unmount_dmg {
 # Resource functions
 function blueutil_getter {
   local -r bin_name='blueutil'
-  command -v "${bin_name}" > /dev/null && return
+  renew_bin "${bin_name}" '90' || return
 
   # Manually change
   local -r bin_version='2.9.0'
@@ -71,7 +89,7 @@ function blueutil_getter {
 
 function calmnotifications_getter {
   local -r bin_name='calm-notifications'
-  command -v "${bin_name}" > /dev/null && return
+  renew_bin "${bin_name}" '90' || return
 a
   ensure_resources_dir
   local -r bin_path="${shared_resources_bin}/${bin_name}"
@@ -85,7 +103,7 @@ a
 
 function cpulimit_getter {
   local -r bin_name='cpulimit'
-  command -v "${bin_name}" > /dev/null && return
+  renew_bin "${bin_name}" '90' || return
 
   # Manually change
   local -r bin_version='0.2'
@@ -108,90 +126,69 @@ function cpulimit_getter {
 }
 
 function exiftool_getter {
-  local exiftool_path
-  exiftool_path="$(command -v 'exiftool')"
+  local -r bin_name='exiftool'
+  renew_bin "${bin_name}" '90' || return
 
-  function get_exiftool {
-    exiftool_path="${shared_resources_bin}/exiftool"
-    local -r extract_dir="$(mktemp -d)"
-    local -r lib_dir="${shared_resources_dir}/exiftool"
-    local -r latest_tag="$(curl --silent 'https://api.github.com/repos/exiftool/exiftool/tags' | grep 'tarball_url' | head -1 | sed -E 's/.*: "(.*)".*/\1/')"
+  ensure_resources_dir
+  local -r extract_dir="$(mktemp -d)"
+  local -r bin_path="${shared_resources_bin}/${bin_name}"
+  local -r lib_dir="${shared_resources_dir}/${bin_name}"
+  local -r latest_tag="$(curl --silent "https://api.github.com/repos/exiftool/${bin_name}/tags" | grep 'tarball_url' | head -1 | sed -E 's/.*: "(.*)".*/\1/')"
 
-    ensure_resources_dir
-
-    if curl --location --silent "${latest_tag}" | tar xC "${extract_dir}"; then
-      mv "${extract_dir}/"* "${lib_dir}"
-      ln -s "${lib_dir}/exiftool" "${exiftool_path}"
-    else
-      curl_error 'exiftool'
-    fi
-  }
-
-  if [[ -n "${exiftool_path}" ]]; then
-    [[ "${exiftool_path}" == *"${shared_resources_id}"* ]] && [[ $(find "${exiftool_path}" -mtime +90) ]] && get_exiftool
+  if curl --location --silent "${latest_tag}" | tar xC "${extract_dir}"; then
+    mv "${extract_dir}/"* "${lib_dir}"
+    ln -s "${lib_dir}/${bin_name}" "${bin_path}"
   else
-    ensure_resources_dir
-    get_exiftool
+    curl_error "${bin_name}"
   fi
+
+  rm -rf "${extract_dir}"
 }
 
 function ffmpeg_getter {
-  local ffmpeg_path
-  ffmpeg_path="$(command -v 'ffmpeg')"
+  local -r bin_name='ffmpeg'
+  renew_bin "${bin_name}" '90' || return
 
-  function get_ffmpeg {
-    ffmpeg_path="${shared_resources_bin}/ffmpeg"
-    local -r extract_dir="$(mktemp -d)"
+  ensure_resources_dir
+  local -r extract_dir="$(mktemp -d)"
+  local -r bin_path="${shared_resources_bin}/${bin_name}"
 
-    if curl --silent --location --no-buffer 'https://evermeet.cx/ffmpeg/get/zip' | ditto -xk - "${extract_dir}"; then
-      mv "${extract_dir}/ffmpeg" "${ffmpeg_path}"
-    else
-      curl_error 'ffmpeg'
-    fi
-  }
-
-  if [[ -n "${ffmpeg_path}" ]]; then
-    [[ "${ffmpeg_path}" == *"${shared_resources_id}"* ]] && [[ $(find "${ffmpeg_path}" -mtime +90) ]] && get_ffmpeg
+  if curl --silent --location --no-buffer "https://evermeet.cx/${bin_name}/get/zip" | ditto -xk - "${extract_dir}"; then
+    mv "${extract_dir}/${bin_name}" "${bin_path}"
   else
-    ensure_resources_dir
-    get_ffmpeg
+    curl_error "${bin_name}"
   fi
+
+  rm -rf "${extract_dir}"
 }
 
 function mediainfo_getter {
-  local mediainfo_path
-  mediainfo_path="$(command -v 'mediainfo')"
+  local -r bin_name='mediainfo'
+  renew_bin "${bin_name}" '90' || return
 
-  function get_mediainfo {
-    mediainfo_path="${shared_resources_bin}/mediainfo"
-    local -r file_name="$(curl --silent 'https://mediaarea.net/en/MediaInfo/Download/Mac_OS' | grep 'CLI.*\.dmg' | head -1 | sed -E 's/.*<a href="(.*)".*/\1/')"
-    local -r dmg="$(mktemp)"
-    local -r pkg_extract="$(mktemp -d)"
+  ensure_resources_dir
+  local -r bin_path="${shared_resources_bin}/${bin_name}"
+  local -r file_name="$(curl --silent "https://mediaarea.net/en/MediaInfo/Download/Mac_OS" | grep 'CLI.*\.dmg' | head -1 | sed -E 's/.*<a href="(.*)".*/\1/')"
+  local -r dmg="$(mktemp)"
+  local -r pkg_extract="$(mktemp -d)"
 
-    if curl --silent --output "${dmg}" "https:${file_name}"; then
-      local -r dmg_mount_point="$(mount_dmg "${dmg}")"
-      cd "${pkg_extract}" || exit 1
-      xar -xf "${dmg_mount_point}/mediainfo.pkg"
-      gunzip --decompress --stdout 'Payload' | cpio -i 2> /dev/null
-      cp './usr/local/bin/mediainfo' "${mediainfo_path}"
-      unmount_dmg "${dmg_mount_point}"
-      cd - > /dev/null || exit 1
-    else
-      curl_error 'mediainfo'
-    fi
-  }
-
-  if [[ -n "${mediainfo_path}" ]]; then
-    [[ "${mediainfo_path}" == *"${shared_resources_id}"* ]] && [[ $(find "${mediainfo_path}" -mtime +90) ]] && get_mediainfo
+  if curl --silent --output "${dmg}" "https:${file_name}"; then
+    local -r dmg_mount_point="$(mount_dmg "${dmg}")"
+    cd "${pkg_extract}" || exit 1
+    xar -xf "${dmg_mount_point}/${bin_name}.pkg"
+    gunzip --decompress --stdout 'Payload' | cpio -i 2> /dev/null
+    cp "./usr/local/bin/${bin_name}" "${bin_path}"
+    unmount_dmg "${dmg_mount_point}"
+    cd - > /dev/null || exit 1
+    rm -rf "${dmg}" "${pkg_extract}"
   else
-    ensure_resources_dir
-    get_mediainfo
+    curl_error "${bin_name}"
   fi
 }
 
 function trash_getter {
   local -r bin_name='trash'
-  command -v "${bin_name}" > /dev/null && return
+  renew_bin "${bin_name}" '90' || return
 
   # Manually change
   local -r bin_version='0.9.2'
@@ -214,20 +211,18 @@ function trash_getter {
 }
 
 function youtubedl_getter {
-  local youtubedl_path
-  youtubedl_path="$(command -v 'youtube-dl')"
+  local -r bin_name='youtube-dl'
+  renew_bin "${bin_name}" '15' || return
 
-  if [[ -n "${youtubedl_path}" ]]; then
-    [[ "${youtubedl_path}" == *"${shared_resources_id}"* ]] && [[ $(find "${youtubedl_path}" -mtime +15) ]] && "${youtubedl_path}" --update --quiet
+  youtube-dl --update --quiet && return
+
+  ensure_resources_dir
+  local -r bin_path="${shared_resources_bin}/${bin_name}"
+
+  if curl --silent --location 'https://yt-dl.org/downloads/latest/youtube-dl' --output "${bin_path}"; then
+    chmod +x "${bin_path}"
   else
-    ensure_resources_dir
-    youtubedl_path="${shared_resources_bin}/youtube-dl"
-
-    if curl --silent --location 'https://yt-dl.org/downloads/latest/youtube-dl' --output "${youtubedl_path}"; then
-      chmod +x "${youtubedl_path}"
-    else
-      curl_error 'youtubedl'
-    fi
+    curl_error "${bin_name}"
   fi
 }
 
