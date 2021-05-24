@@ -13,7 +13,7 @@ Rich_text_style = '
 '
 Html = "
   #{Rich_text_style}
-  #{Open3.capture2(ENV['multimarkdown_bin'], stdin_data: ARGV[0]).first}
+  #{Open3.capture2(ENV['multimarkdown_bin'], '--', stdin_data: ARGV[0]).first}
 ".
   gsub(/<img[^>]*>/, ''). # Strip images
   gsub('</p>', '</p><br>') # Enforce line breaks after paragraphs
