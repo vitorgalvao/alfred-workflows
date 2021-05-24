@@ -850,10 +850,8 @@ By default the Workflow looks in `~/Downloads`. Change the value in the `downloa
 		<key>downloads_dir</key>
 		<string>~/Downloads</string>
 	</dict>
-	<key>variablesdontexport</key>
-	<array/>
 	<key>version</key>
-	<string>21.5</string>
+	<string>21.6</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

@@ -76,7 +76,7 @@ Entries_default = lambda {
   # If ordered by added
   return by_added(Downloads_dir, All_entries) unless Added_cache_file.exist?
 
-  Added_cache_file.readlines.map { |p| Pathname.new(p.strip) }
+  Added_cache_file.readlines(chomp: true).map { |p| Pathname.new(p) }
 }.call
 
 Entries = Order =~ /.+_reverse/ ? Entries_default.reverse : Entries_default
