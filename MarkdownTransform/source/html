@@ -1,6 +1,9 @@
 #!/usr/bin/ruby
 
 require 'open3'
+require 'shellwords'
 require_relative "#{Dir.pwd}/multimarkdown_bin_arch.rb"
 
-print Open3.capture2(ENV['multimarkdown_bin'], stdin_data: ARGV[0]).first
+# Need to escape path for shell, otherwise paths with spaces in it won't work
+multimarkdown_bin_path = Shellwords.escape(ENV['multimarkdown_bin'])
+print Open3.capture2(multimarkdown_bin_path, stdin_data: ARGV[0]).first
