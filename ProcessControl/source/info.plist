@@ -81,7 +81,7 @@
 				<key>modifiersubtext</key>
 				<string></string>
 				<key>vitoclose</key>
-				<false/>
+				<true/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -730,7 +730,7 @@ On each process:
 		<string>3</string>
 	</dict>
 	<key>version</key>
-	<string>21.5</string>
+	<string>21.6</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
