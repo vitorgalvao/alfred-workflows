@@ -2,7 +2,9 @@
 
 require 'cgi'
 require 'open3'
-require_relative "#{Dir.pwd}/multimarkdown_bin_arch.rb"
+require 'pathname'
+
+ENV['PATH'] = Open3.capture2(Pathname.pwd.join('_sharedresources').to_path, 'multimarkdown').first
 
 class String
   def bbcode_sub(html_tag, bbcode_tag)
@@ -10,7 +12,7 @@ class String
   end
 end
 
-print CGI.unescapeHTML(Open3.capture2(ENV['multimarkdown_bin'], '--', stdin_data: ARGV[0]).first).
+print CGI.unescapeHTML(Open3.capture2('multimarkdown', '--', stdin_data: ARGV[0]).first).
   gsub('<p>', '').gsub('</p>', "\n").
   bbcode_sub('strong', 'b').
   bbcode_sub('em', 'i').

@@ -1,6 +1,8 @@
 #!/usr/bin/ruby
 
 require 'open3'
-require_relative "#{Dir.pwd}/multimarkdown_bin_arch.rb"
+require 'pathname'
 
-print Open3.capture2(ENV['multimarkdown_bin'], '--', stdin_data: ARGV[0]).first
+ENV['PATH'] = Open3.capture2(Pathname.pwd.join('_sharedresources').to_path, 'multimarkdown').first
+
+print Open3.capture2('multimarkdown', '--', stdin_data: ARGV[0]).first

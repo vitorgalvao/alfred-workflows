@@ -2,7 +2,9 @@
 # frozen_string_literal: true
 
 require 'open3'
-require_relative "#{Dir.pwd}/multimarkdown_bin_arch.rb"
+require 'pathname'
+
+ENV['PATH'] = Open3.capture2(Pathname.pwd.join('_sharedresources').to_path, 'multimarkdown').first
 
 Rich_text_style = '
   <style>
@@ -13,7 +15,7 @@ Rich_text_style = '
 '
 Html = "
   #{Rich_text_style}
-  #{Open3.capture2(ENV['multimarkdown_bin'], '--', stdin_data: ARGV[0]).first}
+  #{Open3.capture2('multimarkdown', '--', stdin_data: ARGV[0]).first}
 ".
   gsub(/<img[^>]*>/, ''). # Strip images
   gsub('</p>', '</p><br>') # Enforce line breaks after paragraphs
