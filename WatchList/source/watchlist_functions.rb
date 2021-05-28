@@ -415,7 +415,7 @@ end
 def play_quick_playlist
   return false unless verify_quick_playlist
 
-  ids = File.readlines(Quick_playlist).map(&:strip)
+  ids = File.readlines(Quick_playlist, chomp: true)
   File.delete(Quick_playlist)
 
   ids.each do |id|
