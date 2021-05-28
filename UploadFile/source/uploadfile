@@ -1,12 +1,14 @@
 #!/bin/bash
 
 # Create and cleanup temporary paths
-readonly progress_file='/tmp/uploadfile_progress'
-readonly name_file='/tmp/uploadfile_name' # for `ufp` (in Alfred)
+readonly progress_file="${alfred_workflow_cache}/progress.txt"
+readonly name_file="${alfred_workflow_cache}/name.txt" # for `ufp` (in Alfred)
 readonly tmp_dir="$(mktemp -d)"
 readonly tmp_zip_dir="$(mktemp -d)/archive"
 mkdir "${tmp_zip_dir}"
 trap 'rm -rf "${progress_file}" "${name_file}" "${tmp_dir}" "${tmp_zip_dir}"' EXIT
+
+mkdir -p "${alfred_workflow_cache}"
 
 function notification {
   /bin/zsh ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"

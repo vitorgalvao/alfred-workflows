@@ -240,47 +240,40 @@ fi</string>
 				<string>Please wait…</string>
 				<key>script</key>
 				<string>require 'json'
+require 'pathname'
 
-progressfile = '/tmp/uploadfile_progress'
-namefile = '/tmp/uploadfile_name'
+Progress_file = Pathname.new(ENV['alfred_workflow_cache']).join('progress.txt')
+Name_file = Pathname.new(ENV['alfred_workflow_cache']).join('name.txt')
 
-if File.exist?(progressfile)
-  filename = IO.readlines(namefile)[0]
-  progress = IO.readlines(progressfile)[0].sub(%r{.*\s}, '').strip
+Script_filter_content = lambda {
+  if Progress_file.exist?
+    filename = Name_file.readlines.first
+    progress = Progress_file.readlines.first.sub(/.*\s/, '')
 
-  script_filter_content = {
+    return {
+      rerun: 1,
+      items: [
+        title: "#{ENV['alfred_workflow_name']} Progress",
+        subtitle: "#{progress} / #{filename}",
+        valid: false,
+        mods: { cmd: { valid: true } }
+      ]
+    }
+  end
+
+  {
     rerun: 1,
     items: [
-      title: "#{ENV['alfred_workflow_name']} Progress",
-      subtitle: "#{progress} / #{filename}",
-      valid: false,
-      mods: { cmd: { valid: true } }
-    ]
-  }
-elsif ENV['state'].nil?
-  script_filter_content = {
-    rerun: 3,
-    variables: { state: 'stopped' },
-    items: [
-      title: "#{ENV['alfred_workflow_name']} Progress",
-      subtitle: 'Checking for uploads in queue…',
+      title: 'No Upload in Progress',
+      subtitle: 'Will auto-refresh if an upload starts',
       valid: false
     ]
   }
-else # state == 'stopped'
-  script_filter_content = {
-    rerun: 3,
-    items: [
-      title: "#{ENV['alfred_workflow_name']} Progress",
-      subtitle: 'All uploads finished!',
-      valid: false
-    ]
-  }
-end
+}.call
 
-puts(script_filter_content.to_json)</string>
+puts(Script_filter_content.to_json)</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
@@ -364,7 +357,7 @@ You can change the upload host in the `upload_file_to` Workflow Environment Vari
 		<string>transfer.sh</string>
 	</dict>
 	<key>version</key>
-	<string>21.5</string>
+	<string>21.6</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
