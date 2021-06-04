@@ -324,6 +324,33 @@
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>fixedorder</key>
+				<false/>
+				<key>items</key>
+				<string>[{"title":"Request debugger output","arg":"Open the [debugger](http:\/\/support.alfredapp.com\/workflows:debugger), set the log output to “All Information”, perfom the failing action, and post the output.","subtitle":""},{"title":"Request uploaded Workflow","arg":"When asking for help with a Workflow, please upload it somewhere as we can’t properly help you without access to it. Debugging can already be hard with access to the code, and you’re asking us to guess yours from a description. There are multiple places where your code or Workflow setup may be going wrong. Without looking at it we’re shooting in the dark.\n\n\nRead the [url=https:\/\/www.alfredforum.com\/topic\/10224-reporting-problems-with-workflows\/]Reporting Problems with Workflows[\/url] topic, as it gives a nice overview on how to build an effective report.","subtitle":""},{"title":"Request specific version","arg":"Tip when debugging: never say “latest” but always the exact version. With “latest” we don’t know if you mean the latest beta or stable version, nor do we know if you’re really on the newest version. You may think you’re up to date but be mistaken, or might be a version behind because the auto-update hasn’t kicked yet, or we may be on what we think is the latest version but isn’t, or a multitude of other reasons. “Latest” also makes it difficult for people who face the same issue later on and find the conversation, as they’ll have no idea if their version matches the one in the report."},{"title":"For new thread of an existing Workflow","arg":"When making a request or a bug report pertaining to a specific workflow, please [b]do not open a new thread to discuss your issue[\/b].\n\n\nMaking a new thread, while it seems like it’ll give your problem visibility, fragments the discussion and makes it less likely the author and users of the workflow (the people who can help) will see it.\n\n\nPlease read the [url=https:\/\/www.alfredforum.com\/topic\/10224-reporting-problems-with-workflows\/]Reporting Problems with Workflows[\/url] topic, as it gives a nice overview on how to make a report with a better chance of being addressed.","subtitle":""},{"title":"For thread of Alfred-unrelated problem","arg":"This problem isn’t Alfred-related. It should be asked about somewhere else more general. Try [url=https:\/\/apple.stackexchange.com\/]Ask Different[\/url].","subtitle":""},{"title":"How to ignore paths","arg":"To exclude a path from Alfred search results, either add it under System Preferences → Spotlight → Privacy or add an [background=#eee][font=courier,monospace]alfred:ignore[\/font][\/background] Spotlight comment to it. Note that doing so on a directory will exclude it, but not its contents."},{"title":"License details","arg":"For more details on Alfred’s licenses, see https:\/\/www.alfredforum.com\/topic\/16815-clipboard-manager\/?tab=comments#comment-86360"}]</string>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Common help messages</string>
+				<key>title</key>
+				<string>AlfredModeration Snippets</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.listfilter</string>
+			<key>uid</key>
+			<string>32A6A9C1-9296-4D1A-86D5-B3F772AB8C2B</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>fixedorder</key>
 				<false/>
@@ -365,33 +392,6 @@
 			<string>D4FB16AE-3D79-4F93-8F9E-864F063A4A94</string>
 			<key>version</key>
 			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>fixedorder</key>
-				<false/>
-				<key>items</key>
-				<string>[{"title":"Request debugger output","arg":"Open the [debugger](http:\/\/support.alfredapp.com\/workflows:debugger), set the log output to “All Information”, perfom the failing action, and post the output.","subtitle":""},{"title":"Request uploaded Workflow","arg":"When asking for help with a Workflow, please upload it somewhere as we can’t properly help you without access to it. Debugging can already be hard with access to the code, and you’re asking us to guess yours from a description. There are multiple places where your code or Workflow setup may be going wrong. Without looking at it we’re shooting in the dark.\n\n\nRead the [url=https:\/\/www.alfredforum.com\/topic\/10224-reporting-problems-with-workflows\/]Reporting Problems with Workflows[\/url] topic, as it gives a nice overview on how to build an effective report.","subtitle":""},{"title":"Request specific version","arg":"Tip when debugging: never say “latest” but always the exact version. With “latest” we don’t know if you mean the latest beta or stable version, nor do we know if you’re really on the newest version. You may think you’re up to date but be mistaken, or might be a version behind because the auto-update hasn’t kicked yet, or we may be on what we think is the latest version but isn’t, or a multitude of other reasons. “Latest” also makes it difficult for people who face the same issue later on and find the conversation, as they’ll have no idea if their version matches the one in the report."},{"title":"For new thread of an existing Workflow","arg":"When making a request or a bug report pertaining to a specific workflow, please [b]do not open a new thread to discuss your issue[\/b].\n\n\nMaking a new thread, while it seems like it’ll give your problem visibility, fragments the discussion and makes it less likely the author and users of the workflow (the people who can help) will see it.\n\n\nPlease read the [url=https:\/\/www.alfredforum.com\/topic\/10224-reporting-problems-with-workflows\/]Reporting Problems with Workflows[\/url] topic, as it gives a nice overview on how to make a report with a better chance of being addressed.","subtitle":""},{"title":"For thread of Alfred-unrelated problem","arg":"This problem isn’t Alfred-related. It should be asked about somewhere else more general. Try [url=https:\/\/apple.stackexchange.com\/]Ask Different[\/url].","subtitle":""},{"title":"How to ignore paths","arg":"To exclude a path from Alfred search results, either add it under System Preferences → Spotlight → Privacy or add an [background=#eee][font=courier,monospace]alfred:ignore[\/font][\/background] Spotlight comment to it. Note that doing so on a directory will exclude it, but not its contents."}]</string>
-				<key>runningsubtext</key>
-				<string></string>
-				<key>subtext</key>
-				<string>Common help messages</string>
-				<key>title</key>
-				<string>AlfredModeration Snippets</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.listfilter</string>
-			<key>uid</key>
-			<string>32A6A9C1-9296-4D1A-86D5-B3F772AB8C2B</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -989,7 +989,7 @@ Call `mod` to show a list of help categories. Each one will have items related t
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>21.1</string>
+	<string>21.2</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
