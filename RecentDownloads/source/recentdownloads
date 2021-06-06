@@ -51,8 +51,13 @@ Added_cache_file = Pathname.new(ENV['alfred_workflow_cache']).join('added_cache.
 
 Downloads_dir = get_env(
   env_variable: ENV['downloads_dir'],
-  default: Pathname.new(ENV['HOME']).join('Downloads').to_path,
+  default: Pathname.new(ENV['HOME']).join('Downloads'),
   as_pathname: true
+)
+
+Uid_seed = get_env(
+  env_variable: ENV['uid_seed'],
+  default: rand.to_s
 )
 
 # Main
@@ -85,7 +90,7 @@ Script_filter_items = Entries.each_with_object([]) { |entry, items|
   name = entry.directory? ? entry.basename.to_path : entry.basename(entry.extname).to_path
 
   items.push(
-    uid: entry,
+    uid: "#{Uid_seed} #{entry}",
     type: 'file',
     title: name,
     subtitle: entry,
@@ -94,4 +99,4 @@ Script_filter_items = Entries.each_with_object([]) { |entry, items|
   )
 }
 
-puts({ rerun: 2, items: Script_filter_items }.to_json)
+puts({ variables: { uid_seed: Uid_seed }, rerun: 2, items: Script_filter_items }.to_json)
