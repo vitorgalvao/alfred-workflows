@@ -3,20 +3,20 @@ require 'open3'
 require 'pathname'
 
 # Helpers
-def get_env(env_variable:, default:, as_bool: false, as_pathname: false, match_list: [])
+def get_env(variable:, default:, as_bool: false, as_pathname: false, match_list: [])
   # If boolean, return early
   if as_bool
-    case env_variable
+    case variable
     when true, 'true', 'yes', 1, '1' then return true
     when false, 'false', 'no', 0, '0', nil, '' then return false
-    else raise ArgumentError, "Invalid value: #{env_variable.inspect}"
+    else raise ArgumentError, "Invalid value: #{variable.inspect}"
     end
   end
 
   # Extract string
   var_as_string = lambda {
-    return default if env_variable.nil? || env_variable.empty?
-    return env_variable if match_list.empty? || match_list.include?(env_variable)
+    return default if variable.nil? || variable.empty?
+    return variable if match_list.empty? || match_list.include?(variable)
 
     default
   }.call
@@ -92,7 +92,7 @@ end
 
 # Constants
 Notes_dir = get_env(
-  env_variable: ENV['notes_dir'],
+  variable: ENV['notes_dir'],
   default: ENV['alfred_workflow_data'],
   as_pathname: true
 )
