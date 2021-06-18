@@ -103,6 +103,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>47F603A1-4B31-4168-8960-0940434C5C49</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>CDD7027F-7720-474A-BD10-377F3822A373</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>79289C24-D237-4E6E-A781-3C54066C0461</key>
 		<array>
 			<dict>
@@ -151,6 +164,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>CDD7027F-7720-474A-BD10-377F3822A373</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>79289C24-D237-4E6E-A781-3C54066C0461</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
@@ -170,21 +196,53 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>readonly url="${1}"
+				<string>ObjC.import('stdlib')
 
-./downmedia-download 'video' "${url}"
-echo "${url}"</string>
+// Set PATH with youtube-dl
+const app = Application.currentApplication()
+app.includeStandardAdditions = true
+const new_path = app.doShellScript($.getenv('alfred_preferences') + '/workflows/' + $.getenv('alfred_workflow_uid') + '/_sharedresources "youtubedl"')
+$.setenv('PATH', new_path, 1)
+
+// Main
+const browser_name = $.getenv('browser')
+const browser = Application(browser_name)
+const url = $.getenv('url')
+const close_browser = ($.getenv('close_tab') === 'true') ? true : false
+
+const chromium_variants = ['Google Chrome', 'Chromium', 'Opera', 'Vivaldi', 'Brave Browser', 'Microsoft Edge']
+const webkit_variants = ['Safari', 'Webkit']
+
+if (close_browser &amp;&amp; browser_name &amp;&amp; $.system('youtube-dl --simulate --quiet ' + url) === 0) {
+  if (chromium_variants.some(app_name =&gt; browser_name.startsWith(app_name))) {
+    browser.windows[0].tabs().forEach(tab =&gt; { if (tab.url() === url) tab.close() })
+  } else if (webkit_variants.some(app_name =&gt; browser_name.startsWith(app_name))) {
+    let current_tab_index = 0
+    let last_tab_index = browser.windows[0].tabs.length - 1
+
+    while (current_tab_index &lt;= last_tab_index) {
+      let tab = browser.windows[0].tabs[current_tab_index]
+
+      if (tab.url() === url) {
+        tab.close()
+        last_tab_index--
+      } else {
+        current_tab_index++
+      }
+    }
+  }
+}</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>7</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>359734FE-C703-415A-9038-E76AF0A25AAA</string>
+			<string>3238CA6D-80AE-4CD7-B09C-6297766F4936</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -299,53 +357,21 @@ if (script_filter_items.length === 0) {
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>ObjC.import('stdlib')
+				<string>readonly url="${1}"
 
-// Set PATH with youtube-dl
-const app = Application.currentApplication()
-app.includeStandardAdditions = true
-const new_path = app.doShellScript($.getenv('alfred_preferences') + '/workflows/' + $.getenv('alfred_workflow_uid') + '/_sharedresources "youtubedl"')
-$.setenv('PATH', new_path, 1)
-
-// Main
-const browser_name = $.getenv('browser')
-const browser = Application(browser_name)
-const url = $.getenv('url')
-const close_browser = ($.getenv('close_tab') === 'true') ? true : false
-
-const chromium_variants = ['Google Chrome', 'Chromium', 'Opera', 'Vivaldi', 'Brave Browser', 'Microsoft Edge']
-const webkit_variants = ['Safari', 'Webkit']
-
-if (close_browser &amp;&amp; browser_name &amp;&amp; $.system('youtube-dl --simulate --quiet ' + url) === 0) {
-  if (chromium_variants.some(app_name =&gt; browser_name.startsWith(app_name))) {
-    browser.windows[0].tabs().forEach(tab =&gt; { if (tab.url() === url) tab.close() })
-  } else if (webkit_variants.some(app_name =&gt; browser_name.startsWith(app_name))) {
-    let current_tab_index = 0
-    let last_tab_index = browser.windows[0].tabs.length - 1
-
-    while (current_tab_index &lt;= last_tab_index) {
-      let tab = browser.windows[0].tabs[current_tab_index]
-
-      if (tab.url() === url) {
-        tab.close()
-        last_tab_index--
-      } else {
-        current_tab_index++
-      }
-    }
-  }
-}</string>
+./downmedia-download 'video' "${url}"
+echo "${url}"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>7</integer>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>3238CA6D-80AE-4CD7-B09C-6297766F4936</string>
+			<string>359734FE-C703-415A-9038-E76AF0A25AAA</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -434,32 +460,84 @@ if (close_browser &amp;&amp; browser_name &amp;&amp; $.system('youtube-dl --simu
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>readonly url="${1}"
-pbcopy &lt;&lt;&lt; "${url}" # Save URL to clipboard history
+				<string>const frontmost_app_name = Application('System Events').applicationProcesses.where({ frontmost: true }).name()[0]
+const frontmost_app = Application(frontmost_app_name)
 
-if [[ "$(mdfind kMDItemCFBundleIdentifier = io.mpv)" ]]; then
-  PATH="$(./_sharedresources 'youtubedl')"
-  video_player='mpv'
-elif [[ "$(mdfind kMDItemCFBundleIdentifier = com.colliderli.iina)" ]]; then
-  video_player='iina'
-elif [[ "$(mdfind kMDItemCFBundleIdentifier = org.videolan.vlc)" ]]; then
-  video_player='vlc'
-else
-  warning 'To play a stream you need mpv, iina, or vlc.'
-fi
+const chromium_variants = ['Google Chrome', 'Chromium', 'Opera', 'Vivaldi', 'Brave Browser', 'Microsoft Edge']
+const webkit_variants = ['Safari', 'Webkit']
 
-open -na "${video_player}" --args "${url}"</string>
+// Get details from frontmost browser, if any
+if (chromium_variants.some(app_name =&gt; frontmost_app_name.startsWith(app_name))) {
+  url = frontmost_app.windows[0].activeTab.url().trim()
+} else if (webkit_variants.some(app_name =&gt; frontmost_app_name.startsWith(app_name))) {
+  url = frontmost_app.windows[0].currentTab.url().trim()
+} else {
+  throw new Error('You need a supported browser as your frontmost app')
+}
+
+JSON.stringify({ 'alfredworkflow': {
+  'variables': { 'browser': `${frontmost_app_name}` },
+  'arg': `${url}`
+}})</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>7</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>197D2E43-384A-44B1-BE86-B36582E4CE52</string>
+			<string>CDD7027F-7720-474A-BD10-377F3822A373</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>35</integer>
+				<key>hotmod</key>
+				<integer>1048576</integer>
+				<key>hotstring</key>
+				<string>P</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedApps</key>
+				<array>
+					<string>com.google.Chrome.canary</string>
+					<string>com.vivaldi.Vivaldi</string>
+					<string>com.apple.Safari</string>
+					<string>com.brave.Browser</string>
+					<string>com.brave.Browser.beta</string>
+					<string>com.apple.SafariTechnologyPreview</string>
+					<string>com.microsoft.edgemac.Beta</string>
+					<string>com.microsoft.edgemac.Canary</string>
+					<string>com.microsoft.edgemac.Dev</string>
+					<string>com.brave.Browser.dev</string>
+					<string>org.chromium.ChromiumChromium</string>
+					<string>com.brave.Browser.nightly</string>
+					<string>com.operasoftware.Opera</string>
+					<string>com.google.Chrome</string>
+				</array>
+				<key>relatedAppsMode</key>
+				<integer>1</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>47F603A1-4B31-4168-8960-0940434C5C49</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -555,6 +633,43 @@ fi</string>
 			<integer>2</integer>
 		</dict>
 		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>readonly url="${1}"
+pbcopy &lt;&lt;&lt; "${url}" # Save URL to clipboard history
+
+if [[ "$(mdfind kMDItemCFBundleIdentifier = io.mpv)" ]]; then
+  PATH="$(./_sharedresources 'youtubedl')"
+  video_player='mpv'
+elif [[ "$(mdfind kMDItemCFBundleIdentifier = com.colliderli.iina)" ]]; then
+  video_player='iina'
+elif [[ "$(mdfind kMDItemCFBundleIdentifier = org.videolan.vlc)" ]]; then
+  video_player='vlc'
+else
+  warning 'To play a stream you need mpv, iina, or vlc.'
+fi
+
+open -na "${video_player}" --args "${url}"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>197D2E43-384A-44B1-BE86-B36582E4CE52</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
 			<key>type</key>
 			<string>alfred.workflow.utility.junction</string>
 			<key>uid</key>
@@ -570,6 +685,8 @@ fi</string>
 
 Pick one of them and the URL will play. ⌘↵ downloads the video (requires [DownMedia](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownMedia)).
 
+The Hotkey is a shortcut to play the URL in the frontmost browser tab.
+
 If the `close_tab` Workflow Environment Variable is `true` and the URL is supported, the browser tabs with the matching URL will close.
 
 If the `use_watchlist` Workflow Environment Variable is `true`, streams will be added and played from [WatchList](https://github.com/vitorgalvao/alfred-workflows/tree/master/WatchList) (a separate Workflow).
@@ -580,7 +697,7 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 		<key>174651EE-D8CF-4041-B1FD-C2F8D2646EC1</key>
 		<dict>
 			<key>xpos</key>
-			<integer>495</integer>
+			<integer>655</integer>
 			<key>ypos</key>
 			<integer>55</integer>
 		</dict>
@@ -589,14 +706,14 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 			<key>note</key>
 			<string>Play video</string>
 			<key>xpos</key>
-			<integer>495</integer>
+			<integer>655</integer>
 			<key>ypos</key>
 			<integer>340</integer>
 		</dict>
 		<key>2C17F6E1-CA91-4D8D-B014-91010DFDCD35</key>
 		<dict>
 			<key>xpos</key>
-			<integer>35</integer>
+			<integer>195</integer>
 			<key>ypos</key>
 			<integer>25</integer>
 		</dict>
@@ -605,7 +722,7 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 			<key>note</key>
 			<string>Close browser tab</string>
 			<key>xpos</key>
-			<integer>665</integer>
+			<integer>825</integer>
 			<key>ypos</key>
 			<integer>25</integer>
 		</dict>
@@ -614,14 +731,14 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 			<key>note</key>
 			<string>Download video</string>
 			<key>xpos</key>
-			<integer>255</integer>
+			<integer>415</integer>
 			<key>ypos</key>
 			<integer>25</integer>
 		</dict>
 		<key>3AB464F1-6E2E-4CF3-A4A0-AFDA2F41AAC1</key>
 		<dict>
 			<key>xpos</key>
-			<integer>335</integer>
+			<integer>495</integer>
 			<key>ypos</key>
 			<integer>205</integer>
 		</dict>
@@ -632,21 +749,30 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>665</integer>
+			<integer>825</integer>
+			<key>ypos</key>
+			<integer>340</integer>
+		</dict>
+		<key>47F603A1-4B31-4168-8960-0940434C5C49</key>
+		<dict>
+			<key>note</key>
+			<string>Play tab from frontmost browser</string>
+			<key>xpos</key>
+			<integer>25</integer>
 			<key>ypos</key>
 			<integer>340</integer>
 		</dict>
 		<key>79289C24-D237-4E6E-A781-3C54066C0461</key>
 		<dict>
 			<key>xpos</key>
-			<integer>155</integer>
+			<integer>315</integer>
 			<key>ypos</key>
 			<integer>205</integer>
 		</dict>
 		<key>8FE08360-28F3-4F26-8523-75D368B83282</key>
 		<dict>
 			<key>xpos</key>
-			<integer>335</integer>
+			<integer>495</integer>
 			<key>ypos</key>
 			<integer>370</integer>
 		</dict>
@@ -655,9 +781,16 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 			<key>note</key>
 			<string>Play video through WatchList</string>
 			<key>xpos</key>
-			<integer>665</integer>
+			<integer>825</integer>
 			<key>ypos</key>
 			<integer>175</integer>
+		</dict>
+		<key>CDD7027F-7720-474A-BD10-377F3822A373</key>
+		<dict>
+			<key>xpos</key>
+			<integer>195</integer>
+			<key>ypos</key>
+			<integer>340</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
@@ -672,7 +805,7 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 		<string>use_watchlist</string>
 	</array>
 	<key>version</key>
-	<string>21.8</string>
+	<string>21.9</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
