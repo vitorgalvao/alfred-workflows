@@ -851,7 +851,7 @@ By default the Workflow looks in `~/Downloads`. Change the value in the `downloa
 		<string>~/Downloads</string>
 	</dict>
 	<key>version</key>
-	<string>21.7</string>
+	<string>21.8</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
