@@ -6,20 +6,20 @@ require 'open3'
 require 'pathname'
 
 # Helpers
-def get_env(env_variable:, default:, as_bool: false, as_pathname: false, match_list: [])
+def get_env(variable:, default:, as_bool: false, as_pathname: false, match_list: [])
   # If boolean, return early
   if as_bool
-    case env_variable
+    case variable
     when true, 'true', 'yes', 1, '1' then return true
     when false, 'false', 'no', 0, '0', nil, '' then return false
-    else raise ArgumentError, "Invalid value: #{env_variable.inspect}"
+    else raise ArgumentError, "Invalid value: #{variable.inspect}"
     end
   end
 
   # Extract string
   var_as_string = lambda {
-    return default if env_variable.nil? || env_variable.empty?
-    return env_variable if match_list.empty? || match_list.include?(env_variable)
+    return default if variable.nil? || variable.empty?
+    return variable if match_list.empty? || match_list.include?(variable)
 
     default
   }.call
@@ -36,12 +36,12 @@ ENV['PATH'] = Open3.capture2(Pathname.pwd.join('_sharedresources').to_path, 'ffm
 Add_to_watchlist = ENV['add_to_watchlist'] == 'true'
 
 Audio_only_format = get_env(
-  env_variable: ENV['audio_only_format'],
+  variable: ENV['audio_only_format'],
   default: 'best'
 )
 
 Download_dir = get_env(
-  env_variable: ENV['download_dir'],
+  variable: ENV['download_dir'],
   default: Pathname(ENV['HOME']).join('Downloads').to_path,
   as_pathname: true
 )
@@ -126,7 +126,7 @@ def show_progress
   script_filter_items = []
 
   if Progress_file.exist?
-    progress_lines = Progress_file.readlines.select{ |line| line.start_with?('[download]') }.map { |line| line.sub(%r{^\[download\] }, '').strip }
+    progress_lines = Progress_file.readlines.select { |line| line.start_with?('[download]') }.map { |line| line.sub(%r{^\[download\] }, '').strip }
     progress = progress_lines.last.strip rescue 'Getting progress info…'
     destination = Pathname(progress_lines.select { |line| line.start_with?('Destination:') }.last.sub('Destination: ', '')).basename rescue 'Getting destination name…'
 
