@@ -55,8 +55,9 @@ script_filter_items = []
 All_cards_info.each do |card_info|
   next if Ignored_layouts.any? { |layout| card_info['layout'] == layout }
 
-  if Multi_faced_layout.any? { |layout| card_info['layout'] == layout }
-    card = card_info['card_faces'][0] # If card is doube-faced, use info of first face
+  if Multi_faced_layout.any? { |layout| card_info['layout'] == layout } # If card is doube-faced,
+    card = card_info['card_faces'][0] # use info of first face,
+    card['rarity'] = card_info['rarity'] # but rarity is of the whole card, not a face
     card['scryfall_uri'] = card_info['scryfall_uri']
   else
     card = card_info
