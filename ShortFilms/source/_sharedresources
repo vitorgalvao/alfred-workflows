@@ -1,6 +1,6 @@
 #!/bin/bash
 
-readonly valid_resources=('blueutil' 'calmnotifications' 'cpulimit' 'exiftool' 'ffmpeg' 'googler' 'mediainfo' 'trash' 'youtubedl') # Keep in sync with resource functions
+readonly valid_resources=('blueutil' 'calmnotifications' 'cpulimit' 'ddgr' 'exiftool' 'ffmpeg' 'googler' 'mediainfo' 'multimarkdown' 'trash' 'youtubedl') # Keep in sync with resource functions
 readonly shared_resources_id='com.vitorgalvao.alfred._sharedresources'
 [[ -n "${alfred_workflow_data}" ]] || readonly alfred_workflow_data="$(mktemp -d)/Workflow Data/fake_workflow" # To prevent commands reliant on this variable from breaking when testing outside a Workflow
 readonly shared_resources_dir="$(dirname "${alfred_workflow_data}")/${shared_resources_id}"
@@ -125,6 +125,30 @@ function cpulimit_getter {
   rm -rf "${extract_dir}"
 }
 
+function ddgr_getter {
+  # Manually change
+  local -r bin_name='ddgr'
+  renew_bin "${bin_name}" '90' || return
+
+  local -r bin_version='1.9'
+  local -r bin_sha="$([[ "${arch}" == 'intel' ]] && echo 'a4d85046d345c5bd1dbb2a5368cef631ac4eef8dfbf3f365019d90da7f31c54a' || echo '514088d8485c7943c2c4a34654147bc357d0cd1b797cc80b455ec0212ae7d226')"
+
+  # Consistent over Hombrew installs
+  ensure_resources_dir
+  local -r extract_dir="$(mktemp -d)"
+  local -r bin_path="${shared_resources_bin}/${bin_name}"
+  local -r bin_url="https://ghcr.io/v2/homebrew/core/${bin_name}/blobs/sha256:${bin_sha}"
+
+  if curl --silent --location --header 'Authorization: Bearer QQ==' "${bin_url}" | tar xC "${extract_dir}"; then
+    mv "${extract_dir}/${bin_name}/${bin_version}/bin/${bin_name}" "${bin_path}"
+    chmod +x "${bin_path}"
+  else
+    curl_error "${bin_name}"
+  fi
+
+  rm -rf "${extract_dir}"
+}
+
 function exiftool_getter {
   local -r bin_name='exiftool'
   renew_bin "${bin_name}" '90' || return
@@ -208,6 +232,30 @@ function mediainfo_getter {
   else
     curl_error "${bin_name}"
   fi
+}
+
+function multimarkdown_getter {
+  # Manually change
+  local -r bin_name='multimarkdown'
+  renew_bin "${bin_name}" '90' || return
+
+  local -r bin_version='6.6.0'
+  local -r bin_sha="$([[ "${arch}" == 'intel' ]] && echo '15b87bf8b7be554761d0114af63d3789df6db6cb58616afc408f569ea8ac50d0' || echo 'c377c5976fff15a469b330470febc8b7db8f695b597e588fd35e975fe17010a5')"
+
+  # Consistent over Hombrew installs
+  ensure_resources_dir
+  local -r extract_dir="$(mktemp -d)"
+  local -r bin_path="${shared_resources_bin}/${bin_name}"
+  local -r bin_url="https://ghcr.io/v2/homebrew/core/${bin_name}/blobs/sha256:${bin_sha}"
+
+  if curl --silent --location --header 'Authorization: Bearer QQ==' "${bin_url}" | tar xC "${extract_dir}"; then
+    mv "${extract_dir}/${bin_name}/${bin_version}/bin/${bin_name}" "${bin_path}"
+    chmod +x "${bin_path}"
+  else
+    curl_error "${bin_name}"
+  fi
+
+  rm -rf "${extract_dir}"
 }
 
 function trash_getter {
