@@ -298,6 +298,16 @@
 				<key>vitoclose</key>
 				<true/>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>DA8908F6-F112-4087-86D4-1B9671DD766C</string>
+				<key>modifiers</key>
+				<integer>8388608</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
 		</array>
 		<key>FA9B96C8-46F8-4275-A082-2D7CFB7B7867</key>
 		<array>
@@ -327,7 +337,7 @@
 			<key>config</key>
 			<dict>
 				<key>acceptsmulti</key>
-				<true/>
+				<integer>1</integer>
 				<key>filetypes</key>
 				<array>
 					<string>+public.audiovisual-content</string>
@@ -518,7 +528,7 @@ print id</string>
 			<key>config</key>
 			<dict>
 				<key>acceptsmulti</key>
-				<false/>
+				<integer>0</integer>
 				<key>filetypes</key>
 				<array>
 					<string>+public.audiovisual-content</string>
@@ -1131,6 +1141,7 @@ In both cases:
 * ⌥↵ downloads a stream (requires [DownMedia](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownMedia)) or rescans a series’ directory (useful after manual changes).
 * ⌘↵ marks as watched without playing.
 * ⇧↵ appends to a temporary playlist. After adding the desired items, ↵ plays them in order. A playlist which was neither modified nor played for a few minutes will be ignored.
+* fn↵ Opens the item’s URL in the default web browser.
 * ⇧ or ⌘Y shows a Quick Look preview on files and streams.
 
 If the `top_on_play` Workflow Environment Variable is `true`, the item will be moved to the top of the list before beginning playback.
@@ -1414,7 +1425,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 		<string>added_item_order</string>
 	</array>
 	<key>version</key>
-	<string>21.11</string>
+	<string>21.12</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>

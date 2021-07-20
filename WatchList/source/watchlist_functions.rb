@@ -210,6 +210,8 @@ def display_towatch(sort = nil)
       item[:subtitle] = "#{item_count}#{details['duration']['human']} 𐄁 #{details['size']['human']} 𐄁 #{details['path']}"
     end
 
+    item[:mods][:fn] = details['url'].nil? ? { subtitle: 'This item has no origin url', valid: false } : { subtitle: details['url'], arg: details['url'] }
+
     # Specific modifications
     case details['type']
     when 'file'
