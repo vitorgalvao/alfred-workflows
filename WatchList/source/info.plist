@@ -123,19 +123,6 @@
 				<false/>
 			</dict>
 		</array>
-		<key>98D586EA-8DD5-4EAE-8A4A-3A06AC84E9DC</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>88990516-33AA-49DC-8096-95883FB6BE51</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>A22F833D-4556-4FEE-8A77-EE6A6A2FE8FE</key>
 		<array>
 			<dict>
@@ -260,16 +247,6 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>98D586EA-8DD5-4EAE-8A4A-3A06AC84E9DC</string>
-				<key>modifiers</key>
-				<integer>262144</integer>
-				<key>modifiersubtext</key>
-				<string>Do not mark as watched</string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
 				<string>C929975A-3B90-474A-BA08-595EAB51A9B2</string>
 				<key>modifiers</key>
 				<integer>1048576</integer>
@@ -302,7 +279,7 @@
 				<key>destinationuid</key>
 				<string>DA8908F6-F112-4087-86D4-1B9671DD766C</string>
 				<key>modifiers</key>
-				<integer>8388608</integer>
+				<integer>262144</integer>
 				<key>modifiersubtext</key>
 				<string></string>
 				<key>vitoclose</key>
@@ -767,31 +744,6 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>require "#{Dir.pwd}/watchlist_functions.rb"
-
-play(ARGV[0], false)</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>2</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>98D586EA-8DD5-4EAE-8A4A-3A06AC84E9DC</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>triggerid</key>
 				<string>play_id</string>
 			</dict>
@@ -1137,11 +1089,10 @@ Next, interact with your list. Options begin with `wl`.
 In both cases:
 
 * ↵ plays the selection.
-* ⌃↵ plays without marking as watched.
+* ⌃↵ Opens the item’s URL in the default web browser.
 * ⌥↵ downloads a stream (requires [DownMedia](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownMedia)) or rescans a series’ directory (useful after manual changes).
 * ⌘↵ marks as watched without playing.
 * ⇧↵ appends to a temporary playlist. After adding the desired items, ↵ plays them in order. A playlist which was neither modified nor played for a few minutes will be ignored.
-* fn↵ Opens the item’s URL in the default web browser.
 * ⇧ or ⌘Y shows a Quick Look preview on files and streams.
 
 If the `top_on_play` Workflow Environment Variable is `true`, the item will be moved to the top of the list before beginning playback.
@@ -1202,7 +1153,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>1220</integer>
+			<integer>1100</integer>
 		</dict>
 		<key>1C0E08EA-ED61-4255-B50B-2EC1547C85F7</key>
 		<dict>
@@ -1258,7 +1209,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>xpos</key>
 			<integer>250</integer>
 			<key>ypos</key>
-			<integer>1460</integer>
+			<integer>1340</integer>
 		</dict>
 		<key>6DBE8BF2-3AA2-46A3-A028-739C1E71A985</key>
 		<dict>
@@ -1279,14 +1230,14 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>1460</integer>
+			<integer>1340</integer>
 		</dict>
 		<key>824AADC5-ECD6-4B9A-B01B-901EE6EC2552</key>
 		<dict>
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>1820</integer>
+			<integer>1700</integer>
 		</dict>
 		<key>84C51977-8426-491F-A9D4-A6DF7E8F0C8C</key>
 		<dict>
@@ -1311,14 +1262,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>1340</integer>
-		</dict>
-		<key>98D586EA-8DD5-4EAE-8A4A-3A06AC84E9DC</key>
-		<dict>
-			<key>xpos</key>
-			<integer>520</integer>
-			<key>ypos</key>
-			<integer>860</integer>
+			<integer>1220</integer>
 		</dict>
 		<key>A22F833D-4556-4FEE-8A77-EE6A6A2FE8FE</key>
 		<dict>
@@ -1339,21 +1283,21 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>980</integer>
+			<integer>860</integer>
 		</dict>
 		<key>C92FF9E0-CBC7-4421-9B75-4B8C557EB4DD</key>
 		<dict>
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>1580</integer>
+			<integer>1460</integer>
 		</dict>
 		<key>D27FE458-78D9-4C16-BF89-7E489D839F6D</key>
 		<dict>
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>1100</integer>
+			<integer>980</integer>
 		</dict>
 		<key>D69DD7A5-07C5-46B2-920C-B06AF76BDC48</key>
 		<dict>
@@ -1367,14 +1311,14 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>xpos</key>
 			<integer>430</integer>
 			<key>ypos</key>
-			<integer>1370</integer>
+			<integer>1250</integer>
 		</dict>
 		<key>DA8908F6-F112-4087-86D4-1B9671DD766C</key>
 		<dict>
 			<key>xpos</key>
 			<integer>520</integer>
 			<key>ypos</key>
-			<integer>1700</integer>
+			<integer>1580</integer>
 		</dict>
 		<key>E4752307-AF7E-4E47-80F9-1BB75C5CCFCB</key>
 		<dict>
@@ -1388,7 +1332,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>xpos</key>
 			<integer>250</integer>
 			<key>ypos</key>
-			<integer>1580</integer>
+			<integer>1460</integer>
 		</dict>
 		<key>E8F9509C-843D-40C8-B5F1-6B8FC692A18C</key>
 		<dict>
@@ -1402,7 +1346,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>xpos</key>
 			<integer>250</integer>
 			<key>ypos</key>
-			<integer>1340</integer>
+			<integer>1220</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
@@ -1425,7 +1369,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 		<string>added_item_order</string>
 	</array>
 	<key>version</key>
-	<string>21.13</string>
+	<string>21.14</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
