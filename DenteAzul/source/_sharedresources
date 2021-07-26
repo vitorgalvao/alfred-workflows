@@ -6,7 +6,7 @@ readonly shared_resources_id='com.vitorgalvao.alfred._sharedresources'
 readonly shared_resources_dir="$(dirname "${alfred_workflow_data}")/${shared_resources_id}"
 readonly shared_resources_bin="${shared_resources_dir}/bin"
 readonly PATH="/opt/homebrew/bin:/usr/local/bin:${shared_resources_bin}:${PATH}"
-readonly arch="$([[ "$(sysctl -n machdep.cpu.brand_string)" == 'Apple '* ]] && echo 'arm' || echo 'intel')"
+readonly arch="$(/usr/bin/arch)"
 
 function renew_bin {
   local -r bin_name="${1}"
@@ -69,7 +69,7 @@ function blueutil_getter {
   renew_bin "${bin_name}" '90' || return
 
   local -r bin_version='2.9.0'
-  local -r bin_sha="$([[ "${arch}" == 'intel' ]] && echo '429703e2bae1445d2a6ae2e1f52ed2c1f0bad3a94e80b44bfe36e698ba5ded30' || echo 'e29ddccdf7253406a3685f4099f3424ffb6d399ff2643f2d79f281ad97b93a67')"
+  local -r bin_sha="$([[ "${arch}" == 'i386' ]] && echo '429703e2bae1445d2a6ae2e1f52ed2c1f0bad3a94e80b44bfe36e698ba5ded30' || echo 'e29ddccdf7253406a3685f4099f3424ffb6d399ff2643f2d79f281ad97b93a67')"
 
   # Consistent over Hombrew installs
   ensure_resources_dir
@@ -107,7 +107,7 @@ function cpulimit_getter {
   renew_bin "${bin_name}" '90' || return
 
   local -r bin_version='0.2'
-  local -r bin_sha="$([[ "${arch}" == 'intel' ]] && echo 'f3f394e17febb7af49a1cb35c46e33856263dc58016d959aad2d2a250aae1d7d' || echo 'f09919436a14d7b1598720ca832435b2500aebe0839f5055a253f52c59642a5d')"
+  local -r bin_sha="$([[ "${arch}" == 'i386' ]] && echo 'f3f394e17febb7af49a1cb35c46e33856263dc58016d959aad2d2a250aae1d7d' || echo 'f09919436a14d7b1598720ca832435b2500aebe0839f5055a253f52c59642a5d')"
 
   # Consistent over Hombrew installs
   ensure_resources_dir
@@ -131,7 +131,7 @@ function ddgr_getter {
   renew_bin "${bin_name}" '90' || return
 
   local -r bin_version='1.9'
-  local -r bin_sha="$([[ "${arch}" == 'intel' ]] && echo 'a4d85046d345c5bd1dbb2a5368cef631ac4eef8dfbf3f365019d90da7f31c54a' || echo '514088d8485c7943c2c4a34654147bc357d0cd1b797cc80b455ec0212ae7d226')"
+  local -r bin_sha="$([[ "${arch}" == 'i386' ]] && echo 'a4d85046d345c5bd1dbb2a5368cef631ac4eef8dfbf3f365019d90da7f31c54a' || echo '514088d8485c7943c2c4a34654147bc357d0cd1b797cc80b455ec0212ae7d226')"
 
   # Consistent over Hombrew installs
   ensure_resources_dir
@@ -192,7 +192,7 @@ function googler_getter {
   renew_bin "${bin_name}" '90' || return
 
   local -r bin_version='4.3.2'
-  local -r bin_sha="$([[ "${arch}" == 'intel' ]] && echo 'cdb78a7ecc2656018a8ecaedf15230a9bb4e58eb5a9f405b99da297f1423f58d' || echo '34d74100c542d7674e393c1eeb0ddfc807d2e9e46c130777b16b85ed6a519551')"
+  local -r bin_sha="$([[ "${arch}" == 'i386' ]] && echo 'cdb78a7ecc2656018a8ecaedf15230a9bb4e58eb5a9f405b99da297f1423f58d' || echo '34d74100c542d7674e393c1eeb0ddfc807d2e9e46c130777b16b85ed6a519551')"
 
   # Consistent over Hombrew installs
   ensure_resources_dir
@@ -240,7 +240,7 @@ function multimarkdown_getter {
   renew_bin "${bin_name}" '90' || return
 
   local -r bin_version='6.6.0'
-  local -r bin_sha="$([[ "${arch}" == 'intel' ]] && echo '15b87bf8b7be554761d0114af63d3789df6db6cb58616afc408f569ea8ac50d0' || echo 'c377c5976fff15a469b330470febc8b7db8f695b597e588fd35e975fe17010a5')"
+  local -r bin_sha="$([[ "${arch}" == 'i386' ]] && echo '15b87bf8b7be554761d0114af63d3789df6db6cb58616afc408f569ea8ac50d0' || echo 'c377c5976fff15a469b330470febc8b7db8f695b597e588fd35e975fe17010a5')"
 
   # Consistent over Hombrew installs
   ensure_resources_dir
@@ -264,7 +264,7 @@ function trash_getter {
   renew_bin "${bin_name}" '90' || return
 
   local -r bin_version='0.9.2'
-  local -r bin_sha="$([[ "${arch}" == 'intel' ]] && echo '403ba52ce97d38535e1d127ca227afd4ea2d0e0c8b414118dbc5376c9ed8f094' || echo '11c0c85ec692ea6d4a125070f0a6ca576aff991608a6c9632b984cbf983e2481')"
+  local -r bin_sha="$([[ "${arch}" == 'i386' ]] && echo '403ba52ce97d38535e1d127ca227afd4ea2d0e0c8b414118dbc5376c9ed8f094' || echo '11c0c85ec692ea6d4a125070f0a6ca576aff991608a6c9632b984cbf983e2481')"
 
   # Consistent over Hombrew installs
   ensure_resources_dir
