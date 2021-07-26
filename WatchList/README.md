@@ -19,7 +19,7 @@ Next, interact with your list. Options begin with `wl`.
 In both cases:
 
 * ↵ plays the selection.
-* ⌃↵ Opens the item’s URL in the default web browser.
+* ⌃↵ opens the item’s URL in the default web browser.
 * ⌥↵ downloads a stream (requires [DownMedia](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownMedia)) or rescans a series’ directory (useful after manual changes).
 * ⌘↵ marks as watched without playing.
 * ⇧↵ appends to a temporary playlist. After adding the desired items, ↵ plays them in order. A playlist which was neither modified nor played for a few minutes will be ignored.
