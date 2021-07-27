@@ -94,8 +94,17 @@
 }
 
 readonly email_name="${1//[^[:alnum:]]}"
-readonly email="${email_name}@teleosaurs.xyz"
-readonly url="https://teleosaurs.xyz/inbox/${email_name}"
+
+if [[ "${service}" == 'harakirimail.com' ]]; then
+  readonly email="${email_name}@harakirimail.com"
+  readonly url="https://harakirimail.com/inbox/${email_name}"
+elif [[ "${service}" == 'maildrop.cc' ]]; then
+  readonly email="${email_name}@maildrop.cc"
+  readonly url="https://maildrop.cc/inbox/${email_name}"
+else
+  readonly email="${email_name}@teleosaurs.xyz"
+  readonly url="https://teleosaurs.xyz/inbox/${email_name}"
+fi
 
 readonly front_browser="$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')"
 
@@ -305,6 +314,8 @@ fi</string>
 
 Giving an argument will try to use that specific name, while leaving it blank will create a random address.
 
+The `service` Workflow Environment Variable sets the service used for the inbox. Supported values: `teleosaurs.xyz`, `harakirimail.com`, `maildrop.cc`.
+
 Because [Firefox does not support AppleScript](https://bugzilla.mozilla.org/show_bug.cgi?id=125419), the inbox will open in the foreground and you must manually return to the tab you were in.</string>
 	<key>uidata</key>
 	<dict>
@@ -348,10 +359,13 @@ Because [Firefox does not support AppleScript](https://bugzilla.mozilla.org/show
 			<integer>25</integer>
 		</dict>
 	</dict>
-	<key>variablesdontexport</key>
-	<array/>
+	<key>variables</key>
+	<dict>
+		<key>service</key>
+		<string>teleosaurs.xyz</string>
+	</dict>
 	<key>version</key>
-	<string>21.3</string>
+	<string>21.4</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
