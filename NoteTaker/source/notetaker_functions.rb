@@ -8,7 +8,10 @@ def get_env(variable:, default:, as_bool: false, as_pathname: false, match_list:
   if as_bool
     case variable
     when true, 'true', 'yes', 1, '1' then return true
-    when false, 'false', 'no', 0, '0', nil, '' then return false
+    when false, 'false', 'no', 0, '0' then return false
+    when nil, ''
+      return default if [true, false].include?(default)
+      raise ArgumentError, '"as_bool" is set but variable is nil/empty and "default" is not a boolean'
     else raise ArgumentError, "Invalid value: #{variable.inspect}"
     end
   end
