@@ -12,7 +12,9 @@ class String
   end
 end
 
-print CGI.unescapeHTML(Open3.capture2('multimarkdown', '--', stdin_data: ARGV[0]).first).
+# An empty line is added to the beginning of STDIN so text starting with a word and a colon won't be considered metadata
+# https://web.archive.org/web/20210804225002/https://fletcher.github.io/MultiMarkdown-5/syntax.html
+print CGI.unescapeHTML(Open3.capture2('multimarkdown', '--', stdin_data: "\n#{ARGV[0]}").first).
   gsub('<p>', '').gsub('</p>', "\n").
   bbcode_sub('strong', 'b').
   bbcode_sub('em', 'i').
