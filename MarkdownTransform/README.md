@@ -1,4 +1,4 @@
-Each Hotkey Trigger in the workflow corresponds to a different type of Markdown conversion:
+Each Hotkey and Universal Action Trigger in the workflow corresponds to a different type of Markdown conversion:
 
 * Markdown → BBCode
 * Markdown → HTML

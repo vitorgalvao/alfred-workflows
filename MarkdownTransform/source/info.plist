@@ -32,6 +32,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>5A616C8D-A6E4-49D0-8E0A-8B0F8CA17112</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>F0BB2D14-B8CC-4058-AF29-BF702A7EE7D7</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>5D1F36D1-7654-4A6C-BA4B-1D4911BA3DA1</key>
 		<array>
 			<dict>
@@ -46,6 +59,32 @@
 			</dict>
 		</array>
 		<key>79F45392-6A63-457B-BB92-47A1EC02C4E4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>AA7497F3-9EA5-418D-BD27-F98645BB8A3C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>7D2CB4ED-0C02-4FB1-BD5C-856BC3ED6CD7</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3C4CB8EB-F2FC-418A-8028-4BDE381AA34F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>9A2DA8F5-ABE8-47ED-85E8-DD75EFD7A249</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -134,25 +173,6 @@
 	<string>MarkdownTransform</string>
 	<key>objects</key>
 	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>autopaste</key>
-				<true/>
-				<key>clipboardtext</key>
-				<string>{clipboard}</string>
-				<key>ignoredynamicplaceholders</key>
-				<false/>
-				<key>transient</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.clipboard</string>
-			<key>uid</key>
-			<string>DE96DCA0-525D-490B-BBFD-27BDB606A892</string>
-			<key>version</key>
-			<integer>3</integer>
-		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -270,6 +290,25 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>autopaste</key>
+				<true/>
+				<key>clipboardtext</key>
+				<string>{clipboard}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>DE96DCA0-525D-490B-BBFD-27BDB606A892</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>action</key>
 				<integer>0</integer>
 				<key>argument</key>
@@ -295,6 +334,50 @@ fi</string>
 			<string>alfred.workflow.trigger.hotkey</string>
 			<key>uid</key>
 			<string>79F45392-6A63-457B-BB92-47A1EC02C4E4</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsfiles</key>
+				<false/>
+				<key>acceptsmulti</key>
+				<integer>0</integer>
+				<key>acceptstext</key>
+				<true/>
+				<key>acceptsurls</key>
+				<false/>
+				<key>name</key>
+				<string>Markdown to BBCode</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.universalaction</string>
+			<key>uid</key>
+			<string>9A2DA8F5-ABE8-47ED-85E8-DD75EFD7A249</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>./html "${1}" | pbcopy</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>F0BB2D14-B8CC-4058-AF29-BF702A7EE7D7</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -332,25 +415,23 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
+				<key>acceptsfiles</key>
 				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>./html "${1}" | pbcopy</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
+				<key>acceptsmulti</key>
 				<integer>0</integer>
+				<key>acceptstext</key>
+				<true/>
+				<key>acceptsurls</key>
+				<false/>
+				<key>name</key>
+				<string>Markdown to HTML</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.trigger.universalaction</string>
 			<key>uid</key>
-			<string>F0BB2D14-B8CC-4058-AF29-BF702A7EE7D7</string>
+			<string>5A616C8D-A6E4-49D0-8E0A-8B0F8CA17112</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -372,37 +453,6 @@ fi</string>
 			<string>D890BF2F-9E7F-45B8-9335-4317C4A2CBF5</string>
 			<key>version</key>
 			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>action</key>
-				<integer>0</integer>
-				<key>argument</key>
-				<integer>1</integer>
-				<key>focusedappvariable</key>
-				<false/>
-				<key>focusedappvariablename</key>
-				<string></string>
-				<key>hotkey</key>
-				<integer>15</integer>
-				<key>hotmod</key>
-				<integer>1835008</integer>
-				<key>hotstring</key>
-				<string>R</string>
-				<key>leftcursor</key>
-				<true/>
-				<key>modsmode</key>
-				<integer>0</integer>
-				<key>relatedAppsMode</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.hotkey</string>
-			<key>uid</key>
-			<string>26ABF3CB-05C2-473B-9F45-80692E12737E</string>
-			<key>version</key>
-			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -448,9 +498,61 @@ fi</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>1</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>15</integer>
+				<key>hotmod</key>
+				<integer>1835008</integer>
+				<key>hotstring</key>
+				<string>R</string>
+				<key>leftcursor</key>
+				<true/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>26ABF3CB-05C2-473B-9F45-80692E12737E</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsfiles</key>
+				<false/>
+				<key>acceptsmulti</key>
+				<integer>0</integer>
+				<key>acceptstext</key>
+				<true/>
+				<key>acceptsurls</key>
+				<false/>
+				<key>name</key>
+				<string>Markdown to RTF</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.universalaction</string>
+			<key>uid</key>
+			<string>7D2CB4ED-0C02-4FB1-BD5C-856BC3ED6CD7</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
-	<string>Each Hotkey Trigger in the workflow corresponds to a different type of Markdown conversion:
+	<string>Each Hotkey and Universal Action Trigger in the workflow corresponds to a different type of Markdown conversion:
 
 * Markdown → BBCode
 * Markdown → HTML
@@ -498,14 +600,14 @@ Everything supported by [MultiMarkdown](https://en.wikipedia.org/wiki/MultiMarkd
 			<key>xpos</key>
 			<integer>30</integer>
 			<key>ypos</key>
-			<integer>340</integer>
+			<integer>605</integer>
 		</dict>
 		<key>3C4CB8EB-F2FC-418A-8028-4BDE381AA34F</key>
 		<dict>
 			<key>xpos</key>
 			<integer>200</integer>
 			<key>ypos</key>
-			<integer>340</integer>
+			<integer>605</integer>
 		</dict>
 		<key>5886CCED-FB1D-4BDF-8137-5A64FE643078</key>
 		<dict>
@@ -518,6 +620,13 @@ Everything supported by [MultiMarkdown](https://en.wikipedia.org/wiki/MultiMarkd
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
+		<key>5A616C8D-A6E4-49D0-8E0A-8B0F8CA17112</key>
+		<dict>
+			<key>xpos</key>
+			<integer>30</integer>
+			<key>ypos</key>
+			<integer>475</integer>
+		</dict>
 		<key>5D1F36D1-7654-4A6C-BA4B-1D4911BA3DA1</key>
 		<dict>
 			<key>note</key>
@@ -525,7 +634,7 @@ Everything supported by [MultiMarkdown](https://en.wikipedia.org/wiki/MultiMarkd
 			<key>xpos</key>
 			<integer>540</integer>
 			<key>ypos</key>
-			<integer>340</integer>
+			<integer>605</integer>
 		</dict>
 		<key>79F45392-6A63-457B-BB92-47A1EC02C4E4</key>
 		<dict>
@@ -535,6 +644,20 @@ Everything supported by [MultiMarkdown](https://en.wikipedia.org/wiki/MultiMarkd
 			<integer>30</integer>
 			<key>ypos</key>
 			<integer>20</integer>
+		</dict>
+		<key>7D2CB4ED-0C02-4FB1-BD5C-856BC3ED6CD7</key>
+		<dict>
+			<key>xpos</key>
+			<integer>30</integer>
+			<key>ypos</key>
+			<integer>770</integer>
+		</dict>
+		<key>9A2DA8F5-ABE8-47ED-85E8-DD75EFD7A249</key>
+		<dict>
+			<key>xpos</key>
+			<integer>30</integer>
+			<key>ypos</key>
+			<integer>180</integer>
 		</dict>
 		<key>AA7497F3-9EA5-418D-BD27-F98645BB8A3C</key>
 		<dict>
@@ -550,7 +673,7 @@ Everything supported by [MultiMarkdown](https://en.wikipedia.org/wiki/MultiMarkd
 			<key>xpos</key>
 			<integer>370</integer>
 			<key>ypos</key>
-			<integer>340</integer>
+			<integer>605</integer>
 		</dict>
 		<key>DE96DCA0-525D-490B-BBFD-27BDB606A892</key>
 		<dict>
@@ -568,18 +691,18 @@ Everything supported by [MultiMarkdown](https://en.wikipedia.org/wiki/MultiMarkd
 			<key>xpos</key>
 			<integer>30</integer>
 			<key>ypos</key>
-			<integer>180</integer>
+			<integer>310</integer>
 		</dict>
 		<key>F0BB2D14-B8CC-4058-AF29-BF702A7EE7D7</key>
 		<dict>
 			<key>xpos</key>
 			<integer>200</integer>
 			<key>ypos</key>
-			<integer>180</integer>
+			<integer>310</integer>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>21.10</string>
+	<string>21.11</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
