@@ -369,7 +369,7 @@ if (chromium_variants.some(app_name =&gt; frontmost_app_name.startsWith(app_name
 
   const app = Application.currentApplication()
   app.includeStandardAdditions = true
-  app.doShellScript('open -na "Google Chrome" --args --user-data-dir="$(mktemp -d)" --no-first-run ' + current_tab_url)
+  app.doShellScript('open -na "' + frontmost_app_name + '" --args --user-data-dir="$(mktemp -d)" --no-first-run ' + current_tab_url)
 } else if (webkit_variants.some(app_name =&gt; frontmost_app_name.startsWith(app_name))) {
   throw new Error('Webkit-based browsers do not support multiple profiles')
 } else {
@@ -509,7 +509,7 @@ In addition, Webkit-based browsers do not support opening new private windows pr
 		<string>File, New Private Window</string>
 	</dict>
 	<key>version</key>
-	<string>21.1</string>
+	<string>21.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
