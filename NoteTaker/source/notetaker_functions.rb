@@ -63,7 +63,8 @@ def display_notes(dir: Notes_dir)
 end
 
 def add_note(title:, content: Open3.capture2('pbpaste').first, dir: Notes_dir)
-  file = dir.join("#{title}.txt")
+  forbidden_chars = [':', '/']
+  file = dir.join("#{title.delete(forbidden_chars.join)}.txt")
 
   while file.exist?
     # Use the same directory

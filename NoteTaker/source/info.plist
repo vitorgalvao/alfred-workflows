@@ -786,7 +786,7 @@ To keep notes synced between machines, use the `notes_dir` Workflow Environment 
 		<string>~/Dropbox/Libraries/AlfredWorkflowsData/NoteTaker</string>
 	</dict>
 	<key>version</key>
-	<string>21.3</string>
+	<string>21.4</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
