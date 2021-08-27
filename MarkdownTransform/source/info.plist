@@ -45,19 +45,6 @@
 				<false/>
 			</dict>
 		</array>
-		<key>5D1F36D1-7654-4A6C-BA4B-1D4911BA3DA1</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>5886CCED-FB1D-4BDF-8137-5A64FE643078</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>79F45392-6A63-457B-BB92-47A1EC02C4E4</key>
 		<array>
 			<dict>
@@ -84,11 +71,37 @@
 				<false/>
 			</dict>
 		</array>
+		<key>7FC24922-EFF7-446C-8EFE-3A4A38B39AAB</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>A19F29DC-4DFB-496B-A28C-65F7EBEB96E8</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>9A2DA8F5-ABE8-47ED-85E8-DD75EFD7A249</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>AA7497F3-9EA5-418D-BD27-F98645BB8A3C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>A19F29DC-4DFB-496B-A28C-65F7EBEB96E8</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D890BF2F-9E7F-45B8-9335-4317C4A2CBF5</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -114,7 +127,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>5D1F36D1-7654-4A6C-BA4B-1D4911BA3DA1</string>
+				<string>5886CCED-FB1D-4BDF-8137-5A64FE643078</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -153,7 +166,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>DE96DCA0-525D-490B-BBFD-27BDB606A892</string>
+				<string>7FC24922-EFF7-446C-8EFE-3A4A38B39AAB</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -173,29 +186,6 @@
 	<string>MarkdownTransform</string>
 	<key>objects</key>
 	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>./bbcode "${1}" | pbcopy</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>AA7497F3-9EA5-418D-BD27-F98645BB8A3C</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -290,6 +280,29 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>./bbcode "${1}" | pbcopy</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>AA7497F3-9EA5-418D-BD27-F98645BB8A3C</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>autopaste</key>
 				<true/>
 				<key>clipboardtext</key>
@@ -366,7 +379,7 @@ fi</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>./html "${1}" | pbcopy</string>
+				<string>./html "${1}"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -378,6 +391,37 @@ fi</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>F0BB2D14-B8CC-4058-AF29-BF702A7EE7D7</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>ObjC.import('AppKit');
+ObjC.import('stdlib')
+
+const pboard = $.NSPasteboard.generalPasteboard
+const text = $.getenv('text')
+const type = $.getenv('type')
+
+pboard.clearContents
+pboard.setStringForType(text, type);</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>7</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>A19F29DC-4DFB-496B-A28C-65F7EBEB96E8</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -411,6 +455,28 @@ fi</string>
 			<string>EEC8812F-CE3E-4CD3-9F4B-57FA84567866</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict>
+					<key>text</key>
+					<string>{query}</string>
+					<key>type</key>
+					<string>public.html</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>7FC24922-EFF7-446C-8EFE-3A4A38B39AAB</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -476,27 +542,6 @@ fi</string>
 			<string>3C4CB8EB-F2FC-418A-8028-4BDE381AA34F</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>count</key>
-				<integer>2</integer>
-				<key>keychar</key>
-				<string>⌫</string>
-				<key>keycode</key>
-				<integer>51</integer>
-				<key>keymod</key>
-				<integer>0</integer>
-				<key>overridewithargument</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.dispatchkeycombo</string>
-			<key>uid</key>
-			<string>5D1F36D1-7654-4A6C-BA4B-1D4911BA3DA1</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -627,15 +672,6 @@ Everything supported by [MultiMarkdown](https://en.wikipedia.org/wiki/MultiMarkd
 			<key>ypos</key>
 			<integer>475</integer>
 		</dict>
-		<key>5D1F36D1-7654-4A6C-BA4B-1D4911BA3DA1</key>
-		<dict>
-			<key>note</key>
-			<string>Get rid of the final empty line</string>
-			<key>xpos</key>
-			<integer>540</integer>
-			<key>ypos</key>
-			<integer>605</integer>
-		</dict>
 		<key>79F45392-6A63-457B-BB92-47A1EC02C4E4</key>
 		<dict>
 			<key>note</key>
@@ -652,12 +688,28 @@ Everything supported by [MultiMarkdown](https://en.wikipedia.org/wiki/MultiMarkd
 			<key>ypos</key>
 			<integer>770</integer>
 		</dict>
+		<key>7FC24922-EFF7-446C-8EFE-3A4A38B39AAB</key>
+		<dict>
+			<key>xpos</key>
+			<integer>370</integer>
+			<key>ypos</key>
+			<integer>340</integer>
+		</dict>
 		<key>9A2DA8F5-ABE8-47ED-85E8-DD75EFD7A249</key>
 		<dict>
 			<key>xpos</key>
 			<integer>30</integer>
 			<key>ypos</key>
 			<integer>180</integer>
+		</dict>
+		<key>A19F29DC-4DFB-496B-A28C-65F7EBEB96E8</key>
+		<dict>
+			<key>note</key>
+			<string>Save with correct pasteboard type</string>
+			<key>xpos</key>
+			<integer>460</integer>
+			<key>ypos</key>
+			<integer>310</integer>
 		</dict>
 		<key>AA7497F3-9EA5-418D-BD27-F98645BB8A3C</key>
 		<dict>
@@ -669,9 +721,9 @@ Everything supported by [MultiMarkdown](https://en.wikipedia.org/wiki/MultiMarkd
 		<key>D890BF2F-9E7F-45B8-9335-4317C4A2CBF5</key>
 		<dict>
 			<key>note</key>
-			<string>We need to fake the key combo, as just pasting from Alfred would paste as plain text with the RTF syntax showing</string>
+			<string>Fake the key combo to maintain the pasteboard type. E.g.: just pasting the RTF from Alfred would paste as plain text with the RTF syntax showing</string>
 			<key>xpos</key>
-			<integer>370</integer>
+			<integer>460</integer>
 			<key>ypos</key>
 			<integer>605</integer>
 		</dict>
@@ -680,7 +732,7 @@ Everything supported by [MultiMarkdown](https://en.wikipedia.org/wiki/MultiMarkd
 			<key>note</key>
 			<string>We copied the result from the previous node and paste from the clipboard here because otherwise Alfred would reinterpret its Dynamic Placeholders if they appeared in the text</string>
 			<key>xpos</key>
-			<integer>370</integer>
+			<integer>460</integer>
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
@@ -701,8 +753,10 @@ Everything supported by [MultiMarkdown](https://en.wikipedia.org/wiki/MultiMarkd
 			<integer>310</integer>
 		</dict>
 	</dict>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
-	<string>21.11</string>
+	<string>21.12</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
