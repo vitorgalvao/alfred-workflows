@@ -29,7 +29,7 @@ If the `top_on_play` Workflow Environment Variable is `true`, the item will be m
 
 [mpv](http://mpv.io/), [IINA](https://lhc70000.github.io/iina/), and [VLC](http://www.videolan.org/vlc/index.html) are directly supported. If playback exits with a non-zero code, the item will not be marked as played (hence not trashed). Take advantage of that!
 
-`wlu` is the watched list. Its size is controlled by the `maximum_watched` Workflow Environment Variable. Actioning an item will mark it unwatched but won’t recover it from the trash (there is no reliable way to do it on macOS). If the item has an origin URL (shown in the subtitle):
+`wlu` is the watched list. Its size is controlled by the `maximum_watched` Workflow Environment Variable. Actioning an item will mark it unwatched and recover it from the Trash if it find a path with the same name. If the item has an origin URL (shown in the subtitle):
 
 * ⌘↵ opens it in the default web browser.
 * ⌥↵ copies it to the clipboard.

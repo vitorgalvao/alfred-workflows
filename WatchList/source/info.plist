@@ -744,19 +744,6 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>triggerid</key>
-				<string>play_id</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>1C0E08EA-ED61-4255-B50B-2EC1547C85F7</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -778,6 +765,19 @@ mark_watched(ARGV[0])</string>
 			<string>C929975A-3B90-474A-BA08-595EAB51A9B2</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>triggerid</key>
+				<string>play_id</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>1C0E08EA-ED61-4255-B50B-2EC1547C85F7</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1099,7 +1099,7 @@ If the `top_on_play` Workflow Environment Variable is `true`, the item will be m
 
 [mpv](http://mpv.io/), [IINA](https://lhc70000.github.io/iina/), and [VLC](http://www.videolan.org/vlc/index.html) are directly supported. If playback exits with a non-zero code, the item will not be marked as played (hence not trashed). Take advantage of that!
 
-`wlu` is the watched list. Its size is controlled by the `maximum_watched` Workflow Environment Variable. Actioning an item will mark it unwatched but won’t recover it from the trash (there is no reliable way to do it on macOS). If the item has an origin URL (shown in the subtitle):
+`wlu` is the watched list. Its size is controlled by the `maximum_watched` Workflow Environment Variable. Actioning an item will mark it unwatched and recover it from the Trash if it find a path with the same name. If the item has an origin URL (shown in the subtitle):
 
 * ⌘↵ opens it in the default web browser.
 * ⌥↵ copies it to the clipboard.
@@ -1369,7 +1369,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 		<string>added_item_order</string>
 	</array>
 	<key>version</key>
-	<string>21.15</string>
+	<string>21.18</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>

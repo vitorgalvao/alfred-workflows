@@ -307,7 +307,7 @@ end
 # By checking for and running the CLI of certain players instead of the app bundle, we get access to the exit status. That way, in the 'play' method, even if the file were to be marked as watched we do not do it unless it was a success.
 # This means we can configure our video player to not exit successfully on certain conditions and have greater granularity with WatchList.
 def play_item(type, path)
-  return true if type != 'stream' && !File.exist?(path) # If non-stream item does not exist, exit successfully so it can still be marked as watched
+  return true if path.nil? || type != 'stream' && !File.exist?(path) # If non-stream item does not exist, exit successfully so it can still be marked as watched
 
   # The 'split' together with 'last' serves to try to pick the last installed version, in case more than one is found (multiple versions in Homebrew Cellar, for example)
   video_player = lambda {
@@ -352,11 +352,25 @@ def mark_watched(id)
     return
   end
 
-  trash item['path']
+  trash(item['path'])
 end
 
 def mark_unwatched(id)
+  # Get item info early, before switching lists
+  item = YAML.load_file(Watched_list)[id]
+
   switch_list(id, Watched_list, Towatch_list)
+
+  # Try to recover trashed file
+  return if item['type'] == 'stream'
+
+  trashed_path = File.join(ENV['HOME'], '.Trash', File.basename(item['path']))
+
+  error('Could not find item in Trash') unless File.exist?(trashed_path)
+  error('Could not recover from Trash because another item exists at original location') if File.exist?(item['path'])
+
+  File.rename(trashed_path, item['path'])
+  system('/usr/bin/afplay', '/System/Library/Sounds/Submarine.aiff')
 end
 
 def download_stream(id)
@@ -522,7 +536,7 @@ end
 
 def trash(path)
   escaped_path = path.gsub("'"){ "\\'" } # Escape single quotes, since they are the delimiters for the path in the JXA command
-  system('osascript', '-l', 'JavaScript', '-e', "Application('Finder').delete(Path('#{escaped_path}'))")
+  system('osascript', '-l', 'JavaScript', '-e', "Application('Finder').delete(Path('#{escaped_path}'))") if File.exist?(escaped_path)
 end
 
 def notification(message, sound = '')
@@ -530,6 +544,6 @@ def notification(message, sound = '')
 end
 
 def error(message)
-  notification(message, 'Funk')
+  notification(message, 'Sosumi')
   abort(message)
 end
