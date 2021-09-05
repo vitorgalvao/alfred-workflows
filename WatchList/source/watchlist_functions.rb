@@ -288,14 +288,13 @@ def play(id, send_to_watched = true)
       abort 'Marking as watched since the directory no longer exists'
     end
 
-    audiovisual_files = list_audiovisual_files(item['path'])
-    first_file = audiovisual_files.first
+    first_file = list_audiovisual_files(item['path']).first
 
     return unless play_item('file', first_file)
     return if send_to_watched == false
 
     # If there are no more audiovisual files in the directory in addition to the one we just watched, trash the whole directory, else trash just the watched file
-    if audiovisual_files.reject { |e| e == first_file }.empty?
+    if list_audiovisual_files(item['path']).reject { |e| e == first_file }.empty?
       mark_watched(id) if send_to_watched == true
     else
       trash(first_file)
@@ -536,7 +535,7 @@ end
 
 def trash(path)
   escaped_path = path.gsub("'"){ "\\'" } # Escape single quotes, since they are the delimiters for the path in the JXA command
-  system('osascript', '-l', 'JavaScript', '-e', "Application('Finder').delete(Path('#{escaped_path}'))") if File.exist?(escaped_path)
+  system('osascript', '-l', 'JavaScript', '-e', "Application('Finder').delete(Path('#{escaped_path}'))") if File.exist?(path)
 end
 
 def notification(message, sound = '')
