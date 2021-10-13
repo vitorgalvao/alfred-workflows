@@ -8,7 +8,7 @@ ENV['PATH'] = Open3.capture2(Pathname.pwd.join('_sharedresources').to_path, 'mul
 
 Rich_text_style = '
   <style>
-    body { font-family: sans-serif; font-size: 14; }
+    body { font-family: sans-serif; }
     code { font-family: monospace; }
     p    { margin: 0; }
   </style>
