@@ -6,6 +6,32 @@
 	<string>com.vitorgalvao.alfred.webscreenshot</string>
 	<key>connections</key>
 	<dict>
+		<key>0385A72F-97DC-4BE0-B57B-EA12535CC0CF</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>34361D11-6517-4260-B8F6-C0B3067467EB</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>0B135E1C-3DDE-4154-9F4F-AA866AB16096</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>0385A72F-97DC-4BE0-B57B-EA12535CC0CF</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>10E94380-B13E-4C23-A3F3-33DADDD06579</key>
 		<array>
 			<dict>
@@ -180,6 +206,54 @@ take_screenshot</string>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>source './webscreenshot'
+
+upload_file "${1}"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>CD71AE4A-3C50-4C2E-9E08-A7C4D90A6E13</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsmulti</key>
+				<integer>0</integer>
+				<key>filetypes</key>
+				<array>
+					<string>com.adobe.pdf</string>
+					<string>com.compuserve.gif</string>
+					<string>public.jpeg</string>
+					<string>public.png</string>
+					<string>public.tiff</string>
+				</array>
+				<key>name</key>
+				<string>Upload screenshot</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>181BA7A8-03C0-48A9-AC97-CA21785D1FC1</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
 				<string># THESE VARIABLES MUST BE SET. SEE THE ONEUPDATER README FOR AN EXPLANATION OF EACH.
@@ -274,8 +348,9 @@ fi</string>
 				<integer>102</integer>
 				<key>script</key>
 				<string>source './webscreenshot'
+readonly image="$(mktemp).png"
 
-upload_file "${1}"</string>
+_licensed/pngpaste/pngpaste "${image}" &amp;&amp; upload_file "${image}" || failure 'No image data in clipboard'</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -286,32 +361,9 @@ upload_file "${1}"</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>CD71AE4A-3C50-4C2E-9E08-A7C4D90A6E13</string>
+			<string>73BF8CD8-5A95-4C98-B92B-BE206512C72F</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>acceptsmulti</key>
-				<false/>
-				<key>filetypes</key>
-				<array>
-					<string>com.adobe.pdf</string>
-					<string>com.compuserve.gif</string>
-					<string>public.jpeg</string>
-					<string>public.png</string>
-					<string>public.tiff</string>
-				</array>
-				<key>name</key>
-				<string>Upload screenshot</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.action</string>
-			<key>uid</key>
-			<string>181BA7A8-03C0-48A9-AC97-CA21785D1FC1</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -337,15 +389,35 @@ upload_file "${1}"</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>savecreenshotclipboard</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Save screenshot from clipboard to the Desktop</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>0B135E1C-3DDE-4154-9F4F-AA866AB16096</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
 				<string>source './webscreenshot'
-readonly image="$(mktemp).png"
 
-_licensed/pngpaste/pngpaste "${image}" &amp;&amp; upload_file "${image}" || failure 'No image data in clipboard'</string>
+_licensed/pngpaste/pngpaste "${HOME}/Desktop/$(date +%Y-%m-%d-%H-%M-%S).png" || failure 'No image data in clipboard'</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -356,7 +428,7 @@ _licensed/pngpaste/pngpaste "${image}" &amp;&amp; upload_file "${image}" || fail
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>73BF8CD8-5A95-4C98-B92B-BE206512C72F</string>
+			<string>0385A72F-97DC-4BE0-B57B-EA12535CC0CF</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -486,15 +558,31 @@ You may also upload an image (or pdf — imgur supports it as an upload but conv
 
 `uploadscreenshotclipboard` will upload the image in your clipboard.
 
+`savescreenshotclipboard` will save the image in your clipboard to the Desktop.
+
 `recentscreenshots` will enumerate recently taken screenshots, ordered from the last. You can then open them in the browser to view (↵), delete (⌘↵), copy (⌥↵), or preview (⇧).</string>
 	<key>uidata</key>
 	<dict>
-		<key>10E94380-B13E-4C23-A3F3-33DADDD06579</key>
+		<key>0385A72F-97DC-4BE0-B57B-EA12535CC0CF</key>
+		<dict>
+			<key>xpos</key>
+			<integer>275</integer>
+			<key>ypos</key>
+			<integer>400</integer>
+		</dict>
+		<key>0B135E1C-3DDE-4154-9F4F-AA866AB16096</key>
 		<dict>
 			<key>xpos</key>
 			<integer>35</integer>
 			<key>ypos</key>
 			<integer>400</integer>
+		</dict>
+		<key>10E94380-B13E-4C23-A3F3-33DADDD06579</key>
+		<dict>
+			<key>xpos</key>
+			<integer>35</integer>
+			<key>ypos</key>
+			<integer>525</integer>
 		</dict>
 		<key>181BA7A8-03C0-48A9-AC97-CA21785D1FC1</key>
 		<dict>
@@ -540,14 +628,14 @@ You may also upload an image (or pdf — imgur supports it as an upload but conv
 			<key>xpos</key>
 			<integer>275</integer>
 			<key>ypos</key>
-			<integer>400</integer>
+			<integer>525</integer>
 		</dict>
 		<key>BCA1E2BC-3E6C-446A-A7D3-270B1CAC1D76</key>
 		<dict>
 			<key>xpos</key>
 			<integer>275</integer>
 			<key>ypos</key>
-			<integer>520</integer>
+			<integer>645</integer>
 		</dict>
 		<key>CD71AE4A-3C50-4C2E-9E08-A7C4D90A6E13</key>
 		<dict>
@@ -565,7 +653,7 @@ You may also upload an image (or pdf — imgur supports it as an upload but conv
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>21.2</string>
+	<string>21.3</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
