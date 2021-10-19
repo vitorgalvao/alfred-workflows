@@ -24,14 +24,14 @@ def move_to_dir(path, target_dir)
     File.rename(path, target_path)
   end
 
-  target_path # Return value to it can be passed to add function
+  target_path
 end
 
-def add_local_to_watchlist(path, id = random_hex)
+def add_local_to_watchlist(path, id = random_hex, allow_move = true)
   ensure_data_paths
   require_audiovisual(path)
 
-  target_path = Move_when_adding ? move_to_dir(path, File.expand_path(ENV['move_on_add'])) : path
+  target_path = Move_when_adding && allow_move ? move_to_dir(path, File.expand_path(ENV['move_on_add'])) : path
 
   if File.file?(target_path)
     add_file_to_watchlist(target_path, id)
