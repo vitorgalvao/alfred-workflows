@@ -45,6 +45,31 @@
 				<false/>
 			</dict>
 		</array>
+		<key>4EAD8FF7-50BC-4868-933E-FFC6A8DD89B8</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>C0EF4DC7-373A-4226-9ED1-9C25140EFABE</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>218C414F-A969-4569-B08A-97B0783B2AC5</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>B1F76879-4318-4A04-B58F-150347E9CC29</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>67C1A19D-DDF7-450A-A615-B9C134D6975F</key>
 		<array>
 			<dict>
@@ -62,7 +87,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>B1F76879-4318-4A04-B58F-150347E9CC29</string>
+				<string>EAB6087F-6BDE-4F26-8EB4-65E1A91CCFBF</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -218,6 +243,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>6A286F10-FD49-4463-9540-0EECBE45438D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>EAB6087F-6BDE-4F26-8EB4-65E1A91CCFBF</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>4EAD8FF7-50BC-4868-933E-FFC6A8DD89B8</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -426,6 +464,28 @@ show_options('audio')</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argument</key>
+				<string>
+WARNING: The most recent versions of this Workflow replace "youtube-dl" with "yt-dlp".
+
+Because "yt-dlp" needs to be manually installed, this Workflow will skip checking for updates until you do. Homebrew recommended.
+
+This version will continue working until the (discontinued) youtube-dl no longer does.</string>
+				<key>cleardebuggertext</key>
+				<false/>
+				<key>processoutputs</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.debug</string>
+			<key>uid</key>
+			<string>C0EF4DC7-373A-4226-9ED1-9C25140EFABE</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -462,6 +522,31 @@ download_url(ARGV[0], ENV['media_type'], ENV['add_to_watchlist'], ENV['full_play
 			<string>D8524846-F942-4A77-9461-8BAED974B8CF</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/downmedia_functions.rb"
+
+print 'NO YT-DLP' unless system('yt-dlps', '--version', out: File::NULL, err: File::NULL)</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>EAB6087F-6BDE-4F26-8EB4-65E1A91CCFBF</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -553,6 +638,36 @@ fi</string>
 			<string>B1F76879-4318-4A04-B58F-150347E9CC29</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>NO YT-DLP</string>
+						<key>outputlabel</key>
+						<string>yt-dlp not installed</string>
+						<key>uid</key>
+						<string>218C414F-A969-4569-B08A-97B0783B2AC5</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>yt-dlp installed</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>4EAD8FF7-50BC-4868-933E-FFC6A8DD89B8</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -916,6 +1031,13 @@ The Workflow Environment Variables represent the directory to download to, the a
 			<key>ypos</key>
 			<integer>515</integer>
 		</dict>
+		<key>4EAD8FF7-50BC-4868-933E-FFC6A8DD89B8</key>
+		<dict>
+			<key>xpos</key>
+			<integer>1045</integer>
+			<key>ypos</key>
+			<integer>295</integer>
+		</dict>
 		<key>67C1A19D-DDF7-450A-A615-B9C134D6975F</key>
 		<dict>
 			<key>xpos</key>
@@ -974,7 +1096,7 @@ The Workflow Environment Variables represent the directory to download to, the a
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>885</integer>
+			<integer>1215</integer>
 			<key>ypos</key>
 			<integer>275</integer>
 		</dict>
@@ -1006,6 +1128,13 @@ The Workflow Environment Variables represent the directory to download to, the a
 			<key>ypos</key>
 			<integer>755</integer>
 		</dict>
+		<key>C0EF4DC7-373A-4226-9ED1-9C25140EFABE</key>
+		<dict>
+			<key>xpos</key>
+			<integer>1215</integer>
+			<key>ypos</key>
+			<integer>205</integer>
+		</dict>
 		<key>C80AD651-BCAF-4B86-869A-D4D847A2379B</key>
 		<dict>
 			<key>xpos</key>
@@ -1034,6 +1163,15 @@ The Workflow Environment Variables represent the directory to download to, the a
 			<key>ypos</key>
 			<integer>35</integer>
 		</dict>
+		<key>EAB6087F-6BDE-4F26-8EB4-65E1A91CCFBF</key>
+		<dict>
+			<key>note</key>
+			<string>Check for yt-dlp</string>
+			<key>xpos</key>
+			<integer>880</integer>
+			<key>ypos</key>
+			<integer>275</integer>
+		</dict>
 		<key>FD70A114-2767-4782-8D5F-86AC4B3BB8B3</key>
 		<dict>
 			<key>xpos</key>
@@ -1051,8 +1189,10 @@ The Workflow Environment Variables represent the directory to download to, the a
 		<key>download_dir</key>
 		<string>~/Downloads</string>
 	</dict>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
-	<string>21.10</string>
+	<string>21.11</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
