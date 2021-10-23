@@ -29,11 +29,6 @@ Search for trading card game cards
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/CardSearch) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/CardSearch/CardSearch.alfredworkflow)
 
-### CheckSpelling <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/CheckSpelling/source/icon.png' width='60' align='center' alt='CheckSpelling icon'>
-Spelling correction in various languages
-
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/CheckSpelling) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/CheckSpelling/CheckSpelling.alfredworkflow)
-
 ### CoffeeCoffee <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/CoffeeCoffee/source/icon.png' width='60' align='center' alt='CoffeeCoffee icon'>
 Prevent your computer from going to sleep
 
@@ -285,6 +280,7 @@ These are small helpers to help build Workflows or enhance existing ones. They a
 These are the Workflows that are no longer under development and won’t get more updates. Reasons for deprecation depend on the the Workflow, but they don’t tend to be deprecated without an alternative.
 
 + [AppVersion](https://github.com/vitorgalvao/alfred-workflows/tree/fefde12914ed35d1cc7e0e90c62a932cdec3b39a/AppVersion)
++ [CheckSpelling](https://github.com/vitorgalvao/alfred-workflows/tree/c0d9c9313857676997e6e05d9dda65cfa5fcda6a/CheckSpelling)
 + [RepeatRepeat](https://github.com/vitorgalvao/alfred-workflows/tree/9a70302fa31d6fba2b532bc9dd7eac75d67f6964/RepeatRepeat)
 + [RottenMovies](https://github.com/vitorgalvao/alfred-workflows/tree/2c0eca9f2336e3470b103586189ba7dd450f2b39/RottenMovies)
 
