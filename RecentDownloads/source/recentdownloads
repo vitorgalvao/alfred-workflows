@@ -102,4 +102,4 @@ Script_filter_items = Entries.each_with_object([]) { |entry, items|
   )
 }
 
-puts({ variables: { uid_seed: Uid_seed }, rerun: 2, items: Script_filter_items }.to_json)
+puts({ variables: { uid_seed: Uid_seed }, rerun: 1, items: Script_filter_items }.to_json)

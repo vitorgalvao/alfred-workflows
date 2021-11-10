@@ -2,7 +2,7 @@ List the contents of a directory and act on them. Call the workflow with `rdn` t
 
 ![](https://i.imgur.com/K7ro80G.png)
 
-The list is auto-refreshed every few seconds, making for a good way to track changes.
+The list is auto-refreshed, making for a good way to track changes.
 
 To act on the selections, use the standard Alfred shortcuts. You can activate file actions, dive into directories, preview files, add them to the file buffer… ⌥↵ is hardcoded to always open the selection in the Finder.
 
