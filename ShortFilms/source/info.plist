@@ -440,11 +440,11 @@ fi</string>
 				<string>readonly plist_file='com.vitorgalvao.launchd.alfredshortfilmsupdate.plist'
 readonly launchagents_dir="${HOME}/Library/LaunchAgents"
 readonly installed_plist_file="${launchagents_dir}/${plist_file}"
-[[ -d "${launchagents_dir}" ]] || mkdir -p "${launchagents_dir}"
 
 readonly action="${1}"
 
 function install_agent {
+  mkdir -p "${launchagents_dir}"
   cp "${plist_file}" "${installed_plist_file}"
 
   # Short of the Week updates at about 10:00 EST
@@ -486,7 +486,7 @@ fi</string>
 			<key>config</key>
 			<dict>
 				<key>triggerid</key>
-				<string>shortfilmslaunchdinstall</string>
+				<string>shortfilmslaunchd</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.trigger.external</string>
@@ -586,7 +586,7 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>21.11</string>
+	<string>21.12</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
