@@ -131,33 +131,29 @@ if system('pgrep', 'caffeinate', out: File::NULL)
     icon: { path: 'icon_alt.png' }
   )
 else
-  given_timeout = ARGV[0]
+  Given_timeout = ARGV[0]
 
-  if given_timeout.nil? || !given_timeout.match(%r{^\d}) # Any given value must start with a digit
+  if Given_timeout.nil? || !Given_timeout.match(/^\d/) # Any given value must start with a digit
     script_filter_items.push(
       title: 'Turn it on',
       subtitle: 'Prevent your computer from going to sleep indefinitely',
       arg: 'on'
     )
   else
-    # given_timout.match?(regex) is only available from ruby 2.4. Sierra comes with 2.0.
-    if %r{[\d ]s(econds)?} =~ given_timeout
-      timeout = given_timeout.to_i
-    elsif %r{[\d ]m(inutes)?} =~ given_timeout || %r{^[\d\.]+$} =~ given_timeout
-      timeout = (given_timeout.to_f * 60).to_i
-    elsif %r{[\d ]h(ours)?} =~ given_timeout
-      timeout = (given_timeout.to_f * 60 * 60).to_i
-    else
-      abort 'Invalid timeout. It need to be a number '
-    end
+    Timeout_seconds = case Given_timeout
+                      when /s(econds)?/ then Given_timeout.to_i
+                      when /m(inutes)?/ then (Given_timeout.to_f * 60).to_i
+                      when /h(ours)?/ then (Given_timeout.to_f * 60 * 60).to_i
+                      else (Given_timeout.to_f * 60).to_i # Default to minutes
+                      end
 
-    timeout_in_minutes = timeout / 60
-    plurality = timeout_in_minutes == 1 ? 'minute' : 'minutes'
+    Timeout_minutes = Timeout_seconds / 60
+    plurality = Timeout_minutes == 1 ? 'minute' : 'minutes'
 
     script_filter_items.push(
       title: 'Turn it on',
-      subtitle: "Prevent your computer from going to sleep for #{timeout_in_minutes} #{plurality}",
-      arg: timeout
+      subtitle: "Prevent your computer from going to sleep for #{Timeout_minutes} #{plurality}",
+      arg: Timeout_minutes
     )
   end
 end
@@ -424,7 +420,7 @@ Run `coffee` again to manually turn it off.
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>20.2</string>
+	<string>21.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
