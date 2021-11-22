@@ -715,7 +715,7 @@ Everything supported by [MultiMarkdown](https://en.wikipedia.org/wiki/MultiMarkd
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>21.14</string>
+	<string>21.15</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
