@@ -1,6 +1,6 @@
 #!/bin/bash
 
-readonly valid_resources=('blueutil' 'calmnotifications' 'cpulimit' 'ddgr' 'exiftool' 'ffmpeg' 'googler' 'mediainfo' 'multimarkdown' 'trash' 'youtubedl') # Keep in sync with resource functions
+readonly valid_resources=('blueutil' 'calmnotifications' 'cpulimit' 'ddgr' 'exiftool' 'ffmpeg' 'googler' 'mediainfo' 'multimarkdown' 'pngpaste' 'trash' 'youtubedl') # Keep in sync with resource functions
 readonly shared_resources_id='com.vitorgalvao.alfred._sharedresources'
 [[ -n "${alfred_workflow_data}" ]] || readonly alfred_workflow_data="$(mktemp -d)/Workflow Data/fake_workflow" # To prevent commands reliant on this variable from breaking when testing outside a Workflow
 readonly shared_resources_dir="$(dirname "${alfred_workflow_data}")/${shared_resources_id}"
@@ -258,6 +258,30 @@ function multimarkdown_getter {
   rm -rf "${extract_dir}"
 }
 
+function pngpaste_getter {
+  # Manually change
+  local -r bin_name='pngpaste'
+  renew_bin "${bin_name}" '90' || return
+
+  local -r bin_version='0.2.3'
+  local -r bin_sha="$([[ "${arch}" == 'i386' ]] && echo '20d394d6036f0ffe382b36151c15d3ea9b20ce9d1e5fe6166ce11546c5e871f4' || echo 'd28443efa53d8c51e0ba85a6985506cc21aad15a346df76ff04c2eea0acd33ff')"
+
+  # Consistent over Hombrew installs
+  ensure_resources_dir
+  local -r extract_dir="$(mktemp -d)"
+  local -r bin_path="${shared_resources_bin}/${bin_name}"
+  local -r bin_url="https://ghcr.io/v2/homebrew/core/${bin_name}/blobs/sha256:${bin_sha}"
+
+  if curl --silent --location --header 'Authorization: Bearer QQ==' "${bin_url}" | tar xC "${extract_dir}"; then
+    mv "${extract_dir}/${bin_name}/${bin_version}/bin/${bin_name}" "${bin_path}"
+    chmod +x "${bin_path}"
+  else
+    curl_error "${bin_name}"
+  fi
+
+  rm -rf "${extract_dir}"
+}
+
 function trash_getter {
   # Manually change
   local -r bin_name='trash'
@@ -286,7 +310,10 @@ function youtubedl_getter {
   local -r bin_name='youtube-dl'
   renew_bin "${bin_name}" '15' || return
 
-  youtube-dl --update --quiet && return
+  if youtube-dl --update --quiet; then
+    touch "$(command -v 'youtube-dl')"
+    return
+  fi
 
   ensure_resources_dir
   local -r bin_path="${shared_resources_bin}/${bin_name}"
