@@ -33,9 +33,21 @@ def get_env(variable:, default:, as_bool: false, as_pathname: false, match_list:
   var_as_string
 end
 
-# Constants
-ENV['PATH'] = Open3.capture2(Pathname.pwd.join('_sharedresources').to_path, 'ffmpeg', 'youtubedl').first
+# Set up tools
+ENV['PATH'] = Open3.capture2(Pathname.pwd.join('_sharedresources').to_path, 'ffmpeg').first
 
+# Check for yt-dlp
+unless system('yt-dlp', '--version', out: File::NULL, err: File::NULL)
+  abort <<~MESSAGE
+    Did not find "yt-dlp". You will need to install it yourself. Homebrew recommended.
+
+    Alternatively, download an older version of this Workflow without the dependency: https://github.com/vitorgalvao/alfred-workflows/tree/c0d9c9313857676997e6e05d9dda65cfa5fcda6a/DownMedia
+
+    Keep in mind that is no longer supported. It will continue to work until the (discontinued) youtube-dl no longer does.
+  MESSAGE
+end
+
+# Constants
 Add_to_watchlist = ENV['add_to_watchlist'] == 'true'
 
 Audio_only_format = get_env(
@@ -198,7 +210,7 @@ def download_url(url, media_type, add_to_watchlist_string, full_playlist_string)
     '%(playlist)s/%(playlist_index)s-%(title)s.%(ext)s' :
     '%(title)s.%(ext)s'
 
-  # Video format is forced for consistency between youtube-dl's --get-format and what it downloads
+  # Video format is forced for consistency between --get-filename and what is downloaded
   flags = media_type == 'audio' ?
     ['--extract-audio', '--audio-quality', '0', '--audio-format', Audio_only_format] :
     ['--all-subs', '--embed-subs', '--format', 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best']
@@ -212,7 +224,7 @@ def download_url(url, media_type, add_to_watchlist_string, full_playlist_string)
   # May fail in certain situations, due to bugs in getting the filename beforehand
   # https://github.com/ytdl-org/youtube-dl/issues/5710
   # https://github.com/ytdl-org/youtube-dl/issues/7137
-  get_filename = Open3.capture2('youtube-dl', '--get-filename', *flags).first.strip
+  get_filename = Open3.capture2('yt-dlp', '--get-filename', *flags).first.strip
 
   save_path = full_playlist ?
     Pathname(get_filename.split("\n").first).dirname :
@@ -224,7 +236,7 @@ def download_url(url, media_type, add_to_watchlist_string, full_playlist_string)
   error('Download failed', 'The URL is invalid') if get_filename.empty?
   notification("Downloading #{media_type.capitalize}", title)
 
-  error('Download failed', 'You may be able to restart it with `dp`') unless system('youtube-dl', '--newline', *flags, out: Progress_file.to_path)
+  error('Download failed', 'You may be able to restart it with `dp`') unless system('yt-dlp', '--newline', *flags, out: Progress_file.to_path)
   notification('Download successful', title)
 
   # xattr returns before the action is complete, not giving enough time for the file to have the attribute before sending to WatchList, so only continue after the attribute is present

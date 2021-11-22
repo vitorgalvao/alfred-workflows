@@ -310,7 +310,10 @@ function youtubedl_getter {
   local -r bin_name='youtube-dl'
   renew_bin "${bin_name}" '15' || return
 
-  youtube-dl --update --quiet && return
+  if youtube-dl --update --quiet; then
+    touch "$(command -v 'youtube-dl')"
+    return
+  fi
 
   ensure_resources_dir
   local -r bin_path="${shared_resources_bin}/${bin_name}"
