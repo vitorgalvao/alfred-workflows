@@ -20,20 +20,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>9B985890-BE53-483E-A5BD-BA92DB48A4D9</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>9B985890-BE53-483E-A5BD-BA92DB48A4D9</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>D3DD476B-CBF3-47A2-8316-CBD255AAE3F6</string>
+				<string>5116FFE2-57F2-4B38-88EA-24FC77101347</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -55,19 +42,6 @@
 				<false/>
 			</dict>
 		</array>
-		<key>D3DD476B-CBF3-47A2-8316-CBD255AAE3F6</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>5116FFE2-57F2-4B38-88EA-24FC77101347</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
@@ -79,6 +53,29 @@
 	<string>CalmNotifications</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>/usr/bin/shortcuts run 'Calm Notifications' &lt;&lt;&lt; "${1}"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>4C30FC65-71BF-4EFE-94CC-B038B4D991CA</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -104,7 +101,7 @@
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
-				<integer>2</integer>
+				<integer>1</integer>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>keyword</key>
@@ -122,15 +119,12 @@
 				<key>script</key>
 				<string>require 'json'
 require 'open3'
-require 'pathname'
-
-ENV['PATH'] = Open3.capture2(Pathname.pwd.join('_sharedresources').to_path, 'calmnotifications').first
 
 script_filter_items = []
 
-dnd_active = Open3.capture2('calm-notifications', 'status').first.strip == 'on'
+Dnd_active = !Open3.capture2('defaults', 'read', 'com.apple.controlcenter', 'NSStatusItem Visible FocusModes').first.to_i.zero?
 
-if dnd_active
+if Dnd_active
   script_filter_items.push(
     title: 'Turn it off',
     subtitle: 'Allow notifications again',
@@ -138,11 +132,24 @@ if dnd_active
     icon: { path: 'icon_alt.png' }
   )
 else
-  script_filter_items.push(
-    title: 'Turn it on',
-    subtitle: 'Stop notifications from going through until tomorrow',
-    arg: 'on'
-  )
+  Given_timeout = ARGV[0]
+
+  if Given_timeout.nil? || !Given_timeout.match(%r{^\d}) # Any given value must start with a digit
+    script_filter_items.push(
+      title: 'Turn it on',
+      subtitle: 'Stop notifications from going through',
+      arg: 'on'
+    )
+  else
+    Timeout_minutes = Given_timeout.match?(/h(ours)?/) ? (Given_timeout.to_f * 60).to_i : Given_timeout
+    Plurality = Timeout_minutes == 1 ? 'minute' : 'minutes'
+
+    script_filter_items.push(
+      title: 'Turn it on',
+      subtitle: "Stop notifications from going through for #{Timeout_minutes} #{Plurality}",
+      arg: Timeout_minutes
+    )
+  end
 end
 
 puts({ items: script_filter_items }.to_json)</string>
@@ -157,7 +164,7 @@ puts({ items: script_filter_items }.to_json)</string>
 				<key>type</key>
 				<integer>2</integer>
 				<key>withspace</key>
-				<false/>
+				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
@@ -174,36 +181,11 @@ puts({ items: script_filter_items }.to_json)</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>PATH="$(./_sharedresources 'calmnotifications')"
-
-calm-notifications "${1}"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>4C30FC65-71BF-4EFE-94CC-B038B4D991CA</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
 				<string># THESE VARIABLES MUST BE SET. SEE THE ONEUPDATER README FOR AN EXPLANATION OF EACH.
 readonly remote_info_plist="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/source/info.plist"
 readonly workflow_url="https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/${alfred_workflow_name}/${alfred_workflow_name}.alfredworkflow"
 readonly download_type='direct'
-readonly frequency_check='0'
+readonly frequency_check='4'
 
 # FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED!
 function abort {
@@ -282,64 +264,9 @@ fi</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>if [[ "$(sw_vers -productVersion | cut -d '.' -f 1)" -eq '11' ]]; then
-  echo -n 'ON BIG SUR'
-fi</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>9B985890-BE53-483E-A5BD-BA92DB48A4D9</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>conditions</key>
-				<array>
-					<dict>
-						<key>inputstring</key>
-						<string></string>
-						<key>matchcasesensitive</key>
-						<false/>
-						<key>matchmode</key>
-						<integer>0</integer>
-						<key>matchstring</key>
-						<string>ON BIG SUR</string>
-						<key>outputlabel</key>
-						<string>On Big Sur</string>
-						<key>uid</key>
-						<string>CD926E6F-8316-4FAA-A8EE-BF4422886F70</string>
-					</dict>
-				</array>
-				<key>elselabel</key>
-				<string>Not on Big Sur</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.conditional</string>
-			<key>uid</key>
-			<string>D3DD476B-CBF3-47A2-8316-CBD255AAE3F6</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
 	</array>
 	<key>readme</key>
-	<string>Call `dnd` to toggle Do Not Disturb.
+	<string>Call `dnd` to toggle Do Not Disturb. Optionally give a value to active it for that amount of minutes, or hours if an `h` is included.
 
 ![](https://i.imgur.com/wbWvItv.png)
 ![](https://i.imgur.com/uFToKeR.png)</string>
@@ -355,9 +282,9 @@ fi</string>
 		<key>4C30FC65-71BF-4EFE-94CC-B038B4D991CA</key>
 		<dict>
 			<key>xpos</key>
-			<integer>250</integer>
+			<integer>245</integer>
 			<key>ypos</key>
-			<integer>150</integer>
+			<integer>30</integer>
 		</dict>
 		<key>5116FFE2-57F2-4B38-88EA-24FC77101347</key>
 		<dict>
@@ -366,16 +293,9 @@ fi</string>
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>560</integer>
+			<integer>245</integer>
 			<key>ypos</key>
-			<integer>275</integer>
-		</dict>
-		<key>9B985890-BE53-483E-A5BD-BA92DB48A4D9</key>
-		<dict>
-			<key>xpos</key>
-			<integer>250</integer>
-			<key>ypos</key>
-			<integer>275</integer>
+			<integer>150</integer>
 		</dict>
 		<key>CCD42A98-2018-4BC4-9B3A-90AA2B0AEB3A</key>
 		<dict>
@@ -384,16 +304,9 @@ fi</string>
 			<key>ypos</key>
 			<integer>30</integer>
 		</dict>
-		<key>D3DD476B-CBF3-47A2-8316-CBD255AAE3F6</key>
-		<dict>
-			<key>xpos</key>
-			<integer>410</integer>
-			<key>ypos</key>
-			<integer>295</integer>
-		</dict>
 	</dict>
 	<key>version</key>
-	<string>21.6</string>
+	<string>21.7</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
