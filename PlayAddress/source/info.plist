@@ -805,7 +805,7 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 		<string>use_watchlist</string>
 	</array>
 	<key>version</key>
-	<string>21.11</string>
+	<string>21.12</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
