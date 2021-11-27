@@ -141,9 +141,9 @@ else
     )
   else
     Timeout_seconds = case Given_timeout
-                      when /s(econds)?/ then Given_timeout.to_i
-                      when /m(inutes)?/ then (Given_timeout.to_f * 60).to_i
-                      when /h(ours)?/ then (Given_timeout.to_f * 60 * 60).to_i
+                      when /\d\s*s/ then Given_timeout.to_i
+                      when /\d\s*m/ then (Given_timeout.to_f * 60).to_i
+                      when /\d\s*h/ then (Given_timeout.to_f * 60 * 60).to_i
                       else (Given_timeout.to_f * 60).to_i # Default to minutes
                       end
 
@@ -420,7 +420,7 @@ Run `coffee` again to manually turn it off.
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>21.1</string>
+	<string>21.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
