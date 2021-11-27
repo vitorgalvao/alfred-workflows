@@ -61,7 +61,13 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>/usr/bin/shortcuts run 'Calm Notifications' &lt;&lt;&lt; "${1}"</string>
+				<string>if ! /usr/bin/shortcuts list | grep --quiet 'Calm Notifications'; then
+  /usr/bin/open './Calm Notifications.shortcut'
+  echo 'Missing Calm Notifications Shortcut' &gt;&amp;2
+  exit 1
+fi
+
+/usr/bin/shortcuts run 'Calm Notifications' &lt;&lt;&lt; "${1}"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -120,9 +126,9 @@
 				<string>require 'json'
 require 'open3'
 
-script_filter_items = []
+Dnd_active = !Open3.capture2('/usr/bin/defaults', 'read', 'com.apple.controlcenter', 'NSStatusItem Visible FocusModes').first.to_i.zero?
 
-Dnd_active = !Open3.capture2('defaults', 'read', 'com.apple.controlcenter', 'NSStatusItem Visible FocusModes').first.to_i.zero?
+script_filter_items = []
 
 if Dnd_active
   script_filter_items.push(
@@ -134,14 +140,14 @@ if Dnd_active
 else
   Given_timeout = ARGV[0]
 
-  if Given_timeout.nil? || !Given_timeout.match(%r{^\d}) # Any given value must start with a digit
+  if Given_timeout.nil? || !Given_timeout.match(/^\d/) # Any given value must start with a digit
     script_filter_items.push(
       title: 'Turn it on',
       subtitle: 'Stop notifications from going through',
       arg: 'on'
     )
   else
-    Timeout_minutes = Given_timeout.match?(/h(ours)?/) ? (Given_timeout.to_f * 60).to_i : Given_timeout
+    Timeout_minutes = Given_timeout.match?(/\d\s*h/) ? (Given_timeout.to_f * 60).to_i : Given_timeout.to_i
     Plurality = Timeout_minutes == 1 ? 'minute' : 'minutes'
 
     script_filter_items.push(
@@ -266,10 +272,15 @@ fi</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Call `dnd` to toggle Do Not Disturb. Optionally give a value to active it for that amount of minutes, or hours if an `h` is included.
+	<string>Call `dnd` to toggle Do Not Disturb. Optionally give a value to active it for that amount of minutes, or hours if an `h` is appended.
 
-![](https://i.imgur.com/wbWvItv.png)
-![](https://i.imgur.com/uFToKeR.png)</string>
+![](https://i.imgur.com/1DZpLvB.png)
+![](https://i.imgur.com/iP21Rl7.png)
+![](https://i.imgur.com/RTPzTs8.png)
+
+If you don’t have the required Shortcut, it will prompt you to install it.
+
+![](https://i.imgur.com/IhzKVLN.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>3E435725-836B-4634-BF9F-B8DBADDDEABF</key>
@@ -306,7 +317,7 @@ fi</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>21.7</string>
+	<string>21.8</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
