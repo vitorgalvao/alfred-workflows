@@ -6,7 +6,7 @@
 	<string>com.vitorgalvao.alfred.denteazul</string>
 	<key>connections</key>
 	<dict>
-		<key>4DAC0280-12D9-4F87-BE88-28416F84BA04</key>
+		<key>660C13F4-B83C-4929-9DD0-735D2BAA2F07</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -36,7 +36,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>4DAC0280-12D9-4F87-BE88-28416F84BA04</string>
+				<string>660C13F4-B83C-4929-9DD0-735D2BAA2F07</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -69,6 +69,31 @@
 	<string>DenteAzul</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>on switchBluetooth(setState)	tell application "System Preferences" to reveal pane id "com.apple.preferences.Bluetooth"
+
+	delay 2 -- Give the pane time to load	tell application "System Events" to tell process "System Preferences"		set boxToggle to checkbox "Show Bluetooth in menu bar" of window "Bluetooth"		if setState is "on" then			click button "Turn Bluetooth On" of window "Bluetooth"			tell boxToggle to if not (its value as boolean) then click boxToggle		else			click button "Turn Bluetooth Off" of window "Bluetooth"			tell boxToggle to if (its value as boolean) then click boxToggle		end if	end tell	tell application "System Preferences" to quitend switchBluetoothon run argv	switchBluetooth(item 1 of argv)end run</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>660C13F4-B83C-4929-9DD0-735D2BAA2F07</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -136,29 +161,6 @@ puts({ items: script_filter_items }.to_json)</string>
 			<string>75C921E4-2503-460C-A531-3D3F4EC85976</string>
 			<key>version</key>
 			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>68</integer>
-				<key>script</key>
-				<string>on switchBluetooth(setState)	tell application "System Preferences"		reveal pane id "com.apple.preferences.Bluetooth"		tell application "System Events" to tell process "System Preferences"			set boxToggle to checkbox "Show Bluetooth in menu bar" of window "Bluetooth"						if setState is "on" then				click button "Turn Bluetooth On" of window "Bluetooth"				tell boxToggle to if not (its value as boolean) then click boxToggle			else				click button "Turn Bluetooth Off" of window "Bluetooth"				tell boxToggle to if (its value as boolean) then click boxToggle			end if		end tell	end tell	tell application "System Preferences" to quitend switchBluetoothswitchBluetooth("{query}")</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>6</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>4DAC0280-12D9-4F87-BE88-28416F84BA04</string>
-			<key>version</key>
-			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -369,7 +371,7 @@ puts({ items: script_filter_items }.to_json)</string>
 			<key>ypos</key>
 			<integer>25</integer>
 		</dict>
-		<key>4DAC0280-12D9-4F87-BE88-28416F84BA04</key>
+		<key>660C13F4-B83C-4929-9DD0-735D2BAA2F07</key>
 		<dict>
 			<key>xpos</key>
 			<integer>265</integer>
@@ -403,7 +405,7 @@ puts({ items: script_filter_items }.to_json)</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>21.8</string>
+	<string>21.9</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
