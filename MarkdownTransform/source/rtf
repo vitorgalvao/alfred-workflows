@@ -17,7 +17,7 @@ Rich_text_style = '
 # An empty line is added to the beginning of STDIN so text starting with a word and a colon won't be considered metadata
 # https://web.archive.org/web/20210804225002/https://fletcher.github.io/MultiMarkdown-5/syntax.html
 Html = "#{Rich_text_style}#{Open3.capture2('multimarkdown', '--', stdin_data: "\n#{ARGV[0]}").first}".
-  gsub(/<img[^>]*>/, ''). # Strip images
+  gsub(/<img.*?>/, ''). # Strip images
   gsub('</p>', '</p><br>') # Enforce line breaks after paragraphs
 
 Rtf_text = Open3.capture2(

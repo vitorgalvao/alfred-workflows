@@ -22,7 +22,7 @@ print CGI.unescapeHTML(Open3.capture2('multimarkdown', '--', stdin_data: "\n#{AR
   bbcode_sub('underline', 'u').
   gsub(%r{<a href="(.*?)">}, '[url="\1"]').gsub('</a>', '[/url]').
   gsub('<ol>', '[list=1]').gsub('</ol>', '[/list]').
-  gsub('<img src="', '[img]').gsub(%r{" alt=".*?" />}, '[/img]').
+  gsub(%r{<img.*?src=['"](.+?)['"].*?>}, '[img]\1[/img]').
   gsub(%r{</?figure>}, '').gsub(%r{</?figcaption>}, '').
   bbcode_sub('ul', 'list').
   bbcode_sub('li', '*').
