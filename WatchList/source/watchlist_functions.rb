@@ -351,7 +351,14 @@ def mark_watched(id)
     return
   end
 
-  trash(item['path'])
+  # Trash
+  trashed_name = trash(item['path'])
+  return if File.basename(item['path']) == trashed_name
+
+  # If name had to change to send to Trash, update list with new name
+  item['trashed_name'] = trashed_name
+  list_hash[id] = item
+  File.write(Watched_list, list_hash.first(maximum_watched).to_h.to_yaml)
 end
 
 def mark_unwatched(id)
@@ -363,7 +370,16 @@ def mark_unwatched(id)
   # Try to recover trashed file
   return if item['type'] == 'stream'
 
-  trashed_path = File.join(ENV['HOME'], '.Trash', File.basename(item['path']))
+  if item['trashed_name']
+    trashed_path = File.join(ENV['HOME'], '.Trash', item['trashed_name'])
+
+    list_hash = YAML.load_file(Towatch_list)
+    item.delete('trashed_name')
+    list_hash[id] = item
+    File.write(Towatch_list, list_hash.to_yaml)
+  else
+    trashed_path = File.join(ENV['HOME'], '.Trash', File.basename(item['path']))
+  end
 
   error('Could not find item in Trash') unless File.exist?(trashed_path)
   error('Could not recover from Trash because another item exists at original location') if File.exist?(item['path'])
@@ -534,7 +550,7 @@ def ensure_data_paths
 end
 
 def trash(path)
-  system('osascript', '-l', 'JavaScript', '-e', 'function run(argv) { Application("Finder").delete(Path(argv[0])) }', path) if File.exist?(path)
+  Open3.capture2('osascript', '-l', 'JavaScript', '-e', 'function run(argv) { return Application("Finder").delete(Path(argv[0])).name() }', path).first.strip if File.exist?(path)
 end
 
 def notification(message, sound = '')
