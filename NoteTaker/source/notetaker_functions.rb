@@ -90,8 +90,7 @@ def edit_note(path:)
 end
 
 def trash(path:)
-  escaped_path = path.gsub("'") { "\\'" } # Escape single quotes, since they are the delimiters for the path in the JXA command
-  system('osascript', '-l', 'JavaScript', '-e', "Application('Finder').delete(Path('#{escaped_path}'))")
+  system('osascript', '-l', 'JavaScript', '-e', 'function run(argv) { Application("Finder").delete(Path(argv[0])) }', path)
 end
 
 # Constants
