@@ -339,7 +339,7 @@ def mark_watched(id)
     begin
       Integer(ENV['maximum_watched'], 10)
     rescue ArgumentError
-      9
+      20
     end
 
   switch_list(id, Towatch_list, Watched_list)
@@ -534,8 +534,7 @@ def ensure_data_paths
 end
 
 def trash(path)
-  escaped_path = path.gsub("'"){ "\\'" } # Escape single quotes, since they are the delimiters for the path in the JXA command
-  system('osascript', '-l', 'JavaScript', '-e', "Application('Finder').delete(Path('#{escaped_path}'))") if File.exist?(path)
+  system('osascript', '-l', 'JavaScript', '-e', 'function run(argv) { Application("Finder").delete(Path(argv[0])) }', path) if File.exist?(path)
 end
 
 def notification(message, sound = '')
