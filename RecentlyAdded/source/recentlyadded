@@ -1,0 +1,81 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'json'
+require 'open3'
+require 'pathname'
+
+# Helpers
+def get_env(variable:, default:, as_bool: false, as_pathname: false, match_list: [])
+  # If boolean, return early
+  if as_bool
+    case variable
+    when true, 'true', 'yes', 1, '1' then return true
+    when false, 'false', 'no', 0, '0' then return false
+    when nil, ''
+      return default if [true, false].include?(default)
+      raise ArgumentError, '"as_bool" is set but variable is nil/empty and "default" is not a boolean'
+    else raise ArgumentError, "Invalid value: #{variable.inspect}"
+    end
+  end
+
+  # Extract string
+  var_as_string = lambda {
+    return default if variable.nil? || variable.empty?
+    return variable if match_list.empty? || match_list.include?(variable)
+
+    default
+  }.call
+
+  # If pathname, make it now
+  return Pathname.new(var_as_string).expand_path if as_pathname
+
+  var_as_string
+end
+
+def by_added(entries)
+  Open3.capture2(
+    'mdls',
+    '-name', 'kMDItemDateAdded',
+    '-raw',
+    *entries.map(&:to_path)
+  )
+  .first
+  .split("\0")
+  .map.with_index { |t, i| [t, entries[i]] }
+  .sort
+  .map { |p| p[1] }
+end
+
+# Constants
+Order = ARGV[0] # added, added_reverse, modified, modified_reverse
+
+Recent_dirs = get_env(
+  variable: ENV['directories'],
+  default: '~/Downloads, ~/Desktop'
+).split(',').map { |p| Pathname.new(p.strip).expand_path }
+
+Uid_seed = get_env(
+  variable: ENV['uid_seed'],
+  default: rand.to_s
+)
+
+# Main
+Entries = lambda {
+  all = Recent_dirs.flat_map { |d| d.children.reject { |p| p.basename.to_path.start_with?('.') } }
+  ordered = Order.start_with?('modified') ? all.sort_by(&:mtime) : by_added(all)
+  Order.end_with?('_reverse') ? ordered.reverse : ordered
+}.call
+
+Script_filter_items = Entries.each_with_object([]) { |entry, items|
+  items.push(
+    uid: "#{Uid_seed} #{entry}",
+    type: 'file',
+    title: entry.basename,
+    subtitle: entry.sub(%r{^#{ENV['HOME']}/}, '').dirname,
+    icon: { path: entry, type: 'fileicon' },
+    arg: entry
+  )
+}
+
+puts({ variables: { uid_seed: Uid_seed }, rerun: 1, items: Script_filter_items }.to_json)

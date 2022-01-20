@@ -144,10 +144,10 @@ Quit all apps, with exceptions
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/QuitArena) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/QuitArena/QuitArena.alfredworkflow)
 
-### RecentDownloads <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RecentDownloads/source/icon.png' width='60' align='center' alt='RecentDownloads icon'>
-List and act on the contents of a directory
+### RecentlyAdded <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RecentlyAdded/source/icon.png' width='60' align='center' alt='RecentlyAdded icon'>
+List directory contents by added date
 
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/RecentDownloads) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RecentDownloads/RecentDownloads.alfredworkflow)
+[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/RecentlyAdded) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RecentlyAdded/RecentlyAdded.alfredworkflow)
 
 ### RecommendationNation <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RecommendationNation/source/icon.png' width='60' align='center' alt='RecommendationNation icon'>
 Keep a contextual list of recommendations
