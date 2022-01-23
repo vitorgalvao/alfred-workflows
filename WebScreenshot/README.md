@@ -2,7 +2,7 @@ Take screenshots with a keyboard shortcut and upload them directly to [imgur](ht
 
 ![](https://i.imgur.com/wP0LTlj.png)
 
-You may also upload an image (or pdf — imgur supports it as an upload but converts to png) by picking the `Upload Screenshot` `File Action`.
+You may also upload an image or video by picking the `Upload Screenshot` File Action.
 
 `uploadscreenshotclipboard` will upload the image in your clipboard.
 

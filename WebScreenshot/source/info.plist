@@ -147,6 +147,31 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>source './webscreenshot'
+
+take_screenshot</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>6F290C99-0052-46BF-BB61-CDDB316DEBB1</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>action</key>
 				<integer>0</integer>
 				<key>argument</key>
@@ -172,31 +197,6 @@
 			<string>alfred.workflow.trigger.hotkey</string>
 			<key>uid</key>
 			<string>E29003AD-6B07-4A51-B8E5-814A5F3F7270</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>source './webscreenshot'
-
-take_screenshot</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>6F290C99-0052-46BF-BB61-CDDB316DEBB1</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -232,11 +232,8 @@ upload_file "${1}"</string>
 				<integer>0</integer>
 				<key>filetypes</key>
 				<array>
-					<string>com.adobe.pdf</string>
-					<string>com.compuserve.gif</string>
-					<string>public.jpeg</string>
-					<string>public.png</string>
-					<string>public.tiff</string>
+					<string>+public.image</string>
+					<string>+public.video</string>
 				</array>
 				<key>name</key>
 				<string>Upload screenshot</string>
@@ -554,7 +551,7 @@ puts({ items: script_filter_items }.to_json)
 
 ![](https://i.imgur.com/wP0LTlj.png)
 
-You may also upload an image (or pdf — imgur supports it as an upload but converts to png) by picking the `Upload Screenshot` `File Action`.
+You may also upload an image or video by picking the `Upload Screenshot` File Action.
 
 `uploadscreenshotclipboard` will upload the image in your clipboard.
 
@@ -653,7 +650,7 @@ You may also upload an image (or pdf — imgur supports it as an upload but conv
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>21.3</string>
+	<string>22.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
