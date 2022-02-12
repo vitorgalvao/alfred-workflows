@@ -60,7 +60,7 @@
 				<key>destinationuid</key>
 				<string>6A13300D-DEB5-4476-9E16-693114781152</string>
 				<key>modifiers</key>
-				<integer>524288</integer>
+				<integer>1048576</integer>
 				<key>modifiersubtext</key>
 				<string>Also prevent the display from going to sleep</string>
 				<key>vitoclose</key>
@@ -123,10 +123,13 @@
 
 script_filter_items = []
 
-if system('pgrep', 'caffeinate', out: File::NULL)
+if system('/usr/bin/pgrep', '-f', 'coffeecoffee_process_anchor', out: File::NULL)
+  Turn_off_time = File.read("#{ENV['alfred_workflow_cache']}/auto_turn_off_at.txt").chomp rescue nil
+  Subtitle = Turn_off_time.nil? ? 'Let your computer go to sleep as usual' : "Set to auto turn off at around #{Turn_off_time}"
+
   script_filter_items.push(
     title: 'Turn it off',
-    subtitle: 'Let your computer go to sleep as usual',
+    subtitle: Subtitle,
     arg: 'off',
     icon: { path: 'icon_alt.png' }
   )
@@ -137,7 +140,7 @@ else
     script_filter_items.push(
       title: 'Turn it on',
       subtitle: 'Prevent your computer from going to sleep indefinitely',
-      arg: 'on'
+      arg: 'coffeecoffee_process_anchor on'
     )
   else
     Timeout_seconds = case Given_timeout
@@ -153,7 +156,7 @@ else
     script_filter_items.push(
       title: 'Turn it on',
       subtitle: "Prevent your computer from going to sleep for #{Timeout_minutes} #{plurality}",
-      arg: Timeout_minutes
+      arg: "coffeecoffee_process_anchor #{Timeout_seconds}"
     )
   end
 end
@@ -183,30 +186,45 @@ puts({ items: script_filter_items }.to_json)</string>
 			<key>config</key>
 			<dict>
 				<key>concurrently</key>
-				<false/>
+				<true/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>timeout="${1}"
-if [[ "${prevent_display_sleep}" == 'true' ]]; then
-  display=(-d)
-else
-  display=()
+				<string>readonly arg="${1#coffeecoffee_process_anchor }" # Remove anchor and keep argument
+readonly turn_off_file="${alfred_workflow_cache}/auto_turn_off_at.txt"
+
+trap '[[ -f "${turn_off_file}" ]] &amp;&amp; rm "${turn_off_file}"' EXIT
+
+# Turn off
+if [[ "${arg}" == 'off' ]]; then
+  readonly pgid="$(/usr/bin/pgrep -f 'coffeecoffee_process_anchor')"
+  kill -- -"${pgid}"
+  exit 0
 fi
 
-if [[ "${timeout}" == 'off' ]]; then
-  killall caffeinate
-elif [[ "${timeout}" == 'on' ]]; then
-  caffeinate "${display[@]}" &amp;&gt; /dev/null &amp;
+# Turn on
+if [[ "${arg}" =~ ^[0-9]+$ ]]; then
+  readonly timeout=('-t' "${arg}")
+
+  mkdir -p "${alfred_workflow_cache}"
+  date -v "+${arg}S" '+%H:%M' &gt; "${turn_off_file}"
 else
-  caffeinate "${display[@]}" -t "${timeout}" &amp;&gt; /dev/null &amp;
-fi</string>
+  readonly timeout=()
+fi
+
+if [[ "${prevent_display_sleep}" == 'true' ]]; then
+  readonly display=(-d)
+else
+  readonly display=()
+fi
+
+/usr/bin/caffeinate "${timeout[@]}" "${display[@]}"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>5</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -358,13 +376,16 @@ fi</string>
 	<key>readme</key>
 	<string>Prevent your computer from going to sleep.
 
-Type `coffee` to turn it on. Action with ⌥ to also prevent the display from going to sleep.
+Type `coffee` to turn it on. Action with ⌘ to also prevent the display from going to sleep.
+
 ![](https://i.imgur.com/GSUCRr4.png)
 
-If you give a value it’ll be active for that amount of time. It defaults to minutes, but will also understand seconds and hours.
+Give a value and it’ll be active for that amount of time. It defaults to minutes but understands seconds and hours.
+
 ![](https://i.imgur.com/lrTcwSa.png)
 
 Run `coffee` again to manually turn it off.
+
 ![](https://i.imgur.com/d9NqISv.png)</string>
 	<key>uidata</key>
 	<dict>
@@ -420,7 +441,7 @@ Run `coffee` again to manually turn it off.
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>21.2</string>
+	<string>22.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
