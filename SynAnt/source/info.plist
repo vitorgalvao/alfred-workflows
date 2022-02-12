@@ -29,7 +29,7 @@
 				<key>modifiersubtext</key>
 				<string>Synonyms for this word</string>
 				<key>vitoclose</key>
-				<false/>
+				<true/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -39,7 +39,7 @@
 				<key>modifiersubtext</key>
 				<string>Antonyms for this word</string>
 				<key>vitoclose</key>
-				<false/>
+				<true/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -75,7 +75,7 @@
 				<key>modifiersubtext</key>
 				<string>Synonyms for this word</string>
 				<key>vitoclose</key>
-				<false/>
+				<true/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -85,7 +85,7 @@
 				<key>modifiersubtext</key>
 				<string>Antonyms for this word</string>
 				<key>vitoclose</key>
-				<false/>
+				<true/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -647,7 +647,7 @@ If you want to use one of the results to refine your query, press ⌘↵ (synony
 		<string>api_key</string>
 	</array>
 	<key>version</key>
-	<string>21.1</string>
+	<string>22.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
