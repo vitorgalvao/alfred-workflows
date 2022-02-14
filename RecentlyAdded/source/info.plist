@@ -381,7 +381,7 @@ fi</string>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
-				<string>./recently_added 'modified'</string>
+				<string>./recentlyadded 'modified'</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -491,7 +491,7 @@ By default the Workflow searches in `~/Desktop` and `~/Downloads`. Change the va
 		<string>~/Downloads, ~/Desktop</string>
 	</dict>
 	<key>version</key>
-	<string>22.1</string>
+	<string>22.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
