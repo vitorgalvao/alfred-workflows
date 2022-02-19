@@ -1,0 +1,3 @@
+Check and correct spelling in various languages. There are six configurable keyboard shortcuts, but you’ll typically need to setup only between one and three.
+
+Select a word and press a shortcut — the first one will show you the word following Alfred’s `spell` keyword, so you’ll have a set of words to pick from for the substitution (to have it automatically switch the word in this case, you’ll need to set it up in Alfred’s preferences under `Features` → `Dictionary`). The following five will immediately replace the word with the best suggestion (using the [After the Deadline](http://afterthedeadline.com/) service).
