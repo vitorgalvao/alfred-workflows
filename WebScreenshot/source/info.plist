@@ -147,31 +147,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>source './webscreenshot'
-
-take_screenshot</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>6F290C99-0052-46BF-BB61-CDDB316DEBB1</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>action</key>
 				<integer>0</integer>
 				<key>argument</key>
@@ -197,6 +172,31 @@ take_screenshot</string>
 			<string>alfred.workflow.trigger.hotkey</string>
 			<key>uid</key>
 			<string>E29003AD-6B07-4A51-B8E5-814A5F3F7270</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>source './webscreenshot'
+
+take_screenshot</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>6F290C99-0052-46BF-BB61-CDDB316DEBB1</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -347,7 +347,15 @@ fi</string>
 				<string>source './webscreenshot'
 readonly image="$(mktemp).png"
 
-_licensed/pngpaste/pngpaste "${image}" &amp;&amp; upload_file "${image}" || failure 'No image data in clipboard'</string>
+echo "${image}" &gt;&amp;2
+
+if clipboard_to_image "${image}"; then
+  upload_file "${image}"
+  rm "${image}"
+  exit 0
+fi
+
+failure 'No image data in clipboard'</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -414,7 +422,7 @@ _licensed/pngpaste/pngpaste "${image}" &amp;&amp; upload_file "${image}" || fail
 				<key>script</key>
 				<string>source './webscreenshot'
 
-_licensed/pngpaste/pngpaste "${HOME}/Desktop/$(date +%Y-%m-%d-%H-%M-%S).png" || failure 'No image data in clipboard'</string>
+clipboard_to_image "${HOME}/Desktop/$(date +'Screenshot %Y-%m-%d at %H.%M.%S.png')" || failure 'No image data in clipboard'</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -485,8 +493,7 @@ file_contents.each_line.with_index do |line, index|
   )
 end
 
-puts({ items: script_filter_items }.to_json)
-</string>
+puts({ items: script_filter_items }.to_json)</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -650,7 +657,7 @@ You may also upload an image or video by picking the `Upload Screenshot` File Ac
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>22.1</string>
+	<string>22.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
