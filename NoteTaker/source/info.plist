@@ -783,10 +783,14 @@ To keep notes synced between machines, use the `notes_dir` Workflow Environment 
 	<key>variables</key>
 	<dict>
 		<key>notes_dir</key>
-		<string>~/Dropbox/Libraries/AlfredWorkflowsData/NoteTaker</string>
+		<string>~/Library/Mobile Documents/com~apple~CloudDocs/Backups/Alfred Workflows Data/NoteTaker</string>
 	</dict>
+	<key>variablesdontexport</key>
+	<array>
+		<string>notes_dir</string>
+	</array>
 	<key>version</key>
-	<string>21.5</string>
+	<string>22.1</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
