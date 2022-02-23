@@ -160,7 +160,7 @@ Remove the quarantine attribute from your apps
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/RemoveQuarantine) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RemoveQuarantine/RemoveQuarantine.alfredworkflow)
 
 ### RenameAction <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RenameAction/source/icon.png' width='60' align='center' alt='RenameAction icon'>
-Renames a directory or file (preserving the extension)
+Rename files and folders
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/RenameAction) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RenameAction/RenameAction.alfredworkflow)
 
