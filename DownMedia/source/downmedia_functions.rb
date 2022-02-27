@@ -273,11 +273,9 @@ def save_pid(pid)
 end
 
 def kill_download
-  # Kill parent to prevent notification showing success and child to stop download
-  parent_process = Pid_file.read
-  child_process = Open3.capture2('/usr/bin/pgrep', '-P', parent_process).first.strip
-
-  system('kill', parent_process, child_process)
+  # Kill process tree to stop download and prevent notification from showing success
+  process_groud_id = Open3.capture2('/bin/ps', '-o', 'pgid=', Pid_file.read).first.strip
+  system('kill', '--', "-#{process_groud_id}")
 end
 
 def get_title_url
