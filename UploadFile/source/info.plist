@@ -83,6 +83,23 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>acceptsmulti</key>
+				<integer>1</integer>
+				<key>filetypes</key>
+				<array/>
+				<key>name</key>
+				<string>Upload file</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>DEA90A14-B8E3-469F-B314-4F347CF478B3</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -174,46 +191,6 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>acceptsmulti</key>
-				<true/>
-				<key>filetypes</key>
-				<array/>
-				<key>name</key>
-				<string>Upload file</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.action</string>
-			<key>uid</key>
-			<string>DEA90A14-B8E3-469F-B314-4F347CF478B3</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>./uploadfile abort</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>55E5D2C8-6F1C-416A-B7D8-C27393CF7485</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -292,6 +269,29 @@ puts(Script_filter_content.to_json)</string>
 			<key>version</key>
 			<integer>3</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>./uploadfile abort</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>55E5D2C8-6F1C-416A-B7D8-C27393CF7485</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>Upload to a myriad of file hosts directly from Alfred.
@@ -357,7 +357,7 @@ You can change the upload host in the `upload_file_to` Workflow Environment Vari
 		<string>transfer.sh</string>
 	</dict>
 	<key>version</key>
-	<string>21.6</string>
+	<string>22.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

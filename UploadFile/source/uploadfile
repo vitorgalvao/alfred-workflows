@@ -85,10 +85,10 @@ function transfer {
 }
 
 function kill_transfer {
-  # Kill parent to prevent notification showing success and child to stop upload
-  local -r parent_process="$(pgrep -f 'uploadfile upload')"
-  local -r oldest_child_process="$(pgrep -oP "${parent_process}")"
-  kill "${parent_process}" "${oldest_child_process}"
+  # Kill process tree to stop upload and prevent notification from showing success
+  local -r process="$(pgrep -f 'uploadfile upload')"
+  local -r process_groud_id="$(ps -o pgid= "${process}" | tr -d ' ')"
+  kill -- "-${process_groud_id}"
 
   # Play sound and show message
   afplay /System/Library/Sounds/Funk.aiff
