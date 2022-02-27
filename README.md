@@ -164,11 +164,6 @@ Rename files and folders
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/RenameAction) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RenameAction/RenameAction.alfredworkflow)
 
-### RespondQuickly <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RespondQuickly/source/icon.png' width='60' align='center' alt='RespondQuickly icon'>
-Convert selected text to a QR code
-
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/RespondQuickly) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RespondQuickly/RespondQuickly.alfredworkflow)
-
 ### RightClick <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RightClick/source/icon.png' width='60' align='center' alt='RightClick icon'>
 Do a right-click on Finder files, with the keyboard
 
@@ -282,6 +277,7 @@ These are the Workflows that are no longer under development and won’t get mor
 + [AppVersion](https://github.com/vitorgalvao/alfred-workflows/tree/fefde12914ed35d1cc7e0e90c62a932cdec3b39a/AppVersion)
 + [CheckSpelling](https://github.com/vitorgalvao/alfred-workflows/tree/c0d9c9313857676997e6e05d9dda65cfa5fcda6a/CheckSpelling)
 + [RepeatRepeat](https://github.com/vitorgalvao/alfred-workflows/tree/9a70302fa31d6fba2b532bc9dd7eac75d67f6964/RepeatRepeat)
++ [RespondQuickly](https://github.com/vitorgalvao/alfred-workflows/tree/f174fde5da3238d57dc3415bb351759c02eb8dab/RespondQuickly)
 + [RottenMovies](https://github.com/vitorgalvao/alfred-workflows/tree/2c0eca9f2336e3470b103586189ba7dd450f2b39/RottenMovies)
 
 ---
