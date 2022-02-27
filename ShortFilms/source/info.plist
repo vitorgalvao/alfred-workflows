@@ -49,19 +49,6 @@
 				<false/>
 			</dict>
 		</array>
-		<key>7A9FD6FC-FDFF-4294-80BD-0A46C9689E0C</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>F622CD2F-A79C-41E3-91E5-1BF5B66F3F52</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>BFA5B490-4D6E-4BAF-931F-07282EC4A4B3</key>
 		<array/>
 		<key>F52ABFBA-FC4F-400F-BF1B-AAF7B723052C</key>
@@ -475,25 +462,17 @@ fi</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
+			<key>inboundconfig</key>
+			<dict>
+				<key>externalid</key>
+				<string>shortfilmslaunchd</string>
+			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>F622CD2F-A79C-41E3-91E5-1BF5B66F3F52</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>triggerid</key>
-				<string>shortfilmslaunchd</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>7A9FD6FC-FDFF-4294-80BD-0A46C9689E0C</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -530,13 +509,6 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 			<integer>340</integer>
 			<key>ypos</key>
 			<integer>20</integer>
-		</dict>
-		<key>7A9FD6FC-FDFF-4294-80BD-0A46C9689E0C</key>
-		<dict>
-			<key>xpos</key>
-			<integer>130</integer>
-			<key>ypos</key>
-			<integer>820</integer>
 		</dict>
 		<key>97081E49-C4BE-4918-A447-B006C76E98FD</key>
 		<dict>
@@ -586,7 +558,7 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>21.13</string>
+	<string>22.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
