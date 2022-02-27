@@ -1,8 +1,8 @@
 Save named text snippets for later retrieval.
 
-Call `nadd`, type a name, and press ↵. Your clipboard contents will be saved to a txt file of the chosen name.
+Call `nadd`, type a name, and press ↵. A new txt note with the chosen name will be created and opened for editing. With ⌘↵, the note will be saved with the clipboard contents.
 
-![](https://i.imgur.com/NbhOYxS.png)
+![](https://i.imgur.com/ndFooG1.png)
 
 Or use the Universal Action Trigger to save selected text or an item from Clipboard History.
 

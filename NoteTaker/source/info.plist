@@ -6,11 +6,34 @@
 	<string>com.vitorgalvao.alfred.notetaker</string>
 	<key>connections</key>
 	<dict>
+		<key>00EFFEBD-C714-4CAB-B92C-BDDBE67722E7</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2BB2CA5C-BC90-4D41-A56D-DE0FBD36FF5A</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>03643B46-4437-4668-B20D-2426B2945D5A</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>39AEE376-1119-4C0E-BF24-CB23030EE283</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Populate note with clipboard contents</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>00EFFEBD-C714-4CAB-B92C-BDDBE67722E7</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -90,19 +113,6 @@
 				<false/>
 			</dict>
 		</array>
-		<key>32DACDDF-641B-4363-902C-4008746D7EFF</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>8F9BEC2F-8B76-4495-ADFB-310A17A94764</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>35C8230F-B24B-433B-AD8A-97530A5C5B86</key>
 		<array>
 			<dict>
@@ -172,7 +182,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>32DACDDF-641B-4363-902C-4008746D7EFF</string>
+				<string>8F9BEC2F-8B76-4495-ADFB-310A17A94764</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -290,42 +300,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>autopaste</key>
-				<false/>
-				<key>clipboardtext</key>
-				<string>{query}</string>
-				<key>ignoredynamicplaceholders</key>
-				<false/>
-				<key>transient</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.clipboard</string>
-			<key>uid</key>
-			<string>32DACDDF-641B-4363-902C-4008746D7EFF</string>
-			<key>version</key>
-			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argument</key>
-				<string></string>
-				<key>passthroughargument</key>
-				<false/>
-				<key>variables</key>
-				<dict/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
-			<key>uid</key>
-			<string>8F9BEC2F-8B76-4495-ADFB-310A17A94764</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -333,7 +307,7 @@
 				<key>script</key>
 				<string>require "#{Dir.pwd}/notetaker_functions.rb"
 
-add_note(title: ARGV[0])</string>
+add_note(title: ARGV[0], content: ENV['action_text'] || Open3.capture2('pbpaste').first)</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -351,6 +325,26 @@ add_note(title: ARGV[0])</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict>
+					<key>action_text</key>
+					<string>{query}</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>8F9BEC2F-8B76-4495-ADFB-310A17A94764</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>triggerid</key>
 				<string>add_note</string>
 			</dict>
@@ -364,14 +358,40 @@ add_note(title: ARGV[0])</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/notetaker_functions.rb"
+
+New_note = add_note(title: ARGV[0], content: ENV['action_text'] || '')
+edit_note(path: New_note.to_path)</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>00EFFEBD-C714-4CAB-B92C-BDDBE67722E7</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>keyword</key>
 				<string>nadd</string>
 				<key>subtext</key>
-				<string>The contents will be your clipboard</string>
+				<string>Create and edit (↵), Populate with clipboard (⌘↵)</string>
 				<key>text</key>
-				<string>Add a note title</string>
+				<string>New note title: {query}</string>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -653,9 +673,9 @@ edit_note(path: ARGV[0])</string>
 	<key>readme</key>
 	<string>Save named text snippets for later retrieval.
 
-Call `nadd`, type a name, and press ↵. Your clipboard contents will be saved to a txt file of the chosen name.
+Call `nadd`, type a name, and press ↵. A new txt note with the chosen name will be created and opened for editing. With ⌘↵, the note will be saved with the clipboard contents.
 
-![](https://i.imgur.com/NbhOYxS.png)
+![](https://i.imgur.com/ndFooG1.png)
 
 Or use the Universal Action Trigger to save selected text or an item from Clipboard History.
 
@@ -668,6 +688,13 @@ Retrieve your notes with `nview`. ⇧ or ⌘Y will quicklook its contents; ↵ w
 To keep notes synced between machines, use the `notes_dir` Workflow Environment Variable to pick a custom save location.</string>
 	<key>uidata</key>
 	<dict>
+		<key>00EFFEBD-C714-4CAB-B92C-BDDBE67722E7</key>
+		<dict>
+			<key>xpos</key>
+			<integer>705</integer>
+			<key>ypos</key>
+			<integer>350</integer>
+		</dict>
 		<key>03643B46-4437-4668-B20D-2426B2945D5A</key>
 		<dict>
 			<key>xpos</key>
@@ -678,7 +705,7 @@ To keep notes synced between machines, use the `notes_dir` Workflow Environment 
 		<key>0B9F972C-420B-4358-93C1-B5106DB6B27E</key>
 		<dict>
 			<key>xpos</key>
-			<integer>510</integer>
+			<integer>505</integer>
 			<key>ypos</key>
 			<integer>690</integer>
 		</dict>
@@ -707,13 +734,6 @@ To keep notes synced between machines, use the `notes_dir` Workflow Environment 
 			<key>ypos</key>
 			<integer>65</integer>
 		</dict>
-		<key>32DACDDF-641B-4363-902C-4008746D7EFF</key>
-		<dict>
-			<key>xpos</key>
-			<integer>210</integer>
-			<key>ypos</key>
-			<integer>225</integer>
-		</dict>
 		<key>35C8230F-B24B-433B-AD8A-97530A5C5B86</key>
 		<dict>
 			<key>xpos</key>
@@ -726,7 +746,7 @@ To keep notes synced between machines, use the `notes_dir` Workflow Environment 
 			<key>xpos</key>
 			<integer>705</integer>
 			<key>ypos</key>
-			<integer>350</integer>
+			<integer>225</integer>
 		</dict>
 		<key>8B624B4D-A785-4CE0-9010-6D1220595A1C</key>
 		<dict>
@@ -738,7 +758,7 @@ To keep notes synced between machines, use the `notes_dir` Workflow Environment 
 		<key>8F9BEC2F-8B76-4495-ADFB-310A17A94764</key>
 		<dict>
 			<key>xpos</key>
-			<integer>380</integer>
+			<integer>250</integer>
 			<key>ypos</key>
 			<integer>255</integer>
 		</dict>
@@ -754,7 +774,7 @@ To keep notes synced between machines, use the `notes_dir` Workflow Environment 
 		<key>AAA5D8DE-48BF-4E6A-9229-2F7628346746</key>
 		<dict>
 			<key>xpos</key>
-			<integer>710</integer>
+			<integer>705</integer>
 			<key>ypos</key>
 			<integer>850</integer>
 		</dict>
@@ -790,7 +810,7 @@ To keep notes synced between machines, use the `notes_dir` Workflow Environment 
 		<string>notes_dir</string>
 	</array>
 	<key>version</key>
-	<string>22.1</string>
+	<string>22.2</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>

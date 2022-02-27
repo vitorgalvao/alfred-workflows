@@ -57,12 +57,10 @@ def display_notes(dir: Notes_dir)
     )
   end
 
-  warn script_filter_items.join("\n")
-
   puts({ items: script_filter_items }.to_json)
 end
 
-def add_note(title:, content: Open3.capture2('pbpaste').first, dir: Notes_dir)
+def add_note(title:, content:, dir: Notes_dir)
   forbidden_chars = [':', '/']
   file = dir.join("#{title.delete(forbidden_chars.join)}.txt")
 
@@ -79,6 +77,7 @@ def add_note(title:, content: Open3.capture2('pbpaste').first, dir: Notes_dir)
   end
 
   file.write(content)
+  file # Return note path for other functions
 end
 
 def copy_note(path:)
