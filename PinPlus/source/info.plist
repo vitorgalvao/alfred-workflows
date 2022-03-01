@@ -153,7 +153,9 @@
 				<false/>
 			</dict>
 		</array>
-		<key>7801D860-3678-41BF-8A9F-B294A3AA31CD</key>
+		<key>955157E7-B3A9-4312-8A9E-F5AEE7D2CB6A</key>
+		<array/>
+		<key>96E1CC1B-3F76-4961-9E26-5B3D2BD1D122</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -166,8 +168,6 @@
 				<false/>
 			</dict>
 		</array>
-		<key>955157E7-B3A9-4312-8A9E-F5AEE7D2CB6A</key>
-		<array/>
 		<key>A0E45AB0-74B7-4C7E-8A56-B6B4E0D84722</key>
 		<array>
 			<dict>
@@ -195,7 +195,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>7801D860-3678-41BF-8A9F-B294A3AA31CD</string>
+				<string>96E1CC1B-3F76-4961-9E26-5B3D2BD1D122</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -222,19 +222,6 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>A0E45AB0-74B7-4C7E-8A56-B6B4E0D84722</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>D6663B13-40B4-4E96-BC66-4AB752C0CAF3</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>16CA0D08-3EB2-4A69-8EA3-7F2A2FAA2A5C</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -480,22 +467,20 @@ fi</string>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
-				<integer>102</integer>
+				<integer>0</integer>
 				<key>script</key>
-				<string>require "#{Dir.pwd}/pinplus.rb"
-
-open_gui</string>
+				<string></string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
-				<string></string>
+				<string>run_bookmarklet.js</string>
 				<key>type</key>
-				<integer>2</integer>
+				<integer>8</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>7801D860-3678-41BF-8A9F-B294A3AA31CD</string>
+			<string>96E1CC1B-3F76-4961-9E26-5B3D2BD1D122</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -1024,83 +1009,6 @@ reset_pinboard_token</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>function notification {
-  /bin/zsh ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
-}
-
-function get_detail {
-  local detail repo
-
-  repo="${1}"
-  detail="${2}"
-
-  curl --silent "https://api.github.com/repos/${repo}/releases/latest" | grep "${detail}" | head -1 | awk '{print $2}' | tr -d \",
-}
-
-readonly app_repo='vitorgalvao/pinplus'
-readonly app_name='PinPlus'
-readonly dest_dir='/Applications'
-readonly app_dest="${dest_dir}/${app_name}.app"
-
-readonly upstream_version="$(get_detail "${app_repo}" 'tag_name')"
-readonly local_version="$(mdls -name kMDItemVersion -raw "${app_dest}")"
-
-if [[ "${upstream_version}" == "${local_version}" ]]; then
-  notification "${app_name} app is already at latest version"
-  exit 0
-fi
-
-notification "Downloading ${app_name} ${upstream_version}…"
-readonly url="$(get_detail "${app_repo}" 'browser_download_url')"
-
-if curl --silent --location --no-buffer "${url}" | ditto -xk - "${dest_dir}"; then
-  notification "Updated ${app_name} app to ${upstream_version}"
-else
-  notification "Failed to update ${app_name} app"
-fi</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>16CA0D08-3EB2-4A69-8EA3-7F2A2FAA2A5C</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>keyword</key>
-				<string>:pinplusupdateapp</string>
-				<key>subtext</key>
-				<string></string>
-				<key>text</key>
-				<string>Get the latest version of the PinPlus app</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>D6663B13-40B4-4E96-BC66-4AB752C0CAF3</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
 				<string>readonly plist_file='com.vitorgalvao.launchd.pinplusfetch.plist'
 readonly launchagents_dir="${HOME}/Library/LaunchAgents"
 readonly installed_plist_file="${launchagents_dir}/${plist_file}"
@@ -1259,10 +1167,6 @@ fetch_bookmarks</string>
 
 ![](https://i.imgur.com/g6wAO6U.png)
 
-If you have the [PinPlus app](https://github.com/vitorgalvao/pinplus) installed (get it with `:pinplusupdateapp`), that opens instead.
-
-![](https://i.imgur.com/0SVjnKs.png)
-
 Configure the `Hotkey Trigger` to add your current browser tab as an unread bookmark.
 
 `pin` and `pun` are similar. The former shows all your bookmarks (type to filter), while the latter shows only the unread ones.
@@ -1327,13 +1231,6 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<key>ypos</key>
 			<integer>1255</integer>
 		</dict>
-		<key>16CA0D08-3EB2-4A69-8EA3-7F2A2FAA2A5C</key>
-		<dict>
-			<key>xpos</key>
-			<integer>240</integer>
-			<key>ypos</key>
-			<integer>1515</integer>
-		</dict>
 		<key>23352050-CC5C-4680-8243-005771354087</key>
 		<dict>
 			<key>xpos</key>
@@ -1390,16 +1287,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<key>xpos</key>
 			<integer>20</integer>
 			<key>ypos</key>
-			<integer>1645</integer>
-		</dict>
-		<key>7801D860-3678-41BF-8A9F-B294A3AA31CD</key>
-		<dict>
-			<key>note</key>
-			<string>Open GUI to add bookmark</string>
-			<key>xpos</key>
-			<integer>240</integer>
-			<key>ypos</key>
-			<integer>20</integer>
+			<integer>1515</integer>
 		</dict>
 		<key>955157E7-B3A9-4312-8A9E-F5AEE7D2CB6A</key>
 		<dict>
@@ -1409,6 +1297,15 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<integer>660</integer>
 			<key>ypos</key>
 			<integer>955</integer>
+		</dict>
+		<key>96E1CC1B-3F76-4961-9E26-5B3D2BD1D122</key>
+		<dict>
+			<key>note</key>
+			<string>Open GUI to add bookmark</string>
+			<key>xpos</key>
+			<integer>240</integer>
+			<key>ypos</key>
+			<integer>20</integer>
 		</dict>
 		<key>9A055C32-C5CF-4D41-B7F2-366BC26FCE51</key>
 		<dict>
@@ -1440,7 +1337,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<key>xpos</key>
 			<integer>240</integer>
 			<key>ypos</key>
-			<integer>1645</integer>
+			<integer>1515</integer>
 		</dict>
 		<key>AC4A2ACA-CEFF-4C48-9B37-A39B17B934C4</key>
 		<dict>
@@ -1456,13 +1353,6 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<key>ypos</key>
 			<integer>655</integer>
 		</dict>
-		<key>D6663B13-40B4-4E96-BC66-4AB752C0CAF3</key>
-		<dict>
-			<key>xpos</key>
-			<integer>20</integer>
-			<key>ypos</key>
-			<integer>1515</integer>
-		</dict>
 		<key>DC6DE0A7-2311-4F8C-A1A8-457DC074F1EA</key>
 		<dict>
 			<key>note</key>
@@ -1477,14 +1367,14 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<key>xpos</key>
 			<integer>240</integer>
 			<key>ypos</key>
-			<integer>1775</integer>
+			<integer>1645</integer>
 		</dict>
 		<key>EF339515-CFD8-47BF-B208-FF9DCA32A2C1</key>
 		<dict>
 			<key>xpos</key>
 			<integer>20</integer>
 			<key>ypos</key>
-			<integer>1775</integer>
+			<integer>1645</integer>
 		</dict>
 		<key>EFCEA4B6-8BAA-4509-AD10-EDA3CF3DF3EB</key>
 		<dict>
@@ -1532,7 +1422,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 		<string>unread_order</string>
 	</array>
 	<key>version</key>
-	<string>22.1</string>
+	<string>22.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

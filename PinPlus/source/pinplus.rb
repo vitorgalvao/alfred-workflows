@@ -69,11 +69,6 @@ def grab_url_title
   [url, title]
 end
 
-def open_gui
-  pinplus_app_path = Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier = com.vitorgalvao.pinplus').first.strip
-  pinplus_app_path.empty? ? system("#{Dir.pwd}/run_bookmarklet.js", '--') : system("#{pinplus_app_path}/Contents/MacOS/PinPlus") # Second dummy argument is to not require shellescaping single argument
-end
-
 def add_unread
   url, title = grab_url_title
   success_sound

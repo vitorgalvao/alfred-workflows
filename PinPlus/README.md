@@ -4,10 +4,6 @@ Add to and view your Pinboard bookmarks.
 
 ![](https://i.imgur.com/g6wAO6U.png)
 
-If you have the [PinPlus app](https://github.com/vitorgalvao/pinplus) installed (get it with `:pinplusupdateapp`), that opens instead.
-
-![](https://i.imgur.com/0SVjnKs.png)
-
 Configure the `Hotkey Trigger` to add your current browser tab as an unread bookmark.
 
 `pin` and `pun` are similar. The former shows all your bookmarks (type to filter), while the latter shows only the unread ones.
