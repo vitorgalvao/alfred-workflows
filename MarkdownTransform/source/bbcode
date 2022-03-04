@@ -27,7 +27,7 @@ print CGI.unescapeHTML(Open3.capture2('multimarkdown', '--', stdin_data: "\n#{AR
   bbcode_sub('ul', 'list').
   bbcode_sub('li', '*').
   bbcode_sub('blockquote', 'quote').
-  gsub('<pre><code>', '[code]').gsub('</code></pre>', '[/code]').
+  gsub(%r{<pre><code.*?>}, '[code]').gsub('</code></pre>', '[/code]').
   gsub('<code>', '[background=#eee][font=courier,monospace]').gsub('</code>', '[/font][/background]').
   gsub(%r{<h1.*?>}, "\n\n[b][size=7]").gsub('</h1>', '[/size][/b]').
   gsub(%r{<h2.*?>}, "\n\n[b][size=6]").gsub('</h2>', '[/size][/b]').
