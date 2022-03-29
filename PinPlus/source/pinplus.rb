@@ -9,7 +9,7 @@ All_bookmarks_json = "#{ENV['alfred_workflow_cache']}/all_bookmarks.json".freeze
 Unread_bookmarks_json = "#{ENV['alfred_workflow_cache']}/unread_bookmarks.json".freeze
 
 def notification(message, title = ENV['alfred_workflow_name'])
-  system('/bin/zsh', "#{Dir.pwd}/Notificator.app/Contents/Resources/Scripts/notificator", '--message', message, '--title', title)
+  system("#{Dir.pwd}/notificator", '--message', message, '--title', title)
 end
 
 def success_sound
