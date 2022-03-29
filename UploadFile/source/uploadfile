@@ -11,7 +11,7 @@ trap 'rm -rf "${progress_file}" "${name_file}" "${tmp_dir}" "${tmp_zip_dir}"' EX
 mkdir -p "${alfred_workflow_cache}"
 
 function notification {
-  /bin/zsh ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
+  ./notificator --message "${1}" --title "${alfred_workflow_name}"
 }
 
 function ascii_basename {
