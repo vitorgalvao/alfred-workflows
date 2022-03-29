@@ -106,15 +106,10 @@ function url_exists {
 }
 
 function notification {
-  local -r notificator="$(find . -type d -name 'Notificator.app')"
-  if [[ -n "${notificator}" ]]; then
-    "${notificator}/Contents/Resources/Scripts/notificator" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
-    return
-  fi
+  local -r notificator="$(find . -type f -name 'notificator')"
 
-  local -r terminal_notifier="$(find . -type f -name 'terminal-notifier')"
-  if [[ -n "${terminal_notifier}" ]]; then
-    "${terminal_notifier}" -title "${alfred_workflow_name}" -subtitle 'A new version is available' -message "${1}"
+  if [[ -f "${notificator}" &amp;&amp; "$(/usr/bin/file --brief --mime-type "${notificator}")" == 'text/x-shellscript' ]]; then
+    "${notificator}" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
     return
   fi
 
@@ -131,11 +126,15 @@ readonly local_version="$(/usr/libexec/PlistBuddy -c 'print version' "${local_in
 
 # Check for updates
 if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
-  if ! url_exists "${remote_info_plist}"; then abort "'remote_info_plist' (${remote_info_plist}) appears to not be reachable."; fi # Remote sanity check
+  # Remote sanity check
+  if ! url_exists "${remote_info_plist}"; then
+    abort "'remote_info_plist' (${remote_info_plist}) appears to not be reachable."
+  fi
 
   readonly tmp_file="$(mktemp)"
   curl --silent --location --output "${tmp_file}" "${remote_info_plist}"
   readonly remote_version="$(/usr/libexec/PlistBuddy -c 'print version' "${tmp_file}")"
+  rm "${tmp_file}"
 
   if [[ "${local_version}" == "${remote_version}" ]]; then
     touch "${local_info_plist}" # Reset timer by touching local file
@@ -148,12 +147,19 @@ if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
     exit 0
   fi
 
-  download_url="$([[ "${download_type}" == 'github_release' ]] &amp;&amp; curl --silent "https://api.github.com/repos/${workflow_url}/releases/latest" | grep 'browser_download_url' | head -1 | sed -E 's/.*browser_download_url": "(.*)"/\1/' || echo "${workflow_url}")"
+  readonly download_url="$(
+    if [[ "${download_type}" == 'github_release' ]]; then
+      osascript -l JavaScript -e 'function run(argv) { return JSON.parse(argv[0])["assets"].find(asset =&gt; asset["browser_download_url"].endsWith(".alfredworkflow"))["browser_download_url"] }' "$(curl --silent "https://api.github.com/repos/${workflow_url}/releases/latest")"
+    else
+      echo "${workflow_url}"
+    fi
+  )"
 
   if url_exists "${download_url}"; then
     notification 'Downloading and installing…'
-    curl --silent --location --output "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow" "${download_url}"
-    open "${HOME}/Downloads/${alfred_workflow_name}.alfredworkflow"
+    readonly download_name="$(basename "${download_url}")"
+    curl --silent --location --output "${HOME}/Downloads/${download_name}" "${download_url}"
+    open "${HOME}/Downloads/${download_name}"
   else
     abort "'workflow_url' (${download_url}) appears to not be reachable."
   fi
@@ -202,7 +208,7 @@ fi</string>
 				<integer>0</integer>
 				<key>script</key>
 				<string>function notification {
-  /bin/zsh ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
+  ./notificator --message "${1}" --title "${alfred_workflow_name}"
 }
 
 # Abort if `seconds_to_lock` is unset or not an interger
@@ -434,7 +440,7 @@ You will be asked for your password when locking since this operation requires e
 		<string>30</string>
 	</dict>
 	<key>version</key>
-	<string>21.1</string>
+	<string>22.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
