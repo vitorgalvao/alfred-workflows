@@ -287,7 +287,7 @@ def get_title_url
 end
 
 def notification(title, message)
-  system('/bin/zsh', "#{Dir.pwd}/Notificator.app/Contents/Resources/Scripts/notificator", '--message', message, '--title', title)
+  system("#{Dir.pwd}/notificator", '--message', message, '--title', title)
 end
 
 def error(title, message)
