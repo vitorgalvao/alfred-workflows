@@ -45,6 +45,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>3E1231DB-0667-46DE-9AD3-523D8837F824</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>6A286F10-FD49-4463-9540-0EECBE45438D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>67C1A19D-DDF7-450A-A615-B9C134D6975F</key>
 		<array>
 			<dict>
@@ -122,6 +135,32 @@
 				<false/>
 			</dict>
 		</array>
+		<key>897635FA-F5E6-4554-A0FE-0A84D9156F9C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3E1231DB-0667-46DE-9AD3-523D8837F824</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>B729925C-D828-4631-9988-67499E05791C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>BFD78A9F-0242-46A6-982A-9DA120AB8328</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>B7A122F2-DA1A-4CF7-9990-9F4614C960CC</key>
 		<array>
 			<dict>
@@ -166,6 +205,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>87AAFCF7-6532-4486-8489-54674100A52C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>BFD78A9F-0242-46A6-982A-9DA120AB8328</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>6A286F10-FD49-4463-9540-0EECBE45438D</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -250,6 +302,88 @@
 	<string>DownMedia</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsfiles</key>
+				<false/>
+				<key>acceptsmulti</key>
+				<integer>0</integer>
+				<key>acceptstext</key>
+				<false/>
+				<key>acceptsurls</key>
+				<true/>
+				<key>name</key>
+				<string>Download video</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.universalaction</string>
+			<key>uid</key>
+			<string>897635FA-F5E6-4554-A0FE-0A84D9156F9C</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict>
+					<key>media_type</key>
+					<string>video</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>3E1231DB-0667-46DE-9AD3-523D8837F824</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsfiles</key>
+				<false/>
+				<key>acceptsmulti</key>
+				<integer>0</integer>
+				<key>acceptstext</key>
+				<false/>
+				<key>acceptsurls</key>
+				<true/>
+				<key>name</key>
+				<string>Download audio</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.universalaction</string>
+			<key>uid</key>
+			<string>B729925C-D828-4631-9988-67499E05791C</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>{query}</string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict>
+					<key>media_type</key>
+					<string>audio</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>BFD78A9F-0242-46A6-982A-9DA120AB8328</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -904,74 +1038,88 @@ You will have to install [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) yourself b
 		<key>05D66076-BBF0-42B3-AACE-3395B291DCB8</key>
 		<dict>
 			<key>xpos</key>
-			<integer>590</integer>
+			<integer>615</integer>
 			<key>ypos</key>
-			<integer>305</integer>
+			<integer>545</integer>
 		</dict>
 		<key>24B8A81E-9901-45A9-B7BC-3D4134C8675A</key>
 		<dict>
 			<key>xpos</key>
-			<integer>225</integer>
+			<integer>250</integer>
 			<key>ypos</key>
-			<integer>35</integer>
+			<integer>275</integer>
 		</dict>
 		<key>3B69F416-A08B-4618-99B6-E2AED211C9D8</key>
 		<dict>
 			<key>xpos</key>
-			<integer>470</integer>
+			<integer>495</integer>
 			<key>ypos</key>
-			<integer>515</integer>
+			<integer>755</integer>
+		</dict>
+		<key>3E1231DB-0667-46DE-9AD3-523D8837F824</key>
+		<dict>
+			<key>xpos</key>
+			<integer>670</integer>
+			<key>ypos</key>
+			<integer>65</integer>
 		</dict>
 		<key>67C1A19D-DDF7-450A-A615-B9C134D6975F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>470</integer>
+			<integer>495</integer>
 			<key>ypos</key>
-			<integer>635</integer>
+			<integer>875</integer>
 		</dict>
 		<key>6A286F10-FD49-4463-9540-0EECBE45438D</key>
 		<dict>
 			<key>xpos</key>
-			<integer>705</integer>
+			<integer>1230</integer>
 			<key>ypos</key>
-			<integer>275</integer>
+			<integer>515</integer>
 		</dict>
 		<key>822C7F03-3A3A-4842-8C03-72F2D4096BF0</key>
 		<dict>
 			<key>note</key>
 			<string>Download video in frontmost tab</string>
 			<key>xpos</key>
-			<integer>35</integer>
+			<integer>60</integer>
 			<key>ypos</key>
-			<integer>35</integer>
+			<integer>275</integer>
 		</dict>
 		<key>83B54D25-39A4-4BCE-94DA-1DFB84D37270</key>
 		<dict>
 			<key>xpos</key>
-			<integer>470</integer>
+			<integer>495</integer>
 			<key>ypos</key>
-			<integer>155</integer>
+			<integer>395</integer>
 		</dict>
 		<key>879AF67B-0DE2-4574-A27B-A502D1E8A123</key>
 		<dict>
 			<key>xpos</key>
-			<integer>880</integer>
+			<integer>905</integer>
 			<key>ypos</key>
-			<integer>535</integer>
+			<integer>775</integer>
 		</dict>
 		<key>87AAFCF7-6532-4486-8489-54674100A52C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>705</integer>
+			<integer>730</integer>
 			<key>ypos</key>
-			<integer>635</integer>
+			<integer>875</integer>
+		</dict>
+		<key>897635FA-F5E6-4554-A0FE-0A84D9156F9C</key>
+		<dict>
+			<key>xpos</key>
+			<integer>495</integer>
+			<key>ypos</key>
+			<integer>35</integer>
 		</dict>
 		<key>A8F4BBFD-E8A8-47D3-AE33-A8823E7CC291</key>
 		<dict>
 			<key>xpos</key>
-			<integer>995</integer>
+			<integer>1020</integer>
 			<key>ypos</key>
-			<integer>635</integer>
+			<integer>875</integer>
 		</dict>
 		<key>B1F76879-4318-4A04-B58F-150347E9CC29</key>
 		<dict>
@@ -980,72 +1128,86 @@ You will have to install [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) yourself b
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>885</integer>
+			<integer>1410</integer>
 			<key>ypos</key>
-			<integer>275</integer>
+			<integer>515</integer>
+		</dict>
+		<key>B729925C-D828-4631-9988-67499E05791C</key>
+		<dict>
+			<key>xpos</key>
+			<integer>495</integer>
+			<key>ypos</key>
+			<integer>155</integer>
 		</dict>
 		<key>B7A122F2-DA1A-4CF7-9990-9F4614C960CC</key>
 		<dict>
 			<key>xpos</key>
-			<integer>225</integer>
+			<integer>250</integer>
 			<key>ypos</key>
-			<integer>155</integer>
+			<integer>395</integer>
 		</dict>
 		<key>B93448AD-3457-4CBA-B37D-1242E4A92C44</key>
 		<dict>
 			<key>xpos</key>
-			<integer>995</integer>
+			<integer>1020</integer>
 			<key>ypos</key>
-			<integer>515</integer>
+			<integer>755</integer>
 		</dict>
 		<key>BDEED30D-47F5-468D-899C-0AD5D4FFAADB</key>
 		<dict>
 			<key>xpos</key>
-			<integer>705</integer>
+			<integer>730</integer>
 			<key>ypos</key>
-			<integer>515</integer>
+			<integer>755</integer>
 		</dict>
 		<key>BF3AD75A-24F4-48F8-9C08-6DB615CE6B35</key>
 		<dict>
 			<key>xpos</key>
-			<integer>470</integer>
+			<integer>495</integer>
 			<key>ypos</key>
-			<integer>755</integer>
+			<integer>995</integer>
+		</dict>
+		<key>BFD78A9F-0242-46A6-982A-9DA120AB8328</key>
+		<dict>
+			<key>xpos</key>
+			<integer>670</integer>
+			<key>ypos</key>
+			<integer>185</integer>
 		</dict>
 		<key>C80AD651-BCAF-4B86-869A-D4D847A2379B</key>
 		<dict>
 			<key>xpos</key>
-			<integer>430</integer>
+			<integer>455</integer>
 			<key>ypos</key>
-			<integer>305</integer>
+			<integer>545</integer>
 		</dict>
 		<key>D3A7A89F-92D3-4FC6-B561-20BBF3CDE6CE</key>
 		<dict>
 			<key>xpos</key>
-			<integer>35</integer>
+			<integer>60</integer>
 			<key>ypos</key>
-			<integer>395</integer>
+			<integer>635</integer>
 		</dict>
 		<key>D8524846-F942-4A77-9461-8BAED974B8CF</key>
 		<dict>
 			<key>xpos</key>
-			<integer>35</integer>
+			<integer>60</integer>
 			<key>ypos</key>
-			<integer>275</integer>
+			<integer>515</integer>
 		</dict>
 		<key>DC74421D-631A-44B1-AC86-ED7793CADE26</key>
 		<dict>
 			<key>xpos</key>
-			<integer>470</integer>
+			<integer>495</integer>
 			<key>ypos</key>
-			<integer>35</integer>
+			<integer>275</integer>
 		</dict>
 		<key>FD70A114-2767-4782-8D5F-86AC4B3BB8B3</key>
 		<dict>
 			<key>xpos</key>
-			<integer>430</integer>
+			<integer>455</integer>
 			<key>ypos</key>
-			<integer>425</integer>
+			<integer>665</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
@@ -1060,7 +1222,7 @@ You will have to install [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) yourself b
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>22.3</string>
+	<string>22.4</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
