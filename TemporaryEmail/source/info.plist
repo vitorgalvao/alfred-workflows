@@ -371,7 +371,7 @@ Because [Firefox does not support AppleScript](https://bugzilla.mozilla.org/show
 		<string>maildrop.cc</string>
 	</dict>
 	<key>version</key>
-	<string>22.1</string>
+	<string>22.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
