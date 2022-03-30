@@ -21,19 +21,13 @@ function make_icns {
   local -r iconset="${tmp_dir}/icon.iconset"
   /bin/mkdir "${iconset}"
 
-  # Check file type
-  if [[ "$(/usr/bin/mdls -raw -name 'kMDItemContentType' "${file}")" != 'public.png' ]]; then
-    echo 'Image needs to be a png' >&2
-    exit 1
-  fi
-
   # Create iconset
   for size in {16,32,64,128,256,512}; do
     /usr/bin/sips --resampleHeightWidth "${size}" "${size}" "${file}" --out "${iconset}/icon_${size}x${size}.png" &> /dev/null
     /usr/bin/sips --resampleHeightWidth "$((size * 2))" "$((size * 2))" "${file}" --out "${iconset}/icon_${size}x${size}@2x.png" &> /dev/null
   done
 
-  # Conver to icns
+  # Convert to icns
   /usr/bin/iconutil --convert icns "${iconset}" --output "${icon}"
 
   # Clean up and return path to icns
