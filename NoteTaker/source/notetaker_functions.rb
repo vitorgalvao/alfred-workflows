@@ -34,17 +34,6 @@ def display_notes(dir: Notes_dir)
   notes = dir.children.reject { |p| p.basename.to_path == '.DS_Store' }
   script_filter_items = []
 
-  if notes.empty?
-    script_filter_items.push(title: 'Make a new note')
-
-    puts({
-      variables: { add_note_external: true.to_s },
-      items: script_filter_items
-    }.to_json)
-
-    return
-  end
-
   notes.each do |note|
     note_name = note.basename(note.extname).to_path
 
@@ -57,12 +46,17 @@ def display_notes(dir: Notes_dir)
     )
   end
 
+  script_filter_items.push(
+    title: 'New note',
+    variables: { add_note_external: true.to_s },
+  )
+
   puts({ items: script_filter_items }.to_json)
 end
 
 def add_note(title:, content:, dir: Notes_dir)
   forbidden_chars = [':', '/']
-  file = dir.join("#{title.delete(forbidden_chars.join)}.txt")
+  file = dir.join("#{title.delete(forbidden_chars.join)}.#{File_ext}")
 
   while file.exist?
     # Use the same directory
@@ -97,6 +91,11 @@ Notes_dir = get_env(
   variable: ENV['notes_dir'],
   default: ENV['alfred_workflow_data'],
   as_pathname: true
+)
+
+File_ext = get_env(
+  variable: ENV['new_file_extension'],
+  default: 'txt'
 )
 
 # Always run
