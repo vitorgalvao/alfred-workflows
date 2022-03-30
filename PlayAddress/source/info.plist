@@ -177,6 +177,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>DB32027E-B578-4E99-A521-5069C2DE6EC7</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>79289C24-D237-4E6E-A781-3C54066C0461</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
@@ -391,6 +404,27 @@ echo "${url}"</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>acceptsfiles</key>
+				<false/>
+				<key>acceptsmulti</key>
+				<integer>0</integer>
+				<key>acceptstext</key>
+				<false/>
+				<key>acceptsurls</key>
+				<true/>
+				<key>name</key>
+				<string>Play URL</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.universalaction</string>
+			<key>uid</key>
+			<string>DB32027E-B578-4E99-A521-5069C2DE6EC7</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>externaltriggerid</key>
 				<string>add_and_play_stream</string>
 				<key>passinputasargument</key>
@@ -444,95 +478,6 @@ echo "${url}"</string>
 			<string>3AB464F1-6E2E-4CF3-A4A0-AFDA2F41AAC1</string>
 			<key>version</key>
 			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>const frontmost_app_name = Application('System Events').applicationProcesses.where({ frontmost: true }).name()[0]
-const frontmost_app = Application(frontmost_app_name)
-
-const chromium_variants = ['Google Chrome', 'Chromium', 'Opera', 'Vivaldi', 'Brave Browser', 'Microsoft Edge']
-const webkit_variants = ['Safari', 'Webkit']
-
-// Get details from frontmost browser, if any
-if (chromium_variants.some(app_name =&gt; frontmost_app_name.startsWith(app_name))) {
-  url = frontmost_app.windows[0].activeTab.url().trim()
-} else if (webkit_variants.some(app_name =&gt; frontmost_app_name.startsWith(app_name))) {
-  url = frontmost_app.windows[0].currentTab.url().trim()
-} else {
-  throw new Error('You need a supported browser as your frontmost app')
-}
-
-JSON.stringify({ 'alfredworkflow': {
-  'variables': { 'browser': `${frontmost_app_name}` },
-  'arg': `${url}`
-}})</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>7</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>CDD7027F-7720-474A-BD10-377F3822A373</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>action</key>
-				<integer>0</integer>
-				<key>argument</key>
-				<integer>0</integer>
-				<key>focusedappvariable</key>
-				<false/>
-				<key>focusedappvariablename</key>
-				<string></string>
-				<key>hotkey</key>
-				<integer>35</integer>
-				<key>hotmod</key>
-				<integer>1048576</integer>
-				<key>hotstring</key>
-				<string>P</string>
-				<key>leftcursor</key>
-				<false/>
-				<key>modsmode</key>
-				<integer>0</integer>
-				<key>relatedApps</key>
-				<array>
-					<string>com.google.Chrome.canary</string>
-					<string>com.vivaldi.Vivaldi</string>
-					<string>com.apple.Safari</string>
-					<string>com.brave.Browser</string>
-					<string>com.brave.Browser.beta</string>
-					<string>com.apple.SafariTechnologyPreview</string>
-					<string>com.microsoft.edgemac.Beta</string>
-					<string>com.microsoft.edgemac.Canary</string>
-					<string>com.microsoft.edgemac.Dev</string>
-					<string>com.brave.Browser.dev</string>
-					<string>org.chromium.ChromiumChromium</string>
-					<string>com.brave.Browser.nightly</string>
-					<string>com.operasoftware.Opera</string>
-					<string>com.google.Chrome</string>
-				</array>
-				<key>relatedAppsMode</key>
-				<integer>1</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.hotkey</string>
-			<key>uid</key>
-			<string>47F603A1-4B31-4168-8960-0940434C5C49</string>
-			<key>version</key>
-			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -622,6 +567,95 @@ fi</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>3F2114BA-DAA7-4DF6-BD3D-DAFD6E7439F0</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>35</integer>
+				<key>hotmod</key>
+				<integer>1048576</integer>
+				<key>hotstring</key>
+				<string>P</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedApps</key>
+				<array>
+					<string>com.google.Chrome.canary</string>
+					<string>com.vivaldi.Vivaldi</string>
+					<string>com.apple.Safari</string>
+					<string>com.brave.Browser</string>
+					<string>com.brave.Browser.beta</string>
+					<string>com.apple.SafariTechnologyPreview</string>
+					<string>com.microsoft.edgemac.Beta</string>
+					<string>com.microsoft.edgemac.Canary</string>
+					<string>com.microsoft.edgemac.Dev</string>
+					<string>com.brave.Browser.dev</string>
+					<string>org.chromium.ChromiumChromium</string>
+					<string>com.brave.Browser.nightly</string>
+					<string>com.operasoftware.Opera</string>
+					<string>com.google.Chrome</string>
+				</array>
+				<key>relatedAppsMode</key>
+				<integer>1</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>47F603A1-4B31-4168-8960-0940434C5C49</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>const frontmost_app_name = Application('System Events').applicationProcesses.where({ frontmost: true }).name()[0]
+const frontmost_app = Application(frontmost_app_name)
+
+const chromium_variants = ['Google Chrome', 'Chromium', 'Opera', 'Vivaldi', 'Brave Browser', 'Microsoft Edge']
+const webkit_variants = ['Safari', 'Webkit']
+
+// Get details from frontmost browser, if any
+if (chromium_variants.some(app_name =&gt; frontmost_app_name.startsWith(app_name))) {
+  url = frontmost_app.windows[0].activeTab.url().trim()
+} else if (webkit_variants.some(app_name =&gt; frontmost_app_name.startsWith(app_name))) {
+  url = frontmost_app.windows[0].currentTab.url().trim()
+} else {
+  throw new Error('You need a supported browser as your frontmost app')
+}
+
+JSON.stringify({ 'alfredworkflow': {
+  'variables': { 'browser': `${frontmost_app_name}` },
+  'arg': `${url}`
+}})</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>7</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>CDD7027F-7720-474A-BD10-377F3822A373</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -760,7 +794,7 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 			<key>xpos</key>
 			<integer>315</integer>
 			<key>ypos</key>
-			<integer>205</integer>
+			<integer>195</integer>
 		</dict>
 		<key>8FE08360-28F3-4F26-8523-75D368B83282</key>
 		<dict>
@@ -785,6 +819,13 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 			<key>ypos</key>
 			<integer>340</integer>
 		</dict>
+		<key>DB32027E-B578-4E99-A521-5069C2DE6EC7</key>
+		<dict>
+			<key>xpos</key>
+			<integer>25</integer>
+			<key>ypos</key>
+			<integer>175</integer>
+		</dict>
 	</dict>
 	<key>variables</key>
 	<dict>
@@ -798,7 +839,7 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 		<string>use_watchlist</string>
 	</array>
 	<key>version</key>
-	<string>22.2</string>
+	<string>22.3</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
