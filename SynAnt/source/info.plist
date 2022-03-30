@@ -6,6 +6,19 @@
 	<string>com.vitorgalvao.alfred.synant</string>
 	<key>connections</key>
 	<dict>
+		<key>18C4B8A5-B66C-4AF7-8204-F927C04291DF</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3562E2E1-564F-445C-8C3A-1E2A36AAB395</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>26FFC902-DE74-4699-BD9A-8E47ED317DA2</key>
 		<array>
 			<dict>
@@ -57,6 +70,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>3562E2E1-564F-445C-8C3A-1E2A36AAB395</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>8A2F1DC5-060C-41F8-8D5B-7538E99027E3</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>8C7B8385-B11B-4294-89BB-986FD67891EC</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -180,25 +206,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>externaltriggerid</key>
-				<string>synonym</string>
-				<key>passinputasargument</key>
-				<true/>
-				<key>passvariables</key>
-				<true/>
-				<key>workflowbundleid</key>
-				<string>self</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.callexternaltrigger</string>
-			<key>uid</key>
-			<string>E9F118FC-4049-4A0C-B0B4-9DFAAD8F5AA5</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -222,7 +229,7 @@
 				<key>queuemode</key>
 				<integer>1</integer>
 				<key>runningsubtext</key>
-				<string>Please wait…</string>
+				<string>Getting synonyms…</string>
 				<key>script</key>
 				<string>IFS=$'\n'
 
@@ -282,6 +289,25 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>externaltriggerid</key>
+				<string>synonym</string>
+				<key>passinputasargument</key>
+				<true/>
+				<key>passvariables</key>
+				<true/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>E9F118FC-4049-4A0C-B0B4-9DFAAD8F5AA5</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>action</key>
 				<integer>0</integer>
 				<key>argument</key>
@@ -311,6 +337,25 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>externaltriggerid</key>
+				<string>antonym</string>
+				<key>passinputasargument</key>
+				<true/>
+				<key>passvariables</key>
+				<true/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>55ECFD0B-81BA-4D8A-9C58-61C05F3BB52E</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -334,7 +379,7 @@ fi</string>
 				<key>queuemode</key>
 				<integer>1</integer>
 				<key>runningsubtext</key>
-				<string>Please wait…</string>
+				<string>Getting antonyms…</string>
 				<key>script</key>
 				<string>IFS=$'\n'
 
@@ -390,25 +435,6 @@ fi</string>
 			<string>8C7B8385-B11B-4294-89BB-986FD67891EC</string>
 			<key>version</key>
 			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>externaltriggerid</key>
-				<string>antonym</string>
-				<key>passinputasargument</key>
-				<true/>
-				<key>passvariables</key>
-				<true/>
-				<key>workflowbundleid</key>
-				<string>self</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.callexternaltrigger</string>
-			<key>uid</key>
-			<string>55ECFD0B-81BA-4D8A-9C58-61C05F3BB52E</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -546,6 +572,48 @@ fi</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsfiles</key>
+				<false/>
+				<key>acceptsmulti</key>
+				<integer>0</integer>
+				<key>acceptstext</key>
+				<true/>
+				<key>acceptsurls</key>
+				<false/>
+				<key>name</key>
+				<string>Get synonyms</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.universalaction</string>
+			<key>uid</key>
+			<string>18C4B8A5-B66C-4AF7-8204-F927C04291DF</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsfiles</key>
+				<false/>
+				<key>acceptsmulti</key>
+				<integer>0</integer>
+				<key>acceptstext</key>
+				<true/>
+				<key>acceptsurls</key>
+				<false/>
+				<key>name</key>
+				<string>Get antonyms</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.universalaction</string>
+			<key>uid</key>
+			<string>8A2F1DC5-060C-41F8-8D5B-7538E99027E3</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>Use the thesaurus service provided by words.bighugelabs.com to get synonyms and antonyms to words.
@@ -562,6 +630,13 @@ Alternatively, select a word and press the shortcut you defined to get the resul
 If you want to use one of the results to refine your query, press ⌘↵ (synonyms for the word) or ⌥↵ (antonyms for the word).</string>
 	<key>uidata</key>
 	<dict>
+		<key>18C4B8A5-B66C-4AF7-8204-F927C04291DF</key>
+		<dict>
+			<key>xpos</key>
+			<integer>50</integer>
+			<key>ypos</key>
+			<integer>490</integer>
+		</dict>
 		<key>26FFC902-DE74-4699-BD9A-8E47ED317DA2</key>
 		<dict>
 			<key>xpos</key>
@@ -600,6 +675,13 @@ If you want to use one of the results to refine your query, press ⌘↵ (synony
 			<integer>520</integer>
 			<key>ypos</key>
 			<integer>130</integer>
+		</dict>
+		<key>8A2F1DC5-060C-41F8-8D5B-7538E99027E3</key>
+		<dict>
+			<key>xpos</key>
+			<integer>50</integer>
+			<key>ypos</key>
+			<integer>610</integer>
 		</dict>
 		<key>8C7B8385-B11B-4294-89BB-986FD67891EC</key>
 		<dict>
@@ -647,7 +729,7 @@ If you want to use one of the results to refine your query, press ⌘↵ (synony
 		<string>api_key</string>
 	</array>
 	<key>version</key>
-	<string>22.1</string>
+	<string>22.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
