@@ -32,6 +32,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>33EC9900-4E2C-48AE-88A2-8282AAE62301</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>9DE00E86-F0F1-42F7-B39E-6741D3344F96</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>83F06055-1527-429B-91A0-E17E57616D3D</key>
 		<array>
 			<dict>
@@ -45,11 +58,37 @@
 				<false/>
 			</dict>
 		</array>
+		<key>9DE00E86-F0F1-42F7-B39E-6741D3344F96</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2F9C5DCB-8351-4E59-820D-BAF2B7200E0B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>A586CE7B-4D6A-45BE-83AF-3CC03CD3EC76</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>28B55659-9FD1-44B6-AA1E-C8BA1149FC87</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>D2EE2870-0BB7-4C36-AE50-FE59609C18AA</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>9DE00E86-F0F1-42F7-B39E-6741D3344F96</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -92,7 +131,7 @@
 				<key>script</key>
 				<string>readonly PATH="$(./_sharedresources 'youtubedl')"
 readonly verbosity="${1}"
-readonly url="$(pbpaste)"
+readonly url="$(sqlite3 "${HOME}/Library/Application Support/Alfred/Databases/clipboard.alfdb" 'SELECT item FROM clipboard WHERE dataType = 0 AND item LIKE "http%" ORDER BY ts DESC LIMIT 1;')"
 
 readonly full_info="$(youtube-dl --get-title --get-description --get-duration "${url}")"
 readonly title="$(head -1 &lt;&lt;&lt; "${full_info}")"
@@ -155,7 +194,7 @@ fi</string>
 				<key>autopaste</key>
 				<true/>
 				<key>clipboardtext</key>
-				<string></string>
+				<string>{query}</string>
 				<key>ignoredynamicplaceholders</key>
 				<false/>
 				<key>transient</key>
@@ -280,7 +319,7 @@ fi</string>
 			<key>config</key>
 			<dict>
 				<key>argument</key>
-				<string>medium</string>
+				<string>{var:default_verbosity}</string>
 				<key>passthroughargument</key>
 				<false/>
 				<key>variables</key>
@@ -293,30 +332,112 @@ fi</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>1</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>hotstring</key>
+				<string></string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>33EC9900-4E2C-48AE-88A2-8282AAE62301</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>9DE00E86-F0F1-42F7-B39E-6741D3344F96</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsfiles</key>
+				<false/>
+				<key>acceptsmulti</key>
+				<integer>0</integer>
+				<key>acceptstext</key>
+				<false/>
+				<key>acceptsurls</key>
+				<true/>
+				<key>name</key>
+				<string>Video URL duration</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.universalaction</string>
+			<key>uid</key>
+			<string>D2EE2870-0BB7-4C36-AE50-FE59609C18AA</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>Output info from videos from [a plethora of video sources](https://rg3.github.io/youtube-dl/supportedsites.html), even when embedded in other pages.
 
 Copy a link to your clipboard, run `vidur` and pick your verbosity level. It’ll output the video’s link with its duration and optionally its title and description.
 
-![](https://i.imgur.com/wWasGFT.png)</string>
+![](https://i.imgur.com/wWasGFT.png)
+
+The Universal Action and Hotkey can act on a selected link.
+
+The `default_verbosity` Workflow Environment Variable applies to everything but the List Filter. It must be `succint`, `medium`, or `verbose`.</string>
 	<key>uidata</key>
 	<dict>
 		<key>28B55659-9FD1-44B6-AA1E-C8BA1149FC87</key>
 		<dict>
 			<key>xpos</key>
-			<integer>305</integer>
+			<integer>330</integer>
 			<key>ypos</key>
 			<integer>30</integer>
 		</dict>
 		<key>2F9C5DCB-8351-4E59-820D-BAF2B7200E0B</key>
 		<dict>
 			<key>note</key>
-			<string>Verbosity level</string>
+			<string>Default verbosity level</string>
 			<key>xpos</key>
-			<integer>205</integer>
+			<integer>210</integer>
 			<key>ypos</key>
-			<integer>190</integer>
+			<integer>180</integer>
+		</dict>
+		<key>33EC9900-4E2C-48AE-88A2-8282AAE62301</key>
+		<dict>
+			<key>xpos</key>
+			<integer>35</integer>
+			<key>ypos</key>
+			<integer>270</integer>
 		</dict>
 		<key>78EADC1A-884E-4BDD-87A6-1B0ED1230852</key>
 		<dict>
@@ -325,16 +446,23 @@ Copy a link to your clipboard, run `vidur` and pick your verbosity level. It’l
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>675</integer>
+			<integer>695</integer>
 			<key>ypos</key>
 			<integer>30</integer>
 		</dict>
 		<key>83F06055-1527-429B-91A0-E17E57616D3D</key>
 		<dict>
 			<key>xpos</key>
-			<integer>495</integer>
+			<integer>515</integer>
 			<key>ypos</key>
 			<integer>30</integer>
+		</dict>
+		<key>9DE00E86-F0F1-42F7-B39E-6741D3344F96</key>
+		<dict>
+			<key>xpos</key>
+			<integer>210</integer>
+			<key>ypos</key>
+			<integer>390</integer>
 		</dict>
 		<key>A586CE7B-4D6A-45BE-83AF-3CC03CD3EC76</key>
 		<dict>
@@ -343,16 +471,28 @@ Copy a link to your clipboard, run `vidur` and pick your verbosity level. It’l
 			<key>ypos</key>
 			<integer>30</integer>
 		</dict>
+		<key>D2EE2870-0BB7-4C36-AE50-FE59609C18AA</key>
+		<dict>
+			<key>xpos</key>
+			<integer>35</integer>
+			<key>ypos</key>
+			<integer>390</integer>
+		</dict>
 		<key>D98BBAD4-D6BE-4B42-A790-29432284D04B</key>
 		<dict>
 			<key>xpos</key>
 			<integer>35</integer>
 			<key>ypos</key>
-			<integer>160</integer>
+			<integer>150</integer>
 		</dict>
 	</dict>
+	<key>variables</key>
+	<dict>
+		<key>default_verbosity</key>
+		<string>medium</string>
+	</dict>
 	<key>version</key>
-	<string>21.8</string>
+	<string>22.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
