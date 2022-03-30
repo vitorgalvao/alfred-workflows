@@ -1,0 +1,169 @@
+#!/bin/zsh
+
+####################################################
+### Created by Vítor Galvão                      ###
+### Find the latest version at:                  ###
+###   https://github.com/vitorgalvao/notificator ###
+####################################################
+
+readonly program="$(basename "${0}")"
+
+# Helpers
+function show_notification {
+  /usr/bin/open "${app}" --args "${notificator_message}" "${notificator_title}" "${notificator_subtitle}" "${notificator_sound}"
+}
+
+function make_icns {
+  # Setup
+  local -r file="${1}"
+  local -r tmp_dir="$(/usr/bin/mktemp -d)"
+  local -r icon="${tmp_dir}/icon.icns"
+  local -r iconset="${tmp_dir}/icon.iconset"
+  /bin/mkdir "${iconset}"
+
+  # Create iconset
+  for size in {16,32,64,128,256,512}; do
+    /usr/bin/sips --resampleHeightWidth "${size}" "${size}" "${file}" --out "${iconset}/icon_${size}x${size}.png" &> /dev/null
+    /usr/bin/sips --resampleHeightWidth "$((size * 2))" "$((size * 2))" "${file}" --out "${iconset}/icon_${size}x${size}@2x.png" &> /dev/null
+  done
+
+  # Convert to icns
+  /usr/bin/iconutil --convert icns "${iconset}" --output "${icon}"
+
+  # Clean up and return path to icns
+  /bin/rm -rf "${iconset}"
+  echo "${icon}"
+}
+
+function usage {
+  echo "
+    Trigger macOS notifications from Alfred, using the Workflow icon
+
+    Usage:
+      ${program} --message <text> [options]
+
+    Options:
+      -m, --message <text>       Message text
+      -t, --title <text>         Title text
+      -s, --subtitle <text>      Subtitle text
+      -p, --sound <name>         Sound name (from /System/Library/Sounds)
+      -h, --help                 Show this help
+  " | sed -E 's/^ {4}//'
+}
+
+# Options
+args=()
+while [[ "${1}" ]]; do
+  case "${1}" in
+    -h | --help)
+      usage
+      exit 0
+      ;;
+    -m | --message)
+      readonly notificator_message="${2}"
+      shift
+      ;;
+    -t | --title)
+      readonly notificator_title="${2}"
+      shift
+      ;;
+    -s | --subtitle)
+      readonly notificator_subtitle="${2}"
+      shift
+      ;;
+    -p | --sound)
+      readonly notificator_sound="${2}"
+      shift
+      ;;
+    --)
+      shift
+      args+=("${@}")
+      break
+      ;;
+    -*)
+      echo "Unrecognised option: ${1}"
+      exit 1
+      ;;
+    *)
+      args+=("${1}")
+      ;;
+  esac
+  shift
+done
+set -- "${args[@]}"
+
+# Check for required arguments
+if [[ -z "${notificator_message}" ]]; then
+  echo 'A message is mandatory! Aborting…' >&2
+  exit 1
+fi
+
+readonly bundle_id="$(tr -cd '[:alnum:]._-' <<< "${alfred_workflow_bundleid}")"
+readonly icon="${alfred_preferences}/workflows/${alfred_workflow_uid}/icon.png"
+readonly app="${alfred_workflow_cache}/Notificator.app"
+readonly plist="${app}/Contents/Info.plist"
+
+# Exit early if Notificator exists and was modified fewer than 30 days ago
+if [[ -e "${app}" && -n "$(find "${app}" -depth 0 -mtime -30)" ]]; then
+  show_notification
+  exit 0
+fi
+
+# Pre-build checks
+if [[ -z "${bundle_id}" ]]; then
+  echo "Workflow is missing the bundle identifier! Aborting…" >&2
+  exit 1
+fi
+
+if [[ ! -f "${icon}" ]]; then
+  echo "Workflow is missing the icon! Aborting…" >&2
+  exit 1
+fi
+
+# Build Notificator
+readonly jxa_script='
+  // Build argv/argc in a way that can be used from the applet inside the app bundle
+  ObjC.import("Foundation")
+  const args = $.NSProcessInfo.processInfo.arguments
+  const argv = []
+  const argc = args.count
+  for (let i = 0; i < argc; i++) { argv.push(ObjC.unwrap(args.objectAtIndex(i))) }
+
+  // Notification script
+  const app = Application.currentApplication()
+  app.includeStandardAdditions = true
+
+  if (argv.length < 2) { // We use "2" because the script will always see at least one argument: the applet itself
+    argv[1] = "Opening usage instructions…"
+    argv[2] = "Notificator is a command-line app"
+    argv[4] = "Funk"
+
+    app.openLocation("https://github.com/vitorgalvao/notificator#usage")
+  }
+
+  const message = argv[1]
+  const title = argv[2]
+  const subtitle = argv[3]
+  const sound = argv[4]
+
+  const options = {}
+  if (title) options.withTitle = title
+  if (subtitle) options.subtitle = subtitle
+  if (sound) options.soundName = sound
+
+  app.displayNotification(message, options)
+'
+
+/bin/mkdir -p "${alfred_workflow_cache}"
+/usr/bin/osacompile -l JavaScript -o "${app}" -e "${jxa_script}" &> /dev/null
+
+# Modify Notificator
+/usr/libexec/PlistBuddy -c "add :CFBundleIdentifier string ${bundle_id}.notificator" "${plist}"
+/usr/libexec/PlistBuddy -c 'add :LSUIElement string 1' "${plist}"
+mv "$(make_icns "${icon}")" "${app}/Contents/Resources/applet.icns"
+
+# Redo signature
+codesign --remove-signature "${app}"
+codesign --sign - "${app}"
+
+show_notification

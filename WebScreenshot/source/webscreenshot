@@ -3,7 +3,7 @@
 readonly url_list="${alfred_workflow_cache}/urls.txt"
 
 function notification {
-  /bin/zsh ./Notificator.app/Contents/Resources/Scripts/notificator --message "${1}" --title "${alfred_workflow_name}"
+  ./notificator --message "${1}" --title "${alfred_workflow_name}"
 }
 
 function failure {
