@@ -28,12 +28,18 @@ def clean_url(url)
     .sub(%r{\?.*}, '') # Anything after and including '?'
 end
 
+def clipboard_url
+  Open3.capture2(
+    '/usr/bin/sqlite3',
+    "#{ENV['HOME']}/Library/Application Support/Alfred/Databases/clipboard.alfdb",
+    'SELECT item FROM clipboard WHERE dataType = 0 AND item LIKE "http%" ORDER BY ts DESC LIMIT 1;'
+  ).first.chomp
+end
+
 def display_options
   script_filter_items = []
 
-  clipboard = Open3.capture2('pbpaste').first
-
-  argument = ARGV[0] || clipboard
+  argument = ARGV[0] || clipboard_url
   valid_state = argument.empty? ? false : true
 
   script_filter_items.push(

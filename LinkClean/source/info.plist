@@ -6,7 +6,7 @@
 	<string>com.vitorgalvao.alfred.linkclean</string>
 	<key>connections</key>
 	<dict>
-		<key>7C2672E2-049F-4486-9B04-56940BF42AB1</key>
+		<key>390C73DF-C34D-45A0-B7C5-C0B74C1F9FBA</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -42,11 +42,50 @@
 				<false/>
 			</dict>
 		</array>
+		<key>94E56B10-92C1-4A64-8D2F-E2D22A0D2AAC</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>87BE9FDE-D40E-46A8-B0CF-10D7D63F9352</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>B7D6699F-FC18-4DB5-A6ED-EE17A07868AB</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>7C2672E2-049F-4486-9B04-56940BF42AB1</string>
+				<string>E51153A7-6839-42AB-A890-9BF850973E82</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>CB0DF403-7E48-47D5-9141-C774A2C4950C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>87BE9FDE-D40E-46A8-B0CF-10D7D63F9352</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>E51153A7-6839-42AB-A890-9BF850973E82</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>87BE9FDE-D40E-46A8-B0CF-10D7D63F9352</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -101,31 +140,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>require "#{Dir.pwd}/linkclean_functions.rb"
-
-print clean_url(follow_redirects(ARGV[0]))</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>2</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>87BE9FDE-D40E-46A8-B0CF-10D7D63F9352</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -149,7 +163,7 @@ print clean_url(follow_redirects(ARGV[0]))</string>
 				<key>queuemode</key>
 				<integer>2</integer>
 				<key>runningsubtext</key>
-				<string>Please wait…</string>
+				<string>Grabbing URL from clipboard…</string>
 				<key>script</key>
 				<string>require "#{Dir.pwd}/linkclean_functions.rb"
 
@@ -173,6 +187,31 @@ display_options</string>
 			<string>FFC25DDE-7F2E-4A61-A2D0-0B4549044CAA</string>
 			<key>version</key>
 			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/linkclean_functions.rb"
+
+print clean_url(follow_redirects(ARGV[0]))</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>87BE9FDE-D40E-46A8-B0CF-10D7D63F9352</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -268,12 +307,75 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>acceptsfiles</key>
+				<false/>
+				<key>acceptsmulti</key>
+				<integer>0</integer>
+				<key>acceptstext</key>
+				<false/>
+				<key>acceptsurls</key>
+				<true/>
+				<key>name</key>
+				<string>Clean link</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.universalaction</string>
+			<key>uid</key>
+			<string>390C73DF-C34D-45A0-B7C5-C0B74C1F9FBA</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>1</integer>
 				<key>focusedappvariable</key>
 				<false/>
 				<key>focusedappvariablename</key>
 				<string></string>
-				<key>keyword</key>
-				<string>lc</string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>hotstring</key>
+				<string></string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>CB0DF403-7E48-47D5-9141-C774A2C4950C</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>triggerid</key>
+				<string>clean</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>94E56B10-92C1-4A64-8D2F-E2D22A0D2AAC</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.trigger.snippet</string>
@@ -285,19 +387,27 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argument</key>
-				<string>{clipboard}</string>
-				<key>passthroughargument</key>
+				<key>concurrently</key>
 				<false/>
-				<key>variables</key>
-				<dict/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/linkclean_functions.rb"
+
+print(clipboard_url)</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.utility.argument</string>
+			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>7C2672E2-049F-4486-9B04-56940BF42AB1</string>
+			<string>E51153A7-6839-42AB-A890-9BF850973E82</string>
 			<key>version</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -308,19 +418,19 @@ Run `lc` and input a URL, or leave it blank to use your clipboard contents. Acti
 ![](https://i.imgur.com/BOlDUmt.png)</string>
 	<key>uidata</key>
 	<dict>
+		<key>390C73DF-C34D-45A0-B7C5-C0B74C1F9FBA</key>
+		<dict>
+			<key>xpos</key>
+			<integer>40</integer>
+			<key>ypos</key>
+			<integer>190</integer>
+		</dict>
 		<key>630129C2-A7B6-480C-B4F4-7088EAEF71B2</key>
 		<dict>
 			<key>xpos</key>
 			<integer>490</integer>
 			<key>ypos</key>
 			<integer>30</integer>
-		</dict>
-		<key>7C2672E2-049F-4486-9B04-56940BF42AB1</key>
-		<dict>
-			<key>xpos</key>
-			<integer>200</integer>
-			<key>ypos</key>
-			<integer>180</integer>
 		</dict>
 		<key>809F9F9B-1BF9-4FF9-8EBC-F939220890C2</key>
 		<dict>
@@ -331,24 +441,53 @@ Run `lc` and input a URL, or leave it blank to use your clipboard contents. Acti
 			<key>xpos</key>
 			<integer>490</integer>
 			<key>ypos</key>
-			<integer>150</integer>
+			<integer>190</integer>
 		</dict>
 		<key>87BE9FDE-D40E-46A8-B0CF-10D7D63F9352</key>
 		<dict>
+			<key>note</key>
+			<string>Clean URL</string>
 			<key>xpos</key>
 			<integer>290</integer>
 			<key>ypos</key>
 			<integer>30</integer>
+		</dict>
+		<key>94E56B10-92C1-4A64-8D2F-E2D22A0D2AAC</key>
+		<dict>
+			<key>xpos</key>
+			<integer>40</integer>
+			<key>ypos</key>
+			<integer>465</integer>
 		</dict>
 		<key>B7D6699F-FC18-4DB5-A6ED-EE17A07868AB</key>
 		<dict>
 			<key>xpos</key>
 			<integer>40</integer>
 			<key>ypos</key>
-			<integer>150</integer>
+			<integer>595</integer>
+		</dict>
+		<key>CB0DF403-7E48-47D5-9141-C774A2C4950C</key>
+		<dict>
+			<key>note</key>
+			<string>From selection</string>
+			<key>xpos</key>
+			<integer>40</integer>
+			<key>ypos</key>
+			<integer>315</integer>
+		</dict>
+		<key>E51153A7-6839-42AB-A890-9BF850973E82</key>
+		<dict>
+			<key>note</key>
+			<string>Grab URL from clipboard</string>
+			<key>xpos</key>
+			<integer>290</integer>
+			<key>ypos</key>
+			<integer>595</integer>
 		</dict>
 		<key>FFC25DDE-7F2E-4A61-A2D0-0B4549044CAA</key>
 		<dict>
+			<key>note</key>
+			<string>From argument or clipboard</string>
 			<key>xpos</key>
 			<integer>40</integer>
 			<key>ypos</key>
@@ -356,7 +495,7 @@ Run `lc` and input a URL, or leave it blank to use your clipboard contents. Acti
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>20.4</string>
+	<string>22.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
