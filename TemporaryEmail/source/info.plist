@@ -90,7 +90,9 @@
 				<integer>102</integer>
 				<key>script</key>
 				<string>function notification {
-  ./notificator --message "${1}" --title "${alfred_workflow_name}"
+  if [[ "${notifications_enabled}" == 'true' ]]; then
+    ./notificator --message "${1}" --title "${alfred_workflow_name}"
+  fi
 }
 
 readonly email_name="${1//[^[:alnum:]]}"
@@ -110,6 +112,7 @@ readonly front_browser="$(osascript -e 'tell application "System Events" to retu
 
 if [[ "${front_browser}" == 'Safari'* || "${front_browser}" == 'Webkit'* ]]; then
   osascript &lt;&lt;EOF
+    tell application "System Events" to keystroke "${email}"
     tell application "${front_browser}"
       set tabIndex to index of current tab of front window
       open location "${url}"
@@ -118,14 +121,16 @@ if [[ "${front_browser}" == 'Safari'* || "${front_browser}" == 'Webkit'* ]]; the
 EOF
 elif [[ "${front_browser}" == 'Google Chrome'* || "${front_browser}" == 'Chromium'* || "${front_browser}" == 'Opera'* || "${front_browser}" == 'Vivaldi'* || "${front_browser}" == 'Brave Browser'* || "${front_browser}" == 'Microsoft Edge'* ]]; then
   osascript &lt;&lt;EOF
+    tell application "System Events" to keystroke "${email}"
     tell application "${front_browser}"
       set tabIndex to active tab index of front window
-      open location "${url}"
+      make new tab at after tab tabIndex of front window with properties {URL:"${url}"}
       set active tab index of front window to tabIndex
     end tell
 EOF
 elif [[ "${front_browser}" == 'firefox'* ]]; then
   osascript &lt;&lt;EOF
+    tell application "System Events" to keystroke "${email}"
     tell application "${front_browser}"
       open location "${url}"
     end tell
@@ -322,6 +327,9 @@ Giving an argument will try to use that specific name, while leaving it blank wi
 
 The `service` Workflow Environment Variable sets the service used for the inbox. Supported values: `teleosaurs.xyz`, `harakirimail.com`, `maildrop.cc`.
 
+
+Set the `notifications_enabled` Workflow Environment Variable to `false` if you want to disable notifications.
+
 Because [Firefox does not support AppleScript](https://bugzilla.mozilla.org/show_bug.cgi?id=125419), the inbox will open in the foreground and you must manually return to the tab you were in.</string>
 	<key>uidata</key>
 	<dict>
@@ -367,11 +375,13 @@ Because [Firefox does not support AppleScript](https://bugzilla.mozilla.org/show
 	</dict>
 	<key>variables</key>
 	<dict>
+		<key>notifications_enabled</key>
+		<string>true</string>
 		<key>service</key>
 		<string>maildrop.cc</string>
 	</dict>
 	<key>version</key>
-	<string>22.2</string>
+	<string>22.3</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
