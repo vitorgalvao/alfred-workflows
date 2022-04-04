@@ -153,6 +153,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>8DC58A3C-6774-4B9F-BC7D-0891C9A648F4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>96E1CC1B-3F76-4961-9E26-5B3D2BD1D122</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>955157E7-B3A9-4312-8A9E-F5AEE7D2CB6A</key>
 		<array/>
 		<key>96E1CC1B-3F76-4961-9E26-5B3D2BD1D122</key>
@@ -489,6 +502,37 @@ fi</string>
 			<string>A47E38E8-87FB-42B7-A966-4CFC5B0798FF</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>hotstring</key>
+				<string></string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>8DC58A3C-6774-4B9F-BC7D-0891C9A648F4</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1212,7 +1256,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<key>xpos</key>
 			<integer>450</integer>
 			<key>ypos</key>
-			<integer>955</integer>
+			<integer>1055</integer>
 		</dict>
 		<key>0428362E-5C9C-4EB0-B5B2-470ABC9845E7</key>
 		<dict>
@@ -1221,42 +1265,42 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<key>xpos</key>
 			<integer>770</integer>
 			<key>ypos</key>
-			<integer>625</integer>
+			<integer>725</integer>
 		</dict>
 		<key>06DF291B-32C4-425D-A58F-0A1E2678206E</key>
 		<dict>
 			<key>xpos</key>
 			<integer>680</integer>
 			<key>ypos</key>
-			<integer>655</integer>
+			<integer>755</integer>
 		</dict>
 		<key>0DF168C1-F23D-42AE-937F-D625877ED05D</key>
 		<dict>
 			<key>xpos</key>
 			<integer>240</integer>
 			<key>ypos</key>
-			<integer>1255</integer>
+			<integer>1355</integer>
 		</dict>
 		<key>23352050-CC5C-4680-8243-005771354087</key>
 		<dict>
 			<key>xpos</key>
 			<integer>240</integer>
 			<key>ypos</key>
-			<integer>1385</integer>
+			<integer>1485</integer>
 		</dict>
 		<key>2B67AFF0-0412-4E9B-88CE-ADF345434F52</key>
 		<dict>
 			<key>xpos</key>
 			<integer>20</integer>
 			<key>ypos</key>
-			<integer>495</integer>
+			<integer>595</integer>
 		</dict>
 		<key>312A5A83-445F-49A9-91E3-5E65184C33B9</key>
 		<dict>
 			<key>xpos</key>
 			<integer>20</integer>
 			<key>ypos</key>
-			<integer>180</integer>
+			<integer>280</integer>
 		</dict>
 		<key>348262A6-0298-49B4-A582-AF48C527E471</key>
 		<dict>
@@ -1265,35 +1309,42 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<key>xpos</key>
 			<integer>240</integer>
 			<key>ypos</key>
-			<integer>180</integer>
+			<integer>280</integer>
 		</dict>
 		<key>4FB6B196-D4A2-431D-B33C-E1DFB0A5A57F</key>
 		<dict>
 			<key>xpos</key>
 			<integer>20</integer>
 			<key>ypos</key>
-			<integer>1255</integer>
+			<integer>1355</integer>
 		</dict>
 		<key>51173530-985F-468F-90DC-B37CC651F01A</key>
 		<dict>
 			<key>xpos</key>
 			<integer>450</integer>
 			<key>ypos</key>
-			<integer>1125</integer>
+			<integer>1225</integer>
 		</dict>
 		<key>65AAB448-3013-42AB-A59B-A886A23A7B3C</key>
 		<dict>
 			<key>xpos</key>
 			<integer>360</integer>
 			<key>ypos</key>
-			<integer>815</integer>
+			<integer>915</integer>
 		</dict>
 		<key>71E82EE1-88EE-483E-A952-AC7AB8F4EDDF</key>
 		<dict>
 			<key>xpos</key>
 			<integer>20</integer>
 			<key>ypos</key>
-			<integer>1515</integer>
+			<integer>1615</integer>
+		</dict>
+		<key>8DC58A3C-6774-4B9F-BC7D-0891C9A648F4</key>
+		<dict>
+			<key>xpos</key>
+			<integer>20</integer>
+			<key>ypos</key>
+			<integer>150</integer>
 		</dict>
 		<key>955157E7-B3A9-4312-8A9E-F5AEE7D2CB6A</key>
 		<dict>
@@ -1302,7 +1353,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<key>xpos</key>
 			<integer>660</integer>
 			<key>ypos</key>
-			<integer>955</integer>
+			<integer>1055</integer>
 		</dict>
 		<key>96E1CC1B-3F76-4961-9E26-5B3D2BD1D122</key>
 		<dict>
@@ -1329,7 +1380,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<key>xpos</key>
 			<integer>450</integer>
 			<key>ypos</key>
-			<integer>495</integer>
+			<integer>595</integer>
 		</dict>
 		<key>A47E38E8-87FB-42B7-A966-4CFC5B0798FF</key>
 		<dict>
@@ -1343,21 +1394,21 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<key>xpos</key>
 			<integer>240</integer>
 			<key>ypos</key>
-			<integer>1515</integer>
+			<integer>1615</integer>
 		</dict>
 		<key>AC4A2ACA-CEFF-4C48-9B37-A39B17B934C4</key>
 		<dict>
 			<key>xpos</key>
 			<integer>360</integer>
 			<key>ypos</key>
-			<integer>1155</integer>
+			<integer>1255</integer>
 		</dict>
 		<key>BBA7D5B8-BDF1-4669-B928-461708E18DDF</key>
 		<dict>
 			<key>xpos</key>
 			<integer>360</integer>
 			<key>ypos</key>
-			<integer>655</integer>
+			<integer>755</integer>
 		</dict>
 		<key>DC6DE0A7-2311-4F8C-A1A8-457DC074F1EA</key>
 		<dict>
@@ -1366,35 +1417,35 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<key>xpos</key>
 			<integer>240</integer>
 			<key>ypos</key>
-			<integer>340</integer>
+			<integer>440</integer>
 		</dict>
 		<key>E3D8770A-3517-4F4F-854A-7E88C2FA4E37</key>
 		<dict>
 			<key>xpos</key>
 			<integer>240</integer>
 			<key>ypos</key>
-			<integer>1645</integer>
+			<integer>1745</integer>
 		</dict>
 		<key>EF339515-CFD8-47BF-B208-FF9DCA32A2C1</key>
 		<dict>
 			<key>xpos</key>
 			<integer>20</integer>
 			<key>ypos</key>
-			<integer>1645</integer>
+			<integer>1745</integer>
 		</dict>
 		<key>EFCEA4B6-8BAA-4509-AD10-EDA3CF3DF3EB</key>
 		<dict>
 			<key>xpos</key>
 			<integer>20</integer>
 			<key>ypos</key>
-			<integer>340</integer>
+			<integer>440</integer>
 		</dict>
 		<key>F19E7C66-0D3E-4ADE-A607-590AD4B34BFA</key>
 		<dict>
 			<key>xpos</key>
 			<integer>20</integer>
 			<key>ypos</key>
-			<integer>1385</integer>
+			<integer>1485</integer>
 		</dict>
 		<key>F3FE5E70-3869-4937-9ECB-ADAED3106B1F</key>
 		<dict>
@@ -1403,14 +1454,14 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<key>xpos</key>
 			<integer>450</integer>
 			<key>ypos</key>
-			<integer>785</integer>
+			<integer>885</integer>
 		</dict>
 		<key>FA9C9F80-EFDB-4A12-AA7A-DC5D0F76E557</key>
 		<dict>
 			<key>xpos</key>
 			<integer>20</integer>
 			<key>ypos</key>
-			<integer>625</integer>
+			<integer>725</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
@@ -1428,7 +1479,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 		<string>unread_order</string>
 	</array>
 	<key>version</key>
-	<string>22.4</string>
+	<string>22.5</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
