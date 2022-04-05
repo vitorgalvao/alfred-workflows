@@ -18,6 +18,16 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>736622BA-E278-42DF-8121-265EDBBADFBA</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
 		</array>
 		<key>9066A3FA-E9D2-44AF-BB72-A54ABBEB3A3D</key>
 		<array>
@@ -102,40 +112,32 @@ elif [[ "${service}" == 'maildrop.cc' ]]; then
   readonly email="${email_name}@maildrop.cc"
   readonly url="https://maildrop.cc/inbox/${email_name}"
 else
-  readonly email="${email_name}@teleosaurs.xyz"
-  readonly url="https://teleosaurs.xyz/inbox/${email_name}"
+  readonly email="${email_name}@guerrillamail.com"
+  readonly url="https://guerrillamail.com/inbox/${email_name}"
 fi
 
 readonly front_browser="$(osascript -e 'tell application "System Events" to return name of first process whose frontmost is true')"
 
 if [[ "${front_browser}" == 'Safari'* || "${front_browser}" == 'Webkit'* ]]; then
-  osascript &lt;&lt;EOF
-    tell application "${front_browser}"
-      set tabIndex to index of current tab of front window
-      open location "${url}"
-      tell front window to set current tab to tab tabIndex
+  osascript -e "
+    tell application \"${front_browser}\" to tell front window
+      set tabIndex to index of current tab      make new tab at after tab tabIndex with properties {URL:\"${url}\"}
     end tell
-EOF
+  "  &gt; /dev/null
 elif [[ "${front_browser}" == 'Google Chrome'* || "${front_browser}" == 'Chromium'* || "${front_browser}" == 'Opera'* || "${front_browser}" == 'Vivaldi'* || "${front_browser}" == 'Brave Browser'* || "${front_browser}" == 'Microsoft Edge'* ]]; then
-  osascript &lt;&lt;EOF
-    tell application "${front_browser}"
-      set tabIndex to active tab index of front window
-      open location "${url}"
-      set active tab index of front window to tabIndex
+  osascript -e "
+    tell application \"${front_browser}\" to tell front window
+      set tabIndex to active tab index
+      make new tab at after tab tabIndex with properties {URL:\"${url}\"}
+      set active tab index to tabIndex
     end tell
-EOF
-elif [[ "${front_browser}" == 'firefox'* ]]; then
-  osascript &lt;&lt;EOF
-    tell application "${front_browser}"
-      open location "${url}"
-    end tell
-EOF
+  "
 else
   notification 'You need a supported browser as your frontmost app'
   exit 1
 fi
 
-pbcopy &lt;&lt;&lt; "${email}"
+echo -n "${email}"
 notification 'Temporary email address copied to clipboard'</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
@@ -169,19 +171,6 @@ notification 'Temporary email address copied to clipboard'</string>
 			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
 			<string>9066A3FA-E9D2-44AF-BB72-A54ABBEB3A3D</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.random</string>
-			<key>uid</key>
-			<string>E9B13513-9247-4498-8320-6E24CF7DBDB5</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -285,6 +274,19 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.random</string>
+			<key>uid</key>
+			<string>E9B13513-9247-4498-8320-6E24CF7DBDB5</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>conditions</key>
 				<array>
 					<dict>
@@ -312,17 +314,34 @@ fi</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<true/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>736622BA-E278-42DF-8121-265EDBBADFBA</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
 	</array>
 	<key>readme</key>
-	<string>Call `tmpmail` to make a temporary email address and open a background tab with the corresponding inbox. The address will be copied to your clipboard.
+	<string>Call `tmpmail` to make a temporary email address and open a background tab with the corresponding inbox. The address will be copied to your clipboard and pasted to the current input field.
 
 ![](https://i.imgur.com/w7Y9kfZ.png)
 
 Giving an argument will try to use that specific name, while leaving it blank will create a random address.
 
-The `service` Workflow Environment Variable sets the service used for the inbox. Supported values: `teleosaurs.xyz`, `harakirimail.com`, `maildrop.cc`.
-
-Because [Firefox does not support AppleScript](https://bugzilla.mozilla.org/show_bug.cgi?id=125419), the inbox will open in the foreground and you must manually return to the tab you were in.</string>
+The `service` Workflow Environment Variable sets the service used for the inbox. Supported values: `guerrillamail.com`, `harakirimail.com`, `maildrop.cc`.</string>
 	<key>uidata</key>
 	<dict>
 		<key>1BFF14FC-DF72-4BC9-807B-3D38432CF08D</key>
@@ -342,6 +361,13 @@ Because [Firefox does not support AppleScript](https://bugzilla.mozilla.org/show
 			<integer>565</integer>
 			<key>ypos</key>
 			<integer>25</integer>
+		</dict>
+		<key>736622BA-E278-42DF-8121-265EDBBADFBA</key>
+		<dict>
+			<key>xpos</key>
+			<integer>565</integer>
+			<key>ypos</key>
+			<integer>175</integer>
 		</dict>
 		<key>9066A3FA-E9D2-44AF-BB72-A54ABBEB3A3D</key>
 		<dict>
@@ -368,10 +394,10 @@ Because [Firefox does not support AppleScript](https://bugzilla.mozilla.org/show
 	<key>variables</key>
 	<dict>
 		<key>service</key>
-		<string>maildrop.cc</string>
+		<string>guerrillamail.com</string>
 	</dict>
 	<key>version</key>
-	<string>22.2</string>
+	<string>22.3</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
