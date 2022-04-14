@@ -32,7 +32,7 @@ def clipboard_url
   Open3.capture2(
     '/usr/bin/sqlite3',
     "#{ENV['HOME']}/Library/Application Support/Alfred/Databases/clipboard.alfdb",
-    'SELECT item FROM clipboard WHERE dataType = 0 AND item LIKE "http%" ORDER BY ts DESC LIMIT 1;'
+    'SELECT item FROM (SELECT item,MAX(ts) FROM clipboard WHERE dataType = 0 AND item LIKE "http%");'
   ).first.chomp
 end
 

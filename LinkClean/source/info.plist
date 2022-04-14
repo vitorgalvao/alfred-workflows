@@ -495,7 +495,7 @@ Run `lc` and input a URL, or leave it blank to use your clipboard contents. Acti
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>22.1</string>
+	<string>22.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
