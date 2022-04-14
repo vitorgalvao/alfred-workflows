@@ -131,7 +131,7 @@
 				<key>script</key>
 				<string>readonly PATH="$(./_sharedresources 'youtubedl')"
 readonly verbosity="${1}"
-readonly url="$(sqlite3 "${HOME}/Library/Application Support/Alfred/Databases/clipboard.alfdb" 'SELECT item FROM clipboard WHERE dataType = 0 AND item LIKE "http%" ORDER BY ts DESC LIMIT 1;')"
+readonly url="$(sqlite3 "${HOME}/Library/Application Support/Alfred/Databases/clipboard.alfdb" 'SELECT item FROM (SELECT item,MAX(ts) FROM clipboard WHERE dataType = 0 AND item LIKE "http%");')"
 
 readonly full_info="$(youtube-dl --get-title --get-description --get-duration "${url}")"
 readonly title="$(head -1 &lt;&lt;&lt; "${full_info}")"
@@ -492,7 +492,7 @@ The `default_verbosity` Workflow Environment Variable applies to everything but 
 		<string>medium</string>
 	</dict>
 	<key>version</key>
-	<string>22.1</string>
+	<string>22.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
