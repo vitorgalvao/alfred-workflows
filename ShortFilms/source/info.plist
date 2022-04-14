@@ -6,6 +6,19 @@
 	<string>com.vitorgalvao.alfred.shortfilms</string>
 	<key>connections</key>
 	<dict>
+		<key>2EF753EF-6194-4420-9096-C6892565EC96</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>355240A2-7F83-4E87-B774-3423B8FCB001</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>325E0A83-2F46-4696-80F4-7D41608F65DC</key>
 		<array>
 			<dict>
@@ -38,6 +51,9 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+		</array>
+		<key>355240A2-7F83-4E87-B774-3423B8FCB001</key>
+		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>F5FD6323-96E1-41A8-817E-E2391373262A</string>
@@ -49,13 +65,24 @@
 				<false/>
 			</dict>
 		</array>
-		<key>BFA5B490-4D6E-4BAF-931F-07282EC4A4B3</key>
-		<array/>
-		<key>F52ABFBA-FC4F-400F-BF1B-AAF7B723052C</key>
+		<key>5777145B-F30B-4A39-8BB6-AA07F81401E1</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>F622CD2F-A79C-41E3-91E5-1BF5B66F3F52</string>
+				<string>355240A2-7F83-4E87-B774-3423B8FCB001</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>BFA5B490-4D6E-4BAF-931F-07282EC4A4B3</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>355240A2-7F83-4E87-B774-3423B8FCB001</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -69,6 +96,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>97081E49-C4BE-4918-A447-B006C76E98FD</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>F5FD6323-96E1-41A8-817E-E2391373262A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>B98A3913-3098-459E-AAF4-04F2A2A3E0A7</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -134,82 +174,6 @@
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>325E0A83-2F46-4696-80F4-7D41608F65DC</string>
-			<key>version</key>
-			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>if [[ "$(mdfind kMDItemCFBundleIdentifier = io.mpv)" ]]; then
-  PATH="$(./_sharedresources 'youtubedl')"
-  video_player='mpv'
-elif [[ "$(mdfind kMDItemCFBundleIdentifier = com.colliderli.iina)" ]]; then
-  video_player='iina'
-elif [[ "$(mdfind kMDItemCFBundleIdentifier = org.videolan.vlc)" ]]; then
-  video_player='vlc'
-else
-  warning 'To play a stream you need mpv, iina, or vlc.'
-fi
-
-open -a "${video_player}" --args "${1}"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>5777145B-F30B-4A39-8BB6-AA07F81401E1</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>./downmedia-download 'video' "${1}"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>BFA5B490-4D6E-4BAF-931F-07282EC4A4B3</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>autopaste</key>
-				<false/>
-				<key>clipboardtext</key>
-				<string>{query}</string>
-				<key>ignoredynamicplaceholders</key>
-				<false/>
-				<key>transient</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.clipboard</string>
-			<key>uid</key>
-			<string>2EF753EF-6194-4420-9096-C6892565EC96</string>
 			<key>version</key>
 			<integer>3</integer>
 		</dict>
@@ -307,6 +271,189 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string># Checks
+if [[ -z "${alfred_workflow_bundleid}" ]]; then
+  echo 'Workflow is missing bundle identifier!' &gt;&amp;2
+  exit 1
+fi
+
+# Plist contents
+read -r -d '' plist_contents &lt;&lt;ENDPLIST
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+    &lt;key&gt;Label&lt;/key&gt;
+    &lt;string&gt;${alfred_workflow_bundleid}&lt;/string&gt;
+    &lt;key&gt;ProgramArguments&lt;/key&gt;
+    &lt;array&gt;
+        &lt;string&gt;sh&lt;/string&gt;
+        &lt;string&gt;-c&lt;/string&gt;
+        &lt;string&gt;osascript -e 'tell application id &amp;quot;com.runningwithcrayons.Alfred&amp;quot; to run trigger &amp;quot;build_list&amp;quot; in workflow &amp;quot;${alfred_workflow_bundleid}&amp;quot;'&lt;/string&gt;
+    &lt;/array&gt;
+    &lt;key&gt;StartCalendarInterval&lt;/key&gt;
+    &lt;dict&gt;
+        &lt;key&gt;Hour&lt;/key&gt;
+        &lt;integer&gt;00&lt;/integer&gt;
+        &lt;key&gt;Minute&lt;/key&gt;
+        &lt;integer&gt;20&lt;/integer&gt;
+    &lt;/dict&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+ENDPLIST
+
+# Main
+readonly launchagents_dir="${HOME}/Library/LaunchAgents"
+readonly plist_file="${launchagents_dir}/${alfred_workflow_bundleid}.plist"
+
+if [[ "${auto_refresh}" -eq 0 ]]; then
+  # Exit early if plist does not exist
+  [[ -f "${plist_file}" ]] || exit 0
+
+  # Uninstall agent
+  launchctl bootout "gui/$(id -u "${USER}")" "${plist_file}"
+  rm "${plist_file}"
+else
+  # Exit early if plist exists
+  [[ -f "${plist_file}" ]] &amp;&amp; exit 0
+
+  # Install agent
+  mkdir -p "${launchagents_dir}"
+  echo "${plist_contents}" &gt; "${plist_file}"
+
+  # Short of the Week updates at about 10:00 EST
+  # Change plist to use correct renew time according to current time zone
+  readonly renew_hour="$(date -r $(TZ=EST date -jf "%H" 10 +%s) +"%H")"
+  /usr/libexec/PlistBuddy -c "Set StartCalendarInterval:Hour ${renew_hour}" "${plist_file}"
+
+  launchctl bootstrap "gui/$(id -u "${USER}")" "${plist_file}"
+fi</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>355240A2-7F83-4E87-B774-3423B8FCB001</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>readonly old_plist="${HOME}/Library/LaunchAgents/com.vitorgalvao.launchd.alfredshortfilmsupdate.plist"
+
+if [[ -f "${old_plist}" ]]; then
+  launchctl bootout "gui/$(id -u "${USER}")" "${old_plist}"
+  rm "${old_plist}"
+fi</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>B98A3913-3098-459E-AAF4-04F2A2A3E0A7</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>if [[ "$(mdfind kMDItemCFBundleIdentifier = io.mpv)" ]]; then
+  PATH="$(./_sharedresources 'youtubedl')"
+  video_player='mpv'
+elif [[ "$(mdfind kMDItemCFBundleIdentifier = com.colliderli.iina)" ]]; then
+  video_player='iina'
+elif [[ "$(mdfind kMDItemCFBundleIdentifier = org.videolan.vlc)" ]]; then
+  video_player='vlc'
+else
+  warning 'To play a stream you need mpv, iina, or vlc.'
+fi
+
+open -a "${video_player}" --args "${1}"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>5777145B-F30B-4A39-8BB6-AA07F81401E1</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>./downmedia-download 'video' "${1}"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>BFA5B490-4D6E-4BAF-931F-07282EC4A4B3</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>2EF753EF-6194-4420-9096-C6892565EC96</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>triggerid</key>
 				<string>build_list</string>
 			</dict>
@@ -340,140 +487,6 @@ fi</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>alfredfiltersresults</key>
-				<false/>
-				<key>alfredfiltersresultsmatchmode</key>
-				<integer>0</integer>
-				<key>argumenttreatemptyqueryasnil</key>
-				<false/>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>keyword</key>
-				<string>:shortfilmslaunchd</string>
-				<key>queuedelaycustom</key>
-				<integer>3</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<true/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string>Please wait…</string>
-				<key>script</key>
-				<string>plist_file="${HOME}/Library/LaunchAgents/com.vitorgalvao.launchd.alfredshortfilmsupdate.plist"
-
-if [[ -f "${plist_file}" ]]; then
-  echo '
-    {"items": [
-      {
-        "title": "Reinstall ShortFilms launchd service",
-        "subtitle": "In case daylight savings has messed up the update time",
-        "arg": "reinstall"
-      },
-      {
-        "title": "Remove ShortFilms launchd service",
-        "subtitle": "Stop auto-updating films list",
-	    "arg": "uninstall"
-      }
-    ]}
-  '
-else
-  echo '
-    {"items": [
-      {
-        "title": "Install ShortFilms launchd service",
-        "subtitle": "List will update automatically once a day",
-        "arg": "install"
-      },
-    ]}
-  '
-fi</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string></string>
-				<key>title</key>
-				<string>Install/remove ShortFilms launchd agent</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>F52ABFBA-FC4F-400F-BF1B-AAF7B723052C</string>
-			<key>version</key>
-			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>readonly plist_file='com.vitorgalvao.launchd.alfredshortfilmsupdate.plist'
-readonly launchagents_dir="${HOME}/Library/LaunchAgents"
-readonly installed_plist_file="${launchagents_dir}/${plist_file}"
-
-readonly action="${1}"
-
-function install_agent {
-  mkdir -p "${launchagents_dir}"
-  cp "${plist_file}" "${installed_plist_file}"
-
-  # Short of the Week updates at about 10:00 EST
-  # Change plist to use correct renew time according to current time zone
-  readonly renew_hour="$(date -r $(TZ=EST date -jf "%H" 10 +%s) +"%H")"
-  /usr/libexec/PlistBuddy -c "Set StartCalendarInterval:Hour ${renew_hour}" "${installed_plist_file}"
-
-  launchctl bootstrap "gui/$(id -u "${USER}")" "${installed_plist_file}"
-}
-
-function uninstall_agent {
-  launchctl bootout "gui/$(id -u "${USER}")" "${installed_plist_file}"
-  rm "${installed_plist_file}"
-}
-
-if [[ "${action}" == 'install' ]]; then
-  install_agent
-elif [[ "${action}" == 'reinstall' ]]; then
-  uninstall_agent
-  install_agent
-else
-  uninstall_agent
-fi</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>inboundconfig</key>
-			<dict>
-				<key>externalid</key>
-				<string>shortfilmslaunchd</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>F622CD2F-A79C-41E3-91E5-1BF5B66F3F52</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
 	</array>
 	<key>readme</key>
 	<string>Stream from a selection of short films, powered by [Short of the Week](https://www.shortoftheweek.com/).
@@ -482,9 +495,7 @@ Run `shorts` and it’ll show a list of the latest films. Pick one and it’ll s
 
 ![](https://i.imgur.com/nhXigIF.png)
 
-Short of the Week publishes a new short every day and building the initial list takes a few seconds, so after the initial download the list is cached for one day. If you want the list ready at all times without having to wait, run `:shortfilmslaunchd` to install (or later remove, running the same command) a `launchd` agent to seamlessly update the list every day close to the time Short of the Week updates their website.
-
-![](https://i.imgur.com/pKrvlah.png)
+Short of the Week publishes a new short every day and building the initial list takes a few seconds, so after download the list is cached for one day. It is auto-updated every day unless you disable the behaviour by changing the `auto_refresh` Workflow Environment Variable to `0`.
 
 To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.io/iina/), or [VLC](http://www.videolan.org/vlc/index.html).</string>
 	<key>uidata</key>
@@ -492,51 +503,62 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 		<key>2EF753EF-6194-4420-9096-C6892565EC96</key>
 		<dict>
 			<key>xpos</key>
-			<integer>340</integer>
+			<integer>240</integer>
 			<key>ypos</key>
 			<integer>280</integer>
 		</dict>
 		<key>325E0A83-2F46-4696-80F4-7D41608F65DC</key>
 		<dict>
 			<key>xpos</key>
-			<integer>130</integer>
+			<integer>30</integer>
+			<key>ypos</key>
+			<integer>20</integer>
+		</dict>
+		<key>355240A2-7F83-4E87-B774-3423B8FCB001</key>
+		<dict>
+			<key>note</key>
+			<string>launchd agent</string>
+			<key>xpos</key>
+			<integer>460</integer>
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
 		<key>5777145B-F30B-4A39-8BB6-AA07F81401E1</key>
 		<dict>
 			<key>xpos</key>
-			<integer>340</integer>
+			<integer>240</integer>
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
 		<key>97081E49-C4BE-4918-A447-B006C76E98FD</key>
 		<dict>
 			<key>xpos</key>
-			<integer>340</integer>
+			<integer>240</integer>
 			<key>ypos</key>
-			<integer>560</integer>
+			<integer>410</integer>
+		</dict>
+		<key>B98A3913-3098-459E-AAF4-04F2A2A3E0A7</key>
+		<dict>
+			<key>note</key>
+			<string>Remove old agent</string>
+			<key>xpos</key>
+			<integer>830</integer>
+			<key>ypos</key>
+			<integer>20</integer>
 		</dict>
 		<key>BFA5B490-4D6E-4BAF-931F-07282EC4A4B3</key>
 		<dict>
 			<key>xpos</key>
-			<integer>340</integer>
+			<integer>240</integer>
 			<key>ypos</key>
 			<integer>150</integer>
-		</dict>
-		<key>F52ABFBA-FC4F-400F-BF1B-AAF7B723052C</key>
-		<dict>
-			<key>xpos</key>
-			<integer>130</integer>
-			<key>ypos</key>
-			<integer>690</integer>
 		</dict>
 		<key>F54CC291-7B66-4D5A-A599-BD512EC630DD</key>
 		<dict>
 			<key>xpos</key>
-			<integer>130</integer>
+			<integer>30</integer>
 			<key>ypos</key>
-			<integer>560</integer>
+			<integer>410</integer>
 		</dict>
 		<key>F5FD6323-96E1-41A8-817E-E2391373262A</key>
 		<dict>
@@ -545,20 +567,20 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>340</integer>
+			<integer>645</integer>
 			<key>ypos</key>
-			<integer>410</integer>
-		</dict>
-		<key>F622CD2F-A79C-41E3-91E5-1BF5B66F3F52</key>
-		<dict>
-			<key>xpos</key>
-			<integer>340</integer>
-			<key>ypos</key>
-			<integer>690</integer>
+			<integer>20</integer>
 		</dict>
 	</dict>
+	<key>variables</key>
+	<dict>
+		<key>auto_refresh</key>
+		<string>1</string>
+	</dict>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
-	<string>22.1</string>
+	<string>22.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
