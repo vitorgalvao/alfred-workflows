@@ -8,8 +8,8 @@ Or use the Universal Action Trigger to save selected text or an item from Clipbo
 
 ![](https://i.imgur.com/RldyZW7.png)
 
-Retrieve your notes with `nview`. ⇧ or ⌘Y will quicklook its contents; ↵ will copy them; ⌘↵ copies and deletes; ⌥↵ opens the note in your text editor.
+Retrieve your notes with `nview`. ⇧ or ⌘Y will quicklook the note; ↵ opens it in your text editor; ⌥↵ copies it; ⌘↵ copies and deletes it.
 
-![](https://i.imgur.com/SII23wq.png)
+![](https://i.imgur.com/e5flNGn.png)
 
 To keep notes synced between machines, use the `notes_dir` Workflow Environment Variable to pick a custom save location. `new_file_extension` sets the extension for new files, such as `txt` or `markdown`.

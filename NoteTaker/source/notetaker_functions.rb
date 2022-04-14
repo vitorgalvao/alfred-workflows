@@ -40,7 +40,7 @@ def display_notes(dir: Notes_dir)
     script_filter_items.push(
       uid: note_name,
       title: note_name,
-      subtitle: 'Copy (↵), Copy and delete (⌘↵), Edit (⌥↵)',
+      subtitle: 'Edit (↵), Copy (⌥↵), Copy and delete (⌘↵), Preview (⇧)',
       arg: note.to_path,
       quicklookurl: note.to_path
     )

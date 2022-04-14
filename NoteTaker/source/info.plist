@@ -61,7 +61,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>D6A37A51-1C81-4498-8A9F-6C5CE2C42C2F</string>
+				<string>35C8230F-B24B-433B-AD8A-97530A5C5B86</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -91,11 +91,11 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>35C8230F-B24B-433B-AD8A-97530A5C5B86</string>
+				<string>D6A37A51-1C81-4498-8A9F-6C5CE2C42C2F</string>
 				<key>modifiers</key>
 				<integer>524288</integer>
 				<key>modifiersubtext</key>
-				<string>Edit note</string>
+				<string>Copy note</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -192,18 +192,7 @@
 			</dict>
 		</array>
 		<key>D6A37A51-1C81-4498-8A9F-6C5CE2C42C2F</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>2BB2CA5C-BC90-4D41-A56D-DE0FBD36FF5A</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
+		<array/>
 		<key>EBD71B97-DD3E-4484-A6DF-8630133F8F63</key>
 		<array>
 			<dict>
@@ -463,7 +452,7 @@ display_notes</string>
 				<key>script</key>
 				<string>require "#{Dir.pwd}/notetaker_functions.rb"
 
-copy_note(path: ARGV[0])</string>
+edit_note(path: ARGV[0])</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -474,7 +463,7 @@ copy_note(path: ARGV[0])</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>D6A37A51-1C81-4498-8A9F-6C5CE2C42C2F</string>
+			<string>35C8230F-B24B-433B-AD8A-97530A5C5B86</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -635,7 +624,7 @@ trash(path: ARGV[0])</string>
 				<key>script</key>
 				<string>require "#{Dir.pwd}/notetaker_functions.rb"
 
-edit_note(path: ARGV[0])</string>
+copy_note(path: ARGV[0])</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -646,7 +635,7 @@ edit_note(path: ARGV[0])</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>35C8230F-B24B-433B-AD8A-97530A5C5B86</string>
+			<string>D6A37A51-1C81-4498-8A9F-6C5CE2C42C2F</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -681,9 +670,9 @@ Or use the Universal Action Trigger to save selected text or an item from Clipbo
 
 ![](https://i.imgur.com/RldyZW7.png)
 
-Retrieve your notes with `nview`. ⇧ or ⌘Y will quicklook its contents; ↵ will copy them; ⌘↵ copies and deletes; ⌥↵ opens the note in your text editor.
+Retrieve your notes with `nview`. ⇧ or ⌘Y will quicklook the note; ↵ opens it in your text editor; ⌥↵ copies it; ⌘↵ copies and deletes it.
 
-![](https://i.imgur.com/SII23wq.png)
+![](https://i.imgur.com/e5flNGn.png)
 
 To keep notes synced between machines, use the `notes_dir` Workflow Environment Variable to pick a custom save location. `new_file_extension` sets the extension for new files, such as `txt` or `markdown`.</string>
 	<key>uidata</key>
@@ -739,7 +728,7 @@ To keep notes synced between machines, use the `notes_dir` Workflow Environment 
 			<key>xpos</key>
 			<integer>705</integer>
 			<key>ypos</key>
-			<integer>725</integer>
+			<integer>475</integer>
 		</dict>
 		<key>39AEE376-1119-4C0E-BF24-CB23030EE283</key>
 		<dict>
@@ -790,7 +779,7 @@ To keep notes synced between machines, use the `notes_dir` Workflow Environment 
 			<key>xpos</key>
 			<integer>705</integer>
 			<key>ypos</key>
-			<integer>475</integer>
+			<integer>725</integer>
 		</dict>
 		<key>EBD71B97-DD3E-4484-A6DF-8630133F8F63</key>
 		<dict>
@@ -812,7 +801,7 @@ To keep notes synced between machines, use the `notes_dir` Workflow Environment 
 		<string>notes_dir</string>
 	</array>
 	<key>version</key>
-	<string>22.3</string>
+	<string>22.4</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
