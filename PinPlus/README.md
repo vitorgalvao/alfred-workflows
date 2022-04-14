@@ -23,14 +23,6 @@ Unread bookmarks suffer an extra event when acted upon, depending on the `unread
 
 The `unread_order` Workflow Environment Variable affects the display of `pun`. Valid options are `oldest_first` and `newest_first`, defaulting to the latter.
 
-`:pinpluslaunchd` will install (or later remove, running the same command) a `launchd` agent to seamlessly fetch bookmarks every hour.
+Bookmarks are auto-updated every hour. Change `auto_refresh` to `0` to disable this behaviour. `:pinplusforceupdate` forces an update.
 
-![](https://i.imgur.com/sstjtK2.png)
-
-Bookmarks are auto-updated in accordance to the requirements of the Pinboard API. `:pinplusforceupdate` will force an update, but should be avoided. The `minutes_between_checks` Workflow Environment Variable defaults to `10`.
-
-![](https://i.imgur.com/W2KmV8C.png)
-
-If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`.
-
-![](https://i.imgur.com/J7fFguC.png)
+To reset your Pinboard API token, run `:pinplusresetapitoken`.

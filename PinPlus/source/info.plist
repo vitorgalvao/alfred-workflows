@@ -92,7 +92,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>9A055C32-C5CF-4D41-B7F2-366BC26FCE51</string>
+				<string>DD770517-8DE4-4374-AF73-7186420C0978</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -140,19 +140,6 @@
 				<false/>
 			</dict>
 		</array>
-		<key>71E82EE1-88EE-483E-A952-AC7AB8F4EDDF</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>A5E2E99E-54FF-47D3-BCCE-603E4E2D5424</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>8DC58A3C-6774-4B9F-BC7D-0891C9A648F4</key>
 		<array>
 			<dict>
@@ -172,7 +159,20 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>9A055C32-C5CF-4D41-B7F2-366BC26FCE51</string>
+				<string>DD770517-8DE4-4374-AF73-7186420C0978</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>9A055C32-C5CF-4D41-B7F2-366BC26FCE51</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>19D0222B-1ED1-47D9-A2C5-D5299C87CD41</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -185,7 +185,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>9A055C32-C5CF-4D41-B7F2-366BC26FCE51</string>
+				<string>DD770517-8DE4-4374-AF73-7186420C0978</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -248,6 +248,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>BBA7D5B8-BDF1-4669-B928-461708E18DDF</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>DD770517-8DE4-4374-AF73-7186420C0978</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>9A055C32-C5CF-4D41-B7F2-366BC26FCE51</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -506,6 +519,107 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>readonly old_plist="${HOME}/Library/LaunchAgents/com.vitorgalvao.launchd.pinplusfetch.plist"
+
+if [[ -f "${old_plist}" ]]; then
+  launchctl bootout "gui/$(id -u "${USER}")" "${old_plist}"
+  rm "${old_plist}"
+fi</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>19D0222B-1ED1-47D9-A2C5-D5299C87CD41</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string># Checks
+if [[ -z "${alfred_workflow_bundleid}" ]]; then
+  echo 'Workflow is missing bundle identifier!' &gt;&amp;2
+  exit 1
+fi
+
+# Plist contents
+read -r -d '' plist_contents &lt;&lt;ENDPLIST
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+    &lt;key&gt;Label&lt;/key&gt;
+    &lt;string&gt;${alfred_workflow_bundleid}&lt;/string&gt;
+    &lt;key&gt;ProgramArguments&lt;/key&gt;
+    &lt;array&gt;
+        &lt;string&gt;/usr/bin/osascript&lt;/string&gt;
+        &lt;string&gt;-e&lt;/string&gt;
+        &lt;string&gt;tell application id "com.runningwithcrayons.Alfred" to run trigger "fetch_bookmarks" in workflow "${alfred_workflow_bundleid}"&lt;/string&gt;
+    &lt;/array&gt;
+    &lt;key&gt;RunAtLoad&lt;/key&gt;
+    &lt;true/&gt;
+    &lt;key&gt;StartCalendarInterval&lt;/key&gt;
+    &lt;dict&gt;
+        &lt;key&gt;Minute&lt;/key&gt;
+        &lt;integer&gt;0&lt;/integer&gt;
+    &lt;/dict&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+ENDPLIST
+
+# Main
+readonly launchagents_dir="${HOME}/Library/LaunchAgents"
+readonly plist_file="${launchagents_dir}/${alfred_workflow_bundleid}.plist"
+
+if [[ "${auto_refresh}" -eq 0 ]]; then
+  # Exit early if plist does not exist
+  [[ -f "${plist_file}" ]] || exit 0
+
+  # Uninstall agent
+  launchctl bootout "gui/$(id -u "${USER}")" "${plist_file}"
+  rm "${plist_file}"
+else
+  # Exit early if plist exists
+  [[ -f "${plist_file}" ]] &amp;&amp; exit 0
+
+  # Install agent
+  mkdir -p "${launchagents_dir}"
+  echo "${plist_contents}" &gt; "${plist_file}"
+  launchctl bootstrap "gui/$(id -u "${USER}")" "${plist_file}"
+fi</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>DD770517-8DE4-4374-AF73-7186420C0978</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>action</key>
 				<integer>0</integer>
 				<key>argument</key>
@@ -518,8 +632,6 @@ fi</string>
 				<integer>0</integer>
 				<key>hotmod</key>
 				<integer>0</integer>
-				<key>hotstring</key>
-				<string></string>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -571,11 +683,9 @@ add_unread</string>
 				<key>focusedappvariablename</key>
 				<string></string>
 				<key>hotkey</key>
-				<integer>32</integer>
+				<integer>0</integer>
 				<key>hotmod</key>
-				<integer>1048576</integer>
-				<key>hotstring</key>
-				<string>U</string>
+				<integer>0</integer>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -628,11 +738,9 @@ print JSON.parse(File.read(Unread_bookmarks_json))['items'].map { |item| item['a
 				<key>focusedappvariablename</key>
 				<string></string>
 				<key>hotkey</key>
-				<integer>15</integer>
+				<integer>0</integer>
 				<key>hotmod</key>
-				<integer>524288</integer>
-				<key>hotstring</key>
-				<string>R</string>
+				<integer>0</integer>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -1059,126 +1167,6 @@ reset_pinboard_token</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>readonly plist_file='com.vitorgalvao.launchd.pinplusfetch.plist'
-readonly launchagents_dir="${HOME}/Library/LaunchAgents"
-readonly installed_plist_file="${launchagents_dir}/${plist_file}"
-
-readonly action="${1}"
-
-function install_agent {
-  mkdir -p "${launchagents_dir}"
-  cp "${plist_file}" "${installed_plist_file}"
-  launchctl bootstrap "gui/$(id -u "${USER}")" "${installed_plist_file}"
-}
-
-function uninstall_agent {
-  launchctl bootout "gui/$(id -u "${USER}")" "${installed_plist_file}"
-  rm "${installed_plist_file}"
-}
-
-if [[ "${action}" == 'install' ]]; then
-  install_agent
-else
-  uninstall_agent
-fi</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>inboundconfig</key>
-			<dict>
-				<key>externalid</key>
-				<string>pinpluslaunchd</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>A5E2E99E-54FF-47D3-BCCE-603E4E2D5424</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>alfredfiltersresults</key>
-				<false/>
-				<key>alfredfiltersresultsmatchmode</key>
-				<integer>0</integer>
-				<key>argumenttreatemptyqueryasnil</key>
-				<false/>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>keyword</key>
-				<string>:pinpluslaunchd</string>
-				<key>queuedelaycustom</key>
-				<integer>3</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<true/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string>Please wait…</string>
-				<key>script</key>
-				<string>plist_file="${HOME}/Library/LaunchAgents/com.vitorgalvao.launchd.pinplusfetch.plist"
-
-if [[ -f "${plist_file}" ]]; then
-  echo '
-    {"items": [
-      {
-        "title": "Remove PinPlus launchd service",
-        "subtitle": "Stop auto fetching every hour",
-	    "arg": "uninstall"
-      }
-    ]}
-  '
-else
-  echo '
-    {"items": [
-      {
-        "title": "Install Pinplus launchd service",
-        "subtitle": "Bookmarks will be fetched every hour",
-        "arg": "install"
-      },
-    ]}
-  '
-fi</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string></string>
-				<key>title</key>
-				<string>Install/remove Pinplus launchd agent</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>71E82EE1-88EE-483E-A952-AC7AB8F4EDDF</string>
-			<key>version</key>
-			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
 				<string>require "#{Dir.pwd}/pinplus.rb"
 
 fetch_bookmarks</string>
@@ -1236,17 +1224,9 @@ Unread bookmarks suffer an extra event when acted upon, depending on the `unread
 
 The `unread_order` Workflow Environment Variable affects the display of `pun`. Valid options are `oldest_first` and `newest_first`, defaulting to the latter.
 
-`:pinpluslaunchd` will install (or later remove, running the same command) a `launchd` agent to seamlessly fetch bookmarks every hour.
+Bookmarks are auto-updated every hour. Change `auto_refresh` to `0` to disable this behaviour. `:pinplusforceupdate` forces an update.
 
-![](https://i.imgur.com/sstjtK2.png)
-
-Bookmarks are auto-updated in accordance to the requirements of the Pinboard API. `:pinplusforceupdate` will force an update, but should be avoided. The `minutes_between_checks` Workflow Environment Variable defaults to `10`.
-
-![](https://i.imgur.com/W2KmV8C.png)
-
-If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`.
-
-![](https://i.imgur.com/J7fFguC.png)</string>
+To reset your Pinboard API token, run `:pinplusresetapitoken`.</string>
 	<key>uidata</key>
 	<dict>
 		<key>03D48D68-93A6-49C2-B1BD-B8BF3DDE698F</key>
@@ -1280,6 +1260,15 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<integer>240</integer>
 			<key>ypos</key>
 			<integer>1355</integer>
+		</dict>
+		<key>19D0222B-1ED1-47D9-A2C5-D5299C87CD41</key>
+		<dict>
+			<key>note</key>
+			<string>Remove old agent</string>
+			<key>xpos</key>
+			<integer>1155</integer>
+			<key>ypos</key>
+			<integer>20</integer>
 		</dict>
 		<key>23352050-CC5C-4680-8243-005771354087</key>
 		<dict>
@@ -1332,13 +1321,6 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<key>ypos</key>
 			<integer>915</integer>
 		</dict>
-		<key>71E82EE1-88EE-483E-A952-AC7AB8F4EDDF</key>
-		<dict>
-			<key>xpos</key>
-			<integer>20</integer>
-			<key>ypos</key>
-			<integer>1615</integer>
-		</dict>
 		<key>8DC58A3C-6774-4B9F-BC7D-0891C9A648F4</key>
 		<dict>
 			<key>xpos</key>
@@ -1371,7 +1353,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>770</integer>
+			<integer>970</integer>
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
@@ -1388,13 +1370,6 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<integer>20</integer>
 			<key>ypos</key>
 			<integer>20</integer>
-		</dict>
-		<key>A5E2E99E-54FF-47D3-BCCE-603E4E2D5424</key>
-		<dict>
-			<key>xpos</key>
-			<integer>240</integer>
-			<key>ypos</key>
-			<integer>1615</integer>
 		</dict>
 		<key>AC4A2ACA-CEFF-4C48-9B37-A39B17B934C4</key>
 		<dict>
@@ -1419,19 +1394,28 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 			<key>ypos</key>
 			<integer>440</integer>
 		</dict>
+		<key>DD770517-8DE4-4374-AF73-7186420C0978</key>
+		<dict>
+			<key>note</key>
+			<string>launchd agent</string>
+			<key>xpos</key>
+			<integer>770</integer>
+			<key>ypos</key>
+			<integer>20</integer>
+		</dict>
 		<key>E3D8770A-3517-4F4F-854A-7E88C2FA4E37</key>
 		<dict>
 			<key>xpos</key>
 			<integer>240</integer>
 			<key>ypos</key>
-			<integer>1745</integer>
+			<integer>1615</integer>
 		</dict>
 		<key>EF339515-CFD8-47BF-B208-FF9DCA32A2C1</key>
 		<dict>
 			<key>xpos</key>
 			<integer>20</integer>
 			<key>ypos</key>
-			<integer>1745</integer>
+			<integer>1615</integer>
 		</dict>
 		<key>EFCEA4B6-8BAA-4509-AD10-EDA3CF3DF3EB</key>
 		<dict>
@@ -1466,12 +1450,12 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 	</dict>
 	<key>variables</key>
 	<dict>
-		<key>minutes_between_checks</key>
-		<string>10</string>
+		<key>auto_refresh</key>
+		<string>1</string>
 		<key>unread_action</key>
 		<string>delete</string>
 		<key>unread_order</key>
-		<string>oldest_first</string>
+		<string>newest_first</string>
 	</dict>
 	<key>variablesdontexport</key>
 	<array>
@@ -1479,7 +1463,7 @@ If you ever need to update your Pinboard API token, call `:pinplusresetapitoken`
 		<string>unread_order</string>
 	</array>
 	<key>version</key>
-	<string>22.5</string>
+	<string>22.6</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
