@@ -820,19 +820,6 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>triggerid</key>
-				<string>play_id</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>1C0E08EA-ED61-4255-B50B-2EC1547C85F7</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -854,6 +841,19 @@ mark_watched(ARGV[0])</string>
 			<string>C929975A-3B90-474A-BA08-595EAB51A9B2</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>triggerid</key>
+				<string>play_id</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>1C0E08EA-ED61-4255-B50B-2EC1547C85F7</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1173,7 +1173,7 @@ In both cases:
 
 If the `top_on_play` Workflow Environment Variable is `true`, the item will be moved to the top of the list before beginning playback.
 
-[mpv](http://mpv.io/), [IINA](https://lhc70000.github.io/iina/), and [VLC](http://www.videolan.org/vlc/index.html) are directly supported. If playback exits with a non-zero code, the item will not be marked as played (hence not trashed). Take advantage of that!
+[mpv](http://mpv.io/), [IINA](https://lhc70000.github.io/iina/), and [VLC](http://www.videolan.org/vlc/index.html) are directly supported. If playback exits with a non-zero code, the item will not be marked as played (hence not trashed). Take advantage of that! Disable the behaviour by setting the `trash_on_watched` Workflow Environment Variable to `false`.
 
 `wlu` is the watched list. Its size is controlled by the `maximum_watched` Workflow Environment Variable. Actioning an item will mark it unwatched and try to recover it from the Trash. If the item has an origin URL (shown in the subtitle):
 
@@ -1451,6 +1451,8 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 		<string>~/Movies</string>
 		<key>top_on_play</key>
 		<string>true</string>
+		<key>trash_on_watched</key>
+		<string>true</string>
 	</dict>
 	<key>variablesdontexport</key>
 	<array>
@@ -1459,7 +1461,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 		<string>added_item_order</string>
 	</array>
 	<key>version</key>
-	<string>22.2</string>
+	<string>22.3</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>

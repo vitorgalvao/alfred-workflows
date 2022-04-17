@@ -27,7 +27,7 @@ In both cases:
 
 If the `top_on_play` Workflow Environment Variable is `true`, the item will be moved to the top of the list before beginning playback.
 
-[mpv](http://mpv.io/), [IINA](https://lhc70000.github.io/iina/), and [VLC](http://www.videolan.org/vlc/index.html) are directly supported. If playback exits with a non-zero code, the item will not be marked as played (hence not trashed). Take advantage of that!
+[mpv](http://mpv.io/), [IINA](https://lhc70000.github.io/iina/), and [VLC](http://www.videolan.org/vlc/index.html) are directly supported. If playback exits with a non-zero code, the item will not be marked as played (hence not trashed). Take advantage of that! Disable the behaviour by setting the `trash_on_watched` Workflow Environment Variable to `false`.
 
 `wlu` is the watched list. Its size is controlled by the `maximum_watched` Workflow Environment Variable. Actioning an item will mark it unwatched and try to recover it from the Trash. If the item has an origin URL (shown in the subtitle):
 

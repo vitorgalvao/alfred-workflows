@@ -11,6 +11,7 @@ Towatch_list = "#{Lists_dir}/towatch.yaml".freeze
 Watched_list = "#{Lists_dir}/watched.yaml".freeze
 Quick_playlist = File.join(ENV['alfred_workflow_cache'], 'quick_playlist.txt')
 Move_when_adding = !ENV['move_on_add'].nil? && !ENV['move_on_add'].empty?
+Trash_on_watched = ENV['trash_on_watched'] != 'false'
 
 def move_to_dir(path, target_dir)
   path_name = File.basename(path)
@@ -297,7 +298,7 @@ def play(id, send_to_watched = true)
     if list_audiovisual_files(item['path']).reject { |e| e == first_file }.empty?
       mark_watched(id) if send_to_watched == true
     else
-      trash(first_file)
+      trash(first_file) if Trash_on_watched
       update_series(id)
     end
   end
@@ -311,13 +312,13 @@ def play_item(type, path)
   # The 'split' together with 'last' serves to try to pick the last installed version, in case more than one is found (multiple versions in Homebrew Cellar, for example)
   video_player = lambda {
     mpv_homebrew_apple_silicon = '/opt/homebrew/bin/mpv'
-    return mpv_homebrew_apple_silicon if File.executable?(mpv_homebrew_apple_silicon)
+    return [mpv_homebrew_apple_silicon, '--no-terminal'] if File.executable?(mpv_homebrew_apple_silicon)
 
     mpv_homebrew_intel = '/usr/local/bin/mpv'
-    return mpv_homebrew_intel if File.executable?(mpv_homebrew_intel)
+    return [mpv_homebrew_intel, '--no-terminal'] if File.executable?(mpv_homebrew_intel)
 
     mpv_app = Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier', '=', 'io.mpv').first.strip.split("\n").last
-    return [mpv_app + '/Contents/MacOS/mpv', '--quiet'] if mpv_app
+    return [mpv_app + '/Contents/MacOS/mpv', '--no-terminal'] if mpv_app
 
     iina = Open3.capture2('mdfind', 'kMDItemCFBundleIdentifier', '=', 'com.colliderli.iina').first.strip.split("\n").last
     return iina + '/Contents/MacOS/IINA' if iina
@@ -352,6 +353,8 @@ def mark_watched(id)
   end
 
   # Trash
+  return unless Trash_on_watched
+
   trashed_name = trash(item['path'])
   return if File.basename(item['path']) == trashed_name
 
@@ -368,6 +371,8 @@ def mark_unwatched(id)
   switch_list(id, Watched_list, Towatch_list)
 
   # Try to recover trashed file
+  return unless Trash_on_watched
+
   return if item['type'] == 'stream'
 
   if item['trashed_name']
