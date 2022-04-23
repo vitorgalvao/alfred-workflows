@@ -1222,7 +1222,7 @@ You will have to install [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) yourself b
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>22.4</string>
+	<string>22.5</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

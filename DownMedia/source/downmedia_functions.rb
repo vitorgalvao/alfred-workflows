@@ -37,14 +37,8 @@ end
 ENV['PATH'] = Open3.capture2(Pathname.pwd.join('_sharedresources').to_path, 'ffmpeg').first
 
 # Check for yt-dlp
-unless system('yt-dlp', '--version', out: File::NULL, err: File::NULL)
-  abort <<~MESSAGE
-    Did not find "yt-dlp". You will need to install it yourself. Homebrew recommended.
-
-    Alternatively, download an older version of this Workflow without the dependency: https://github.com/vitorgalvao/alfred-workflows/tree/c0d9c9313857676997e6e05d9dda65cfa5fcda6a/DownMedia
-
-    Keep in mind that is no longer supported. It will continue to work until the (discontinued) youtube-dl no longer does.
-  MESSAGE
+if ENV['PATH'].split(File::PATH_SEPARATOR).map { |p| Pathname(p).join('yt-dlp') }.none? { |p| p.file? && p.executable? }
+  abort 'Did not find "yt-dlp". You need to install it yourself via Homebrew (https://brew.sh).'
 end
 
 # Constants
