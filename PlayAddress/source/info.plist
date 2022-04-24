@@ -211,10 +211,24 @@
 				<key>script</key>
 				<string>ObjC.import('stdlib')
 
+// Helpers
+function runCommand(arguments) {
+  const task = $.NSTask.alloc.init
+  const stdout = $.NSPipe.pipe
+
+  task.executableURL = $.NSURL.alloc.initFileURLWithPath(arguments[0])
+  task.arguments = arguments.slice(1)
+  task.standardOutput = stdout
+  task.launchAndReturnError(false)
+
+  const dataOut = stdout.fileHandleForReading.readDataToEndOfFile
+  const stringOut = $.NSString.alloc.initWithDataEncoding(dataOut, $.NSUTF8StringEncoding).js
+
+  return stringOut
+}
+
 // Set PATH with youtube-dl
-const app = Application.currentApplication()
-app.includeStandardAdditions = true
-const new_path = app.doShellScript($.getenv('alfred_preferences') + '/workflows/' + $.getenv('alfred_workflow_uid') + '/_sharedresources "youtubedl"')
+const new_path = runCommand([$.getenv('alfred_preferences') + '/workflows/' + $.getenv('alfred_workflow_uid') + '/_sharedresources', 'youtubedl'])
 $.setenv('PATH', new_path, 1)
 
 // Main
@@ -482,6 +496,54 @@ echo "${url}"</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>35</integer>
+				<key>hotmod</key>
+				<integer>1048576</integer>
+				<key>hotstring</key>
+				<string>P</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedApps</key>
+				<array>
+					<string>com.google.Chrome.canary</string>
+					<string>com.vivaldi.Vivaldi</string>
+					<string>com.apple.Safari</string>
+					<string>com.brave.Browser</string>
+					<string>com.brave.Browser.beta</string>
+					<string>com.apple.SafariTechnologyPreview</string>
+					<string>com.microsoft.edgemac.Beta</string>
+					<string>com.microsoft.edgemac.Canary</string>
+					<string>com.microsoft.edgemac.Dev</string>
+					<string>com.brave.Browser.dev</string>
+					<string>org.chromium.ChromiumChromium</string>
+					<string>com.brave.Browser.nightly</string>
+					<string>com.operasoftware.Opera</string>
+					<string>com.google.Chrome</string>
+				</array>
+				<key>relatedAppsMode</key>
+				<integer>1</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>47F603A1-4B31-4168-8960-0940434C5C49</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -573,48 +635,37 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>action</key>
-				<integer>0</integer>
-				<key>argument</key>
-				<integer>0</integer>
-				<key>focusedappvariable</key>
+				<key>concurrently</key>
 				<false/>
-				<key>focusedappvariablename</key>
-				<string></string>
-				<key>hotkey</key>
-				<integer>35</integer>
-				<key>hotmod</key>
-				<integer>1048576</integer>
-				<key>hotstring</key>
-				<string>P</string>
-				<key>leftcursor</key>
-				<false/>
-				<key>modsmode</key>
-				<integer>0</integer>
-				<key>relatedApps</key>
-				<array>
-					<string>com.google.Chrome.canary</string>
-					<string>com.vivaldi.Vivaldi</string>
-					<string>com.apple.Safari</string>
-					<string>com.brave.Browser</string>
-					<string>com.brave.Browser.beta</string>
-					<string>com.apple.SafariTechnologyPreview</string>
-					<string>com.microsoft.edgemac.Beta</string>
-					<string>com.microsoft.edgemac.Canary</string>
-					<string>com.microsoft.edgemac.Dev</string>
-					<string>com.brave.Browser.dev</string>
-					<string>org.chromium.ChromiumChromium</string>
-					<string>com.brave.Browser.nightly</string>
-					<string>com.operasoftware.Opera</string>
-					<string>com.google.Chrome</string>
-				</array>
-				<key>relatedAppsMode</key>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>readonly url="${1}"
+pbcopy &lt;&lt;&lt; "${url}" # Save URL to clipboard history
+
+if [[ "$(mdfind kMDItemCFBundleIdentifier = io.mpv)" ]]; then
+  PATH="$(./_sharedresources 'youtubedl')"
+  video_player='mpv'
+elif [[ "$(mdfind kMDItemCFBundleIdentifier = com.colliderli.iina)" ]]; then
+  video_player='iina'
+elif [[ "$(mdfind kMDItemCFBundleIdentifier = org.videolan.vlc)" ]]; then
+  video_player='vlc'
+else
+  warning 'To play a stream you need mpv, iina, or vlc.'
+fi
+
+open -na "${video_player}" --args "${url}"</string>
+				<key>scriptargtype</key>
 				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.trigger.hotkey</string>
+			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>47F603A1-4B31-4168-8960-0940434C5C49</string>
+			<string>197D2E43-384A-44B1-BE86-B36582E4CE52</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -656,43 +707,6 @@ JSON.stringify({ 'alfredworkflow': {
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>CDD7027F-7720-474A-BD10-377F3822A373</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>readonly url="${1}"
-pbcopy &lt;&lt;&lt; "${url}" # Save URL to clipboard history
-
-if [[ "$(mdfind kMDItemCFBundleIdentifier = io.mpv)" ]]; then
-  PATH="$(./_sharedresources 'youtubedl')"
-  video_player='mpv'
-elif [[ "$(mdfind kMDItemCFBundleIdentifier = com.colliderli.iina)" ]]; then
-  video_player='iina'
-elif [[ "$(mdfind kMDItemCFBundleIdentifier = org.videolan.vlc)" ]]; then
-  video_player='vlc'
-else
-  warning 'To play a stream you need mpv, iina, or vlc.'
-fi
-
-open -na "${video_player}" --args "${url}"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>197D2E43-384A-44B1-BE86-B36582E4CE52</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -839,7 +853,7 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 		<string>use_watchlist</string>
 	</array>
 	<key>version</key>
-	<string>22.3</string>
+	<string>22.4</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
