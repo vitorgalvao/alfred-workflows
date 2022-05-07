@@ -147,6 +147,31 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>source './webscreenshot'
+
+take_screenshot</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>6F290C99-0052-46BF-BB61-CDDB316DEBB1</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>action</key>
 				<integer>0</integer>
 				<key>argument</key>
@@ -181,31 +206,6 @@
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>source './webscreenshot'
-
-take_screenshot</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>6F290C99-0052-46BF-BB61-CDDB316DEBB1</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
 				<string>source './webscreenshot'
@@ -216,7 +216,7 @@ upload_file "${1}"</string>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>5</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -353,8 +353,6 @@ fi</string>
 				<string>source './webscreenshot'
 readonly image="$(mktemp).png"
 
-echo "${image}" &gt;&amp;2
-
 if clipboard_to_image "${image}"; then
   upload_file "${image}"
   rm "${image}"
@@ -367,7 +365,7 @@ failure 'No image data in clipboard'</string>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>5</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -434,7 +432,7 @@ clipboard_to_image "${HOME}/Desktop/$(date +'Screenshot %Y-%m-%d at %H.%M.%S.png
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>5</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -471,35 +469,35 @@ clipboard_to_image "${HOME}/Desktop/$(date +'Screenshot %Y-%m-%d at %H.%M.%S.png
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
-				<string>require 'json'
+				<string>function readFile(path) {
+  const data = $.NSFileManager.defaultManager.contentsAtPath(path)
+  return $.NSString.alloc.initWithDataEncoding(data, $.NSUTF8StringEncoding).js
+}
 
-url_list = "#{ENV['alfred_workflow_cache']}/urls.txt"
+function run() {
+  const urlList = $.NSProcessInfo.processInfo.environment.objectForKey("alfred_workflow_cache").js + '/urls.txt'
 
-unless File.exist?(url_list)
-  puts({items: [{ title: 'No URLs to list', valid: false }] }.to_json)
-  abort
-end
+  if (!$.NSFileManager.defaultManager.fileExistsAtPath(urlList)) return JSON.stringify({items: [{title: "No URLs to list", valid: false}]})
 
-script_filter_items = []
+  const sfItems = readFile(urlList).split("\n").map(line =&gt; {
+    const sides = line.split("|")
+    const viewURL = sides[0]
+    const deleteURL = sides[1]
+    const name = $(viewURL).lastPathComponent.js
 
-file_contents = File.open(url_list).read
-file_contents.each_line.with_index do |line, index|
-  screenshot_url = line.split('|')[0].strip
-  screenshot_del = line.split('|')[1].strip
-  screenshot_name = File.basename(screenshot_url)
-
-  script_filter_items.push(
-    title: "#{index + 1} / #{screenshot_name}",
-    subtitle: '↵ to open in web browser, ⌘↵ to delete, ⌥↵ to copy, ⇧ to view in quicklook',
-    mods: {
-        cmd: { subtitle: 'Open screenshot deletion page', arg: screenshot_del },
+    return {
+      title: name,
+      subtitle: '↵ to open in web browser, ⌘↵ to delete, ⌥↵ to copy, ⇧ to view in quicklook',
+      arg: viewURL,
+      mods: {
+        cmd: { subtitle: 'Open screenshot deletion page', arg: deleteURL },
         alt: { subtitle: 'Copy screenshot link' }
-    },
-    arg: screenshot_url
-  )
-end
+      }
+    }
+  })
 
-puts({ items: script_filter_items }.to_json)</string>
+  return JSON.stringify({items: sfItems})
+}</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -509,7 +507,7 @@ puts({ items: script_filter_items }.to_json)</string>
 				<key>title</key>
 				<string>Recently uploaded screenshots</string>
 				<key>type</key>
-				<integer>2</integer>
+				<integer>7</integer>
 				<key>withspace</key>
 				<false/>
 			</dict>
@@ -560,17 +558,17 @@ puts({ items: script_filter_items }.to_json)</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Take screenshots with a keyboard shortcut and upload them directly to [imgur](https://imgur.com/). Will produce both a sound and a visual notification when done, and copy the resulting direct link to your clipboard.
+	<string>Take screenshots with and upload them directly to [imgur](https://imgur.com/), copying the resulting link to the clipboard.
 
 ![](https://i.imgur.com/wP0LTlj.png)
 
-You may also upload an image or video by picking the `Upload Screenshot` File Action.
+In addition to the Hotkey, you may upload an image or video by picking the `Upload Screenshot` File Action.
 
-`uploadscreenshotclipboard` will upload the image in your clipboard.
+`uploadscreenshotclipboard` uploads the most recent image data in your clipboard.
 
-`savescreenshotclipboard` will save the image in your clipboard to the Desktop.
+`savescreenshotclipboard` saves the most recent image data in your clipboard to the Desktop.
 
-`recentscreenshots` will enumerate recently taken screenshots, ordered from the last. You can then open them in the browser to view (↵), delete (⌘↵), copy (⌥↵), or preview (⇧).</string>
+`recentscreenshots` enumerates recently uploaded screenshots, ordered from the last. You can then open them in the browser to view (↵), delete (⌘↵), copy (⌥↵), or preview (⇧).</string>
 	<key>uidata</key>
 	<dict>
 		<key>0385A72F-97DC-4BE0-B57B-EA12535CC0CF</key>
@@ -663,7 +661,7 @@ You may also upload an image or video by picking the `Upload Screenshot` File Ac
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>22.4</string>
+	<string>22.5</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

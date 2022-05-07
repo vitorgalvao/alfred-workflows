@@ -61,19 +61,11 @@ function upload_file {
 }
 
 function clipboard_to_image {
-  osascript -e "
-    on run argv
-      try
-        set imageData to the clipboard as {«class PNGf»}
-      on error
-        tell me to error \"Clipboard data does not seem to be an image\"
-      end try
+  local -r output_image="${1}"
+  local -r clipboard_db="${HOME}/Library/Application Support/Alfred/Databases/clipboard.alfdb"
+  local -r newest_image_name="$(sqlite3 "${clipboard_db}" 'SELECT datahash FROM (SELECT datahash,MAX(ts) FROM clipboard WHERE datatype = 1)')"
+  local newest_image_path="${clipboard_db}.data/${newest_image_name}"
 
-      set filePath to item 1 of argv
-
-      set imageFile to open for access filePath with write permission
-      write imageData to imageFile
-      close access imageFile
-    end run
-  " "${1}"
+  [[ -f "${newest_image_path}" ]] || return 1
+  sips --setProperty format png "${newest_image_path}" --out "${output_image}"
 }
