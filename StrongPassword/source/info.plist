@@ -6,11 +6,11 @@
 	<string>com.vitorgalvao.alfred.strongpassword</string>
 	<key>connections</key>
 	<dict>
-		<key>833B9AF0-2223-4218-84F4-75B180E64183</key>
+		<key>1BDA1213-2FA1-40FE-B252-818A316BB650</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>FF316160-82F1-4AC1-8D82-72A1F0AC9ED6</string>
+				<string>CFA0C3DA-2906-452F-80C8-4A283A90F645</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -19,7 +19,33 @@
 				<false/>
 			</dict>
 		</array>
-		<key>FF316160-82F1-4AC1-8D82-72A1F0AC9ED6</key>
+		<key>5233CF65-BC11-4F79-A9BC-64C9B32F2E5E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E161D8B6-976A-43AB-BB76-4C8A70932C24</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>A3871353-2B9A-4B24-AE0C-856A3B0B3D12</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D798B216-43A8-49D5-B696-095FAE0F819F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>D798B216-43A8-49D5-B696-095FAE0F819F</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -32,11 +58,62 @@
 				<false/>
 			</dict>
 		</array>
+		<key>E161D8B6-976A-43AB-BB76-4C8A70932C24</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>FF316160-82F1-4AC1-8D82-72A1F0AC9ED6</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>0485C091-4CFA-4778-BB8E-363431772C86</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>1BDA1213-2FA1-40FE-B252-818A316BB650</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>E405E993-F301-4C8D-A17C-38F77661C9F4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>A3871353-2B9A-4B24-AE0C-856A3B0B3D12</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>FF316160-82F1-4AC1-8D82-72A1F0AC9ED6</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E405E993-F301-4C8D-A17C-38F77661C9F4</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
 	<key>description</key>
-	<string>Get a strong password by leveraging multiple sources</string>
+	<string>Get a strong password from live quantum random values</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -46,28 +123,65 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>A3871353-2B9A-4B24-AE0C-856A3B0B3D12</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
-				<integer>0</integer>
+				<integer>68</integer>
 				<key>script</key>
-				<string>function notification {
-  ./notificator --message "${1}" --title "${alfred_workflow_name}"
+				<string>// Fisher-Yates shuffle
+// String -&gt; String
+function shuffle(string) {
+  const array = string.split("")
+  var m = array.length
+	var t
+	var i
+
+  while (m) {
+    i = Math.floor(Math.random() * m--);
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
+  }
+
+  return array.join("")
 }
 
-IFS=' ' read special number &lt;&lt;&lt; '{query}'
+function run(argv) {
+  passwordLength = argv[0] || $.NSProcessInfo.processInfo.environment.objectForKey("default_length").js || 64
 
-[[ -z "${number}" || "${number}" -gt 64 ]] &amp;&amp; number='64'
+  // Request random alphanumeric string from ANU QRNG
+  const url = "https://qrng.anu.edu.au/wp-content/plugins/colours-plugin/get_block_alpha.php"
+  const queryURL = $.NSURL.URLWithString(url)
+  const requestData = $.NSData.dataWithContentsOfURL(queryURL);
+  const requestString = $.NSString.alloc.initWithDataEncoding(requestData, $.NSUTF8StringEncoding).js
 
-ruby getPassword.rb "${special}" "${number}" | pbcopy
-
-notification "Password copied to the clipboard (${number} characters)"</string>
+  return shuffle(requestString).slice(0, passwordLength)
+}</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>7</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -75,68 +189,6 @@ notification "Password copied to the clipboard (${number} characters)"</string>
 			<string>FF316160-82F1-4AC1-8D82-72A1F0AC9ED6</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>alfredfiltersresults</key>
-				<false/>
-				<key>alfredfiltersresultsmatchmode</key>
-				<integer>0</integer>
-				<key>argumenttreatemptyqueryasnil</key>
-				<false/>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>sp</string>
-				<key>queuedelaycustom</key>
-				<integer>1</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<false/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string>Please wait…</string>
-				<key>script</key>
-				<string>[[ '{query}' -gt 64 ]] || [[ '{query}' -lt 1 ]] &amp;&amp; number='64' || number='{query}'
-
-cat &lt;&lt; EOF
-&lt;?xml version='1.0'?&gt;&lt;items&gt;
-  &lt;item uid='sp' arg='yes {query}' valid='yes'&gt;
-    &lt;title&gt;Password with all characters allowed&lt;/title&gt;
-    &lt;subtitle&gt;Getting password with ${number} characters&lt;/subtitle&gt;
-  &lt;/item&gt;
-  &lt;item uid='spns' arg='no {query}' valid='yes'&gt;
-    &lt;title&gt;Password without special characters&lt;/title&gt;
-    &lt;subtitle&gt;Getting password with ${number} characters&lt;/subtitle&gt;
-  &lt;/item&gt;
-&lt;/items&gt;
-EOF</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string>Get a strong password (with optional maximum number of characters)</string>
-				<key>title</key>
-				<string>StrongPassword</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>833B9AF0-2223-4218-84F4-75B180E64183</string>
-			<key>version</key>
-			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -235,22 +287,141 @@ fi</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>sp</string>
+				<key>subtext</key>
+				<string>Defaults to {var:default_length} characters; input a number to change length</string>
+				<key>text</key>
+				<string>StrongPassword</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>5233CF65-BC11-4F79-A9BC-64C9B32F2E5E</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>Password copied to clipboard</string>
+				<key>title</key>
+				<string>StrongPassword</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>D798B216-43A8-49D5-B696-095FAE0F819F</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>4</integer>
+						<key>matchstring</key>
+						<string>^[\d\s]*$</string>
+						<key>outputlabel</key>
+						<string>Generate password</string>
+						<key>uid</key>
+						<string>0485C091-4CFA-4778-BB8E-363431772C86</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>Invalid argument</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>E161D8B6-976A-43AB-BB76-4C8A70932C24</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.transform</string>
+			<key>uid</key>
+			<string>E405E993-F301-4C8D-A17C-38F77661C9F4</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>Argument needs to be a number</string>
+				<key>title</key>
+				<string>StrongPassword</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>1BDA1213-2FA1-40FE-B252-818A316BB650</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>soundname</key>
+				<string>Hero</string>
+				<key>systemsound</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.playsound</string>
+			<key>uid</key>
+			<string>CFA0C3DA-2906-452F-80C8-4A283A90F645</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
-	<string>Get strong passwords by combining up to three sources — https://www.grc.com/passwords.htm (unless you choose to have a password without special characters), http://www.random.org/passwords/, and `ruby` itself. There’s at the end a technical explanation on how it works.
- 
-Call `sp` and the workflow will get a (default and maximum of) 64 characters random password, and copy it to your clipboard.
+	<string>Run `sp` to generate a password from unique and live quantum random values provided by [ANU QRNG](https://qrng.anu.edu.au). Adjust the length by providing a value or editing the `default_length` Workflow Environment Variable.
 
-![](https://i.imgur.com/pECu5QK.png)
- 
-You can also specify a number after the keyword, and it’ll truncate the password to that.
-
-![](https://i.imgur.com/rJvNDyz.png)
-
-#### Technical Details
-I strived to keep the code very readable; inspect it at will. What this does is get a (about, due to some HTML escaping) 63 characters password from https://www.grc.com/passwords.htm and another (8 passwords, each consisting of 24 characters, joined together) from http://www.random.org/passwords/. If you opt for a password without special characters, only the latter will be used. It then picks a pseudorandom number (one of the instances where `ruby` is used, for speed) between one and two thirds of your chosen password length (truncated at, and by default, 64), saving that number (lets call it “x”) and the remainder (lets call it “y”) separately. From the first password, x number of characters will be chosen from random positions on the string (it’s actually an array, but that may start to become a bit too technical), and from the second one, y characters will be picked. The results are then joined together, and shuffled a last time between them, to produce the final result.</string>
+![](https://i.imgur.com/LKQGRuD.png)</string>
 	<key>uidata</key>
 	<dict>
+		<key>1BDA1213-2FA1-40FE-B252-818A316BB650</key>
+		<dict>
+			<key>xpos</key>
+			<integer>400</integer>
+			<key>ypos</key>
+			<integer>170</integer>
+		</dict>
 		<key>3DD8C944-A8C5-43D3-8FED-57C9677F2F52</key>
 		<dict>
 			<key>colorindex</key>
@@ -258,27 +429,67 @@ I strived to keep the code very readable; inspect it at will. What this does is 
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>420</integer>
+			<integer>950</integer>
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
-		<key>833B9AF0-2223-4218-84F4-75B180E64183</key>
+		<key>5233CF65-BC11-4F79-A9BC-64C9B32F2E5E</key>
 		<dict>
 			<key>xpos</key>
 			<integer>30</integer>
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
+		<key>A3871353-2B9A-4B24-AE0C-856A3B0B3D12</key>
+		<dict>
+			<key>xpos</key>
+			<integer>630</integer>
+			<key>ypos</key>
+			<integer>20</integer>
+		</dict>
+		<key>CFA0C3DA-2906-452F-80C8-4A283A90F645</key>
+		<dict>
+			<key>xpos</key>
+			<integer>630</integer>
+			<key>ypos</key>
+			<integer>170</integer>
+		</dict>
+		<key>D798B216-43A8-49D5-B696-095FAE0F819F</key>
+		<dict>
+			<key>xpos</key>
+			<integer>790</integer>
+			<key>ypos</key>
+			<integer>20</integer>
+		</dict>
+		<key>E161D8B6-976A-43AB-BB76-4C8A70932C24</key>
+		<dict>
+			<key>xpos</key>
+			<integer>190</integer>
+			<key>ypos</key>
+			<integer>40</integer>
+		</dict>
+		<key>E405E993-F301-4C8D-A17C-38F77661C9F4</key>
+		<dict>
+			<key>xpos</key>
+			<integer>555</integer>
+			<key>ypos</key>
+			<integer>50</integer>
+		</dict>
 		<key>FF316160-82F1-4AC1-8D82-72A1F0AC9ED6</key>
 		<dict>
 			<key>xpos</key>
-			<integer>230</integer>
+			<integer>400</integer>
 			<key>ypos</key>
 			<integer>20</integer>
 		</dict>
 	</dict>
+	<key>variables</key>
+	<dict>
+		<key>default_length</key>
+		<string>64</string>
+	</dict>
 	<key>version</key>
-	<string>22.2</string>
+	<string>22.4</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
