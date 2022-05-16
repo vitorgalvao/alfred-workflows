@@ -1,13 +1,9 @@
 # Collection of Alfred Workflows
+
 ### AlfredBookmarklet <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/AlfredBookmarklet/source/icon.png' width='60' align='center' alt='AlfredBookmarklet icon'>
 Use a browser bookmarklet via Alfred
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/AlfredBookmarklet) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/AlfredBookmarklet/AlfredBookmarklet.alfredworkflow)
-
-### AlfredModeration <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/AlfredModeration/source/icon.png' width='60' align='center' alt='AlfredModeration icon'>
-Tools to help moderate the Alfred forums
-
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/AlfredModeration) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/AlfredModeration/AlfredModeration.alfredworkflow)
 
 ### AppFreeze <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/AppFreeze/source/icon.png' width='60' align='center' alt='AppFreeze icon'>
 Pauses and resumes execution of the frontmost app
@@ -274,6 +270,7 @@ These are small helpers to help build Workflows or enhance existing ones. They a
 
 These are the Workflows that are no longer under development and won’t get more updates. Reasons for deprecation depend on the the Workflow, but they don’t tend to be deprecated without an alternative.
 
++ [AlfredModeration](https://github.com/vitorgalvao/alfred-workflows/tree/b2748ae51e0664311b84f2013aa89ac8daae536b/AlfredModeration)
 + [AppVersion](https://github.com/vitorgalvao/alfred-workflows/tree/fefde12914ed35d1cc7e0e90c62a932cdec3b39a/AppVersion)
 + [CheckSpelling](https://github.com/vitorgalvao/alfred-workflows/tree/c0d9c9313857676997e6e05d9dda65cfa5fcda6a/CheckSpelling)
 + [RepeatRepeat](https://github.com/vitorgalvao/alfred-workflows/tree/9a70302fa31d6fba2b532bc9dd7eac75d67f6964/RepeatRepeat)
@@ -283,4 +280,5 @@ These are the Workflows that are no longer under development and won’t get mor
 ---
 
 #### License
+
 All the code in the workflows’ root directory is licensed under [The Unlicense](http://unlicense.org/UNLICENSE) (Public Domain, essentially). Applications and libraries inside a `_licensed` directory (if there is one) are not public domain, and are accompanied by their respective licenses.
