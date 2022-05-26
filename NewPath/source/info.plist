@@ -346,11 +346,9 @@ end</string>
 				<string>const frontmost_app_name = Application("System Events").applicationProcesses.where({ frontmost: true }).name()[0]
 
 if (frontmost_app_name === "Finder") {
-  decodeURIComponent(Application("Finder").insertionLocation().url()).slice(7).slice(0, -1)
-} else if(frontmost_app_name === "Path Finder") {
-  decodeURIComponent(Application("Path Finder").finderWindows[0].target.url()).slice(7).slice(0, -1)
+  decodeURIComponent(Application("Finder").insertionLocation().url()).slice(7, -1)
 } else {
-  decodeURIComponent(Application("Finder").desktop.url()).slice(7).slice(0, -1)
+  decodeURIComponent(Application("Finder").desktop.url()).slice(7, -1)
 }</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
@@ -644,7 +642,7 @@ end</string>
 
 `nd` and `ndo` behave similarly, but for directories. Two important diferences: no extension is added, and subdirectories can be created with `/`.
 
-If a Finder or Path Finder window is the frontmost window, the new paths will be created there, otherwise they will be created on the Desktop. Use `|` to separate the names of multiple entries (surrounding spaces will be trimmed).
+If a Finder window is the frontmost, the new paths will be created there, otherwise they will be created on the Desktop. Use `|` to separate the names of multiple entries (surrounding spaces will be trimmed).
 
 ![](https://i.imgur.com/cDBBQG3.png)
 ![](https://i.imgur.com/qAXwk5d.png)</string>
@@ -763,7 +761,7 @@ If a Finder or Path Finder window is the frontmost window, the new paths will be
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>21.1</string>
+	<string>22.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
