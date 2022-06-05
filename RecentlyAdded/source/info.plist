@@ -42,6 +42,58 @@
 				<false/>
 			</dict>
 		</array>
+		<key>345B45CA-2D27-4728-8E7C-2AC3B58E81F9</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>B59973FE-3ECE-4615-A90C-038C46F54693</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>44679B1F-FAE3-45E9-8CB9-41678B2FBE5E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>04F0C2C5-E539-4961-B943-7937EC802CE8</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>7D80D015-946C-461F-BD41-DF55DD5A4E7E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>F3D88EEE-A3B6-4FDC-85BA-DB87ED2ED98A</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>AA42A8CF-1596-4BB6-99CA-7338039B8B61</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>EE8D6CC1-A7AB-4D05-B0B7-B74C7ABD12EE</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>B59973FE-3ECE-4615-A90C-038C46F54693</key>
 		<array>
 			<dict>
@@ -95,6 +147,37 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>47</integer>
+				<key>hotmod</key>
+				<integer>1048576</integer>
+				<key>hotstring</key>
+				<string>.</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>44679B1F-FAE3-45E9-8CB9-41678B2FBE5E</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>openwith</key>
 				<string></string>
 				<key>sourcefile</key>
@@ -135,7 +218,7 @@
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
-				<string>./recentlyadded 'added_reverse'</string>
+				<string>./recentlyadded 'added'</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -283,7 +366,7 @@ fi</string>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
-				<string>./recentlyadded 'added'</string>
+				<string>./recentlyadded 'added_reverse'</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -303,6 +386,37 @@ fi</string>
 			<string>B59973FE-3ECE-4615-A90C-038C46F54693</string>
 			<key>version</key>
 			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>hotstring</key>
+				<string></string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>345B45CA-2D27-4728-8E7C-2AC3B58E81F9</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -332,7 +446,7 @@ fi</string>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
-				<string>./recentlyadded 'modified_reverse'</string>
+				<string>./recentlyadded 'modified'</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -352,6 +466,68 @@ fi</string>
 			<string>F3D88EEE-A3B6-4FDC-85BA-DB87ED2ED98A</string>
 			<key>version</key>
 			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>hotstring</key>
+				<string></string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>7D80D015-946C-461F-BD41-DF55DD5A4E7E</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>hotstring</key>
+				<string></string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>AA42A8CF-1596-4BB6-99CA-7338039B8B61</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -381,7 +557,7 @@ fi</string>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
-				<string>./recentlyadded 'modified'</string>
+				<string>./recentlyadded 'modified_reverse'</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -417,21 +593,40 @@ By default the Workflow searches in `~/Desktop` and `~/Downloads`. Change the va
 	<dict>
 		<key>04F0C2C5-E539-4961-B943-7937EC802CE8</key>
 		<dict>
-			<key>colorindex</key>
-			<integer>2</integer>
 			<key>note</key>
 			<string>Most recently added</string>
 			<key>xpos</key>
-			<integer>45</integer>
+			<integer>230</integer>
 			<key>ypos</key>
 			<integer>35</integer>
 		</dict>
 		<key>1E47C82D-C9C1-4961-9DC8-13EB6858EF20</key>
 		<dict>
 			<key>xpos</key>
-			<integer>245</integer>
+			<integer>430</integer>
 			<key>ypos</key>
 			<integer>65</integer>
+		</dict>
+		<key>345B45CA-2D27-4728-8E7C-2AC3B58E81F9</key>
+		<dict>
+			<key>xpos</key>
+			<integer>40</integer>
+			<key>ypos</key>
+			<integer>180</integer>
+		</dict>
+		<key>44679B1F-FAE3-45E9-8CB9-41678B2FBE5E</key>
+		<dict>
+			<key>xpos</key>
+			<integer>40</integer>
+			<key>ypos</key>
+			<integer>35</integer>
+		</dict>
+		<key>7D80D015-946C-461F-BD41-DF55DD5A4E7E</key>
+		<dict>
+			<key>xpos</key>
+			<integer>40</integer>
+			<key>ypos</key>
+			<integer>325</integer>
 		</dict>
 		<key>98D0B5C7-39EF-41AD-9025-6E1822E57BAE</key>
 		<dict>
@@ -440,47 +635,48 @@ By default the Workflow searches in `~/Desktop` and `~/Downloads`. Change the va
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>365</integer>
+			<integer>550</integer>
 			<key>ypos</key>
 			<integer>180</integer>
 		</dict>
+		<key>AA42A8CF-1596-4BB6-99CA-7338039B8B61</key>
+		<dict>
+			<key>xpos</key>
+			<integer>40</integer>
+			<key>ypos</key>
+			<integer>470</integer>
+		</dict>
 		<key>B59973FE-3ECE-4615-A90C-038C46F54693</key>
 		<dict>
-			<key>colorindex</key>
-			<integer>8</integer>
 			<key>note</key>
 			<string>Least recently added</string>
 			<key>xpos</key>
-			<integer>45</integer>
+			<integer>230</integer>
 			<key>ypos</key>
 			<integer>180</integer>
 		</dict>
 		<key>EE8D6CC1-A7AB-4D05-B0B7-B74C7ABD12EE</key>
 		<dict>
-			<key>colorindex</key>
-			<integer>10</integer>
 			<key>note</key>
 			<string>Least recently modified</string>
 			<key>xpos</key>
-			<integer>45</integer>
+			<integer>230</integer>
 			<key>ypos</key>
 			<integer>470</integer>
 		</dict>
 		<key>F3D88EEE-A3B6-4FDC-85BA-DB87ED2ED98A</key>
 		<dict>
-			<key>colorindex</key>
-			<integer>5</integer>
 			<key>note</key>
 			<string>Most recently modified</string>
 			<key>xpos</key>
-			<integer>45</integer>
+			<integer>230</integer>
 			<key>ypos</key>
 			<integer>325</integer>
 		</dict>
 		<key>F525988E-4ED1-4E45-8CAD-25BAF510025C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>365</integer>
+			<integer>550</integer>
 			<key>ypos</key>
 			<integer>35</integer>
 		</dict>
@@ -490,8 +686,10 @@ By default the Workflow searches in `~/Desktop` and `~/Downloads`. Change the va
 		<key>directories</key>
 		<string>~/Downloads, ~/Desktop</string>
 	</dict>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
-	<string>22.2</string>
+	<string>2022.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
