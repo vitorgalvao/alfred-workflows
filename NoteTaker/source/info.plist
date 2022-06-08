@@ -46,7 +46,17 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>AAA5D8DE-48BF-4E6A-9229-2F7628346746</string>
+				<string>35C8230F-B24B-433B-AD8A-97530A5C5B86</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>AFC014F4-C830-45B1-A637-C118FA84F7F4</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -61,7 +71,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>35C8230F-B24B-433B-AD8A-97530A5C5B86</string>
+				<string>0B9F972C-420B-4358-93C1-B5106DB6B27E</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -78,16 +88,6 @@
 				<string>Copy and delete note</string>
 				<key>vitoclose</key>
 				<true/>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>0B9F972C-420B-4358-93C1-B5106DB6B27E</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
@@ -170,6 +170,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>3078BCDF-E3A8-45C7-9EB8-8EE49B29FC2E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>AFC014F4-C830-45B1-A637-C118FA84F7F4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>AAA5D8DE-48BF-4E6A-9229-2F7628346746</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -561,32 +574,6 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>require "#{Dir.pwd}/notetaker_functions.rb"
-
-copy_note(path: ARGV[0])
-trash(path: ARGV[0])</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>2</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>EBD71B97-DD3E-4484-A6DF-8630133F8F63</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>conditions</key>
 				<array>
 					<dict>
@@ -617,6 +604,64 @@ trash(path: ARGV[0])</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>externaltriggerid</key>
+				<string>add_note</string>
+				<key>passinputasargument</key>
+				<false/>
+				<key>passvariables</key>
+				<false/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>AAA5D8DE-48BF-4E6A-9229-2F7628346746</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>seconds</key>
+				<string>0.1</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.delay</string>
+			<key>uid</key>
+			<string>AFC014F4-C830-45B1-A637-C118FA84F7F4</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/notetaker_functions.rb"
+
+copy_note(path: ARGV[0])
+trash(path: ARGV[0])</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>EBD71B97-DD3E-4484-A6DF-8630133F8F63</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -638,25 +683,6 @@ copy_note(path: ARGV[0])</string>
 			<string>D6A37A51-1C81-4498-8A9F-6C5CE2C42C2F</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>externaltriggerid</key>
-				<string>add_note</string>
-				<key>passinputasargument</key>
-				<false/>
-				<key>passvariables</key>
-				<false/>
-				<key>workflowbundleid</key>
-				<string>self</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.callexternaltrigger</string>
-			<key>uid</key>
-			<string>AAA5D8DE-48BF-4E6A-9229-2F7628346746</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -680,7 +706,7 @@ To keep notes synced between machines, use the `notes_dir` Workflow Environment 
 		<key>00EFFEBD-C714-4CAB-B92C-BDDBE67722E7</key>
 		<dict>
 			<key>xpos</key>
-			<integer>705</integer>
+			<integer>760</integer>
 			<key>ypos</key>
 			<integer>350</integer>
 		</dict>
@@ -694,9 +720,9 @@ To keep notes synced between machines, use the `notes_dir` Workflow Environment 
 		<key>0B9F972C-420B-4358-93C1-B5106DB6B27E</key>
 		<dict>
 			<key>xpos</key>
-			<integer>505</integer>
+			<integer>560</integer>
 			<key>ypos</key>
-			<integer>690</integer>
+			<integer>495</integer>
 		</dict>
 		<key>22D55C69-CF3B-460D-A930-76CEF98F13D5</key>
 		<dict>
@@ -712,7 +738,7 @@ To keep notes synced between machines, use the `notes_dir` Workflow Environment 
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>940</integer>
+			<integer>995</integer>
 			<key>ypos</key>
 			<integer>475</integer>
 		</dict>
@@ -726,14 +752,14 @@ To keep notes synced between machines, use the `notes_dir` Workflow Environment 
 		<key>35C8230F-B24B-433B-AD8A-97530A5C5B86</key>
 		<dict>
 			<key>xpos</key>
-			<integer>705</integer>
+			<integer>760</integer>
 			<key>ypos</key>
 			<integer>475</integer>
 		</dict>
 		<key>39AEE376-1119-4C0E-BF24-CB23030EE283</key>
 		<dict>
 			<key>xpos</key>
-			<integer>705</integer>
+			<integer>760</integer>
 			<key>ypos</key>
 			<integer>225</integer>
 		</dict>
@@ -763,9 +789,16 @@ To keep notes synced between machines, use the `notes_dir` Workflow Environment 
 		<key>AAA5D8DE-48BF-4E6A-9229-2F7628346746</key>
 		<dict>
 			<key>xpos</key>
-			<integer>705</integer>
+			<integer>760</integer>
 			<key>ypos</key>
-			<integer>850</integer>
+			<integer>600</integer>
+		</dict>
+		<key>AFC014F4-C830-45B1-A637-C118FA84F7F4</key>
+		<dict>
+			<key>xpos</key>
+			<integer>685</integer>
+			<key>ypos</key>
+			<integer>630</integer>
 		</dict>
 		<key>D004042C-58C6-4A14-9D27-EFE19796B8AF</key>
 		<dict>
@@ -777,16 +810,16 @@ To keep notes synced between machines, use the `notes_dir` Workflow Environment 
 		<key>D6A37A51-1C81-4498-8A9F-6C5CE2C42C2F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>705</integer>
+			<integer>760</integer>
 			<key>ypos</key>
-			<integer>725</integer>
+			<integer>850</integer>
 		</dict>
 		<key>EBD71B97-DD3E-4484-A6DF-8630133F8F63</key>
 		<dict>
 			<key>xpos</key>
-			<integer>705</integer>
+			<integer>760</integer>
 			<key>ypos</key>
-			<integer>600</integer>
+			<integer>725</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
@@ -801,7 +834,7 @@ To keep notes synced between machines, use the `notes_dir` Workflow Environment 
 		<string>notes_dir</string>
 	</array>
 	<key>version</key>
-	<string>22.4</string>
+	<string>2022.1</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
