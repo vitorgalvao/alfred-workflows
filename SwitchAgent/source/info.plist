@@ -24,7 +24,7 @@
 				<key>modifiers</key>
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
-				<string>Rebuild user agents list.</string>
+				<string>Rebuild user agents list</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -121,19 +121,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>triggerid</key>
-				<string>agents_script_filter</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>901E2D9C-BEA1-40BD-B554-618C2347FD70</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -225,6 +212,19 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>triggerid</key>
+				<string>agents_script_filter</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>901E2D9C-BEA1-40BD-B554-618C2347FD70</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -238,7 +238,7 @@ fi</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>sa</string>
+				<string>sagent</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -250,37 +250,89 @@ fi</string>
 				<key>runningsubtext</key>
 				<string>Please wait…</string>
 				<key>script</key>
-				<string>IFS=$'\n,'
-browser="$(./current_browser.sh)"
-user_agents_list="${alfred_workflow_cache}/${browser}.txt"
+				<string>// Helpers
+function runCommand(...arguments) {
+  const task = $.NSTask.alloc.init
+  const stdout = $.NSPipe.pipe
 
-if [[ -n "${browser}" ]]; then
-  if [[ -f "${user_agents_list}" ]]; then
-    echo '{"items": ['
-    for agent in $(sed 's/, /,/g' "${user_agents_list}"); do
-      echo "{
-        \"title\": \"${agent}\",
-        \"arg\": \"${browser},${agent}\",
-        \"mods\": { \"cmd\": { \"arg\": \"${browser}\" } }
-      },"
-    done
-    echo ']}'
-  else
-    echo "{\"items\": [{
-      \"title\": \"Missing the user agents file\",
-      \"subtitle\": \"⌘↵ to create it now.\",
-      \"valid\": false,
-      \"mods\": { \"cmd\": { \"arg\": \"${browser}\" } }
-    }]}"
-  fi
-else
-  echo '{"items": [
-    {
-      "title": "Not all conditions were met",
-      "subtitle": "You need a supported browser with the Develop menu active as the frontmost app."
-    }
-  ]}'
-fi</string>
+  task.executableURL = $.NSURL.alloc.initFileURLWithPath(arguments[0])
+  task.arguments = arguments.slice(1)
+  task.standardOutput = stdout
+  task.launchAndReturnError(false)
+
+  const dataOut = stdout.fileHandleForReading.readDataToEndOfFile
+  const stringOut = $.NSString.alloc.initWithDataEncoding(dataOut, $.NSUTF8StringEncoding).js
+
+  return stringOut
+}
+
+function envVar(varName) {
+  return $.NSProcessInfo
+    .processInfo
+    .environment
+    .objectForKey(varName).js
+}
+
+function pathExists(path) {
+  return $.NSFileManager.defaultManager.fileExistsAtPath(path)
+}
+
+function readFile(path) {
+  const data = $.NSFileManager.defaultManager.contentsAtPath(path)
+  const string = $.NSString.alloc.initWithDataEncoding(data, $.NSUTF8StringEncoding).js
+  return string
+}
+
+function developMenuOn(browser) {
+  switch (browser) {
+    case "Safari":
+      return runCommand(
+        "/usr/bin/defaults",
+        "read",
+        "com.apple.Safari",
+        "IncludeDevelopMenu"
+      ).trim() === "1"
+    case "Safari Technology Preview":
+      return runCommand(
+        "/usr/bin/defaults",
+        "read",
+        "com.apple.SafariTechnologyPreview",
+        "WebKitDeveloperExtrasEnabledPreferenceKey"
+      ).trim() === "1"
+    default: throw "Unrecognised browser: " + browser
+  }
+}
+
+// Main
+function run(argv) {
+  const browser = Application("System Events").applicationProcesses.where({ frontmost: true }).name()[0]
+  const userAgentsFile = envVar("alfred_workflow_cache") + "/" + browser + ".txt"
+
+  if (!browser.startsWith("Safari")) {
+    return JSON.stringify({ items: [{
+      title: "Not all conditions were met",
+      subtitle: "You need a supported browser with the Develop menu active as the frontmost app"
+    }]})
+  }
+
+  if (!developMenuOn(browser)) {
+    return JSON.stringify({ items: [{
+      title: "Not all conditions were met",
+      subtitle: "You need to enable the Develop menu"
+    }]})
+  }
+
+  if (!pathExists(userAgentsFile)) {
+    return JSON.stringify({ items: [{
+      title: "Missing the user agents file",
+      subtitle: "⌘↵ to create it now",
+      valid: false,
+      mods: { cmd: { arg: browser } }
+    }]})
+  }
+
+  return readFile(userAgentsFile)
+}</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -290,7 +342,7 @@ fi</string>
 				<key>title</key>
 				<string>SwitchAgents</string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>7</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -309,14 +361,28 @@ fi</string>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>const arg = "{query}".split(",")
-const safari = arg[0]
-const agent = arg[1]
+				<string>function run(argv) {
+  const browser = argv[0]
+  const agent = argv[1]
 
-Application(safari).activate()
-Application("System Events").processes.byName(safari).menuBars[0].menuBarItems.byName("Develop").menus.byName("Develop").menuItems.byName("User Agent").menus.byName("User Agent").menuItems.byName(agent).click()</string>
+  Application("System Events")
+    .processes
+    .byName(browser)
+    .menuBars[0]
+    .menuBarItems
+    .byName("Develop")
+    .menus
+    .byName("Develop")
+    .menuItems
+    .byName("User Agent")
+    .menus
+    .byName("User Agent")
+    .menuItems
+    .byName(agent)
+    .click()
+}</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -356,20 +422,19 @@ Application("System Events").processes.byName(safari).menuBars[0].menuBarItems.b
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>const safari = Application("{query}")
-
-Application("System Events").processes.byName(safari).menuBars[0].menuBarItems.byName("Develop").menus.byName("Develop").menuItems.byName("User Agent").menus.byName("User Agent").menuItems().map(function(item) { return item.name() }).filter(function(item) { return item != null })</string>
+				<string>mkdir -p "${alfred_workflow_cache}"
+echo "${1}" &gt; "${alfred_workflow_cache}/${browser}.txt"</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>7</integer>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>97832F46-3A7B-41ED-A376-8A9C5B6DB1A7</string>
+			<string>B2CB9518-ABEF-4ED2-82AD-3DD1FE298FD8</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -400,19 +465,46 @@ Application("System Events").processes.byName(safari).menuBars[0].menuBarItems.b
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>mkdir -p "${alfred_workflow_cache}"
-echo "${1}" &gt; "${alfred_workflow_cache}/${browser}.txt"</string>
+				<string>function run(argv) {
+  const browser = argv[0]
+
+  const browserAgents = Application("System Events")
+    .processes
+    .byName(browser)
+    .menuBars[0]
+    .menuBarItems
+    .byName("Develop")
+    .menus
+    .byName("Develop")
+    .menuItems
+    .byName("User Agent")
+    .menus
+    .byName("User Agent")
+    .menuItems()
+    .map(item =&gt; item.name())
+    .filter(item =&gt; item !== null)
+
+  const sfItems = browserAgents.map(agent =&gt; {
+    return {
+      title: agent,
+      arg: [agent, browser],
+      mods: { cmd: { arg: browser } }
+    }
+  })
+
+  return JSON.stringify({ items: sfItems })
+}</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>7</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>B2CB9518-ABEF-4ED2-82AD-3DD1FE298FD8</string>
+			<string>97832F46-3A7B-41ED-A376-8A9C5B6DB1A7</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -451,7 +543,7 @@ echo "${1}" &gt; "${alfred_workflow_cache}/${browser}.txt"</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Run `sa` and pick from the list (type to filter results) to switch the user agent for your frontmost browser on the fly.
+	<string>Run `sagent` and pick from the list (type to filter results) to switch the user agent for your frontmost browser on the fly.
 
 ![](https://i.imgur.com/LOynNv2.png)
 
@@ -523,7 +615,7 @@ Currently supports Safari and Safari Technology Preview. Webkit is excluded beca
 		<key>C7ECDAAF-F0B3-41DE-8471-B49B318BC71F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>275</integer>
+			<integer>235</integer>
 			<key>ypos</key>
 			<integer>290</integer>
 		</dict>
@@ -536,7 +628,7 @@ Currently supports Safari and Safari Technology Preview. Webkit is excluded beca
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>21.1</string>
+	<string>2022.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>

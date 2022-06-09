@@ -1,4 +1,4 @@
-Run `sa` and pick from the list (type to filter results) to switch the user agent for your frontmost browser on the fly.
+Run `sagent` and pick from the list (type to filter results) to switch the user agent for your frontmost browser on the fly.
 
 ![](https://i.imgur.com/LOynNv2.png)
 
