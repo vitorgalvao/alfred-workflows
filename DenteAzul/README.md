@@ -1,4 +1,4 @@
-Use `btt` to view and toggle bluetooth status and its menu bar visibility.
+Use `btt` to view and toggle bluetooth status.
 
 ![](https://i.imgur.com/Wjry0Nv.png)
 

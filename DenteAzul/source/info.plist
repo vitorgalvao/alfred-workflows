@@ -77,34 +77,15 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>function run(argv) {
-	const system_preferences = Application('System Preferences')
-	const system_events = Application('System Events')
-	const prefs_running = system_preferences.running()
+				<string>PATH="$(./_sharedresources 'blueutil')"
 
-	system_preferences.panes.byId('com.apple.preferences.Bluetooth').reveal()
-
-	delay(2) // Give the pane time to load
-
-	const bluetooth_window = system_events.processes.byName('System Preferences').windows.byName('Bluetooth')
-	const toggle_button = bluetooth_window.checkboxes.byName('Show Bluetooth in menu bar')
-
-	if (argv[0] === 'on') {
-		bluetooth_window.buttons.byName('Turn Bluetooth On').click()
-		if (!toggle_button.value()) toggle_button.click()
-	} else {
-		bluetooth_window.buttons.byName('Turn Bluetooth Off').click()
-		if (toggle_button.value()) toggle_button.click()
-	}
-
-	if (!prefs_running) system_preferences.quit()
-}</string>
+blueutil --power "${1}"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>7</integer>
+				<integer>5</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -370,7 +351,7 @@ puts({ rerun: 2, items: script_filter_items }.to_json)</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Use `btt` to view and toggle bluetooth status and its menu bar visibility.
+	<string>Use `btt` to view and toggle bluetooth status.
 
 ![](https://i.imgur.com/Wjry0Nv.png)
 
@@ -424,7 +405,7 @@ puts({ rerun: 2, items: script_filter_items }.to_json)</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>21.11</string>
+	<string>2022.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
