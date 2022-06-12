@@ -1,6 +1,6 @@
 WatchList saves your media and streams to a list, eases the choice of what to play next and gets rid of it when you’re done.
 
-For local content, select the files and directories to add and apply the `Add to watchlist` file action. If the `move_on_add` Workflow Environment Variable is set, the paths will be moved to that directory (ignore once with ⌘). Items will be prepended or appended to the list depending on the `add_item_order` Workflow Environment Variable. Calling `swl` adds the URL in your clipboard as a stream (⌘↵ for the full playlist).
+Add files, directories, or URLs to your list with the `Add to watchlist` Universal Action. Items will be prepended or appended depending on the `add_item_order` Workflow Environment Variable. If the `move_on_add` Workflow Environment Variable is set, the paths will be moved to that directory (ignore once with ⌘).
 
 Use the `lists_dir` Workflow Environment Variable to pick a custom save location for your data. This allows for easy syncing and cloud backups.
 
@@ -39,7 +39,7 @@ If the `top_on_play` Workflow Environment Variable is `true`, the item will be m
 
 `wle` is for reordering, renaming, and manually removing of items.
 
-If you use [DownMedia](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownMedia) it has an option to add the downloaded video files directly to your watchlist.
+[DownMedia](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownMedia) and [PlayAddress](https://github.com/vitorgalvao/alfred-workflows/tree/master/PlayAddress) have options to add to your watchlist.
 
 #### Subtitle reference:
 
