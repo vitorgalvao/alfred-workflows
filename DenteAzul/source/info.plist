@@ -271,7 +271,7 @@ address="${1}"
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>5</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -390,7 +390,7 @@ puts({ rerun: 2, items: script_filter_items }.to_json)</string>
 		<key>75C921E4-2503-460C-A531-3D3F4EC85976</key>
 		<dict>
 			<key>note</key>
-			<string>Toggle Bluetooh and Menu Bar Visibility</string>
+			<string>Toggle Bluetooh</string>
 			<key>xpos</key>
 			<integer>35</integer>
 			<key>ypos</key>
@@ -405,7 +405,7 @@ puts({ rerun: 2, items: script_filter_items }.to_json)</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>2022.1</string>
+	<string>2022.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
