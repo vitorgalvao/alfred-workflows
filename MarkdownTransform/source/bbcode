@@ -36,5 +36,7 @@ print CGI.unescapeHTML(Open3.capture2('multimarkdown', '--', stdin_data: "\n#{AR
   bbcode_sub('sup', 'sup').
   bbcode_sub('sub', 'sub').
   gsub('<hr />', '[hr]').
-  gsub(/^$/, "\n"). # Bypass empty line collapsing done by IPBoard
+  gsub(%r{\n{3}\[list(=1)?\]$}, '[list\1]'). # Adjustments to list outward spacing in IPBoard
+  gsub(%r{\[/list\]\n{2}}, '[/list]').
+  gsub(%r{^$}, "\n"). # Bypass empty line collapsing done by IPBoard
   strip
