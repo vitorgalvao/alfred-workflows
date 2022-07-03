@@ -105,18 +105,7 @@
 			</dict>
 		</array>
 		<key>F5FD6323-96E1-41A8-817E-E2391373262A</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>B98A3913-3098-459E-AAF4-04F2A2A3E0A7</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
+		<array/>
 	</dict>
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
@@ -292,9 +281,9 @@ read -r -d '' plist_contents &lt;&lt;ENDPLIST
     &lt;string&gt;${alfred_workflow_bundleid}&lt;/string&gt;
     &lt;key&gt;ProgramArguments&lt;/key&gt;
     &lt;array&gt;
-        &lt;string&gt;sh&lt;/string&gt;
-        &lt;string&gt;-c&lt;/string&gt;
-        &lt;string&gt;osascript -e 'tell application id &amp;quot;com.runningwithcrayons.Alfred&amp;quot; to run trigger &amp;quot;build_list&amp;quot; in workflow &amp;quot;${alfred_workflow_bundleid}&amp;quot;'&lt;/string&gt;
+        &lt;string&gt;/usr/bin/osascript&lt;/string&gt;
+        &lt;string&gt;-e&lt;/string&gt;
+        &lt;string&gt;if application id &amp;quot;com.runningwithcrayons.Alfred&amp;quot; is running then tell application id &amp;quot;com.runningwithcrayons.Alfred&amp;quot; to run trigger &amp;quot;build_list&amp;quot; in workflow &amp;quot;${alfred_workflow_bundleid}&amp;quot;&lt;/string&gt;
     &lt;/array&gt;
     &lt;key&gt;StartCalendarInterval&lt;/key&gt;
     &lt;dict&gt;
@@ -344,34 +333,6 @@ fi</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>355240A2-7F83-4E87-B774-3423B8FCB001</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>readonly old_plist="${HOME}/Library/LaunchAgents/com.vitorgalvao.launchd.alfredshortfilmsupdate.plist"
-
-if [[ -f "${old_plist}" ]]; then
-  launchctl bootout "gui/$(id -u "${USER}")" "${old_plist}"
-  rm "${old_plist}"
-fi</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>B98A3913-3098-459E-AAF4-04F2A2A3E0A7</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -454,6 +415,8 @@ open -a "${video_player}" --args "${1}"</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>availableviaurlhandler</key>
+				<false/>
 				<key>triggerid</key>
 				<string>build_list</string>
 			</dict>
@@ -503,62 +466,53 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 		<key>2EF753EF-6194-4420-9096-C6892565EC96</key>
 		<dict>
 			<key>xpos</key>
-			<integer>240</integer>
+			<real>240</real>
 			<key>ypos</key>
-			<integer>280</integer>
+			<real>280</real>
 		</dict>
 		<key>325E0A83-2F46-4696-80F4-7D41608F65DC</key>
 		<dict>
 			<key>xpos</key>
-			<integer>30</integer>
+			<real>30</real>
 			<key>ypos</key>
-			<integer>20</integer>
+			<real>20</real>
 		</dict>
 		<key>355240A2-7F83-4E87-B774-3423B8FCB001</key>
 		<dict>
 			<key>note</key>
 			<string>launchd agent</string>
 			<key>xpos</key>
-			<integer>460</integer>
+			<real>460</real>
 			<key>ypos</key>
-			<integer>20</integer>
+			<real>20</real>
 		</dict>
 		<key>5777145B-F30B-4A39-8BB6-AA07F81401E1</key>
 		<dict>
 			<key>xpos</key>
-			<integer>240</integer>
+			<real>240</real>
 			<key>ypos</key>
-			<integer>20</integer>
+			<real>20</real>
 		</dict>
 		<key>97081E49-C4BE-4918-A447-B006C76E98FD</key>
 		<dict>
 			<key>xpos</key>
-			<integer>240</integer>
+			<real>240</real>
 			<key>ypos</key>
-			<integer>410</integer>
-		</dict>
-		<key>B98A3913-3098-459E-AAF4-04F2A2A3E0A7</key>
-		<dict>
-			<key>note</key>
-			<string>Remove old agent</string>
-			<key>xpos</key>
-			<integer>830</integer>
-			<key>ypos</key>
-			<integer>20</integer>
+			<real>410</real>
 		</dict>
 		<key>BFA5B490-4D6E-4BAF-931F-07282EC4A4B3</key>
 		<dict>
 			<key>xpos</key>
-			<integer>240</integer>
+			<real>240</real>
 			<key>ypos</key>
-			<integer>150</integer>
+			<real>150</real>
 		</dict>
 		<key>F54CC291-7B66-4D5A-A599-BD512EC630DD</key>
 		<dict>
 			<key>xpos</key>
-			<integer>30</integer>
+			<real>30</real>
 			<key>ypos</key>
-			<integer>410</integer>
+			<real>410</real>
 		</dict>
 		<key>F5FD6323-96E1-41A8-817E-E2391373262A</key>
 		<dict>
@@ -567,11 +521,13 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>645</integer>
+			<real>645</real>
 			<key>ypos</key>
-			<integer>20</integer>
+			<real>20</real>
 		</dict>
 	</dict>
+	<key>userconfigurationconfig</key>
+	<array/>
 	<key>variables</key>
 	<dict>
 		<key>auto_refresh</key>
@@ -580,7 +536,7 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>22.2</string>
+	<string>2022.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
