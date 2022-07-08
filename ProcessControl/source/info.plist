@@ -627,13 +627,13 @@ puts({ items: script_filter_items }.to_json)</string>
 ![](https://i.imgur.com/l7qwJtK.png)
 
 On each process:
-+ ⌘↵ quits.
-+ ⌥↵ forcibly kills.
-+ ⌃↵ limits CPU usage.
-+ fn↵ lowers priority (increases niceness).
-+ ⇧↵ freezes.
++ ⌘↩ quits.
++ ⌥↩ forcibly kills.
++ ⌃↩ limits CPU usage.
++ fn↩ lowers priority (increases niceness).
++ ⇧↩ freezes.
 
-↵ gives more granularity over the options.
+↩ gives more granularity over the options.
 
 ![](https://i.imgur.com/YFwsdt7.png)</string>
 	<key>uidata</key>
@@ -730,7 +730,7 @@ On each process:
 		<string>3</string>
 	</dict>
 	<key>version</key>
-	<string>21.9</string>
+	<string>2022.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
