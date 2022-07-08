@@ -383,6 +383,8 @@ paths.each { |path| add_local_to_watchlist(path, random_hex, move_paths) }</stri
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>availableviaurlhandler</key>
+				<false/>
 				<key>triggerid</key>
 				<string>add_file_to_watchlist</string>
 			</dict>
@@ -416,6 +418,8 @@ paths.each { |path| add_local_to_watchlist(path, random_hex, move_paths) }</stri
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>availableviaurlhandler</key>
+				<false/>
 				<key>triggerid</key>
 				<string>add_file_to_watchlist_no_moving</string>
 			</dict>
@@ -423,27 +427,6 @@ paths.each { |path| add_local_to_watchlist(path, random_hex, move_paths) }</stri
 			<string>alfred.workflow.trigger.external</string>
 			<key>uid</key>
 			<string>5311DD4E-D8CA-4897-AC1E-B64447F32339</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>acceptsfiles</key>
-				<false/>
-				<key>acceptsmulti</key>
-				<integer>0</integer>
-				<key>acceptstext</key>
-				<false/>
-				<key>acceptsurls</key>
-				<true/>
-				<key>name</key>
-				<string>Add to watchlist</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.universalaction</string>
-			<key>uid</key>
-			<string>73EAEC22-6299-43A9-AE36-EF1EFD164D0E</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -471,6 +454,27 @@ add_url_to_watchlist(ARGV[0].strip)</string>
 			<string>6DBE8BF2-3AA2-46A3-A028-739C1E71A985</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsfiles</key>
+				<false/>
+				<key>acceptsmulti</key>
+				<integer>0</integer>
+				<key>acceptstext</key>
+				<false/>
+				<key>acceptsurls</key>
+				<true/>
+				<key>name</key>
+				<string>Add to watchlist</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.universalaction</string>
+			<key>uid</key>
+			<string>73EAEC22-6299-43A9-AE36-EF1EFD164D0E</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -521,26 +525,6 @@ add_url_to_watchlist(ARGV[0].strip, true)</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>acceptsmulti</key>
-				<integer>0</integer>
-				<key>filetypes</key>
-				<array>
-					<string>+public.audiovisual-content</string>
-					<string>public.folder</string>
-				</array>
-				<key>name</key>
-				<string>Play through watchlist</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.action</string>
-			<key>uid</key>
-			<string>79817F29-F5D9-400C-9C2E-3289466CAD05</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -572,6 +556,26 @@ print id</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>acceptsmulti</key>
+				<integer>0</integer>
+				<key>filetypes</key>
+				<array>
+					<string>+public.audiovisual-content</string>
+					<string>public.folder</string>
+				</array>
+				<key>name</key>
+				<string>Play through watchlist</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>79817F29-F5D9-400C-9C2E-3289466CAD05</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -599,6 +603,8 @@ print id</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>availableviaurlhandler</key>
+				<false/>
 				<key>triggerid</key>
 				<string>add_and_play_stream</string>
 			</dict>
@@ -612,6 +618,8 @@ print id</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>availableviaurlhandler</key>
+				<false/>
 				<key>triggerid</key>
 				<string>sort_order</string>
 			</dict>
@@ -628,7 +636,7 @@ print id</string>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
-				<integer>0</integer>
+				<integer>2</integer>
 				<key>argumenttreatemptyqueryasnil</key>
 				<false/>
 				<key>argumenttrimmode</key>
@@ -823,6 +831,8 @@ mark_watched(ARGV[0])</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>availableviaurlhandler</key>
+				<false/>
 				<key>triggerid</key>
 				<string>play_id</string>
 			</dict>
@@ -905,6 +915,8 @@ add_to_quick_playlist(ARGV[0])</string>
 				<string>[{"title":"Best ratio first","arg":"best_ratio","subtitle":"From biggest file size to duration ratio"},{"title":"Shortest first","arg":"duration_ascending","subtitle":"From shortest duration"},{"title":"Longest first","arg":"duration_descending","subtitle":"From longest duration"},{"title":"Smallest first","arg":"size_ascending","subtitle":"From smallest file size"},{"title":"Biggest first","arg":"size_descending","subtitle":"From biggest file"}]</string>
 				<key>keyword</key>
 				<string>wls</string>
+				<key>matchmode</key>
+				<integer>0</integer>
 				<key>runningsubtext</key>
 				<string></string>
 				<key>subtext</key>
@@ -1009,6 +1021,31 @@ edit_towatch</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>require "#{Dir.pwd}/watchlist_functions.rb"
+
+mark_unwatched(ARGV[0])</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>C92FF9E0-CBC7-4421-9B75-4B8C557EB4DD</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -1060,39 +1097,12 @@ display_watched</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>require "#{Dir.pwd}/watchlist_functions.rb"
-
-mark_unwatched(ARGV[0])</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>2</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>C92FF9E0-CBC7-4421-9B75-4B8C557EB4DD</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>browser</key>
 				<string></string>
 				<key>spaces</key>
 				<string></string>
 				<key>url</key>
 				<string>{query}</string>
-				<key>utf8</key>
-				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.openurl</string>
@@ -1142,11 +1152,11 @@ Next, interact with your list. Options begin with `wl`.
 
 In both cases:
 
-* ↵ plays the selection.
-* ⌃↵ opens the item’s URL in the default web browser.
-* ⌥↵ downloads a stream (requires [DownMedia](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownMedia)) or rescans a series’ directory (useful after manual changes).
-* ⌘↵ marks as watched without playing.
-* ⇧↵ appends to a temporary playlist. After adding the desired items, ↵ plays them in order. A playlist which was neither modified nor played for a few minutes will be ignored.
+* ↩ plays the selection.
+* ⌃↩ opens the item’s URL in the default web browser.
+* ⌥↩ downloads a stream (requires [DownMedia](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownMedia)) or rescans a series’ directory (useful after manual changes).
+* ⌘↩ marks as watched without playing.
+* ⇧↩ appends to a temporary playlist. After adding the desired items, ↩ plays them in order. A playlist which was neither modified nor played for a few minutes will be ignored.
 * ⇧ or ⌘Y shows a Quick Look preview on files and streams.
 
 If the `top_on_play` Workflow Environment Variable is `true`, the item will be moved to the top of the list before beginning playback.
@@ -1155,8 +1165,8 @@ If the `top_on_play` Workflow Environment Variable is `true`, the item will be m
 
 `wlu` is the watched list. Its size is controlled by the `maximum_watched` Workflow Environment Variable. Actioning an item will mark it unwatched and try to recover it from the Trash. If the item has an origin URL (shown in the subtitle):
 
-* ⌘↵ opens it in the default web browser.
-* ⌥↵ copies it to the clipboard.
+* ⌘↩ opens it in the default web browser.
+* ⌥↩ copies it to the clipboard.
 * ⇧ or ⌘Y shows a Quick Look preview.
 
 ![](https://i.imgur.com/srW0zxy.png)
@@ -1198,121 +1208,121 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 		<key>082FCE19-5B3C-454B-80ED-839DD28766F3</key>
 		<dict>
 			<key>xpos</key>
-			<integer>520</integer>
+			<real>520</real>
 			<key>ypos</key>
-			<integer>20</integer>
+			<real>20</real>
 		</dict>
 		<key>1A72974B-3830-4919-A743-5EDC252A6417</key>
 		<dict>
 			<key>xpos</key>
-			<integer>520</integer>
+			<real>520</real>
 			<key>ypos</key>
-			<integer>1220</integer>
+			<real>1220</real>
 		</dict>
 		<key>1C0E08EA-ED61-4255-B50B-2EC1547C85F7</key>
 		<dict>
 			<key>xpos</key>
-			<integer>40</integer>
+			<real>40</real>
 			<key>ypos</key>
-			<integer>980</integer>
+			<real>980</real>
 		</dict>
 		<key>1F983BA2-CA1B-4B29-A065-3DFFB531DD92</key>
 		<dict>
 			<key>xpos</key>
-			<integer>520</integer>
+			<real>520</real>
 			<key>ypos</key>
-			<integer>500</integer>
+			<real>500</real>
 		</dict>
 		<key>26626E87-515C-4312-87F7-4F604EBBF2F9</key>
 		<dict>
 			<key>xpos</key>
-			<integer>250</integer>
+			<real>250</real>
 			<key>ypos</key>
-			<integer>740</integer>
+			<real>740</real>
 		</dict>
 		<key>2D2C4B1F-AD23-4F61-A7B2-2122216F9F0F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>40</integer>
+			<real>40</real>
 			<key>ypos</key>
-			<integer>860</integer>
+			<real>860</real>
 		</dict>
 		<key>35496472-08A5-4D85-9E98-65CD6118B500</key>
 		<dict>
 			<key>xpos</key>
-			<integer>250</integer>
+			<real>250</real>
 			<key>ypos</key>
-			<integer>620</integer>
+			<real>620</real>
 		</dict>
 		<key>3B8DC012-8D13-4919-8EB0-AC42C883527E</key>
 		<dict>
 			<key>xpos</key>
-			<integer>40</integer>
+			<real>40</real>
 			<key>ypos</key>
-			<integer>20</integer>
+			<real>20</real>
 		</dict>
 		<key>3EAD019C-8C8C-4EFB-84F6-EE99B2242EDA</key>
 		<dict>
 			<key>xpos</key>
-			<integer>40</integer>
+			<real>40</real>
 			<key>ypos</key>
-			<integer>500</integer>
+			<real>500</real>
 		</dict>
 		<key>5311DD4E-D8CA-4897-AC1E-B64447F32339</key>
 		<dict>
 			<key>xpos</key>
-			<integer>40</integer>
+			<real>40</real>
 			<key>ypos</key>
-			<integer>260</integer>
+			<real>260</real>
 		</dict>
 		<key>63FBFF0E-05C5-47D2-9951-CB86E114264B</key>
 		<dict>
 			<key>xpos</key>
-			<integer>40</integer>
+			<real>40</real>
 			<key>ypos</key>
-			<integer>140</integer>
+			<real>140</real>
 		</dict>
 		<key>68BC0595-725B-4DDD-B33F-01C3DE55A709</key>
 		<dict>
 			<key>xpos</key>
-			<integer>250</integer>
+			<real>250</real>
 			<key>ypos</key>
-			<integer>1460</integer>
+			<real>1460</real>
 		</dict>
 		<key>6DBE8BF2-3AA2-46A3-A028-739C1E71A985</key>
 		<dict>
 			<key>xpos</key>
-			<integer>520</integer>
+			<real>520</real>
 			<key>ypos</key>
-			<integer>380</integer>
+			<real>380</real>
 		</dict>
 		<key>73EAEC22-6299-43A9-AE36-EF1EFD164D0E</key>
 		<dict>
 			<key>xpos</key>
-			<integer>250</integer>
+			<real>250</real>
 			<key>ypos</key>
-			<integer>380</integer>
+			<real>380</real>
 		</dict>
 		<key>79817F29-F5D9-400C-9C2E-3289466CAD05</key>
 		<dict>
 			<key>xpos</key>
-			<integer>40</integer>
+			<real>40</real>
 			<key>ypos</key>
-			<integer>620</integer>
+			<real>620</real>
 		</dict>
 		<key>7D39E405-629C-4741-BBA3-D87CFC3D419A</key>
 		<dict>
 			<key>xpos</key>
-			<integer>520</integer>
+			<real>520</real>
 			<key>ypos</key>
-			<integer>1460</integer>
+			<real>1460</real>
 		</dict>
 		<key>824AADC5-ECD6-4B9A-B01B-901EE6EC2552</key>
 		<dict>
 			<key>xpos</key>
-			<integer>520</integer>
+			<real>520</real>
 			<key>ypos</key>
-			<integer>1820</integer>
+			<real>1820</real>
 		</dict>
 		<key>88990516-33AA-49DC-8096-95883FB6BE51</key>
 		<dict>
@@ -1321,95 +1331,97 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>770</integer>
+			<real>770</real>
 			<key>ypos</key>
-			<integer>860</integer>
+			<real>860</real>
 		</dict>
 		<key>9537F6F1-6608-4671-BE03-A3DCD23A06DF</key>
 		<dict>
 			<key>xpos</key>
-			<integer>520</integer>
+			<real>520</real>
 			<key>ypos</key>
-			<integer>1340</integer>
+			<real>1340</real>
 		</dict>
 		<key>A7A5F830-E97E-4EEE-83FB-60EDAA447A04</key>
 		<dict>
 			<key>xpos</key>
-			<integer>320</integer>
+			<real>320</real>
 			<key>ypos</key>
-			<integer>175</integer>
+			<real>175</real>
 		</dict>
 		<key>AFB3D5CC-1B83-4675-91D8-770B0B2B7576</key>
 		<dict>
 			<key>xpos</key>
-			<integer>520</integer>
+			<real>520</real>
 			<key>ypos</key>
-			<integer>860</integer>
+			<real>860</real>
 		</dict>
 		<key>C929975A-3B90-474A-BA08-595EAB51A9B2</key>
 		<dict>
 			<key>xpos</key>
-			<integer>520</integer>
+			<real>520</real>
 			<key>ypos</key>
-			<integer>980</integer>
+			<real>980</real>
 		</dict>
 		<key>C92FF9E0-CBC7-4421-9B75-4B8C557EB4DD</key>
 		<dict>
 			<key>xpos</key>
-			<integer>520</integer>
+			<real>520</real>
 			<key>ypos</key>
-			<integer>1580</integer>
+			<real>1580</real>
 		</dict>
 		<key>D27FE458-78D9-4C16-BF89-7E489D839F6D</key>
 		<dict>
 			<key>xpos</key>
-			<integer>520</integer>
+			<real>520</real>
 			<key>ypos</key>
-			<integer>1100</integer>
+			<real>1100</real>
 		</dict>
 		<key>D69DD7A5-07C5-46B2-920C-B06AF76BDC48</key>
 		<dict>
 			<key>xpos</key>
-			<integer>40</integer>
+			<real>40</real>
 			<key>ypos</key>
-			<integer>740</integer>
+			<real>740</real>
 		</dict>
 		<key>D75377F6-6B47-4683-B400-224620A75802</key>
 		<dict>
 			<key>xpos</key>
-			<integer>430</integer>
+			<real>430</real>
 			<key>ypos</key>
-			<integer>1370</integer>
+			<real>1370</real>
 		</dict>
 		<key>DA8908F6-F112-4087-86D4-1B9671DD766C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>520</integer>
+			<real>520</real>
 			<key>ypos</key>
-			<integer>1700</integer>
+			<real>1700</real>
 		</dict>
 		<key>E75EF64B-CE9C-4789-8FCC-8095D43D1FEA</key>
 		<dict>
 			<key>xpos</key>
-			<integer>250</integer>
+			<real>250</real>
 			<key>ypos</key>
-			<integer>1580</integer>
+			<real>1580</real>
 		</dict>
 		<key>E8F9509C-843D-40C8-B5F1-6B8FC692A18C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>250</integer>
+			<real>250</real>
 			<key>ypos</key>
-			<integer>860</integer>
+			<real>860</real>
 		</dict>
 		<key>FA9B96C8-46F8-4275-A082-2D7CFB7B7867</key>
 		<dict>
 			<key>xpos</key>
-			<integer>250</integer>
+			<real>250</real>
 			<key>ypos</key>
-			<integer>1340</integer>
+			<real>1340</real>
 		</dict>
 	</dict>
+	<key>userconfigurationconfig</key>
+	<array/>
 	<key>variables</key>
 	<dict>
 		<key>added_item_order</key>
@@ -1432,7 +1444,7 @@ There are three types of items: `files`, `series`, and `streams`. `stream`s can 
 		<string>added_item_order</string>
 	</array>
 	<key>version</key>
-	<string>2022.2</string>
+	<string>2022.3</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>

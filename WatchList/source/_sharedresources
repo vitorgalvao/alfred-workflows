@@ -216,7 +216,7 @@ function mediainfo_getter {
 
   ensure_resources_dir
   local -r bin_path="${shared_resources_bin}/${bin_name}"
-  local -r file_name="$(curl --silent "https://mediaarea.net/en/MediaInfo/Download/Mac_OS" | grep 'CLI.*\.dmg' | head -1 | sed -E 's/.*<a href="(.*)".*/\1/')"
+  local -r file_name="$(curl --silent "https://mediaarea.net/en/MediaInfo/Download/Mac_OS" | grep 'CLI.*\.dmg' | head -1 | sed -E 's/.*<td><a href="([^"]+)".*/\1/')"
   local -r dmg="$(mktemp)"
   local -r pkg_extract="$(mktemp -d)"
 

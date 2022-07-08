@@ -18,11 +18,11 @@ Next, interact with your list. Options begin with `wl`.
 
 In both cases:
 
-* ↵ plays the selection.
-* ⌃↵ opens the item’s URL in the default web browser.
-* ⌥↵ downloads a stream (requires [DownMedia](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownMedia)) or rescans a series’ directory (useful after manual changes).
-* ⌘↵ marks as watched without playing.
-* ⇧↵ appends to a temporary playlist. After adding the desired items, ↵ plays them in order. A playlist which was neither modified nor played for a few minutes will be ignored.
+* ↩ plays the selection.
+* ⌃↩ opens the item’s URL in the default web browser.
+* ⌥↩ downloads a stream (requires [DownMedia](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownMedia)) or rescans a series’ directory (useful after manual changes).
+* ⌘↩ marks as watched without playing.
+* ⇧↩ appends to a temporary playlist. After adding the desired items, ↩ plays them in order. A playlist which was neither modified nor played for a few minutes will be ignored.
 * ⇧ or ⌘Y shows a Quick Look preview on files and streams.
 
 If the `top_on_play` Workflow Environment Variable is `true`, the item will be moved to the top of the list before beginning playback.
@@ -31,8 +31,8 @@ If the `top_on_play` Workflow Environment Variable is `true`, the item will be m
 
 `wlu` is the watched list. Its size is controlled by the `maximum_watched` Workflow Environment Variable. Actioning an item will mark it unwatched and try to recover it from the Trash. If the item has an origin URL (shown in the subtitle):
 
-* ⌘↵ opens it in the default web browser.
-* ⌥↵ copies it to the clipboard.
+* ⌘↩ opens it in the default web browser.
+* ⌥↩ copies it to the clipboard.
 * ⇧ or ⌘Y shows a Quick Look preview.
 
 ![](https://i.imgur.com/srW0zxy.png)
