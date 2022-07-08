@@ -492,7 +492,7 @@ The `default_verbosity` Workflow Environment Variable applies to everything but 
 		<string>medium</string>
 	</dict>
 	<key>version</key>
-	<string>22.2</string>
+	<string>2022.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
