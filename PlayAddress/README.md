@@ -2,7 +2,7 @@ Run `playadd` and available options will appear to play the URL in the frontmost
 
 ![](https://i.imgur.com/xeUx0lj.png)
 
-Pick one of them and the URL will play. ⌘↵ downloads the video (requires [DownMedia](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownMedia)).
+Pick one of them and the URL will play. ⌘↩ downloads the video (requires [DownMedia](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownMedia)).
 
 The Hotkey is a shortcut to play the URL in the frontmost browser tab.
 

@@ -212,7 +212,7 @@
 				<string>ObjC.import('stdlib')
 
 // Helpers
-function runCommand(arguments) {
+function runCommand(...arguments) {
   const task = $.NSTask.alloc.init
   const stdout = $.NSPipe.pipe
 
@@ -228,7 +228,7 @@ function runCommand(arguments) {
 }
 
 // Set PATH with youtube-dl
-const new_path = runCommand([$.getenv('alfred_preferences') + '/workflows/' + $.getenv('alfred_workflow_uid') + '/_sharedresources', 'youtubedl'])
+const new_path = runCommand($.getenv('alfred_preferences') + '/workflows/' + $.getenv('alfred_workflow_uid') + '/_sharedresources', 'youtubedl')
 $.setenv('PATH', new_path, 1)
 
 // Main
@@ -724,7 +724,7 @@ JSON.stringify({ 'alfredworkflow': {
 
 ![](https://i.imgur.com/xeUx0lj.png)
 
-Pick one of them and the URL will play. ⌘↵ downloads the video (requires [DownMedia](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownMedia)).
+Pick one of them and the URL will play. ⌘↩ downloads the video (requires [DownMedia](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownMedia)).
 
 The Hotkey is a shortcut to play the URL in the frontmost browser tab.
 
@@ -853,7 +853,7 @@ To play a stream you need [mpv](http://mpv.io/), [IINA](https://lhc70000.github.
 		<string>use_watchlist</string>
 	</array>
 	<key>version</key>
-	<string>22.4</string>
+	<string>2022.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
