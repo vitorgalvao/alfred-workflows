@@ -425,11 +425,11 @@ function run(argv) {
 				<key>focusedappvariablename</key>
 				<string></string>
 				<key>hotkey</key>
-				<integer>4</integer>
+				<integer>0</integer>
 				<key>hotmod</key>
-				<integer>1835008</integer>
+				<integer>0</integer>
 				<key>hotstring</key>
-				<string>H</string>
+				<string></string>
 				<key>leftcursor</key>
 				<true/>
 				<key>modsmode</key>
@@ -521,11 +521,11 @@ function run(argv) {
 				<key>focusedappvariablename</key>
 				<string></string>
 				<key>hotkey</key>
-				<integer>15</integer>
+				<integer>0</integer>
 				<key>hotmod</key>
-				<integer>1835008</integer>
+				<integer>0</integer>
 				<key>hotstring</key>
-				<string>R</string>
+				<string></string>
 				<key>leftcursor</key>
 				<true/>
 				<key>modsmode</key>
@@ -609,16 +609,16 @@ Everything supported by [MultiMarkdown](https://en.wikipedia.org/wiki/MultiMarkd
 			<key>note</key>
 			<string>Convert Markdown to RTF</string>
 			<key>xpos</key>
-			<integer>30</integer>
+			<real>30</real>
 			<key>ypos</key>
-			<integer>605</integer>
+			<real>605</real>
 		</dict>
 		<key>3C4CB8EB-F2FC-418A-8028-4BDE381AA34F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>200</integer>
+			<real>200</real>
 			<key>ypos</key>
-			<integer>605</integer>
+			<real>605</real>
 		</dict>
 		<key>5886CCED-FB1D-4BDF-8137-5A64FE643078</key>
 		<dict>
@@ -627,95 +627,97 @@ Everything supported by [MultiMarkdown](https://en.wikipedia.org/wiki/MultiMarkd
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>710</integer>
+			<real>710</real>
 			<key>ypos</key>
-			<integer>20</integer>
+			<real>20</real>
 		</dict>
 		<key>5A616C8D-A6E4-49D0-8E0A-8B0F8CA17112</key>
 		<dict>
 			<key>xpos</key>
-			<integer>30</integer>
+			<real>30</real>
 			<key>ypos</key>
-			<integer>475</integer>
+			<real>475</real>
 		</dict>
 		<key>79F45392-6A63-457B-BB92-47A1EC02C4E4</key>
 		<dict>
 			<key>note</key>
 			<string>Convert Markdown to BBCode</string>
 			<key>xpos</key>
-			<integer>30</integer>
+			<real>30</real>
 			<key>ypos</key>
-			<integer>20</integer>
+			<real>20</real>
 		</dict>
 		<key>7D2CB4ED-0C02-4FB1-BD5C-856BC3ED6CD7</key>
 		<dict>
 			<key>xpos</key>
-			<integer>30</integer>
+			<real>30</real>
 			<key>ypos</key>
-			<integer>770</integer>
+			<real>770</real>
 		</dict>
 		<key>9A2DA8F5-ABE8-47ED-85E8-DD75EFD7A249</key>
 		<dict>
 			<key>xpos</key>
-			<integer>30</integer>
+			<real>30</real>
 			<key>ypos</key>
-			<integer>180</integer>
+			<real>180</real>
 		</dict>
 		<key>A19F29DC-4DFB-496B-A28C-65F7EBEB96E8</key>
 		<dict>
 			<key>note</key>
 			<string>Save with correct pasteboard types</string>
 			<key>xpos</key>
-			<integer>460</integer>
+			<real>460</real>
 			<key>ypos</key>
-			<integer>310</integer>
+			<real>310</real>
 		</dict>
 		<key>AA7497F3-9EA5-418D-BD27-F98645BB8A3C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>200</integer>
+			<real>200</real>
 			<key>ypos</key>
-			<integer>20</integer>
+			<real>20</real>
 		</dict>
 		<key>D890BF2F-9E7F-45B8-9335-4317C4A2CBF5</key>
 		<dict>
 			<key>note</key>
 			<string>Fake the key combo to maintain the pasteboard type. E.g.: just pasting the RTF from Alfred would paste as plain text with the RTF syntax showing</string>
 			<key>xpos</key>
-			<integer>460</integer>
+			<real>460</real>
 			<key>ypos</key>
-			<integer>605</integer>
+			<real>605</real>
 		</dict>
 		<key>DE96DCA0-525D-490B-BBFD-27BDB606A892</key>
 		<dict>
 			<key>note</key>
 			<string>We copied the result from the previous node and paste from the clipboard here because otherwise Alfred would reinterpret its Dynamic Placeholders if they appeared in the text</string>
 			<key>xpos</key>
-			<integer>460</integer>
+			<real>460</real>
 			<key>ypos</key>
-			<integer>20</integer>
+			<real>20</real>
 		</dict>
 		<key>EEC8812F-CE3E-4CD3-9F4B-57FA84567866</key>
 		<dict>
 			<key>note</key>
 			<string>Convert Markdown to HTML</string>
 			<key>xpos</key>
-			<integer>30</integer>
+			<real>30</real>
 			<key>ypos</key>
-			<integer>310</integer>
+			<real>310</real>
 		</dict>
 		<key>F0BB2D14-B8CC-4058-AF29-BF702A7EE7D7</key>
 		<dict>
 			<key>xpos</key>
-			<integer>200</integer>
+			<real>200</real>
 			<key>ypos</key>
-			<integer>310</integer>
+			<real>310</real>
 		</dict>
 	</dict>
+	<key>userconfigurationconfig</key>
+	<array/>
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>2022.1</string>
+	<string>2022.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
