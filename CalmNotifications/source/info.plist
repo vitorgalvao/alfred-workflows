@@ -56,21 +56,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>availableviaurlhandler</key>
-				<false/>
-				<key>triggerid</key>
-				<string>dnd</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>CCD42A98-2018-4BC4-9B3A-90AA2B0AEB3A</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -100,6 +85,21 @@ fi
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>availableviaurlhandler</key>
+				<false/>
+				<key>triggerid</key>
+				<string>dnd</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>CCD42A98-2018-4BC4-9B3A-90AA2B0AEB3A</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -125,22 +125,7 @@ fi
 				<key>runningsubtext</key>
 				<string>Getting status…</string>
 				<key>script</key>
-				<string>function runCommand(...arguments) {
-  const task = $.NSTask.alloc.init
-  const stdout = $.NSPipe.pipe
-
-  task.executableURL = $.NSURL.alloc.initFileURLWithPath(arguments[0])
-  task.arguments = arguments.slice(1)
-  task.standardOutput = stdout
-  task.launchAndReturnError(false)
-
-  const dataOut = stdout.fileHandleForReading.readDataToEndOfFile
-  const stringOut = $.NSString.alloc.initWithDataEncoding(dataOut, $.NSUTF8StringEncoding).js
-
-  return stringOut
-}
-
-function dndActive() {
+				<string>function dndActive() {
   const assertPath = $("~/Library/DoNotDisturb/DB/Assertions.json").stringByExpandingTildeInPath.js
   const assertData = $.NSFileManager.defaultManager.contentsAtPath(assertPath)
    const assertString = $.NSString.alloc.initWithDataEncoding(assertData, $.NSUTF8StringEncoding).js
@@ -353,7 +338,7 @@ If you don’t have the required Shortcut, the Workflow will prompt you to insta
 	<key>userconfigurationconfig</key>
 	<array/>
 	<key>version</key>
-	<string>2022.2</string>
+	<string>2022.3</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
