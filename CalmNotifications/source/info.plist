@@ -73,7 +73,7 @@ fi
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>0</integer>
+				<integer>5</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -85,6 +85,8 @@ fi
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>availableviaurlhandler</key>
+				<false/>
 				<key>triggerid</key>
 				<string>dnd</string>
 			</dict>
@@ -123,42 +125,66 @@ fi
 				<key>runningsubtext</key>
 				<string>Getting status…</string>
 				<key>script</key>
-				<string>require 'json'
-require 'open3'
+				<string>function runCommand(...arguments) {
+  const task = $.NSTask.alloc.init
+  const stdout = $.NSPipe.pipe
 
-Dnd_active = !Open3.capture2('/usr/bin/defaults', 'read', 'com.apple.controlcenter', 'NSStatusItem Visible FocusModes').first.to_i.zero?
+  task.executableURL = $.NSURL.alloc.initFileURLWithPath(arguments[0])
+  task.arguments = arguments.slice(1)
+  task.standardOutput = stdout
+  task.launchAndReturnError(false)
 
-script_filter_items = []
+  const dataOut = stdout.fileHandleForReading.readDataToEndOfFile
+  const stringOut = $.NSString.alloc.initWithDataEncoding(dataOut, $.NSUTF8StringEncoding).js
 
-if Dnd_active
-  script_filter_items.push(
-    title: 'Turn it off',
-    subtitle: 'Allow notifications again',
-    arg: 'off',
-    icon: { path: 'icon_alt.png' }
-  )
-else
-  Given_timeout = ARGV[0]
+  return stringOut
+}
 
-  if Given_timeout.nil? || !Given_timeout.match(/^\d/) # Any given value must start with a digit
-    script_filter_items.push(
-      title: 'Turn it on',
-      subtitle: 'Stop notifications from going through',
-      arg: 'on'
-    )
-  else
-    Timeout_minutes = Given_timeout.match?(/\d\s*h/) ? (Given_timeout.to_f * 60).to_i : Given_timeout.to_i
-    Plurality = Timeout_minutes == 1 ? 'minute' : 'minutes'
+function sfItem(itemObj) {
+  return JSON.stringify({
+    rerun: 0.5,
+    items: [itemObj]
+  })
+}
 
-    script_filter_items.push(
-      title: 'Turn it on',
-      subtitle: "Stop notifications from going through for #{Timeout_minutes} #{Plurality}",
-      arg: Timeout_minutes
-    )
-  end
-end
+function run(argv) {
+  const dndActive = runCommand("/usr/bin/defaults", "read", "com.apple.controlcenter", "NSStatusItem Visible FocusModes").trim() === "1"
 
-puts({ items: script_filter_items }.to_json)</string>
+  // DND enabled
+  if (dndActive) {
+    return sfItem({
+      title: "Turn it off",
+      subtitle: "Allow notifications again",
+      arg: "off",
+      icon: { path: "icon_alt.png" }
+    })
+  }
+
+  // DND disabled
+  const givenTimeout = argv[0]
+
+  // Any given value must start with a digit
+  if (givenTimeout === undefined || !givenTimeout.match(/^\d/)) {
+    return sfItem({
+      title: "Turn it on",
+      subtitle: "Stop notifications from going through",
+      arg: "on"
+    })
+  }
+
+  // Calculate timeout
+  const timeoutMinutes = givenTimeout.match(/\d\s*h/) ?
+    parseInt(parseFloat(givenTimeout) * 60) :
+    parseInt(givenTimeout)
+
+  const plurality = timeoutMinutes === 1 ? "minute" : "minutes"
+
+  return sfItem({
+    title: "Turn it on",
+    subtitle: `Stop notifications from going through for ${timeoutMinutes} ${plurality}`,
+    arg: timeoutMinutes
+  })
+}</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -168,7 +194,7 @@ puts({ items: script_filter_items }.to_json)</string>
 				<key>title</key>
 				<string>CalmNotifications</string>
 				<key>type</key>
-				<integer>2</integer>
+				<integer>7</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -274,28 +300,28 @@ fi</string>
 	<key>readme</key>
 	<string>Call `dnd` to toggle Do Not Disturb. Optionally give a value to active it for that amount of minutes, or hours if an `h` is appended.
 
-![](https://i.imgur.com/1DZpLvB.png)
-![](https://i.imgur.com/iP21Rl7.png)
-![](https://i.imgur.com/RTPzTs8.png)
+![Alfred search for dnd, turn on](images/about/dnd_on.png)
+![Alfred search for dnd 1.5h](images/about/dnd_1.5h.png)
+![Alfred search for dnd, turn off](images/about/dnd_off.png)
 
-If you don’t have the required Shortcut, it will prompt you to install it.
+If you don’t have the required Shortcut, the Workflow will prompt you to install it.
 
-![](https://i.imgur.com/IhzKVLN.png)</string>
+![Calm Notifications shortcut](images/about/calm_notifications.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>3E435725-836B-4634-BF9F-B8DBADDDEABF</key>
 		<dict>
 			<key>xpos</key>
-			<integer>40</integer>
+			<real>40</real>
 			<key>ypos</key>
-			<integer>150</integer>
+			<real>150</real>
 		</dict>
 		<key>4C30FC65-71BF-4EFE-94CC-B038B4D991CA</key>
 		<dict>
 			<key>xpos</key>
-			<integer>245</integer>
+			<real>245</real>
 			<key>ypos</key>
-			<integer>30</integer>
+			<real>30</real>
 		</dict>
 		<key>5116FFE2-57F2-4B38-88EA-24FC77101347</key>
 		<dict>
@@ -304,20 +330,22 @@ If you don’t have the required Shortcut, it will prompt you to install it.
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>245</integer>
+			<real>245</real>
 			<key>ypos</key>
-			<integer>150</integer>
+			<real>150</real>
 		</dict>
 		<key>CCD42A98-2018-4BC4-9B3A-90AA2B0AEB3A</key>
 		<dict>
 			<key>xpos</key>
-			<integer>40</integer>
+			<real>40</real>
 			<key>ypos</key>
-			<integer>30</integer>
+			<real>30</real>
 		</dict>
 	</dict>
+	<key>userconfigurationconfig</key>
+	<array/>
 	<key>version</key>
-	<string>21.9</string>
+	<string>2022.1</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
