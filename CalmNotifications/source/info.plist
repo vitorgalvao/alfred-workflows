@@ -56,6 +56,21 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>availableviaurlhandler</key>
+				<false/>
+				<key>triggerid</key>
+				<string>dnd</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>CCD42A98-2018-4BC4-9B3A-90AA2B0AEB3A</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -81,21 +96,6 @@ fi
 			<string>4C30FC65-71BF-4EFE-94CC-B038B4D991CA</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>availableviaurlhandler</key>
-				<false/>
-				<key>triggerid</key>
-				<string>dnd</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>CCD42A98-2018-4BC4-9B3A-90AA2B0AEB3A</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -140,6 +140,16 @@ fi
   return stringOut
 }
 
+function dndActive() {
+  const assertPath = $("~/Library/DoNotDisturb/DB/Assertions.json").stringByExpandingTildeInPath.js
+  const assertData = $.NSFileManager.defaultManager.contentsAtPath(assertPath)
+   const assertString = $.NSString.alloc.initWithDataEncoding(assertData, $.NSUTF8StringEncoding).js
+  const assertRecords = JSON.parse(assertString).data[0].storeAssertionRecords
+
+  if (assertRecords) return true
+  return false
+}
+
 function sfItem(itemObj) {
   return JSON.stringify({
     rerun: 0.5,
@@ -148,10 +158,8 @@ function sfItem(itemObj) {
 }
 
 function run(argv) {
-  const dndActive = runCommand("/usr/bin/defaults", "read", "com.apple.controlcenter", "NSStatusItem Visible FocusModes").trim() === "1"
-
   // DND enabled
-  if (dndActive) {
+  if (dndActive()) {
     return sfItem({
       title: "Turn it off",
       subtitle: "Allow notifications again",
@@ -345,7 +353,7 @@ If you don’t have the required Shortcut, the Workflow will prompt you to insta
 	<key>userconfigurationconfig</key>
 	<array/>
 	<key>version</key>
-	<string>2022.1</string>
+	<string>2022.2</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
