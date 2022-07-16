@@ -1,5 +1,5 @@
-File action to set the label color for the chosen files and directories.
+File actions to `Edit Label` colours, `Add Tags` and `Remove Tags` of files and folders.
 
-Use Alfred to pick what you want to apply (or remove) a label to and pick `Label…` as the action, or use the keyboard shortcut. Alfred’s main window will appear and you simply select an option or type to filter the color’s name.
-
-![](https://i.imgur.com/RLIHwQ0.png)
+![File Action for editing labels](images/about/edit_labels.png)
+![File Action for adding tags](images/about/add_tags.png)
+![File Action for removing tags](images/about/remove_tags.png)
