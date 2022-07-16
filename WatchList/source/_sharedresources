@@ -1,6 +1,6 @@
 #!/bin/bash
 
-readonly valid_resources=('blueutil' 'calmnotifications' 'cpulimit' 'ddgr' 'exiftool' 'ffmpeg' 'googler' 'mediainfo' 'multimarkdown' 'pngpaste' 'trash' 'youtubedl') # Keep in sync with resource functions
+readonly valid_resources=('blueutil' 'cpulimit' 'ddgr' 'exiftool' 'ffmpeg' 'googler' 'mediainfo' 'multimarkdown' 'pngpaste' 'tag' 'trash' 'youtubedl') # Keep in sync with resource functions
 readonly shared_resources_id='com.vitorgalvao.alfred._sharedresources'
 [[ -n "${alfred_workflow_data}" ]] || readonly alfred_workflow_data="$(mktemp -d)/Workflow Data/fake_workflow" # To prevent commands reliant on this variable from breaking when testing outside a Workflow
 readonly shared_resources_dir="$(dirname "${alfred_workflow_data}")/${shared_resources_id}"
@@ -85,20 +85,6 @@ function blueutil_getter {
   fi
 
   rm -rf "${extract_dir}"
-}
-
-function calmnotifications_getter {
-  local -r bin_name='calm-notifications'
-  renew_bin "${bin_name}" '90' || return
-
-  ensure_resources_dir
-  local -r bin_path="${shared_resources_bin}/${bin_name}"
-
-  if curl --silent "https://raw.githubusercontent.com/vitorgalvao/tiny-scripts/master/${bin_name}" --output "${bin_path}"; then
-    chmod +x "${bin_path}"
-  else
-    curl_error "${bin_name}"
-  fi
 }
 
 function cpulimit_getter {
@@ -265,6 +251,30 @@ function pngpaste_getter {
 
   local -r bin_version='0.2.3'
   local -r bin_sha="$([[ "${arch}" == 'i386' ]] && echo '20d394d6036f0ffe382b36151c15d3ea9b20ce9d1e5fe6166ce11546c5e871f4' || echo 'd28443efa53d8c51e0ba85a6985506cc21aad15a346df76ff04c2eea0acd33ff')"
+
+  # Consistent over Hombrew installs
+  ensure_resources_dir
+  local -r extract_dir="$(mktemp -d)"
+  local -r bin_path="${shared_resources_bin}/${bin_name}"
+  local -r bin_url="https://ghcr.io/v2/homebrew/core/${bin_name}/blobs/sha256:${bin_sha}"
+
+  if curl --silent --location --header 'Authorization: Bearer QQ==' "${bin_url}" | tar xC "${extract_dir}"; then
+    mv "${extract_dir}/${bin_name}/${bin_version}/bin/${bin_name}" "${bin_path}"
+    chmod +x "${bin_path}"
+  else
+    curl_error "${bin_name}"
+  fi
+
+  rm -rf "${extract_dir}"
+}
+
+function tag_getter {
+  # Manually change
+  local -r bin_name='tag'
+  renew_bin "${bin_name}" '90' || return
+
+  local -r bin_version='0.10_1'
+  local -r bin_sha="$([[ "${arch}" == 'i386' ]] && echo '4b70ddf8fa1ead9e8bffdd2d12194301be5c2be66ea3a355b62eee2836d5c0bc' || echo '87582cbaf5cadbc19c6d8c2c9ea6793d3116a119d7de6b18b7b5a6d898b4ffd4')"
 
   # Consistent over Hombrew installs
   ensure_resources_dir
