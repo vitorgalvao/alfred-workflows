@@ -405,7 +405,7 @@ puts({ rerun: 2, items: script_filter_items }.to_json)</string>
 		</dict>
 	</dict>
 	<key>version</key>
-	<string>2022.3</string>
+	<string>2022.4</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
