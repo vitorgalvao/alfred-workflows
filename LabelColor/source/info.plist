@@ -205,7 +205,7 @@
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
 	<key>description</key>
-	<string>Edit label colours and tags</string>
+	<string>Edit file labels and tags</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -565,7 +565,7 @@ tag --add "${tags}" "${files[@]}"</string>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>subtext</key>
-				<string>Comma-separated list of tags to add, or leave empty to remove all</string>
+				<string>Comma-separated list of tags to remove, or leave empty to delete all</string>
 				<key>text</key>
 				<string>Remove Tags</string>
 				<key>withspace</key>
@@ -790,7 +790,7 @@ fi</string>
 	<key>userconfigurationconfig</key>
 	<array/>
 	<key>version</key>
-	<string>2022.1</string>
+	<string>2022.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
