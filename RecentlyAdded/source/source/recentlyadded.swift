@@ -63,8 +63,6 @@ func fileSort(_ paths: [URL], byKey sortingAttribute: String) -> [URL] {
 }
 
 // Contants
-let uidSeed: String = GetEnvVar.asString("uidSeed", preset: String(describing: Date()))
-
 let allFiles: [URL] = {
   do {
     let dirs: [URL] = GetEnvVar.asFileURLsFromCommas("directories", preset: ["~/Downloads", "~/Desktop"])
@@ -86,7 +84,7 @@ let allFiles: [URL] = {
 func scriptFilterJSON(_ files: [URL]) -> String {
   let items: [[String: Any]] = files.map {
     [
-      "uid": "\(uidSeed) \($0)",
+      "uid": $0.path,
       "type": "file:skipcheck",
       "title": $0.lastPathComponent,
       "subtitle": ($0.deletingLastPathComponent().path as NSString).abbreviatingWithTildeInPath,
@@ -96,7 +94,7 @@ func scriptFilterJSON(_ files: [URL]) -> String {
   }
 
   let full: [String: Any] = [
-    "variables": ["uidSeed": uidSeed],
+    "skipknowledge": true,
     "rerun": 1,
     "items": items,
   ]

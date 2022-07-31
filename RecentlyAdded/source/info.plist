@@ -689,7 +689,7 @@ By default the Workflow searches in `~/Desktop` and `~/Downloads`. Change the va
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>2022.1</string>
+	<string>2022.2</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
