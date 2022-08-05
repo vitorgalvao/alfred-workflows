@@ -6,6 +6,44 @@
 	<string>com.vitorgalvao.alfred.labelcolor</string>
 	<key>connections</key>
 	<dict>
+		<key>0A45BD00-F576-499F-93CA-7417C589D68A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>0A32E04B-A567-475D-9824-E9D404C3773B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>0C53FAAF-F962-4019-9618-036BE2B05836</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>CA94920E-381B-4629-9445-26ED468BBFDA</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>2D672D51-B6E2-4689-9A42-E1150D0A25CA</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>2DC335C4-9FD2-48F5-BD04-D7E0F9B2F994</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>10DBD5E7-B897-4A4F-8826-1EED17807443</key>
 		<array>
 			<dict>
@@ -19,11 +57,11 @@
 				<false/>
 			</dict>
 		</array>
-		<key>3387B057-FF89-44FF-8D81-1C1CB554C09C</key>
+		<key>2DC335C4-9FD2-48F5-BD04-D7E0F9B2F994</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>0A32E04B-A567-475D-9824-E9D404C3773B</string>
+				<string>664036DC-2492-4A36-85F3-4E383AF9D114</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -32,7 +70,7 @@
 				<false/>
 			</dict>
 		</array>
-		<key>348EAC92-984E-411F-B703-94C81A7D8CDB</key>
+		<key>3387B057-FF89-44FF-8D81-1C1CB554C09C</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -58,6 +96,45 @@
 				<false/>
 			</dict>
 		</array>
+		<key>4EEBD915-D890-47D5-A7FC-D753C7AE97E7</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>BAF94C5F-1987-4546-B828-CD7911204DD9</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>5BEB09BC-154D-4A65-BDF1-B85BE4ADEA13</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>4EEBD915-D890-47D5-A7FC-D753C7AE97E7</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>664036DC-2492-4A36-85F3-4E383AF9D114</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>86BEAF42-622F-485B-B506-E700B1476FDB</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>7B358A3F-B206-4B26-BF0E-B9643D6808DE</key>
 		<array>
 			<dict>
@@ -75,7 +152,20 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>348EAC92-984E-411F-B703-94C81A7D8CDB</string>
+				<string>5BEB09BC-154D-4A65-BDF1-B85BE4ADEA13</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>86BEAF42-622F-485B-B506-E700B1476FDB</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>0A32E04B-A567-475D-9824-E9D404C3773B</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -97,11 +187,11 @@
 				<false/>
 			</dict>
 		</array>
-		<key>B90311F6-B0AF-469C-BC98-C82A63A2801A</key>
+		<key>ACD77A2A-0A1E-4754-BD18-9EBF2A946A87</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>BEFF1B55-D633-4E6F-B8E8-C89643090456</string>
+				<string>6FB76A55-7732-4798-B4EC-C2D2ECDD0E28</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -110,11 +200,37 @@
 				<false/>
 			</dict>
 		</array>
-		<key>BEFF1B55-D633-4E6F-B8E8-C89643090456</key>
+		<key>B90311F6-B0AF-469C-BC98-C82A63A2801A</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>0A32E04B-A567-475D-9824-E9D404C3773B</string>
+				<string>BB4381E0-7189-47FA-B7C9-6E210C8F171A</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>BAF94C5F-1987-4546-B828-CD7911204DD9</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>F56C8137-B743-473E-879A-A6B99AA1D14B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>BB4381E0-7189-47FA-B7C9-6E210C8F171A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>F1C60735-DE65-4DFA-867D-77D8A70990FF</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -128,6 +244,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>49CB6A77-C462-4EA7-9C76-CA4860188086</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>CA94920E-381B-4629-9445-26ED468BBFDA</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>ACD77A2A-0A1E-4754-BD18-9EBF2A946A87</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -201,6 +330,32 @@
 				<false/>
 			</dict>
 		</array>
+		<key>F1C60735-DE65-4DFA-867D-77D8A70990FF</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>0C53FAAF-F962-4019-9618-036BE2B05836</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>F56C8137-B743-473E-879A-A6B99AA1D14B</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>0A45BD00-F576-499F-93CA-7417C589D68A</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
@@ -212,6 +367,50 @@
 	<string>LabelColor</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>readonly files=("${(ps:\t:)file_list}")
+
+for file in "${files[@]}"; do
+  ./labelcolor "${1}" "${file}"
+done</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>3387B057-FF89-44FF-8D81-1C1CB554C09C</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>acceptsmulti</key>
+				<integer>1</integer>
+				<key>filetypes</key>
+				<array/>
+				<key>name</key>
+				<string>Edit Label…</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>D9413737-68AF-44E7-8F3D-214676DFD4EF</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -240,50 +439,6 @@
 			<string>D630C27C-B886-4694-87FF-4701C20F9F67</string>
 			<key>version</key>
 			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>acceptsmulti</key>
-				<integer>1</integer>
-				<key>filetypes</key>
-				<array/>
-				<key>name</key>
-				<string>Edit Label…</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.action</string>
-			<key>uid</key>
-			<string>D9413737-68AF-44E7-8F3D-214676DFD4EF</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>readonly files=("${(ps:\t:)file_list}")
-
-for file in "${files[@]}"; do
-  ./labelcolor "${1}" "${file}"
-done</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>5</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>3387B057-FF89-44FF-8D81-1C1CB554C09C</string>
-			<key>version</key>
-			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -449,34 +604,6 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>PATH="$(./_sharedresources 'tag')"
-
-readonly files=("${(ps:\t:)file_list}")
-readonly tags="${1}"
-
-tag --add "${tags}" "${files[@]}"</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>5</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>348EAC92-984E-411F-B703-94C81A7D8CDB</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>acceptsmulti</key>
 				<integer>1</integer>
 				<key>filetypes</key>
@@ -488,6 +615,47 @@ tag --add "${tags}" "${files[@]}"</string>
 			<string>alfred.workflow.trigger.action</string>
 			<key>uid</key>
 			<string>8D242CCD-E56E-49C8-89F8-0BA4D0F3F3CE</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>tasksettings</key>
+				<dict>
+					<key>new_tags</key>
+					<string>{var:tags}</string>
+					<key>recursive</key>
+					<false/>
+				</dict>
+				<key>taskuid</key>
+				<string>com.alfredapp.automation.core/files-and-folders/path.tags.add</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.automation.task</string>
+			<key>uid</key>
+			<string>0A45BD00-F576-499F-93CA-7417C589D68A</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>delimiter</key>
+				<string>	</string>
+				<key>discardemptyarguments</key>
+				<false/>
+				<key>outputas</key>
+				<integer>1</integer>
+				<key>trimarguments</key>
+				<false/>
+				<key>variableprefix</key>
+				<string>split</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.split</string>
+			<key>uid</key>
+			<string>F56C8137-B743-473E-879A-A6B99AA1D14B</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -508,6 +676,61 @@ tag --add "${tags}" "${files[@]}"</string>
 			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
 			<string>D09E3D43-89C6-420A-8E35-E1270B1BD594</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>delimiter</key>
+				<string>
+</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.joinargs</string>
+			<key>uid</key>
+			<string>4EEBD915-D890-47D5-A7FC-D753C7AE97E7</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>delimiter</key>
+				<string>,</string>
+				<key>discardemptyarguments</key>
+				<false/>
+				<key>outputas</key>
+				<integer>1</integer>
+				<key>trimarguments</key>
+				<true/>
+				<key>variableprefix</key>
+				<string>split</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.split</string>
+			<key>uid</key>
+			<string>5BEB09BC-154D-4A65-BDF1-B85BE4ADEA13</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>{var:file_list}</string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict>
+					<key>tags</key>
+					<string>{query}</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>BAF94C5F-1987-4546-B828-CD7911204DD9</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -541,6 +764,62 @@ tag --add "${tags}" "${files[@]}"</string>
 			<string>10DBD5E7-B897-4A4F-8826-1EED17807443</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>tasksettings</key>
+				<dict>
+					<key>recursive</key>
+					<false/>
+				</dict>
+				<key>taskuid</key>
+				<string>com.alfredapp.automation.core/files-and-folders/path.tags.clear</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.automation.task</string>
+			<key>uid</key>
+			<string>6FB76A55-7732-4798-B4EC-C2D2ECDD0E28</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>{var:file_list}</string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>CA94920E-381B-4629-9445-26ED468BBFDA</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>delimiter</key>
+				<string>	</string>
+				<key>discardemptyarguments</key>
+				<false/>
+				<key>outputas</key>
+				<integer>1</integer>
+				<key>trimarguments</key>
+				<false/>
+				<key>variableprefix</key>
+				<string>split</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.split</string>
+			<key>uid</key>
+			<string>ACD77A2A-0A1E-4754-BD18-9EBF2A946A87</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -581,34 +860,130 @@ tag --add "${tags}" "${files[@]}"</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>PATH="$(./_sharedresources 'tag')"
-
-readonly files=("${(ps:\t:)file_list}")
-readonly tags="${1}"
-
-if [[ -n "${tags}" ]]; then # Remove specific tags
-  tag --remove "${tags}" "${files[@]}"
-else # Remove all tags
-  tag --set '' "${files[@]}"
-fi</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>5</integer>
+				<key>tasksettings</key>
+				<dict>
+					<key>new_tags</key>
+					<string>{var:tags}</string>
+					<key>recursive</key>
+					<false/>
+				</dict>
+				<key>taskuid</key>
+				<string>com.alfredapp.automation.core/files-and-folders/path.tags.remove</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.automation.task</string>
 			<key>uid</key>
-			<string>BEFF1B55-D633-4E6F-B8E8-C89643090456</string>
+			<string>86BEAF42-622F-485B-B506-E700B1476FDB</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string></string>
+						<key>outputlabel</key>
+						<string>Remove All</string>
+						<key>uid</key>
+						<string>2D672D51-B6E2-4689-9A42-E1150D0A25CA</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>Remove Specific</string>
+				<key>hideelse</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>0C53FAAF-F962-4019-9618-036BE2B05836</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>delimiter</key>
+				<string>
+</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.joinargs</string>
+			<key>uid</key>
+			<string>F1C60735-DE65-4DFA-867D-77D8A70990FF</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string>{var:file_list}</string>
+				<key>passthroughargument</key>
+				<false/>
+				<key>variables</key>
+				<dict>
+					<key>tags</key>
+					<string>{query}</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>2DC335C4-9FD2-48F5-BD04-D7E0F9B2F994</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>delimiter</key>
+				<string>	</string>
+				<key>discardemptyarguments</key>
+				<false/>
+				<key>outputas</key>
+				<integer>1</integer>
+				<key>trimarguments</key>
+				<false/>
+				<key>variableprefix</key>
+				<string>split</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.split</string>
+			<key>uid</key>
+			<string>664036DC-2492-4A36-85F3-4E383AF9D114</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>delimiter</key>
+				<string>,</string>
+				<key>discardemptyarguments</key>
+				<false/>
+				<key>outputas</key>
+				<integer>1</integer>
+				<key>trimarguments</key>
+				<true/>
+				<key>variableprefix</key>
+				<string>split</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.split</string>
+			<key>uid</key>
+			<string>BB4381E0-7189-47FA-B7C9-6E210C8F171A</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -665,6 +1040,7 @@ fi</string>
 	<key>readme</key>
 	<string>File actions to `Edit Label` colours, `Add Tags` and `Remove Tags` of files and folders.
 
+![Universal Actions](images/about/universal_actions.png)
 ![File Action for editing labels](images/about/edit_labels.png)
 ![File Action for adding tags](images/about/add_tags.png)
 ![File Action for removing tags](images/about/remove_tags.png)</string>
@@ -677,9 +1053,23 @@ fi</string>
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<real>650</real>
+			<real>1165</real>
 			<key>ypos</key>
 			<real>20</real>
+		</dict>
+		<key>0A45BD00-F576-499F-93CA-7417C589D68A</key>
+		<dict>
+			<key>xpos</key>
+			<real>970</real>
+			<key>ypos</key>
+			<real>295</real>
+		</dict>
+		<key>0C53FAAF-F962-4019-9618-036BE2B05836</key>
+		<dict>
+			<key>xpos</key>
+			<real>630</real>
+			<key>ypos</key>
+			<real>585</real>
 		</dict>
 		<key>10DBD5E7-B897-4A4F-8826-1EED17807443</key>
 		<dict>
@@ -688,6 +1078,13 @@ fi</string>
 			<key>ypos</key>
 			<real>415</real>
 		</dict>
+		<key>2DC335C4-9FD2-48F5-BD04-D7E0F9B2F994</key>
+		<dict>
+			<key>xpos</key>
+			<real>800</real>
+			<key>ypos</key>
+			<real>595</real>
+		</dict>
 		<key>3387B057-FF89-44FF-8D81-1C1CB554C09C</key>
 		<dict>
 			<key>xpos</key>
@@ -695,19 +1092,40 @@ fi</string>
 			<key>ypos</key>
 			<real>20</real>
 		</dict>
-		<key>348EAC92-984E-411F-B703-94C81A7D8CDB</key>
-		<dict>
-			<key>xpos</key>
-			<real>480</real>
-			<key>ypos</key>
-			<real>295</real>
-		</dict>
 		<key>49CB6A77-C462-4EA7-9C76-CA4860188086</key>
 		<dict>
 			<key>xpos</key>
 			<real>215</real>
 			<key>ypos</key>
 			<real>595</real>
+		</dict>
+		<key>4EEBD915-D890-47D5-A7FC-D753C7AE97E7</key>
+		<dict>
+			<key>xpos</key>
+			<real>560</real>
+			<key>ypos</key>
+			<real>325</real>
+		</dict>
+		<key>5BEB09BC-154D-4A65-BDF1-B85BE4ADEA13</key>
+		<dict>
+			<key>xpos</key>
+			<real>480</real>
+			<key>ypos</key>
+			<real>325</real>
+		</dict>
+		<key>664036DC-2492-4A36-85F3-4E383AF9D114</key>
+		<dict>
+			<key>xpos</key>
+			<real>875</real>
+			<key>ypos</key>
+			<real>595</real>
+		</dict>
+		<key>6FB76A55-7732-4798-B4EC-C2D2ECDD0E28</key>
+		<dict>
+			<key>xpos</key>
+			<real>970</real>
+			<key>ypos</key>
+			<real>430</real>
 		</dict>
 		<key>7B358A3F-B206-4B26-BF0E-B9643D6808DE</key>
 		<dict>
@@ -723,12 +1141,26 @@ fi</string>
 			<key>ypos</key>
 			<real>295</real>
 		</dict>
+		<key>86BEAF42-622F-485B-B506-E700B1476FDB</key>
+		<dict>
+			<key>xpos</key>
+			<real>970</real>
+			<key>ypos</key>
+			<real>565</real>
+		</dict>
 		<key>8D242CCD-E56E-49C8-89F8-0BA4D0F3F3CE</key>
 		<dict>
 			<key>xpos</key>
 			<real>30</real>
 			<key>ypos</key>
 			<real>295</real>
+		</dict>
+		<key>ACD77A2A-0A1E-4754-BD18-9EBF2A946A87</key>
+		<dict>
+			<key>xpos</key>
+			<real>875</real>
+			<key>ypos</key>
+			<real>460</real>
 		</dict>
 		<key>B90311F6-B0AF-469C-BC98-C82A63A2801A</key>
 		<dict>
@@ -737,12 +1169,19 @@ fi</string>
 			<key>ypos</key>
 			<real>565</real>
 		</dict>
-		<key>BEFF1B55-D633-4E6F-B8E8-C89643090456</key>
+		<key>BAF94C5F-1987-4546-B828-CD7911204DD9</key>
+		<dict>
+			<key>xpos</key>
+			<real>630</real>
+			<key>ypos</key>
+			<real>325</real>
+		</dict>
+		<key>BB4381E0-7189-47FA-B7C9-6E210C8F171A</key>
 		<dict>
 			<key>xpos</key>
 			<real>480</real>
 			<key>ypos</key>
-			<real>565</real>
+			<real>595</real>
 		</dict>
 		<key>C2F549E4-CD4D-4B04-92A9-E1E6732BB185</key>
 		<dict>
@@ -750,6 +1189,13 @@ fi</string>
 			<real>30</real>
 			<key>ypos</key>
 			<real>685</real>
+		</dict>
+		<key>CA94920E-381B-4629-9445-26ED468BBFDA</key>
+		<dict>
+			<key>xpos</key>
+			<real>800</real>
+			<key>ypos</key>
+			<real>460</real>
 		</dict>
 		<key>D09E3D43-89C6-420A-8E35-E1270B1BD594</key>
 		<dict>
@@ -786,11 +1232,25 @@ fi</string>
 			<key>ypos</key>
 			<real>50</real>
 		</dict>
+		<key>F1C60735-DE65-4DFA-867D-77D8A70990FF</key>
+		<dict>
+			<key>xpos</key>
+			<real>560</real>
+			<key>ypos</key>
+			<real>595</real>
+		</dict>
+		<key>F56C8137-B743-473E-879A-A6B99AA1D14B</key>
+		<dict>
+			<key>xpos</key>
+			<real>705</real>
+			<key>ypos</key>
+			<real>325</real>
+		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
 	<array/>
 	<key>version</key>
-	<string>2022.3</string>
+	<string>2022.4</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
