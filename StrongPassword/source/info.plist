@@ -113,7 +113,7 @@
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
 	<key>description</key>
-	<string>Get a strong password from live quantum random values</string>
+	<string>Get a strong password from true random values</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -147,34 +147,41 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>// Fisher-Yates shuffle
-// String -&gt; String
+				<string>// Durstenfeld shuffle
 function shuffle(string) {
   const array = string.split("")
-  var m = array.length
-	var t
-	var i
 
-  while (m) {
-    i = Math.floor(Math.random() * m--);
-    t = array[m];
-    array[m] = array[i];
-    array[i] = t;
+  for (let i = array.length - 1; i &gt; 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
   }
 
   return array.join("")
 }
 
-function run(argv) {
-  passwordLength = argv[0] || $.NSProcessInfo.processInfo.environment.objectForKey("default_length").js || 64
+function envVar(varName) {
+  return $.NSProcessInfo
+    .processInfo
+    .environment
+    .objectForKey(varName).js
+}
 
-  // Request random alphanumeric string from ANU QRNG
-  const url = "https://qrng.anu.edu.au/wp-content/plugins/colours-plugin/get_block_alpha.php"
+function httpRequest(url) {
   const queryURL = $.NSURL.URLWithString(url)
   const requestData = $.NSData.dataWithContentsOfURL(queryURL);
   const requestString = $.NSString.alloc.initWithDataEncoding(requestData, $.NSUTF8StringEncoding).js
 
-  return shuffle(requestString).slice(0, passwordLength)
+  if (requestString.legth === 0) throw "Unable to get page. Check your internet connection and the service: " + url
+  return requestString
+}
+
+function run(argv) {
+  const passwordLength = argv[0] || envVar("default_length") || 64
+  const password = envVar("service") == "anuqrng" ?
+    httpRequest("https://qrng.anu.edu.au/wp-content/plugins/colours-plugin/get_block_alpha.php") :
+    httpRequest("https://www.random.org/strings/?num=20&amp;len=20&amp;digits=on&amp;upperalpha=on&amp;loweralpha=on&amp;unique=off&amp;format=plain&amp;rnd=new").replaceAll("\n", "")
+
+  return shuffle(password).slice(0, passwordLength)
 }</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
@@ -295,7 +302,7 @@ fi</string>
 				<key>keyword</key>
 				<string>sp</string>
 				<key>subtext</key>
-				<string>Defaults to {var:default_length} characters; input a number to change length</string>
+				<string>Input password length (default is {var:default_length})</string>
 				<key>text</key>
 				<string>StrongPassword</string>
 				<key>withspace</key>
@@ -351,6 +358,8 @@ fi</string>
 				</array>
 				<key>elselabel</key>
 				<string>Invalid argument</string>
+				<key>hideelse</key>
+				<false/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.utility.conditional</string>
@@ -375,6 +384,21 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>soundname</key>
+				<string>Hero</string>
+				<key>systemsound</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.playsound</string>
+			<key>uid</key>
+			<string>CFA0C3DA-2906-452F-80C8-4A283A90F645</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>lastpathcomponent</key>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
@@ -393,34 +417,19 @@ fi</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>soundname</key>
-				<string>Hero</string>
-				<key>systemsound</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.playsound</string>
-			<key>uid</key>
-			<string>CFA0C3DA-2906-452F-80C8-4A283A90F645</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
 	</array>
 	<key>readme</key>
-	<string>Run `sp` to generate a password from unique and live quantum random values provided by [ANU QRNG](https://qrng.anu.edu.au). Adjust the length by providing a value or editing the `default_length` Workflow Environment Variable.
+	<string>Run `sp` to generate a password from true random values provided by [ANU QRNG](https://qrng.anu.edu.au) or [RANDOM.ORG](https://www.random.org).
 
-![](https://i.imgur.com/LKQGRuD.png)</string>
+![Alfred search for sp](images/about/sp.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>1BDA1213-2FA1-40FE-B252-818A316BB650</key>
 		<dict>
 			<key>xpos</key>
-			<integer>400</integer>
+			<real>400</real>
 			<key>ypos</key>
-			<integer>170</integer>
+			<real>170</real>
 		</dict>
 		<key>3DD8C944-A8C5-43D3-8FED-57C9677F2F52</key>
 		<dict>
@@ -429,67 +438,110 @@ fi</string>
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>950</integer>
+			<real>950</real>
 			<key>ypos</key>
-			<integer>20</integer>
+			<real>20</real>
 		</dict>
 		<key>5233CF65-BC11-4F79-A9BC-64C9B32F2E5E</key>
 		<dict>
 			<key>xpos</key>
-			<integer>30</integer>
+			<real>30</real>
 			<key>ypos</key>
-			<integer>20</integer>
+			<real>20</real>
 		</dict>
 		<key>A3871353-2B9A-4B24-AE0C-856A3B0B3D12</key>
 		<dict>
 			<key>xpos</key>
-			<integer>630</integer>
+			<real>630</real>
 			<key>ypos</key>
-			<integer>20</integer>
+			<real>20</real>
 		</dict>
 		<key>CFA0C3DA-2906-452F-80C8-4A283A90F645</key>
 		<dict>
 			<key>xpos</key>
-			<integer>630</integer>
+			<real>630</real>
 			<key>ypos</key>
-			<integer>170</integer>
+			<real>170</real>
 		</dict>
 		<key>D798B216-43A8-49D5-B696-095FAE0F819F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>790</integer>
+			<real>790</real>
 			<key>ypos</key>
-			<integer>20</integer>
+			<real>20</real>
 		</dict>
 		<key>E161D8B6-976A-43AB-BB76-4C8A70932C24</key>
 		<dict>
 			<key>xpos</key>
-			<integer>190</integer>
+			<real>190</real>
 			<key>ypos</key>
-			<integer>40</integer>
+			<real>40</real>
 		</dict>
 		<key>E405E993-F301-4C8D-A17C-38F77661C9F4</key>
 		<dict>
 			<key>xpos</key>
-			<integer>555</integer>
+			<real>555</real>
 			<key>ypos</key>
-			<integer>50</integer>
+			<real>50</real>
 		</dict>
 		<key>FF316160-82F1-4AC1-8D82-72A1F0AC9ED6</key>
 		<dict>
 			<key>xpos</key>
-			<integer>400</integer>
+			<real>400</real>
 			<key>ypos</key>
-			<integer>20</integer>
+			<real>20</real>
 		</dict>
 	</dict>
-	<key>variables</key>
-	<dict>
-		<key>default_length</key>
-		<string>64</string>
-	</dict>
+	<key>userconfigurationconfig</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>64</string>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<false/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string>Default Length</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>default_length</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>pairs</key>
+				<array>
+					<array>
+						<string>ANU QRNG</string>
+						<string>anuqrng</string>
+					</array>
+					<array>
+						<string>RANDOM.ORG</string>
+						<string>randomorg</string>
+					</array>
+				</array>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string>Service</string>
+			<key>type</key>
+			<string>popupbutton</string>
+			<key>variable</key>
+			<string>service</string>
+		</dict>
+	</array>
 	<key>version</key>
-	<string>22.4</string>
+	<string>2022.1</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
