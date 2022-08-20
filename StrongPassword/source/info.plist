@@ -316,6 +316,10 @@ function shuffle(string) {
   return array.join("")
 }
 
+function randomItem(array) {
+  return array[Math.floor(Math.random() * array.length)]
+}
+
 function envVar(varName) {
   return $.NSProcessInfo
     .processInfo
@@ -334,11 +338,22 @@ function httpRequest(url) {
 
 function run(argv) {
   const passwordLength = argv[0] || envVar("default_length") || 64
-  const password = envVar("service") == "anuqrng" ?
+
+  // Get initial password
+  const servicePassword = envVar("service") == "anuqrng" ?
     httpRequest("https://qrng.anu.edu.au/wp-content/plugins/colours-plugin/get_block_alpha.php") :
     httpRequest("https://www.random.org/strings/?num=20&amp;len=20&amp;digits=on&amp;upperalpha=on&amp;loweralpha=on&amp;unique=off&amp;format=plain&amp;rnd=new").replaceAll("\n", "")
 
-  return shuffle(password).slice(0, passwordLength)
+  // Sprinkle special characters
+  const specialChars = [...`!"#$%&amp;'()*+,-./:;&lt;&gt;=?@[]^_\`{}|~\\`]
+  const truncatedPassword = shuffle(servicePassword).slice(0, passwordLength)
+  const randomChars = [randomItem(truncatedPassword), randomItem(truncatedPassword)]
+  const specialPassword = [...truncatedPassword].map(
+    char =&gt; randomChars.includes(char) ? randomItem(specialChars) : char
+  ).join("")
+
+  // Return password
+  return shuffle(specialPassword)
 }</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
@@ -637,8 +652,10 @@ function run(argv) {
 			<string>default_length</string>
 		</dict>
 	</array>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
-	<string>2022.2</string>
+	<string>2022.3</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
