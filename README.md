@@ -260,15 +260,17 @@ These are small helpers to help build Workflows or enhance existing ones. They a
 
 ### Deprecated Workflows
 
-These are the Workflows that are no longer under development and won’t get more updates. Reasons for deprecation depend on the the Workflow, but they don’t tend to be deprecated without an alternative. Their respective forum posts provide more information.
+The Workflows below that are no longer under development. Reasons for deprecation depend on the the Workflow, but they don’t tend to be deprecated without an alternative. Their respective forum posts provide more information.
 
-* [AlfredBookmarklet](https://github.com/vitorgalvao/alfred-workflows/tree/9ba7a27921acb67cc7b7022703c8202ecb67c003/AlfredBookmarklet)
-* [AlfredModeration](https://github.com/vitorgalvao/alfred-workflows/tree/b2748ae51e0664311b84f2013aa89ac8daae536b/AlfredModeration)
-* [AppVersion](https://github.com/vitorgalvao/alfred-workflows/tree/fefde12914ed35d1cc7e0e90c62a932cdec3b39a/AppVersion)
-* [CheckSpelling](https://github.com/vitorgalvao/alfred-workflows/tree/c0d9c9313857676997e6e05d9dda65cfa5fcda6a/CheckSpelling)
-* [RepeatRepeat](https://github.com/vitorgalvao/alfred-workflows/tree/9a70302fa31d6fba2b532bc9dd7eac75d67f6964/RepeatRepeat)
-* [RespondQuickly](https://github.com/vitorgalvao/alfred-workflows/tree/f174fde5da3238d57dc3415bb351759c02eb8dab/RespondQuickly)
-* [RottenMovies](https://github.com/vitorgalvao/alfred-workflows/tree/2c0eca9f2336e3470b103586189ba7dd450f2b39/RottenMovies)
+| Workflow | Source Code | Forum Page |
+| -------- | :---------: | :--------: |
+| AlfredBookmarklet | [View](https://github.com/vitorgalvao/alfred-workflows/tree/9ba7a27921acb67cc7b7022703c8202ecb67c003/AlfredBookmarklet) | [Open](https://www.alfredforum.com/topic/4235-alfredbookmarklet-—-use-a-browser-bookmarklet-via-alfred/) |
+| AlfredModeration | [View](https://github.com/vitorgalvao/alfred-workflows/tree/b2748ae51e0664311b84f2013aa89ac8daae536b/AlfredModeration) | [Open](https://www.alfredforum.com/topic/10868-alfredmoderation-—-tools-to-help-moderate-the-alfred-forums/) |
+| AppVersion | [View](https://github.com/vitorgalvao/alfred-workflows/tree/fefde12914ed35d1cc7e0e90c62a932cdec3b39a/AppVersion) | [Open](https://www.alfredforum.com/topic/10709-appversion-—-show-version-number-of-installed-apps/) |
+| CheckSpelling | [View](https://github.com/vitorgalvao/alfred-workflows/tree/c0d9c9313857676997e6e05d9dda65cfa5fcda6a/CheckSpelling) | [Open](https://www.alfredforum.com/topic/3586-checkspelling-—-spelling-correction-in-various-languages/) |
+| RepeatRepeat | [View](https://github.com/vitorgalvao/alfred-workflows/tree/9a70302fa31d6fba2b532bc9dd7eac75d67f6964/RepeatRepeat) | [Open](https://www.alfredforum.com/topic/2740-repeatrepeat-—-proof-of-concept-to-make-a-script-filter-update-itself-without-further-user-input/) |
+| RespondQuickly | [View](https://github.com/vitorgalvao/alfred-workflows/tree/f174fde5da3238d57dc3415bb351759c02eb8dab/RespondQuickly) | [Open](https://www.alfredforum.com/topic/3695-respondquickly-—-convert-selected-text-to-a-qr-code/) |
+| RottenMovies | [View](https://github.com/vitorgalvao/alfred-workflows/tree/2c0eca9f2336e3470b103586189ba7dd450f2b39/RottenMovies) | [Open](https://www.alfredforum.com/topic/4875-rottenmovies-—-check-movie-scores-from-rotten-tomatoes/) |
 
 ---
 
