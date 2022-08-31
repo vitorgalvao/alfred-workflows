@@ -256,9 +256,6 @@ Find words that contain a particular pattern
 
 These are small helpers to help build Workflows or enhance existing ones. They are described in detail in [their directory](https://github.com/vitorgalvao/alfred-workflows/tree/master/_helpers).
 
-+ `_sharedresources`
-+ `packal_placeholder.plist`
-
 ---
 
 ### Deprecated Workflows
