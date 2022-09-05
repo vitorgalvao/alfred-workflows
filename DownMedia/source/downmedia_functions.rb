@@ -55,6 +55,16 @@ Download_dir = get_env(
   as_pathname: true
 )
 
+Single_title_template = get_env(
+  variable: ENV['single_title_template'],
+  default: '%(title)s.%(ext)s'
+)
+
+Playlist_title_template = get_env(
+  variable: ENV['playlist_title_template'],
+  default: '%(playlist)s/%(playlist_index)s-%(title)s.%(ext)s'
+)
+
 Pid_file = Pathname(ENV['alfred_workflow_cache']).join('pid.txt')
 Progress_file = Pathname(ENV['alfred_workflow_cache']).join('progress.txt')
 Query_file = Pathname(ENV['alfred_workflow_cache']).join('query.json')
@@ -199,10 +209,7 @@ def download_url(url, media_type, add_to_watchlist_string, full_playlist_string)
   add_to_watchlist = to_bool(add_to_watchlist_string)
   full_playlist = to_bool(full_playlist_string)
   encoded_url = CGI.escape_html(url)
-
-  title_template = full_playlist ?
-    '%(playlist)s/%(playlist_index)s-%(title)s.%(ext)s' :
-    '%(title)s.%(ext)s'
+  title_template = full_playlist ? Playlist_title_template : Single_title_template
 
   # Video format is forced for consistency between --get-filename and what is downloaded
   flags = media_type == 'audio' ?
