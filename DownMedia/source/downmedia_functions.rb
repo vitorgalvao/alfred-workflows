@@ -55,20 +55,15 @@ Download_dir = get_env(
   as_pathname: true
 )
 
-# ALLOW Template override for playlist output format.  
-Playlist_out_template = get_env(
-  variable: ENV['playlist_out_template'],
-  default: '%(playlist)s/%(playlist_index)s-%(title)s.%(ext)s',
-  as_pathname: false
+Single_title_template = get_env(
+  variable: ENV['single_title_template'],
+  default: '%(title)s.%(ext)s'
 )
 
-# ALLOW Template override for individual output format.  
-Out_template = get_env(
-  variable: ENV['out_template'],
-  default: '%(title)s.%(ext)s',
-  as_pathname: false
+Playlist_title_template = get_env(
+  variable: ENV['playlist_title_template'],
+  default: '%(playlist)s/%(playlist_index)s-%(title)s.%(ext)s'
 )
-
 
 Pid_file = Pathname(ENV['alfred_workflow_cache']).join('pid.txt')
 Progress_file = Pathname(ENV['alfred_workflow_cache']).join('progress.txt')
@@ -214,10 +209,7 @@ def download_url(url, media_type, add_to_watchlist_string, full_playlist_string)
   add_to_watchlist = to_bool(add_to_watchlist_string)
   full_playlist = to_bool(full_playlist_string)
   encoded_url = CGI.escape_html(url)
-
-  # Use Result of Custom Tempalates.
-  title_template = full_playlist ?
-   Playlist_out_template : Out_template
+  title_template = full_playlist ? Playlist_title_template : Single_title_template
 
   # Video format is forced for consistency between --get-filename and what is downloaded
   flags = media_type == 'audio' ?
