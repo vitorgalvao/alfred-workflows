@@ -16,6 +16,6 @@ To see auto-refreshing download progress, run `dp`. Actioning it with ⌘ will r
 
 ![](https://i.imgur.com/i7NmBLx.png)
 
-The Workflow Environment Variables represent the directory to download to, the audio format to save when using `da`, and the default behaviour of adding a download to WatchList (`true` or `false`).
+The Workflow Environment Variables represent the directory to download to, the audio format to save when using `da`, and the default behaviour of adding a download to WatchList (`true` or `false`). The `_title_template` ones determine [the name of saved files](https://github.com/yt-dlp/yt-dlp#output-template).
 
 You will have to install [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) yourself because it has dependencies which are impractical to fulfil on a clean macOS installation. The simplest way is to install [Homebrew](https://brew.sh) and `brew install yt-dlp`.

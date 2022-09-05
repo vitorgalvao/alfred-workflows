@@ -585,6 +585,8 @@ download_url(ARGV[0], ENV['media_type'], ENV['add_to_watchlist'], ENV['full_play
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>availableviaurlhandler</key>
+				<false/>
 				<key>triggerid</key>
 				<string>download_video</string>
 			</dict>
@@ -735,6 +737,8 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>availableviaurlhandler</key>
+				<false/>
 				<key>triggerid</key>
 				<string>download_audio</string>
 			</dict>
@@ -886,6 +890,8 @@ kill_download</string>
 				</array>
 				<key>elselabel</key>
 				<string>abort</string>
+				<key>hideelse</key>
+				<false/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.utility.conditional</string>
@@ -1000,6 +1006,8 @@ cleanup_tmp_files</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>availableviaurlhandler</key>
+				<false/>
 				<key>triggerid</key>
 				<string>downmediaservicesinstall</string>
 			</dict>
@@ -1030,7 +1038,7 @@ To see auto-refreshing download progress, run `dp`. Actioning it with ⌘ will r
 
 ![](https://i.imgur.com/i7NmBLx.png)
 
-The Workflow Environment Variables represent the directory to download to, the audio format to save when using `da`, and the default behaviour of adding a download to WatchList (`true` or `false`).
+The Workflow Environment Variables represent the directory to download to, the audio format to save when using `da`, and the default behaviour of adding a download to WatchList (`true` or `false`). The `_title_template` ones determine [the name of saved files](https://github.com/yt-dlp/yt-dlp#output-template).
 
 You will have to install [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) yourself because it has dependencies which are impractical to fulfil on a clean macOS installation. The simplest way is to install [Homebrew](https://brew.sh) and `brew install yt-dlp`.</string>
 	<key>uidata</key>
@@ -1038,88 +1046,88 @@ You will have to install [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) yourself b
 		<key>05D66076-BBF0-42B3-AACE-3395B291DCB8</key>
 		<dict>
 			<key>xpos</key>
-			<integer>615</integer>
+			<real>615</real>
 			<key>ypos</key>
-			<integer>545</integer>
+			<real>545</real>
 		</dict>
 		<key>24B8A81E-9901-45A9-B7BC-3D4134C8675A</key>
 		<dict>
 			<key>xpos</key>
-			<integer>250</integer>
+			<real>250</real>
 			<key>ypos</key>
-			<integer>275</integer>
+			<real>275</real>
 		</dict>
 		<key>3B69F416-A08B-4618-99B6-E2AED211C9D8</key>
 		<dict>
 			<key>xpos</key>
-			<integer>495</integer>
+			<real>495</real>
 			<key>ypos</key>
-			<integer>755</integer>
+			<real>755</real>
 		</dict>
 		<key>3E1231DB-0667-46DE-9AD3-523D8837F824</key>
 		<dict>
 			<key>xpos</key>
-			<integer>670</integer>
+			<real>670</real>
 			<key>ypos</key>
-			<integer>65</integer>
+			<real>65</real>
 		</dict>
 		<key>67C1A19D-DDF7-450A-A615-B9C134D6975F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>495</integer>
+			<real>495</real>
 			<key>ypos</key>
-			<integer>875</integer>
+			<real>875</real>
 		</dict>
 		<key>6A286F10-FD49-4463-9540-0EECBE45438D</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1230</integer>
+			<real>1230</real>
 			<key>ypos</key>
-			<integer>515</integer>
+			<real>515</real>
 		</dict>
 		<key>822C7F03-3A3A-4842-8C03-72F2D4096BF0</key>
 		<dict>
 			<key>note</key>
 			<string>Download video in frontmost tab</string>
 			<key>xpos</key>
-			<integer>60</integer>
+			<real>60</real>
 			<key>ypos</key>
-			<integer>275</integer>
+			<real>275</real>
 		</dict>
 		<key>83B54D25-39A4-4BCE-94DA-1DFB84D37270</key>
 		<dict>
 			<key>xpos</key>
-			<integer>495</integer>
+			<real>495</real>
 			<key>ypos</key>
-			<integer>395</integer>
+			<real>395</real>
 		</dict>
 		<key>879AF67B-0DE2-4574-A27B-A502D1E8A123</key>
 		<dict>
 			<key>xpos</key>
-			<integer>905</integer>
+			<real>905</real>
 			<key>ypos</key>
-			<integer>775</integer>
+			<real>775</real>
 		</dict>
 		<key>87AAFCF7-6532-4486-8489-54674100A52C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>730</integer>
+			<real>730</real>
 			<key>ypos</key>
-			<integer>875</integer>
+			<real>875</real>
 		</dict>
 		<key>897635FA-F5E6-4554-A0FE-0A84D9156F9C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>495</integer>
+			<real>495</real>
 			<key>ypos</key>
-			<integer>35</integer>
+			<real>35</real>
 		</dict>
 		<key>A8F4BBFD-E8A8-47D3-AE33-A8823E7CC291</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1020</integer>
+			<real>1020</real>
 			<key>ypos</key>
-			<integer>875</integer>
+			<real>875</real>
 		</dict>
 		<key>B1F76879-4318-4A04-B58F-150347E9CC29</key>
 		<dict>
@@ -1128,88 +1136,90 @@ You will have to install [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) yourself b
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>1410</integer>
+			<real>1410</real>
 			<key>ypos</key>
-			<integer>515</integer>
+			<real>515</real>
 		</dict>
 		<key>B729925C-D828-4631-9988-67499E05791C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>495</integer>
+			<real>495</real>
 			<key>ypos</key>
-			<integer>155</integer>
+			<real>155</real>
 		</dict>
 		<key>B7A122F2-DA1A-4CF7-9990-9F4614C960CC</key>
 		<dict>
 			<key>xpos</key>
-			<integer>250</integer>
+			<real>250</real>
 			<key>ypos</key>
-			<integer>395</integer>
+			<real>395</real>
 		</dict>
 		<key>B93448AD-3457-4CBA-B37D-1242E4A92C44</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1020</integer>
+			<real>1020</real>
 			<key>ypos</key>
-			<integer>755</integer>
+			<real>755</real>
 		</dict>
 		<key>BDEED30D-47F5-468D-899C-0AD5D4FFAADB</key>
 		<dict>
 			<key>xpos</key>
-			<integer>730</integer>
+			<real>730</real>
 			<key>ypos</key>
-			<integer>755</integer>
+			<real>755</real>
 		</dict>
 		<key>BF3AD75A-24F4-48F8-9C08-6DB615CE6B35</key>
 		<dict>
 			<key>xpos</key>
-			<integer>495</integer>
+			<real>495</real>
 			<key>ypos</key>
-			<integer>995</integer>
+			<real>995</real>
 		</dict>
 		<key>BFD78A9F-0242-46A6-982A-9DA120AB8328</key>
 		<dict>
 			<key>xpos</key>
-			<integer>670</integer>
+			<real>670</real>
 			<key>ypos</key>
-			<integer>185</integer>
+			<real>185</real>
 		</dict>
 		<key>C80AD651-BCAF-4B86-869A-D4D847A2379B</key>
 		<dict>
 			<key>xpos</key>
-			<integer>455</integer>
+			<real>455</real>
 			<key>ypos</key>
-			<integer>545</integer>
+			<real>545</real>
 		</dict>
 		<key>D3A7A89F-92D3-4FC6-B561-20BBF3CDE6CE</key>
 		<dict>
 			<key>xpos</key>
-			<integer>60</integer>
+			<real>60</real>
 			<key>ypos</key>
-			<integer>635</integer>
+			<real>635</real>
 		</dict>
 		<key>D8524846-F942-4A77-9461-8BAED974B8CF</key>
 		<dict>
 			<key>xpos</key>
-			<integer>60</integer>
+			<real>60</real>
 			<key>ypos</key>
-			<integer>515</integer>
+			<real>515</real>
 		</dict>
 		<key>DC74421D-631A-44B1-AC86-ED7793CADE26</key>
 		<dict>
 			<key>xpos</key>
-			<integer>495</integer>
+			<real>495</real>
 			<key>ypos</key>
-			<integer>275</integer>
+			<real>275</real>
 		</dict>
 		<key>FD70A114-2767-4782-8D5F-86AC4B3BB8B3</key>
 		<dict>
 			<key>xpos</key>
-			<integer>455</integer>
+			<real>455</real>
 			<key>ypos</key>
-			<integer>665</integer>
+			<real>665</real>
 		</dict>
 	</dict>
+	<key>userconfigurationconfig</key>
+	<array/>
 	<key>variables</key>
 	<dict>
 		<key>add_to_watchlist</key>
@@ -1218,11 +1228,13 @@ You will have to install [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) yourself b
 		<string>mp3</string>
 		<key>download_dir</key>
 		<string>~/Downloads</string>
+		<key>playlist_title_template</key>
+		<string>%(playlist)s/%(playlist_index)s-%(title)s.%(ext)s</string>
+		<key>single_title_template</key>
+		<string>%(title)s.%(ext)s</string>
 	</dict>
-	<key>variablesdontexport</key>
-	<array/>
 	<key>version</key>
-	<string>2022.2</string>
+	<string>2022.3</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
