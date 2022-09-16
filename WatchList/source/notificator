@@ -154,8 +154,9 @@ readonly jxa_script='
   app.displayNotification(message, options)
 '
 
+[[ -d "${app}" ]] && rm -r "${app}"
 /bin/mkdir -p "${alfred_workflow_cache}"
-/usr/bin/osacompile -l JavaScript -o "${app}" -e "${jxa_script}" &> /dev/null
+/usr/bin/osacompile -l JavaScript -o "${app}" -e "${jxa_script}" 2> /dev/null
 
 # Modify Notificator
 /usr/libexec/PlistBuddy -c "add :CFBundleIdentifier string ${bundle_id}.notificator" "${plist}"
