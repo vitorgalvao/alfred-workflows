@@ -1234,7 +1234,7 @@ You will have to install [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) yourself b
 		<string>%(title)s.%(ext)s</string>
 	</dict>
 	<key>version</key>
-	<string>2022.3</string>
+	<string>2022.4</string>
 	<key>webaddress</key>
 	<string>http://vitorgalvao.com/</string>
 </dict>
