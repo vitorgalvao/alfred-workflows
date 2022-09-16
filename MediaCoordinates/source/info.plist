@@ -243,7 +243,7 @@ The `map_provider` Workflow Environment Variable defaults to `Apple`, but also s
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>2022.2</string>
+	<string>2022.3</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
