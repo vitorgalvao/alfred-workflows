@@ -10,7 +10,35 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>4C30FC65-71BF-4EFE-94CC-B038B4D991CA</string>
+				<string>BF06F0C4-23F1-4134-8749-7F9AB5CE0194</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>4C30FC65-71BF-4EFE-94CC-B038B4D991CA</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>5116FFE2-57F2-4B38-88EA-24FC77101347</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>BE14E614-033A-4F71-9D86-54A8A9489EEC</key>
+		<array/>
+		<key>BF06F0C4-23F1-4134-8749-7F9AB5CE0194</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>BE14E614-033A-4F71-9D86-54A8A9489EEC</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -20,7 +48,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>5116FFE2-57F2-4B38-88EA-24FC77101347</string>
+				<string>4C30FC65-71BF-4EFE-94CC-B038B4D991CA</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -33,7 +61,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>4C30FC65-71BF-4EFE-94CC-B038B4D991CA</string>
+				<string>BF06F0C4-23F1-4134-8749-7F9AB5CE0194</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -56,18 +84,58 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>availableviaurlhandler</key>
+				<false/>
+				<key>triggerid</key>
+				<string>dnd</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>CCD42A98-2018-4BC4-9B3A-90AA2B0AEB3A</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>inputmode</key>
+				<integer>0</integer>
+				<key>outputmode</key>
+				<integer>0</integer>
+				<key>shortcut</key>
+				<string>Calm Notifications</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.automation.runshortcut</string>
+			<key>uid</key>
+			<string>BE14E614-033A-4F71-9D86-54A8A9489EEC</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.junction</string>
+			<key>uid</key>
+			<string>BF06F0C4-23F1-4134-8749-7F9AB5CE0194</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>if ! /usr/bin/shortcuts list | grep --quiet 'Calm Notifications'; then
-  /usr/bin/open './Calm Notifications.shortcut'
-  echo 'Missing Calm Notifications Shortcut' &gt;&amp;2
-  exit 1
-fi
+				<string>readonly shortcut_name='Calm Notifications'
 
-/usr/bin/shortcuts run 'Calm Notifications' &lt;&lt;&lt; "${1}"</string>
+if ! /usr/bin/shortcuts list | grep --quiet "${shortcut_name}"; then
+  /usr/bin/open "./${shortcut_name}.shortcut"
+  echo 'Missing "${shortcut_name}" shortcut' &gt;&amp;2
+  exit 1
+fi</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -81,21 +149,6 @@ fi
 			<string>4C30FC65-71BF-4EFE-94CC-B038B4D991CA</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>availableviaurlhandler</key>
-				<false/>
-				<key>triggerid</key>
-				<string>dnd</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>CCD42A98-2018-4BC4-9B3A-90AA2B0AEB3A</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -305,16 +358,18 @@ If you don’t have the required Shortcut, the Workflow will prompt you to insta
 		<key>3E435725-836B-4634-BF9F-B8DBADDDEABF</key>
 		<dict>
 			<key>xpos</key>
-			<real>40</real>
+			<real>50</real>
 			<key>ypos</key>
-			<real>150</real>
+			<real>155</real>
 		</dict>
 		<key>4C30FC65-71BF-4EFE-94CC-B038B4D991CA</key>
 		<dict>
+			<key>note</key>
+			<string>Check if shortcut is installed</string>
 			<key>xpos</key>
-			<real>245</real>
+			<real>315</real>
 			<key>ypos</key>
-			<real>30</real>
+			<real>155</real>
 		</dict>
 		<key>5116FFE2-57F2-4B38-88EA-24FC77101347</key>
 		<dict>
@@ -323,22 +378,36 @@ If you don’t have the required Shortcut, the Workflow will prompt you to insta
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<real>245</real>
+			<real>495</real>
 			<key>ypos</key>
-			<real>150</real>
+			<real>155</real>
+		</dict>
+		<key>BE14E614-033A-4F71-9D86-54A8A9489EEC</key>
+		<dict>
+			<key>xpos</key>
+			<real>315</real>
+			<key>ypos</key>
+			<real>35</real>
+		</dict>
+		<key>BF06F0C4-23F1-4134-8749-7F9AB5CE0194</key>
+		<dict>
+			<key>xpos</key>
+			<real>220</real>
+			<key>ypos</key>
+			<real>120</real>
 		</dict>
 		<key>CCD42A98-2018-4BC4-9B3A-90AA2B0AEB3A</key>
 		<dict>
 			<key>xpos</key>
-			<real>40</real>
+			<real>50</real>
 			<key>ypos</key>
-			<real>30</real>
+			<real>35</real>
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
 	<array/>
 	<key>version</key>
-	<string>2022.3</string>
+	<string>2022.4</string>
 	<key>webaddress</key>
 	<string>https://vitorgalvao.com/</string>
 </dict>
