@@ -1,6 +1,6 @@
 #!/bin/bash
 
-readonly valid_resources=('blueutil' 'cpulimit' 'exiftool' 'ffmpeg' 'mediainfo' 'multimarkdown' 'youtubedl') # Keep in sync with resource functions
+readonly valid_resources=('blueutil' 'cpulimit' 'defaultbrowser' 'exiftool' 'ffmpeg' 'mediainfo' 'multimarkdown' 'youtubedl') # Keep in sync with resource functions
 readonly shared_resources_id='com.vitorgalvao.alfred._sharedresources'
 [[ -n "${alfred_workflow_data}" ]] || readonly alfred_workflow_data="$(mktemp -d)/Workflow Data/fake_workflow" # To prevent commands reliant on this variable from breaking when testing outside a Workflow
 readonly shared_resources_dir="$(dirname "${alfred_workflow_data}")/${shared_resources_id}"
@@ -94,6 +94,30 @@ function cpulimit_getter {
 
   local -r bin_version='0.2'
   local -r bin_sha="$([[ "${arch}" == 'i386' ]] && echo 'f3f394e17febb7af49a1cb35c46e33856263dc58016d959aad2d2a250aae1d7d' || echo 'f09919436a14d7b1598720ca832435b2500aebe0839f5055a253f52c59642a5d')"
+
+  # Consistent over Hombrew installs
+  ensure_resources_dir
+  local -r extract_dir="$(mktemp -d)"
+  local -r bin_path="${shared_resources_bin}/${bin_name}"
+  local -r bin_url="https://ghcr.io/v2/homebrew/core/${bin_name}/blobs/sha256:${bin_sha}"
+
+  if curl --silent --location --header 'Authorization: Bearer QQ==' "${bin_url}" | tar xC "${extract_dir}"; then
+    mv "${extract_dir}/${bin_name}/${bin_version}/bin/${bin_name}" "${bin_path}"
+    chmod +x "${bin_path}"
+  else
+    curl_error "${bin_name}"
+  fi
+
+  rm -rf "${extract_dir}"
+}
+
+function defaultbrowser_getter {
+  # Manually change
+  local -r bin_name='defaultbrowser'
+  renew_bin "${bin_name}" '90' || return
+
+  local -r bin_version='1.1'
+  local -r bin_sha="$([[ "${arch}" == 'i386' ]] && echo 'cb836a15dc466342c11bb7cdf35370b261b77723d81438664f89e84513a06f8f' || echo 'fdbee46ea9cdc0bf6adbea67eed257663c77d745af838f4a2e71f69987242d6c')"
 
   # Consistent over Hombrew installs
   ensure_resources_dir
