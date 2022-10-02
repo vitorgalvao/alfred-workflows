@@ -22,7 +22,7 @@ function renew_bin {
   # If binary is in shared directory and older than set days, renew (redownload)
   [[ "${bin_path}" == *"${shared_resources_id}"* && "$(find "${bin_path}" -mtime "+${expire_days}")" ]] && return 0
 
-  # Otherwise, do not renew (keep everythin as is)
+  # Otherwise, do not renew (keep everything as is)
   return 1
 }
 
@@ -71,7 +71,7 @@ function blueutil_getter {
   local -r bin_version='2.9.0'
   local -r bin_sha="$([[ "${arch}" == 'i386' ]] && echo '429703e2bae1445d2a6ae2e1f52ed2c1f0bad3a94e80b44bfe36e698ba5ded30' || echo 'e29ddccdf7253406a3685f4099f3424ffb6d399ff2643f2d79f281ad97b93a67')"
 
-  # Consistent over Hombrew installs
+  # Consistent over Homebrew installs
   ensure_resources_dir
   local -r extract_dir="$(mktemp -d)"
   local -r bin_path="${shared_resources_bin}/${bin_name}"
@@ -95,7 +95,7 @@ function cpulimit_getter {
   local -r bin_version='0.2'
   local -r bin_sha="$([[ "${arch}" == 'i386' ]] && echo 'f3f394e17febb7af49a1cb35c46e33856263dc58016d959aad2d2a250aae1d7d' || echo 'f09919436a14d7b1598720ca832435b2500aebe0839f5055a253f52c59642a5d')"
 
-  # Consistent over Hombrew installs
+  # Consistent over Homebrew installs
   ensure_resources_dir
   local -r extract_dir="$(mktemp -d)"
   local -r bin_path="${shared_resources_bin}/${bin_name}"
@@ -119,7 +119,7 @@ function defaultbrowser_getter {
   local -r bin_version='1.1'
   local -r bin_sha="$([[ "${arch}" == 'i386' ]] && echo 'cb836a15dc466342c11bb7cdf35370b261b77723d81438664f89e84513a06f8f' || echo 'fdbee46ea9cdc0bf6adbea67eed257663c77d745af838f4a2e71f69987242d6c')"
 
-  # Consistent over Hombrew installs
+  # Consistent over Homebrew installs
   ensure_resources_dir
   local -r extract_dir="$(mktemp -d)"
   local -r bin_path="${shared_resources_bin}/${bin_name}"
@@ -204,7 +204,7 @@ function multimarkdown_getter {
   local -r bin_version='6.6.0'
   local -r bin_sha="$([[ "${arch}" == 'i386' ]] && echo '15b87bf8b7be554761d0114af63d3789df6db6cb58616afc408f569ea8ac50d0' || echo 'c377c5976fff15a469b330470febc8b7db8f695b597e588fd35e975fe17010a5')"
 
-  # Consistent over Hombrew installs
+  # Consistent over Homebrew installs
   ensure_resources_dir
   local -r extract_dir="$(mktemp -d)"
   local -r bin_path="${shared_resources_bin}/${bin_name}"
