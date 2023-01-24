@@ -1,4 +1,4 @@
-# Collection of Alfred Workflows
+# This collection is being split into several repositories, one per workflow. Find the links below.
 
 ### AppFreeze <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/AppFreeze/source/icon.png' width='60' align='center' alt='AppFreeze icon'>
 Pauses and resumes execution of the frontmost app
@@ -10,15 +10,14 @@ Get logins from bugmenot
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/BugNot) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/BugNot/BugNot.alfredworkflow)
 
-### CalmNotifications <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/CalmNotifications/source/icon.png' width='60' align='center' alt='CalmNotifications icon'>
-Toggle Do Not Disturb
+### CalmNotifications <img src='https://raw.githubusercontent.com/vitorgalvao/calm-notifications-workflow/main/Workflow/icon.png' width='60' align='center' alt='CalmNotifications icon'>
 
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/CalmNotifications) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/CalmNotifications/CalmNotifications.alfredworkflow)
+[New Home](https://github.com/vitorgalvao/calm-notifications-workflow/)
 
-### CardSearch <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/CardSearch/source/icon.png' width='60' align='center' alt='CardSearch icon'>
+### CardSearch <img src='https://raw.githubusercontent.com/vitorgalvao/mtg-card-search-workflow/main/Workflow/icon.png' width='60' align='center' alt='CardSearch icon'>
 Search for trading card game cards
 
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/CardSearch) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/CardSearch/CardSearch.alfredworkflow)
+[New Home](https://github.com/vitorgalvao/mtg-card-search-workflow/)
 
 ### CoffeeCoffee <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/CoffeeCoffee/source/icon.png' width='60' align='center' alt='CoffeeCoffee icon'>
 Prevent your computer from going to sleep
@@ -30,25 +29,25 @@ Find settings and preferences to delete
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/DeleteConfig) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/DeleteConfig/DeleteConfig.alfredworkflow)
 
-### DenteAzul <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/DenteAzul/source/icon.png' width='60' align='center' alt='DenteAzul icon'>
+### DenteAzul <img src='https://raw.githubusercontent.com/vitorgalvao/dente-azul-workflow/main/Workflow/icon.png' width='60' align='center' alt='DenteAzul icon'>
 Toggle bluetooth and paired device connectivity
 
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/DenteAzul) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/DenteAzul/DenteAzul.alfredworkflow)
+[New Home](https://github.com/vitorgalvao/dente-azul-workflow/)
 
-### DownMedia <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/DownMedia/source/icon.png' width='60' align='center' alt='DownMedia icon'>
+### DownMedia <img src='https://raw.githubusercontent.com/vitorgalvao/download-media-workflow/main/Workflow/icon.png' width='60' align='center' alt='DownMedia icon'>
 Download media from popular sources
 
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/DownMedia) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/DownMedia/DownMedia.alfredworkflow)
+[New Home](https://github.com/vitorgalvao/download-media-workflow/)
 
 ### FormatSize <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/FormatSize/source/icon.png' width='60' align='center' alt='FormatSize icon'>
 Reference paper sizes and device resolutions
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/FormatSize) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/FormatSize/FormatSize.alfredworkflow)
 
-### HackerBoard <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/HackerBoard/source/icon.png' width='60' align='center' alt='HackerBoard icon'>
+### HackerBoard <img src='https://raw.githubusercontent.com/vitorgalvao/hackerboard-workflow/main/Workflow/icon.png' width='60' align='center' alt='HackerBoard icon'>
 Front page news from web community sources
 
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/HackerBoard) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/HackerBoard/HackerBoard.alfredworkflow)
+[New Home](https://github.com/vitorgalvao/hackerboard-workflow/)
 
 ### IncognitoClone <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/IncognitoClone/source/icon.png' width='60' align='center' alt='IncognitoClone icon'>
 Opens Chrome’s frontmost tab in an incognito window
@@ -60,10 +59,10 @@ Translate keyboard keys to AppleScript key codes
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/KeyCodes) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/KeyCodes/KeyCodes.alfredworkflow)
 
-### LabelColor <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/LabelColor/source/icon.png' width='60' align='center' alt='LabelColor icon'>
+### LabelColor <img src='https://raw.githubusercontent.com/vitorgalvao/label-colour-tag-workflow/main/Workflow/icon.png' width='60' align='center' alt='LabelColor icon'>
 Sets a label color for selected files and directories
 
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/LabelColor) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/LabelColor/LabelColor.alfredworkflow)
+[New Home](https://github.com/vitorgalvao/label-colour-tag-workflow/)
 
 ### LinkClean <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/LinkClean/source/icon.png' width='60' align='center' alt='LinkClean icon'>
 Removes extraneous information from URLs
@@ -80,25 +79,25 @@ Convert Markdown to other formats
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/MarkdownTransform) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MarkdownTransform/MarkdownTransform.alfredworkflow)
 
-### MediaCoordinates <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MediaCoordinates/source/icon.png' width='60' align='center' alt='MediaCoordinates icon'>
+### MediaCoordinates <img src='https://raw.githubusercontent.com/vitorgalvao/media-coordinates-workflow/main/Workflow/icon.png' width='60' align='center' alt='MediaCoordinates icon'>
 Open media GPS coordinates in a map
 
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/MediaCoordinates) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MediaCoordinates/MediaCoordinates.alfredworkflow)
+[New Home](https://github.com/vitorgalvao/media-coordinates-workflow/)
 
-### MediaThorn <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MediaThorn/source/icon.png' width='60' align='center' alt='MediaThorn icon'>
+### MediaThorn <img src='https://raw.githubusercontent.com/vitorgalvao/critic-ratings-workflow/main/Workflow/icon.png' width='60' align='center' alt='MediaThorn icon'>
 Get ratings for different types of media
 
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/MediaThorn) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/MediaThorn/MediaThorn.alfredworkflow)
+[New Home](https://github.com/vitorgalvao/critic-ratings-workflow/)
 
 ### NewPath <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/NewPath/source/icon.png' width='60' align='center' alt='NewPath icon'>
 Creates a new file in the current Finder directory
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/NewPath) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/NewPath/NewPath.alfredworkflow)
 
-### NoteTaker <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/NoteTaker/source/icon.png' width='60' align='center' alt='NoteTaker icon'>
+### NoteTaker <img src='https://raw.githubusercontent.com/vitorgalvao/note-taker-workflow/main/Workflow/icon.png' width='60' align='center' alt='NoteTaker icon'>
 Keep small bits of text
 
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/NoteTaker) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/NoteTaker/NoteTaker.alfredworkflow)
+[New Home](https://github.com/vitorgalvao/note-taker-workflow/)
 
 ### OneUpdater <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/OneUpdater/source/icon.png' width='60' align='center' alt='OneUpdater icon'>
 Update workflows with a single node
@@ -115,15 +114,15 @@ Play the URL in the frontmost browser or clipboard
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/PlayAddress) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/PlayAddress/PlayAddress.alfredworkflow)
 
-### PingPong <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/PingPong/source/icon.png' width='60' align='center' alt='PingPong icon'>
+### PingPong <img src='https://raw.githubusercontent.com/vitorgalvao/ping-pong-workflow/main/Workflow/icon.png' width='60' align='center' alt='PingPong icon'>
 Play a round of table tennis with Alfred
 
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/PingPong) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/PingPong/PingPong.alfredworkflow)
+[New Home](https://github.com/vitorgalvao/ping-pong-workflow/)
 
-### PinPlus <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/PinPlus/source/icon.png' width='60' align='center' alt='PinPlus icon'>
+### PinPlus <img src='https://raw.githubusercontent.com/vitorgalvao/pin-plus-workflow/main/Workflow/icon.png' width='60' align='center' alt='PinPlus icon'>
 Interact with your Pinboard bookmarks
 
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/PinPlus) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/PinPlus/PinPlus.alfredworkflow)
+[New Home](https://github.com/vitorgalvao/pin-plus-workflow/)
 
 ### ProcessControl <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/ProcessControl/source/icon.png' width='60' align='center' alt='ProcessControl icon'>
 Deal with misbehaving processes
@@ -145,20 +144,20 @@ Keep a contextual list of recommendations
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/RecommendationNation) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RecommendationNation/RecommendationNation.alfredworkflow)
 
-### RemoveQuarantine <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RemoveQuarantine/source/icon.png' width='60' align='center' alt='RemoveQuarantine icon'>
+### RemoveQuarantine <img src='https://raw.githubusercontent.com/vitorgalvao/remove-quarantine-workflow/main/Workflow/icon.png' width='60' align='center' alt='RemoveQuarantine icon'>
 Remove the quarantine attribute from your apps
 
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/RemoveQuarantine) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RemoveQuarantine/RemoveQuarantine.alfredworkflow)
+[New Home](https://github.com/vitorgalvao/remove-quarantine-workflow/)
 
-### RenameAction <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RenameAction/source/icon.png' width='60' align='center' alt='RenameAction icon'>
+### RenameAction <img src='https://raw.githubusercontent.com/vitorgalvao/rename-action-workflow/main/Workflow/icon.png' width='60' align='center' alt='RenameAction icon'>
 Rename files and folders
 
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/RenameAction) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RenameAction/RenameAction.alfredworkflow)
+[New Home](https://github.com/vitorgalvao/rename-action-workflow/)
 
-### RightClick <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RightClick/source/icon.png' width='60' align='center' alt='RightClick icon'>
+### RightClick <img src='https://raw.githubusercontent.com/vitorgalvao/right-click-workflow/main/Workflow/icon.png' width='60' align='center' alt='RightClick icon'>
 Do a right-click on Finder files, with the keyboard
 
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/RightClick) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RightClick/RightClick.alfredworkflow)
+[New Home](https://github.com/vitorgalvao/right-click-workflow/)
 
 ### RunCommand <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/RunCommand/source/icon.png' width='60' align='center' alt='RunCommand icon'>
 Run shell commands without opening a terminal
@@ -180,15 +179,15 @@ Stream from a selection of short films
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/ShortFilms) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/ShortFilms/ShortFilms.alfredworkflow)
 
-### StartRecording <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/StartRecording/source/icon.png' width='60' align='center' alt='StartRecording icon'>
+### StartRecording <img src='https://raw.githubusercontent.com/vitorgalvao/start-recording-workflow/main/Workflow/icon.png' width='60' align='center' alt='StartRecording icon'>
 Shortcuts for recording from your computer
 
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/StartRecording) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/StartRecording/StartRecording.alfredworkflow)
+[New Home](https://github.com/vitorgalvao/start-recording-workflow/)
 
-### ShutdownTimer <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/ShutdownTimer/source/icon.png' width='60' align='center' alt='ShutdownTimer icon'>
+### ShutdownTimer <img src='https://raw.githubusercontent.com/vitorgalvao/shutdown-timer-workflow/main/Workflow/icon.png' width='60' align='center' alt='ShutdownTimer icon'>
 Shutdown macOS on a timer
 
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/ShutdownTimer) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/ShutdownTimer/ShutdownTimer.alfredworkflow)
+[New Home](https://github.com/vitorgalvao/shutdown-timer-workflow/)
 
 ### StrongPassword <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/StrongPassword/source/icon.png' width='60' align='center' alt='StrongPassword icon'>
 Get a strong password by leveraging multiple sources
@@ -210,10 +209,10 @@ Save and reuse files, directory structures, and urls
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/TemplatesManager) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/TemplatesManager/TemplatesManager.alfredworkflow)
 
-### TemporaryEmail <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/TemporaryEmail/source/icon.png' width='60' align='center' alt='TemporaryEmail icon'>
+### TemporaryEmail <img src='https://raw.githubusercontent.com/vitorgalvao/temporary-email-workflow/main/Workflow/icon.png' width='60' align='center' alt='TemporaryEmail icon'>
 Get a temporary email inbox
 
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/TemporaryEmail) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/TemporaryEmail/TemporaryEmail.alfredworkflow)
+[New Home](https://github.com/vitorgalvao/temporary-email-workflow/)
 
 ### TrialSounds <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/TrialSounds/source/icon.png' width='60' align='center' alt='TrialSounds icon'>
 Listen to /System/Library/Sounds
@@ -225,20 +224,20 @@ A two-player game for Alfred
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/TurnShoot) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/TurnShoot/TurnShoot.alfredworkflow)
 
-### UploadFile <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/UploadFile/source/icon.png' width='60' align='center' alt='UploadFile icon'>
+### UploadFile <img src='https://raw.githubusercontent.com/vitorgalvao/upload-file-workflow/main/Workflow/icon.png' width='60' align='center' alt='UploadFile icon'>
 Upload files and directories for easy sharing
 
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/UploadFile) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/UploadFile/UploadFile.alfredworkflow)
+[New Home](https://github.com/vitorgalvao/upload-file-workflow/)
 
 ### VideoDuration <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/VideoDuration/source/icon.png' width='60' align='center' alt='VideoDuration icon'>
 Outputs the url of a video on a supported website with its duration in square brackets
 
 [info](https://github.com/vitorgalvao/alfred-workflows/tree/master/VideoDuration) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/VideoDuration/VideoDuration.alfredworkflow)
 
-### WatchList <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/WatchList/source/icon.png' width='60' align='center' alt='WatchList icon'>
+### WatchList <img src='https://raw.githubusercontent.com/vitorgalvao/watch-list-workflow/main/Workflow/icon.png' width='60' align='center' alt='WatchList icon'>
 Play and manage local media and streams
 
-[info](https://github.com/vitorgalvao/alfred-workflows/tree/master/WatchList) | [download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/WatchList/WatchList.alfredworkflow)
+[New Home](https://github.com/vitorgalvao/watch-list-workflow/)
 
 ### WebScreenshot <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/WebScreenshot/source/icon.png' width='60' align='center' alt='WebScreenshot icon'>
 Take screenshots directly to the web
