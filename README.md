@@ -1,4 +1,6 @@
-# This collection is being split into several repositories, one per workflow. Find the links below.
+# Moving to New Homes
+
+This collection is being split into several repositories. Find the new homes below. The ones with a `Download` option havenLt been updated yet.
 
 | Icon | Name | Description | New Home |
 | ---  | ---- | ----------- | -------- |
