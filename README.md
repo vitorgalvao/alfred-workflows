@@ -4,7 +4,7 @@ This collection is being split into several repositories. Find the new homes bel
 
 | Icon | Name | Description | Link |
 | ---  | ---- | ----------- | ---- |
-| <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/AppFreeze/source/icon.png' width='60' alt='AppFreeze icon'> | AppFreeze | Pauses and resumes execution of the frontmost app | [Download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/AppFreeze/AppFreeze.alfredworkflow) |
+| <img src='https://raw.githubusercontent.com/vitorgalvao/app-freeze-workflow/main/Workflow/icon.png' width='60' alt='AppFreeze icon'> | AppFreeze | Pauses and resumes execution of the frontmost app | [Home](https://github.com/vitorgalvao/app-freeze-workflow/) |
 | <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/BugNot/source/icon.png' width='60' alt='BugNot icon'> | BugNot | Get logins from bugmenot | [Download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/BugNot/BugNot.alfredworkflow) |
 | <img src='https://raw.githubusercontent.com/vitorgalvao/calm-notifications-workflow/main/Workflow/icon.png' width='60' alt='CalmNotifications icon'> | CalmNotifications | Toggle Do Not Disturb Focus Mode | [Home](https://github.com/vitorgalvao/calm-notifications-workflow/)  |
 | <img src='https://raw.githubusercontent.com/vitorgalvao/mtg-card-search-workflow/main/Workflow/icon.png' width='60' alt='CardSearch icon'> | CardSearch | Search for trading card game cards | [Home](https://github.com/vitorgalvao/mtg-card-search-workflow/) |
