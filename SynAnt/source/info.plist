@@ -167,7 +167,7 @@
 	<key>createdby</key>
 	<string>Vítor Galvão</string>
 	<key>description</key>
-	<string>Substitute words by checking against a thesaurs</string>
+	<string>Substitute words by checking against a thesaurus</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
