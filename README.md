@@ -53,7 +53,7 @@ This collection is being split into several repositories. Find the new homes bel
 | <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/VideoDuration/source/icon.png' width='60' alt='VideoDuration icon'> | VideoDuration | Outputs the url of a video on a supported website with its duration in square brackets | [Download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/VideoDuration/VideoDuration.alfredworkflow) |
 | <img src='https://raw.githubusercontent.com/vitorgalvao/watch-list-workflow/main/Workflow/icon.png' width='60' alt='WatchList icon'> | WatchList | Play and manage local media and streams | [Home](https://github.com/vitorgalvao/watch-list-workflow/) |
 | <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/WebScreenshot/source/icon.png' width='60' alt='WebScreenshot icon'> | WebScreenshot | Take screenshots directly to the web | [Download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/WebScreenshot/WebScreenshot.alfredworkflow) |
-| <img src='https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/WordsWith/source/icon.png' width='60' alt='WordsWith icon'> | WordsWith | Find words that contain a particular pattern | [Download](https://raw.githubusercontent.com/vitorgalvao/alfred-workflows/master/WordsWith/WordsWith.alfredworkflow) |
+| <img src='https://raw.githubusercontent.com/vitorgalvao/words-with-workflow/main/Workflow/icon.png' width='60' alt='WordsWith icon'> | WordsWith | Find words that contain a particular pattern | [Home](https://github.com/vitorgalvao/words-with-workflow/)  |
 
 ### Workflow helpers
 
