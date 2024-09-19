@@ -25,7 +25,7 @@ As they were not transferred to new repositories, the following tables points to
 | BugNot | [View](https://github.com/vitorgalvao/alfred-workflows/tree/b8df6b60ad49f2f35695a5c0c96807ebc5166102/BugNot) |
 | CheckSpelling | [View](https://github.com/vitorgalvao/alfred-workflows/tree/c0d9c9313857676997e6e05d9dda65cfa5fcda6a/CheckSpelling) |
 | OpenActions | [View](https://github.com/vitorgalvao/alfred-workflows/tree/b8df6b60ad49f2f35695a5c0c96807ebc5166102/OpenActions) |
-| OpenUpdater | [View](https://github.com/vitorgalvao/alfred-workflows/tree/a2a2984ec4c7b839b7bf45315491c6993ef13444/OneUpdater) |
+| OneUpdater | [View](https://github.com/vitorgalvao/alfred-workflows/tree/a2a2984ec4c7b839b7bf45315491c6993ef13444/OneUpdater) |
 | QuitArena | [View](https://github.com/vitorgalvao/alfred-workflows/tree/c02a9c1c5526d64ae15972ab331802d01d887766/QuitArena)
 | RepeatRepeat | [View](https://github.com/vitorgalvao/alfred-workflows/tree/9a70302fa31d6fba2b532bc9dd7eac75d67f6964/RepeatRepeat) |
 | RespondQuickly | [View](https://github.com/vitorgalvao/alfred-workflows/tree/f174fde5da3238d57dc3415bb351759c02eb8dab/RespondQuickly) |
