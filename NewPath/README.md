@@ -1,8 +1,6 @@
-Call `nf` followed by a file name (if no extension is given, `.txt` will be used) to make a new file. Calling `nfo` instead will open the files after creation.
+Run the New File Keyword (default: `nf`) followed by a name to make a new empty file in the frontmost Finder location. Running the New File and Open Keyword (default: `nfo`) does the same and opens it after creation.
 
-`nd` and `ndo` behave similarly, but for directories. Two important diferences: no extension is added, and subdirectories can be created with `/`.
+There are equivalent keywords for New Folder (default: `nd`) and New Folder and Open (default: `ndo`). Adding `/` in the name allows for the quick creation of nested folders.
 
-If a Finder window is the frontmost, the new paths will be created there, otherwise they will be created on the Desktop. Use `|` to separate the names of multiple entries (surrounding spaces will be trimmed).
-
-![](https://i.imgur.com/cDBBQG3.png)
-![](https://i.imgur.com/qAXwk5d.png)
+![Alfred search for nf](source/images/about/nf.png)
+![Alfred search for nd](source/images/about/nd.png)
