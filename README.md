@@ -9,7 +9,7 @@ My Workflows are published to the [Alfred Gallery](https://alfred.app/). As a [m
 
 The following are helpers and Workflows which have been deprecated and are not kept anywhere else. Some were proofs of concept, a few used APIs or services which no longer exist, but most were made obsolete by Alfred features such as [Automation Tasks](https://www.alfredapp.com/help/workflows/automations/automation-task/) which provide convenient ways to replicate the same functionality to your liking with no coding required.
 
-As they were not transferred to new repositories, the following tables points to commits were their latest versions were available.
+As they were not transferred to new repositories, the following tables points to commits where their latest versions were available.
 
 | Helper | Source Code |
 | ------ | :---------: |
